@@ -22,6 +22,7 @@
 `vector_preview.svg` 是独立矢量预览，可用浏览器、Inkscape 或 Illustrator 打开。
 
 ## 数据文件
+- `Administrative-Division-Map-of-Donh-2026.png`: 高清原图（8192 ? 5792，用于运河中心线和刻度描绘）
 - `data/administrative_regions.geojson`：行政区候选面
 - `data/province_boundaries.geojson`：每段只绘制一次的共享省界中线；穿过湖泊的省界采用直线
 - `data/national_outline.geojson`：国土外轮廓候选
@@ -50,7 +51,7 @@ python extract_context_layers.py
 
 `build_administrative_boundaries.py` 从行政区面与国土轮廓重新生成共享省界中线，并裁掉国界、省界与细致海岸线重叠的片段；同时按行政区合并面的几何中心生成半透明代码标注，再更新 Canvas 页面和独立 SVG 预览。生成流程需要 SciPy；目前根据原图将 2、3、4、5、6、10 号湖泊判为界湖并拉直穿湖省界。
 
-`extract_hydrology_styles.py` 按原图蓝色虚线重新描绘两条邻国季节性河流，并将南部两段尺刻状水道作为独立运河图层；两类水道都从普通河流层剔除，东南沿海河口网保留在河流层。运河刻度沿原图方向绘制。省份代码按对应面几何中心放置；`SW` 有两块分离区域，代码只标在面积较大的那块。
+`extract_hydrology_styles.py` 按原图蓝色虚线重新描绘两条邻国季节性河流，并将南部两段尺刻状水道作为独立运河图层；两类水道都从普通河流层剔除，东南沿海河口网保留在河流层。运河中心线按高清原图描绘，刻度依据各处局部切线生成垂线。省份代码按对应面几何中心放置；`SW` 有两块分离区域，代码只标在面积较大的那块。
 
 运行示例：
 ```bash

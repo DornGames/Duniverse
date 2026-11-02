@@ -23,7 +23,9 @@
   "neighbor_border_segments": 1,
   "ocean_pixels": 971243,
   "canal_centerlines": 2,
-  "canal_ruler_ticks": 33,
+  "canal_ruler_ticks": 35,
   "seasonal_river_features": 2,
-  "national_seasonal_river_candidates": 0
+  "national_seasonal_river_candidates": 0,
+  "canal_trace_source_image": "Administrative-Division-Map-of-Donh-2026.png",
+  "canal_tick_orientation": "perpendicular_to_local_centerline_tangent"
 }

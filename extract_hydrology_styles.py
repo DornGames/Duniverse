@@ -14,13 +14,14 @@ import re
 from pathlib import Path
 
 from PIL import Image, ImageDraw
-from shapely.geometry import LineString, shape
+from shapely.geometry import LineString, Point, shape
 from shapely.ops import unary_union
 
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 SOURCE = ROOT / "input_map.png"
+HIGH_RES_SOURCE = ROOT / "Administrative-Division-Map-of-Donh-2026.png"
 DIAGNOSTICS = ROOT / "diagnostics"
 
 SEASONAL_RIVER_PATHS = [
@@ -48,63 +49,54 @@ SEASONAL_RIVER_PATHS = [
     ],
 ]
 
-# The source raster shows two ruler-marked canal symbols. Their ticks
-# are hand-traced individually: the spacing is irregular and must not be
-# extrapolated into long horizontal lines across the map.
+# Traced from the 8192x5792 source image, then scaled into input_map.png
+# coordinates. Canal 1 bends around the lake outlet; canal 2 ends at its
+# eastern river junction. Tick locations are points on the centerline.
 CANAL_CENTERLINES = [
     {
         "canal_id": 1,
         "name": "南部运河",
-        # East outlet of the lake through the short ruler-marked reach.
+        # From the reservoir outlet, the channel dips south, turns northeast,
+        # then meets the eastern river network before the coastline.
         "line": LineString([
-            (1283, 1147), (1295, 1147), (1306, 1147), (1318, 1147),
-            (1329, 1147), (1340, 1146), (1352, 1145), (1364, 1145),
-            (1370, 1145),
+            (1277, 1145.0), (1281, 1145.5), (1285, 1145.8),
+            (1289, 1146.2), (1293, 1146.7), (1297, 1147.1),
+            (1301, 1147.6), (1305, 1148.0), (1310, 1148.4),
+            (1315, 1148.7), (1320, 1148.7), (1325, 1148.7),
+            (1330, 1148.6), (1335, 1148.2), (1340, 1147.7),
+            (1344, 1147.0), (1348, 1145.8), (1352, 1144.3),
+            (1356, 1142.5), (1360, 1140.7), (1364, 1138.5),
+            (1368, 1136.2), (1372, 1134.2), (1376, 1132.5),
+            (1380, 1131.2), (1385, 1130.3), (1390, 1129.8),
+            (1395, 1129.7), (1400, 1129.0),
         ]),
-        "ticks": [
-            ((1295, 1141), (1295, 1147)),
-            ((1306, 1141), (1306, 1147)),
-            ((1318, 1141), (1318, 1147)),
-            ((1329, 1141), (1329, 1147)),
-            ((1340, 1141), (1340, 1146)),
-            ((1352, 1140), (1352, 1145)),
-            ((1364, 1141), (1364, 1145)),
+        "tick_positions": [
+            (1295, 1147.0), (1306, 1148.1), (1318, 1148.7),
+            (1329, 1148.6), (1340, 1147.7), (1352, 1144.3),
+            (1364, 1138.5), (1375, 1132.8), (1387, 1130.0),
+            (1398, 1129.2),
         ],
+        "tick_length_px": 5.5,
     },
     {
         "canal_id": 2,
         "name": "南部底部运河",
-        # The long southern symbol starts at the river junction and ends at
-        # the eastern junction; the raster baseline is almost perfectly level.
-        "line": LineString([(1030, 1376), (1322, 1376)]),
-        "ticks": [
-            ((1036, 1372), (1036, 1376)),
-            ((1048, 1372), (1048, 1376)),
-            ((1062, 1372), (1062, 1376)),
-            ((1074, 1372), (1074, 1376)),
-            ((1087, 1372), (1087, 1376)),
-            ((1097, 1372), (1097, 1376)),
-            ((1109, 1372), (1109, 1376)),
-            ((1122, 1372), (1122, 1376)),
-            ((1134, 1372), (1134, 1376)),
-            ((1145, 1372), (1145, 1376)),
-            ((1157, 1372), (1157, 1376)),
-            ((1169, 1372), (1169, 1376)),
-            ((1179, 1372), (1179, 1376)),
-            ((1192, 1372), (1192, 1376)),
-            ((1204, 1372), (1204, 1376)),
-            ((1214, 1372), (1214, 1376)),
-            ((1224, 1372), (1224, 1376)),
-            ((1237, 1372), (1237, 1376)),
-            ((1247, 1372), (1247, 1376)),
-            ((1259, 1372), (1259, 1376)),
-            ((1270, 1372), (1270, 1376)),
-            ((1279, 1372), (1279, 1376)),
-            ((1288, 1372), (1288, 1376)),
-            ((1300, 1372), (1300, 1376)),
-            ((1310, 1372), (1310, 1376)),
-            ((1321, 1372), (1321, 1376)),
+        # The long southern canal runs from the western water junction to the
+        # eastern river junction; its marked reach is straight in the source.
+        "line": LineString([
+            (1027, 1373.5), (1030, 1375.0), (1034, 1375.8),
+            (1038, 1376.0), (1310, 1376.0),
+        ]),
+        "tick_positions": [
+            (1036, 1376), (1048, 1376), (1062, 1376), (1074, 1376),
+            (1087, 1376), (1097, 1376), (1109, 1376), (1122, 1376),
+            (1134, 1376), (1145, 1376), (1157, 1376), (1169, 1376),
+            (1179, 1376), (1192, 1376), (1204, 1376), (1214, 1376),
+            (1224, 1376), (1237, 1376), (1247, 1376), (1259, 1376),
+            (1270, 1376), (1279, 1376), (1288, 1376), (1300, 1376),
+            (1310, 1376),
         ],
+        "tick_length_px": 4.5,
     },
 ]
 CANAL_RIVER_EXCLUSION_BUFFER_PX = 3.5
@@ -169,6 +161,24 @@ def seasonal_features() -> list[dict]:
     return features
 
 
+def perpendicular_tick(centerline: LineString, location: tuple[float, float],
+                       length: float) -> LineString:
+    distance = centerline.project(Point(location))
+    anchor = centerline.interpolate(distance)
+    tangent_span = 3.0
+    before = centerline.interpolate(max(0, distance - tangent_span))
+    after = centerline.interpolate(min(centerline.length, distance + tangent_span))
+    dx, dy = after.x - before.x, after.y - before.y
+    magnitude = math.hypot(dx, dy) or 1.0
+    nx, ny = dy / magnitude, -dx / magnitude
+    if ny > 0:
+        nx, ny = -nx, -ny
+    return LineString([
+        (anchor.x, anchor.y),
+        (anchor.x + nx * length, anchor.y + ny * length),
+    ])
+
+
 def canal_features() -> list[dict]:
     features = []
     for canal in CANAL_CENTERLINES:
@@ -176,27 +186,29 @@ def canal_features() -> list[dict]:
         common = {
             "canal_id": canal["canal_id"],
             "name": canal["name"],
-            "source": "manual_pixel_trace_from_source_raster",
+            "source": HIGH_RES_SOURCE.name,
         }
         features.append({
             "type": "Feature",
             "properties": {
                 **common,
                 "symbol_part": "centerline",
-                "review_status": "retraced_from_source_raster",
+                "review_status": "manually_traced_from_high_resolution_source",
                 "length_px": round(centerline.length, 1),
             },
             "geometry": round_line(centerline),
         })
-        for tick_id, tick_coordinates in enumerate(canal["ticks"], start=1):
-            tick = LineString(tick_coordinates)
+        for tick_id, location in enumerate(canal["tick_positions"], start=1):
+            tick = perpendicular_tick(
+                centerline, location, canal["tick_length_px"]
+            )
             features.append({
                 "type": "Feature",
                 "properties": {
                     **common,
                     "tick_id": tick_id,
                     "symbol_part": "ruler_tick",
-                    "review_status": "individually_traced_from_source_raster",
+                    "orientation": "perpendicular_to_local_tangent",
                 },
                 "geometry": round_line(tick),
             })
@@ -368,6 +380,9 @@ def write_overlay(seasonal: list[dict], canals: list[dict]) -> None:
 
 
 def main() -> None:
+    with Image.open(SOURCE) as source_image, Image.open(HIGH_RES_SOURCE) as high_res:
+        if high_res.width != source_image.width * 4 or high_res.height != source_image.height * 4:
+            raise ValueError("The high-resolution trace source must be exactly 4x input_map.png")
     river_fc = read_fc(DATA / "hydrology_lines.geojson")
     river_features = remove_canal_from_rivers(river_fc["features"])
     canals = canal_features()
@@ -387,6 +402,8 @@ def main() -> None:
     manifest.update({
         "river_line_segments": len(river_features),
         "canal_centerlines": len(CANAL_CENTERLINES),
+        "canal_trace_source_image": HIGH_RES_SOURCE.name,
+        "canal_tick_orientation": "perpendicular_to_local_centerline_tangent",
         "canal_ruler_ticks": sum(f["properties"].get("symbol_part") == "ruler_tick" for f in canals),
         "seasonal_river_features": len(seasonal),
         "cross_border_river_segments": len(cross_border),

@@ -3123,7 +3123,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": 75,
-        "length_px": 138.7,
+        "length_px": 148.0,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
       },
@@ -3168,7 +3168,11 @@
           ],
           [
             1321.0,
-            1372.5
+            1376.0
+          ],
+          [
+            1318.0,
+            1381.0
           ]
         ]
       }
