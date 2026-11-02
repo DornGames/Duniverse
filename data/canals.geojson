@@ -8,57 +8,49 @@
       "properties": {
         "canal_id": 1,
         "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
+        "source": "manual_pixel_trace_from_source_raster",
         "symbol_part": "centerline",
-        "review_status": "traced_from_source_raster",
-        "length_px": 293.0
+        "review_status": "retraced_from_source_raster",
+        "length_px": 87.1
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1127.0,
-            1144.0
+            1283.0,
+            1147.0
           ],
           [
-            1160.0,
-            1144.0
+            1295.0,
+            1147.0
           ],
           [
-            1190.0,
-            1144.0
+            1306.0,
+            1147.0
           ],
           [
-            1220.0,
-            1144.0
+            1318.0,
+            1147.0
           ],
           [
-            1250.0,
-            1144.0
-          ],
-          [
-            1280.0,
-            1144.0
-          ],
-          [
-            1310.0,
-            1144.0
+            1329.0,
+            1147.0
           ],
           [
             1340.0,
-            1144.0
+            1146.0
+          ],
+          [
+            1352.0,
+            1145.0
+          ],
+          [
+            1364.0,
+            1145.0
           ],
           [
             1370.0,
-            1144.0
-          ],
-          [
-            1400.0,
-            1144.0
-          ],
-          [
-            1420.0,
-            1144.0
+            1145.0
           ]
         ]
       }
@@ -68,20 +60,21 @@
       "properties": {
         "canal_id": 1,
         "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
+        "source": "manual_pixel_trace_from_source_raster",
         "tick_id": 1,
-        "symbol_part": "ruler_tick"
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1143.0,
-            1144.0
+            1295.0,
+            1141.0
           ],
           [
-            1143.0,
-            1135.0
+            1295.0,
+            1147.0
           ]
         ]
       }
@@ -91,20 +84,21 @@
       "properties": {
         "canal_id": 1,
         "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
+        "source": "manual_pixel_trace_from_source_raster",
         "tick_id": 2,
-        "symbol_part": "ruler_tick"
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1159.0,
-            1144.0
+            1306.0,
+            1141.0
           ],
           [
-            1159.0,
-            1135.0
+            1306.0,
+            1147.0
           ]
         ]
       }
@@ -114,20 +108,21 @@
       "properties": {
         "canal_id": 1,
         "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
+        "source": "manual_pixel_trace_from_source_raster",
         "tick_id": 3,
-        "symbol_part": "ruler_tick"
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1175.0,
-            1144.0
+            1318.0,
+            1141.0
           ],
           [
-            1175.0,
-            1135.0
+            1318.0,
+            1147.0
           ]
         ]
       }
@@ -137,20 +132,21 @@
       "properties": {
         "canal_id": 1,
         "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
+        "source": "manual_pixel_trace_from_source_raster",
         "tick_id": 4,
-        "symbol_part": "ruler_tick"
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1191.0,
-            1144.0
+            1329.0,
+            1141.0
           ],
           [
-            1191.0,
-            1135.0
+            1329.0,
+            1147.0
           ]
         ]
       }
@@ -160,20 +156,21 @@
       "properties": {
         "canal_id": 1,
         "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
+        "source": "manual_pixel_trace_from_source_raster",
         "tick_id": 5,
-        "symbol_part": "ruler_tick"
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1207.0,
-            1144.0
+            1340.0,
+            1141.0
           ],
           [
-            1207.0,
-            1135.0
+            1340.0,
+            1146.0
           ]
         ]
       }
@@ -183,20 +180,21 @@
       "properties": {
         "canal_id": 1,
         "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
+        "source": "manual_pixel_trace_from_source_raster",
         "tick_id": 6,
-        "symbol_part": "ruler_tick"
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1223.0,
-            1144.0
+            1352.0,
+            1140.0
           ],
           [
-            1223.0,
-            1135.0
+            1352.0,
+            1145.0
           ]
         ]
       }
@@ -206,250 +204,21 @@
       "properties": {
         "canal_id": 1,
         "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
+        "source": "manual_pixel_trace_from_source_raster",
         "tick_id": 7,
-        "symbol_part": "ruler_tick"
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1239.0,
-            1144.0
+            1364.0,
+            1141.0
           ],
           [
-            1239.0,
-            1135.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 1,
-        "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 8,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1255.0,
-            1144.0
-          ],
-          [
-            1255.0,
-            1135.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 1,
-        "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 9,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1271.0,
-            1144.0
-          ],
-          [
-            1271.0,
-            1135.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 1,
-        "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 10,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1287.0,
-            1144.0
-          ],
-          [
-            1287.0,
-            1135.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 1,
-        "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 11,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1303.0,
-            1144.0
-          ],
-          [
-            1303.0,
-            1135.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 1,
-        "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 12,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1319.0,
-            1144.0
-          ],
-          [
-            1319.0,
-            1135.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 1,
-        "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 13,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1335.0,
-            1144.0
-          ],
-          [
-            1335.0,
-            1135.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 1,
-        "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 14,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1351.0,
-            1144.0
-          ],
-          [
-            1351.0,
-            1135.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 1,
-        "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 15,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1367.0,
-            1144.0
-          ],
-          [
-            1367.0,
-            1135.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 1,
-        "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 16,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1383.0,
-            1144.0
-          ],
-          [
-            1383.0,
-            1135.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 1,
-        "name": "南部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 17,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1399.0,
-            1144.0
-          ],
-          [
-            1399.0,
-            1135.0
+            1364.0,
+            1145.0
           ]
         ]
       }
@@ -459,41 +228,621 @@
       "properties": {
         "canal_id": 2,
         "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
+        "source": "manual_pixel_trace_from_source_raster",
         "symbol_part": "centerline",
-        "review_status": "traced_from_source_raster",
-        "length_px": 395.0
+        "review_status": "retraced_from_source_raster",
+        "length_px": 292.0
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            970.0,
-            1375.0
-          ],
-          [
             1030.0,
-            1375.0
+            1376.0
           ],
           [
-            1100.0,
-            1375.0
+            1322.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 1,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1036.0,
+            1372.0
           ],
           [
-            1170.0,
-            1375.0
+            1036.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 2,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1048.0,
+            1372.0
           ],
           [
-            1240.0,
-            1375.0
+            1048.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 3,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1062.0,
+            1372.0
+          ],
+          [
+            1062.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 4,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1074.0,
+            1372.0
+          ],
+          [
+            1074.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 5,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1087.0,
+            1372.0
+          ],
+          [
+            1087.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 6,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1097.0,
+            1372.0
+          ],
+          [
+            1097.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 7,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1109.0,
+            1372.0
+          ],
+          [
+            1109.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 8,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1122.0,
+            1372.0
+          ],
+          [
+            1122.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 9,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1134.0,
+            1372.0
+          ],
+          [
+            1134.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 10,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1145.0,
+            1372.0
+          ],
+          [
+            1145.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 11,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1157.0,
+            1372.0
+          ],
+          [
+            1157.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 12,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1169.0,
+            1372.0
+          ],
+          [
+            1169.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 13,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1179.0,
+            1372.0
+          ],
+          [
+            1179.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 14,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1192.0,
+            1372.0
+          ],
+          [
+            1192.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 15,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1204.0,
+            1372.0
+          ],
+          [
+            1204.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 16,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1214.0,
+            1372.0
+          ],
+          [
+            1214.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 17,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1224.0,
+            1372.0
+          ],
+          [
+            1224.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 18,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1237.0,
+            1372.0
+          ],
+          [
+            1237.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 19,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1247.0,
+            1372.0
+          ],
+          [
+            1247.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 20,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1259.0,
+            1372.0
+          ],
+          [
+            1259.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 21,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1270.0,
+            1372.0
+          ],
+          [
+            1270.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 22,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1279.0,
+            1372.0
+          ],
+          [
+            1279.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 23,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1288.0,
+            1372.0
+          ],
+          [
+            1288.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 24,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1300.0,
+            1372.0
+          ],
+          [
+            1300.0,
+            1376.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 25,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1310.0,
+            1372.0
           ],
           [
             1310.0,
-            1375.0
-          ],
-          [
-            1365.0,
-            1375.0
+            1376.0
           ]
         ]
       }
@@ -503,526 +852,21 @@
       "properties": {
         "canal_id": 2,
         "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 1,
-        "symbol_part": "ruler_tick"
+        "source": "manual_pixel_trace_from_source_raster",
+        "tick_id": 26,
+        "symbol_part": "ruler_tick",
+        "review_status": "individually_traced_from_source_raster"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            986.0,
-            1375.0
+            1321.0,
+            1372.0
           ],
           [
-            986.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 2,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1002.0,
-            1375.0
-          ],
-          [
-            1002.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 3,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1018.0,
-            1375.0
-          ],
-          [
-            1018.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 4,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1034.0,
-            1375.0
-          ],
-          [
-            1034.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 5,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1050.0,
-            1375.0
-          ],
-          [
-            1050.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 6,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1066.0,
-            1375.0
-          ],
-          [
-            1066.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 7,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1082.0,
-            1375.0
-          ],
-          [
-            1082.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 8,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1098.0,
-            1375.0
-          ],
-          [
-            1098.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 9,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1114.0,
-            1375.0
-          ],
-          [
-            1114.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 10,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1130.0,
-            1375.0
-          ],
-          [
-            1130.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 11,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1146.0,
-            1375.0
-          ],
-          [
-            1146.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 12,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1162.0,
-            1375.0
-          ],
-          [
-            1162.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 13,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1178.0,
-            1375.0
-          ],
-          [
-            1178.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 14,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1194.0,
-            1375.0
-          ],
-          [
-            1194.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 15,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1210.0,
-            1375.0
-          ],
-          [
-            1210.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 16,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1226.0,
-            1375.0
-          ],
-          [
-            1226.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 17,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1242.0,
-            1375.0
-          ],
-          [
-            1242.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 18,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1258.0,
-            1375.0
-          ],
-          [
-            1258.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 19,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1274.0,
-            1375.0
-          ],
-          [
-            1274.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 20,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1290.0,
-            1375.0
-          ],
-          [
-            1290.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 21,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1306.0,
-            1375.0
-          ],
-          [
-            1306.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 22,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1322.0,
-            1375.0
-          ],
-          [
-            1322.0,
-            1366.0
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "canal_id": 2,
-        "name": "南部底部运河",
-        "source": "manual_trace_from_ruler_marked_symbol",
-        "tick_id": 23,
-        "symbol_part": "ruler_tick"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            1338.0,
-            1375.0
-          ],
-          [
-            1338.0,
-            1366.0
+            1321.0,
+            1376.0
           ]
         ]
       }

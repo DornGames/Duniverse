@@ -48,27 +48,65 @@ SEASONAL_RIVER_PATHS = [
     ],
 ]
 
-# The source has two separate ruler-marked canals. Keep their actual straight
-# centerlines and draw the ruler ticks above the line, as in the raster.
+# The source raster shows two ruler-marked canal symbols. Their ticks
+# are hand-traced individually: the spacing is irregular and must not be
+# extrapolated into long horizontal lines across the map.
 CANAL_CENTERLINES = [
     {
         "canal_id": 1,
         "name": "南部运河",
+        # East outlet of the lake through the short ruler-marked reach.
         "line": LineString([
-            (1127, 1144), (1160, 1144), (1190, 1144), (1220, 1144),
-            (1250, 1144), (1280, 1144), (1310, 1144), (1340, 1144),
-            (1370, 1144), (1400, 1144), (1420, 1144),
+            (1283, 1147), (1295, 1147), (1306, 1147), (1318, 1147),
+            (1329, 1147), (1340, 1146), (1352, 1145), (1364, 1145),
+            (1370, 1145),
         ]),
+        "ticks": [
+            ((1295, 1141), (1295, 1147)),
+            ((1306, 1141), (1306, 1147)),
+            ((1318, 1141), (1318, 1147)),
+            ((1329, 1141), (1329, 1147)),
+            ((1340, 1141), (1340, 1146)),
+            ((1352, 1140), (1352, 1145)),
+            ((1364, 1141), (1364, 1145)),
+        ],
     },
     {
         "canal_id": 2,
         "name": "南部底部运河",
-        "line": LineString([(970, 1375), (1030, 1375), (1100, 1375), (1170, 1375),
-                            (1240, 1375), (1310, 1375), (1365, 1375)]),
+        # The long southern symbol starts at the river junction and ends at
+        # the eastern junction; the raster baseline is almost perfectly level.
+        "line": LineString([(1030, 1376), (1322, 1376)]),
+        "ticks": [
+            ((1036, 1372), (1036, 1376)),
+            ((1048, 1372), (1048, 1376)),
+            ((1062, 1372), (1062, 1376)),
+            ((1074, 1372), (1074, 1376)),
+            ((1087, 1372), (1087, 1376)),
+            ((1097, 1372), (1097, 1376)),
+            ((1109, 1372), (1109, 1376)),
+            ((1122, 1372), (1122, 1376)),
+            ((1134, 1372), (1134, 1376)),
+            ((1145, 1372), (1145, 1376)),
+            ((1157, 1372), (1157, 1376)),
+            ((1169, 1372), (1169, 1376)),
+            ((1179, 1372), (1179, 1376)),
+            ((1192, 1372), (1192, 1376)),
+            ((1204, 1372), (1204, 1376)),
+            ((1214, 1372), (1214, 1376)),
+            ((1224, 1372), (1224, 1376)),
+            ((1237, 1372), (1237, 1376)),
+            ((1247, 1372), (1247, 1376)),
+            ((1259, 1372), (1259, 1376)),
+            ((1270, 1372), (1270, 1376)),
+            ((1279, 1372), (1279, 1376)),
+            ((1288, 1372), (1288, 1376)),
+            ((1300, 1372), (1300, 1376)),
+            ((1310, 1372), (1310, 1376)),
+            ((1321, 1372), (1321, 1376)),
+        ],
     },
 ]
-CANAL_TICK_SPACING_PX = 16.0
-CANAL_TICK_LENGTH_PX = 9.0
 CANAL_RIVER_EXCLUSION_BUFFER_PX = 3.5
 SEASONAL_CROSS_BORDER_EXCLUSION_BUFFER_PX = 2.5
 
@@ -89,6 +127,7 @@ def write_fc(path: Path, name: str, features: list[dict]) -> None:
             "features": features,
         }, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
+        newline="\r\n" if path.name == "cross_border_rivers.geojson" else "\n",
     )
 
 
@@ -137,40 +176,27 @@ def canal_features() -> list[dict]:
         common = {
             "canal_id": canal["canal_id"],
             "name": canal["name"],
-            "source": "manual_trace_from_ruler_marked_symbol",
+            "source": "manual_pixel_trace_from_source_raster",
         }
         features.append({
             "type": "Feature",
             "properties": {
                 **common,
                 "symbol_part": "centerline",
-                "review_status": "traced_from_source_raster",
+                "review_status": "retraced_from_source_raster",
                 "length_px": round(centerline.length, 1),
             },
             "geometry": round_line(centerline),
         })
-        count = max(0, int(centerline.length // CANAL_TICK_SPACING_PX) - 1)
-        for tick_id in range(1, count + 1):
-            distance = tick_id * CANAL_TICK_SPACING_PX
-            point = centerline.interpolate(distance)
-            before = centerline.interpolate(max(0, distance - 1))
-            after = centerline.interpolate(min(centerline.length, distance + 1))
-            dx, dy = after.x - before.x, after.y - before.y
-            magnitude = math.hypot(dx, dy) or 1.0
-            # Image coordinates grow downward. This normal points to the upper
-            # side of the horizontal source symbol.
-            nx, ny = dy / magnitude, -dx / magnitude
-            tick = LineString([
-                (point.x, point.y),
-                (point.x + nx * CANAL_TICK_LENGTH_PX,
-                 point.y + ny * CANAL_TICK_LENGTH_PX),
-            ])
+        for tick_id, tick_coordinates in enumerate(canal["ticks"], start=1):
+            tick = LineString(tick_coordinates)
             features.append({
                 "type": "Feature",
                 "properties": {
                     **common,
                     "tick_id": tick_id,
                     "symbol_part": "ruler_tick",
+                    "review_status": "individually_traced_from_source_raster",
                 },
                 "geometry": round_line(tick),
             })
@@ -288,9 +314,9 @@ def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[d
         render_group("rivers", "rivers", rivers,
                      'fill="none" stroke="#83b8e8" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
         render_group("canals", "canals", [f for f in canals if f["properties"].get("symbol_part") == "centerline"],
-                     'fill="none" stroke="#347ca5" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"'),
+                     'fill="none" stroke="#347ca5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"'),
         render_group("canalTicks", "canals", [f for f in canals if f["properties"].get("symbol_part") == "ruler_tick"],
-                     'fill="none" stroke="#347ca5" stroke-width="1.6" stroke-linecap="round"'),
+                     'fill="none" stroke="#347ca5" stroke-width="1.5" stroke-linecap="round"'),
         render_group("seasonalRivers", "seasonalRivers", seasonal,
                      'fill="none" stroke="#82b8e9" stroke-width="1.8" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"'),
         render_group("crossBorderRivers", "crossBorderRivers", cross_border,
@@ -303,7 +329,7 @@ def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[d
     index = upsert_group(index, index_groups[2], "canalTicks", "canals")
     index = upsert_group(index, index_groups[3], "seasonalRivers", "canalTicks")
     index = upsert_group(index, index_groups[4], "crossBorderRivers", "seasonalRivers")
-    index_path.write_text(index, encoding="utf-8")
+    index_path.write_text(index, encoding="utf-8", newline="\n")
 
     preview_path = ROOT / "vector_preview.svg"
     preview = preview_path.read_text(encoding="utf-8")
@@ -311,9 +337,9 @@ def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[d
         render_preview_group("rivers", rivers,
                             'fill="none" stroke="#83b8e8" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
         render_preview_group("canals", [f for f in canals if f["properties"].get("symbol_part") == "centerline"],
-                            'fill="none" stroke="#347ca5" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"'),
+                            'fill="none" stroke="#347ca5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"'),
         render_preview_group("canal-ticks", [f for f in canals if f["properties"].get("symbol_part") == "ruler_tick"],
-                            'fill="none" stroke="#347ca5" stroke-width="1.6" stroke-linecap="round"'),
+                            'fill="none" stroke="#347ca5" stroke-width="1.5" stroke-linecap="round"'),
         render_preview_group("seasonal-rivers", seasonal,
                             'fill="none" stroke="#82b8e9" stroke-width="1.8" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"'),
         render_preview_group("cross-border-rivers", cross_border,
@@ -324,7 +350,7 @@ def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[d
     preview = upsert_group(preview, preview_groups[2], "canal-ticks", "canals")
     preview = upsert_group(preview, preview_groups[3], "seasonal-rivers", "canal-ticks")
     preview = upsert_group(preview, preview_groups[4], "cross-border-rivers", "seasonal-rivers")
-    preview_path.write_text(preview, encoding="utf-8")
+    preview_path.write_text(preview, encoding="utf-8", newline="\n")
 
 
 def write_overlay(seasonal: list[dict], canals: list[dict]) -> None:
@@ -335,7 +361,7 @@ def write_overlay(seasonal: list[dict], canals: list[dict]) -> None:
         draw.line(coords, fill=(220, 40, 65), width=2)
     for feature in canals:
         coords = [tuple(point) for point in feature["geometry"]["coordinates"]]
-        width = 3 if feature["properties"].get("symbol_part") == "centerline" else 2
+        width = 2
         draw.line(coords, fill=(28, 95, 140), width=width)
     DIAGNOSTICS.mkdir(exist_ok=True)
     image.save(DIAGNOSTICS / "waterway_styles_overlay.png")
@@ -369,7 +395,7 @@ def main() -> None:
     label_features = read_fc(DATA / "region_code_labels.geojson")["features"]
     manifest["region_code_label_instances"] = len(label_features)
     manifest["unique_region_codes"] = len({f["properties"].get("region_code") for f in label_features})
-    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(
         f"Kept {len(river_features)} regular river segments; separated {len(CANAL_CENTERLINES)} canals "
         f"with {manifest['canal_ruler_ticks']} ruler ticks; traced {len(seasonal)} "
