@@ -1,4 +1,4 @@
-﻿# 潼国地图特征提取包
+﻿# 湩国地图特征提取包
 
 > **项目状态：**目前处于项目协作与内测阶段，内容和功能仍在持续完善。
 
@@ -9,8 +9,9 @@
 直接用浏览器打开 `index.html`：
 - 鼠标滚轮缩放
 - 鼠标拖拽平移
-- 点击行政区查看代码
+- 点击行政区查看代码并放大到该区域
 - 右侧可开关河流、湖泊、点标记和文字图层
+- 预览会平滑显示河流线条与湖泊边缘
 
 `vector_preview.svg` 是独立矢量预览，可用浏览器、Inkscape 或 Illustrator 打开。
 
@@ -23,7 +24,7 @@
 - `data/coastlines.geojson`：从原图海水区域边缘提取的海岸线
 - `data/ocean_water.geojson`：从原图海水颜色连通区域矢量化的海域
 - `data/lakes.geojson`：湖泊候选面
-- `data/settlement_markers.geojson`：黑色/红色点标记候选
+- `data/settlement_markers.geojson`：城市（黑点）与省会（红点）标记候选
 - `data/region_code_labels.geojson`：行政区代码标注点
 - `data/region_codes.csv`：代码与组件关联表
 - `data/ocr_candidates.csv`：OCR 文字候选及置信度、像素外接框

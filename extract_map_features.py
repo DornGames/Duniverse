@@ -354,15 +354,15 @@ def main():
 
     marker_features=[]
     for marker_type, points, color in [
-        ("black_settlement_marker_candidate",black_points,"#111111"),
-        ("red_emphasis_marker_candidate",red_points,"#e52323")
+        ("city_marker_candidate",black_points,"#111111"),
+        ("provincial_capital_marker_candidate",red_points,"#e52323")
     ]:
         for x,y,area,circ in points:
             marker_features.append({
                 "type":"Feature",
                 "properties":{"marker_type":marker_type,"color":color,"component_area_px":area,
                               "shape_score":round(float(circ),3),
-                              "review_status":"candidate_not_semantically_verified"},
+                              "review_status":"candidate_location_unverified"},
                 "geometry":{"type":"Point","coordinates":[round(x,2),round(y,2)]}
             })
     write_fc(data_dir/"settlement_markers.geojson","point_marker_candidates",marker_features)
@@ -398,13 +398,13 @@ def main():
         })
     pd.DataFrame(code_rows).to_csv(data_dir/"region_codes.csv",index=False,encoding="utf-8-sig")
     pd.DataFrame([
-        {"marker_type":"black_settlement_marker_candidate","count":len(black_points)},
-        {"marker_type":"red_emphasis_marker_candidate","count":len(red_points)}
+        {"marker_type":"city_marker_candidate","count":len(black_points)},
+        {"marker_type":"provincial_capital_marker_candidate","count":len(red_points)}
     ]).to_csv(data_dir/"marker_detection_summary.csv",index=False,encoding="utf-8-sig")
 
     # H. Metadata and diagnostics.
     metadata={
-        "map_title":"潼国行政区划图","edition":"2026年 第六版",
+        "map_title":"湩国行政区划图","edition":"2026年 第六版",
         "english_subtitle":"ADMINISTRATIVE DIVISION MAP OF DONH (visual transcription; verify spelling)",
         "producer":"Dornhub","copyright":"© 2022–2026 Dornhub, All Rights Reserved.",
         "image_width_px":w,"image_height_px":h,

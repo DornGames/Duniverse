@@ -1,3 +1,3 @@
 ﻿marker_type,count,detection_rule
-black_settlement_marker_candidate,260,gray<60; component area 38-45 px; bbox 6-8 px; circularity heuristic
-red_emphasis_marker_candidate,43,"R>160,G<100,B<100; component area 38-70 px; bbox 6-10 px; circularity heuristic"
+city_marker_candidate,260,gray<60; component area 38-45 px; bbox 6-8 px; circularity heuristic
+provincial_capital_marker_candidate,43,"R>160,G<100,B<100; component area 38-70 px; bbox 6-10 px; circularity heuristic"
