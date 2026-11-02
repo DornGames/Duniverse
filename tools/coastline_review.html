@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>海岸线像素审阅工具</title>
+<style>
+:root{font:14px/1.45 system-ui,"Microsoft YaHei",sans-serif;color:#1d2a31;background:#edf2f4}
+*{box-sizing:border-box}body{margin:0;height:100vh;display:grid;grid-template-rows:52px 1fr}
+header{display:flex;align-items:center;gap:10px;padding:8px 14px;background:#fff;border-bottom:1px solid #ccd7dc}
+header strong{margin-right:auto;font-size:16px}button,select,input{font:inherit}button{border:1px solid #bac8ce;background:#fff;border-radius:6px;padding:6px 10px;cursor:pointer}button:hover{background:#eef7f8}
+main{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 350px}.stage{min-width:0;min-height:0;position:relative;background:#d6e4ea;overflow:hidden}canvas{width:100%;height:100%;display:block;cursor:crosshair}
+aside{background:#fff;border-left:1px solid #ccd7dc;overflow:auto;padding:14px}.note{color:#51666f;font-size:12px;margin:0 0 12px}.row{display:flex;gap:6px;align-items:center;margin:8px 0}.row label{min-width:66px;color:#52636a}.row select{flex:1;min-width:0}.coord{font:12px ui-monospace,Consolas,monospace;background:#f1f5f6;border-radius:5px;padding:7px;word-break:break-all}
+#summary{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:10px 0}.count{padding:6px 8px;border-radius:5px;background:#f4f7f8;font-size:12px}.count b{display:block;font-size:16px}.selected{border-top:1px solid #dce4e7;margin-top:12px;padding-top:10px}.selected h3{margin:4px 0 8px}.selected pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.4 ui-monospace,Consolas,monospace;background:#f4f7f8;padding:8px;border-radius:5px;max-height:310px;overflow:auto}.keep{border-color:#16865c;color:#126a4b}.reject{border-color:#c42e50;color:#a3223e}.small{font-size:12px;color:#52636a}.status{color:#126a4b;font-weight:600}
+@media(max-width:850px){main{grid-template-columns:1fr 290px}aside{padding:10px}}
+</style>
+</head>
+<body>
+<header><strong>原图 × 现有海岸线：像素审阅</strong><span class="small">滚轮缩放 · 拖拽移动 · 点击线条查看两侧像素</span><button id="fit">全图</button><button id="next">下一个待审</button><button id="export">导出人工判定</button></header>
+<main><div class="stage"><canvas id="map" aria-label="原始地图与海岸线矢量叠加"></canvas></div>
+<aside>
+<p class="note">这是只读审阅工具：背景为原始 8192×5792 大图，彩线仅标示现有 GeoJSON。颜色按线两侧原图像素分类；工具不会生成海岸线。</p>
+<div class="row"><label for="filter">显示</label><select id="filter"><option value="all">全部候选线</option><option value="manual_rejected">已人工剔除</option><option value="land_artifact">陆地两侧相同（疑似文字/内线）</option><option value="sea_artifact">海水两侧相同（疑似文字/噪点）</option><option value="inland_water_artifact">内陆水系附近（疑似河岸）</option><option value="needs_visual_review">需要人工判断</option><option value="shore_supported">陆海两侧有证据</option></select></div>
+<div id="summary"></div>
+<div class="row"><label>坐标</label><div id="coords" class="coord">x —, y —</div></div>
+<div class="row"><label for="featureId">线编号</label><select id="featureId"><option value="">点击地图选择</option></select></div>
+<div class="row"><label for="jumpX">跳转</label><input id="jumpX" type="number" placeholder="x" style="width:76px"><input id="jumpY" type="number" placeholder="y" style="width:76px"><button id="jump">定位</button></div>
+<div class="row"><button id="keep" class="keep">判定保留</button><button id="reject" class="reject">判定误线</button><button id="clear">撤销判定</button></div>
+<div id="decision" class="small">尚未选择线条。</div>
+<div class="selected"><h3>所选线条</h3><pre id="details">点击地图上的线条，查看编号、来源、像素两侧颜色和原图位置。</pre></div>
+<p class="small">颜色：绿色＝一侧海水、一侧陆地；红色＝陆地伪线或已人工剔除；紫色＝两侧海水；橙色＝两侧偏向内陆水色；黄色＝需人工复核。点击已剔除线可查看原图依据。</p>
+</aside></main>
+<script>
+const MAP_W=2048,MAP_H=1448,canvas=document.querySelector('#map'),ctx=canvas.getContext('2d',{alpha:false});
+const source=new Image();source.src='../Administrative-Division-Map-of-Donh-2026.png';
+let features=[],audits=[],selected=-1,view={x:0,y:0,w:MAP_W,h:MAP_H},pixelRatio=1,drag=null,mouse={x:0,y:0};
+const decisions=new Map(),colors={shore_supported:'#00a86b',land_artifact:'#e52e4b',sea_artifact:'#bd20a8',inland_water_artifact:'#ec8b23',needs_visual_review:'#f0bd19'};
+const auditById=new Map();
+Promise.all([fetch('../data/coastlines.geojson').then(r=>r.json()),fetch('../diagnostics/coastline_pixel_audit/audit.json').then(r=>r.json())]).then(([fc,audit])=>{
+ features=fc.features;audits=audit.features;audits.forEach(a=>auditById.set(a.feature_index,a));
+ for(let i=0;i<features.length;i++){const o=document.createElement('option');o.value=i;o.textContent=`#${i} · ${auditById.get(i)?.verdict||'unknown'}`;document.querySelector('#featureId').append(o)}
+ const counts={};audits.forEach(a=>counts[a.verdict]=(counts[a.verdict]||0)+1);
+ const rejected=features.filter(f=>f.properties?.review_status==='rejected').length;
+ document.querySelector('#summary').innerHTML=Object.entries(counts).map(([k,v])=>`<div class="count"><b style="color:${colors[k]||'#333'}">${v}</b>${k}</div>`).join('')+`<div class="count"><b style="color:#dc2340">${rejected}</b>已人工剔除</div>`;draw();
+});
+source.onload=draw;
+function metrics(){const r=canvas.getBoundingClientRect(),w=canvas.clientWidth,h=canvas.clientHeight,scale=Math.min(w/view.w,h/view.h);return{r,w,h,scale,ox:(w-view.w*scale)/2,oy:(h-view.h*scale)/2}}
+function lineCoords(g){if(g.type==='LineString')return[g.coordinates];if(g.type==='MultiLineString')return g.coordinates;return[]}
+function allowed(id){const f=document.querySelector('#filter').value;if(f==='all')return true;if(f==='manual_rejected')return features[id]?.properties?.review_status==='rejected';return auditById.get(id)?.verdict===f}
+function draw(){const m=metrics();if(!m.w||!m.h)return;pixelRatio=Math.min(2,Math.max(1,devicePixelRatio||1));const pw=Math.round(m.w*pixelRatio),ph=Math.round(m.h*pixelRatio);if(canvas.width!==pw)canvas.width=pw;if(canvas.height!==ph)canvas.height=ph;
+ ctx.setTransform(pixelRatio,0,0,pixelRatio,0,0);ctx.fillStyle='#d6e4ea';ctx.fillRect(0,0,m.w,m.h);if(!source.complete||!features.length)return;
+ ctx.setTransform(pixelRatio*m.scale,0,0,pixelRatio*m.scale,pixelRatio*(m.ox-view.x*m.scale),pixelRatio*(m.oy-view.y*m.scale));ctx.drawImage(source,0,0,MAP_W,MAP_H);
+ for(let i=0;i<features.length;i++){if(!allowed(i)||decisions.get(i)==='reject')continue;const a=auditById.get(i),g=features[i].geometry,manuallyRejected=features[i].properties?.review_status==='rejected';ctx.beginPath();for(const line of lineCoords(g)){line.forEach((p,j)=>j?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]))}
+   ctx.lineWidth=(i===selected?2.6:1.15)/m.scale;ctx.strokeStyle=i===selected?'#071f2a':manuallyRejected?'#dc2340':colors[a?.verdict]||'#68777d';ctx.globalAlpha=i===selected?1:manuallyRejected ? .98 : .92;ctx.stroke();ctx.globalAlpha=1;
+ }
+ if(selected>=0){const a=auditById.get(selected),b=a?.bounds;if(b){ctx.setTransform(pixelRatio*m.scale,0,0,pixelRatio*m.scale,pixelRatio*(m.ox-view.x*m.scale),pixelRatio*(m.oy-view.y*m.scale));ctx.strokeStyle='#111';ctx.lineWidth=1/m.scale;ctx.setLineDash([3/m.scale,3/m.scale]);ctx.strokeRect(b[0]-.7,b[1]-.7,b[2]-b[0]+1.4,b[3]-b[1]+1.4);ctx.setLineDash([])}}
+}
+function mapPoint(e){const m=metrics();return{x:view.x+(e.clientX-m.r.left-m.ox)/m.scale,y:view.y+(e.clientY-m.r.top-m.oy)/m.scale}}
+function distToLine(p,a,b){const dx=b[0]-a[0],dy=b[1]-a[1],ll=dx*dx+dy*dy;if(!ll)return Math.hypot(p.x-a[0],p.y-a[1]);const t=Math.max(0,Math.min(1,((p.x-a[0])*dx+(p.y-a[1])*dy)/ll));return Math.hypot(p.x-a[0]-t*dx,p.y-a[1]-t*dy)}
+function nearest(p){const limit=7/metrics().scale;let best=-1,bestD=limit;for(let i=0;i<features.length;i++){if(!allowed(i)||decisions.get(i)==='reject')continue;for(const line of lineCoords(features[i].geometry))for(let j=0;j<line.length-1;j++){const d=distToLine(p,line[j],line[j+1]);if(d<bestD){bestD=d;best=i}}}return best}
+function sourcePixel(x,y){const sx=Math.max(0,Math.min(source.naturalWidth-1,Math.round(x*4))),sy=Math.max(0,Math.min(source.naturalHeight-1,Math.round(y*4)));const c=document.createElement('canvas');c.width=c.height=1;const q=c.getContext('2d',{willReadFrequently:true});q.drawImage(source,sx,sy,1,1,0,0,1,1);return[...q.getImageData(0,0,1,1).data].slice(0,3)}
+function inspect(id){selected=id;document.querySelector('#featureId').value=String(id);const f=features[id],a=auditById.get(id);if(!f||!a)return;const props=f.properties||{};document.querySelector('#details').textContent=JSON.stringify({id:props.review_id,role:props.role,source:props.source,verdict:a.verdict,review_status:props.review_status,review_note:props.review_note,bounds:a.bounds,length_px:a.length_px,shore_support:a.shore_support,same_land_support:a.same_land_support,same_sea_support:a.same_sea_support,inland_water_support:a.inland_water_support,left:a.left,right:a.right},null,2);const mark=decisions.get(id)||(props.review_status==='rejected'?'reject':null);document.querySelector('#decision').innerHTML=mark?`人工判定：<span class="status">${mark==='reject'?'误线':'保留'}</span>`:'尚无人工判定。';draw()}
+canvas.addEventListener('pointerdown',e=>{if(e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,startX:view.x,startY:view.y,moved:false};canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener('pointermove',e=>{const p=mapPoint(e);mouse=p;const rgb=source.complete?sourcePixel(p.x,p.y):[];document.querySelector('#coords').textContent=`x ${p.x.toFixed(2)}, y ${p.y.toFixed(2)} · 原图 RGB ${rgb.join(',')}`;if(drag){const m=metrics(),dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>3)drag.moved=true;if(drag.moved){view.x=drag.startX-dx/m.scale;view.y=drag.startY-dy/m.scale;draw()}}});
+canvas.addEventListener('pointerup',e=>{if(!drag)return;if(!drag.moved){const id=nearest(mapPoint(e));if(id>=0)inspect(id)}drag=null});
+canvas.addEventListener('wheel',e=>{e.preventDefault();const m=metrics(),p=mapPoint(e),factor=e.deltaY<0?.82:1.22;view.w=Math.max(25,Math.min(2300,view.w*factor));view.h=view.w*MAP_H/MAP_W;const scale=Math.min(m.w/view.w,m.h/view.h);view.x=p.x-(e.clientX-m.r.left-m.ox)/scale;view.y=p.y-(e.clientY-m.r.top-m.oy)/scale;draw()},{passive:false});
+document.querySelector('#filter').addEventListener('change',draw);document.querySelector('#fit').onclick=()=>{view={x:0,y:0,w:MAP_W,h:MAP_H};view.h=view.w*MAP_H/MAP_W;draw()};
+document.querySelector('#featureId').onchange=e=>{if(e.target.value!=='')inspect(Number(e.target.value))};document.querySelector('#jump').onclick=()=>{const x=Number(document.querySelector('#jumpX').value),y=Number(document.querySelector('#jumpY').value);if(Number.isFinite(x)&&Number.isFinite(y)){view.w=Math.min(view.w,240);view.h=view.w*MAP_H/MAP_W;view.x=x-view.w/2;view.y=y-view.h/2;draw()}};
+document.querySelector('#keep').onclick=()=>{if(selected>=0){decisions.set(selected,'keep');inspect(selected)}};document.querySelector('#reject').onclick=()=>{if(selected>=0){decisions.set(selected,'reject');inspect(selected)}};document.querySelector('#clear').onclick=()=>{if(selected>=0){decisions.delete(selected);inspect(selected)}};
+document.querySelector('#next').onclick=()=>{const pending=audits.map((a,i)=>({a,i})).filter(x=>x.a.verdict!=='shore_supported'&&!decisions.has(x.i)&&features[x.i].properties?.review_status!=='rejected');const next=pending.find(x=>x.i>selected)||pending[0];if(next){const b=next.a.bounds;view.w=Math.min(220,Math.max(80,(b[2]-b[0]+b[3]-b[1])*10));view.h=view.w*MAP_H/MAP_W;view.x=(b[0]+b[2])/2-view.w/2;view.y=(b[1]+b[3])/2-view.h/2;document.querySelector('#filter').value='all';inspect(next.i)}};
+document.querySelector('#export').onclick=()=>{const out={source:'manual review of existing lines; no automatic extraction',decisions:Object.fromEntries(features.map((f,i)=>[f.properties?.review_id||String(i),decisions.get(i)||(f.properties?.review_status==='rejected'?'reject':null)]).filter(([,v])=>v))};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(out,null,2)],{type:'application/json'}));a.download='coastline-manual-review.json';a.click();URL.revokeObjectURL(a.href)};
+new ResizeObserver(draw).observe(document.querySelector('.stage'));
+</script></body></html>

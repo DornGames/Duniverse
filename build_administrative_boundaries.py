@@ -418,6 +418,8 @@ def update_render_files(
     )
     coast_tags = []
     for feature in coastlines:
+        if feature["properties"].get("review_status") == "rejected":
+            continue
         path_data = geometry_to_path_data(shape(feature["geometry"]))
         if path_data:
             coast_tags.append(f'<path d="{path_data}"/>')
@@ -562,7 +564,11 @@ def main() -> None:
     regions = read_features(DATA / "administrative_regions.geojson")
     outlines = read_features(DATA / "national_outline.geojson")
     lakes = read_features(DATA / "lakes.geojson")
-    coastlines = read_features(DATA / "coastlines.geojson")
+    coastline_candidates = read_features(DATA / "coastlines.geojson")
+    coastlines = [
+        feature for feature in coastline_candidates
+        if feature["properties"].get("review_status") != "rejected"
+    ]
     neighbor_borders = read_features(DATA / "neighbor_borders.geojson")
     label_candidates = read_features(DATA / "region_code_labels.geojson")
     label_features = build_region_label_anchors(regions, label_candidates)
@@ -612,7 +618,8 @@ def main() -> None:
         f"filled {filled_pixels} gaps inside the national outline; "
         f"straightened lake crossings: {', '.join(map(str, sorted(STRAIGHTENED_LAKE_IDS)))}; "
         f"clipped {len(national_land_borders)} national outline components against coastlines; "
-        f"centered {len(label_features)} province labels."
+        f"centered {len(label_features)} province labels; "
+        f"excluded {len(coastline_candidates) - len(coastlines)} manually rejected coastline candidates."
     )
 
 

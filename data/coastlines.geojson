@@ -8,7 +8,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 60.33,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-000"
       },
       "geometry": {
         "type": "LineString",
@@ -181,7 +182,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 64.51,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-001"
       },
       "geometry": {
         "type": "LineString",
@@ -350,7 +352,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 19.37,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-002"
       },
       "geometry": {
         "type": "LineString",
@@ -415,7 +418,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 28.55,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-003"
       },
       "geometry": {
         "type": "LineString",
@@ -504,7 +508,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 55.8,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-004"
       },
       "geometry": {
         "type": "LineString",
@@ -669,7 +674,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 336.45,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-005"
       },
       "geometry": {
         "type": "LineString",
@@ -1258,7 +1264,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 124.18,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-006"
       },
       "geometry": {
         "type": "LineString",
@@ -1543,7 +1550,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 271.63,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-007"
       },
       "geometry": {
         "type": "LineString",
@@ -1984,7 +1992,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 398.02,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-008"
       },
       "geometry": {
         "type": "LineString",
@@ -2613,7 +2622,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 45.76,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-009"
       },
       "geometry": {
         "type": "LineString",
@@ -2714,7 +2724,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 18.68,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-010"
       },
       "geometry": {
         "type": "LineString",
@@ -2771,7 +2782,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 64.65,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-011"
       },
       "geometry": {
         "type": "LineString",
@@ -2932,7 +2944,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 132.34,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-012"
       },
       "geometry": {
         "type": "LineString",
@@ -3241,7 +3254,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 29.17,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-013"
       },
       "geometry": {
         "type": "LineString",
@@ -3338,7 +3352,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 53.0,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-014"
       },
       "geometry": {
         "type": "LineString",
@@ -3487,7 +3502,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 8.41,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-015"
       },
       "geometry": {
         "type": "LineString",
@@ -3520,7 +3536,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 28.15,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-016"
       },
       "geometry": {
         "type": "LineString",
@@ -3585,7 +3602,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 24.31,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-017"
       },
       "geometry": {
         "type": "LineString",
@@ -3658,7 +3676,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 23.63,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-018"
       },
       "geometry": {
         "type": "LineString",
@@ -3731,7 +3750,8 @@
       "properties": {
         "role": "coastline",
         "length_px": 152.27,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-019"
       },
       "geometry": {
         "type": "LineString",
@@ -3984,7 +4004,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 436.07,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-020"
       },
       "geometry": {
         "type": "LineString",
@@ -4705,7 +4726,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 14.26,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-021"
       },
       "geometry": {
         "type": "LineString",
@@ -4762,7 +4784,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 15.37,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-022"
       },
       "geometry": {
         "type": "LineString",
@@ -4827,7 +4850,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 92.17,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-023"
       },
       "geometry": {
         "type": "LineString",
@@ -4972,7 +4996,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 93.73,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-024"
       },
       "geometry": {
         "type": "LineString",
@@ -5141,7 +5166,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.05,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-025"
       },
       "geometry": {
         "type": "LineString",
@@ -5174,7 +5200,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 47.13,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-026"
       },
       "geometry": {
         "type": "LineString",
@@ -5287,7 +5314,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.98,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-027"
       },
       "geometry": {
         "type": "LineString",
@@ -5332,7 +5360,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.95,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-028"
       },
       "geometry": {
         "type": "LineString",
@@ -5365,7 +5394,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.36,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-029"
       },
       "geometry": {
         "type": "LineString",
@@ -5398,7 +5428,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.62,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-030"
       },
       "geometry": {
         "type": "LineString",
@@ -5431,7 +5462,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 39.29,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-031"
       },
       "geometry": {
         "type": "LineString",
@@ -5584,7 +5616,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.04,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-032"
       },
       "geometry": {
         "type": "LineString",
@@ -5617,7 +5650,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 11.88,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-033"
       },
       "geometry": {
         "type": "LineString",
@@ -5662,7 +5696,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 14.37,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-034"
       },
       "geometry": {
         "type": "LineString",
@@ -5711,7 +5746,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.24,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-035"
       },
       "geometry": {
         "type": "LineString",
@@ -5744,7 +5780,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.32,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-036"
       },
       "geometry": {
         "type": "LineString",
@@ -5781,7 +5818,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 126.31,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-037"
       },
       "geometry": {
         "type": "LineString",
@@ -6026,7 +6064,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 22.03,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-038"
       },
       "geometry": {
         "type": "LineString",
@@ -6095,7 +6134,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.77,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-039"
       },
       "geometry": {
         "type": "LineString",
@@ -6128,7 +6168,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.78,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-040"
       },
       "geometry": {
         "type": "LineString",
@@ -6161,7 +6202,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 13.2,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-041"
       },
       "geometry": {
         "type": "LineString",
@@ -6218,7 +6260,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.52,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-042"
       },
       "geometry": {
         "type": "LineString",
@@ -6259,7 +6302,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 17.48,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-043"
       },
       "geometry": {
         "type": "LineString",
@@ -6316,7 +6360,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.99,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-044"
       },
       "geometry": {
         "type": "LineString",
@@ -6349,7 +6394,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.36,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-045"
       },
       "geometry": {
         "type": "LineString",
@@ -6394,7 +6440,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.54,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-046"
       },
       "geometry": {
         "type": "LineString",
@@ -6431,7 +6478,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.76,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-047"
       },
       "geometry": {
         "type": "LineString",
@@ -6464,7 +6512,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.12,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-048"
       },
       "geometry": {
         "type": "LineString",
@@ -6497,7 +6546,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.23,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-049"
       },
       "geometry": {
         "type": "LineString",
@@ -6534,7 +6584,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 11.41,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-050"
       },
       "geometry": {
         "type": "LineString",
@@ -6583,7 +6634,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.78,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-051"
       },
       "geometry": {
         "type": "LineString",
@@ -6616,7 +6668,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.41,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-052"
       },
       "geometry": {
         "type": "LineString",
@@ -6649,7 +6702,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 12.4,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-053"
       },
       "geometry": {
         "type": "LineString",
@@ -6702,7 +6756,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.85,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-054"
       },
       "geometry": {
         "type": "LineString",
@@ -6739,7 +6794,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.24,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-055"
       },
       "geometry": {
         "type": "LineString",
@@ -6772,7 +6828,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.92,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-056"
       },
       "geometry": {
         "type": "LineString",
@@ -6805,7 +6862,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.76,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-057"
       },
       "geometry": {
         "type": "LineString",
@@ -6854,7 +6912,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.35,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-058"
       },
       "geometry": {
         "type": "LineString",
@@ -6895,7 +6954,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 23.13,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-059"
       },
       "geometry": {
         "type": "LineString",
@@ -6964,7 +7024,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 49.87,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-060"
       },
       "geometry": {
         "type": "LineString",
@@ -7097,7 +7158,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.93,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-061"
       },
       "geometry": {
         "type": "LineString",
@@ -7130,7 +7192,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.66,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-062"
       },
       "geometry": {
         "type": "LineString",
@@ -7163,7 +7226,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.12,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-063"
       },
       "geometry": {
         "type": "LineString",
@@ -7208,7 +7272,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.78,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-064"
       },
       "geometry": {
         "type": "LineString",
@@ -7253,7 +7318,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.87,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-065"
       },
       "geometry": {
         "type": "LineString",
@@ -7286,7 +7352,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.49,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-066"
       },
       "geometry": {
         "type": "LineString",
@@ -7343,7 +7410,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.79,
-        "source": "8192x5792_high_resolution_ocean_boundary"
+        "source": "8192x5792_high_resolution_ocean_boundary",
+        "review_id": "candidate-067"
       },
       "geometry": {
         "type": "LineString",
@@ -7376,7 +7444,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 35.07,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-068"
       },
       "geometry": {
         "type": "LineString",
@@ -7921,7 +7990,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-069"
       },
       "geometry": {
         "type": "LineString",
@@ -7954,7 +8024,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.89,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-070"
       },
       "geometry": {
         "type": "LineString",
@@ -8019,7 +8090,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 18.49,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-071"
       },
       "geometry": {
         "type": "LineString",
@@ -8116,7 +8188,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.27,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-072"
       },
       "geometry": {
         "type": "LineString",
@@ -8165,7 +8238,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 18.05,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-073"
       },
       "geometry": {
         "type": "LineString",
@@ -8286,7 +8360,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.62,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-074"
       },
       "geometry": {
         "type": "LineString",
@@ -8355,7 +8430,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 20.13,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-075"
       },
       "geometry": {
         "type": "LineString",
@@ -8488,7 +8564,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 15.13,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-076"
       },
       "geometry": {
         "type": "LineString",
@@ -8585,7 +8662,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.91,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-077"
       },
       "geometry": {
         "type": "LineString",
@@ -8626,7 +8704,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.66,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-078"
       },
       "geometry": {
         "type": "LineString",
@@ -8691,7 +8770,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.12,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-079"
       },
       "geometry": {
         "type": "LineString",
@@ -8740,7 +8820,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.04,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-080"
       },
       "geometry": {
         "type": "LineString",
@@ -8805,7 +8886,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.12,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-081"
       },
       "geometry": {
         "type": "LineString",
@@ -8862,7 +8944,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.83,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-082"
       },
       "geometry": {
         "type": "LineString",
@@ -8911,7 +8994,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.39,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-083"
       },
       "geometry": {
         "type": "LineString",
@@ -8976,7 +9060,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 13.62,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-084",
+        "review_status": "rejected",
+        "review_note": "Follows black mainland city-label strokes; both sides are land in the source raster."
       },
       "geometry": {
         "type": "LineString",
@@ -9201,7 +9288,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 18.13,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-085"
       },
       "geometry": {
         "type": "LineString",
@@ -9334,7 +9422,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 23.69,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-086"
       },
       "geometry": {
         "type": "LineString",
@@ -9643,7 +9732,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 33.74,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-087"
       },
       "geometry": {
         "type": "LineString",
@@ -10112,7 +10202,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 42.69,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-088",
+        "review_status": "rejected",
+        "review_note": "Traces mainland city-label glyphs, not an island outline."
       },
       "geometry": {
         "type": "LineString",
@@ -10769,7 +10862,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 14.86,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-089",
+        "review_status": "rejected",
+        "review_note": "Traces mainland city-label glyphs, not an island outline."
       },
       "geometry": {
         "type": "LineString",
@@ -10994,7 +11090,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.5,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-090",
+        "review_status": "rejected",
+        "review_note": "Short stroke from the same mainland city label."
       },
       "geometry": {
         "type": "LineString",
@@ -11067,7 +11166,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 16.47,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-091"
       },
       "geometry": {
         "type": "LineString",
@@ -11336,7 +11436,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 56.36,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-092"
       },
       "geometry": {
         "type": "LineString",
@@ -11769,7 +11870,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.68,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-093"
       },
       "geometry": {
         "type": "LineString",
@@ -11826,7 +11928,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.62,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-094"
       },
       "geometry": {
         "type": "LineString",
@@ -11891,7 +11994,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.54,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-095"
       },
       "geometry": {
         "type": "LineString",
@@ -11956,7 +12060,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.47,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-096"
       },
       "geometry": {
         "type": "LineString",
@@ -12005,7 +12110,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.54,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-097"
       },
       "geometry": {
         "type": "LineString",
@@ -12078,7 +12184,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 18.61,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-098"
       },
       "geometry": {
         "type": "LineString",
@@ -12183,7 +12290,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.83,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-099"
       },
       "geometry": {
         "type": "LineString",
@@ -12244,7 +12352,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-100"
       },
       "geometry": {
         "type": "LineString",
@@ -12265,7 +12374,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.71,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-101"
       },
       "geometry": {
         "type": "LineString",
@@ -12306,7 +12416,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-102"
       },
       "geometry": {
         "type": "LineString",
@@ -12395,7 +12506,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-103"
       },
       "geometry": {
         "type": "LineString",
@@ -12428,7 +12540,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-104"
       },
       "geometry": {
         "type": "LineString",
@@ -12449,7 +12562,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.28,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-105"
       },
       "geometry": {
         "type": "LineString",
@@ -12514,7 +12628,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.71,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-106"
       },
       "geometry": {
         "type": "LineString",
@@ -12571,7 +12686,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 16.67,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-107"
       },
       "geometry": {
         "type": "LineString",
@@ -12764,7 +12880,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-108"
       },
       "geometry": {
         "type": "LineString",
@@ -12785,7 +12902,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.71,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-109"
       },
       "geometry": {
         "type": "LineString",
@@ -12826,7 +12944,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.5,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-110"
       },
       "geometry": {
         "type": "LineString",
@@ -12867,7 +12986,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.33,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-111"
       },
       "geometry": {
         "type": "LineString",
@@ -12932,7 +13052,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 18.07,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-112"
       },
       "geometry": {
         "type": "LineString",
@@ -13037,7 +13158,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-113"
       },
       "geometry": {
         "type": "LineString",
@@ -13070,7 +13192,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 17.63,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-114"
       },
       "geometry": {
         "type": "LineString",
@@ -13211,7 +13334,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.27,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-115"
       },
       "geometry": {
         "type": "LineString",
@@ -13260,7 +13384,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.68,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-116"
       },
       "geometry": {
         "type": "LineString",
@@ -13341,7 +13466,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-117"
       },
       "geometry": {
         "type": "LineString",
@@ -13390,7 +13516,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.95,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-118"
       },
       "geometry": {
         "type": "LineString",
@@ -13487,7 +13614,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 21.84,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-119"
       },
       "geometry": {
         "type": "LineString",
@@ -13644,7 +13772,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 217.23,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-120"
       },
       "geometry": {
         "type": "LineString",
@@ -16545,7 +16674,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.12,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-121"
       },
       "geometry": {
         "type": "LineString",
@@ -16602,7 +16732,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 14.13,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-122"
       },
       "geometry": {
         "type": "LineString",
@@ -16719,7 +16850,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.74,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-123"
       },
       "geometry": {
         "type": "LineString",
@@ -16800,7 +16932,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-124"
       },
       "geometry": {
         "type": "LineString",
@@ -16821,7 +16954,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.04,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-125"
       },
       "geometry": {
         "type": "LineString",
@@ -16894,7 +17028,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-126"
       },
       "geometry": {
         "type": "LineString",
@@ -16959,7 +17094,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.62,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-127"
       },
       "geometry": {
         "type": "LineString",
@@ -17024,7 +17160,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-128"
       },
       "geometry": {
         "type": "LineString",
@@ -17045,7 +17182,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.97,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-129"
       },
       "geometry": {
         "type": "LineString",
@@ -17110,7 +17248,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-130"
       },
       "geometry": {
         "type": "LineString",
@@ -17131,7 +17270,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 15.92,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-131"
       },
       "geometry": {
         "type": "LineString",
@@ -17260,7 +17400,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-132"
       },
       "geometry": {
         "type": "LineString",
@@ -17281,7 +17422,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.6,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-133"
       },
       "geometry": {
         "type": "LineString",
@@ -17362,7 +17504,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.91,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-134"
       },
       "geometry": {
         "type": "LineString",
@@ -17411,7 +17554,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.91,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-135"
       },
       "geometry": {
         "type": "LineString",
@@ -17468,7 +17612,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-136"
       },
       "geometry": {
         "type": "LineString",
@@ -17489,7 +17634,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.05,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-137"
       },
       "geometry": {
         "type": "LineString",
@@ -17554,7 +17700,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-138"
       },
       "geometry": {
         "type": "LineString",
@@ -17619,7 +17766,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.71,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-139"
       },
       "geometry": {
         "type": "LineString",
@@ -17676,7 +17824,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.39,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-140"
       },
       "geometry": {
         "type": "LineString",
@@ -17741,7 +17890,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-141"
       },
       "geometry": {
         "type": "LineString",
@@ -17774,7 +17924,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.68,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-142"
       },
       "geometry": {
         "type": "LineString",
@@ -17843,7 +17994,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-143"
       },
       "geometry": {
         "type": "LineString",
@@ -17908,7 +18060,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-144"
       },
       "geometry": {
         "type": "LineString",
@@ -17957,7 +18110,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 65.31,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-145"
       },
       "geometry": {
         "type": "LineString",
@@ -18830,7 +18984,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-146"
       },
       "geometry": {
         "type": "LineString",
@@ -18863,7 +19018,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-147"
       },
       "geometry": {
         "type": "LineString",
@@ -18896,7 +19052,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 98.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-148"
       },
       "geometry": {
         "type": "LineString",
@@ -19625,7 +19782,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.5,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-149"
       },
       "geometry": {
         "type": "LineString",
@@ -19690,7 +19848,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 11.51,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-150"
       },
       "geometry": {
         "type": "LineString",
@@ -19799,7 +19958,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.47,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-151"
       },
       "geometry": {
         "type": "LineString",
@@ -19856,7 +20016,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-152"
       },
       "geometry": {
         "type": "LineString",
@@ -19877,7 +20038,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-153"
       },
       "geometry": {
         "type": "LineString",
@@ -19898,7 +20060,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-154"
       },
       "geometry": {
         "type": "LineString",
@@ -19919,7 +20082,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-155"
       },
       "geometry": {
         "type": "LineString",
@@ -19940,7 +20104,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-156"
       },
       "geometry": {
         "type": "LineString",
@@ -19961,7 +20126,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.68,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-157"
       },
       "geometry": {
         "type": "LineString",
@@ -20006,7 +20172,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-158"
       },
       "geometry": {
         "type": "LineString",
@@ -20039,7 +20206,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-159"
       },
       "geometry": {
         "type": "LineString",
@@ -20072,7 +20240,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 24.58,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-160"
       },
       "geometry": {
         "type": "LineString",
@@ -20277,7 +20446,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-161"
       },
       "geometry": {
         "type": "LineString",
@@ -20310,7 +20480,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 26.73,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-162"
       },
       "geometry": {
         "type": "LineString",
@@ -20695,7 +20866,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.27,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-163"
       },
       "geometry": {
         "type": "LineString",
@@ -20744,7 +20916,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-164"
       },
       "geometry": {
         "type": "LineString",
@@ -20777,7 +20950,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.91,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-165",
+        "review_status": "rejected",
+        "review_note": "Follows a ruler-like canal tick symbol in the source image; it is not a shoreline."
       },
       "geometry": {
         "type": "LineString",
@@ -20834,7 +21010,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.18,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-166"
       },
       "geometry": {
         "type": "LineString",
@@ -20895,7 +21072,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-167"
       },
       "geometry": {
         "type": "LineString",
@@ -20928,7 +21106,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-168"
       },
       "geometry": {
         "type": "LineString",
@@ -20977,7 +21156,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 38.55,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-169",
+        "review_status": "rejected",
+        "review_note": "Traces character strokes from a mainland place-name label, not an island outline."
       },
       "geometry": {
         "type": "LineString",
@@ -21566,7 +21748,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 46.92,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-170",
+        "review_status": "rejected",
+        "review_note": "Traces character strokes from a mainland place-name label, not an island outline."
       },
       "geometry": {
         "type": "LineString",
@@ -22299,7 +22484,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 31.92,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-171",
+        "review_status": "rejected",
+        "review_note": "Traces character strokes from a mainland place-name label, not an island outline."
       },
       "geometry": {
         "type": "LineString",
@@ -22680,7 +22868,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-172"
       },
       "geometry": {
         "type": "LineString",
@@ -22745,7 +22934,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 54.75,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-173"
       },
       "geometry": {
         "type": "LineString",
@@ -23522,7 +23712,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.5,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-174"
       },
       "geometry": {
         "type": "LineString",
@@ -23563,7 +23754,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.71,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-175"
       },
       "geometry": {
         "type": "LineString",
@@ -23604,7 +23796,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.5,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-176"
       },
       "geometry": {
         "type": "LineString",
@@ -23709,7 +23902,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-177"
       },
       "geometry": {
         "type": "LineString",
@@ -23742,7 +23936,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-178"
       },
       "geometry": {
         "type": "LineString",
@@ -23775,7 +23970,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-179"
       },
       "geometry": {
         "type": "LineString",
@@ -23796,7 +23992,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-180"
       },
       "geometry": {
         "type": "LineString",
@@ -23845,7 +24042,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.66,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-181"
       },
       "geometry": {
         "type": "LineString",
@@ -23926,7 +24124,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-182"
       },
       "geometry": {
         "type": "LineString",
@@ -23947,7 +24146,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.18,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-183"
       },
       "geometry": {
         "type": "LineString",
@@ -24024,7 +24224,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 16.07,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-184"
       },
       "geometry": {
         "type": "LineString",
@@ -24149,7 +24350,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.66,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-185"
       },
       "geometry": {
         "type": "LineString",
@@ -24214,7 +24416,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-186"
       },
       "geometry": {
         "type": "LineString",
@@ -24235,7 +24438,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-187"
       },
       "geometry": {
         "type": "LineString",
@@ -24268,7 +24472,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 16.42,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-188"
       },
       "geometry": {
         "type": "LineString",
@@ -24389,7 +24594,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-189"
       },
       "geometry": {
         "type": "LineString",
@@ -24422,7 +24628,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 61.86,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-190"
       },
       "geometry": {
         "type": "LineString",
@@ -24871,7 +25078,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-191"
       },
       "geometry": {
         "type": "LineString",
@@ -24936,7 +25144,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.6,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-192"
       },
       "geometry": {
         "type": "LineString",
@@ -25025,7 +25234,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 25.46,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-193"
       },
       "geometry": {
         "type": "LineString",
@@ -25242,7 +25452,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-194"
       },
       "geometry": {
         "type": "LineString",
@@ -25263,7 +25474,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-195"
       },
       "geometry": {
         "type": "LineString",
@@ -25296,7 +25508,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-196"
       },
       "geometry": {
         "type": "LineString",
@@ -25329,7 +25542,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.97,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-197"
       },
       "geometry": {
         "type": "LineString",
@@ -25378,7 +25592,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.62,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-198"
       },
       "geometry": {
         "type": "LineString",
@@ -25427,7 +25642,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.46,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-199"
       },
       "geometry": {
         "type": "LineString",
@@ -25492,7 +25708,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.39,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-200"
       },
       "geometry": {
         "type": "LineString",
@@ -25565,7 +25782,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 13.13,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-201"
       },
       "geometry": {
         "type": "LineString",
@@ -25686,7 +25904,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.54,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-202"
       },
       "geometry": {
         "type": "LineString",
@@ -25751,7 +25970,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-203"
       },
       "geometry": {
         "type": "LineString",
@@ -25772,7 +25992,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-204"
       },
       "geometry": {
         "type": "LineString",
@@ -25805,7 +26026,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-205"
       },
       "geometry": {
         "type": "LineString",
@@ -25838,7 +26060,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-206"
       },
       "geometry": {
         "type": "LineString",
@@ -25859,7 +26082,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.71,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-207"
       },
       "geometry": {
         "type": "LineString",
@@ -25900,7 +26124,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 197.84,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-208"
       },
       "geometry": {
         "type": "LineString",
@@ -28645,7 +28870,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 17.49,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-209"
       },
       "geometry": {
         "type": "LineString",
@@ -28770,7 +28996,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.89,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-210"
       },
       "geometry": {
         "type": "LineString",
@@ -28843,7 +29070,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.62,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-211"
       },
       "geometry": {
         "type": "LineString",
@@ -28892,7 +29120,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.04,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-212"
       },
       "geometry": {
         "type": "LineString",
@@ -28981,7 +29210,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.04,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-213"
       },
       "geometry": {
         "type": "LineString",
@@ -29050,7 +29280,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.68,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-214"
       },
       "geometry": {
         "type": "LineString",
@@ -29103,7 +29334,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 62.53,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-215"
       },
       "geometry": {
         "type": "LineString",
@@ -29968,7 +30200,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.12,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-216"
       },
       "geometry": {
         "type": "LineString",
@@ -30025,7 +30258,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-217"
       },
       "geometry": {
         "type": "LineString",
@@ -30106,7 +30340,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.91,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-218"
       },
       "geometry": {
         "type": "LineString",
@@ -30163,7 +30398,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-219",
+        "review_status": "rejected",
+        "review_note": "Overlays a pink administrative annotation; not a shore edge."
       },
       "geometry": {
         "type": "LineString",
@@ -30184,7 +30422,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-220"
       },
       "geometry": {
         "type": "LineString",
@@ -30205,7 +30444,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.97,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-221"
       },
       "geometry": {
         "type": "LineString",
@@ -30258,7 +30498,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 27.49,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-222"
       },
       "geometry": {
         "type": "LineString",
@@ -30675,7 +30916,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-223"
       },
       "geometry": {
         "type": "LineString",
@@ -30696,7 +30938,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-224"
       },
       "geometry": {
         "type": "LineString",
@@ -30717,7 +30960,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.1,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-225"
       },
       "geometry": {
         "type": "LineString",
@@ -30798,7 +31042,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.39,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-226"
       },
       "geometry": {
         "type": "LineString",
@@ -30887,7 +31132,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-227"
       },
       "geometry": {
         "type": "LineString",
@@ -30920,7 +31166,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.12,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-228"
       },
       "geometry": {
         "type": "LineString",
@@ -31009,7 +31256,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.5,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-229"
       },
       "geometry": {
         "type": "LineString",
@@ -31050,7 +31298,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.71,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-230"
       },
       "geometry": {
         "type": "LineString",
@@ -31107,7 +31356,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.01,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-231"
       },
       "geometry": {
         "type": "LineString",
@@ -31196,7 +31446,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.74,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-232"
       },
       "geometry": {
         "type": "LineString",
@@ -31273,7 +31524,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 20.19,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-233"
       },
       "geometry": {
         "type": "LineString",
@@ -31422,7 +31674,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 15.9,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-234"
       },
       "geometry": {
         "type": "LineString",
@@ -31543,7 +31796,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.89,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-235"
       },
       "geometry": {
         "type": "LineString",
@@ -31616,7 +31870,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.39,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-236"
       },
       "geometry": {
         "type": "LineString",
@@ -31689,7 +31944,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 11.86,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-237"
       },
       "geometry": {
         "type": "LineString",
@@ -31798,7 +32054,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.54,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-238"
       },
       "geometry": {
         "type": "LineString",
@@ -31875,7 +32132,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.97,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-239"
       },
       "geometry": {
         "type": "LineString",
@@ -31940,7 +32198,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-240"
       },
       "geometry": {
         "type": "LineString",
@@ -32005,7 +32264,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.68,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-241"
       },
       "geometry": {
         "type": "LineString",
@@ -32078,7 +32338,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.04,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-242"
       },
       "geometry": {
         "type": "LineString",
@@ -32151,7 +32412,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-243"
       },
       "geometry": {
         "type": "LineString",
@@ -32172,7 +32434,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-244"
       },
       "geometry": {
         "type": "LineString",
@@ -32193,7 +32456,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.91,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-245"
       },
       "geometry": {
         "type": "LineString",
@@ -32234,7 +32498,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 13.01,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-246"
       },
       "geometry": {
         "type": "LineString",
@@ -32339,7 +32604,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-247"
       },
       "geometry": {
         "type": "LineString",
@@ -32360,7 +32626,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.47,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-248"
       },
       "geometry": {
         "type": "LineString",
@@ -32405,7 +32672,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.1,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-249"
       },
       "geometry": {
         "type": "LineString",
@@ -32478,7 +32746,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-250"
       },
       "geometry": {
         "type": "LineString",
@@ -32511,7 +32780,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 12.57,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-251"
       },
       "geometry": {
         "type": "LineString",
@@ -32600,7 +32870,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 193.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-252"
       },
       "geometry": {
         "type": "LineString",
@@ -35377,7 +35648,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 19.69,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-253"
       },
       "geometry": {
         "type": "LineString",
@@ -35518,7 +35790,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.45,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-254"
       },
       "geometry": {
         "type": "LineString",
@@ -35599,7 +35872,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.66,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-255"
       },
       "geometry": {
         "type": "LineString",
@@ -35696,7 +35970,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-256"
       },
       "geometry": {
         "type": "LineString",
@@ -35785,7 +36060,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 52.13,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-257"
       },
       "geometry": {
         "type": "LineString",
@@ -36082,7 +36358,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-258"
       },
       "geometry": {
         "type": "LineString",
@@ -36115,7 +36392,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.1,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-259"
       },
       "geometry": {
         "type": "LineString",
@@ -36176,7 +36454,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.62,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-260"
       },
       "geometry": {
         "type": "LineString",
@@ -36229,7 +36508,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.71,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-261"
       },
       "geometry": {
         "type": "LineString",
@@ -36270,7 +36550,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 27.17,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-262"
       },
       "geometry": {
         "type": "LineString",
@@ -36467,7 +36748,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.89,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-263"
       },
       "geometry": {
         "type": "LineString",
@@ -36548,7 +36830,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.97,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-264"
       },
       "geometry": {
         "type": "LineString",
@@ -36605,7 +36888,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 141.57,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-265"
       },
       "geometry": {
         "type": "LineString",
@@ -37534,7 +37818,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-266"
       },
       "geometry": {
         "type": "LineString",
@@ -37583,7 +37868,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 64.68,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-267"
       },
       "geometry": {
         "type": "LineString",
@@ -38456,7 +38742,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 11.04,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-268"
       },
       "geometry": {
         "type": "LineString",
@@ -38533,7 +38820,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 15.63,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-269"
       },
       "geometry": {
         "type": "LineString",
@@ -38670,7 +38958,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-270"
       },
       "geometry": {
         "type": "LineString",
@@ -38691,7 +38980,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 11.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-271"
       },
       "geometry": {
         "type": "LineString",
@@ -38788,7 +39078,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.83,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-272"
       },
       "geometry": {
         "type": "LineString",
@@ -38853,7 +39144,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.74,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-273"
       },
       "geometry": {
         "type": "LineString",
@@ -38958,7 +39250,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.91,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-274"
       },
       "geometry": {
         "type": "LineString",
@@ -38999,7 +39292,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.12,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-275"
       },
       "geometry": {
         "type": "LineString",
@@ -39056,7 +39350,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.47,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-276"
       },
       "geometry": {
         "type": "LineString",
@@ -39105,7 +39400,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.33,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-277"
       },
       "geometry": {
         "type": "LineString",
@@ -39162,7 +39458,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 54.43,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-278"
       },
       "geometry": {
         "type": "LineString",
@@ -39667,7 +39964,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.04,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-279"
       },
       "geometry": {
         "type": "LineString",
@@ -39740,7 +40038,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 12.95,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-280"
       },
       "geometry": {
         "type": "LineString",
@@ -39849,7 +40148,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-281"
       },
       "geometry": {
         "type": "LineString",
@@ -39882,7 +40182,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-282"
       },
       "geometry": {
         "type": "LineString",
@@ -39915,7 +40216,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-283"
       },
       "geometry": {
         "type": "LineString",
@@ -39964,7 +40266,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.89,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-284"
       },
       "geometry": {
         "type": "LineString",
@@ -40045,7 +40348,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 21.49,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-285"
       },
       "geometry": {
         "type": "LineString",
@@ -40210,7 +40514,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.33,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-286"
       },
       "geometry": {
         "type": "LineString",
@@ -40283,7 +40588,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-287"
       },
       "geometry": {
         "type": "LineString",
@@ -40304,7 +40610,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.54,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-288"
       },
       "geometry": {
         "type": "LineString",
@@ -40365,7 +40672,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.18,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-289"
       },
       "geometry": {
         "type": "LineString",
@@ -40426,7 +40734,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-290"
       },
       "geometry": {
         "type": "LineString",
@@ -40475,7 +40784,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.27,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-291"
       },
       "geometry": {
         "type": "LineString",
@@ -40520,7 +40830,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 17.75,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-292"
       },
       "geometry": {
         "type": "LineString",
@@ -40673,7 +40984,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-293"
       },
       "geometry": {
         "type": "LineString",
@@ -40694,7 +41006,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 13.57,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-294"
       },
       "geometry": {
         "type": "LineString",
@@ -40811,7 +41124,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.47,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-295"
       },
       "geometry": {
         "type": "LineString",
@@ -40868,7 +41182,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-296"
       },
       "geometry": {
         "type": "LineString",
@@ -40901,7 +41216,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.16,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-297"
       },
       "geometry": {
         "type": "LineString",
@@ -40974,7 +41290,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.95,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-298"
       },
       "geometry": {
         "type": "LineString",
@@ -41063,7 +41380,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.47,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-299"
       },
       "geometry": {
         "type": "LineString",
@@ -41136,7 +41454,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.71,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-300"
       },
       "geometry": {
         "type": "LineString",
@@ -41177,7 +41496,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-301"
       },
       "geometry": {
         "type": "LineString",
@@ -41210,7 +41530,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.91,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-302"
       },
       "geometry": {
         "type": "LineString",
@@ -41251,7 +41572,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.62,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-303"
       },
       "geometry": {
         "type": "LineString",
@@ -41300,7 +41622,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.12,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-304"
       },
       "geometry": {
         "type": "LineString",
@@ -41333,7 +41656,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.04,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-305"
       },
       "geometry": {
         "type": "LineString",
@@ -41402,7 +41726,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 23.17,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-306"
       },
       "geometry": {
         "type": "LineString",
@@ -41551,7 +41876,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.91,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-307"
       },
       "geometry": {
         "type": "LineString",
@@ -41592,7 +41918,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.3,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-308"
       },
       "geometry": {
         "type": "LineString",
@@ -41681,7 +42008,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.45,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-309"
       },
       "geometry": {
         "type": "LineString",
@@ -41758,7 +42086,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 16.99,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-310"
       },
       "geometry": {
         "type": "LineString",
@@ -41903,7 +42232,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.54,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-311"
       },
       "geometry": {
         "type": "LineString",
@@ -41952,7 +42282,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.04,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-312"
       },
       "geometry": {
         "type": "LineString",
@@ -42033,7 +42364,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-313"
       },
       "geometry": {
         "type": "LineString",
@@ -42066,7 +42398,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.54,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-314"
       },
       "geometry": {
         "type": "LineString",
@@ -42127,7 +42460,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.97,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-315"
       },
       "geometry": {
         "type": "LineString",
@@ -42176,7 +42510,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-316"
       },
       "geometry": {
         "type": "LineString",
@@ -42209,7 +42544,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.18,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-317"
       },
       "geometry": {
         "type": "LineString",
@@ -42282,7 +42618,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-318"
       },
       "geometry": {
         "type": "LineString",
@@ -42315,7 +42652,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 13.86,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-319"
       },
       "geometry": {
         "type": "LineString",
@@ -42424,7 +42762,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-320"
       },
       "geometry": {
         "type": "LineString",
@@ -42457,7 +42796,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-321"
       },
       "geometry": {
         "type": "LineString",
@@ -42490,7 +42830,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.04,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-322"
       },
       "geometry": {
         "type": "LineString",
@@ -42587,7 +42928,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.24,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-323"
       },
       "geometry": {
         "type": "LineString",
@@ -42668,7 +43010,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 12.63,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-324"
       },
       "geometry": {
         "type": "LineString",
@@ -42761,7 +43104,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.5,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-325"
       },
       "geometry": {
         "type": "LineString",
@@ -42802,7 +43146,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 16.84,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-326"
       },
       "geometry": {
         "type": "LineString",
@@ -42923,7 +43268,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-327"
       },
       "geometry": {
         "type": "LineString",
@@ -42956,7 +43302,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 20.17,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-328"
       },
       "geometry": {
         "type": "LineString",
@@ -43137,7 +43484,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.83,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-329"
       },
       "geometry": {
         "type": "LineString",
@@ -43210,7 +43558,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.28,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-330"
       },
       "geometry": {
         "type": "LineString",
@@ -43275,7 +43624,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-331"
       },
       "geometry": {
         "type": "LineString",
@@ -43308,7 +43658,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.33,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-332"
       },
       "geometry": {
         "type": "LineString",
@@ -43361,7 +43712,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.62,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-333"
       },
       "geometry": {
         "type": "LineString",
@@ -43402,7 +43754,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-334"
       },
       "geometry": {
         "type": "LineString",
@@ -43467,7 +43820,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.3,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-335"
       },
       "geometry": {
         "type": "LineString",
@@ -43548,7 +43902,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-336"
       },
       "geometry": {
         "type": "LineString",
@@ -43581,7 +43936,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.33,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-337"
       },
       "geometry": {
         "type": "LineString",
@@ -43654,7 +44010,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.39,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-338"
       },
       "geometry": {
         "type": "LineString",
@@ -43727,7 +44084,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.97,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-339"
       },
       "geometry": {
         "type": "LineString",
@@ -43780,7 +44138,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-340"
       },
       "geometry": {
         "type": "LineString",
@@ -43845,7 +44204,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.33,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-341"
       },
       "geometry": {
         "type": "LineString",
@@ -43902,7 +44262,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.18,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-342"
       },
       "geometry": {
         "type": "LineString",
@@ -43983,7 +44344,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.74,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-343"
       },
       "geometry": {
         "type": "LineString",
@@ -44052,7 +44414,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.18,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-344"
       },
       "geometry": {
         "type": "LineString",
@@ -44109,7 +44472,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.33,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-345"
       },
       "geometry": {
         "type": "LineString",
@@ -44166,7 +44530,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.04,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-346"
       },
       "geometry": {
         "type": "LineString",
@@ -44227,7 +44592,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 29.62,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-347"
       },
       "geometry": {
         "type": "LineString",
@@ -44420,7 +44786,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-348"
       },
       "geometry": {
         "type": "LineString",
@@ -44453,7 +44820,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.97,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-349"
       },
       "geometry": {
         "type": "LineString",
@@ -44510,7 +44878,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 22.58,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-350"
       },
       "geometry": {
         "type": "LineString",
@@ -44659,7 +45028,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.77,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-351"
       },
       "geometry": {
         "type": "LineString",
@@ -44708,7 +45078,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.12,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-352"
       },
       "geometry": {
         "type": "LineString",
@@ -44781,7 +45152,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 12.22,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-353"
       },
       "geometry": {
         "type": "LineString",
@@ -44882,7 +45254,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.27,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-354"
       },
       "geometry": {
         "type": "LineString",
@@ -44943,7 +45316,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-355"
       },
       "geometry": {
         "type": "LineString",
@@ -45008,7 +45382,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-356"
       },
       "geometry": {
         "type": "LineString",
@@ -45029,7 +45404,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.62,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-357"
       },
       "geometry": {
         "type": "LineString",
@@ -45082,7 +45458,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-358"
       },
       "geometry": {
         "type": "LineString",
@@ -45131,7 +45508,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.71,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-359"
       },
       "geometry": {
         "type": "LineString",
@@ -45172,7 +45550,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-360"
       },
       "geometry": {
         "type": "LineString",
@@ -45221,7 +45600,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.54,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-361"
       },
       "geometry": {
         "type": "LineString",
@@ -45306,7 +45686,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 11.01,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-362"
       },
       "geometry": {
         "type": "LineString",
@@ -45387,7 +45768,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.5,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-363"
       },
       "geometry": {
         "type": "LineString",
@@ -45452,7 +45834,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.51,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-364"
       },
       "geometry": {
         "type": "LineString",
@@ -45549,7 +45932,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 12.01,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-365"
       },
       "geometry": {
         "type": "LineString",
@@ -45638,7 +46022,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.01,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-366"
       },
       "geometry": {
         "type": "LineString",
@@ -45739,7 +46124,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-367"
       },
       "geometry": {
         "type": "LineString",
@@ -45760,7 +46146,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.97,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-368"
       },
       "geometry": {
         "type": "LineString",
@@ -45809,7 +46196,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.54,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-369"
       },
       "geometry": {
         "type": "LineString",
@@ -45874,7 +46262,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.89,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-370"
       },
       "geometry": {
         "type": "LineString",
@@ -45947,7 +46336,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-371"
       },
       "geometry": {
         "type": "LineString",
@@ -45968,7 +46358,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.12,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-372"
       },
       "geometry": {
         "type": "LineString",
@@ -46017,7 +46408,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.05,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-373"
       },
       "geometry": {
         "type": "LineString",
@@ -46082,7 +46474,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-374"
       },
       "geometry": {
         "type": "LineString",
@@ -46131,7 +46524,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.1,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-375"
       },
       "geometry": {
         "type": "LineString",
@@ -46224,7 +46618,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-376"
       },
       "geometry": {
         "type": "LineString",
@@ -46257,7 +46652,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.97,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-377"
       },
       "geometry": {
         "type": "LineString",
@@ -46314,7 +46710,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-378"
       },
       "geometry": {
         "type": "LineString",
@@ -46347,7 +46744,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.62,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-379"
       },
       "geometry": {
         "type": "LineString",
@@ -46396,7 +46794,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-380"
       },
       "geometry": {
         "type": "LineString",
@@ -46417,7 +46816,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.45,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-381"
       },
       "geometry": {
         "type": "LineString",
@@ -46522,7 +46922,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 14.01,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-382"
       },
       "geometry": {
         "type": "LineString",
@@ -46667,7 +47068,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.74,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-383"
       },
       "geometry": {
         "type": "LineString",
@@ -46748,7 +47150,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.39,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-384"
       },
       "geometry": {
         "type": "LineString",
@@ -46821,7 +47224,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-385"
       },
       "geometry": {
         "type": "LineString",
@@ -46842,7 +47246,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.83,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-386"
       },
       "geometry": {
         "type": "LineString",
@@ -46899,7 +47304,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.18,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-387"
       },
       "geometry": {
         "type": "LineString",
@@ -46992,7 +47398,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-388"
       },
       "geometry": {
         "type": "LineString",
@@ -47025,7 +47432,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-389"
       },
       "geometry": {
         "type": "LineString",
@@ -47122,7 +47530,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-390"
       },
       "geometry": {
         "type": "LineString",
@@ -47155,7 +47564,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 110.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-391"
       },
       "geometry": {
         "type": "LineString",
@@ -47972,7 +48382,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 34.85,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-392"
       },
       "geometry": {
         "type": "LineString",
@@ -48253,7 +48664,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 28.44,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-393"
       },
       "geometry": {
         "type": "LineString",
@@ -48490,7 +48902,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 18.25,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-394"
       },
       "geometry": {
         "type": "LineString",
@@ -48667,7 +49080,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.8,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-395"
       },
       "geometry": {
         "type": "LineString",
@@ -48756,7 +49170,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 34.7,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-396"
       },
       "geometry": {
         "type": "LineString",
@@ -49041,7 +49456,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 33.73,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-397"
       },
       "geometry": {
         "type": "LineString",
@@ -49258,7 +49674,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.71,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-398"
       },
       "geometry": {
         "type": "LineString",
@@ -49299,7 +49716,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 21.54,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-399"
       },
       "geometry": {
         "type": "LineString",
@@ -49644,7 +50062,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.5,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-400",
+        "review_status": "rejected",
+        "review_note": "Short horizontal trace sits on an inland water feature, not the sea boundary."
       },
       "geometry": {
         "type": "LineString",
@@ -49733,7 +50154,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 26.35,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-401"
       },
       "geometry": {
         "type": "LineString",
@@ -49974,7 +50396,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.5,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-402"
       },
       "geometry": {
         "type": "LineString",
@@ -50015,7 +50438,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 14.16,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-403"
       },
       "geometry": {
         "type": "LineString",
@@ -50124,7 +50548,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.12,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-404"
       },
       "geometry": {
         "type": "LineString",
@@ -50181,7 +50606,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 37.99,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-405",
+        "review_status": "rejected",
+        "review_note": "Overlays mainland city-name lettering; not an island."
       },
       "geometry": {
         "type": "LineString",
@@ -50766,7 +51194,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.91,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-406"
       },
       "geometry": {
         "type": "LineString",
@@ -50807,7 +51236,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 12.89,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-407"
       },
       "geometry": {
         "type": "LineString",
@@ -50880,7 +51310,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.39,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-408"
       },
       "geometry": {
         "type": "LineString",
@@ -50937,7 +51368,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 17.49,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-409"
       },
       "geometry": {
         "type": "LineString",
@@ -51190,7 +51622,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.54,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-410"
       },
       "geometry": {
         "type": "LineString",
@@ -51279,7 +51712,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 30.05,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-411"
       },
       "geometry": {
         "type": "LineString",
@@ -51732,7 +52166,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.41,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-412"
       },
       "geometry": {
         "type": "LineString",
@@ -51861,7 +52296,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.71,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-413",
+        "review_status": "rejected",
+        "review_note": "Tiny stroke of a mainland city label."
       },
       "geometry": {
         "type": "LineString",
@@ -51902,7 +52340,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.0,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-414"
       },
       "geometry": {
         "type": "LineString",
@@ -51967,7 +52406,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 17.99,
-        "source": "8192x5792_high_resolution_dark_island_ink"
+        "source": "8192x5792_high_resolution_dark_island_ink",
+        "review_id": "candidate-415",
+        "review_status": "rejected",
+        "review_note": "Pixel-side inspection places this trace inside land; it follows an internal line near a river, not a coastline."
       },
       "geometry": {
         "type": "LineString",
@@ -52232,7 +52674,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.68,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-416"
       },
       "geometry": {
         "type": "LineString",
@@ -52297,7 +52740,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 12.45,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-417"
       },
       "geometry": {
         "type": "LineString",
@@ -52410,7 +52854,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.68,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-418"
       },
       "geometry": {
         "type": "LineString",
@@ -52479,7 +52924,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 12.36,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-419"
       },
       "geometry": {
         "type": "LineString",
@@ -52576,7 +53022,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 29.31,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-420"
       },
       "geometry": {
         "type": "LineString",
@@ -52777,7 +53224,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.83,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-421"
       },
       "geometry": {
         "type": "LineString",
@@ -52842,7 +53290,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 12.28,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-422"
       },
       "geometry": {
         "type": "LineString",
@@ -52927,7 +53376,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.12,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-423"
       },
       "geometry": {
         "type": "LineString",
@@ -52976,7 +53426,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.39,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-424"
       },
       "geometry": {
         "type": "LineString",
@@ -53053,7 +53504,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.18,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-425"
       },
       "geometry": {
         "type": "LineString",
@@ -53126,7 +53578,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.18,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-426"
       },
       "geometry": {
         "type": "LineString",
@@ -53187,7 +53640,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 13.45,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-427"
       },
       "geometry": {
         "type": "LineString",
@@ -53292,7 +53746,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.24,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-428"
       },
       "geometry": {
         "type": "LineString",
@@ -53357,7 +53812,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.47,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-429"
       },
       "geometry": {
         "type": "LineString",
@@ -53422,7 +53878,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.33,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-430"
       },
       "geometry": {
         "type": "LineString",
@@ -53475,7 +53932,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.97,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-431"
       },
       "geometry": {
         "type": "LineString",
@@ -53528,7 +53986,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 4.18,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-432"
       },
       "geometry": {
         "type": "LineString",
@@ -53573,7 +54032,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.16,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-433"
       },
       "geometry": {
         "type": "LineString",
@@ -53670,7 +54130,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.1,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-434"
       },
       "geometry": {
         "type": "LineString",
@@ -53759,7 +54220,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.68,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-435"
       },
       "geometry": {
         "type": "LineString",
@@ -53852,7 +54314,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.68,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-436"
       },
       "geometry": {
         "type": "LineString",
@@ -53909,7 +54372,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.54,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-437"
       },
       "geometry": {
         "type": "LineString",
@@ -53962,7 +54426,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 15.46,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-438"
       },
       "geometry": {
         "type": "LineString",
@@ -54071,7 +54536,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 22.19,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-439"
       },
       "geometry": {
         "type": "LineString",
@@ -54228,7 +54694,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 36.8,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-440"
       },
       "geometry": {
         "type": "LineString",
@@ -54505,7 +54972,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 20.28,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-441"
       },
       "geometry": {
         "type": "LineString",
@@ -54654,7 +55122,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.66,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-442"
       },
       "geometry": {
         "type": "LineString",
@@ -54739,7 +55208,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 19.34,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-443"
       },
       "geometry": {
         "type": "LineString",
@@ -54892,7 +55362,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.86,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-444"
       },
       "geometry": {
         "type": "LineString",
@@ -55009,7 +55480,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 17.51,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-445"
       },
       "geometry": {
         "type": "LineString",
@@ -55114,7 +55586,10 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 1.21,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-446",
+        "review_status": "rejected",
+        "review_note": "Traces red offshore city-name lettering; not an island."
       },
       "geometry": {
         "type": "LineString",
@@ -55147,7 +55622,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.12,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-447"
       },
       "geometry": {
         "type": "LineString",
@@ -55188,7 +55664,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.95,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-448"
       },
       "geometry": {
         "type": "LineString",
@@ -55273,7 +55750,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 9.24,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-449"
       },
       "geometry": {
         "type": "LineString",
@@ -55370,7 +55848,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-450"
       },
       "geometry": {
         "type": "LineString",
@@ -55391,7 +55870,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.68,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-451"
       },
       "geometry": {
         "type": "LineString",
@@ -55440,7 +55920,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.68,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-452"
       },
       "geometry": {
         "type": "LineString",
@@ -55505,7 +55986,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-453"
       },
       "geometry": {
         "type": "LineString",
@@ -55526,7 +56008,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 5.04,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-454"
       },
       "geometry": {
         "type": "LineString",
@@ -55575,7 +56058,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 11.16,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-455"
       },
       "geometry": {
         "type": "LineString",
@@ -55684,7 +56168,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 3.41,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-456"
       },
       "geometry": {
         "type": "LineString",
@@ -55733,7 +56218,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 12.24,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-457"
       },
       "geometry": {
         "type": "LineString",
@@ -55830,7 +56316,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.35,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-458"
       },
       "geometry": {
         "type": "LineString",
@@ -55851,7 +56338,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 10.3,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-459"
       },
       "geometry": {
         "type": "LineString",
@@ -55932,7 +56420,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.95,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-460"
       },
       "geometry": {
         "type": "LineString",
@@ -55993,7 +56482,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.18,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-461"
       },
       "geometry": {
         "type": "LineString",
@@ -56058,7 +56548,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.04,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-462"
       },
       "geometry": {
         "type": "LineString",
@@ -56123,7 +56614,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 15.86,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-463"
       },
       "geometry": {
         "type": "LineString",
@@ -56256,7 +56748,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 12.66,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-464"
       },
       "geometry": {
         "type": "LineString",
@@ -56345,7 +56838,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 0.25,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-465"
       },
       "geometry": {
         "type": "LineString",
@@ -56366,7 +56860,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 7.39,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-466"
       },
       "geometry": {
         "type": "LineString",
@@ -56431,7 +56926,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 6.68,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-467"
       },
       "geometry": {
         "type": "LineString",
@@ -56496,7 +56992,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 8.18,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-468"
       },
       "geometry": {
         "type": "LineString",
@@ -56577,7 +57074,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 2.12,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-469"
       },
       "geometry": {
         "type": "LineString",
@@ -56610,7 +57108,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 37.95,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-470"
       },
       "geometry": {
         "type": "LineString",
@@ -56883,7 +57382,8 @@
       "properties": {
         "role": "island_shoreline",
         "length_px": 14.78,
-        "source": "8192x5792_high_resolution_muted_island_ink"
+        "source": "8192x5792_high_resolution_muted_island_ink",
+        "review_id": "candidate-471"
       },
       "geometry": {
         "type": "LineString",
