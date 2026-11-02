@@ -25,8 +25,8 @@ from typing import Iterable
 import cv2
 import numpy as np
 from scipy.ndimage import distance_transform_edt
-from shapely.geometry import LineString, shape
-from shapely.ops import linemerge, unary_union
+from shapely.geometry import LineString, Point, shape
+from shapely.ops import linemerge, nearest_points, unary_union
 
 
 ROOT = Path(__file__).resolve().parent
@@ -41,6 +41,7 @@ MIN_LINE_LENGTH_PX = 3.0
 # printed shoreline. Leave a wider landward clearance so coast and national
 # outline never read as two parallel boundary lines.
 COASTLINE_CLIP_BUFFER_PX = 7.0
+COAST_JUNCTION_MAX_GAP_PX = COASTLINE_CLIP_BUFFER_PX * 2
 
 
 def read_features(path: Path) -> list[dict]:
@@ -87,17 +88,43 @@ def clip_border_from_coastline(geometry, coastline_union):
 def build_national_land_borders(outline_features: list[dict], coastline_union):
     features = []
     for feature in outline_features:
+        # Offshore outlines are islands: their boundary is coastline, not a
+        # land border. Keep the mainland's actual land-border arc only.
+        if feature["properties"].get("role") != "mainland":
+            continue
         source_line = shape(feature["geometry"]).boundary
         land_line = clip_border_from_coastline(source_line, coastline_union)
         if land_line is None:
             continue
+        land_parts = line_parts(land_line)
+        if not land_parts:
+            continue
+        # The coastline contour and the printed national outline differ by a
+        # few pixels. Clipping can therefore leave tiny coastal fragments;
+        # the longest remaining arc is the continuous inland national border.
+        land_line = max(land_parts, key=lambda part: part.length)
+        coordinates = list(land_line.coords)
+        junctions = 0
+        for at_start in (True, False):
+            endpoint = Point(coordinates[0] if at_start else coordinates[-1])
+            _, coast_point = nearest_points(endpoint, coastline_union)
+            if endpoint.distance(coast_point) > COAST_JUNCTION_MAX_GAP_PX:
+                continue
+            coast_coordinate = (coast_point.x, coast_point.y)
+            if at_start:
+                coordinates.insert(0, coast_coordinate)
+            else:
+                coordinates.append(coast_coordinate)
+            junctions += 1
+        land_line = LineString(coordinates)
         features.append(
             {
                 "type": "Feature",
                 "properties": {
                     "outline_id": feature["properties"].get("outline_id"),
                     "role": feature["properties"].get("role"),
-                    "source": "national_outline_clipped_by_detailed_coastline",
+                    "source": "mainland_border_clipped_and_joined_to_coastline",
+                    "coast_junctions_connected": junctions,
                 },
                 "geometry": {
                     "type": "MultiLineString",
