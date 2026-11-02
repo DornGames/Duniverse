@@ -1,15 +1,13 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>潼国行政区划图 · 矢量提取预览</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Microsoft YaHei",sans-serif;background:#f4f7fb;color:#17202a}
-header{padding:12px 18px;background:#fff;border-bottom:1px solid #dbe3ec;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-h1{font-size:18px;margin:0 14px 0 0}button{border:1px solid #cbd5e1;background:#fff;border-radius:8px;padding:7px 11px;cursor:pointer}
-button:hover{background:#eef4fb}.layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;height:calc(100vh - 58px)}
-#mapWrap{overflow:hidden;background:#fff;position:relative}svg{width:100%;height:100%;display:block;touch-action:none;cursor:grab}svg.dragging{cursor:grabbing}
-aside{background:#fff;border-left:1px solid #dbe3ec;padding:16px;overflow:auto}aside h2{font-size:15px;margin:0 0 10px}.muted{font-size:12px;color:#64748b;line-height:1.55}
-label{display:flex;gap:8px;align-items:center;margin:10px 0;font-size:13px}#selected{margin-top:18px;padding:12px;background:#f4f7fb;border-radius:9px;font-size:13px;line-height:1.6}
-path.region{cursor:pointer;transition:filter .12s}path.region:hover{filter:brightness(.94)}path.region.selected{stroke:#ff6b00!important;stroke-width:4!important}
-@media(max-width:760px){.layout{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}aside{border-left:0;border-top:1px solid #dbe3ec;max-height:190px}}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Microsoft YaHei",sans-serif;background:#f2f5f7;color:#17202a}
+header{min-height:64px;padding:12px 20px;background:#fff;border-bottom:1px solid #dbe3ec;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+h1{font-size:17px;letter-spacing:.01em;margin:0 auto 0 0}button{border:1px solid #cbd5e1;background:#fff;border-radius:7px;padding:8px 12px;cursor:pointer;color:#253447;font:inherit;font-size:13px;transition:background .15s,border-color .15s}
+button:hover{background:#eef4f8;border-color:#aebdca}button:focus-visible,input:focus-visible{outline:3px solid #7db5ce;outline-offset:2px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 292px;height:calc(100vh - 64px);min-height:420px}
+#mapWrap{overflow:hidden;background:#e5ebef;position:relative;padding:12px}#mapSvg{width:100%;height:100%;display:block;touch-action:none;cursor:grab;background:#fff;border:1px solid #cbd5db;box-shadow:0 1px 3px #1c334012}#mapSvg.dragging{cursor:grabbing}#mapSvg.isPanning *{pointer-events:none!important}
+aside{background:#fff;border-left:1px solid #dbe3ec;padding:20px 16px;overflow:auto}aside h2{font-size:16px;margin:0}.muted{font-size:12px;color:#64748b;line-height:1.55}.panelIntro{padding:0 2px 16px;border-bottom:1px solid #e8edf0;margin-bottom:14px}.panelIntro .muted{margin:5px 0 0}.layerList{display:grid;gap:6px}.layerRow{display:flex;align-items:center;gap:10px;margin:0;padding:10px;border:1px solid #e3e9ed;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;transition:background .15s,border-color .15s}.layerRow:hover{background:#f7fafb;border-color:#cbd8df}.layerSwatch{width:10px;height:10px;border-radius:3px;flex:0 0 auto;background:var(--swatch)}.layerName{flex:1}.layerRow input{appearance:none;width:34px;height:20px;border-radius:999px;background:#cbd5db;margin:0;position:relative;cursor:pointer;transition:background .16s}.layerRow input:checked{background:#2581a4}.layerRow input:before{content:"";position:absolute;width:14px;height:14px;left:3px;top:3px;border-radius:50%;background:white;box-shadow:0 1px 2px #102a3a30;transition:transform .16s}.layerRow input:checked:before{transform:translateX(14px)}#selected{margin-top:18px;padding:13px;background:#f5f8f9;border:1px solid #e2e9ed;border-radius:8px;font-size:13px;line-height:1.65;min-height:70px}#selected b{color:#203646}path.region{cursor:pointer}path.region:hover{stroke:#172b3a!important;stroke-width:2!important}path.region.selected{stroke:#e46936!important;stroke-width:4!important}
+@media(max-width:760px){header{padding:10px 12px;gap:7px}h1{width:100%;font-size:15px}.layout{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;height:calc(100vh - 104px);min-height:500px}#mapWrap{padding:7px}aside{border-left:0;border-top:1px solid #dbe3ec;max-height:230px;padding:14px}.layerList{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.layerRow{padding:8px;font-size:12px}}
 </style></head><body>
 <header><h1>潼国行政区划图 · 矢量提取预览</h1>
 <button id="zoomIn">放大 +</button><button id="zoomOut">缩小 −</button><button id="fit">适应窗口</button><button id="reset">重置</button>
@@ -583,24 +581,28 @@ path.region{cursor:pointer;transition:filter .12s}path.region:hover{filter:brigh
 <text x="1800" y="680" stroke="#fff" stroke-width=".7" paint-order="stroke">DD</text>
 <text x="1360" y="975" stroke="#fff" stroke-width=".7" paint-order="stroke">WT</text>
 </g></svg></div><aside>
-<h2>图层控制</h2>
-<label><input type="checkbox" data-layer="regions" checked> 行政区填充与边界</label>
-<label><input type="checkbox" data-layer="rivers" checked> 河流线段</label>
-<label><input type="checkbox" data-layer="lakes" checked> 湖泊候选区域</label>
-<label><input type="checkbox" data-layer="blackMarkers" checked> 黑色点状标记</label>
-<label><input type="checkbox" data-layer="redMarkers" checked> 红色点状标记</label>
-<label><input type="checkbox" data-layer="labels" checked> 行政区代码</label>
+<div class="panelIntro"><h2>地图图层</h2><p class="muted">选择要显示的地图信息</p></div>
+<div class="layerList">
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#91b9c8"></span><span class="layerName">行政区边界</span><input type="checkbox" data-layer="regions" checked aria-label="显示行政区边界"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#77a9da"></span><span class="layerName">河流</span><input type="checkbox" data-layer="rivers" checked aria-label="显示河流"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#a5cde9"></span><span class="layerName">湖泊</span><input type="checkbox" data-layer="lakes" checked aria-label="显示湖泊"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#303a40"></span><span class="layerName">黑色点标记</span><input type="checkbox" data-layer="blackMarkers" checked aria-label="显示黑色点标记"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#e66a62"></span><span class="layerName">红色点标记</span><input type="checkbox" data-layer="redMarkers" checked aria-label="显示红色点标记"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#299a83"></span><span class="layerName">行政区代码</span><input type="checkbox" data-layer="labels" checked aria-label="显示行政区代码"></label>
+</div>
 <div id="selected"><b>尚未选择行政区</b><br>点击地图上的任意行政区，可查看其代码和提取属性。</div>
 <p class="muted">此预览由提取出的矢量路径生成，不显示原始位图作为底图。边界、河流、点标记和文字均为独立 SVG 对象。当前坐标是原图像素坐标，不是经纬度。</p>
 </aside></div>
 <script>
-const svg=document.getElementById('mapSvg');let vb={x:0,y:0,w:2048,h:1448},drag=null;
-function apply(){svg.setAttribute('viewBox',`${vb.x} ${vb.y} ${vb.w} ${vb.h}`)}
-function zoom(f,cx=vb.x+vb.w/2,cy=vb.y+vb.h/2){const nw=Math.max(150,Math.min(4096,vb.w*f)),nh=nw*1448/2048;vb.x=cx-(cx-vb.x)*(nw/vb.w);vb.y=cy-(cy-vb.y)*(nh/vb.h);vb.w=nw;vb.h=nh;apply()}
-svg.addEventListener('wheel',e=>{e.preventDefault();const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(svg.getScreenCTM().inverse());zoom(e.deltaY<0?.85:1.18,q.x,q.y)},{passive:false});
-svg.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,vx:vb.x,vy:vb.y};svg.classList.add('dragging');svg.setPointerCapture(e.pointerId)});
-svg.addEventListener('pointermove',e=>{if(!drag)return;const r=svg.getBoundingClientRect();vb.x=drag.vx-(e.clientX-drag.x)*vb.w/r.width;vb.y=drag.vy-(e.clientY-drag.y)*vb.h/r.height;apply()});
-function endDrag(){drag=null;svg.classList.remove('dragging')}svg.addEventListener('pointerup',endDrag);svg.addEventListener('pointercancel',endDrag);
+const svg=document.getElementById('mapSvg');let vb={x:0,y:0,w:2048,h:1448},drag=null,framePending=false;
+function clampView(){vb.w=Math.min(2048,Math.max(150,vb.w));vb.h=vb.w*1448/2048;vb.x=Math.max(0,Math.min(2048-vb.w,vb.x));vb.y=Math.max(0,Math.min(1448-vb.h,vb.y))}
+function apply(){clampView();svg.setAttribute('viewBox',`${vb.x} ${vb.y} ${vb.w} ${vb.h}`)}
+function queueApply(){if(framePending)return;framePending=true;requestAnimationFrame(()=>{framePending=false;apply()})}
+function zoom(f,cx=vb.x+vb.w/2,cy=vb.y+vb.h/2){const nw=Math.max(150,Math.min(2048,vb.w*f)),nh=nw*1448/2048;vb.x=cx-(cx-vb.x)*(nw/vb.w);vb.y=cy-(cy-vb.y)*(nh/vb.h);vb.w=nw;vb.h=nh;apply()}
+svg.addEventListener('wheel',e=>{e.preventDefault();const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(svg.getScreenCTM().inverse());zoom(e.deltaY<0?.88:1.14,q.x,q.y)},{passive:false});
+svg.addEventListener('pointerdown',e=>{if(e.button!==0)return;drag={x:e.clientX,y:e.clientY,vx:vb.x,vy:vb.y,moved:false};svg.classList.add('dragging','isPanning');svg.setPointerCapture(e.pointerId)});
+svg.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.hypot(dx,dy)>3)drag.moved=true;const r=svg.getBoundingClientRect(),scale=Math.min(r.width/vb.w,r.height/vb.h);vb.x=drag.vx-dx/scale;vb.y=drag.vy-dy/scale;queueApply()});
+let suppressClick=false;function endDrag(){if(!drag)return;suppressClick=drag.moved;drag=null;svg.classList.remove('dragging','isPanning');if(suppressClick)setTimeout(()=>{suppressClick=false},0)}svg.addEventListener('pointerup',endDrag);svg.addEventListener('pointercancel',endDrag);svg.addEventListener('lostpointercapture',endDrag);svg.addEventListener('click',e=>{if(suppressClick){e.preventDefault();e.stopImmediatePropagation()}},true);
 document.getElementById('zoomIn').onclick=()=>zoom(.8);document.getElementById('zoomOut').onclick=()=>zoom(1.25);
 document.getElementById('fit').onclick=()=>{vb={x:0,y:0,w:2048,h:1448};apply()};document.getElementById('reset').onclick=()=>{vb={x:0,y:0,w:2048,h:1448};apply()};
 document.querySelectorAll('input[data-layer]').forEach(el=>el.addEventListener('change',()=>{const g=document.getElementById(el.dataset.layer);if(g)g.style.display=el.checked?'':'none'}));
