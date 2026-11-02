@@ -542,36 +542,17 @@
       "properties": {
         "region_code": "SW",
         "matched_component_ids": [
-          39
+          40
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "unioned_region_geometric_center",
+        "transcription_method": "largest_component_geometric_center",
         "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          606.85,
-          1273.26
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "region_code": "SW",
-        "matched_component_ids": [
-          29
-        ],
-        "match_distance_px": 104.12,
-        "transcription_method": "unioned_region_geometric_center",
-        "review_status": "derived_from_region_geometry"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          342.36,
-          1148.82
+          441.94,
+          1326.84
         ]
       }
     },

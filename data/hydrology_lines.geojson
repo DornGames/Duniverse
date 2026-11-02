@@ -1,7 +1,7 @@
 {
   "type": "FeatureCollection",
-  "name": "hydrology_line_candidates",
-  "coordinate_reference_note": "Image pixel coordinates; origin at top-left; x increases rightward; y increases downward. Not georeferenced.",
+  "name": "hydrology_rivers_without_canal",
+  "coordinate_reference_note": "Image pixel coordinates; origin top-left; x right; y down. Not georeferenced.",
   "features": [
     {
       "type": "Feature",
@@ -745,7 +745,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": 14,
-        "length_px": 35.8,
+        "length_px": 15.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
       },
@@ -753,16 +753,34 @@
         "type": "LineString",
         "coordinates": [
           [
-            1244.0,
-            1143.0
+            1233.76,
+            1146.2
           ],
           [
             1228.0,
             1148.0
           ],
           [
-            1217.0,
-            1146.0
+            1218.41,
+            1146.26
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 15,
+        "length_px": 7.3,
+        "source": "blue_hydrology_mask_skeleton",
+        "review_status": "candidate_line_segment"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1216.61,
+            1146.32
           ],
           [
             1211.0,
@@ -774,7 +792,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 15,
+        "segment_id": 16,
         "length_px": 57.6,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -808,7 +826,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 16,
+        "segment_id": 17,
         "length_px": 23.6,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -834,7 +852,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 17,
+        "segment_id": 18,
         "length_px": 22.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -856,7 +874,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 18,
+        "segment_id": 19,
         "length_px": 109.7,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -918,7 +936,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 19,
+        "segment_id": 20,
         "length_px": 69.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -964,7 +982,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 20,
+        "segment_id": 21,
         "length_px": 23.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -990,7 +1008,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 21,
+        "segment_id": 22,
         "length_px": 36.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1020,7 +1038,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 22,
+        "segment_id": 23,
         "length_px": 24.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1046,7 +1064,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 23,
+        "segment_id": 24,
         "length_px": 29.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1080,7 +1098,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 24,
+        "segment_id": 25,
         "length_px": 22.3,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1106,7 +1124,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 25,
+        "segment_id": 26,
         "length_px": 36.3,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1140,7 +1158,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 26,
+        "segment_id": 27,
         "length_px": 19.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1166,7 +1184,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 27,
+        "segment_id": 28,
         "length_px": 40.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1200,7 +1218,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 28,
+        "segment_id": 29,
         "length_px": 128.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1246,7 +1264,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 29,
+        "segment_id": 30,
         "length_px": 63.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1288,7 +1306,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 30,
+        "segment_id": 31,
         "length_px": 28.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1318,7 +1336,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 31,
+        "segment_id": 32,
         "length_px": 38.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1348,7 +1366,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 32,
+        "segment_id": 33,
         "length_px": 54.7,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1382,7 +1400,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 33,
+        "segment_id": 34,
         "length_px": 25.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1404,7 +1422,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 34,
+        "segment_id": 35,
         "length_px": 29.7,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1434,7 +1452,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 35,
+        "segment_id": 36,
         "length_px": 39.3,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1456,7 +1474,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 36,
+        "segment_id": 37,
         "length_px": 48.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1490,7 +1508,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 37,
+        "segment_id": 38,
         "length_px": 34.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1512,7 +1530,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 38,
+        "segment_id": 39,
         "length_px": 25.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1534,7 +1552,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 39,
+        "segment_id": 40,
         "length_px": 82.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1576,7 +1594,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 40,
+        "segment_id": 41,
         "length_px": 123.3,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1630,7 +1648,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 41,
+        "segment_id": 42,
         "length_px": 20.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1656,7 +1674,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 42,
+        "segment_id": 43,
         "length_px": 35.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1686,7 +1704,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 43,
+        "segment_id": 44,
         "length_px": 142.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1736,7 +1754,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 44,
+        "segment_id": 45,
         "length_px": 152.0,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1794,7 +1812,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 45,
+        "segment_id": 46,
         "length_px": 132.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -1860,7 +1878,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 46,
+        "segment_id": 47,
         "length_px": 605.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2034,7 +2052,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 47,
+        "segment_id": 48,
         "length_px": 24.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2064,7 +2082,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 48,
+        "segment_id": 49,
         "length_px": 44.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2094,7 +2112,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 49,
+        "segment_id": 50,
         "length_px": 234.3,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2192,7 +2210,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 50,
+        "segment_id": 51,
         "length_px": 227.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2254,7 +2272,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 51,
+        "segment_id": 52,
         "length_px": 71.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2292,7 +2310,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 52,
+        "segment_id": 53,
         "length_px": 37.3,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2322,7 +2340,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 53,
+        "segment_id": 54,
         "length_px": 33.7,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2356,7 +2374,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 54,
+        "segment_id": 55,
         "length_px": 78.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2398,7 +2416,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 55,
+        "segment_id": 56,
         "length_px": 31.7,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2432,7 +2450,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 56,
+        "segment_id": 57,
         "length_px": 27.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2458,7 +2476,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 57,
+        "segment_id": 58,
         "length_px": 51.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2492,7 +2510,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 58,
+        "segment_id": 59,
         "length_px": 227.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2558,7 +2576,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 59,
+        "segment_id": 60,
         "length_px": 113.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2600,7 +2618,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 60,
+        "segment_id": 61,
         "length_px": 48.7,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2630,7 +2648,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 61,
+        "segment_id": 62,
         "length_px": 21.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2656,7 +2674,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 62,
+        "segment_id": 63,
         "length_px": 54.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2702,7 +2720,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 63,
+        "segment_id": 64,
         "length_px": 67.0,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2736,7 +2754,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 64,
+        "segment_id": 65,
         "length_px": 212.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2814,7 +2832,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 65,
+        "segment_id": 66,
         "length_px": 45.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2844,7 +2862,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 66,
+        "segment_id": 67,
         "length_px": 38.7,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2886,7 +2904,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 67,
+        "segment_id": 68,
         "length_px": 123.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2932,7 +2950,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 68,
+        "segment_id": 69,
         "length_px": 21.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -2954,7 +2972,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 69,
+        "segment_id": 70,
         "length_px": 78.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3000,7 +3018,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 70,
+        "segment_id": 71,
         "length_px": 43.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3026,7 +3044,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 71,
+        "segment_id": 72,
         "length_px": 43.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3052,7 +3070,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 72,
+        "segment_id": 73,
         "length_px": 46.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3082,7 +3100,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 73,
+        "segment_id": 74,
         "length_px": 22.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3104,7 +3122,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 74,
+        "segment_id": 75,
         "length_px": 148.0,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3162,7 +3180,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 75,
+        "segment_id": 76,
         "length_px": 31.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3184,7 +3202,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 76,
+        "segment_id": 77,
         "length_px": 22.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3206,7 +3224,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 77,
+        "segment_id": 78,
         "length_px": 58.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3244,7 +3262,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 78,
+        "segment_id": 79,
         "length_px": 50.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3278,7 +3296,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 79,
+        "segment_id": 80,
         "length_px": 39.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3308,7 +3326,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 80,
+        "segment_id": 81,
         "length_px": 26.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3338,7 +3356,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 81,
+        "segment_id": 82,
         "length_px": 22.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3360,7 +3378,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 82,
+        "segment_id": 83,
         "length_px": 26.0,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3386,7 +3404,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 83,
+        "segment_id": 84,
         "length_px": 43.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3420,7 +3438,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 84,
+        "segment_id": 85,
         "length_px": 19.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3446,7 +3464,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 85,
+        "segment_id": 86,
         "length_px": 55.6,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3476,7 +3494,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 86,
+        "segment_id": 87,
         "length_px": 40.6,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3498,7 +3516,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 87,
+        "segment_id": 88,
         "length_px": 54.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3536,7 +3554,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 88,
+        "segment_id": 89,
         "length_px": 45.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3566,7 +3584,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 89,
+        "segment_id": 90,
         "length_px": 50.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3596,7 +3614,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 90,
+        "segment_id": 91,
         "length_px": 74.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3626,7 +3644,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 91,
+        "segment_id": 92,
         "length_px": 198.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3684,7 +3702,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 92,
+        "segment_id": 93,
         "length_px": 22.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3706,7 +3724,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 93,
+        "segment_id": 94,
         "length_px": 74.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3744,7 +3762,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 94,
+        "segment_id": 95,
         "length_px": 22.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3766,7 +3784,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 95,
+        "segment_id": 96,
         "length_px": 97.0,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3816,7 +3834,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 96,
+        "segment_id": 97,
         "length_px": 19.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3842,7 +3860,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 97,
+        "segment_id": 98,
         "length_px": 21.0,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3868,7 +3886,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 98,
+        "segment_id": 99,
         "length_px": 28.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3898,7 +3916,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 99,
+        "segment_id": 100,
         "length_px": 69.7,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3936,7 +3954,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 100,
+        "segment_id": 101,
         "length_px": 24.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -3962,7 +3980,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 101,
+        "segment_id": 102,
         "length_px": 65.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4004,7 +4022,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 102,
+        "segment_id": 103,
         "length_px": 36.6,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4038,7 +4056,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 103,
+        "segment_id": 104,
         "length_px": 75.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4072,7 +4090,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 104,
+        "segment_id": 105,
         "length_px": 61.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4102,7 +4120,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 105,
+        "segment_id": 106,
         "length_px": 293.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4212,7 +4230,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 106,
+        "segment_id": 107,
         "length_px": 59.7,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4250,7 +4268,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 107,
+        "segment_id": 108,
         "length_px": 91.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4296,7 +4314,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 108,
+        "segment_id": 109,
         "length_px": 31.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4326,7 +4344,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 109,
+        "segment_id": 110,
         "length_px": 91.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4372,7 +4390,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 110,
+        "segment_id": 111,
         "length_px": 30.6,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4398,7 +4416,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 111,
+        "segment_id": 112,
         "length_px": 60.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4436,7 +4454,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 112,
+        "segment_id": 113,
         "length_px": 24.3,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4466,7 +4484,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 113,
+        "segment_id": 114,
         "length_px": 352.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4596,7 +4614,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 114,
+        "segment_id": 115,
         "length_px": 20.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4622,7 +4640,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 115,
+        "segment_id": 116,
         "length_px": 55.3,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4652,7 +4670,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 116,
+        "segment_id": 117,
         "length_px": 34.7,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4678,7 +4696,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 117,
+        "segment_id": 118,
         "length_px": 39.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4704,7 +4722,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 118,
+        "segment_id": 119,
         "length_px": 62.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4738,7 +4756,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 119,
+        "segment_id": 120,
         "length_px": 90.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4788,7 +4806,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 120,
+        "segment_id": 121,
         "length_px": 27.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4818,7 +4836,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 121,
+        "segment_id": 122,
         "length_px": 65.0,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4848,7 +4866,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 122,
+        "segment_id": 123,
         "length_px": 34.0,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4874,7 +4892,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 123,
+        "segment_id": 124,
         "length_px": 170.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4956,7 +4974,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 124,
+        "segment_id": 125,
         "length_px": 48.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -4990,7 +5008,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 125,
+        "segment_id": 126,
         "length_px": 43.0,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5028,8 +5046,8 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 126,
-        "length_px": 144.9,
+        "segment_id": 127,
+        "length_px": 124.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
       },
@@ -5077,6 +5095,28 @@
             1132.0
           ],
           [
+            1194.74,
+            1138.64
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 128,
+        "length_px": 7.1,
+        "source": "blue_hydrology_mask_skeleton",
+        "review_status": "candidate_line_segment"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1205.33,
+            1146.69
+          ],
+          [
             1211.0,
             1151.0
           ]
@@ -5086,7 +5126,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 127,
+        "segment_id": 129,
         "length_px": 40.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5116,7 +5156,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 128,
+        "segment_id": 130,
         "length_px": 24.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5142,7 +5182,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 129,
+        "segment_id": 131,
         "length_px": 63.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5180,7 +5220,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 130,
+        "segment_id": 132,
         "length_px": 20.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5206,7 +5246,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 131,
+        "segment_id": 133,
         "length_px": 408.4,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5336,7 +5376,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 132,
+        "segment_id": 134,
         "length_px": 27.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5366,7 +5406,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 133,
+        "segment_id": 135,
         "length_px": 215.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5464,7 +5504,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 134,
+        "segment_id": 136,
         "length_px": 42.1,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5494,7 +5534,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 135,
+        "segment_id": 137,
         "length_px": 35.3,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5520,7 +5560,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 136,
+        "segment_id": 138,
         "length_px": 141.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5574,7 +5614,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 137,
+        "segment_id": 139,
         "length_px": 22.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5604,7 +5644,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 138,
+        "segment_id": 140,
         "length_px": 92.7,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5646,7 +5686,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 139,
+        "segment_id": 141,
         "length_px": 41.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5672,7 +5712,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 140,
+        "segment_id": 142,
         "length_px": 30.0,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5698,7 +5738,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 141,
+        "segment_id": 143,
         "length_px": 87.7,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5748,7 +5788,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 142,
+        "segment_id": 144,
         "length_px": 45.8,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5778,7 +5818,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 143,
+        "segment_id": 145,
         "length_px": 241.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5868,7 +5908,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 144,
+        "segment_id": 146,
         "length_px": 174.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5934,7 +5974,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 145,
+        "segment_id": 147,
         "length_px": 32.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5960,7 +6000,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 146,
+        "segment_id": 148,
         "length_px": 18.9,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -5982,7 +6022,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 147,
+        "segment_id": 149,
         "length_px": 29.2,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"
@@ -6016,7 +6056,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 148,
+        "segment_id": 150,
         "length_px": 27.5,
         "source": "blue_hydrology_mask_skeleton",
         "review_status": "candidate_line_segment"

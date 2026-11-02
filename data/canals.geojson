@@ -1,0 +1,441 @@
+{
+  "type": "FeatureCollection",
+  "name": "canal_centerline_and_ruler_ticks",
+  "coordinate_reference_note": "Image pixel coordinates; origin top-left; x right; y down. Not georeferenced.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "name": "南部运河",
+        "symbol_part": "centerline",
+        "source": "manual_trace_from_ruler_marked_symbol",
+        "review_status": "visually_checked_against_source_image",
+        "length_px": 293.1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1127.0,
+            1143.0
+          ],
+          [
+            1160.0,
+            1143.0
+          ],
+          [
+            1190.0,
+            1143.0
+          ],
+          [
+            1220.0,
+            1142.0
+          ],
+          [
+            1250.0,
+            1142.0
+          ],
+          [
+            1280.0,
+            1142.0
+          ],
+          [
+            1310.0,
+            1143.0
+          ],
+          [
+            1340.0,
+            1143.0
+          ],
+          [
+            1370.0,
+            1143.0
+          ],
+          [
+            1400.0,
+            1143.0
+          ],
+          [
+            1420.0,
+            1144.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 1,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1143.0,
+            1139.5
+          ],
+          [
+            1143.0,
+            1146.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 2,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1159.0,
+            1139.5
+          ],
+          [
+            1159.0,
+            1146.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 3,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1175.0,
+            1139.5
+          ],
+          [
+            1175.0,
+            1146.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 4,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1190.88,
+            1139.47
+          ],
+          [
+            1191.12,
+            1146.46
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 5,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1206.87,
+            1138.94
+          ],
+          [
+            1207.11,
+            1145.93
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 6,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1222.98,
+            1138.5
+          ],
+          [
+            1222.98,
+            1145.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 7,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1238.98,
+            1138.5
+          ],
+          [
+            1238.98,
+            1145.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 8,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1254.98,
+            1138.5
+          ],
+          [
+            1254.98,
+            1145.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 9,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1270.98,
+            1138.5
+          ],
+          [
+            1270.98,
+            1145.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 10,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1287.1,
+            1138.73
+          ],
+          [
+            1286.86,
+            1145.73
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 11,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1303.09,
+            1139.27
+          ],
+          [
+            1302.85,
+            1146.26
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 12,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1318.97,
+            1139.5
+          ],
+          [
+            1318.97,
+            1146.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 13,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1334.97,
+            1139.5
+          ],
+          [
+            1334.97,
+            1146.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 14,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1350.97,
+            1139.5
+          ],
+          [
+            1350.97,
+            1146.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 15,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1366.97,
+            1139.5
+          ],
+          [
+            1366.97,
+            1146.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 16,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1382.97,
+            1139.5
+          ],
+          [
+            1382.97,
+            1146.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "tick_id": 17,
+        "symbol_part": "ruler_tick",
+        "source": "manual_trace_from_ruler_marked_symbol"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1398.97,
+            1139.5
+          ],
+          [
+            1398.97,
+            1146.5
+          ]
+        ]
+      }
+    }
+  ]
+}

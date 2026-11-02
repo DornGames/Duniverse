@@ -234,29 +234,43 @@ def build_region_label_anchors(
     region_features: list[dict], label_features: list[dict]
 ) -> list[dict]:
     regions_by_code: dict[str, list] = defaultdict(list)
-    regions_by_component: dict[str, list] = defaultdict(list)
+    regions_by_component: dict[str, list[tuple[str | None, object, int | None]]] = defaultdict(list)
     for feature in region_features:
         code = feature["properties"].get("region_code")
+        geometry = shape(feature["geometry"])
         if code:
-            regions_by_code[code].append(shape(feature["geometry"]))
+            regions_by_code[code].append((geometry, feature["properties"].get("component_id")))
         component_id = feature["properties"].get("component_id")
         if component_id is not None:
-            regions_by_component[str(component_id)].append(shape(feature["geometry"]))
+            regions_by_component[str(component_id)].append((code, geometry, component_id))
 
     anchors = []
+    sw_added = False
     for feature in label_features:
         code = feature["properties"].get("region_code")
-        component_ids = feature["properties"].get("matched_component_ids", [])
-        parts = [
-            geometry
-            for component_id in component_ids
-            for geometry in regions_by_component.get(str(component_id), [])
-        ]
-        if not parts:
-            parts = regions_by_code.get(code, [])
-        if not parts:
-            continue
-        region = unary_union(parts)
+        if code == "SW":
+            if sw_added:
+                continue
+            sw_candidates = regions_by_code.get("SW", [])
+            if not sw_candidates:
+                continue
+            region, component_id = max(sw_candidates, key=lambda item: item[0].area)
+            sw_added = True
+            matched_component_ids = [component_id] if component_id is not None else []
+        else:
+            component_ids = feature["properties"].get("matched_component_ids", [])
+            matches = [
+                (geometry, matched_component_id)
+                for component_id in component_ids
+                for matched_code, geometry, matched_component_id in regions_by_component.get(str(component_id), [])
+                if matched_code == code
+            ]
+            if not matches:
+                matches = regions_by_code.get(code, [])
+            if not matches:
+                continue
+            region = unary_union([geometry for geometry, _ in matches])
+            matched_component_ids = [component_id for _, component_id in matches if component_id is not None]
         center = region.centroid
         if not region.covers(center):
             center = region.representative_point()
@@ -265,7 +279,13 @@ def build_region_label_anchors(
                 "type": "Feature",
                 "properties": {
                     **feature["properties"],
-                    "transcription_method": "unioned_region_geometric_center",
+                    "matched_component_ids": matched_component_ids,
+                    "match_distance_px": 0.0 if code == "SW" else feature["properties"].get("match_distance_px", 0.0),
+                    "transcription_method": (
+                        "largest_component_geometric_center"
+                        if code == "SW"
+                        else "unioned_region_geometric_center"
+                    ),
                     "review_status": "derived_from_region_geometry",
                 },
                 "geometry": {

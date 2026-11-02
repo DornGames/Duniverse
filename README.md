@@ -12,6 +12,8 @@
 - 点击行政区查看代码，并以缓动动画放大到该区域
 - 右侧按“边界、水系、城市标记、文字标注”分组；父项默认收起，父项开关可控制整组子图层
 - 预览会平滑显示河流线条与湖泊边缘
+- 南部尺刻符号单独作为运河图层；东南沿海网状水道仍按河口河网显示
+- 邻国蓝色虚线河段单独作为季节性河流图层；原图国境内未发现同类虚线
 - 主页面使用 Canvas；缩小时简化线条并隐藏点和文字，放大时只绘制当前视口附近的图形
 - 省界由相邻行政区共同生成一条中线，使用细虚线；界河处沿河道中线，界湖处采用直线
 - 湩国外缘和邻国边界使用较粗实线
@@ -25,6 +27,8 @@
 - `data/national_outline.geojson`：国土外轮廓候选
 - `data/national_border_land.geojson`：裁掉海岸线重叠部分后的国界线
 - `data/hydrology_lines.geojson`：河流候选折线
+- `data/canals.geojson`：南部运河中心线及尺刻状符号
+- `data/seasonal_rivers.geojson`：原图中邻国蓝色虚线季节性河流
 - `data/cross_border_rivers.geojson`：从原图补充提取的跨境河流线段
 - `data/neighbor_borders.geojson`：从原图筛出的邻国国界候选；排除邻国内部浅灰省界残线，蓝色水线单独归入河流图层
 - `data/coastlines.geojson`：从原图海水区域边缘提取的海岸线
@@ -46,9 +50,14 @@ python extract_context_layers.py
 
 `build_administrative_boundaries.py` 从行政区面与国土轮廓重新生成共享省界中线，并裁掉国界、省界与细致海岸线重叠的片段；同时按行政区合并面的几何中心生成半透明代码标注，再更新 Canvas 页面和独立 SVG 预览。生成流程需要 SciPy；目前根据原图将 2、3、4、5、6、10 号湖泊判为界湖并拉直穿湖省界。
 
+`extract_hydrology_styles.py` 把邻国蓝色虚线水道整理为两条季节性河流，并按原图南部的尺刻状符号单独提取一条运河；运河从普通河流线中剔除，东南沿海河口网保留在河流层。省份代码按对应面几何中心放置；`SW` 有两块分离区域，代码只标在面积较大的那块。
+
 运行示例：
 ```bash
-python extract_map_features.py input_map.png --out map_extraction
+python extract_map_features.py input_map.png --out .
+python extract_context_layers.py
+python build_administrative_boundaries.py
+python extract_hydrology_styles.py
 ```
 
 ## 重要说明

@@ -227,6 +227,23 @@ def main():
         })
     component_to_code = {i:code for code,inds in assigned.items() for i in inds}
 
+    # Keep both disconnected SW components assigned to the same province code,
+    # but place its map label only on the larger component.
+    sw_components = assigned.get("SW", set())
+    if sw_components:
+        largest_sw_component_id = max(
+            sw_components, key=lambda i: region_components[i]["polygon"].area
+        ) + 1
+        sw_component_ids = sorted(i + 1 for i in sw_components)
+        for feature in label_features:
+            if feature["properties"].get("region_code") == "SW":
+                feature["properties"]["matched_component_ids"] = sw_component_ids
+        label_features = [
+            feature for feature in label_features
+            if feature["properties"].get("region_code") != "SW"
+            or largest_sw_component_id in feature["properties"].get("matched_component_ids", [])
+        ]
+
     admin_features = []
     for i, comp in enumerate(region_components):
         geom = comp["polygon"]
