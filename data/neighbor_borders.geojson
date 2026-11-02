@@ -1,0 +1,331 @@
+{
+  "type": "FeatureCollection",
+  "name": "neighbor_border_candidates",
+  "coordinate_reference_note": "Image pixel coordinates; origin top-left; x right; y down. Not georeferenced.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 1,
+        "length_px": 155.0,
+        "source": "source_image_neutral_boundary_stroke",
+        "review_status": "candidate_neighbor_border"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            293.0,
+            978.0
+          ],
+          [
+            293.0,
+            823.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 2,
+        "length_px": 337.4,
+        "source": "source_image_neutral_boundary_stroke",
+        "review_status": "candidate_neighbor_border"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            84.0,
+            455.0
+          ],
+          [
+            90.0,
+            454.0
+          ],
+          [
+            106.0,
+            456.0
+          ],
+          [
+            138.0,
+            480.0
+          ],
+          [
+            149.0,
+            477.0
+          ],
+          [
+            179.0,
+            479.0
+          ],
+          [
+            210.0,
+            477.0
+          ],
+          [
+            223.0,
+            485.0
+          ],
+          [
+            237.0,
+            497.0
+          ],
+          [
+            243.0,
+            507.0
+          ],
+          [
+            243.0,
+            511.0
+          ],
+          [
+            247.0,
+            515.0
+          ],
+          [
+            251.0,
+            526.0
+          ],
+          [
+            259.0,
+            532.0
+          ],
+          [
+            282.0,
+            531.0
+          ],
+          [
+            286.0,
+            529.0
+          ],
+          [
+            295.0,
+            519.0
+          ],
+          [
+            302.0,
+            515.0
+          ],
+          [
+            302.0,
+            508.0
+          ],
+          [
+            304.0,
+            506.0
+          ],
+          [
+            319.0,
+            503.0
+          ],
+          [
+            327.0,
+            499.0
+          ],
+          [
+            333.0,
+            499.0
+          ],
+          [
+            338.0,
+            503.0
+          ],
+          [
+            354.0,
+            505.0
+          ],
+          [
+            357.0,
+            508.0
+          ],
+          [
+            367.0,
+            509.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 3,
+        "length_px": 93.0,
+        "source": "source_image_neutral_boundary_stroke",
+        "review_status": "candidate_neighbor_border"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            84.0,
+            455.0
+          ],
+          [
+            66.0,
+            453.0
+          ],
+          [
+            59.0,
+            454.0
+          ],
+          [
+            43.0,
+            463.0
+          ],
+          [
+            37.0,
+            464.0
+          ],
+          [
+            34.0,
+            467.0
+          ],
+          [
+            26.0,
+            465.0
+          ],
+          [
+            18.0,
+            466.0
+          ],
+          [
+            8.0,
+            477.0
+          ],
+          [
+            0.0,
+            477.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 4,
+        "length_px": 118.0,
+        "source": "source_image_neutral_boundary_stroke",
+        "review_status": "candidate_neighbor_border"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            84.0,
+            455.0
+          ],
+          [
+            84.0,
+            573.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 5,
+        "length_px": 88.5,
+        "source": "source_image_neutral_boundary_stroke",
+        "review_status": "candidate_neighbor_border"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            391.0,
+            199.0
+          ],
+          [
+            457.0,
+            140.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 6,
+        "length_px": 167.0,
+        "source": "source_image_neutral_boundary_stroke",
+        "review_status": "candidate_neighbor_border"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            461.0,
+            587.0
+          ],
+          [
+            460.0,
+            581.0
+          ],
+          [
+            462.0,
+            568.0
+          ],
+          [
+            465.0,
+            564.0
+          ],
+          [
+            465.0,
+            557.0
+          ],
+          [
+            456.0,
+            546.0
+          ],
+          [
+            449.0,
+            544.0
+          ],
+          [
+            445.0,
+            539.0
+          ],
+          [
+            443.0,
+            529.0
+          ],
+          [
+            445.0,
+            516.0
+          ],
+          [
+            437.0,
+            508.0
+          ],
+          [
+            428.0,
+            503.0
+          ],
+          [
+            418.0,
+            503.0
+          ],
+          [
+            410.0,
+            506.0
+          ],
+          [
+            398.0,
+            504.0
+          ],
+          [
+            383.0,
+            510.0
+          ],
+          [
+            367.0,
+            509.0
+          ]
+        ]
+      }
+    }
+  ]
+}

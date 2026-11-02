@@ -18,6 +18,10 @@
 - `data/administrative_regions.geojson`：行政区候选面
 - `data/national_outline.geojson`：国土外轮廓候选
 - `data/hydrology_lines.geojson`：河流候选折线
+- `data/cross_border_rivers.geojson`：从原图补充提取的跨境河流线段
+- `data/neighbor_borders.geojson`：邻国边界候选线段
+- `data/coastlines.geojson`：从原图海水区域边缘提取的海岸线
+- `data/ocean_water.geojson`：从原图海水颜色连通区域矢量化的海域
 - `data/lakes.geojson`：湖泊候选面
 - `data/settlement_markers.geojson`：黑色/红色点标记候选
 - `data/region_code_labels.geojson`：行政区代码标注点
@@ -27,6 +31,11 @@
 
 ## 可复现脚本
 `extract_map_features.py` 可从输入图片重新生成行政区面、国土轮廓、水系线、湖泊、点标记、代码标注、OCR 候选和诊断掩膜。需要 Python、OpenCV、NumPy、Pandas、Pillow、Shapely、scikit-image、pytesseract 和 Tesseract 中文/英文语言包。
+
+`extract_context_layers.py` 从同一原图提取海域、海岸线、邻国边界和跨境河流候选图层。可在生成基础数据后运行：
+```bash
+python extract_context_layers.py
+```
 
 运行示例：
 ```bash
