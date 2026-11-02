@@ -229,7 +229,13 @@ def main():
         cv2.polylines(overlay, [pts], False, (30, 80, 255), 2, cv2.LINE_AA)
     Image.fromarray(overlay).save(DIAGNOSTICS / "context_layers_overlay.png")
     Image.fromarray(ocean).save(DIAGNOSTICS / "ocean_mask.png")
-    print(json.dumps({"ocean_features": len(ocean_features), "coastline_segments": len(coast_features), "cross_border_rivers": len(river_features), "neighbor_border_segments": len(border_features), "ocean_pixels": int((ocean > 0).sum())}, ensure_ascii=False, indent=2))
+    summary = {"ocean_features": len(ocean_features), "coastline_segments": len(coast_features), "cross_border_river_segments": len(river_features), "neighbor_border_segments": len(border_features), "ocean_pixels": int((ocean > 0).sum())}
+    manifest_path = Path("extraction_manifest.json")
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest.update(summary)
+        manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

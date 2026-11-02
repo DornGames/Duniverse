@@ -16,5 +16,10 @@
   "ocr_text_candidates": 459,
   "ocr_confidence_ge_50": 87,
   "ocr_confidence_ge_70": 36,
-  "coordinate_system": "source image pixels; not georeferenced"
+  "coordinate_system": "source image pixels; not georeferenced",
+  "ocean_features": 1,
+  "coastline_segments": 13,
+  "cross_border_river_segments": 45,
+  "neighbor_border_segments": 6,
+  "ocean_pixels": 971243
 }
