@@ -1,0 +1,316 @@
+#!/usr/bin/env python3
+"""Build one shared province-boundary network from the extracted map regions.
+
+The source map stores provinces as separate filled areas. Their contours are
+therefore offset on opposite sides of the printed border and, around rivers,
+on opposite riverbanks. This builder assigns each pixel inside the national
+outline to its nearest province polygon and vectorizes label transitions once.
+Water boundaries are consequently placed midway between the adjoining regions.
+
+Six lake crossings were visually checked against input_map.png and are made
+straight chords: lakes 2, 3, 4, 5, 6, and 10. The other extracted lakes sit
+inside a single region and do not receive an administrative line.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+from collections import defaultdict
+from pathlib import Path
+from typing import Iterable
+
+import cv2
+import numpy as np
+from scipy.ndimage import distance_transform_edt
+from shapely.geometry import LineString, shape
+from shapely.ops import linemerge, unary_union
+
+
+ROOT = Path(__file__).resolve().parent
+DATA = ROOT / "data"
+IMAGE_WIDTH = 2048
+IMAGE_HEIGHT = 1448
+STRAIGHTENED_LAKE_IDS = {2, 3, 4, 5, 6, 10}
+LAKE_BUFFER_PX = 2.5
+LINE_SIMPLIFY_PX = 0.8
+MIN_LINE_LENGTH_PX = 3.0
+
+
+def read_features(path: Path) -> list[dict]:
+    return json.loads(path.read_text(encoding="utf-8"))["features"]
+
+
+def polygon_rings(geometry: dict) -> Iterable[list[list[float]]]:
+    if geometry["type"] == "Polygon":
+        yield from geometry["coordinates"]
+    elif geometry["type"] == "MultiPolygon":
+        for polygon in geometry["coordinates"]:
+            yield from polygon
+    else:
+        raise ValueError(f"Expected polygon geometry, got {geometry['type']}")
+
+
+def fill_polygon_mask(mask: np.ndarray, geometry: dict, value: int) -> None:
+    for ring in polygon_rings(geometry):
+        points = np.rint(ring).astype(np.int32).reshape((-1, 1, 2))
+        cv2.fillPoly(mask, [points], value)
+
+
+def line_parts(geometry) -> list[LineString]:
+    if geometry.is_empty:
+        return []
+    if geometry.geom_type == "LineString":
+        return [geometry]
+    if hasattr(geometry, "geoms"):
+        return [part for item in geometry.geoms for part in line_parts(item)]
+    return []
+
+
+def build_labels(region_features: list[dict], outline_features: list[dict]):
+    codes = sorted({feature["properties"]["region_code"] for feature in region_features})
+    code_to_id = {code: index + 1 for index, code in enumerate(codes)}
+    labels = np.zeros((IMAGE_HEIGHT, IMAGE_WIDTH), dtype=np.uint8)
+    for feature in region_features:
+        fill_polygon_mask(
+            labels,
+            feature["geometry"],
+            code_to_id[feature["properties"]["region_code"]],
+        )
+
+    inside = np.zeros((IMAGE_HEIGHT, IMAGE_WIDTH), dtype=np.uint8)
+    for feature in outline_features:
+        fill_polygon_mask(inside, feature["geometry"], 1)
+
+    missing = (inside > 0) & (labels == 0)
+    _, nearest_indices = distance_transform_edt(labels == 0, return_indices=True)
+    nearest_labels = labels[nearest_indices[0], nearest_indices[1]]
+    labels[missing] = nearest_labels[missing]
+    return labels, inside, codes, int(missing.sum())
+
+
+def collect_boundary_edges(labels: np.ndarray, inside: np.ndarray, codes: list[str]):
+    edge_segments: dict[tuple[int, int], list[LineString]] = defaultdict(list)
+
+    vertical = (
+        (labels[:, :-1] != labels[:, 1:])
+        & (labels[:, :-1] > 0)
+        & (labels[:, 1:] > 0)
+        & (inside[:, :-1] > 0)
+        & (inside[:, 1:] > 0)
+    )
+    ys, xs = np.where(vertical)
+    for y, x in zip(ys.tolist(), xs.tolist()):
+        pair = tuple(sorted((int(labels[y, x]), int(labels[y, x + 1]))))
+        edge_segments[pair].append(LineString([(x + 0.5, y - 0.5), (x + 0.5, y + 0.5)]))
+
+    horizontal = (
+        (labels[:-1, :] != labels[1:, :])
+        & (labels[:-1, :] > 0)
+        & (labels[1:, :] > 0)
+        & (inside[:-1, :] > 0)
+        & (inside[1:, :] > 0)
+    )
+    ys, xs = np.where(horizontal)
+    for y, x in zip(ys.tolist(), xs.tolist()):
+        pair = tuple(sorted((int(labels[y, x]), int(labels[y + 1, x]))))
+        edge_segments[pair].append(LineString([(x - 0.5, y + 0.5), (x + 0.5, y + 0.5)]))
+
+    boundaries = {}
+    for pair, segments in edge_segments.items():
+        merged = linemerge(unary_union(segments))
+        boundaries[(codes[pair[0] - 1], codes[pair[1] - 1])] = merged
+    return boundaries, sum(len(segments) for segments in edge_segments.values())
+
+
+def straighten_lake_crossings(geometry, lakes: list[dict]):
+    parts = line_parts(geometry)
+    straightened_ids: set[int] = set()
+    for lake_feature in lakes:
+        lake_id = int(lake_feature["properties"]["lake_id"])
+        if lake_id not in STRAIGHTENED_LAKE_IDS:
+            continue
+        water_area = shape(lake_feature["geometry"]).buffer(LAKE_BUFFER_PX)
+        next_parts: list[LineString] = []
+        for line in parts:
+            intersections = line_parts(line.intersection(water_area))
+            crossings = [part for part in intersections if part.length >= MIN_LINE_LENGTH_PX]
+            if not crossings:
+                next_parts.append(line)
+                continue
+
+            next_parts.extend(line_parts(line.difference(water_area)))
+            for crossing in crossings:
+                start, end = crossing.coords[0], crossing.coords[-1]
+                if crossing.is_ring or np.hypot(end[0] - start[0], end[1] - start[1]) < 1:
+                    next_parts.append(crossing)
+                    continue
+                next_parts.append(LineString([start, end]))
+                straightened_ids.add(lake_id)
+
+            # Preserve very short contacts that were removed by the lake buffer.
+            for contact in intersections:
+                if contact not in crossings:
+                    next_parts.append(contact)
+        parts = next_parts
+
+    simplified = []
+    for line in parts:
+        line = line.simplify(LINE_SIMPLIFY_PX, preserve_topology=False)
+        if not line.is_empty and line.length >= MIN_LINE_LENGTH_PX:
+            simplified.append(line)
+    if not simplified:
+        return None, sorted(straightened_ids)
+    merged = unary_union(simplified)
+    if merged.geom_type == "LineString":
+        return merged, sorted(straightened_ids)
+    return linemerge(merged), sorted(straightened_ids)
+
+
+def geometry_to_path_data(geometry) -> str:
+    commands = []
+    for line in line_parts(geometry):
+        coordinates = list(line.coords)
+        if len(coordinates) < 2:
+            continue
+        commands.append(
+            "M "
+            + f"{coordinates[0][0]:.2f},{coordinates[0][1]:.2f}"
+            + " L "
+            + " L ".join(f"{x:.2f},{y:.2f}" for x, y in coordinates[1:])
+        )
+    return " ".join(commands)
+
+
+def path_tag(properties: dict, path_data: str, *, standalone: bool) -> str:
+    pair = f"{properties['region_a']}-{properties['region_b']}"
+    if standalone:
+        return f'<path data-region-pair="{pair}" d="{path_data}"/>'
+    return f'<path data-region-pair="{pair}" d="{path_data}"/>'
+
+
+def replace_group(source: str, pattern: str, replacement: str, *, label: str) -> str:
+    updated, count = re.subn(pattern, replacement, source, count=1, flags=re.DOTALL)
+    if count != 1:
+        raise RuntimeError(f"Could not replace {label} group (matches={count})")
+    return updated
+
+
+def write_geojson(features: list[dict]) -> None:
+    collection = {
+        "type": "FeatureCollection",
+        "name": "shared_province_boundaries",
+        "coordinate_system": "source image pixels; not georeferenced",
+        "features": features,
+    }
+    (DATA / "province_boundaries.geojson").write_text(
+        json.dumps(collection, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+
+
+def update_render_files(features: list[dict]) -> None:
+    standalone_tags = []
+    canvas_tags = []
+    for feature in features:
+        path_data = geometry_to_path_data(shape(feature["geometry"]))
+        if not path_data:
+            continue
+        props = feature["properties"]
+        standalone_tags.append(path_tag(props, path_data, standalone=True))
+        canvas_tags.append(path_tag(props, path_data, standalone=False))
+
+    standalone_group = (
+        '<g id="administrative-regions" fill="none" stroke="#454545" '
+        'stroke-width="1.1" stroke-dasharray="5 4" stroke-linecap="round" '
+        'stroke-linejoin="round">'
+        + "".join(standalone_tags)
+        + "</g>"
+    )
+    preview_path = ROOT / "vector_preview.svg"
+    preview = preview_path.read_text(encoding="utf-8")
+    preview = replace_group(
+        preview,
+        r'<g id="administrative-regions"[^>]*>.*?</g>',
+        standalone_group,
+        label="standalone administrative-regions",
+    )
+    preview_path.write_text(preview, encoding="utf-8")
+
+    canvas_group = (
+        '<g id="provinceBoundaries" data-layer="regions" fill="none" '
+        'stroke="#454545" stroke-width="1.1" stroke-dasharray="5 4" '
+        'stroke-linecap="round" stroke-linejoin="round" pointer-events="none">'
+        + "".join(canvas_tags)
+        + "</g>"
+    )
+    index_path = ROOT / "index.html"
+    index = index_path.read_text(encoding="utf-8")
+    index = replace_group(
+        index,
+        r'<g id="provinceBoundaries"[^>]*>.*?</g>',
+        "",
+        label="old Canvas provinceBoundaries",
+    ) if re.search(r'<g id="provinceBoundaries"(?=[ >])', index) else index
+
+    index = replace_group(
+        index,
+        r'<g id="regions"([^>]*)>',
+        lambda match: '<g id="regions"' + re.sub(
+            r'\s(?:stroke|stroke-width|stroke-dasharray)="[^"]*"',
+            "",
+            match.group(1),
+        ) + ' stroke="none" stroke-width="0">',
+        label="Canvas region hit-test",
+    )
+    index = replace_group(
+        index,
+        r'(<g id="crossBorderRivers"[^>]*>.*?</g>)',
+        lambda match: match.group(1) + canvas_group,
+        label="Canvas boundary insertion point",
+    )
+    index_path.write_text(index, encoding="utf-8")
+
+
+def main() -> None:
+    regions = read_features(DATA / "administrative_regions.geojson")
+    outlines = read_features(DATA / "national_outline.geojson")
+    lakes = read_features(DATA / "lakes.geojson")
+    labels, inside, codes, filled_pixels = build_labels(regions, outlines)
+    boundaries, edge_count = collect_boundary_edges(labels, inside, codes)
+
+    features = []
+    for (region_a, region_b), geometry in sorted(boundaries.items()):
+        geometry, straightened_lakes = straighten_lake_crossings(geometry, lakes)
+        if geometry is None:
+            continue
+        features.append(
+            {
+                "type": "Feature",
+                "properties": {
+                    "region_a": region_a,
+                    "region_b": region_b,
+                    "boundary_type": "shared_administrative_midline",
+                    "source": "nearest_region_label_transition",
+                    "straightened_lake_ids": straightened_lakes,
+                },
+                "geometry": {
+                    "type": "MultiLineString",
+                    "coordinates": [
+                        [[round(x, 2), round(y, 2)] for x, y in line.coords]
+                        for line in line_parts(geometry)
+                    ],
+                },
+            }
+        )
+
+    write_geojson(features)
+    update_render_files(features)
+    print(
+        f"Built {len(features)} shared province boundaries from {edge_count} pixel edges; "
+        f"filled {filled_pixels} gaps inside the national outline; "
+        f"straightened lake crossings: {', '.join(map(str, sorted(STRAIGHTENED_LAKE_IDS)))}."
+    )
+
+
+if __name__ == "__main__":
+    main()

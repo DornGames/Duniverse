@@ -13,13 +13,15 @@
 - 右侧可开关河流、湖泊、点标记和文字图层
 - 预览会平滑显示河流线条与湖泊边缘
 - 主页面使用 Canvas；缩小时简化线条并隐藏点和文字，放大时只绘制当前视口附近的图形
-- 省界使用细虚线，湩国外缘和邻国边界使用较粗实线
+- 省界由相邻行政区共同生成一条中线，使用细虚线；界河处沿河道中线，界湖处采用直线
+- 湩国外缘和邻国边界使用较粗实线
 - 画布右侧扩展为更宽的海域，减少海侧留白
 
 `vector_preview.svg` 是独立矢量预览，可用浏览器、Inkscape 或 Illustrator 打开。
 
 ## 数据文件
 - `data/administrative_regions.geojson`：行政区候选面
+- `data/province_boundaries.geojson`：每段只绘制一次的共享省界中线；穿过湖泊的省界采用直线
 - `data/national_outline.geojson`：国土外轮廓候选
 - `data/hydrology_lines.geojson`：河流候选折线
 - `data/cross_border_rivers.geojson`：从原图补充提取的跨境河流线段
@@ -40,6 +42,8 @@
 ```bash
 python extract_context_layers.py
 ```
+
+`build_administrative_boundaries.py` 从行政区面与国土轮廓重新生成共享省界中线，并更新 Canvas 页面和独立 SVG 预览。生成流程需要 SciPy；目前根据原图将 2、3、4、5、6、10 号湖泊判为界湖并拉直穿湖省界。
 
 运行示例：
 ```bash
