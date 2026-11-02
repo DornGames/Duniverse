@@ -20,6 +20,10 @@ SEA_RGB = np.array([177, 208, 237], dtype=np.uint8)
 HIGH_RES_SCALE = 4
 COASTLINE_CROP_LEFT = 1000
 COASTLINE_OPEN_KERNEL_PX = 13
+HIGH_RES_TEXT_EXCLUSION_RECTS = (
+    (5320, 90, 8192, 560),   # Map title and edition text.
+    (6200, 5600, 8192, 5792),  # Source attribution at the lower right.
+)
 
 
 def write_fc(path, name, features):
@@ -213,7 +217,7 @@ def high_resolution_island_ink_features(pixels, mapped_land, crop_left):
     del sea
     land_neighborhood = cv2.dilate(
         mapped_land.astype(np.uint8),
-        cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11)),
+        cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)),
     ) > 0
     del mapped_land
 
@@ -233,11 +237,18 @@ def high_resolution_island_ink_features(pixels, mapped_land, crop_left):
             largest_dimension = max(component_width, component_height)
             if area < 3 or area > 8000 or largest_dimension > 180:
                 continue
+            source_x = crop_left + x
+            component_bounds = (source_x, y, source_x + component_width, y + component_height)
+            if any(
+                component_bounds[0] < right
+                and component_bounds[2] > left
+                and component_bounds[1] < bottom
+                and component_bounds[3] > top
+                for left, top, right, bottom in HIGH_RES_TEXT_EXCLUSION_RECTS
+            ):
+                continue
             aspect = largest_dimension / max(1, min(component_width, component_height))
             if aspect > 8 and area > 32:
-                continue
-            # The source attribution is typography in open water, not an island.
-            if crop_left + x >= 6350 and y >= 5600:
                 continue
 
             component = labels[y:y + component_height, x:x + component_width] == component_id
@@ -272,16 +283,17 @@ def high_resolution_island_ink_features(pixels, mapped_land, crop_left):
                      float(points[1][1] + y) / HIGH_RES_SCALE),
                 ])
         if not paths and area <= 40:
+            # OpenCV reports centroids in image coordinates, not component-local coordinates.
             center_x, center_y = centroid
             radius_x = max(0.45, component_width / (2 * HIGH_RES_SCALE))
             radius_y = max(0.45, component_height / (2 * HIGH_RES_SCALE))
             paths.append([
-                ((crop_left + x + center_x + radius_x * HIGH_RES_SCALE * math.cos(angle)) / HIGH_RES_SCALE,
-                 (y + center_y + radius_y * HIGH_RES_SCALE * math.sin(angle)) / HIGH_RES_SCALE)
+                ((crop_left + center_x + radius_x * HIGH_RES_SCALE * math.cos(angle)) / HIGH_RES_SCALE,
+                 (center_y + radius_y * HIGH_RES_SCALE * math.sin(angle)) / HIGH_RES_SCALE)
                 for angle in np.linspace(0, 2 * math.pi, 13)[:-1]
             ] + [
-                ((crop_left + x + center_x + radius_x * HIGH_RES_SCALE) / HIGH_RES_SCALE,
-                 (y + center_y) / HIGH_RES_SCALE)
+                ((crop_left + center_x + radius_x * HIGH_RES_SCALE) / HIGH_RES_SCALE,
+                 center_y / HIGH_RES_SCALE)
             ])
         for points in paths:
             line = LineString(points).simplify(0.03, preserve_topology=True)
