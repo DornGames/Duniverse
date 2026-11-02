@@ -423,13 +423,13 @@ def update_render_files(
             coast_tags.append(f'<path d="{path_data}"/>')
     coastline_canvas_group = (
         '<g id="coastline" data-layer="coastline" fill="none" '
-        'stroke="#6f7d83" stroke-width="0.8" stroke-linecap="round" '
+        'stroke="#6f7d83" stroke-width="1" stroke-linecap="round" '
         'stroke-linejoin="round" pointer-events="none">'
         + "".join(coast_tags)
         + "</g>"
     )
     coastline_preview_group = (
-        '<g id="coastlines" fill="none" stroke="#6f7d83" stroke-width="0.8" '
+        '<g id="coastlines" fill="none" stroke="#6f7d83" stroke-width="1" '
         'stroke-linecap="round" stroke-linejoin="round" pointer-events="none">'
         + "".join(coast_tags)
         + "</g>"
