@@ -8,13 +8,18 @@ from pathlib import Path
 import cv2
 import numpy as np
 from PIL import Image
-from shapely.geometry import Polygon, LineString, mapping
+from shapely.geometry import Polygon, LineString, mapping, shape
+from shapely.ops import unary_union
 from skimage.morphology import skeletonize
 
 SOURCE = Path("input_map.png")
+HIGH_RES_SOURCE = Path("Administrative-Division-Map-of-Donh-2026.png")
 DATA = Path("data")
 DIAGNOSTICS = Path("diagnostics")
 SEA_RGB = np.array([177, 208, 237], dtype=np.uint8)
+HIGH_RES_SCALE = 4
+COASTLINE_CROP_LEFT = 1000
+COASTLINE_OPEN_KERNEL_PX = 13
 
 
 def write_fc(path, name, features):
@@ -25,7 +30,7 @@ def write_fc(path, name, features):
     }, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def mask_to_polygons(mask, epsilon=0.65):
+def mask_to_polygons(mask, epsilon=0.65, minimum_hole_area=12):
     contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     if hierarchy is None:
         return []
@@ -40,7 +45,7 @@ def mask_to_polygons(mask, epsilon=0.65):
         holes = []
         child = hierarchy[index][2]
         while child != -1:
-            if cv2.contourArea(contours[child]) >= 12:
+            if cv2.contourArea(contours[child]) >= minimum_hole_area:
                 ring = cv2.approxPolyDP(contours[child], epsilon, True).reshape(-1, 2)
                 if len(ring) >= 3:
                     holes.append([(float(x), float(y)) for x, y in ring])
@@ -53,29 +58,245 @@ def mask_to_polygons(mask, epsilon=0.65):
     return polygons
 
 
-def coast_segments(ring, width, height):
+def coast_segments(ring, width, height, minimum_length=10, simplify=0.65):
     points = [(float(x), float(y)) for x, y in ring]
     on_frame = lambda p: p[0] <= 0 or p[0] >= width - 1 or p[1] <= 0 or p[1] >= height - 1
     if not any(on_frame(p) for p in points):
-        line = LineString(points)
-        return [line] if line.length >= 10 else []
+        line = LineString(points).simplify(simplify, preserve_topology=False)
+        return [line] if line.length >= minimum_length else []
     start = next(i for i, p in enumerate(points) if on_frame(p))
     points = points[start + 1:] + points[:start + 1]
     segments, current = [], []
     for point in points:
         if on_frame(point):
             if len(current) > 1:
-                line = LineString(current).simplify(0.65, preserve_topology=False)
-                if line.length >= 10:
+                line = LineString(current).simplify(simplify, preserve_topology=False)
+                if line.length >= minimum_length:
                     segments.append(line)
             current = []
         else:
             current.append(point)
     if len(current) > 1:
-        line = LineString(current).simplify(0.65, preserve_topology=False)
-        if line.length >= 10:
+        line = LineString(current).simplify(simplify, preserve_topology=False)
+        if line.length >= minimum_length:
             segments.append(line)
     return segments
+
+
+def extract_high_resolution_coastlines(region_features):
+    with Image.open(HIGH_RES_SOURCE) as image:
+        high_width, high_height = image.size
+        if high_width % HIGH_RES_SCALE or high_height % HIGH_RES_SCALE:
+            raise RuntimeError("High-resolution map dimensions must divide evenly into source-map pixels.")
+        source_width, source_height = high_width // HIGH_RES_SCALE, high_height // HIGH_RES_SCALE
+        if COASTLINE_CROP_LEFT >= source_width:
+            raise RuntimeError("Coastline crop starts outside the source-map width.")
+        crop_left = COASTLINE_CROP_LEFT * HIGH_RES_SCALE
+        pixels = np.asarray(image.crop((crop_left, 0, high_width, high_height)).convert("RGB"))
+
+    sea = np.all(pixels == SEA_RGB, axis=2).astype(np.uint8)
+    raw_sea = sea.copy()
+    kernel = cv2.getStructuringElement(
+        cv2.MORPH_ELLIPSE,
+        (COASTLINE_OPEN_KERNEL_PX, COASTLINE_OPEN_KERNEL_PX),
+    )
+    sea = cv2.morphologyEx(sea, cv2.MORPH_OPEN, kernel)
+    count, labels, stats, _ = cv2.connectedComponentsWithStats(sea, 8)
+    edge_ids = [int(value) for value in np.unique(labels[:, -1]) if value]
+    if not edge_ids:
+        raise RuntimeError("Could not find the high-resolution ocean component along the right edge.")
+    ocean_id = max(edge_ids, key=lambda value: stats[value, cv2.CC_STAT_AREA])
+    ocean = (labels == ocean_id).astype(np.uint8) * 255
+    del labels, stats, sea
+    coast_sea_neighborhood = cv2.dilate(
+        raw_sea,
+        cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (25, 25)),
+    ) > 0
+    del raw_sea
+
+    # The opening disconnects river channels; raw shoreline proximity below
+    # removes inland label counters from the resulting contour tree.
+    # Fill lettering and marker cutouts in the open water, then restore every
+    # mapped land-color pixel so small islands and the broken archipelago coast
+    # remain holes in the ocean mask.
+    outside = cv2.bitwise_not(ocean)
+    exterior = outside.copy()
+    cv2.floodFill(exterior, None, (0, 0), 0)
+    ocean = cv2.bitwise_or(ocean, exterior)
+    del outside, exterior
+
+    color_codes = {
+        (red << 16) | (green << 8) | blue
+        for feature in region_features
+        for red, green, blue in [feature["properties"]["fill_rgb"]]
+    }
+    packed_pixels = (
+        (pixels[:, :, 0].astype(np.uint32) << 16)
+        | (pixels[:, :, 1].astype(np.uint32) << 8)
+        | pixels[:, :, 2].astype(np.uint32)
+    )
+    mapped_land = np.isin(packed_pixels, np.fromiter(color_codes, dtype=np.uint32))
+    del packed_pixels
+    ocean[mapped_land] = 0
+
+    polygons = mask_to_polygons(ocean, epsilon=0.85, minimum_hole_area=8)
+    del ocean
+    outline_path = DATA / "national_outline.geojson"
+    if outline_path.exists():
+        outline_features = json.loads(outline_path.read_text(encoding="utf-8"))["features"]
+        national_outline = unary_union([shape(feature["geometry"]) for feature in outline_features])
+    else:
+        national_outline = unary_union([shape(feature["geometry"]) for feature in region_features])
+    coastline_band = national_outline.boundary.buffer(8.0)
+    coast_features = []
+    for polygon in polygons:
+        parts = list(polygon.geoms) if polygon.geom_type == "MultiPolygon" else [polygon]
+        for part in parts:
+            rings = [(part.exterior, "coastline")]
+            rings.extend((ring, "island_shoreline") for ring in part.interiors)
+            for ring, role in rings:
+                high_res_lines = coast_segments(
+                    [(x + crop_left, y) for x, y in ring.coords],
+                    high_width,
+                    high_height,
+                    minimum_length=8,
+                    simplify=0.8,
+                )
+                for high_res_line in high_res_lines:
+                    sample_coords = list(high_res_line.coords)
+                    sample_step = max(1, len(sample_coords) // 512)
+                    sea_support = []
+                    for x, y in sample_coords[::sample_step]:
+                        local_x, local_y = int(round(x - crop_left)), int(round(y))
+                        if 0 <= local_x < coast_sea_neighborhood.shape[1] and 0 <= local_y < coast_sea_neighborhood.shape[0]:
+                            sea_support.append(coast_sea_neighborhood[local_y, local_x])
+                    if not sea_support or sum(sea_support) / len(sea_support) < 0.55:
+                        continue
+                    line = LineString(
+                        [(x / HIGH_RES_SCALE, y / HIGH_RES_SCALE) for x, y in high_res_line.coords]
+                    ).simplify(0.12, preserve_topology=False)
+                    if line.length < 2:
+                        continue
+                    coastline_parts = [line]
+                    if line.length > 1000:
+                        clipped = line.intersection(coastline_band)
+                        coastline_parts = []
+                        pending = [clipped]
+                        while pending:
+                            part = pending.pop()
+                            if part.geom_type == "LineString":
+                                coastline_parts.append(part)
+                            elif hasattr(part, "geoms"):
+                                pending.extend(part.geoms)
+                    for coastline_part in coastline_parts:
+                        if coastline_part.length < 2:
+                            continue
+                        coast_features.append({
+                            "type": "Feature",
+                            "properties": {
+                                "role": role,
+                                "length_px": round(coastline_part.length, 2),
+                                "source": "8192x5792_high_resolution_ocean_boundary",
+                            },
+                            "geometry": mapping(coastline_part),
+                        })
+    coast_features.extend(high_resolution_island_ink_features(pixels, mapped_land, crop_left))
+    del mapped_land, pixels
+    return coast_features
+
+
+def high_resolution_island_ink_features(pixels, mapped_land, crop_left):
+    """Recover tiny unfilled islands from their original ink outlines."""
+    height, width = pixels.shape[:2]
+    sea = np.all(pixels == SEA_RGB, axis=2).astype(np.uint8)
+    sea_neighborhood = cv2.dilate(sea, np.ones((7, 7), dtype=np.uint8)) > 0
+    del sea
+    land_neighborhood = cv2.dilate(
+        mapped_land.astype(np.uint8),
+        cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11)),
+    ) > 0
+    del mapped_land
+
+    dark_ink = np.max(pixels, axis=2) <= 55
+    muted_shore_ink = cv2.inRange(
+        pixels,
+        np.array([167, 157, 157], dtype=np.uint8),
+        np.array([203, 193, 193], dtype=np.uint8),
+    ) > 0
+    candidates = []
+    for ink_kind, ink_mask in (("dark", dark_ink), ("muted", muted_shore_ink)):
+        component_count, labels, stats, centroids = cv2.connectedComponentsWithStats(
+            ink_mask.astype(np.uint8), 8
+        )
+        for component_id in range(1, component_count):
+            x, y, component_width, component_height, area = map(int, stats[component_id])
+            largest_dimension = max(component_width, component_height)
+            if area < 3 or area > 8000 or largest_dimension > 180:
+                continue
+            aspect = largest_dimension / max(1, min(component_width, component_height))
+            if aspect > 8 and area > 32:
+                continue
+            # The source attribution is typography in open water, not an island.
+            if crop_left + x >= 6350 and y >= 5600:
+                continue
+
+            component = labels[y:y + component_height, x:x + component_width] == component_id
+            area_pixels = int(component.sum())
+            nearby_sea = np.count_nonzero(component & sea_neighborhood[y:y + component_height, x:x + component_width])
+            nearby_land = np.count_nonzero(component & land_neighborhood[y:y + component_height, x:x + component_width])
+            if nearby_sea / area_pixels < 0.15 or nearby_land / area_pixels > 0.25:
+                continue
+            candidates.append((ink_kind, x, y, component_width, component_height, area, component, centroids[component_id]))
+        del labels, stats, centroids, ink_mask
+    del dark_ink, muted_shore_ink, sea_neighborhood, land_neighborhood
+
+    features = []
+    for ink_kind, x, y, component_width, component_height, area, component, centroid in candidates:
+        skeleton = skeletonize(component)
+        contours, _ = cv2.findContours(
+            skeleton.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE
+        )
+        paths = []
+        for contour in contours:
+            points = contour.reshape(-1, 2)
+            if len(points) >= 3:
+                path = [(float(px + x + crop_left) / HIGH_RES_SCALE,
+                         float(py + y) / HIGH_RES_SCALE) for px, py in points]
+                path.append(path[0])
+                paths.append(path)
+            elif len(points) == 2:
+                paths.append([
+                    (float(points[0][0] + x + crop_left) / HIGH_RES_SCALE,
+                     float(points[0][1] + y) / HIGH_RES_SCALE),
+                    (float(points[1][0] + x + crop_left) / HIGH_RES_SCALE,
+                     float(points[1][1] + y) / HIGH_RES_SCALE),
+                ])
+        if not paths and area <= 40:
+            center_x, center_y = centroid
+            radius_x = max(0.45, component_width / (2 * HIGH_RES_SCALE))
+            radius_y = max(0.45, component_height / (2 * HIGH_RES_SCALE))
+            paths.append([
+                ((crop_left + x + center_x + radius_x * HIGH_RES_SCALE * math.cos(angle)) / HIGH_RES_SCALE,
+                 (y + center_y + radius_y * HIGH_RES_SCALE * math.sin(angle)) / HIGH_RES_SCALE)
+                for angle in np.linspace(0, 2 * math.pi, 13)[:-1]
+            ] + [
+                ((crop_left + x + center_x + radius_x * HIGH_RES_SCALE) / HIGH_RES_SCALE,
+                 (y + center_y) / HIGH_RES_SCALE)
+            ])
+        for points in paths:
+            line = LineString(points).simplify(0.03, preserve_topology=True)
+            if line.length < 0.2:
+                continue
+            features.append({
+                "type": "Feature",
+                "properties": {
+                    "role": "island_shoreline",
+                    "length_px": round(line.length, 2),
+                    "source": f"8192x5792_high_resolution_{ink_kind}_island_ink",
+                },
+                "geometry": mapping(line),
+            })
+    return features
 
 
 def trace_lines(skeleton, min_length=24):
@@ -165,17 +386,7 @@ def main():
         "geometry": mapping(poly),
     } for poly in ocean_polygons]
     write_fc(DATA / "ocean_water.geojson", "ocean_water", ocean_features)
-    coast_features = []
-    for poly in ocean_polygons:
-        polygons = list(poly.geoms) if poly.geom_type == "MultiPolygon" else [poly]
-        for part in polygons:
-            rings = [(part.exterior, "coastline")] + [(ring, "island_shoreline") for ring in part.interiors]
-            for ring, role in rings:
-                for line in coast_segments(ring.coords, w, h):
-                    coast_features.append({
-                        "type": "Feature", "properties": {"role": role, "length_px": round(line.length, 1), "source": "source_image_ocean_color_boundary"},
-                        "geometry": mapping(line),
-                    })
+    coast_features = extract_high_resolution_coastlines(feature_collection["features"])
     write_fc(DATA / "coastlines.geojson", "coastlines", coast_features)
 
     # Water-color linework is traced over the whole map. The ocean component is

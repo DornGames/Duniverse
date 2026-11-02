@@ -423,13 +423,13 @@ def update_render_files(
             coast_tags.append(f'<path d="{path_data}"/>')
     coastline_canvas_group = (
         '<g id="coastline" data-layer="coastline" fill="none" '
-        'stroke="#293840" stroke-width="2.2" stroke-linecap="round" '
+        'stroke="#6f7d83" stroke-width="0.8" stroke-linecap="round" '
         'stroke-linejoin="round" pointer-events="none">'
         + "".join(coast_tags)
         + "</g>"
     )
     coastline_preview_group = (
-        '<g id="coastlines" fill="none" stroke="#293840" stroke-width="2.2" '
+        '<g id="coastlines" fill="none" stroke="#6f7d83" stroke-width="0.8" '
         'stroke-linecap="round" stroke-linejoin="round" pointer-events="none">'
         + "".join(coast_tags)
         + "</g>"
@@ -566,7 +566,11 @@ def main() -> None:
     neighbor_borders = read_features(DATA / "neighbor_borders.geojson")
     label_candidates = read_features(DATA / "region_code_labels.geojson")
     label_features = build_region_label_anchors(regions, label_candidates)
-    coastline_union = unary_union([shape(feature["geometry"]) for feature in coastlines])
+    coastline_union = unary_union([
+        shape(feature["geometry"])
+        for feature in coastlines
+        if "_island_ink" not in feature["properties"].get("source", "")
+    ])
     labels, inside, codes, filled_pixels = build_labels(regions, outlines)
     boundaries, edge_count = collect_boundary_edges(labels, inside, codes)
 

@@ -18,7 +18,7 @@
   "ocr_confidence_ge_70": 36,
   "coordinate_system": "source image pixels; not georeferenced",
   "ocean_features": 1,
-  "coastline_segments": 13,
+  "coastline_segments": 473,
   "cross_border_river_segments": 46,
   "neighbor_border_segments": 1,
   "ocean_pixels": 971243,
