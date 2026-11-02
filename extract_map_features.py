@@ -33,6 +33,13 @@ import pytesseract
 
 SPECIAL_COLORS = [(213, 160, 207), (168, 139, 180), (235, 181, 240)]
 
+# Blue province-code lettering on the large DD island resembles a pair of
+# short waterways at source-image resolution. Keep those glyph pixels out of
+# hydrology extraction; there is no river through the label.
+BLUE_HYDROLOGY_TEXT_EXCLUSION_RECTS = [
+    (1778, 700, 1805, 718),
+]
+
 # Visually transcribed code-label anchors; coordinates are approximate image pixels.
 CODE_LABELS = [
     ("BD",900,135),("OH",1000,240),("HX",1150,250),("DE",680,350),("ZC",850,420),("TM",1000,360),
@@ -306,6 +313,8 @@ def main():
         (arr[:,:,2].astype(int)-arr[:,:,1].astype(int)>10) &
         (arr[:,:,2]>160) & (land_silhouette>0) & (distance_to_fill>12)
     ).astype(np.uint8)*255
+    for left, top, right, bottom in BLUE_HYDROLOGY_TEXT_EXCLUSION_RECTS:
+        blue_mask[top:bottom, left:right] = 0
     water_distance=cv2.distanceTransform((blue_mask>0).astype(np.uint8),cv2.DIST_L2,5)
     lake_core=(water_distance>2.2).astype(np.uint8)*255
     lake_contours,_=cv2.findContours(lake_core,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)

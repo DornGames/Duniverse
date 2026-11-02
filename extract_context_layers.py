@@ -20,9 +20,20 @@ SEA_RGB = np.array([177, 208, 237], dtype=np.uint8)
 HIGH_RES_SCALE = 4
 COASTLINE_CROP_LEFT = 1000
 COASTLINE_OPEN_KERNEL_PX = 13
-HIGH_RES_TEXT_EXCLUSION_RECTS = (
+HIGH_RES_INK_EXCLUSION_RECTS = (
     (5320, 90, 8192, 560),   # Map title and edition text.
     (6200, 5600, 8192, 5792),  # Source attribution at the lower right.
+    # City-name glyphs in the southeast offshore area. These rectangles follow
+    # the text itself so the nearby estuary islands remain eligible for tracing.
+    (5900, 4735, 6110, 4810),  # 上三角行列市
+    (5878, 4838, 6005, 4910),  # 朱干市
+    (5940, 4930, 6170, 4995),  # 二十四阶行列市
+    (5900, 5000, 6120, 5070),  # 格拉巴麦市
+    # Two west-coast city labels between the offshore islets.
+    (5270, 3768, 5420, 3835),  # 百勃山市
+    (5420, 3948, 5630, 4030),  # 劳璧市, including its first character stroke.
+    # A short ink fragment inside a black city marker is not an island.
+    (5356, 3847, 5379, 3863),
 )
 
 
@@ -31,7 +42,7 @@ def write_fc(path, name, features):
         "type": "FeatureCollection", "name": name,
         "coordinate_reference_note": "Image pixel coordinates; origin top-left; x right; y down. Not georeferenced.",
         "features": features,
-    }, ensure_ascii=False, indent=2), encoding="utf-8")
+    }, ensure_ascii=False, indent=2), encoding="utf-8", newline="\n")
 
 
 def mask_to_polygons(mask, epsilon=0.65, minimum_hole_area=12):
@@ -244,13 +255,12 @@ def high_resolution_island_ink_features(pixels, mapped_land, crop_left):
                 and component_bounds[2] > left
                 and component_bounds[1] < bottom
                 and component_bounds[3] > top
-                for left, top, right, bottom in HIGH_RES_TEXT_EXCLUSION_RECTS
+                for left, top, right, bottom in HIGH_RES_INK_EXCLUSION_RECTS
             ):
                 continue
             aspect = largest_dimension / max(1, min(component_width, component_height))
             if aspect > 8 and area > 32:
                 continue
-
             component = labels[y:y + component_height, x:x + component_width] == component_id
             area_pixels = int(component.sum())
             nearby_sea = np.count_nonzero(component & sea_neighborhood[y:y + component_height, x:x + component_width])

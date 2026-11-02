@@ -484,7 +484,7 @@ def update_render_files(
     preview = move_group_after(preview, "neighbor-borders", "cross-border-rivers")
     preview = move_group_after(preview, "administrative-regions", "neighbor-borders")
     preview = move_group_after(preview, "coastlines", "national-border")
-    preview_path.write_text(preview, encoding="utf-8")
+    preview_path.write_text(preview, encoding="utf-8", newline="\n")
 
     canvas_group = (
         '<g id="provinceBoundaries" data-layer="regions" fill="none" '
@@ -555,7 +555,7 @@ def update_render_files(
         labels_group,
         label="Canvas geometric-center labels",
     )
-    index_path.write_text(index, encoding="utf-8")
+    index_path.write_text(index, encoding="utf-8", newline="\n")
 
 
 def main() -> None:
