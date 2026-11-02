@@ -10,7 +10,7 @@
 - 鼠标滚轮缩放
 - 鼠标拖拽平移
 - 点击行政区查看代码，并以缓动动画放大到该区域
-- 右侧可开关河流、湖泊、点标记和文字图层
+- 右侧按“边界、水系、城市标记、文字标注”分组；父项默认收起，父项开关可控制整组子图层
 - 预览会平滑显示河流线条与湖泊边缘
 - 主页面使用 Canvas；缩小时简化线条并隐藏点和文字，放大时只绘制当前视口附近的图形
 - 省界由相邻行政区共同生成一条中线，使用细虚线；界河处沿河道中线，界湖处采用直线
@@ -26,12 +26,12 @@
 - `data/national_border_land.geojson`：裁掉海岸线重叠部分后的国界线
 - `data/hydrology_lines.geojson`：河流候选折线
 - `data/cross_border_rivers.geojson`：从原图补充提取的跨境河流线段
-- `data/neighbor_borders.geojson`：邻国边界候选线段
+- `data/neighbor_borders.geojson`：从原图筛出的邻国国界候选；排除邻国内部浅灰省界残线，蓝色水线单独归入河流图层
 - `data/coastlines.geojson`：从原图海水区域边缘提取的海岸线
 - `data/ocean_water.geojson`：从原图海水颜色连通区域矢量化的海域
 - `data/lakes.geojson`：湖泊候选面
 - `data/settlement_markers.geojson`：城市（黑点）与省会（红点）标记候选
-- `data/region_code_labels.geojson`：行政区代码标注点
+- `data/region_code_labels.geojson`：行政区代码标注点，由行政区合并面几何中心计算，中心落在面外时取面内点
 - `data/region_codes.csv`：代码与组件关联表
 - `data/ocr_candidates.csv`：OCR 文字候选及置信度、像素外接框
 - `data/map_metadata.json`：地图标题、版本和坐标说明
@@ -39,12 +39,12 @@
 ## 可复现脚本
 `extract_map_features.py` 可从输入图片重新生成行政区面、国土轮廓、水系线、湖泊、点标记、代码标注、OCR 候选和诊断掩膜。需要 Python、OpenCV、NumPy、Pandas、Pillow、Shapely、scikit-image、pytesseract 和 Tesseract 中文/英文语言包。
 
-`extract_context_layers.py` 从同一原图提取海域、海岸线、邻国边界和跨境河流候选图层。可在生成基础数据后运行：
+`extract_context_layers.py` 从同一原图提取海域、海岸线、邻国国界和跨境河流候选图层；邻国边界筛选会排除浅灰内部线与蓝色水系笔画。可在生成基础数据后运行：
 ```bash
 python extract_context_layers.py
 ```
 
-`build_administrative_boundaries.py` 从行政区面与国土轮廓重新生成共享省界中线，并裁掉国界、省界与细致海岸线重叠的片段，再更新 Canvas 页面和独立 SVG 预览。生成流程需要 SciPy；目前根据原图将 2、3、4、5、6、10 号湖泊判为界湖并拉直穿湖省界。
+`build_administrative_boundaries.py` 从行政区面与国土轮廓重新生成共享省界中线，并裁掉国界、省界与细致海岸线重叠的片段；同时按行政区合并面的几何中心生成半透明代码标注，再更新 Canvas 页面和独立 SVG 预览。生成流程需要 SciPy；目前根据原图将 2、3、4、5、6、10 号湖泊判为界湖并拉直穿湖省界。
 
 运行示例：
 ```bash

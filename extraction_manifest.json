@@ -20,6 +20,6 @@
   "ocean_features": 1,
   "coastline_segments": 13,
   "cross_border_river_segments": 45,
-  "neighbor_border_segments": 6,
+  "neighbor_border_segments": 1,
   "ocean_pixels": 971243
 }

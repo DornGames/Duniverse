@@ -1,7 +1,7 @@
 {
   "type": "FeatureCollection",
-  "name": "region_code_label_candidates",
-  "coordinate_reference_note": "Image pixel coordinates; origin at top-left; x increases rightward; y increases downward. Not georeferenced.",
+  "name": "region_geometric_center_labels",
+  "coordinate_system": "source image pixels; not georeferenced",
   "features": [
     {
       "type": "Feature",
@@ -11,14 +11,14 @@
           2
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          900,
-          135
+          904.4,
+          155.36
         ]
       }
     },
@@ -30,14 +30,14 @@
           3
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1000,
-          240
+          925.86,
+          238.52
         ]
       }
     },
@@ -49,14 +49,14 @@
           4
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1150,
-          250
+          1212.95,
+          310.07
         ]
       }
     },
@@ -68,14 +68,14 @@
           6
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          680,
-          350
+          696.56,
+          346.64
         ]
       }
     },
@@ -87,14 +87,14 @@
           5
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          850,
-          420
+          804.72,
+          374.37
         ]
       }
     },
@@ -106,14 +106,14 @@
           7
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1000,
-          360
+          1051.97,
+          407.87
         ]
       }
     },
@@ -127,14 +127,14 @@
           49
         ],
         "match_distance_px": 23.54,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1348,
-          490
+          1294.5,
+          498.5
         ]
       }
     },
@@ -146,14 +146,14 @@
           10
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          710,
-          600
+          705.83,
+          590.49
         ]
       }
     },
@@ -165,14 +165,14 @@
           12
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          470,
-          700
+          472.05,
+          677.64
         ]
       }
     },
@@ -184,14 +184,14 @@
           19
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          650,
-          800
+          654.83,
+          814.37
         ]
       }
     },
@@ -203,14 +203,14 @@
           17
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          850,
-          800
+          833.82,
+          775.79
         ]
       }
     },
@@ -222,14 +222,14 @@
           9
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          950,
-          680
+          923.6,
+          653.11
         ]
       }
     },
@@ -241,14 +241,14 @@
           11
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1080,
-          660
+          1080.17,
+          650.85
         ]
       }
     },
@@ -260,14 +260,14 @@
           13
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1190,
-          660
+          1188.7,
+          689.39
         ]
       }
     },
@@ -279,14 +279,14 @@
           8
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1320,
-          580
+          1279.04,
+          602.97
         ]
       }
     },
@@ -298,14 +298,14 @@
           18
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1320,
-          730
+          1294.21,
+          748.32
         ]
       }
     },
@@ -317,14 +317,14 @@
           20
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1100,
-          800
+          1101.08,
+          796.79
         ]
       }
     },
@@ -336,14 +336,14 @@
           21
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1290,
-          900
+          1283.02,
+          881.87
         ]
       }
     },
@@ -355,14 +355,14 @@
           23
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1000,
-          920
+          999.84,
+          890.12
         ]
       }
     },
@@ -374,14 +374,14 @@
           24
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1110,
-          910
+          1104.53,
+          896.09
         ]
       }
     },
@@ -393,14 +393,14 @@
           22
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1120,
-          1000
+          1157.93,
+          917.35
         ]
       }
     },
@@ -412,14 +412,14 @@
           25
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          820,
-          1000
+          828.49,
+          997.88
         ]
       }
     },
@@ -431,14 +431,14 @@
           27
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          940,
-          1060
+          933.83,
+          1049.19
         ]
       }
     },
@@ -450,14 +450,14 @@
           26
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1080,
-          1040
+          1070.74,
+          1027.0
         ]
       }
     },
@@ -469,14 +469,14 @@
           29
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          340,
-          1150
+          342.36,
+          1148.82
         ]
       }
     },
@@ -488,14 +488,14 @@
           1
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          640,
-          1120
+          623.64,
+          1104.59
         ]
       }
     },
@@ -507,14 +507,14 @@
           34
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          434,
-          1196
+          456.4,
+          1195.51
         ]
       }
     },
@@ -526,14 +526,14 @@
           33
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          566,
-          1314
+          609.76,
+          1319.75
         ]
       }
     },
@@ -545,14 +545,14 @@
           39
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          550,
-          1249
+          606.85,
+          1273.26
         ]
       }
     },
@@ -564,14 +564,14 @@
           29
         ],
         "match_distance_px": 104.12,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          414,
-          1340
+          342.36,
+          1148.82
         ]
       }
     },
@@ -583,14 +583,14 @@
           35
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          850,
-          1270
+          795.06,
+          1235.27
         ]
       }
     },
@@ -602,14 +602,14 @@
           31
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          890,
-          1245
+          898.7,
+          1214.52
         ]
       }
     },
@@ -621,14 +621,14 @@
           36
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          990,
-          1270
+          986.42,
+          1265.02
         ]
       }
     },
@@ -640,14 +640,14 @@
           30
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1190,
-          1200
+          1114.54,
+          1172.92
         ]
       }
     },
@@ -659,14 +659,14 @@
           41
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1180,
-          1310
+          1140.85,
+          1291.51
         ]
       }
     },
@@ -678,14 +678,14 @@
           28
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1350,
-          1060
+          1292.06,
+          1062.64
         ]
       }
     },
@@ -697,14 +697,14 @@
           32
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1350,
-          1170
+          1331.78,
+          1174.61
         ]
       }
     },
@@ -716,14 +716,14 @@
           38
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1350,
-          1270
+          1316.82,
+          1260.61
         ]
       }
     },
@@ -735,14 +735,14 @@
           37
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1450,
-          1200
+          1413.8,
+          1230.0
         ]
       }
     },
@@ -754,14 +754,14 @@
           42
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1480,
-          1310
+          1440.96,
+          1311.76
         ]
       }
     },
@@ -773,14 +773,14 @@
           45
         ],
         "match_distance_px": 2.59,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1460,
-          1370
+          1378.52,
+          1374.09
         ]
       }
     },
@@ -792,14 +792,14 @@
           43
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          850,
-          1340
+          806.93,
+          1332.55
         ]
       }
     },
@@ -811,14 +811,14 @@
           44
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1200,
-          1400
+          1154.57,
+          1371.53
         ]
       }
     },
@@ -830,14 +830,14 @@
           46
         ],
         "match_distance_px": 0.19,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          840,
-          1420
+          800.96,
+          1392.28
         ]
       }
     },
@@ -849,14 +849,14 @@
           50
         ],
         "match_distance_px": 0.0,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1600,
-          450
+          1597.82,
+          448.31
         ]
       }
     },
@@ -870,14 +870,14 @@
           16
         ],
         "match_distance_px": 5.2,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1800,
-          680
+          1828.5,
+          684.0
         ]
       }
     },
@@ -889,14 +889,14 @@
           51
         ],
         "match_distance_px": 2.24,
-        "transcription_method": "visual_inspection_with_OCR_assistance",
-        "review_status": "candidate_requires_final_human_confirmation"
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1360,
-          975
+          1351.63,
+          974.62
         ]
       }
     }

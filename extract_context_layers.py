@@ -204,17 +204,22 @@ def main():
     } for i, line in enumerate(river_lines)]
     write_fc(DATA / "cross_border_rivers.geojson", "cross_border_river_candidates", river_features)
 
-    # Neighbor borders are thin neutral-gray strokes outside the mapped land.
+    # Keep the darker neutral strokes used for neighboring countries' borders.
+    # Faint gray separators inside neighboring territories are province lines
+    # and background artifacts; blue strokes are waterways and are kept in the
+    # river layer instead.
     rgb_max = arr.max(axis=2).astype(np.int16)
     rgb_min = arr.min(axis=2).astype(np.int16)
     gray = arr.mean(axis=2)
-    neighbor_mask = ((rgb_max - rgb_min <= 24) & (gray >= 145) & (gray <= 248) & (land == 0))
+    neighbor_mask = ((rgb_max - rgb_min <= 24) & (gray >= 145) & (gray <= 210) & (land == 0))
     neighbor_mask[:, 1050:] = False
     neighbor_mask &= ~ocean_buffer
+    river_halo = cv2.dilate(blue.astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))) > 0
+    neighbor_mask &= ~river_halo
     neighbor_mask = skeletonize(neighbor_mask)
     border_lines = trace_lines(neighbor_mask, 42)
     border_features = [{
-        "type": "Feature", "properties": {"segment_id": i + 1, "length_px": round(line.length, 1), "source": "source_image_neutral_boundary_stroke", "review_status": "candidate_neighbor_border"},
+        "type": "Feature", "properties": {"segment_id": i + 1, "length_px": round(line.length, 1), "source": "dark_neutral_stroke_outside_national_land", "review_status": "candidate_neighbor_country_border"},
         "geometry": mapping(line),
     } for i, line in enumerate(border_lines)]
     write_fc(DATA / "neighbor_borders.geojson", "neighbor_border_candidates", border_features)

@@ -230,6 +230,53 @@ def path_tag(properties: dict, path_data: str, *, standalone: bool) -> str:
     return f'<path data-region-pair="{pair}" d="{path_data}"/>'
 
 
+def build_region_label_anchors(
+    region_features: list[dict], label_features: list[dict]
+) -> list[dict]:
+    regions_by_code: dict[str, list] = defaultdict(list)
+    regions_by_component: dict[str, list] = defaultdict(list)
+    for feature in region_features:
+        code = feature["properties"].get("region_code")
+        if code:
+            regions_by_code[code].append(shape(feature["geometry"]))
+        component_id = feature["properties"].get("component_id")
+        if component_id is not None:
+            regions_by_component[str(component_id)].append(shape(feature["geometry"]))
+
+    anchors = []
+    for feature in label_features:
+        code = feature["properties"].get("region_code")
+        component_ids = feature["properties"].get("matched_component_ids", [])
+        parts = [
+            geometry
+            for component_id in component_ids
+            for geometry in regions_by_component.get(str(component_id), [])
+        ]
+        if not parts:
+            parts = regions_by_code.get(code, [])
+        if not parts:
+            continue
+        region = unary_union(parts)
+        center = region.centroid
+        if not region.covers(center):
+            center = region.representative_point()
+        anchors.append(
+            {
+                "type": "Feature",
+                "properties": {
+                    **feature["properties"],
+                    "transcription_method": "unioned_region_geometric_center",
+                    "review_status": "derived_from_region_geometry",
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [round(center.x, 2), round(center.y, 2)],
+                },
+            }
+        )
+    return anchors
+
+
 def replace_group(source: str, pattern: str, replacement: str, *, label: str) -> str:
     updated, count = re.subn(pattern, replacement, source, count=1, flags=re.DOTALL)
     if count != 1:
@@ -264,7 +311,12 @@ def move_group_after(source: str, moving_id: str, target_id: str) -> str:
     return without_moving[:insertion] + moving_group + without_moving[insertion:]
 
 
-def update_render_files(features: list[dict], national_land_borders: list[dict]) -> None:
+def update_render_files(
+    features: list[dict],
+    national_land_borders: list[dict],
+    neighbor_borders: list[dict],
+    label_features: list[dict],
+) -> None:
     standalone_tags = []
     canvas_tags = []
     for feature in features:
@@ -298,6 +350,36 @@ def update_render_files(features: list[dict], national_land_borders: list[dict])
         + "".join(national_standalone_tags)
         + "</g>"
     )
+    neighbor_tags = []
+    for feature in neighbor_borders:
+        path_data = geometry_to_path_data(shape(feature["geometry"]))
+        if path_data:
+            segment_id = feature["properties"].get("segment_id", "")
+            neighbor_tags.append(
+                f'<path data-segment-id="{segment_id}" d="{path_data}"/>'
+            )
+    neighbor_standalone_group = (
+        '<g id="neighbor-borders" fill="none" stroke="#665b56" '
+        'stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" '
+        'pointer-events="none">'
+        + "".join(neighbor_tags)
+        + "</g>"
+    )
+    label_tags = []
+    for feature in label_features:
+        code = feature["properties"].get("region_code", "")
+        x, y = feature["geometry"]["coordinates"]
+        label_tags.append(
+            f'<text x="{x:g}" y="{y:g}" dominant-baseline="central" '
+            f'stroke="#fff" stroke-width=".7" paint-order="stroke">{code}</text>'
+        )
+    labels_group = (
+        '<g id="labels" pointer-events="none" font-family="Arial,sans-serif" '
+        'font-size="21" font-weight="600" text-anchor="middle" '
+        'fill="#00a98e" fill-opacity=".62">'
+        + "".join(label_tags)
+        + "</g>"
+    )
     preview_path = ROOT / "vector_preview.svg"
     preview = preview_path.read_text(encoding="utf-8")
     preview = replace_group(
@@ -312,7 +394,20 @@ def update_render_files(features: list[dict], national_land_borders: list[dict])
         national_standalone_group,
         label="standalone national-border",
     )
-    preview = move_group_after(preview, "administrative-regions", "cross-border-rivers")
+    preview = replace_group(
+        preview,
+        r'<g id="neighbor-borders"[^>]*>.*?</g>',
+        neighbor_standalone_group,
+        label="standalone neighbor-borders",
+    )
+    preview = replace_group(
+        preview,
+        r'<g id="region-labels"[^>]*>.*?</g>',
+        labels_group.replace('id="labels"', 'id="region-labels"', 1),
+        label="standalone labels",
+    )
+    preview = move_group_after(preview, "neighbor-borders", "cross-border-rivers")
+    preview = move_group_after(preview, "administrative-regions", "neighbor-borders")
     preview = move_group_after(preview, "coastlines", "national-border")
     preview_path.write_text(preview, encoding="utf-8")
 
@@ -323,6 +418,13 @@ def update_render_files(features: list[dict], national_land_borders: list[dict])
         + "".join(canvas_tags)
         + "</g>"
     )
+    neighbor_canvas_group = (
+        '<g id="neighborBorders" data-layer="neighborBorders" fill="none" '
+        'stroke="#665b56" stroke-width="2.6" stroke-linecap="round" '
+        'stroke-linejoin="round" pointer-events="none">'
+        + "".join(neighbor_tags)
+        + "</g>"
+    )
     index_path = ROOT / "index.html"
     index = index_path.read_text(encoding="utf-8")
     index = replace_group(
@@ -331,6 +433,12 @@ def update_render_files(features: list[dict], national_land_borders: list[dict])
         "",
         label="old Canvas provinceBoundaries",
     ) if re.search(r'<g id="provinceBoundaries"(?=[ >])', index) else index
+    index = replace_group(
+        index,
+        r'<g id="neighborBorders"[^>]*>.*?</g>',
+        "",
+        label="old Canvas neighborBorders",
+    ) if re.search(r'<g id="neighborBorders"(?=[ >])', index) else index
 
     index = replace_group(
         index,
@@ -345,7 +453,7 @@ def update_render_files(features: list[dict], national_land_borders: list[dict])
     index = replace_group(
         index,
         r'(<g id="crossBorderRivers"[^>]*>.*?</g>)',
-        lambda match: match.group(1) + canvas_group,
+        lambda match: match.group(1) + neighbor_canvas_group + canvas_group,
         label="Canvas boundary insertion point",
     )
     national_canvas_group = (
@@ -360,6 +468,12 @@ def update_render_files(features: list[dict], national_land_borders: list[dict])
         national_canvas_group,
         label="Canvas national-border",
     )
+    index = replace_group(
+        index,
+        r'<g id="labels"[^>]*>.*?</g>',
+        labels_group,
+        label="Canvas geometric-center labels",
+    )
     index_path.write_text(index, encoding="utf-8")
 
 
@@ -368,6 +482,9 @@ def main() -> None:
     outlines = read_features(DATA / "national_outline.geojson")
     lakes = read_features(DATA / "lakes.geojson")
     coastlines = read_features(DATA / "coastlines.geojson")
+    neighbor_borders = read_features(DATA / "neighbor_borders.geojson")
+    label_candidates = read_features(DATA / "region_code_labels.geojson")
+    label_features = build_region_label_anchors(regions, label_candidates)
     coastline_union = unary_union([shape(feature["geometry"]) for feature in coastlines])
     labels, inside, codes, filled_pixels = build_labels(regions, outlines)
     boundaries, edge_count = collect_boundary_edges(labels, inside, codes)
@@ -403,12 +520,14 @@ def main() -> None:
     national_land_borders = build_national_land_borders(outlines, coastline_union)
     write_geojson("province_boundaries.geojson", "shared_province_boundaries", features)
     write_geojson("national_border_land.geojson", "national_border_land_only", national_land_borders)
-    update_render_files(features, national_land_borders)
+    write_geojson("region_code_labels.geojson", "region_geometric_center_labels", label_features)
+    update_render_files(features, national_land_borders, neighbor_borders, label_features)
     print(
         f"Built {len(features)} shared province boundaries from {edge_count} pixel edges; "
         f"filled {filled_pixels} gaps inside the national outline; "
         f"straightened lake crossings: {', '.join(map(str, sorted(STRAIGHTENED_LAKE_IDS)))}; "
-        f"clipped {len(national_land_borders)} national outline components against coastlines."
+        f"clipped {len(national_land_borders)} national outline components against coastlines; "
+        f"centered {len(label_features)} province labels."
     )
 
 
