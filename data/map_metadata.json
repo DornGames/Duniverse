@@ -1,0 +1,14 @@
+{
+  "map_title": "潼国行政区划图",
+  "edition": "2026年 第六版",
+  "english_subtitle": "ADMINISTRATIVE DIVISION MAP OF DONH (visual transcription; verify spelling)",
+  "producer": "Dornhub",
+  "copyright": "© 2022–2026 Dornhub, All Rights Reserved.",
+  "source_image": "60f7e7b980565a1a9390523fabaae1f2.png",
+  "image_width_px": 2048,
+  "image_height_px": 1448,
+  "coordinate_system": "image pixel coordinates; origin top-left; x right; y down",
+  "georeferenced": false,
+  "scale_bar_detected": false,
+  "notes": "No latitude/longitude or projected coordinate reference was detected. All extracted coordinates are image-space coordinates."
+}

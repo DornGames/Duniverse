@@ -1,0 +1,904 @@
+{
+  "type": "FeatureCollection",
+  "name": "region_code_label_candidates",
+  "coordinate_reference_note": "Image pixel coordinates; origin at top-left; x increases rightward; y increases downward. Not georeferenced.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "BD",
+        "matched_component_ids": [
+          2
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          900,
+          135
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "OH",
+        "matched_component_ids": [
+          3
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1000,
+          240
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "HX",
+        "matched_component_ids": [
+          4
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1150,
+          250
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "DE",
+        "matched_component_ids": [
+          6
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          680,
+          350
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "ZC",
+        "matched_component_ids": [
+          5
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          850,
+          420
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "TM",
+        "matched_component_ids": [
+          7
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1000,
+          360
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "FN",
+        "matched_component_ids": [
+          47,
+          48,
+          49
+        ],
+        "match_distance_px": 23.54,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1348,
+          490
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "LK",
+        "matched_component_ids": [
+          10
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          710,
+          600
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "XD",
+        "matched_component_ids": [
+          12
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          470,
+          700
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "VA",
+        "matched_component_ids": [
+          19
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          650,
+          800
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "MM",
+        "matched_component_ids": [
+          17
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          850,
+          800
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "GA",
+        "matched_component_ids": [
+          9
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          950,
+          680
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "RF",
+        "matched_component_ids": [
+          11
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1080,
+          660
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "ST",
+        "matched_component_ids": [
+          13
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1190,
+          660
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "BP",
+        "matched_component_ids": [
+          8
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1320,
+          580
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "PP",
+        "matched_component_ids": [
+          18
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1320,
+          730
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "MT",
+        "matched_component_ids": [
+          20
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1100,
+          800
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "FS",
+        "matched_component_ids": [
+          21
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1290,
+          900
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "GR",
+        "matched_component_ids": [
+          23
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1000,
+          920
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "BG",
+        "matched_component_ids": [
+          24
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1110,
+          910
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "LL",
+        "matched_component_ids": [
+          22
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1120,
+          1000
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "PN",
+        "matched_component_ids": [
+          25
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          820,
+          1000
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "WZ",
+        "matched_component_ids": [
+          27
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          940,
+          1060
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "NG",
+        "matched_component_ids": [
+          26
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1080,
+          1040
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "TL",
+        "matched_component_ids": [
+          29
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          340,
+          1150
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "HB",
+        "matched_component_ids": [
+          1
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          640,
+          1120
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "TT",
+        "matched_component_ids": [
+          34
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          434,
+          1196
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "TT",
+        "matched_component_ids": [
+          33
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          566,
+          1314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SW",
+        "matched_component_ids": [
+          39
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          550,
+          1249
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SW",
+        "matched_component_ids": [
+          29
+        ],
+        "match_distance_px": 104.12,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          414,
+          1340
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "GW",
+        "matched_component_ids": [
+          35
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          850,
+          1270
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SP",
+        "matched_component_ids": [
+          31
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          890,
+          1245
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "CS",
+        "matched_component_ids": [
+          36
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          990,
+          1270
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "FL",
+        "matched_component_ids": [
+          30
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1190,
+          1200
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "TG",
+        "matched_component_ids": [
+          41
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1180,
+          1310
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SB",
+        "matched_component_ids": [
+          28
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1350,
+          1060
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "UE",
+        "matched_component_ids": [
+          32
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1350,
+          1170
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "KT",
+        "matched_component_ids": [
+          38
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1350,
+          1270
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SD",
+        "matched_component_ids": [
+          37
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1450,
+          1200
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "CM",
+        "matched_component_ids": [
+          42
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1480,
+          1310
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SE",
+        "matched_component_ids": [
+          45
+        ],
+        "match_distance_px": 2.59,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1460,
+          1370
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "OC",
+        "matched_component_ids": [
+          43
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          850,
+          1340
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "ND",
+        "matched_component_ids": [
+          44
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1200,
+          1400
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SM",
+        "matched_component_ids": [
+          46
+        ],
+        "match_distance_px": 0.19,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          840,
+          1420
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "TO",
+        "matched_component_ids": [
+          50
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1600,
+          450
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "DD",
+        "matched_component_ids": [
+          14,
+          15,
+          16
+        ],
+        "match_distance_px": 5.2,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1800,
+          680
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "WT",
+        "matched_component_ids": [
+          51
+        ],
+        "match_distance_px": 2.24,
+        "transcription_method": "visual_inspection_with_OCR_assistance",
+        "review_status": "candidate_requires_final_human_confirmation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1360,
+          975
+        ]
+      }
+    }
+  ]
+}
