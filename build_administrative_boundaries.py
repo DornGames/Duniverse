@@ -37,7 +37,10 @@ STRAIGHTENED_LAKE_IDS = {2, 3, 4, 5, 6, 10}
 LAKE_BUFFER_PX = 2.5
 LINE_SIMPLIFY_PX = 0.8
 MIN_LINE_LENGTH_PX = 3.0
-COASTLINE_CLIP_BUFFER_PX = 2.5
+# The source sea-color contour is offset slightly from the center of the
+# printed shoreline. Leave a wider landward clearance so coast and national
+# outline never read as two parallel boundary lines.
+COASTLINE_CLIP_BUFFER_PX = 7.0
 
 
 def read_features(path: Path) -> list[dict]:
@@ -336,6 +339,7 @@ def update_render_files(
     national_land_borders: list[dict],
     neighbor_borders: list[dict],
     label_features: list[dict],
+    coastlines: list[dict],
 ) -> None:
     standalone_tags = []
     canvas_tags = []
@@ -385,6 +389,24 @@ def update_render_files(
         + "".join(neighbor_tags)
         + "</g>"
     )
+    coast_tags = []
+    for feature in coastlines:
+        path_data = geometry_to_path_data(shape(feature["geometry"]))
+        if path_data:
+            coast_tags.append(f'<path d="{path_data}"/>')
+    coastline_canvas_group = (
+        '<g id="coastline" data-layer="coastline" fill="none" '
+        'stroke="#293840" stroke-width="2.2" stroke-linecap="round" '
+        'stroke-linejoin="round" pointer-events="none">'
+        + "".join(coast_tags)
+        + "</g>"
+    )
+    coastline_preview_group = (
+        '<g id="coastlines" fill="none" stroke="#293840" stroke-width="2.2" '
+        'stroke-linecap="round" stroke-linejoin="round" pointer-events="none">'
+        + "".join(coast_tags)
+        + "</g>"
+    )
     label_tags = []
     for feature in label_features:
         code = feature["properties"].get("region_code", "")
@@ -413,6 +435,12 @@ def update_render_files(
         r'<g id="national-border"[^>]*>.*?</g>',
         national_standalone_group,
         label="standalone national-border",
+    )
+    preview = replace_group(
+        preview,
+        r'<g id="coastlines"[^>]*>.*?</g>',
+        coastline_preview_group,
+        label="standalone coastlines",
     )
     preview = replace_group(
         preview,
@@ -490,6 +518,12 @@ def update_render_files(
     )
     index = replace_group(
         index,
+        r'<g id="coastline"[^>]*>.*?</g>',
+        coastline_canvas_group,
+        label="Canvas coastline",
+    )
+    index = replace_group(
+        index,
         r'<g id="labels"[^>]*>.*?</g>',
         labels_group,
         label="Canvas geometric-center labels",
@@ -541,7 +575,7 @@ def main() -> None:
     write_geojson("province_boundaries.geojson", "shared_province_boundaries", features)
     write_geojson("national_border_land.geojson", "national_border_land_only", national_land_borders)
     write_geojson("region_code_labels.geojson", "region_geometric_center_labels", label_features)
-    update_render_files(features, national_land_borders, neighbor_borders, label_features)
+    update_render_files(features, national_land_borders, neighbor_borders, label_features, coastlines)
     print(
         f"Built {len(features)} shared province boundaries from {edge_count} pixel edges; "
         f"filled {filled_pixels} gaps inside the national outline; "

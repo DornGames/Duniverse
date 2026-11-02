@@ -9,7 +9,7 @@
   "unique_region_codes": 45,
   "region_code_label_instances": 46,
   "national_outline_components": 8,
-  "river_line_segments": 150,
+  "river_line_segments": 151,
   "lake_candidates": 10,
   "black_marker_candidates": 260,
   "red_marker_candidates": 43,
@@ -19,11 +19,11 @@
   "coordinate_system": "source image pixels; not georeferenced",
   "ocean_features": 1,
   "coastline_segments": 13,
-  "cross_border_river_segments": 45,
+  "cross_border_river_segments": 46,
   "neighbor_border_segments": 1,
   "ocean_pixels": 971243,
-  "canal_centerlines": 1,
-  "canal_ruler_ticks": 17,
+  "canal_centerlines": 2,
+  "canal_ruler_ticks": 40,
   "seasonal_river_features": 2,
   "national_seasonal_river_candidates": 0
 }

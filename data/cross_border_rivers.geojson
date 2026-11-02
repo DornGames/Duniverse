@@ -1,6 +1,6 @@
 {
   "type": "FeatureCollection",
-  "name": "cross_border_river_candidates",
+  "name": "cross_border_rivers_without_seasonal_rivers",
   "coordinate_reference_note": "Image pixel coordinates; origin top-left; x right; y down. Not georeferenced.",
   "features": [
     {
@@ -1973,7 +1973,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": 42,
-        "length_px": 643.9,
+        "length_px": 461.4,
         "source": "source_image_blue_hydrology_outside_national_outline",
         "review_status": "candidate_cross_border_river"
       },
@@ -2129,8 +2129,26 @@
             799.0
           ],
           [
-            231.0,
-            814.0
+            225.59,
+            806.62
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 43,
+        "length_px": 172.1,
+        "source": "source_image_blue_hydrology_outside_national_outline",
+        "review_status": "candidate_cross_border_river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            232.16,
+            814.49
           ],
           [
             238.0,
@@ -2198,7 +2216,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 43,
+        "segment_id": 44,
         "length_px": 36.6,
         "source": "source_image_blue_hydrology_outside_national_outline",
         "review_status": "candidate_cross_border_river"
@@ -2232,7 +2250,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 44,
+        "segment_id": 45,
         "length_px": 119.3,
         "source": "source_image_blue_hydrology_outside_national_outline",
         "review_status": "candidate_cross_border_river"
@@ -2278,7 +2296,7 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 45,
+        "segment_id": 46,
         "length_px": 19.4,
         "source": "source_image_blue_hydrology_outside_national_outline",
         "review_status": "candidate_cross_border_river"
