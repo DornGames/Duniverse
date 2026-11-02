@@ -23,6 +23,7 @@
 - `data/administrative_regions.geojson`：行政区候选面
 - `data/province_boundaries.geojson`：每段只绘制一次的共享省界中线；穿过湖泊的省界采用直线
 - `data/national_outline.geojson`：国土外轮廓候选
+- `data/national_border_land.geojson`：裁掉海岸线重叠部分后的国界线
 - `data/hydrology_lines.geojson`：河流候选折线
 - `data/cross_border_rivers.geojson`：从原图补充提取的跨境河流线段
 - `data/neighbor_borders.geojson`：邻国边界候选线段
@@ -43,7 +44,7 @@
 python extract_context_layers.py
 ```
 
-`build_administrative_boundaries.py` 从行政区面与国土轮廓重新生成共享省界中线，并更新 Canvas 页面和独立 SVG 预览。生成流程需要 SciPy；目前根据原图将 2、3、4、5、6、10 号湖泊判为界湖并拉直穿湖省界。
+`build_administrative_boundaries.py` 从行政区面与国土轮廓重新生成共享省界中线，并裁掉国界、省界与细致海岸线重叠的片段，再更新 Canvas 页面和独立 SVG 预览。生成流程需要 SciPy；目前根据原图将 2、3、4、5、6、10 号湖泊判为界湖并拉直穿湖省界。
 
 运行示例：
 ```bash

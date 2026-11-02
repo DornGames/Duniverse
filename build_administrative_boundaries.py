@@ -9,7 +9,9 @@ Water boundaries are consequently placed midway between the adjoining regions.
 
 Six lake crossings were visually checked against input_map.png and are made
 straight chords: lakes 2, 3, 4, 5, 6, and 10. The other extracted lakes sit
-inside a single region and do not receive an administrative line.
+inside a single region and do not receive an administrative line. National
+and province borders are clipped back from detailed coastline paths so the
+coastline layer remains the only line drawn along the shore.
 """
 
 from __future__ import annotations
@@ -35,6 +37,7 @@ STRAIGHTENED_LAKE_IDS = {2, 3, 4, 5, 6, 10}
 LAKE_BUFFER_PX = 2.5
 LINE_SIMPLIFY_PX = 0.8
 MIN_LINE_LENGTH_PX = 3.0
+COASTLINE_CLIP_BUFFER_PX = 2.5
 
 
 def read_features(path: Path) -> list[dict]:
@@ -60,11 +63,49 @@ def fill_polygon_mask(mask: np.ndarray, geometry: dict, value: int) -> None:
 def line_parts(geometry) -> list[LineString]:
     if geometry.is_empty:
         return []
-    if geometry.geom_type == "LineString":
+    if geometry.geom_type in {"LineString", "LinearRing"}:
         return [geometry]
     if hasattr(geometry, "geoms"):
         return [part for item in geometry.geoms for part in line_parts(item)]
     return []
+
+
+def clip_border_from_coastline(geometry, coastline_union):
+    clipped = geometry.difference(coastline_union.buffer(COASTLINE_CLIP_BUFFER_PX))
+    parts = [part for part in line_parts(clipped) if part.length >= 0.5]
+    if not parts:
+        return None
+    merged = unary_union(parts)
+    if merged.geom_type == "LineString":
+        return merged
+    return linemerge(merged)
+
+
+def build_national_land_borders(outline_features: list[dict], coastline_union):
+    features = []
+    for feature in outline_features:
+        source_line = shape(feature["geometry"]).boundary
+        land_line = clip_border_from_coastline(source_line, coastline_union)
+        if land_line is None:
+            continue
+        features.append(
+            {
+                "type": "Feature",
+                "properties": {
+                    "outline_id": feature["properties"].get("outline_id"),
+                    "role": feature["properties"].get("role"),
+                    "source": "national_outline_clipped_by_detailed_coastline",
+                },
+                "geometry": {
+                    "type": "MultiLineString",
+                    "coordinates": [
+                        [[round(x, 2), round(y, 2)] for x, y in line.coords]
+                        for line in line_parts(land_line)
+                    ],
+                },
+            }
+        )
+    return features
 
 
 def build_labels(region_features: list[dict], outline_features: list[dict]):
@@ -196,19 +237,34 @@ def replace_group(source: str, pattern: str, replacement: str, *, label: str) ->
     return updated
 
 
-def write_geojson(features: list[dict]) -> None:
+def write_geojson(filename: str, name: str, features: list[dict]) -> None:
     collection = {
         "type": "FeatureCollection",
-        "name": "shared_province_boundaries",
+        "name": name,
         "coordinate_system": "source image pixels; not georeferenced",
         "features": features,
     }
-    (DATA / "province_boundaries.geojson").write_text(
+    (DATA / filename).write_text(
         json.dumps(collection, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
 
 
-def update_render_files(features: list[dict]) -> None:
+def move_group_after(source: str, moving_id: str, target_id: str) -> str:
+    moving_pattern = rf'<g id="{re.escape(moving_id)}"[^>]*>.*?</g>'
+    moving_match = re.search(moving_pattern, source, flags=re.DOTALL)
+    if not moving_match:
+        raise RuntimeError(f"Could not find SVG group {moving_id}")
+    moving_group = moving_match.group(0)
+    without_moving = source[: moving_match.start()] + source[moving_match.end() :]
+    target_pattern = rf'<g id="{re.escape(target_id)}"[^>]*>.*?</g>'
+    target_match = re.search(target_pattern, without_moving, flags=re.DOTALL)
+    if not target_match:
+        raise RuntimeError(f"Could not find SVG group {target_id}")
+    insertion = target_match.end()
+    return without_moving[:insertion] + moving_group + without_moving[insertion:]
+
+
+def update_render_files(features: list[dict], national_land_borders: list[dict]) -> None:
     standalone_tags = []
     canvas_tags = []
     for feature in features:
@@ -226,6 +282,22 @@ def update_render_files(features: list[dict]) -> None:
         + "".join(standalone_tags)
         + "</g>"
     )
+    national_standalone_tags = []
+    national_canvas_tags = []
+    for feature in national_land_borders:
+        path_data = geometry_to_path_data(shape(feature["geometry"]))
+        if not path_data:
+            continue
+        outline_id = feature["properties"].get("outline_id", "")
+        national_path_tag = f'<path data-outline-id="{outline_id}" d="{path_data}"/>'
+        national_standalone_tags.append(national_path_tag)
+        national_canvas_tags.append(national_path_tag)
+    national_standalone_group = (
+        '<g id="national-border" fill="none" stroke="#293840" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round">'
+        + "".join(national_standalone_tags)
+        + "</g>"
+    )
     preview_path = ROOT / "vector_preview.svg"
     preview = preview_path.read_text(encoding="utf-8")
     preview = replace_group(
@@ -234,6 +306,14 @@ def update_render_files(features: list[dict]) -> None:
         standalone_group,
         label="standalone administrative-regions",
     )
+    preview = replace_group(
+        preview,
+        r'<g id="national-border"[^>]*>.*?</g>',
+        national_standalone_group,
+        label="standalone national-border",
+    )
+    preview = move_group_after(preview, "administrative-regions", "cross-border-rivers")
+    preview = move_group_after(preview, "coastlines", "national-border")
     preview_path.write_text(preview, encoding="utf-8")
 
     canvas_group = (
@@ -268,6 +348,18 @@ def update_render_files(features: list[dict]) -> None:
         lambda match: match.group(1) + canvas_group,
         label="Canvas boundary insertion point",
     )
+    national_canvas_group = (
+        '<g id="nationalBorder" data-layer="regions" fill="none" stroke="#293840" '
+        'stroke-width="3" stroke-linecap="round" stroke-linejoin="round" pointer-events="none">'
+        + "".join(national_canvas_tags)
+        + "</g>"
+    )
+    index = replace_group(
+        index,
+        r'<g id="nationalBorder"[^>]*>.*?</g>',
+        national_canvas_group,
+        label="Canvas national-border",
+    )
     index_path.write_text(index, encoding="utf-8")
 
 
@@ -275,12 +367,16 @@ def main() -> None:
     regions = read_features(DATA / "administrative_regions.geojson")
     outlines = read_features(DATA / "national_outline.geojson")
     lakes = read_features(DATA / "lakes.geojson")
+    coastlines = read_features(DATA / "coastlines.geojson")
+    coastline_union = unary_union([shape(feature["geometry"]) for feature in coastlines])
     labels, inside, codes, filled_pixels = build_labels(regions, outlines)
     boundaries, edge_count = collect_boundary_edges(labels, inside, codes)
 
     features = []
     for (region_a, region_b), geometry in sorted(boundaries.items()):
         geometry, straightened_lakes = straighten_lake_crossings(geometry, lakes)
+        if geometry is not None:
+            geometry = clip_border_from_coastline(geometry, coastline_union)
         if geometry is None:
             continue
         features.append(
@@ -292,6 +388,7 @@ def main() -> None:
                     "boundary_type": "shared_administrative_midline",
                     "source": "nearest_region_label_transition",
                     "straightened_lake_ids": straightened_lakes,
+                    "coastline_clipped": True,
                 },
                 "geometry": {
                     "type": "MultiLineString",
@@ -303,12 +400,15 @@ def main() -> None:
             }
         )
 
-    write_geojson(features)
-    update_render_files(features)
+    national_land_borders = build_national_land_borders(outlines, coastline_union)
+    write_geojson("province_boundaries.geojson", "shared_province_boundaries", features)
+    write_geojson("national_border_land.geojson", "national_border_land_only", national_land_borders)
+    update_render_files(features, national_land_borders)
     print(
         f"Built {len(features)} shared province boundaries from {edge_count} pixel edges; "
         f"filled {filled_pixels} gaps inside the national outline; "
-        f"straightened lake crossings: {', '.join(map(str, sorted(STRAIGHTENED_LAKE_IDS)))}."
+        f"straightened lake crossings: {', '.join(map(str, sorted(STRAIGHTENED_LAKE_IDS)))}; "
+        f"clipped {len(national_land_borders)} national outline components against coastlines."
     )
 
 

@@ -10,7 +10,8 @@
         "region_b": "OH",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -255,7 +256,8 @@
         "region_b": "ZC",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -284,7 +286,8 @@
         "region_b": "GR",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -333,7 +336,8 @@
         "region_b": "LL",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -434,7 +438,8 @@
         "region_b": "MT",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -491,7 +496,8 @@
         "region_b": "NG",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -536,7 +542,8 @@
         "region_b": "HX",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -579,8 +586,8 @@
               487.5
             ],
             [
-              1250.5,
-              488.5
+              1248.51,
+              488.25
             ]
           ]
         ]
@@ -593,7 +600,8 @@
         "region_b": "PP",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -804,8 +812,8 @@
               689.5
             ],
             [
-              1381.5,
-              688.5
+              1381.11,
+              688.63
             ]
           ]
         ]
@@ -818,7 +826,8 @@
         "region_b": "RF",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -863,7 +872,8 @@
         "region_b": "ST",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1044,7 +1054,8 @@
         "region_b": "TM",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1157,7 +1168,8 @@
         "region_b": "ND",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1222,7 +1234,8 @@
         "region_b": "SD",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1305,7 +1318,7 @@
               1262.5
             ],
             [
-              1476.5,
+              1476.2,
               1262.5
             ]
           ]
@@ -1319,7 +1332,8 @@
         "region_b": "SE",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1500,7 +1514,8 @@
         "region_b": "FL",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1677,7 +1692,8 @@
         "region_b": "ND",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1798,7 +1814,8 @@
         "region_b": "OC",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1851,7 +1868,8 @@
         "region_b": "SP",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2076,7 +2094,8 @@
         "region_b": "TG",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2169,7 +2188,8 @@
         "region_b": "WZ",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2214,7 +2234,8 @@
         "region_b": "ZC",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2357,7 +2378,8 @@
         "source": "nearest_region_label_transition",
         "straightened_lake_ids": [
           6
-        ]
+        ],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2552,7 +2574,8 @@
         "source": "nearest_region_label_transition",
         "straightened_lake_ids": [
           5
-        ]
+        ],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2673,7 +2696,8 @@
         "region_b": "TG",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2880,7 +2904,8 @@
         "source": "nearest_region_label_transition",
         "straightened_lake_ids": [
           5
-        ]
+        ],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3027,7 +3052,8 @@
         "source": "nearest_region_label_transition",
         "straightened_lake_ids": [
           6
-        ]
+        ],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3096,7 +3122,8 @@
         "region_b": "HX",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3121,7 +3148,8 @@
         "region_b": "LL",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3330,7 +3358,8 @@
         "region_b": "PP",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3543,7 +3572,8 @@
         "region_b": "SB",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3670,8 +3700,8 @@
               978.5
             ],
             [
-              1289.5,
-              975.5
+              1288.6,
+              975.68
             ]
           ]
         ]
@@ -3684,7 +3714,8 @@
         "region_b": "GR",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3777,7 +3808,8 @@
         "region_b": "LK",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4018,7 +4050,8 @@
         "region_b": "MM",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4299,7 +4332,8 @@
         "region_b": "RF",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4700,7 +4734,8 @@
         "region_b": "TM",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4905,7 +4940,8 @@
         "region_b": "MM",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4982,7 +5018,8 @@
         "region_b": "MT",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -5119,7 +5156,8 @@
         "region_b": "NG",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -5220,7 +5258,8 @@
         "region_b": "PN",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -5301,7 +5340,8 @@
         "region_b": "RF",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -5338,7 +5378,8 @@
         "region_b": "WZ",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -5425,7 +5466,8 @@
         "source": "nearest_region_label_transition",
         "straightened_lake_ids": [
           4
-        ]
+        ],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -5602,7 +5644,8 @@
         "region_b": "OC",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -5823,7 +5866,8 @@
         "region_b": "SP",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -6028,7 +6072,8 @@
         "region_b": "TT",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -6057,7 +6102,8 @@
         "region_b": "PN",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -6274,7 +6320,8 @@
         "region_b": "SW",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -6439,7 +6486,8 @@
         "region_b": "TL",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -6536,7 +6584,8 @@
         "region_b": "TT",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -6707,7 +6756,8 @@
         "region_b": "VA",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -6752,7 +6802,8 @@
         "region_b": "OH",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -6869,7 +6920,8 @@
         "region_b": "TM",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -7334,7 +7386,8 @@
         "region_b": "ND",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -7511,7 +7564,8 @@
         "region_b": "SD",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -7624,7 +7678,8 @@
         "region_b": "TG",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -7753,7 +7808,8 @@
         "region_b": "UE",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -7870,7 +7926,8 @@
         "region_b": "MM",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -7999,7 +8056,8 @@
         "region_b": "TM",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -8076,7 +8134,8 @@
         "region_b": "XD",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -8349,7 +8408,8 @@
         "region_b": "ZC",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -8498,7 +8558,8 @@
         "region_b": "MT",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -8567,7 +8628,8 @@
         "region_b": "NG",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -8748,7 +8810,8 @@
         "region_b": "PP",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -8809,7 +8872,8 @@
         "region_b": "SB",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -8902,7 +8966,8 @@
         "region_b": "ST",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -8951,7 +9016,8 @@
         "region_b": "PN",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -9004,7 +9070,8 @@
         "region_b": "VA",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -9445,7 +9512,8 @@
         "region_b": "XD",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -9494,7 +9562,8 @@
         "region_b": "RF",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -9639,7 +9708,8 @@
         "region_b": "ST",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -9784,7 +9854,8 @@
         "region_b": "OC",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -9825,7 +9896,8 @@
         "region_b": "SE",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -9942,7 +10014,8 @@
         "region_b": "SM",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -9997,7 +10070,8 @@
         "source": "nearest_region_label_transition",
         "straightened_lake_ids": [
           2
-        ]
+        ],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -10218,7 +10292,8 @@
         "region_b": "SB",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -10321,7 +10396,8 @@
         "source": "nearest_region_label_transition",
         "straightened_lake_ids": [
           6
-        ]
+        ],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -10502,7 +10578,8 @@
         "region_b": "SM",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -10795,7 +10872,8 @@
         "region_b": "SP",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -10880,7 +10958,8 @@
         "region_b": "TT",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -10967,7 +11046,8 @@
         "source": "nearest_region_label_transition",
         "straightened_lake_ids": [
           10
-        ]
+        ],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -11132,7 +11212,8 @@
         "region_b": "ZC",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -11261,7 +11342,8 @@
         "region_b": "SP",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -11334,7 +11416,8 @@
         "region_b": "VA",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -11523,7 +11606,8 @@
         "region_b": "WZ",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -11728,7 +11812,8 @@
         "region_b": "ST",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -11869,7 +11954,8 @@
         "region_b": "ST",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -12022,7 +12108,8 @@
         "region_b": "TM",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -12193,7 +12280,8 @@
         "source": "nearest_region_label_transition",
         "straightened_lake_ids": [
           5
-        ]
+        ],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -12326,7 +12414,8 @@
         "region_b": "UE",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -12411,7 +12500,8 @@
         "region_b": "SW",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -12532,7 +12622,8 @@
         "region_b": "TT",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -12561,7 +12652,8 @@
         "region_b": "WZ",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -12734,7 +12826,8 @@
         "region_b": "TL",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -12917,7 +13010,8 @@
         "source": "nearest_region_label_transition",
         "straightened_lake_ids": [
           3
-        ]
+        ],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -13416,7 +13510,8 @@
         "region_b": "UE",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -13517,7 +13612,8 @@
         "region_b": "TT",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -13674,7 +13770,8 @@
         "region_b": "ZC",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
@@ -13963,7 +14060,8 @@
         "region_b": "XD",
         "boundary_type": "shared_administrative_midline",
         "source": "nearest_region_label_transition",
-        "straightened_lake_ids": []
+        "straightened_lake_ids": [],
+        "coastline_clipped": true
       },
       "geometry": {
         "type": "MultiLineString",
