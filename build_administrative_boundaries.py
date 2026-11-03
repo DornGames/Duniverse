@@ -16,6 +16,7 @@ land and sea fills define the shore without a separate outline stroke.
 
 from __future__ import annotations
 
+import html
 import json
 import re
 from collections import defaultdict
@@ -352,6 +353,90 @@ def write_geojson(filename: str, name: str, features: list[dict]) -> None:
     )
 
 
+def build_label_groups(
+    label_features: list[dict], province_names: dict[str, str]
+) -> tuple[str, str, str, str]:
+    canvas_code_tags = []
+    canvas_name_tags = []
+    preview_code_tags = []
+    preview_name_tags = []
+    missing_codes = set()
+
+    for feature in label_features:
+        code = feature["properties"].get("region_code", "")
+        name = province_names.get(code)
+        if not name:
+            missing_codes.add(code or "<empty>")
+            continue
+
+        x, y = feature["geometry"]["coordinates"]
+        safe_code = html.escape(code, quote=True)
+        safe_name = html.escape(name, quote=True)
+        canvas_code_tags.append(
+            f'<text x="{x:g}" y="{y:g}" data-pair-text="{safe_name}" '
+            f'dominant-baseline="central" stroke="#fff" stroke-width=".7" '
+            f'paint-order="stroke">{safe_code}</text>'
+        )
+        canvas_name_tags.append(
+            f'<text x="{x:g}" y="{y:g}" data-pair-text="{safe_code}" '
+            f'dominant-baseline="central" stroke="#fff" stroke-width=".6" '
+            f'paint-order="stroke">{safe_name}</text>'
+        )
+
+        # The standalone SVG scales labels with the map, so estimate the pair
+        # width in its native font sizes and keep the pair centered on the anchor.
+        code_width = 25.2
+        name_width = len(name) * 12
+        gap = 4
+        code_x = x - (code_width + name_width + gap) / 2 + code_width
+        name_x = code_x + gap
+        preview_code_tags.append(
+            f'<text x="{code_x:g}" y="{y:g}" text-anchor="end" '
+            f'dominant-baseline="central" stroke="#fff" stroke-width=".7" '
+            f'paint-order="stroke">{safe_code}</text>'
+        )
+        preview_name_tags.append(
+            f'<text x="{name_x:g}" y="{y:g}" dominant-baseline="central" '
+            f'stroke="#fff" stroke-width=".55" paint-order="stroke">{safe_name}</text>'
+        )
+
+    if missing_codes:
+        raise RuntimeError(
+            "Missing Chinese administrative names for region codes: "
+            + ", ".join(sorted(missing_codes))
+        )
+
+    canvas_codes = (
+        '<g id="regionCodes" data-layer="regionCodes" pointer-events="none" '
+        'font-family="Arial,sans-serif" font-size="21" font-weight="600" '
+        'text-anchor="middle" fill="#00a98e" fill-opacity=".78">'
+        + "".join(canvas_code_tags)
+        + "</g>"
+    )
+    canvas_names = (
+        '<g id="regionNames" data-layer="regionNames" pointer-events="none" '
+        'font-family="Arial,sans-serif" font-size="12" font-weight="500" '
+        'text-anchor="middle" fill="#168d7b" fill-opacity=".9">'
+        + "".join(canvas_name_tags)
+        + "</g>"
+    )
+    preview_codes = (
+        '<g id="region-codes" pointer-events="none" '
+        'font-family="Arial,sans-serif" font-size="21" font-weight="600" '
+        'fill="#00a98e" fill-opacity=".78">'
+        + "".join(preview_code_tags)
+        + "</g>"
+    )
+    preview_names = (
+        '<g id="region-names" pointer-events="none" '
+        'font-family="Arial,sans-serif" font-size="12" font-weight="500" '
+        'fill="#168d7b" fill-opacity=".9">'
+        + "".join(preview_name_tags)
+        + "</g>"
+    )
+    return canvas_codes, canvas_names, preview_codes, preview_names
+
+
 def move_group_after(source: str, moving_id: str, target_id: str) -> str:
     moving_pattern = rf'<g id="{re.escape(moving_id)}"[^>]*>.*?</g>'
     moving_match = re.search(moving_pattern, source, flags=re.DOTALL)
@@ -372,6 +457,7 @@ def update_render_files(
     national_land_borders: list[dict],
     neighbor_borders: list[dict],
     label_features: list[dict],
+    province_names: dict[str, str],
     coastlines: list[dict],
     ocean_surface_path: str,
 ) -> None:
@@ -442,21 +528,12 @@ def update_render_files(
     coastline_preview_group = (
         '<g id="coastlines" fill="none" pointer-events="none"></g>'
     )
-    label_tags = []
-    for feature in label_features:
-        code = feature["properties"].get("region_code", "")
-        x, y = feature["geometry"]["coordinates"]
-        label_tags.append(
-            f'<text x="{x:g}" y="{y:g}" dominant-baseline="central" '
-            f'stroke="#fff" stroke-width=".7" paint-order="stroke">{code}</text>'
-        )
-    labels_group = (
-        '<g id="labels" pointer-events="none" font-family="Arial,sans-serif" '
-        'font-size="21" font-weight="600" text-anchor="middle" '
-        'fill="#00a98e" fill-opacity=".62">'
-        + "".join(label_tags)
-        + "</g>"
-    )
+    (
+        canvas_codes_group,
+        canvas_names_group,
+        preview_codes_group,
+        preview_names_group,
+    ) = build_label_groups(label_features, province_names)
     preview_path = ROOT / "vector_preview.svg"
     preview = preview_path.read_text(encoding="utf-8")
     preview = replace_group(
@@ -485,8 +562,9 @@ def update_render_files(
     )
     preview = replace_group(
         preview,
-        r'<g id="region-labels"[^>]*>.*?</g>',
-        labels_group.replace('id="labels"', 'id="region-labels"', 1),
+        r'(?:<g id="region-labels"[^>]*>.*?</g>|'
+        r'<g id="region-codes"[^>]*>.*?</g><g id="region-names"[^>]*>.*?</g>)',
+        preview_codes_group + preview_names_group,
         label="standalone labels",
     )
     preview = move_group_after(preview, "neighbor-borders", "cross-border-rivers")
@@ -592,8 +670,9 @@ def update_render_files(
     )
     index = replace_group(
         index,
-        r'<g id="labels"[^>]*>.*?</g>',
-        labels_group,
+        r'(?:<g id="labels"[^>]*>.*?</g>|'
+        r'<g id="regionCodes"[^>]*>.*?</g><g id="regionNames"[^>]*>.*?</g>)',
+        canvas_codes_group + canvas_names_group,
         label="Canvas geometric-center labels",
     )
     index_path.write_text(index, encoding="utf-8", newline="\n")
@@ -612,6 +691,16 @@ def main() -> None:
     neighbor_borders = read_features(DATA / "neighbor_borders.geojson")
     label_candidates = read_features(DATA / "region_code_labels.geojson")
     label_features = build_region_label_anchors(regions, label_candidates)
+    province_names = json.loads(
+        (DATA / "province_names.json").read_text(encoding="utf-8")
+    )
+    label_codes = {feature["properties"].get("region_code", "") for feature in label_features}
+    missing_names = label_codes - province_names.keys()
+    if missing_names:
+        raise RuntimeError(
+            "Missing Chinese administrative names for region codes: "
+            + ", ".join(sorted(missing_names))
+        )
     ocean_surface_path_data = json.loads(
         (DATA / "ocean_surface_path.json").read_text(encoding="utf-8")
     )
@@ -675,6 +764,7 @@ def main() -> None:
         national_land_borders,
         neighbor_borders,
         label_features,
+        province_names,
         coastlines,
         ocean_surface_path,
     )
