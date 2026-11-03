@@ -622,24 +622,24 @@ def update_render_files(
             feature["properties"]["major_region_name_tongue"], quote=True
         )
         major_name_canvas_tags.append(
-            f'<text x="{x:g}" y="{y - 4:g}" data-letter-spacing="8" '
+            f'<text x="{x:g}" y="{y - 6:g}" data-letter-spacing="8" '
             f'dominant-baseline="central" stroke="#f5f8f9" stroke-width="2" '
             f'paint-order="stroke">{name}</text>'
         )
         major_name_canvas_tags.append(
-            f'<text x="{x:g}" y="{y + 5.5:g}" data-language="tongue" '
-            f'font-size="7" font-weight="500" data-letter-spacing="0" '
+            f'<text x="{x:g}" y="{y + 9:g}" data-language="tongue" '
+            f'font-size="9" font-weight="500" data-letter-spacing="0" '
             f'dominant-baseline="central" stroke="#f5f8f9" stroke-width="0.8" '
             f'paint-order="stroke">{tongue_name}</text>'
         )
         major_name_preview_tags.append(
-            f'<text x="{x:g}" y="{y - 4:g}" text-anchor="middle" '
+            f'<text x="{x:g}" y="{y - 6:g}" text-anchor="middle" '
             f'dominant-baseline="central" letter-spacing="8" '
             f'stroke="#f5f8f9" stroke-width="2" paint-order="stroke">{name}</text>'
         )
         major_name_preview_tags.append(
-            f'<text x="{x:g}" y="{y + 5.5:g}" text-anchor="middle" '
-            f'dominant-baseline="central" font-size="7" font-weight="500" '
+            f'<text x="{x:g}" y="{y + 9:g}" text-anchor="middle" '
+            f'dominant-baseline="central" font-size="9" font-weight="500" '
             f'letter-spacing="0" stroke="#f5f8f9" stroke-width="0.8" '
             f'paint-order="stroke">{tongue_name}</text>'
         )
