@@ -473,7 +473,7 @@ def update_render_files(
 
     standalone_group = (
         '<g id="administrative-regions" fill="none" stroke="#454545" '
-        'stroke-width="1.1" stroke-dasharray="5 4" stroke-linecap="round" '
+        'stroke-width="1.1" stroke-linecap="round" '
         'stroke-linejoin="round">'
         + "".join(standalone_tags)
         + "</g>"
@@ -574,7 +574,7 @@ def update_render_files(
 
     canvas_group = (
         '<g id="provinceBoundaries" data-layer="regions" fill="none" '
-        'stroke="#454545" stroke-width="1.1" stroke-dasharray="5 4" '
+        'stroke="#454545" stroke-width="1.1" '
         'stroke-linecap="round" stroke-linejoin="round" pointer-events="none">'
         + "".join(canvas_tags)
         + "</g>"
