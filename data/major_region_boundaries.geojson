@@ -14,8 +14,8 @@
         "coastline_clipped": true,
         "major_region_a": "east",
         "major_region_b": "north",
-        "major_region_name_a": "东𣿅大区",
-        "major_region_name_b": "北𣿅大区"
+        "major_region_name_a": "东湩大区",
+        "major_region_name_b": "北湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -76,8 +76,8 @@
         "coastline_clipped": true,
         "major_region_a": "east",
         "major_region_b": "central",
-        "major_region_name_a": "东𣿅大区",
-        "major_region_name_b": "中𣿅大区"
+        "major_region_name_a": "东湩大区",
+        "major_region_name_b": "中湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -126,8 +126,8 @@
         "coastline_clipped": true,
         "major_region_a": "east",
         "major_region_b": "north",
-        "major_region_name_a": "东𣿅大区",
-        "major_region_name_b": "北𣿅大区"
+        "major_region_name_a": "东湩大区",
+        "major_region_name_b": "北湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -244,8 +244,8 @@
         "coastline_clipped": true,
         "major_region_a": "southeast",
         "major_region_b": "south",
-        "major_region_name_a": "东南𣿅大区",
-        "major_region_name_b": "南𣿅大区"
+        "major_region_name_a": "东南湩大区",
+        "major_region_name_b": "南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -313,9 +313,9 @@
         "straightened_lake_ids": [],
         "coastline_clipped": true,
         "major_region_a": "south",
-        "major_region_b": "southeast",
-        "major_region_name_a": "南𣿅大区",
-        "major_region_name_b": "东南𣿅大区"
+        "major_region_b": "southwest",
+        "major_region_name_a": "南湩大区",
+        "major_region_name_b": "西南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -544,8 +544,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "central",
-        "major_region_name_a": "南𣿅大区",
-        "major_region_name_b": "中𣿅大区"
+        "major_region_name_a": "南湩大区",
+        "major_region_name_b": "中湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -596,8 +596,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "central",
-        "major_region_name_a": "南𣿅大区",
-        "major_region_name_b": "中𣿅大区"
+        "major_region_name_a": "南湩大区",
+        "major_region_name_b": "中湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -796,8 +796,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "east",
-        "major_region_name_a": "南𣿅大区",
-        "major_region_name_b": "东𣿅大区"
+        "major_region_name_a": "南湩大区",
+        "major_region_name_b": "东湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -924,8 +924,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southeast",
-        "major_region_name_a": "南𣿅大区",
-        "major_region_name_b": "东南𣿅大区"
+        "major_region_name_a": "南湩大区",
+        "major_region_name_b": "东南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1076,8 +1076,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "central",
-        "major_region_name_a": "南𣿅大区",
-        "major_region_name_b": "中𣿅大区"
+        "major_region_name_a": "南湩大区",
+        "major_region_name_b": "中湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1150,8 +1150,8 @@
         "coastline_clipped": true,
         "major_region_a": "east",
         "major_region_b": "central",
-        "major_region_name_a": "东𣿅大区",
-        "major_region_name_b": "中𣿅大区"
+        "major_region_name_a": "东湩大区",
+        "major_region_name_b": "中湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1364,8 +1364,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "west",
-        "major_region_name_a": "中𣿅大区",
-        "major_region_name_b": "西𣿅大区"
+        "major_region_name_a": "中湩大区",
+        "major_region_name_b": "西湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1610,8 +1610,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "west",
-        "major_region_name_a": "中𣿅大区",
-        "major_region_name_b": "西𣿅大区"
+        "major_region_name_a": "中湩大区",
+        "major_region_name_b": "西湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1896,8 +1896,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "north",
-        "major_region_name_a": "中𣿅大区",
-        "major_region_name_b": "北𣿅大区"
+        "major_region_name_a": "中湩大区",
+        "major_region_name_b": "北湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2106,8 +2106,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "west",
-        "major_region_name_a": "中𣿅大区",
-        "major_region_name_b": "西𣿅大区"
+        "major_region_name_a": "中湩大区",
+        "major_region_name_b": "西湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2188,8 +2188,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "southwest",
-        "major_region_name_a": "中𣿅大区",
-        "major_region_name_b": "西南𣿅大区"
+        "major_region_name_a": "中湩大区",
+        "major_region_name_b": "西南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2274,8 +2274,8 @@
         "coastline_clipped": true,
         "major_region_a": "southwest",
         "major_region_b": "south",
-        "major_region_name_a": "西南𣿅大区",
-        "major_region_name_b": "南𣿅大区"
+        "major_region_name_a": "西南湩大区",
+        "major_region_name_b": "南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2492,216 +2492,6 @@
     {
       "type": "Feature",
       "properties": {
-        "region_a": "GW",
-        "region_b": "SP",
-        "boundary_type": "shared_macro_region_boundary",
-        "source": "nearest_region_label_transition",
-        "straightened_lake_ids": [],
-        "coastline_clipped": true,
-        "major_region_a": "southwest",
-        "major_region_b": "southeast",
-        "major_region_name_a": "西南𣿅大区",
-        "major_region_name_b": "东南𣿅大区"
-      },
-      "geometry": {
-        "type": "MultiLineString",
-        "coordinates": [
-          [
-            [
-              814.5,
-              1129.5
-            ],
-            [
-              815.5,
-              1132.5
-            ],
-            [
-              818.5,
-              1134.5
-            ],
-            [
-              819.5,
-              1146.5
-            ],
-            [
-              820.5,
-              1146.5
-            ],
-            [
-              822.5,
-              1152.5
-            ],
-            [
-              827.5,
-              1157.5
-            ],
-            [
-              840.5,
-              1162.5
-            ],
-            [
-              848.5,
-              1170.5
-            ],
-            [
-              850.5,
-              1183.5
-            ],
-            [
-              851.5,
-              1183.5
-            ],
-            [
-              851.5,
-              1186.5
-            ],
-            [
-              853.5,
-              1187.5
-            ],
-            [
-              853.5,
-              1189.5
-            ],
-            [
-              856.5,
-              1190.5
-            ],
-            [
-              856.5,
-              1191.5
-            ],
-            [
-              862.5,
-              1192.5
-            ],
-            [
-              865.5,
-              1195.5
-            ],
-            [
-              865.5,
-              1197.5
-            ],
-            [
-              873.5,
-              1205.5
-            ],
-            [
-              875.5,
-              1205.5
-            ],
-            [
-              877.5,
-              1207.5
-            ],
-            [
-              877.5,
-              1210.5
-            ],
-            [
-              878.5,
-              1210.5
-            ],
-            [
-              877.5,
-              1214.5
-            ],
-            [
-              871.5,
-              1219.5
-            ],
-            [
-              871.5,
-              1221.5
-            ],
-            [
-              868.5,
-              1225.5
-            ],
-            [
-              868.5,
-              1230.5
-            ],
-            [
-              866.5,
-              1231.5
-            ],
-            [
-              864.5,
-              1236.5
-            ],
-            [
-              861.5,
-              1238.5
-            ],
-            [
-              861.5,
-              1240.5
-            ],
-            [
-              858.5,
-              1242.5
-            ],
-            [
-              858.5,
-              1248.5
-            ],
-            [
-              859.5,
-              1248.5
-            ],
-            [
-              860.5,
-              1252.5
-            ],
-            [
-              862.5,
-              1254.5
-            ],
-            [
-              868.5,
-              1256.5
-            ],
-            [
-              869.5,
-              1259.5
-            ],
-            [
-              870.5,
-              1259.5
-            ],
-            [
-              870.5,
-              1282.5
-            ],
-            [
-              855.5,
-              1298.5
-            ],
-            [
-              852.5,
-              1299.5
-            ],
-            [
-              851.5,
-              1310.5
-            ],
-            [
-              849.5,
-              1312.5
-            ],
-            [
-              847.5,
-              1320.5
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "region_a": "HB",
         "region_b": "VA",
         "boundary_type": "shared_macro_region_boundary",
@@ -2710,8 +2500,8 @@
         "coastline_clipped": true,
         "major_region_a": "southwest",
         "major_region_b": "west",
-        "major_region_name_a": "西南𣿅大区",
-        "major_region_name_b": "西𣿅大区"
+        "major_region_name_a": "西南湩大区",
+        "major_region_name_b": "西湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2760,8 +2550,8 @@
         "coastline_clipped": true,
         "major_region_a": "southeast",
         "major_region_b": "south",
-        "major_region_name_a": "东南𣿅大区",
-        "major_region_name_b": "南𣿅大区"
+        "major_region_name_a": "东南湩大区",
+        "major_region_name_b": "南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2942,8 +2732,8 @@
         "coastline_clipped": true,
         "major_region_a": "southeast",
         "major_region_b": "south",
-        "major_region_name_a": "东南𣿅大区",
-        "major_region_name_b": "南𣿅大区"
+        "major_region_name_a": "东南湩大区",
+        "major_region_name_b": "南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3076,8 +2866,8 @@
         "coastline_clipped": true,
         "major_region_a": "west",
         "major_region_b": "north",
-        "major_region_name_a": "西𣿅大区",
-        "major_region_name_b": "北𣿅大区"
+        "major_region_name_a": "西湩大区",
+        "major_region_name_b": "北湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3158,8 +2948,8 @@
         "coastline_clipped": true,
         "major_region_a": "west",
         "major_region_b": "north",
-        "major_region_name_a": "西𣿅大区",
-        "major_region_name_b": "北𣿅大区"
+        "major_region_name_a": "西湩大区",
+        "major_region_name_b": "北湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3312,8 +3102,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "east",
-        "major_region_name_a": "中𣿅大区",
-        "major_region_name_b": "东𣿅大区"
+        "major_region_name_a": "中湩大区",
+        "major_region_name_b": "东湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3378,8 +3168,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "east",
-        "major_region_name_a": "中𣿅大区",
-        "major_region_name_b": "东𣿅大区"
+        "major_region_name_a": "中湩大区",
+        "major_region_name_b": "东湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3476,8 +3266,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "east",
-        "major_region_name_a": "中𣿅大区",
-        "major_region_name_b": "东𣿅大区"
+        "major_region_name_a": "中湩大区",
+        "major_region_name_b": "东湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3530,8 +3320,8 @@
         "coastline_clipped": true,
         "major_region_a": "west",
         "major_region_b": "southwest",
-        "major_region_name_a": "西𣿅大区",
-        "major_region_name_b": "西南𣿅大区"
+        "major_region_name_a": "西湩大区",
+        "major_region_name_b": "西南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3588,8 +3378,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "east",
-        "major_region_name_a": "中𣿅大区",
-        "major_region_name_b": "东𣿅大区"
+        "major_region_name_a": "中湩大区",
+        "major_region_name_b": "东湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3738,8 +3528,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southeast",
-        "major_region_name_a": "南𣿅大区",
-        "major_region_name_b": "东南𣿅大区"
+        "major_region_name_a": "南湩大区",
+        "major_region_name_b": "东南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3860,8 +3650,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "east",
-        "major_region_name_a": "中𣿅大区",
-        "major_region_name_b": "东𣿅大区"
+        "major_region_name_a": "中湩大区",
+        "major_region_name_b": "东湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3965,9 +3755,9 @@
         "straightened_lake_ids": [],
         "coastline_clipped": true,
         "major_region_a": "south",
-        "major_region_b": "southeast",
-        "major_region_name_a": "南𣿅大区",
-        "major_region_name_b": "东南𣿅大区"
+        "major_region_b": "southwest",
+        "major_region_name_a": "南湩大区",
+        "major_region_name_b": "西南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4056,8 +3846,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southwest",
-        "major_region_name_a": "南𣿅大区",
-        "major_region_name_b": "西南𣿅大区"
+        "major_region_name_a": "南湩大区",
+        "major_region_name_b": "西南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4139,84 +3929,6 @@
       "type": "Feature",
       "properties": {
         "region_a": "PN",
-        "region_b": "SP",
-        "boundary_type": "shared_macro_region_boundary",
-        "source": "nearest_region_label_transition",
-        "straightened_lake_ids": [],
-        "coastline_clipped": true,
-        "major_region_a": "southwest",
-        "major_region_b": "southeast",
-        "major_region_name_a": "西南𣿅大区",
-        "major_region_name_b": "东南𣿅大区"
-      },
-      "geometry": {
-        "type": "MultiLineString",
-        "coordinates": [
-          [
-            [
-              814.5,
-              1129.5
-            ],
-            [
-              816.5,
-              1127.5
-            ],
-            [
-              828.5,
-              1125.5
-            ],
-            [
-              828.5,
-              1124.5
-            ],
-            [
-              832.5,
-              1123.5
-            ],
-            [
-              833.5,
-              1121.5
-            ],
-            [
-              835.5,
-              1121.5
-            ],
-            [
-              841.5,
-              1115.5
-            ],
-            [
-              841.5,
-              1113.5
-            ],
-            [
-              842.5,
-              1113.5
-            ],
-            [
-              842.5,
-              1111.5
-            ],
-            [
-              845.5,
-              1107.5
-            ],
-            [
-              845.5,
-              1099.5
-            ],
-            [
-              846.5,
-              1098.5
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "region_a": "PN",
         "region_b": "VA",
         "boundary_type": "shared_macro_region_boundary",
         "source": "nearest_region_label_transition",
@@ -4224,8 +3936,8 @@
         "coastline_clipped": true,
         "major_region_a": "southwest",
         "major_region_b": "west",
-        "major_region_name_a": "西南𣿅大区",
-        "major_region_name_b": "西𣿅大区"
+        "major_region_name_a": "西南湩大区",
+        "major_region_name_b": "西湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4418,8 +4130,8 @@
         "coastline_clipped": true,
         "major_region_a": "southwest",
         "major_region_b": "central",
-        "major_region_name_a": "西南𣿅大区",
-        "major_region_name_b": "中𣿅大区"
+        "major_region_name_a": "西南湩大区",
+        "major_region_name_b": "中湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4628,8 +4340,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "east",
-        "major_region_name_a": "中𣿅大区",
-        "major_region_name_b": "东𣿅大区"
+        "major_region_name_a": "中湩大区",
+        "major_region_name_b": "东湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4786,8 +4498,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "north",
-        "major_region_name_a": "中𣿅大区",
-        "major_region_name_b": "北𣿅大区"
+        "major_region_name_a": "中湩大区",
+        "major_region_name_b": "北湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4962,8 +4674,8 @@
         "coastline_clipped": true,
         "major_region_a": "east",
         "major_region_b": "southeast",
-        "major_region_name_a": "东𣿅大区",
-        "major_region_name_b": "东南𣿅大区"
+        "major_region_name_a": "东湩大区",
+        "major_region_name_b": "东南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -5100,8 +4812,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southwest",
-        "major_region_name_a": "南𣿅大区",
-        "major_region_name_b": "西南𣿅大区"
+        "major_region_name_a": "南湩大区",
+        "major_region_name_b": "西南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -5226,8 +4938,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southwest",
-        "major_region_name_a": "南𣿅大区",
-        "major_region_name_b": "西南𣿅大区"
+        "major_region_name_a": "南湩大区",
+        "major_region_name_b": "西南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -5258,10 +4970,10 @@
         "source": "nearest_region_label_transition",
         "straightened_lake_ids": [],
         "coastline_clipped": true,
-        "major_region_a": "southeast",
+        "major_region_a": "southwest",
         "major_region_b": "central",
-        "major_region_name_a": "东南𣿅大区",
-        "major_region_name_b": "中𣿅大区"
+        "major_region_name_a": "西南湩大区",
+        "major_region_name_b": "中湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -5438,8 +5150,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southeast",
-        "major_region_name_a": "南𣿅大区",
-        "major_region_name_b": "东南𣿅大区"
+        "major_region_name_a": "南湩大区",
+        "major_region_name_b": "东南湩大区"
       },
       "geometry": {
         "type": "MultiLineString",
