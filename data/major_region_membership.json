@@ -1,0 +1,48 @@
+{
+  "source": "湩国政区清单",
+  "regions": [
+    {
+      "id": "central",
+      "name": "中𣿅大区",
+      "codes": ["GR", "RF", "WZ", "MT", "LL", "BG", "NG", "GA"]
+    },
+    {
+      "id": "east",
+      "name": "东𣿅大区",
+      "codes": ["FN", "WT", "SB", "FS", "PP", "ST", "BP"]
+    },
+    {
+      "id": "north",
+      "name": "北𣿅大区",
+      "codes": ["BD", "ZC", "DE", "OH", "HX", "TM"]
+    },
+    {
+      "id": "west",
+      "name": "西𣿅大区",
+      "codes": ["LK", "XD", "VA", "MM"]
+    },
+    {
+      "id": "south",
+      "name": "南𣿅大区",
+      "codes": ["CS", "OC", "SM", "FL", "TG", "ND"]
+    },
+    {
+      "id": "southeast",
+      "name": "东南𣿅大区",
+      "codes": ["SE", "CM", "KT", "SD", "SP", "UE"]
+    },
+    {
+      "id": "southwest",
+      "name": "西南𣿅大区",
+      "codes": ["HB", "TL", "SW", "TT", "GW", "PN"]
+    },
+    {
+      "id": "archipelago",
+      "name": "群岛大区",
+      "codes": ["TO", "DD"]
+    }
+  ],
+  "mapping_notes": [
+    "ND 在名录中同时列于南𣿅大区和东南𣿅大区，但地图只有一个 ND 面域，按首次出现归入南𣿅大区。"
+  ]
+}
