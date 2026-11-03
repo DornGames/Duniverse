@@ -860,6 +860,7 @@ def update_render_files(
     draw_order_replacement = (
         "['provinceBoundaries',9],['majorRegionBoundaries',10],['majorRegionNames',11],"
         "['nationalBorder',12],['blackMarkers',13],['redMarkers',14],"
+        "['specialCapitalMarker',14],['nationalCapitalMarker',14],"
         "['regionCodes',15],['regionNames',16]"
     )
     draw_order_match = re.search(
