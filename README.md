@@ -32,7 +32,7 @@
 - `data/seasonal_rivers.geojson`：原图中邻国蓝色虚线季节性河流
 - `data/cross_border_rivers.geojson`：从原图补充提取的跨境河流线段
 - `data/neighbor_borders.geojson`：从原图筛出的邻国国界候选；排除邻国内部浅灰省界残线，蓝色水线单独归入河流图层
-- `data/coastlines.geojson`：从原图海水区域边缘提取的海岸线
+- `data/coastlines.geojson`：根据官方高清无河流图分块提取的海岸线、岛岸与河口岸线；每块 1024×1024 像素，使用无文字图交叉核对文字伪影，并剔除实心城市点
 - `data/ocean_water.geojson`：从原图海水颜色连通区域矢量化的海域
 - `data/lakes.geojson`：湖泊候选面
 - `data/settlement_markers.geojson`：城市（黑点）与省会（红点）标记候选
@@ -44,9 +44,14 @@
 ## 可复现脚本
 `extract_map_features.py` 可从输入图片重新生成行政区面、国土轮廓、水系线、湖泊、点标记、代码标注、OCR 候选和诊断掩膜。需要 Python、OpenCV、NumPy、Pandas、Pillow、Shapely、scikit-image、pytesseract 和 Tesseract 中文/英文语言包。
 
-`extract_context_layers.py` 从同一原图提取海域、海岸线、邻国国界和跨境河流候选图层；邻国边界筛选会排除浅灰内部线与蓝色水系笔画。可在生成基础数据后运行：
+`extract_context_layers.py` 从基础原图提取海域、邻国国界和跨境河流候选图层；邻国边界筛选会排除浅灰内部线与蓝色水系笔画。它也保留早期海岸线提取流程；正式海岸线请使用下方的高清分块工具。
 ```bash
 python extract_context_layers.py
+```
+
+`tools/extract_official_coastline_tiled.py` 逐块处理 `official_map` 中的高清无河流图和无文字图，以 48 像素重叠拼接相邻块；不会建立整张高清图的海水蒙版。可指定诊断目录，保存各小块的岸线叠加图供人工复核：
+```bash
+python tools/extract_official_coastline_tiled.py --source-dir <official_map目录> --diagnostics-dir <分块复核目录>
 ```
 
 `build_administrative_boundaries.py` 从行政区面与国土轮廓重新生成共享省界中线，并裁掉国界、省界与细致海岸线重叠的片段；同时按行政区合并面的几何中心生成半透明代码标注，再更新 Canvas 页面和独立 SVG 预览。生成流程需要 SciPy；目前根据原图将 2、3、4、5、6、10 号湖泊判为界湖并拉直穿湖省界。

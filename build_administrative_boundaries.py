@@ -74,8 +74,8 @@ def line_parts(geometry) -> list[LineString]:
     return []
 
 
-def clip_border_from_coastline(geometry, coastline_union):
-    clipped = geometry.difference(coastline_union.buffer(COASTLINE_CLIP_BUFFER_PX))
+def clip_border_from_coastline(geometry, coastline_exclusion):
+    clipped = geometry.difference(coastline_exclusion)
     parts = [part for part in line_parts(clipped) if part.length >= 0.5]
     if not parts:
         return None
@@ -85,7 +85,11 @@ def clip_border_from_coastline(geometry, coastline_union):
     return linemerge(merged)
 
 
-def build_national_land_borders(outline_features: list[dict], coastline_union):
+def build_national_land_borders(
+    outline_features: list[dict],
+    coastline_union,
+    coastline_exclusion,
+):
     features = []
     for feature in outline_features:
         # Offshore outlines are islands: their boundary is coastline, not a
@@ -93,7 +97,7 @@ def build_national_land_borders(outline_features: list[dict], coastline_union):
         if feature["properties"].get("role") != "mainland":
             continue
         source_line = shape(feature["geometry"]).boundary
-        land_line = clip_border_from_coastline(source_line, coastline_union)
+        land_line = clip_border_from_coastline(source_line, coastline_exclusion)
         if land_line is None:
             continue
         land_parts = line_parts(land_line)
@@ -342,7 +346,9 @@ def write_geojson(filename: str, name: str, features: list[dict]) -> None:
         "features": features,
     }
     (DATA / filename).write_text(
-        json.dumps(collection, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(collection, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
 
 
@@ -417,12 +423,20 @@ def update_render_files(
         + "</g>"
     )
     coast_tags = []
+    island_fill_tags = []
     for feature in coastlines:
         if feature["properties"].get("review_status") == "rejected":
             continue
-        path_data = geometry_to_path_data(shape(feature["geometry"]))
+        coast_geometry = shape(feature["geometry"])
+        path_data = geometry_to_path_data(coast_geometry)
         if path_data:
             coast_tags.append(f'<path d="{path_data}"/>')
+        if (
+            feature["properties"].get("role") == "island_shoreline"
+            and coast_geometry.geom_type == "LineString"
+            and coast_geometry.is_ring
+        ):
+            island_fill_tags.append(f'<path d="{path_data}"/>')
     coastline_canvas_group = (
         '<g id="coastline" data-layer="coastline" fill="none" '
         'stroke="#6f7d83" stroke-width="1" stroke-linecap="round" '
@@ -504,6 +518,27 @@ def update_render_files(
     )
     index_path = ROOT / "index.html"
     index = index_path.read_text(encoding="utf-8")
+    index = re.sub(
+        r'<g id="coastlineFills"[^>]*>.*?</g>',
+        "",
+        index,
+        count=1,
+        flags=re.DOTALL,
+    )
+    coastline_fills_group = (
+        '<g id="coastlineFills" data-layer="coastline" fill="#fff" '
+        'fill-rule="evenodd" stroke="none" pointer-events="none">'
+        + "".join(island_fill_tags)
+        + "</g>"
+    )
+    ocean_fill_match = re.search(r'<path id="oceanFill"[^>]*?/>', index)
+    if not ocean_fill_match:
+        raise RuntimeError("Could not find the oceanFill path to place island land fills")
+    index = (
+        index[: ocean_fill_match.end()]
+        + coastline_fills_group
+        + index[ocean_fill_match.end() :]
+    )
     index = replace_group(
         index,
         r'<g id="provinceBoundaries"[^>]*>.*?</g>',
@@ -569,6 +604,7 @@ def main() -> None:
         feature for feature in coastline_candidates
         if feature["properties"].get("review_status") != "rejected"
     ]
+    print(f"Loaded {len(coastlines)} coastline features; preparing shared coastline clip.", flush=True)
     neighbor_borders = read_features(DATA / "neighbor_borders.geojson")
     label_candidates = read_features(DATA / "region_code_labels.geojson")
     label_features = build_region_label_anchors(regions, label_candidates)
@@ -577,14 +613,20 @@ def main() -> None:
         for feature in coastlines
         if "_island_ink" not in feature["properties"].get("source", "")
     ])
+    # The same shoreline buffer is used to clip every shared region border.
+    # Build it once; buffering the detailed coastline separately for each of
+    # the ~100 province boundaries was needlessly expensive.
+    coastline_exclusion = coastline_union.buffer(COASTLINE_CLIP_BUFFER_PX)
+    print("Prepared the coastline exclusion buffer.", flush=True)
     labels, inside, codes, filled_pixels = build_labels(regions, outlines)
     boundaries, edge_count = collect_boundary_edges(labels, inside, codes)
+    print(f"Derived {len(boundaries)} shared province-boundary networks.", flush=True)
 
     features = []
     for (region_a, region_b), geometry in sorted(boundaries.items()):
         geometry, straightened_lakes = straighten_lake_crossings(geometry, lakes)
         if geometry is not None:
-            geometry = clip_border_from_coastline(geometry, coastline_union)
+            geometry = clip_border_from_coastline(geometry, coastline_exclusion)
         if geometry is None:
             continue
         features.append(
@@ -608,7 +650,12 @@ def main() -> None:
             }
         )
 
-    national_land_borders = build_national_land_borders(outlines, coastline_union)
+    national_land_borders = build_national_land_borders(
+        outlines,
+        coastline_union,
+        coastline_exclusion,
+    )
+    print("Clipped land borders and prepared render layers.", flush=True)
     write_geojson("province_boundaries.geojson", "shared_province_boundaries", features)
     write_geojson("national_border_land.geojson", "national_border_land_only", national_land_borders)
     write_geojson("region_code_labels.geojson", "region_geometric_center_labels", label_features)

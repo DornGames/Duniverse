@@ -586,8 +586,8 @@
               487.5
             ],
             [
-              1248.0,
-              488.19
+              1246.43,
+              487.99
             ]
           ]
         ]
@@ -804,8 +804,8 @@
               687.5
             ],
             [
-              1373.67,
-              686.6
+              1373.65,
+              686.61
             ]
           ]
         ]
@@ -1306,8 +1306,8 @@
               1265.5
             ],
             [
-              1471.13,
-              1264.28
+              1471.12,
+              1264.29
             ]
           ]
         ]
@@ -3106,32 +3106,6 @@
     {
       "type": "Feature",
       "properties": {
-        "region_a": "FN",
-        "region_b": "HX",
-        "boundary_type": "shared_administrative_midline",
-        "source": "nearest_region_label_transition",
-        "straightened_lake_ids": [],
-        "coastline_clipped": true
-      },
-      "geometry": {
-        "type": "MultiLineString",
-        "coordinates": [
-          [
-            [
-              1323.5,
-              457.5
-            ],
-            [
-              1322.5,
-              460.5
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "region_a": "FS",
         "region_b": "LL",
         "boundary_type": "shared_administrative_midline",
@@ -3542,8 +3516,8 @@
               790.5
             ],
             [
-              1383.61,
-              791.28
+              1383.69,
+              791.3
             ]
           ]
         ]
@@ -3684,7 +3658,7 @@
               978.5
             ],
             [
-              1284.88,
+              1284.91,
               976.42
             ]
           ]
@@ -12384,8 +12358,8 @@
               1114.5
             ],
             [
-              1419.4,
-              1114.18
+              1419.13,
+              1114.23
             ]
           ]
         ]
@@ -12470,7 +12444,7 @@
               1167.5
             ],
             [
-              1451.2,
+              1451.16,
               1167.5
             ]
           ]

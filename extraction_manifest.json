@@ -18,7 +18,15 @@
   "ocr_confidence_ge_70": 36,
   "coordinate_system": "source image pixels; not georeferenced",
   "ocean_features": 1,
-  "coastline_segments": 472,
+  "coastline_segments": 1152,
+  "coastline_closed_islands": 218,
+  "coastline_tile_size_px": 1024,
+  "coastline_tile_overlap_px": 48,
+  "coastline_processing": "small_tile_ocean_component_stitch",
+  "coastline_source_layers": [
+    "Administrative Division Map of Donh 2026-no-river-super-big.png",
+    "Administrative Division Map of Donh 2026-no-text-super-big.png"
+  ],
   "cross_border_river_segments": 46,
   "neighbor_border_segments": 1,
   "ocean_pixels": 971243,
