@@ -70,7 +70,7 @@ python extract_hydrology_styles.py
 
 地图坐标使用图像像素，原点位于左上角，横轴向右、纵轴向下；数据未转换为经纬度，也没有进行地理配准。边界和标注位置来自原图提取、矢量化或人工复核，适用于地图展示和项目编辑，不应视为官方 GIS 边界数据。
 
-中文行政区名称根据高清原版地图逐项转录。原图标题、版本、制作方和版权信息见 [`data/map_metadata.json`](data/map_metadata.json)。
+中文行政区名称根据项目附带的《湩国政区清单》逐项核对。原图标题、版本、制作方和版权信息见 [`data/map_metadata.json`](data/map_metadata.json)。
 
 ## 许可
 
