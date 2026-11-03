@@ -809,7 +809,7 @@ const DRAW_ORDER=new Map([
 ]);
 let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
-let drag=null,framePending=false,viewAnimation=null,hoveredCode=null,pixelRatio=1;
+let drag=null,framePending=false,viewAnimation=null,zoomAnimation=null,zoomTarget=null,zoomLastTime=null,hoveredCode=null,pixelRatio=1;
 let records=[],regionRecords=[],regionBounds=new Map();
 const layerInputs=[...document.querySelectorAll('input[data-layer]')];
 const layerVisibility=new Map(layerInputs.map(input=>[input.dataset.layer,input.checked]));
@@ -1290,22 +1290,23 @@ function coverMapView(){
   const width=MAP_W,height=width/aspect;
   return{x:0,y:(MAP_H-height)/2,w:width,h:height};
 }
-function clampView(){
+function clampView(view=vb){
   const aspect=viewAspect(),minHeight=MIN_VIEW_WIDTH*MAP_H/MAP_W;
   const maxHeight=Math.max(MAP_H,MAP_W/aspect);
-  vb.h=Math.min(maxHeight,Math.max(minHeight,vb.h));vb.w=vb.h*aspect;
-  const mx=vb.w*PAN_MARGIN,my=vb.h*PAN_MARGIN;
-  vb.x=Math.max(-mx,Math.min(MAP_W-vb.w+mx,vb.x));
-  vb.y=Math.max(-my,Math.min(MAP_H-vb.h+my,vb.y));
+  view.h=Math.min(maxHeight,Math.max(minHeight,view.h));view.w=view.h*aspect;
+  const mx=view.w*PAN_MARGIN,my=view.h*PAN_MARGIN;
+  view.x=Math.max(-mx,Math.min(MAP_W-view.w+mx,view.x));
+  view.y=Math.max(-my,Math.min(MAP_H-view.h+my,view.y));
+  return view;
 }
-function canvasMetrics(){
+function canvasMetrics(view=vb){
   const rect=canvas.getBoundingClientRect(),width=canvas.clientWidth,height=canvas.clientHeight;
-  const scale=Math.min(width/vb.w,height/vb.h);
-  return{rect,width,height,scale,offsetX:(width-vb.w*scale)/2,offsetY:(height-vb.h*scale)/2};
+  const scale=Math.min(width/view.w,height/view.h);
+  return{rect,width,height,scale,offsetX:(width-view.w*scale)/2,offsetY:(height-view.h*scale)/2};
 }
-function canvasToMap(clientX,clientY){
-  const m=canvasMetrics(),left=m.rect.left+canvas.clientLeft,top=m.rect.top+canvas.clientTop;
-  return{x:vb.x+(clientX-left-m.offsetX)/m.scale,y:vb.y+(clientY-top-m.offsetY)/m.scale};
+function canvasToMap(clientX,clientY,view=vb){
+  const m=canvasMetrics(view),left=m.rect.left+canvas.clientLeft,top=m.rect.top+canvas.clientTop;
+  return{x:view.x+(clientX-left-m.offsetX)/m.scale,y:view.y+(clientY-top-m.offsetY)/m.scale};
 }
 function activeToleranceIndex(scale,tolerances=LOD_TOLERANCES,screenError=.75){
   const target=screenError/Math.max(scale,.001);
@@ -1465,8 +1466,30 @@ function queueApply(){
 function stopViewAnimation(){
   if(viewAnimation!==null){cancelAnimationFrame(viewAnimation);viewAnimation=null;}
 }
+function stopZoomAnimation(){
+  if(zoomAnimation!==null){cancelAnimationFrame(zoomAnimation);zoomAnimation=null;}
+  zoomTarget=null;zoomLastTime=null;
+}
+function animateZoom(){
+  if(zoomAnimation!==null)return;
+  function frame(now){
+    const target=zoomTarget;
+    if(!target){zoomAnimation=null;zoomLastTime=null;return;}
+    const elapsed=zoomLastTime===null?16:Math.min(64,Math.max(0,now-zoomLastTime));
+    zoomLastTime=now;
+    const amount=1-Math.exp(-elapsed/70);
+    vb={x:vb.x+(target.x-vb.x)*amount,y:vb.y+(target.y-vb.y)*amount,
+      w:vb.w+(target.w-vb.w)*amount,h:vb.h+(target.h-vb.h)*amount};
+    const remaining=Math.max(Math.abs(vb.x-target.x)/Math.max(1,target.w),
+      Math.abs(vb.y-target.y)/Math.max(1,target.h),Math.abs(vb.w-target.w)/Math.max(1,target.w),
+      Math.abs(vb.h-target.h)/Math.max(1,target.h));
+    if(remaining<.001){vb={...target};zoomAnimation=null;zoomTarget=null;zoomLastTime=null;apply();return;}
+    apply();zoomAnimation=requestAnimationFrame(frame);
+  }
+  zoomAnimation=requestAnimationFrame(frame);
+}
 function animateView(target,duration=520){
-  stopViewAnimation();
+  stopViewAnimation();stopZoomAnimation();
   if(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){vb=target;apply();return;}
   const start={...vb};let startTime=null;
   function frame(now){
@@ -1479,12 +1502,22 @@ function animateView(target,duration=520){
   }
   viewAnimation=requestAnimationFrame(frame);
 }
-function zoom(factor,cx=vb.x+vb.w/2,cy=vb.y+vb.h/2){
+function zoom(factor,clientX=null,clientY=null){
   stopViewAnimation();
+  const current={...vb},base=zoomTarget??vb;
+  let anchorX=current.x+current.w/2,anchorY=current.y+current.h/2,fractionX=.5,fractionY=.5;
+  if(clientX!==null&&clientY!==null){
+    const point=canvasToMap(clientX,clientY,current),metrics=canvasMetrics(current);
+    const left=metrics.rect.left+canvas.clientLeft,top=metrics.rect.top+canvas.clientTop;
+    anchorX=point.x;anchorY=point.y;
+    fractionX=(clientX-left-metrics.offsetX)/(metrics.scale*current.w);
+    fractionY=(clientY-top-metrics.offsetY)/(metrics.scale*current.h);
+  }
   const aspect=viewAspect(),minHeight=MIN_VIEW_WIDTH*MAP_H/MAP_W;
-  const maxHeight=Math.max(MAP_H,MAP_W/aspect);
-  const height=Math.max(minHeight,Math.min(maxHeight,vb.h*factor)),width=height*aspect,ratio=height/vb.h;
-  vb.x=cx-(cx-vb.x)*ratio;vb.y=cy-(cy-vb.y)*ratio;vb.w=width;vb.h=height;apply();
+  const maxHeight=Math.max(MAP_H,MAP_W/aspect),height=Math.max(minHeight,Math.min(maxHeight,base.h*factor)),width=height*aspect;
+  const target=clampView({x:anchorX-fractionX*width,y:anchorY-fractionY*height,w:width,h:height});
+  if(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){stopZoomAnimation();vb=target;apply();return;}
+  zoomTarget=target;animateZoom();
 }
 function zoomToRegion(code,animate=true){
   const bounds=regionBounds.get(code);if(!bounds)return;
@@ -1493,7 +1526,7 @@ function zoomToRegion(code,animate=true){
   const width=height*aspect;
   const centerX=bounds.x+bounds.width/2,centerY=bounds.y+bounds.height/2;
   const target={x:centerX-width/2,y:centerY-height/2,w:width,h:height};
-  if(animate)animateView(target);else{stopViewAnimation();vb=target;apply();}
+  if(animate)animateView(target);else{stopViewAnimation();stopZoomAnimation();vb=target;apply();}
 }
 function selectRegion(code,animate=true){
   if(!regionBounds.has(code))return;
@@ -1511,6 +1544,7 @@ function hitTestRegion(point){
   return null;
 }
 function resizeCanvas(){
+  stopZoomAnimation();
   const width=canvas.clientWidth,height=canvas.clientHeight;
   if(width&&height){
     const aspect=width/height;
@@ -1567,12 +1601,14 @@ for(const group of document.querySelectorAll('[data-layer-group]')){
 }
 regionJump.addEventListener('change',()=>{if(regionJump.value)selectRegion(regionJump.value,true)});
 canvas.addEventListener('wheel',event=>{
-  event.preventDefault();const point=canvasToMap(event.clientX,event.clientY);
-  zoom(event.deltaY<0?.88:1.14,point.x,point.y);
+  event.preventDefault();
+  const deltaScale=event.deltaMode===1?16:event.deltaMode===2?canvas.clientHeight:1;
+  const delta=Math.max(-240,Math.min(240,event.deltaY*deltaScale));
+  zoom(Math.exp(delta*.0015),event.clientX,event.clientY);
 },{passive:false});
 canvas.addEventListener('pointerdown',event=>{
   if(event.button!==0)return;
-  stopViewAnimation();
+  stopViewAnimation();stopZoomAnimation();
   drag={x:event.clientX,y:event.clientY,vx:vb.x,vy:vb.y,moved:false,code:hitTestRegion(canvasToMap(event.clientX,event.clientY))};
   canvas.classList.add('dragging');canvas.setPointerCapture(event.pointerId);
 });
@@ -1600,17 +1636,17 @@ canvas.addEventListener('lostpointercapture',endDrag);
 canvas.addEventListener('pointerleave',()=>{if(!drag&&hoveredCode){hoveredCode=null;canvas.classList.remove('overRegion');draw()}});
 canvas.addEventListener('keydown',event=>{
   const horizontalDistance=vb.w*.08,verticalDistance=vb.h*.08;
-  if(event.key==='ArrowLeft'){vb.x-=horizontalDistance;event.preventDefault();apply()}
-  else if(event.key==='ArrowRight'){vb.x+=horizontalDistance;event.preventDefault();apply()}
-  else if(event.key==='ArrowUp'){vb.y-=verticalDistance;event.preventDefault();apply()}
-  else if(event.key==='ArrowDown'){vb.y+=verticalDistance;event.preventDefault();apply()}
+  if(event.key==='ArrowLeft'){stopViewAnimation();stopZoomAnimation();vb.x-=horizontalDistance;event.preventDefault();apply()}
+  else if(event.key==='ArrowRight'){stopViewAnimation();stopZoomAnimation();vb.x+=horizontalDistance;event.preventDefault();apply()}
+  else if(event.key==='ArrowUp'){stopViewAnimation();stopZoomAnimation();vb.y-=verticalDistance;event.preventDefault();apply()}
+  else if(event.key==='ArrowDown'){stopViewAnimation();stopZoomAnimation();vb.y+=verticalDistance;event.preventDefault();apply()}
   else if(event.key==='+'||event.key==='='){zoom(.8);event.preventDefault()}
   else if(event.key==='-'||event.key==='_'){zoom(1.25);event.preventDefault()}
-  else if(event.key==='Home'){stopViewAnimation();vb=fullMapView();apply();event.preventDefault()}
+  else if(event.key==='Home'){stopViewAnimation();stopZoomAnimation();vb=fullMapView();apply();event.preventDefault()}
 });
 document.getElementById('zoomIn').onclick=()=>zoom(.8);
 document.getElementById('zoomOut').onclick=()=>zoom(1.25);
-document.getElementById('fit').onclick=()=>{stopViewAnimation();vb=fullMapView();apply()};
+document.getElementById('fit').onclick=()=>{stopViewAnimation();stopZoomAnimation();vb=fullMapView();apply()};
 const mapPanel=document.getElementById('mapPanel'),panelToggle=document.getElementById('togglePanel');
 function setMapPanelOpen(open){
   mapPanel.hidden=!open;panelToggle.setAttribute('aria-expanded',String(open));
