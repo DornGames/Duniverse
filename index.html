@@ -667,9 +667,11 @@ const ctx=canvas.getContext('2d',{alpha:false,desynchronized:true});
 const hitCanvas=document.createElement('canvas');
 const hitCtx=hitCanvas.getContext('2d');
 const SOURCE_W=2048,MAP_W=2300,MAP_H=1448,DETAIL_LIMIT=1380,RED_MARKER_DETAIL_LIMIT=1900,PAN_MARGIN=.12;
+const MIN_VIEW_WIDTH=60,COASTLINE_SCREEN_ERROR=2;
 const FIXED_CODE_FONT_PX=16;
-// Coastlines keep increasingly fine geometry as the view approaches the map.
+// Coastlines get their own coarser overview and finer close-up geometry levels.
 const LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];
+const COASTLINE_LOD_TOLERANCES=[.12,.25,.5,1,2,4,8,16];
 const DETAIL_LAYERS=new Set(['labels','blackMarkers']);
 const DRAW_ORDER=new Map([
   ['oceanFill',0],['coastlineFills',1],['regions',1],['lakes',2],['rivers',3],['canals',4],['canalTicks',5],
@@ -790,7 +792,8 @@ function createRecord(element,drawGroup,layerId){
       ['rivers','canals','seasonalRivers','crossBorderRivers','coastline'].includes(layerId)?2:0;
     record.code=element.dataset.code||null;
     record.fill=isRegion?'none':record.fill;
-    record.variants=LOD_TOLERANCES.map(tolerance=>{
+    const tolerances=layerId==='coastline'?COASTLINE_LOD_TOLERANCES:LOD_TOLERANCES;
+    record.variants=tolerances.map(tolerance=>{
       const cornerRadius=layerId==='coastline'?Math.min(radius,tolerance*.75):radius;
       const data=subpaths.map(subpath=>{
         const reduced=subpath.closed?simplifyClosed(subpath.points.slice(),tolerance):simplifyOpen(subpath.points,tolerance);
@@ -849,7 +852,7 @@ buildRegionIndex();
 sourceSvg.remove();
 
 function clampView(){
-  vb.w=Math.min(MAP_W,Math.max(150,vb.w));vb.h=vb.w*MAP_H/MAP_W;
+  vb.w=Math.min(MAP_W,Math.max(MIN_VIEW_WIDTH,vb.w));vb.h=vb.w*MAP_H/MAP_W;
   const mx=vb.w*PAN_MARGIN,my=vb.h*PAN_MARGIN;
   vb.x=Math.max(-mx,Math.min(MAP_W-vb.w+mx,vb.x));
   vb.y=Math.max(-my,Math.min(MAP_H-vb.h+my,vb.y));
@@ -863,10 +866,10 @@ function canvasToMap(clientX,clientY){
   const m=canvasMetrics(),left=m.rect.left+canvas.clientLeft,top=m.rect.top+canvas.clientTop;
   return{x:vb.x+(clientX-left-m.offsetX)/m.scale,y:vb.y+(clientY-top-m.offsetY)/m.scale};
 }
-function activeToleranceIndex(scale){
-  const target=.75/Math.max(scale,.001);
-  const index=LOD_TOLERANCES.findIndex(tolerance=>tolerance>=target);
-  return index<0?LOD_TOLERANCES.length-1:index;
+function activeToleranceIndex(scale,tolerances=LOD_TOLERANCES,screenError=.75){
+  const target=screenError/Math.max(scale,.001);
+  const index=tolerances.findIndex(tolerance=>tolerance>=target);
+  return index<0?tolerances.length-1:index;
 }
 function overlaps(bounds,view,margin=0){
   return bounds.x+bounds.width>=view.x-margin&&bounds.x<=view.x+view.width+margin&&
@@ -918,6 +921,7 @@ function draw(){
   ctx.setTransform(pixelRatio*scale,0,0,pixelRatio*scale,pixelRatio*(offsetX-vb.x*scale),pixelRatio*(offsetY-vb.y*scale));
   ctx.lineJoin='round';ctx.lineCap='round';
   const view={x:vb.x,y:vb.y,width:vb.w,height:vb.h},toleranceIndex=activeToleranceIndex(scale);
+  const coastlineToleranceIndex=activeToleranceIndex(scale,COASTLINE_LOD_TOLERANCES,COASTLINE_SCREEN_ERROR);
   const detailed=vb.w<=DETAIL_LIMIT;
   for(const record of records){
     if(layerVisibility.get(record.layerId)===false)continue;
@@ -936,7 +940,7 @@ function draw(){
     }
     if(['rivers','canals','seasonalRivers','crossBorderRivers'].includes(record.layerId)&&
        Math.max(record.bounds.width,record.bounds.height)*scale<.7)continue;
-    drawRecord(record,toleranceIndex,scale);
+    drawRecord(record,record.layerId==='coastline'?coastlineToleranceIndex:toleranceIndex,scale);
   }
 }
 function apply(){clampView();draw()}
@@ -963,7 +967,7 @@ function animateView(target,duration=520){
 }
 function zoom(factor,cx=vb.x+vb.w/2,cy=vb.y+vb.h/2){
   stopViewAnimation();
-  const width=Math.max(150,Math.min(MAP_W,vb.w*factor)),height=width*MAP_H/MAP_W;
+  const width=Math.max(MIN_VIEW_WIDTH,Math.min(MAP_W,vb.w*factor)),height=width*MAP_H/MAP_W;
   vb.x=cx-(cx-vb.x)*(width/vb.w);vb.y=cy-(cy-vb.y)*(height/vb.h);vb.w=width;vb.h=height;apply();
 }
 function zoomToRegion(code,animate=true){
