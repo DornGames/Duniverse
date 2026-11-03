@@ -658,6 +658,35 @@ def update_province_capital_tongue_group(
     return updated
 
 
+def update_city_tongue_names_constant(
+    source: str, city_tongue_names: dict[str, str]
+) -> str:
+    declaration = (
+        "const CITY_TONGUE_NAMES="
+        + json.dumps(city_tongue_names, ensure_ascii=False, indent=2)
+        + ";"
+    )
+    updated, count = re.subn(
+        r"const CITY_TONGUE_NAMES\s*=\s*\{.*?\};",
+        declaration,
+        source,
+        count=1,
+        flags=re.DOTALL,
+    )
+    if count == 1:
+        return updated
+
+    updated, count = re.subn(
+        r"(?=const CITY_LABELS=\[)",
+        lambda _: declaration + "\n",
+        source,
+        count=1,
+    )
+    if count != 1:
+        raise RuntimeError("Could not insert the Canvas city Tongue-name mapping")
+    return updated
+
+
 def move_group_after(source: str, moving_id: str, target_id: str) -> str:
     moving_pattern = rf'<g id="{re.escape(moving_id)}"[^>]*>.*?</g>'
     moving_match = re.search(moving_pattern, source, flags=re.DOTALL)
@@ -683,6 +712,7 @@ def update_render_files(
     province_names: dict[str, str],
     province_tongue_names: dict[str, str],
     province_capital_tongue_names: dict[str, str],
+    city_tongue_names: dict[str, str],
     coastlines: list[dict],
     ocean_surface_path: str,
 ) -> None:
@@ -990,7 +1020,7 @@ def update_render_files(
         "['specialCapitalMarker',14],['nationalCapitalMarker',14],"
         "['regionCodes',15],['regionNames',16],['regionTongueNames',17],"
         "['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],"
-        "['nationalCapitalLabels',20],['cityLabels',21]"
+        "['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22]"
     )
     draw_order_match = re.search(
         r"\['provinceBoundaries',9\].*?\['regionNames',(?:15|16)\]"
@@ -998,7 +1028,8 @@ def update_render_files(
         r"(?:,\['provinceCapitalLabels',(?:17|18)\])?"
         r"(?:,\['provinceCapitalTongueLabels',(?:18|19)\])?"
         r"(?:,\['nationalCapitalLabels',(?:18|19|20)\])?"
-        r"(?:,\['cityLabels',(?:19|20|21)\])?",
+        r"(?:,\['cityLabels',(?:19|20|21)\])?"
+        r"(?:,\['cityTongueLabels',(?:20|21|22)\])?",
         index,
         re.DOTALL,
     )
@@ -1054,6 +1085,7 @@ def update_render_files(
     index = update_province_capital_tongue_group(
         index, province_capital_tongue_names
     )
+    index = update_city_tongue_names_constant(index, city_tongue_names)
     index_path.write_text(index, encoding="utf-8", newline="\n")
 
 
@@ -1078,6 +1110,9 @@ def main() -> None:
     )
     province_capital_tongue_names = json.loads(
         (DATA / "province_capital_tongue_names.json").read_text(encoding="utf-8")
+    )
+    city_tongue_names = json.loads(
+        (DATA / "city_tongue_names.json").read_text(encoding="utf-8")
     )
     (
         major_region_membership,
@@ -1198,6 +1233,7 @@ def main() -> None:
         province_names,
         province_tongue_names,
         province_capital_tongue_names,
+        city_tongue_names,
         coastlines,
         ocean_surface_path,
     )

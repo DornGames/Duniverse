@@ -768,6 +768,7 @@ aside[hidden]{display:none}
  <div class="layerChildren" id="cityLayers" role="group" aria-label="&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x53ca;&#x7701;&#x4f1a;&#x5b50;&#x56fe;&#x5c42;" hidden>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#303a40"></span><span class="layerName">&#x57ce;&#x5e02;</span><input type="checkbox" data-layer="blackMarkers" checked aria-label="&#x663e;&#x793a;&#x57ce;&#x5e02;&#x6807;&#x8bb0;"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#111"></span><span class="layerName">&#x57ce;&#x5e02;&#x540d;&#x79f0;</span><input type="checkbox" data-layer="cityLabels" checked aria-label="&#x663e;&#x793a;&#x57ce;&#x5e02;&#x540d;&#x79f0;"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#111"></span><span class="layerName">&#x57ce;&#x5e02;&#x6e69;&#x8bed;&#x540d;&#x79f0;</span><input type="checkbox" data-layer="cityTongueLabels" checked aria-label="&#x663e;&#x793a;&#x57ce;&#x5e02;&#x6e69;&#x8bed;&#x540d;&#x79f0;"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#c32631"></span><span class="layerName">&#x9996;&#x90fd;&#x6807;&#x8bc6;</span><input type="checkbox" data-layer="nationalCapitalMarker" checked aria-label="&#x663e;&#x793a;&#x9996;&#x90fd;&#x6807;&#x8bc6;"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#a91924"></span><span class="layerName">&#x9996;&#x90fd;&#x540d;&#x79f0;</span><input type="checkbox" data-layer="nationalCapitalLabels" checked aria-label="&#x663e;&#x793a;&#x9996;&#x90fd;&#x540d;&#x79f0;"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#e66a62"></span><span class="layerName">&#x7701;&#x4f1a;&#x6807;&#x8bc6;</span><input type="checkbox" data-layer="redMarkers" checked aria-label="&#x663e;&#x793a;&#x7701;&#x4f1a;&#x6807;&#x8bc6;"></label>
@@ -801,6 +802,7 @@ const FIXED_CODE_FONT_PX=16;
 const FIXED_CAPITAL_LABEL_FONT_PX=13;
 const FIXED_CAPITAL_TONGUE_LABEL_FONT_PX=10,FIXED_CAPITAL_LABEL_LINE_OFFSET_PX=6;
 const FIXED_CITY_LABEL_FONT_PX=13;
+const FIXED_CITY_TONGUE_LABEL_FONT_PX=10,FIXED_CITY_LABEL_LINE_OFFSET_PX=6;
   const FIXED_REGION_NAME_FONT_PX=11,FIXED_REGION_TONGUE_FONT_PX=10,FIXED_REGION_LABEL_LINE_OFFSET_PX=6,FIXED_MAJOR_REGION_NAME_FONT_PX=12,FIXED_MAJOR_REGION_TONGUE_FONT_PX=10;
 // Land and sea fills get coarser overview and finer close-up geometry levels.
 const LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];
@@ -808,7 +810,7 @@ const COASTAL_FILL_LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];
 const DETAIL_LAYERS=new Set(['regionCodes','regionNames','regionTongueNames','blackMarkers']);
 const DRAW_ORDER=new Map([
   ['oceanFill',0],['coastlineFills',1],['regions',1],['lakes',2],['rivers',3],['canals',4],['canalTicks',5],
-  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['majorRegionNames',11],['nationalBorder',12],['blackMarkers',13],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21]
+  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['majorRegionNames',11],['nationalBorder',12],['blackMarkers',13],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22]
 ]);
 let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
@@ -980,6 +982,213 @@ function buildRegionIndex(){
   }
 }
 
+const CITY_TONGUE_NAMES={
+  "圣金丰市": "Stwhenuref Tork",
+  "尔比市": "Elbid Tork",
+  "米共市": "Chdab Tork",
+  "鱼小市": "Ytin Tork",
+  "绿水市": "Haohfak Tork",
+  "几丁市": "Swkdeb Tork",
+  "马德市": "Madêr Tork",
+  "地鼠市": "Blentonh Tork",
+  "摩勒斯特市": "Mlest Tork",
+  "冰狗市": "Gog Tork",
+  "以巴市": "Daibal Tork",
+  "昌阁市": "Clintork",
+  "卷沟市": "Beniuob Tork",
+  "梅德市": "Mæd Tork",
+  "东冬市": "Cens’hdod Tork",
+  "菠萝市": "Lingef Tork",
+  "莱菁市": "Laich Tork",
+  "崤瑾托克市": "Sorchtork",
+  "威猛市": "Ueclin Tork",
+  "格里亚奇市": "Ghriach Tork",
+  "马迪帕德市": "Madipadœr Tork",
+  "欧干尼克市": "Wkanika Tork",
+  "长岭市": "Zoyo Gos",
+  "瓦史鲁姆市": "Wastm Tork",
+  "德那索市": "Densor Tork",
+  "汉乔布市": "Henship Tork",
+  "蜂蜜市": "Femjyc Tork",
+  "明光市": "Chominh Tork",
+  "尼干马市": "Nigmaj Tork",
+  "提琴城": "Kaptlshdonhfak Tork",
+  "也平市": "Uichtork",
+  "无穷市": "Kecyc Tork",
+  "杰格市": "Ueg Tork",
+  "咸蛋市": "Kapthaich Tork",
+  "天龙市": "Naphitork",
+  "三林市": "Hisdintsfaks Tork",
+  "欧朝市": "Wcios Tork",
+  "薛梅托克市": "Shmætork",
+  "莱布特瑞市": "Labtar Tork",
+  "大声江市": "Uenuronn Tork",
+  "特拉斯市": "Tlash Tork",
+  "德色市": "Ders Tork",
+  "葫芦市": "Binoe Tork",
+  "加马市": "Gam Tork",
+  "马勒戈壁市": "Malgbid Tork",
+  "旺克市": "Vanke Tork",
+  "沁园市": "Shmedon Tork",
+  "百灵鸟市": "Betgou Tork",
+  "尼梅市": "Nimæd Tork",
+  "留春市": "Loctork",
+  "香蕉市": "Lonzishfak Tork",
+  "新瓦莱莉市": "Uydvalæhi Tork",
+  "治文武市": "Bingtork",
+  "别林斯𣿅市": "Belenstonh Tork",
+  "尼塔市": "Etatork",
+  "阿尔法市": "Arf Tork",
+  "加克亚斯市": "Uakac Tork",
+  "坚果市": "Pivz Tork",
+  "番茄市": "Tonbwch Tork",
+  "深原市": "Gesh Tork",
+  "约恩市": "Yorn Tork",
+  "派城": "Paitork",
+  "苹果市": "Korndfak Tork",
+  "红柚市": "Bejanposdetfak Tork",
+  "法因市": "Faitork",
+  "南希市": "Nacia Tork",
+  "卡吉市": "Kau Tork",
+  "龙子山市": "Loclvin Tork",
+  "星环市": "Satornia Tork",
+  "六七市": "Sabi Tork",
+  "四银市": "Donlwft Tork",
+  "西尔特市": "Shiêrtork",
+  "松杉市": "Joms Tork",
+  "雷斯特卢市": "Raistm Tork",
+  "斯科布勒思市": "Skeblos Tork",
+  "乔治市": "Cyh Tork",
+  "斯莫里亚市": "Smolaitork",
+  "通安市": "Tongrabac Tork",
+  "𣿅安市": "Dorian Tork",
+  "小号市": "Baitork",
+  "鲁城": "Zenltork",
+  "三维市": "Shmekeb Tork",
+  "小米市": "Tonhswj Tork",
+  "碱硼托克市": "Jemptork",
+  "米巴市": "Ladab Tork",
+  "硶州市": "Cnimatork",
+  "法尼市": "Fanmagop Tork",
+  "碱锌托克市": "Uenshtork",
+  "达希市": "Desh Tork",
+  "木子山市": "Kfechvin Tork",
+  "拉堡市": "Labrotork",
+  "新高年市": "Uydgorn Tork",
+  "皮德菲拉市": "Paiaflar Tork",
+  "仙人掌市": "Pviz Tork",
+  "欧特曼市": "Wtma Tork",
+  "多格市": "Dog Tork",
+  "周一城": "Zœitork",
+  "盛云市": "Senuwin Tork",
+  "椰树市": "Dod Tork",
+  "核平城": "Viophashtork",
+  "泉费市": "Bakin Tork",
+  "玛斯特贝市": "Mastapaid Tork",
+  "泡面市": "Tonhaichfak Tork",
+  "重草市": "Tondon Tork",
+  "远舟市": "Geshnait Tork",
+  "昌眺市": "Chant Tork",
+  "尼哥市": "Euian Tork",
+  "书华市": "Enswh Tork",
+  "金瓶古镇": "Uinpsidfaktornk",
+  "汤平市": "Uenimad Tork",
+  "小白市": "Zenclin Tork",
+  "欧特𣿅市": "Wtdon Tork",
+  "后来市": "Hynz Tork",
+  "红林市": "Bejansdintsfaks Tork",
+  "花火市": "Tonhaid Tork",
+  "棕榈市": "Vilishthiktfak Tork",
+  "甲鱼市": "Uaitork",
+  "羊驼市": "Conmad Tork",
+  "顺风市": "Senfêr Tork",
+  "欧榭市": "Wshit Tork",
+  "江南市": "Dlihc Tork",
+  "多恩市": "Dorn Tork",
+  "卫星市": "Satfak Tork",
+  "格拉巴茨市": "Grabac Tork",
+  "眺高市": "Tonhsed Tork",
+  "拉姆达市": "Lamd Tork",
+  "天星市": "Naphidsoton Tork",
+  "红滨市": "Chrionb Tork",
+  "爱勒拉夫市": "Irelavid Tork",
+  "法克市": "Fakin Tork",
+  "斯朗姆皮特市": "Strampid Tork",
+  "星穹市": "Tonhev Tork",
+  "泡椒市": "Uiufak Tork",
+  "彤管市": "Tonk Tork",
+  "欧米亚市": "Wmmia Tork",
+  "卡斯瑞特市": "Kasthet Tork",
+  "观山市": "Vinfak Tork",
+  "布森敏市": "Posmid Tork",
+  "摩尔市": "Mortork",
+  "亚斯市": "Astork",
+  "圣𣿅芬市": "Stwdoclif Tork",
+  "马奇市": "Mach Tork",
+  "冻梨市": "Bsenksdohtfak Tork",
+  "金炮市": "Uinptwtan Tork",
+  "拉贝斯市": "Labes Tork",
+  "四翼市": "Donlid Tork",
+  "橘子市": "Nephon Tork",
+  "加克西市": "Uakic Tork",
+  "三十市": "Hidê Tork",
+  "贝塔市": "Hbait Tork",
+  "巴伽市": "Bag Tork",
+  "𣿅山市": "Donvin Tork",
+  "佩奇市": "Uou Tork",
+  "甘蔗市": "Nenkfak Tork",
+  "理想之树市": "Haoriasdint Tork",
+  "皓月市": "Kaptlshdon Tork",
+  "钒铝市": "Val Tork",
+  "乡江市": "Tonhuys Tork",
+  "寒秋市": "Tonhshmæ Tork",
+  "法特市": "Fat Tork",
+  "欧米伽市": "Wmmek Tork",
+  "凤凰市": "Enadohlfak Tork",
+  "康家庄市": "Kensf Tork",
+  "新友市": "Sjotork",
+  "维克多市": "Viktork",
+  "尤西市": "Uosh Tork",
+  "金鱼市": "Henushêrli Tork",
+  "帕斯卡市": "Basgaltork",
+  "洛城": "Rœtork",
+  "圣𣿅瀚市": "Stwvictorn Tork",
+  "氨醛市": "Gwangtork",
+  "成岗市": "Ucenc Tork",
+  "𣿅环市": "Sadornia Tork Tork",
+  "土豆市": "Pomt Tork",
+  "金汤湖市": "Sbench Tork",
+  "飞天市": "Tesenf Tork",
+  "布提里申市": "Britlis Tork",
+  "安第里亚市": "Atliad Tork",
+  "宾塔库兹市": "Bintakwc Tork",
+  "兰花市": "Kaptliadfak Tork",
+  "基哥市": "Zoft Tork",
+  "山梨市": "Vinsdohtfak Tork",
+  "哥尔德市": "Gœrt Tork",
+  "红尾市": "Hwedorn Tork",
+  "巴斯鲁姆市": "Baslom Tork",
+  "牛耶市": "Noj Tork",
+  "四五市": "Donhao Tork",
+  "铁山市": "Têsenk Tork",
+  "贾斯帕市": "Uaspatork",
+  "圣雅宾市": "Stwuasbingœ Tork",
+  "𣿅儿塔市": "Dorta Tork",
+  "山林丽花市": "Tonhhihfak Tork",
+  "三色瑾市": "Soutork",
+  "佳景市": "Uautork",
+  "鸭梨市": "Sdohtfak Tork",
+  "雀食市": "Ches Tork",
+  "博恩市": "Born Tork",
+  "金榜市": "Lenhlin Tork",
+  "圣诞城": "Kris Tork",
+  "克劳迪亚市": "Klwta Tork",
+  "紫沙市": "Kaptasab Tork",
+  "梅花山市": "Shmævin Tork",
+  "四十市": "Dondê Tork",
+  "威利亚市": "Viliad Tork",
+  "伊府市": "Iftork"
+};
 const CITY_LABELS=[
   [915.15,107.85,-6,0,'end','大声江市'],
   [990.59,152.98,-6,0,'end','洛城'],
@@ -1268,6 +1477,30 @@ for(const [pointX,pointY,offsetX,offsetY,anchor,name] of CITY_LABELS){
   cityLabelLayer.append(label);
 }
 sourceSvg.append(cityLabelLayer);
+const cityTongueLabelLayer=document.createElementNS('http://www.w3.org/2000/svg','g');
+cityTongueLabelLayer.id='cityTongueLabels';
+cityTongueLabelLayer.dataset.layer='cityTongueLabels';
+cityTongueLabelLayer.setAttribute('pointer-events','none');
+cityTongueLabelLayer.setAttribute('font-family','Arial,sans-serif');
+cityTongueLabelLayer.setAttribute('font-size','10');
+cityTongueLabelLayer.setAttribute('font-weight','600');
+cityTongueLabelLayer.setAttribute('fill','#111');
+for(const [pointX,pointY,offsetX,offsetY,anchor,name] of CITY_LABELS){
+  const tongueName=CITY_TONGUE_NAMES[name];
+  if(!tongueName)continue;
+  const label=document.createElementNS('http://www.w3.org/2000/svg','text');
+  label.setAttribute('x',(pointX+offsetX).toFixed(2));
+  label.setAttribute('y',(pointY+offsetY).toFixed(2));
+  label.setAttribute('text-anchor',anchor);
+  label.setAttribute('data-language','tongue');
+  label.setAttribute('dominant-baseline','central');
+  label.setAttribute('stroke','#fff');
+  label.setAttribute('stroke-width','1.2');
+  label.setAttribute('paint-order','stroke');
+  label.textContent=tongueName;
+  cityTongueLabelLayer.append(label);
+}
+sourceSvg.append(cityTongueLabelLayer);
 
 // Build Canvas paths from the extracted geometry, then remove the source SVG from the page.
 collectRecords(sourceSvg);
@@ -1382,9 +1615,10 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
   }else if(record.tag==='text'){
     const isRegionCode=record.layerId==='regionCodes',isRegionName=record.layerId==='regionNames',isRegionTongueName=record.layerId==='regionTongueNames';
     const isProvinceCapitalLabel=record.layerId==='provinceCapitalLabels',isProvinceCapitalTongueLabel=record.layerId==='provinceCapitalTongueLabels';
+    const isCityTongueLabel=record.layerId==='cityTongueLabels';
     const isMajorRegionName=record.drawGroup==='majorRegionNames',isCapitalLabel=isProvinceCapitalLabel||record.layerId==='nationalCapitalLabels',isCityLabel=record.layerId==='cityLabels';
     const isMajorRegionTongueName=isMajorRegionName&&record.language==='tongue';
-    const fontSize=isRegionName?FIXED_REGION_NAME_FONT_PX:isRegionTongueName?FIXED_REGION_TONGUE_FONT_PX:isProvinceCapitalTongueLabel?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:isMajorRegionTongueName?FIXED_MAJOR_REGION_TONGUE_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:isCityLabel?FIXED_CITY_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
+    const fontSize=isRegionName?FIXED_REGION_NAME_FONT_PX:isRegionTongueName?FIXED_REGION_TONGUE_FONT_PX:isProvinceCapitalTongueLabel?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:isCityTongueLabel?FIXED_CITY_TONGUE_LABEL_FONT_PX:isMajorRegionTongueName?FIXED_MAJOR_REGION_TONGUE_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:isCityLabel?FIXED_CITY_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
     ctx.font=record.font.replace(/[\d.]+px/,`${fontSize/scale}px`);ctx.textBaseline=record.textBaseline;
     let textX=record.x,textY=record.y,textAlign=record.textAlign,displayText=record.text;
     const tongueNamesVisible=layerVisibility.get('regionTongueNames')!==false;
@@ -1406,6 +1640,11 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
       textY-=FIXED_CAPITAL_LABEL_LINE_OFFSET_PX/scale;
     }else if(isProvinceCapitalTongueLabel&&layerVisibility.get('provinceCapitalLabels')!==false){
       textY+=FIXED_CAPITAL_LABEL_LINE_OFFSET_PX/scale;
+    }
+    if(isCityLabel&&layerVisibility.get('cityTongueLabels')!==false&&CITY_TONGUE_NAMES[record.text]){
+      textY-=FIXED_CITY_LABEL_LINE_OFFSET_PX/scale;
+    }else if(isCityTongueLabel&&layerVisibility.get('cityLabels')!==false){
+      textY+=FIXED_CITY_LABEL_LINE_OFFSET_PX/scale;
     }
     ctx.textAlign=textAlign;
     if(record.stroke!=='none'&&record.lineWidth>0){
@@ -1447,7 +1686,7 @@ function draw(){
     if(record.layerId==='redMarkers'&&zoomWidth>RED_MARKER_DETAIL_LIMIT)continue;
     if(record.layerId==='nationalCapitalMarker'&&zoomWidth>RED_MARKER_DETAIL_LIMIT)continue;
     if((record.layerId==='provinceCapitalLabels'||record.layerId==='provinceCapitalTongueLabels'||record.layerId==='nationalCapitalLabels')&&zoomWidth>CAPITAL_LABEL_DETAIL_LIMIT)continue;
-    if(record.layerId==='cityLabels'&&zoomWidth>CITY_LABEL_DETAIL_LIMIT)continue;
+    if((record.layerId==='cityLabels'||record.layerId==='cityTongueLabels')&&zoomWidth>CITY_LABEL_DETAIL_LIMIT)continue;
     if(!detailed&&DETAIL_LAYERS.has(record.layerId))continue;
     if(isAdministrativeLabel&&regionLabelOpacity<=0)continue;
     const fixedSizeMargin=record.tag==='circle'
