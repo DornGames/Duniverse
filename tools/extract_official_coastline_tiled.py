@@ -24,7 +24,7 @@ from typing import Iterable
 import cv2
 import numpy as np
 from PIL import Image
-from shapely.geometry import LineString, box
+from shapely.geometry import LineString, Polygon, box
 from shapely.ops import linemerge, unary_union
 
 Image.MAX_IMAGE_PIXELS = None
@@ -359,13 +359,13 @@ def trace_tile(
     image_width: int,
     image_height: int,
     diagnostics_dir: Path | None,
-) -> list[LineString]:
+) -> tuple[list[LineString], np.ndarray | None, int, int]:
     core_rgb = np.asarray(
         source.crop((tile.x, tile.y, tile.x + tile.width, tile.y + tile.height)).convert("RGB")
     )
     core_ocean = selected_core_mask(core_rgb, tile, union_find, ocean_roots)
     if not core_ocean.any():
-        return []
+        return [], None, 0, 0
 
     window_rgb, x0, y0 = tile_window(source, tile, overlap, image_width, image_height)
     window_no_text, _, _ = tile_window(no_text, tile, overlap, image_width, image_height)
@@ -379,7 +379,7 @@ def trace_tile(
     selected_local_ids = np.unique(window_core_labels[core_ocean])
     selected_local_ids = selected_local_ids[selected_local_ids != 0]
     if len(selected_local_ids) == 0:
-        return []
+        return [], None, x0, y0
     selected_window = np.isin(window_labels, selected_local_ids)
     selected_window, removed = remove_text_and_filled_markers(
         window_rgb, window_no_text, selected_window
@@ -412,7 +412,163 @@ def trace_tile(
         Image.fromarray(overlay).save(
             diagnostics_dir / f"tile_{tile.x:05d}_{tile.y:05d}.png"
         )
-    return lines
+    return lines, selected_window, x0, y0
+
+
+def tile_ocean_polygons(
+    mask: np.ndarray, origin_x: int, origin_y: int
+) -> tuple[list[Polygon], list[Polygon]]:
+    """Convert one cleaned tile core into detailed and seam-closed polygons."""
+    contours, hierarchy = cv2.findContours(
+        mask.astype(np.uint8), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
+    )
+    if hierarchy is None:
+        return [], []
+
+    detailed_features: list[Polygon] = []
+    fill_features: list[Polygon] = []
+    tile_hierarchy = hierarchy[0]
+    for index, contour in enumerate(contours):
+        if tile_hierarchy[index][3] != -1 or len(contour) < 3:
+            continue
+
+        def ring_coordinates(ring: np.ndarray) -> list[tuple[float, float]]:
+            return [
+                (
+                    (origin_x + float(point[0][0]) + 0.5) / SOURCE_SCALE,
+                    (origin_y + float(point[0][1]) + 0.5) / SOURCE_SCALE,
+                )
+                for point in ring
+            ]
+
+        holes = []
+        child = int(tile_hierarchy[index][2])
+        while child != -1:
+            if len(contours[child]) >= 3:
+                holes.append(ring_coordinates(contours[child]))
+            child = int(tile_hierarchy[child][0])
+
+        polygon = Polygon(ring_coordinates(contour), holes)
+        if not polygon.is_valid:
+            polygon = polygon.buffer(0)
+        if polygon.is_empty:
+            continue
+        # Keep fine outlines for island fills and strokes. Use a larger overlap
+        # only for the blue surface so a one-pixel tile seam cannot remain.
+        for radius, output in (
+            (0.5 / SOURCE_SCALE, detailed_features),
+            (1.5 / SOURCE_SCALE, fill_features),
+        ):
+            buffered = polygon.buffer(radius)
+            if not buffered.is_empty:
+                output.extend(
+                    part for part in getattr(buffered, "geoms", [buffered])
+                    if part.geom_type == "Polygon" and part.area > 0
+                )
+    return detailed_features, fill_features
+
+
+def ocean_geometry_path(geometry) -> str:
+    """Write a merged source-resolution ocean surface as an even-odd SVG path."""
+    polygons = [geometry] if geometry.geom_type == "Polygon" else list(geometry.geoms)
+    subpaths: list[str] = []
+    for polygon in polygons:
+        if polygon.geom_type != "Polygon" or polygon.is_empty:
+            continue
+        for ring in [polygon.exterior, *polygon.interiors]:
+            coordinates = list(ring.coords)
+            if len(coordinates) < 4:
+                continue
+            commands = [f"M {coordinates[0][0]:.3f},{coordinates[0][1]:.3f}"]
+            commands.extend(f"L {x:.3f},{y:.3f}" for x, y in coordinates[1:-1])
+            commands.append("Z")
+            subpaths.append(" ".join(commands))
+    return " ".join(subpaths)
+
+
+def line_parts(geometry) -> list[LineString]:
+    if geometry.is_empty:
+        return []
+    if geometry.geom_type in {"LineString", "LinearRing"}:
+        return [LineString(geometry.coords)]
+    return [part for item in getattr(geometry, "geoms", []) for part in line_parts(item)]
+
+
+def ocean_boundary_features(geometry, tile_size: int) -> list[dict]:
+    """Derive closed island strokes from the stitched sea fill boundary."""
+    frame_tolerance = 0.2
+
+    def on_same_frame_edge(a: tuple[float, float], b: tuple[float, float]) -> bool:
+        ax, ay = a
+        bx, by = b
+        return (
+            abs(ax - bx) < frame_tolerance
+            and (abs(ax) < frame_tolerance or abs(ax - CANVAS_WIDTH) < frame_tolerance)
+        ) or (
+            abs(ay - by) < frame_tolerance
+            and (abs(ay) < frame_tolerance or abs(ay - CANVAS_HEIGHT) < frame_tolerance)
+        )
+
+    segments: list[LineString] = []
+    for line in line_parts(geometry.boundary):
+        coordinates = list(line.coords)
+        for first, second in zip(coordinates, coordinates[1:]):
+            a = (float(first[0]), float(first[1]))
+            b = (float(second[0]), float(second[1]))
+            if not on_same_frame_edge(a, b) and a != b:
+                segments.append(LineString([a, b]))
+    if not segments:
+        return []
+
+    merged = linemerge(unary_union(segments))
+    features = []
+    for line in line_parts(merged):
+        if not line.is_ring:
+            continue
+        line = line.simplify(0.08, preserve_topology=True)
+        if line.length < 0.05:
+            continue
+        features.append(
+            {
+                "type": "Feature",
+                "properties": {
+                    "role": "island_shoreline",
+                    "length_px": round(line.length, 3),
+                    "source": "official_no_river_highres_tiled_ocean_surface_boundary",
+                    "tile_size_px": tile_size,
+                },
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [[round(x, 3), round(y, 3)] for x, y in line.coords],
+                },
+            }
+        )
+    return features
+
+
+def remove_tile_join_segments(
+    lines: Iterable[LineString], tile_size: int
+) -> list[LineString]:
+    """Drop artificial straight edges left where independent tiles meet."""
+    segments: list[LineString] = []
+    for line in lines:
+        coordinates = list(line.coords)
+        for first, second in zip(coordinates, coordinates[1:]):
+            x1, y1 = first
+            x2, y2 = second
+            vertical_join = (
+                abs(x1 - x2) < 0.01
+                and x1 > 0
+                and abs(x1 / tile_size - round(x1 / tile_size)) < 0.001
+            )
+            horizontal_join = (
+                abs(y1 - y2) < 0.01
+                and y1 > 0
+                and abs(y1 / tile_size - round(y1 / tile_size)) < 0.001
+            )
+            if not vertical_join and not horizontal_join and first != second:
+                segments.append(LineString([first, second]))
+    return segments
 
 
 def merged_features(lines: Iterable[LineString], tile_size: int) -> list[dict]:
@@ -457,6 +613,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, default=Path("data/coastlines.geojson"))
+    parser.add_argument(
+        "--ocean-surface-path-output",
+        type=Path,
+        default=Path("data/ocean_surface_path.json"),
+        help="Write a small-canvas-resolution ocean fill path assembled from the same tiles.",
+    )
     parser.add_argument("--tile-size", type=int, default=DEFAULT_TILE_SIZE)
     parser.add_argument("--overlap", type=int, default=DEFAULT_OVERLAP)
     parser.add_argument("--seed-side", choices=("right", "left", "top", "bottom"), default="right")
@@ -511,6 +673,8 @@ def main() -> None:
     print(f"Found {len(ocean_roots)} tile-connected ocean component(s) at the seed edge.")
 
     all_lines: list[LineString] = []
+    canvas_ocean_polygons: list[Polygon] = []
+    canvas_ocean_fill_polygons: list[Polygon] = []
     for index, tile in enumerate(tiles, start=1):
         shifted_tile = Tile(
             tile.column,
@@ -520,7 +684,7 @@ def main() -> None:
             tile.width,
             tile.height,
         )
-        lines = trace_tile(
+        lines, selected_window, window_x, window_y = trace_tile(
             source,
             no_text,
             tile,
@@ -531,6 +695,18 @@ def main() -> None:
             image_height,
             args.diagnostics_dir,
         )
+        if not args.bounds and selected_window is not None:
+            local_x = tile.x - window_x
+            local_y = tile.y - window_y
+            core_mask = selected_window[
+                local_y : local_y + tile.height,
+                local_x : local_x + tile.width,
+            ]
+            detailed_polygons, fill_polygons = tile_ocean_polygons(
+                core_mask, tile.x, tile.y
+            )
+            canvas_ocean_polygons.extend(detailed_polygons)
+            canvas_ocean_fill_polygons.extend(fill_polygons)
         if coordinate_offset_x or coordinate_offset_y:
             translated = []
             for line in lines:
@@ -543,7 +719,48 @@ def main() -> None:
         all_lines.extend(lines)
         print(f"  tile {index:>3}/{len(tiles)} at {shifted_tile.x},{shifted_tile.y}: {len(lines)} coast segment(s)")
 
-    features = merged_features(all_lines, args.tile_size)
+    if not args.bounds:
+        if not canvas_ocean_polygons or not canvas_ocean_fill_polygons:
+            raise RuntimeError("No ocean polygons were recovered from the tiled sources")
+        print(f"Merging {len(canvas_ocean_polygons):,} tile ocean polygons.", flush=True)
+        ocean_surface = unary_union(canvas_ocean_polygons)
+        traced_features = merged_features(
+            remove_tile_join_segments(all_lines, args.tile_size), args.tile_size
+        )
+        features = [
+            feature for feature in traced_features
+            if feature["properties"].get("role") != "island_shoreline"
+        ]
+        features.extend(ocean_boundary_features(ocean_surface, args.tile_size))
+        fill_surface = unary_union(canvas_ocean_fill_polygons)
+        fill_surface = fill_surface.simplify(0.12, preserve_topology=True)
+        ocean_path = ocean_geometry_path(fill_surface)
+        args.ocean_surface_path_output.parent.mkdir(parents=True, exist_ok=True)
+        args.ocean_surface_path_output.write_text(
+            json.dumps(
+                {
+                    "type": "tiled_official_ocean_surface_path",
+                    "canvas_width": CANVAS_WIDTH,
+                    "canvas_height": CANVAS_HEIGHT,
+                    "source_scale": SOURCE_SCALE,
+                    "assembly": "detailed tile outlines plus 1.5-source-pixel ocean-fill overlap",
+                    "tile_size_px": args.tile_size,
+                    "path": ocean_path,
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+            + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+        print(
+            f"Wrote tiled ocean surface path ({len(ocean_path):,} characters) "
+            f"to {args.ocean_surface_path_output}"
+        )
+    else:
+        features = merged_features(all_lines, args.tile_size)
+
     collection = {
         "type": "FeatureCollection",
         "name": "official_high_resolution_tiled_coastlines",

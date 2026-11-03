@@ -32,7 +32,8 @@
 - `data/seasonal_rivers.geojson`：原图中邻国蓝色虚线季节性河流
 - `data/cross_border_rivers.geojson`：从原图补充提取的跨境河流线段
 - `data/neighbor_borders.geojson`：从原图筛出的邻国国界候选；排除邻国内部浅灰省界残线，蓝色水线单独归入河流图层
-- `data/coastlines.geojson`：根据官方高清无河流图分块提取的海岸线、岛岸与河口岸线；每块 1024×1024 像素，使用无文字图交叉核对文字伪影，并剔除实心城市点
+- `data/coastlines.geojson`：根据官方高清无河流图分块提取的海岸线、岛岸与河口岸线；每块 1024×1024 像素，使用无文字图交叉核对文字伪影，并剔除实心城市点；闭合岛岸从拼接后的海面边界补齐
+- `data/ocean_surface_path.json`：与岸线来自同一批小块的高清海面填充路径；仅海面填充在块边缘增加 1.5 个源图像素的重叠，以封住扫描接缝，岛屿描边仍使用细节轮廓
 - `data/ocean_water.geojson`：从原图海水颜色连通区域矢量化的海域
 - `data/lakes.geojson`：湖泊候选面
 - `data/settlement_markers.geojson`：城市（黑点）与省会（红点）标记候选
@@ -49,7 +50,7 @@
 python extract_context_layers.py
 ```
 
-`tools/extract_official_coastline_tiled.py` 逐块处理 `official_map` 中的高清无河流图和无文字图，以 48 像素重叠拼接相邻块；不会建立整张高清图的海水蒙版。可指定诊断目录，保存各小块的岸线叠加图供人工复核：
+`tools/extract_official_coastline_tiled.py` 逐块处理 `official_map` 中的高清无河流图和无文字图，以 48 像素重叠拼接相邻块；不会建立整张高清图的海水蒙版。它同时生成海面填充和岸线数据，过滤块边缘的人工接缝，并从闭合海面边界补齐岛岸。可指定诊断目录，保存各小块的岸线叠加图供人工复核：
 ```bash
 python tools/extract_official_coastline_tiled.py --source-dir <official_map目录> --diagnostics-dir <分块复核目录>
 ```

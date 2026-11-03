@@ -373,6 +373,7 @@ def update_render_files(
     neighbor_borders: list[dict],
     label_features: list[dict],
     coastlines: list[dict],
+    ocean_surface_path: str,
 ) -> None:
     standalone_tags = []
     canvas_tags = []
@@ -531,9 +532,21 @@ def update_render_files(
         + "".join(island_fill_tags)
         + "</g>"
     )
+    ocean_fill_tag = (
+        f'<path id="oceanFill" d="{ocean_surface_path}" fill="#b1d0ed" '
+        'fill-rule="evenodd"/>'
+    )
+    index, ocean_fill_count = re.subn(
+        r'<path id="oceanFill"[^>]*?/>',
+        lambda _match: ocean_fill_tag,
+        index,
+        count=1,
+    )
+    if ocean_fill_count != 1:
+        raise RuntimeError("Could not replace the old oceanFill path with tiled ocean data")
     ocean_fill_match = re.search(r'<path id="oceanFill"[^>]*?/>', index)
     if not ocean_fill_match:
-        raise RuntimeError("Could not find the oceanFill path to place island land fills")
+        raise RuntimeError("Could not find the new oceanFill path to place island land fills")
     index = (
         index[: ocean_fill_match.end()]
         + coastline_fills_group
@@ -608,9 +621,16 @@ def main() -> None:
     neighbor_borders = read_features(DATA / "neighbor_borders.geojson")
     label_candidates = read_features(DATA / "region_code_labels.geojson")
     label_features = build_region_label_anchors(regions, label_candidates)
+    ocean_surface_path_data = json.loads(
+        (DATA / "ocean_surface_path.json").read_text(encoding="utf-8")
+    )
+    ocean_surface_path = ocean_surface_path_data.get("path", "")
+    if not ocean_surface_path:
+        raise RuntimeError("Tiled ocean surface path is missing or empty")
     coastline_union = unary_union([
         shape(feature["geometry"])
         for feature in coastlines
+        if feature["properties"].get("role") != "island_shoreline"
         if "_island_ink" not in feature["properties"].get("source", "")
     ])
     # The same shoreline buffer is used to clip every shared region border.
@@ -659,7 +679,14 @@ def main() -> None:
     write_geojson("province_boundaries.geojson", "shared_province_boundaries", features)
     write_geojson("national_border_land.geojson", "national_border_land_only", national_land_borders)
     write_geojson("region_code_labels.geojson", "region_geometric_center_labels", label_features)
-    update_render_files(features, national_land_borders, neighbor_borders, label_features, coastlines)
+    update_render_files(
+        features,
+        national_land_borders,
+        neighbor_borders,
+        label_features,
+        coastlines,
+        ocean_surface_path,
+    )
     print(
         f"Built {len(features)} shared province boundaries from {edge_count} pixel edges; "
         f"filled {filled_pixels} gaps inside the national outline; "
