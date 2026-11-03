@@ -1,0 +1,127 @@
+{
+  "type": "FeatureCollection",
+  "name": "major_region_geometry_center_labels",
+  "coordinate_system": "source image pixels; not georeferenced",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "central",
+        "major_region_name": "中𣿅大区",
+        "source": "major_region_geometry_center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1013.75,
+          812.71
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "east",
+        "major_region_name": "东𣿅大区",
+        "source": "major_region_geometry_center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1276.4,
+          824.62
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "north",
+        "major_region_name": "北𣿅大区",
+        "source": "major_region_geometry_center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          994.32,
+          341.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "west",
+        "major_region_name": "西𣿅大区",
+        "source": "major_region_geometry_center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          658.75,
+          731.48
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "south",
+        "major_region_name": "南𣿅大区",
+        "source": "major_region_geometry_center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1048.41,
+          1295.98
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "southeast",
+        "major_region_name": "东南𣿅大区",
+        "source": "major_region_geometry_center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1330.89,
+          1175.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "southwest",
+        "major_region_name": "西南𣿅大区",
+        "source": "major_region_geometry_center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          579.49,
+          1173.51
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "archipelago",
+        "major_region_name": "群岛大区",
+        "source": "major_region_geometry_center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1828.5,
+          684.0
+        ]
+      }
+    }
+  ]
+}

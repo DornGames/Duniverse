@@ -108,6 +108,53 @@ def build_major_region_boundaries(
     return major_boundaries
 
 
+def build_major_region_label_anchors(
+    region_features: list[dict],
+    membership: dict[str, str],
+    major_region_names: dict[str, str],
+) -> list[dict]:
+    geometries_by_code: dict[str, list] = defaultdict(list)
+    for feature in region_features:
+        code = feature["properties"].get("region_code", "")
+        geometries_by_code[code].append(shape(feature["geometry"]))
+
+    geometries_by_region: dict[str, list] = defaultdict(list)
+    missing_codes = []
+    for code, major_region_id in membership.items():
+        geometries = geometries_by_code.get(code)
+        if not geometries:
+            missing_codes.append(code)
+            continue
+        geometries_by_region[major_region_id].extend(geometries)
+    if missing_codes:
+        raise RuntimeError(
+            "Cannot place major-region labels; map geometry is missing for codes: "
+            + ", ".join(sorted(missing_codes))
+        )
+
+    labels = []
+    for major_region_id, name in major_region_names.items():
+        region_geometry = unary_union(geometries_by_region[major_region_id])
+        anchor = region_geometry.centroid
+        if not region_geometry.covers(anchor):
+            anchor = region_geometry.representative_point()
+        labels.append(
+            {
+                "type": "Feature",
+                "properties": {
+                    "major_region_id": major_region_id,
+                    "major_region_name": name,
+                    "source": "major_region_geometry_center",
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [round(anchor.x, 2), round(anchor.y, 2)],
+                },
+            }
+        )
+    return labels
+
+
 def polygon_rings(geometry: dict) -> Iterable[list[list[float]]]:
     if geometry["type"] == "Polygon":
         yield from geometry["coordinates"]
@@ -520,6 +567,7 @@ def move_group_after(source: str, moving_id: str, target_id: str) -> str:
 def update_render_files(
     features: list[dict],
     major_region_boundaries: list[dict],
+    major_region_label_features: list[dict],
     national_land_borders: list[dict],
     neighbor_borders: list[dict],
     label_features: list[dict],
@@ -548,7 +596,7 @@ def update_render_files(
 
     standalone_group = (
         '<g id="administrative-regions" fill="none" stroke="#454545" '
-        'stroke-width="1.1" stroke-dasharray="5 4" stroke-linecap="round" '
+        'stroke-width="0.9" stroke-dasharray="5 4" stroke-linecap="round" '
         'stroke-linejoin="round">'
         + "".join(standalone_tags)
         + "</g>"
@@ -557,6 +605,36 @@ def update_render_files(
         '<g id="major-region-boundaries" fill="none" stroke="#454545" '
         'stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">'
         + "".join(major_standalone_tags)
+        + "</g>"
+    )
+    major_name_canvas_tags = []
+    major_name_preview_tags = []
+    for feature in major_region_label_features:
+        x, y = feature["geometry"]["coordinates"]
+        name = html.escape(feature["properties"]["major_region_name"], quote=True)
+        major_name_canvas_tags.append(
+            f'<text x="{x:g}" y="{y:g}" data-letter-spacing="8" '
+            f'dominant-baseline="central" stroke="#f5f8f9" stroke-width="2" '
+            f'paint-order="stroke">{name}</text>'
+        )
+        major_name_preview_tags.append(
+            f'<text x="{x:g}" y="{y:g}" text-anchor="middle" '
+            f'dominant-baseline="central" letter-spacing="8" '
+            f'stroke="#f5f8f9" stroke-width="2" paint-order="stroke">{name}</text>'
+        )
+    major_names_canvas_group = (
+        '<g id="majorRegionNames" data-layer="majorRegionBoundaries" '
+        'pointer-events="none" font-family="Microsoft YaHei,system-ui,sans-serif" '
+        'font-size="12" font-weight="600" text-anchor="middle" '
+        'fill="#53646b" fill-opacity=".82">'
+        + "".join(major_name_canvas_tags)
+        + "</g>"
+    )
+    major_names_preview_group = (
+        '<g id="major-region-names" pointer-events="none" '
+        'font-family="Microsoft YaHei,system-ui,sans-serif" '
+        'font-size="12" font-weight="600" fill="#53646b" fill-opacity=".82">'
+        + "".join(major_name_preview_tags)
         + "</g>"
     )
     national_standalone_tags = []
@@ -640,6 +718,23 @@ def update_render_files(
         )
         if major_insert_count != 1:
             raise RuntimeError("Could not insert the standalone major-region-boundaries group")
+    if re.search(r'<g id="major-region-names"(?=[ >])', preview):
+        preview = replace_group(
+            preview,
+            r'<g id="major-region-names"[^>]*>.*?</g>',
+            major_names_preview_group,
+            label="standalone major-region-names",
+        )
+    else:
+        preview, major_name_insert_count = re.subn(
+            r'(<g id="major-region-boundaries"[^>]*>.*?</g>)',
+            lambda match: match.group(1) + major_names_preview_group,
+            preview,
+            count=1,
+            flags=re.DOTALL,
+        )
+        if major_name_insert_count != 1:
+            raise RuntimeError("Could not insert the standalone major-region-names group")
     preview = replace_group(
         preview,
         r'<g id="national-border"[^>]*>.*?</g>',
@@ -667,12 +762,13 @@ def update_render_files(
     )
     preview = move_group_after(preview, "neighbor-borders", "cross-border-rivers")
     preview = move_group_after(preview, "administrative-regions", "neighbor-borders")
+    preview = move_group_after(preview, "major-region-names", "major-region-boundaries")
     preview = move_group_after(preview, "coastlines", "national-border")
     preview_path.write_text(preview, encoding="utf-8", newline="\n")
 
     canvas_group = (
         '<g id="provinceBoundaries" data-layer="regions" fill="none" '
-        'stroke="#454545" stroke-width="1.1" stroke-dasharray="5 4" '
+        'stroke="#454545" stroke-width="0.9" stroke-dasharray="5 4" '
         'stroke-linecap="round" stroke-linejoin="round" pointer-events="none">'
         + "".join(canvas_tags)
         + "</g>"
@@ -740,6 +836,12 @@ def update_render_files(
     ) if re.search(r'<g id="majorRegionBoundaries"(?=[ >])', index) else index
     index = replace_group(
         index,
+        r'<g id="majorRegionNames"[^>]*>.*?</g>',
+        "",
+        label="old Canvas majorRegionNames",
+    ) if re.search(r'<g id="majorRegionNames"(?=[ >])', index) else index
+    index = replace_group(
+        index,
         r'<g id="neighborBorders"[^>]*>.*?</g>',
         "",
         label="old Canvas neighborBorders",
@@ -755,16 +857,21 @@ def update_render_files(
         ) + ' stroke="none" stroke-width="0">',
         label="Canvas region hit-test",
     )
-    draw_order_pattern = r"\['provinceBoundaries',9\],\s*\['nationalBorder',10\]"
     draw_order_replacement = (
-        "['provinceBoundaries',9],['majorRegionBoundaries',10],['nationalBorder',11]"
+        "['provinceBoundaries',9],['majorRegionBoundaries',10],['majorRegionNames',11],"
+        "['nationalBorder',12],['blackMarkers',13],['redMarkers',14],"
+        "['regionCodes',15],['regionNames',16]"
     )
-    if re.search(draw_order_pattern, index):
-        index = re.sub(draw_order_pattern, draw_order_replacement, index, count=1)
-    elif not re.search(
-        r"\['provinceBoundaries',9\],\s*\['majorRegionBoundaries',10\],\s*\['nationalBorder',11\]",
-        index,
-    ):
+    draw_order_match = re.search(
+        r"\['provinceBoundaries',9\].*?\['regionNames',(?:15|16)\]", index, re.DOTALL
+    )
+    if draw_order_match:
+        index = (
+            index[: draw_order_match.start()]
+            + draw_order_replacement
+            + index[draw_order_match.end() :]
+        )
+    elif draw_order_replacement not in index:
         raise RuntimeError("Could not update the Canvas major-region draw order")
     old_radius_expression = r"drawGroup==='provinceBoundaries'\?1\.1:"
     new_radius_expression = (
@@ -777,7 +884,8 @@ def update_render_files(
     index = replace_group(
         index,
         r'(<g id="crossBorderRivers"[^>]*>.*?</g>)',
-        lambda match: match.group(1) + neighbor_canvas_group + canvas_group + major_canvas_group,
+        lambda match: match.group(1) + neighbor_canvas_group + canvas_group
+        + major_canvas_group + major_names_canvas_group,
         label="Canvas boundary insertion point",
     )
     national_canvas_group = (
@@ -832,6 +940,11 @@ def main() -> None:
             "Major-region memberships must cover the map's administrative codes; "
             f"unmapped={sorted(unmapped_codes)}, unknown={sorted(unknown_codes)}"
         )
+    major_region_label_features = build_major_region_label_anchors(
+        regions,
+        major_region_membership,
+        major_region_names,
+    )
     label_codes = {feature["properties"].get("region_code", "") for feature in label_features}
     missing_names = label_codes - province_names.keys()
     if missing_names:
@@ -910,11 +1023,17 @@ def main() -> None:
         "shared_major_region_boundaries_from_roster",
         major_region_features,
     )
+    write_geojson(
+        "major_region_labels.geojson",
+        "major_region_geometry_center_labels",
+        major_region_label_features,
+    )
     write_geojson("national_border_land.geojson", "national_border_land_only", national_land_borders)
     write_geojson("region_code_labels.geojson", "region_geometric_center_labels", label_features)
     update_render_files(
         features,
         major_region_features,
+        major_region_label_features,
         national_land_borders,
         neighbor_borders,
         label_features,
