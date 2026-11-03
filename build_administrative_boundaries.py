@@ -51,20 +51,24 @@ def read_features(path: Path) -> list[dict]:
     return json.loads(path.read_text(encoding="utf-8"))["features"]
 
 
-def load_major_region_membership() -> tuple[dict[str, str], dict[str, str]]:
+def load_major_region_membership() -> tuple[
+    dict[str, str], dict[str, str], dict[str, str]
+]:
     source = json.loads(
         (DATA / "major_region_membership.json").read_text(encoding="utf-8")
     )
     membership = {}
     names = {}
+    tongue_names = {}
     for region in source["regions"]:
         region_id = region["id"]
         names[region_id] = region["name"]
+        tongue_names[region_id] = region["tongue_name"]
         for code in region["codes"]:
             if code in membership:
                 raise RuntimeError(f"Region code {code} belongs to multiple major regions")
             membership[code] = region_id
-    return membership, names
+    return membership, names, tongue_names
 
 
 def build_major_region_boundaries(
@@ -112,6 +116,7 @@ def build_major_region_label_anchors(
     region_features: list[dict],
     membership: dict[str, str],
     major_region_names: dict[str, str],
+    major_region_tongue_names: dict[str, str],
 ) -> list[dict]:
     geometries_by_code: dict[str, list] = defaultdict(list)
     for feature in region_features:
@@ -144,6 +149,7 @@ def build_major_region_label_anchors(
                 "properties": {
                     "major_region_id": major_region_id,
                     "major_region_name": name,
+                    "major_region_name_tongue": major_region_tongue_names[major_region_id],
                     "source": "major_region_geometry_center",
                 },
                 "geometry": {
@@ -612,15 +618,30 @@ def update_render_files(
     for feature in major_region_label_features:
         x, y = feature["geometry"]["coordinates"]
         name = html.escape(feature["properties"]["major_region_name"], quote=True)
+        tongue_name = html.escape(
+            feature["properties"]["major_region_name_tongue"], quote=True
+        )
         major_name_canvas_tags.append(
-            f'<text x="{x:g}" y="{y:g}" data-letter-spacing="8" '
+            f'<text x="{x:g}" y="{y - 4:g}" data-letter-spacing="8" '
             f'dominant-baseline="central" stroke="#f5f8f9" stroke-width="2" '
             f'paint-order="stroke">{name}</text>'
         )
+        major_name_canvas_tags.append(
+            f'<text x="{x:g}" y="{y + 5.5:g}" data-language="tongue" '
+            f'font-size="7" font-weight="500" data-letter-spacing="0" '
+            f'dominant-baseline="central" stroke="#f5f8f9" stroke-width="0.8" '
+            f'paint-order="stroke">{tongue_name}</text>'
+        )
         major_name_preview_tags.append(
-            f'<text x="{x:g}" y="{y:g}" text-anchor="middle" '
+            f'<text x="{x:g}" y="{y - 4:g}" text-anchor="middle" '
             f'dominant-baseline="central" letter-spacing="8" '
             f'stroke="#f5f8f9" stroke-width="2" paint-order="stroke">{name}</text>'
+        )
+        major_name_preview_tags.append(
+            f'<text x="{x:g}" y="{y + 5.5:g}" text-anchor="middle" '
+            f'dominant-baseline="central" font-size="7" font-weight="500" '
+            f'letter-spacing="0" stroke="#f5f8f9" stroke-width="0.8" '
+            f'paint-order="stroke">{tongue_name}</text>'
         )
     major_names_canvas_group = (
         '<g id="majorRegionNames" data-layer="majorRegionBoundaries" '
@@ -933,7 +954,11 @@ def main() -> None:
     province_names = json.loads(
         (DATA / "province_names.json").read_text(encoding="utf-8")
     )
-    major_region_membership, major_region_names = load_major_region_membership()
+    (
+        major_region_membership,
+        major_region_names,
+        major_region_tongue_names,
+    ) = load_major_region_membership()
     unmapped_codes = set(province_names) - set(major_region_membership)
     unknown_codes = set(major_region_membership) - set(province_names)
     if unmapped_codes or unknown_codes:
@@ -945,6 +970,7 @@ def main() -> None:
         regions,
         major_region_membership,
         major_region_names,
+        major_region_tongue_names,
     )
     label_codes = {feature["properties"].get("region_code", "") for feature in label_features}
     missing_names = label_codes - province_names.keys()

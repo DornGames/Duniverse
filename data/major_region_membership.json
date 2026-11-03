@@ -4,42 +4,50 @@
     {
       "id": "central",
       "name": "中湩大区",
-      "codes": ["GR", "RF", "WZ", "MT", "LL", "BG", "NG", "GA"]
+      "codes": ["GR", "RF", "WZ", "MT", "LL", "BG", "NG", "GA"],
+      "tongue_name": "Nohiadonhfak Tonho"
     },
     {
       "id": "east",
       "name": "东湩大区",
-      "codes": ["FN", "WT", "SB", "FS", "PP", "ST", "BP"]
+      "codes": ["FN", "WT", "SB", "FS", "PP", "ST", "BP"],
+      "tongue_name": "Is’hiadonhfak Tonho"
     },
     {
       "id": "north",
       "name": "北湩大区",
-      "codes": ["BD", "ZC", "DE", "OH", "HX", "TM"]
+      "codes": ["BD", "ZC", "DE", "OH", "HX", "TM"],
+      "tongue_name": "Nohiadonhfak Tonho"
     },
     {
       "id": "west",
       "name": "西湩大区",
-      "codes": ["LK", "XD", "VA", "MM"]
+      "codes": ["LK", "XD", "VA", "MM"],
+      "tongue_name": "Es’hiadonhfak Tonho"
     },
     {
       "id": "south",
       "name": "南湩大区",
-      "codes": ["CS", "OC", "SM", "FL", "TG", "ND"]
+      "codes": ["CS", "OC", "SM", "FL", "TG", "ND"],
+      "tongue_name": "Swhiadonhfak Tonho"
     },
     {
       "id": "southeast",
       "name": "东南湩大区",
-      "codes": ["SE", "CM", "KT", "SD", "UE"]
+      "codes": ["SE", "CM", "KT", "SD", "UE"],
+      "tongue_name": "Iswhiadonhfak Tonho"
     },
     {
       "id": "southwest",
       "name": "西南湩大区",
-      "codes": ["HB", "TL", "SW", "TT", "GW", "PN", "SP"]
+      "codes": ["HB", "TL", "SW", "TT", "GW", "PN", "SP"],
+      "tongue_name": "Eswhiadonhfak Tonho"
     },
     {
       "id": "archipelago",
       "name": "群岛大区",
-      "codes": ["TO", "DD"]
+      "codes": ["TO", "DD"],
+      "tongue_name": "Wendfsfaks Tonho"
     }
   ],
   "mapping_notes": [

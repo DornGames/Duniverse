@@ -8,7 +8,8 @@
       "properties": {
         "major_region_id": "central",
         "major_region_name": "中湩大区",
-        "source": "major_region_geometry_center"
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Nohiadonhfak Tonho"
       },
       "geometry": {
         "type": "Point",
@@ -23,7 +24,8 @@
       "properties": {
         "major_region_id": "east",
         "major_region_name": "东湩大区",
-        "source": "major_region_geometry_center"
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Is’hiadonhfak Tonho"
       },
       "geometry": {
         "type": "Point",
@@ -38,7 +40,8 @@
       "properties": {
         "major_region_id": "north",
         "major_region_name": "北湩大区",
-        "source": "major_region_geometry_center"
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Nohiadonhfak Tonho"
       },
       "geometry": {
         "type": "Point",
@@ -53,7 +56,8 @@
       "properties": {
         "major_region_id": "west",
         "major_region_name": "西湩大区",
-        "source": "major_region_geometry_center"
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Es’hiadonhfak Tonho"
       },
       "geometry": {
         "type": "Point",
@@ -68,7 +72,8 @@
       "properties": {
         "major_region_id": "south",
         "major_region_name": "南湩大区",
-        "source": "major_region_geometry_center"
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Swhiadonhfak Tonho"
       },
       "geometry": {
         "type": "Point",
@@ -83,7 +88,8 @@
       "properties": {
         "major_region_id": "southeast",
         "major_region_name": "东南湩大区",
-        "source": "major_region_geometry_center"
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Iswhiadonhfak Tonho"
       },
       "geometry": {
         "type": "Point",
@@ -98,7 +104,8 @@
       "properties": {
         "major_region_id": "southwest",
         "major_region_name": "西南湩大区",
-        "source": "major_region_geometry_center"
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Eswhiadonhfak Tonho"
       },
       "geometry": {
         "type": "Point",
@@ -113,7 +120,8 @@
       "properties": {
         "major_region_id": "archipelago",
         "major_region_name": "群岛大区",
-        "source": "major_region_geometry_center"
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Wendfsfaks Tonho"
       },
       "geometry": {
         "type": "Point",
