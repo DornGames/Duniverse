@@ -767,6 +767,7 @@ aside[hidden]{display:none}
  <div class="layerParent"><button class="groupDisclosure" type="button" aria-expanded="false" aria-controls="cityLayers" aria-label="&#x5c55;&#x5f00;&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x4e0e;&#x7701;&#x4f1a;"><span class="treeChevron"></span><span class="layerSwatch" style="--swatch:#303a40"></span><span class="layerName">&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x4e0e;&#x7701;&#x4f1a;</span></button><input id="citiesToggle" type="checkbox" data-group="cities" checked aria-label="&#x663e;&#x793a;&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x548c;&#x7701;&#x4f1a;&#x56fe;&#x5c42;"></div>
  <div class="layerChildren" id="cityLayers" role="group" aria-label="&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x53ca;&#x7701;&#x4f1a;&#x5b50;&#x56fe;&#x5c42;" hidden>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#303a40"></span><span class="layerName">&#x57ce;&#x5e02;</span><input type="checkbox" data-layer="blackMarkers" checked aria-label="&#x663e;&#x793a;&#x57ce;&#x5e02;&#x6807;&#x8bb0;"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#111"></span><span class="layerName">&#x57ce;&#x5e02;&#x540d;&#x79f0;</span><input type="checkbox" data-layer="cityLabels" checked aria-label="&#x663e;&#x793a;&#x57ce;&#x5e02;&#x540d;&#x79f0;"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#c32631"></span><span class="layerName">&#x9996;&#x90fd;&#x6807;&#x8bc6;</span><input type="checkbox" data-layer="nationalCapitalMarker" checked aria-label="&#x663e;&#x793a;&#x9996;&#x90fd;&#x6807;&#x8bc6;"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#a91924"></span><span class="layerName">&#x9996;&#x90fd;&#x540d;&#x79f0;</span><input type="checkbox" data-layer="nationalCapitalLabels" checked aria-label="&#x663e;&#x793a;&#x9996;&#x90fd;&#x540d;&#x79f0;"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#e66a62"></span><span class="layerName">&#x7701;&#x4f1a;&#x6807;&#x8bc6;</span><input type="checkbox" data-layer="redMarkers" checked aria-label="&#x663e;&#x793a;&#x7701;&#x4f1a;&#x6807;&#x8bc6;"></label>
@@ -788,7 +789,7 @@ const canvas=document.getElementById('mapCanvas');
 const ctx=canvas.getContext('2d',{alpha:false,desynchronized:true});
 const hitCanvas=document.createElement('canvas');
 const hitCtx=hitCanvas.getContext('2d');
-const SOURCE_W=2048,MAP_W=2300,MAP_H=1448,DETAIL_LIMIT=1380,RED_MARKER_DETAIL_LIMIT=1900,CAPITAL_LABEL_DETAIL_LIMIT=1700,PAN_MARGIN=.12;
+const SOURCE_W=2048,MAP_W=2300,MAP_H=1448,DETAIL_LIMIT=1380,RED_MARKER_DETAIL_LIMIT=1900,CAPITAL_LABEL_DETAIL_LIMIT=1700,CITY_LABEL_DETAIL_LIMIT=1200,PAN_MARGIN=.12;
 const REGION_LABEL_FADE_IN_COMPLETE_WIDTH=960,REGION_LABEL_FADE_OUT_START_WIDTH=640,REGION_LABEL_FADE_OUT_END_WIDTH=400;
 const MAJOR_REGION_LABEL_FADE_OUT_START_WIDTH=1750;
 const MIN_VIEW_WIDTH=60,COASTAL_DETAIL_COMPLETE_PROGRESS=.65,MIN_ISLAND_SCREEN_EXTENT=2;
@@ -796,6 +797,7 @@ const MAJOR_REGION_BOUNDARY_HIDE_WIDTH=1200,PROVINCE_BOUNDARY_HIDE_WIDTH=560;
 const OCEAN_COLOR='#b1d0ed';
 const FIXED_CODE_FONT_PX=16;
 const FIXED_CAPITAL_LABEL_FONT_PX=13;
+const FIXED_CITY_LABEL_FONT_PX=13;
   const FIXED_REGION_NAME_FONT_PX=11,FIXED_MAJOR_REGION_NAME_FONT_PX=12,ADMIN_LABEL_GAP_PX=4;
 // Land and sea fills get coarser overview and finer close-up geometry levels.
 const LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];
@@ -803,7 +805,7 @@ const COASTAL_FILL_LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];
 const DETAIL_LAYERS=new Set(['regionCodes','regionNames','blackMarkers']);
 const DRAW_ORDER=new Map([
   ['oceanFill',0],['coastlineFills',1],['regions',1],['lakes',2],['rivers',3],['canals',4],['canalTicks',5],
-  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['majorRegionNames',11],['nationalBorder',12],['blackMarkers',13],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['provinceCapitalLabels',17],['nationalCapitalLabels',18]
+  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['majorRegionNames',11],['nationalBorder',12],['blackMarkers',13],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['provinceCapitalLabels',17],['nationalCapitalLabels',18],['cityLabels',19]
 ]);
 let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
@@ -974,6 +976,80 @@ function buildRegionIndex(){
   }
 }
 
+const CITY_LABELS=[
+  [915.15,107.85,-6,0,'end','大声江市'],
+  [990.59,152.98,-6,0,'end','洛城'],
+  [913.15,155.85,0,10,'middle','江南市'],
+  [943.50,187.20,-6,-8,'end','成岗市'],
+  [986.93,189.81,6,0,'start','蔓叶市'],
+  [801.50,204.20,-6,-8,'end','小白市'],
+  [870.00,212.24,-6,-8,'end','沁园市'],
+  [767.76,213.00,6,10,'start','旺克市'],
+  [962.50,224.05,6,0,'start','三色瑾市'],
+  [808.24,225.00,6,10,'start','周一城'],
+  [908.56,230.73,6,-8,'start','书华市'],
+  [748.67,237.00,-6,0,'end','娟儿市'],
+  [789.00,239.24,6,10,'start','硶州市'],
+  [892.00,244.24,-6,0,'end','甲鱼市'],
+  [695.00,252.76,-6,10,'end','地鼠市'],
+  [721.00,258.33,6,0,'start','二阶行政列市'],
+  [975.92,259.20,6,0,'start','也平市'],
+  [893.76,268.00,-6,0,'end','飞天市'],
+  [773.00,279.24,-6,10,'end','西尔特市'],
+  [818.24,281.00,-6,-10,'end','法尼市'],
+  [839.15,290.15,6,0,'start','治文武市'],
+  [881.00,316.76,-6,0,'end','箕舌市'],
+  [985.90,321.62,6,0,'start','花林市'],
+  [626.98,327.59,6,0,'start','顺风市'],
+  [782.15,329.15,6,10,'start','法克市'],
+  [647.00,376.76,6,0,'start','贾斯帕市'],
+  [807.67,378.00,6,10,'start','法特市'],
+  [944.76,396.00,-6,0,'end','长岭市'],
+  [1009.05,434.50,-6,10,'end','铁山市'],
+  [741.19,444.07,-6,-8,'end','牛耶市'],
+  [876.33,484.00,-6,0,'end','三阶行政列市'],
+  [996.02,510.41,-6,10,'end','斯朗姆皮特市'],
+  [870.15,516.85,-6,10,'end','观山市'],
+  [763.59,519.98,6,10,'start','通安市'],
+  [844.76,561.00,-6,0,'end','四十市'],
+  [620.00,566.76,6,10,'start','斯莫里亚市'],
+  [818.05,580.50,-6,0,'end','三十市'],
+  [997.15,593.85,-6,-8,'end','剑山市'],
+  [464.59,600.98,6,10,'start','尤西市'],
+  [800.00,609.67,-6,0,'end','德色市'],
+  [985.02,628.41,-6,-8,'end','十四阶行政列市'],
+  [799.00,634.24,6,10,'start','四阶行政列市'],
+  [767.85,640.15,-6,0,'end','布森敏市'],
+  [682.41,651.02,6,-8,'start','特拉斯市'],
+  [873.15,651.15,-6,0,'end','拉贝斯市'],
+  [378.12,659.46,6,10,'start','巴伽市'],
+  [999.15,670.85,-6,0,'end','金鱼市'],
+  [591.00,697.24,0,-10,'middle','新瓦莱莉市'],
+  [530.00,702.50,-6,0,'end','芒英市'],
+  [836.50,720.95,0,-10,'middle','拉鲁斯市']
+];
+const cityLabelLayer=document.createElementNS('http://www.w3.org/2000/svg','g');
+cityLabelLayer.id='cityLabels';
+cityLabelLayer.dataset.layer='cityLabels';
+cityLabelLayer.setAttribute('pointer-events','none');
+cityLabelLayer.setAttribute('font-family','Arial,sans-serif');
+cityLabelLayer.setAttribute('font-size','13');
+cityLabelLayer.setAttribute('font-weight','600');
+cityLabelLayer.setAttribute('fill','#111');
+for(const [pointX,pointY,offsetX,offsetY,anchor,name] of CITY_LABELS){
+  const label=document.createElementNS('http://www.w3.org/2000/svg','text');
+  label.setAttribute('x',(pointX+offsetX).toFixed(2));
+  label.setAttribute('y',(pointY+offsetY).toFixed(2));
+  label.setAttribute('text-anchor',anchor);
+  label.setAttribute('dominant-baseline','central');
+  label.setAttribute('stroke','#fff');
+  label.setAttribute('stroke-width','2');
+  label.setAttribute('paint-order','stroke');
+  label.textContent=name;
+  cityLabelLayer.append(label);
+}
+sourceSvg.append(cityLabelLayer);
+
 // Build Canvas paths from the extracted geometry, then remove the source SVG from the page.
 collectRecords(sourceSvg);
 records.sort((a,b)=>(DRAW_ORDER.get(a.drawGroup)??50)-(DRAW_ORDER.get(b.drawGroup)??50));
@@ -1085,8 +1161,8 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
     if(record.stroke!=='none'&&record.lineWidth>0){ctx.strokeStyle=record.stroke;ctx.globalAlpha=record.strokeOpacity;ctx.stroke()}
   }else if(record.tag==='text'){
     const isRegionCode=record.layerId==='regionCodes',isRegionName=record.layerId==='regionNames';
-    const isMajorRegionName=record.drawGroup==='majorRegionNames',isCapitalLabel=record.layerId==='provinceCapitalLabels'||record.layerId==='nationalCapitalLabels';
-    const fontSize=isRegionName?FIXED_REGION_NAME_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
+    const isMajorRegionName=record.drawGroup==='majorRegionNames',isCapitalLabel=record.layerId==='provinceCapitalLabels'||record.layerId==='nationalCapitalLabels',isCityLabel=record.layerId==='cityLabels';
+    const fontSize=isRegionName?FIXED_REGION_NAME_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:isCityLabel?FIXED_CITY_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
     ctx.font=record.font.replace(/[\d.]+px/,`${fontSize/scale}px`);ctx.textBaseline=record.textBaseline;
     let textX=record.x,textAlign=record.textAlign;
     if(isRegionCode||isRegionName){
@@ -1142,6 +1218,7 @@ function draw(){
     if(record.layerId==='redMarkers'&&zoomWidth>RED_MARKER_DETAIL_LIMIT)continue;
     if(record.layerId==='nationalCapitalMarker'&&zoomWidth>RED_MARKER_DETAIL_LIMIT)continue;
     if((record.layerId==='provinceCapitalLabels'||record.layerId==='nationalCapitalLabels')&&zoomWidth>CAPITAL_LABEL_DETAIL_LIMIT)continue;
+    if(record.layerId==='cityLabels'&&zoomWidth>CITY_LABEL_DETAIL_LIMIT)continue;
     if(!detailed&&DETAIL_LAYERS.has(record.layerId))continue;
     if(isAdministrativeLabel&&regionLabelOpacity<=0)continue;
     const fixedSizeMargin=record.tag==='circle'
