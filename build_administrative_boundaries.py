@@ -11,7 +11,7 @@ Six lake crossings were visually checked against input_map.png and are made
 straight chords: lakes 2, 3, 4, 5, 6, and 10. The other extracted lakes sit
 inside a single region and do not receive an administrative line. National
 and province borders are clipped back from detailed coastline paths so the
-coastline layer remains the only line drawn along the shore.
+land and sea fills define the shore without a separate outline stroke.
 """
 
 from __future__ import annotations
@@ -423,15 +423,12 @@ def update_render_files(
         + "".join(neighbor_tags)
         + "</g>"
     )
-    coast_tags = []
     island_fill_tags = []
     for feature in coastlines:
         if feature["properties"].get("review_status") == "rejected":
             continue
         coast_geometry = shape(feature["geometry"])
         path_data = geometry_to_path_data(coast_geometry)
-        if path_data:
-            coast_tags.append(f'<path d="{path_data}"/>')
         if (
             feature["properties"].get("role") == "island_shoreline"
             and coast_geometry.geom_type == "LineString"
@@ -440,16 +437,10 @@ def update_render_files(
             island_fill_tags.append(f'<path d="{path_data}"/>')
     coastline_canvas_group = (
         '<g id="coastline" data-layer="coastline" fill="none" '
-        'stroke="#6f7d83" stroke-width="1" stroke-linecap="round" '
-        'stroke-linejoin="round" pointer-events="none">'
-        + "".join(coast_tags)
-        + "</g>"
+        'pointer-events="none"></g>'
     )
     coastline_preview_group = (
-        '<g id="coastlines" fill="none" stroke="#6f7d83" stroke-width="1" '
-        'stroke-linecap="round" stroke-linejoin="round" pointer-events="none">'
-        + "".join(coast_tags)
-        + "</g>"
+        '<g id="coastlines" fill="none" pointer-events="none"></g>'
     )
     label_tags = []
     for feature in label_features:
@@ -527,7 +518,7 @@ def update_render_files(
         flags=re.DOTALL,
     )
     coastline_fills_group = (
-        '<g id="coastlineFills" data-layer="coastline" fill="#fff" '
+        '<g id="coastlineFills" data-layer="islandFills" fill="#fff" '
         'fill-rule="evenodd" stroke="none" pointer-events="none">'
         + "".join(island_fill_tags)
         + "</g>"
