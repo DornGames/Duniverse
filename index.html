@@ -668,7 +668,7 @@ const ctx=canvas.getContext('2d',{alpha:false,desynchronized:true});
 const hitCanvas=document.createElement('canvas');
 const hitCtx=hitCanvas.getContext('2d');
 const SOURCE_W=2048,MAP_W=2300,MAP_H=1448,DETAIL_LIMIT=1380,RED_MARKER_DETAIL_LIMIT=1900,PAN_MARGIN=.12;
-const REGION_NAME_FADE_IN_COMPLETE_WIDTH=960,REGION_NAME_FADE_OUT_START_WIDTH=640,REGION_NAME_FADE_OUT_END_WIDTH=400;
+const REGION_LABEL_FADE_IN_COMPLETE_WIDTH=960,REGION_LABEL_FADE_OUT_START_WIDTH=640,REGION_LABEL_FADE_OUT_END_WIDTH=400;
 const MIN_VIEW_WIDTH=60,COASTAL_DETAIL_COMPLETE_PROGRESS=.65,MIN_ISLAND_SCREEN_EXTENT=2;
 const OCEAN_COLOR='#b1d0ed';
 const FIXED_CODE_FONT_PX=16;
@@ -890,9 +890,9 @@ function overlaps(bounds,view,margin=0){
     bounds.y+bounds.height>=view.y-margin&&bounds.y<=view.y+view.height+margin;
 }
 function smoothStep(value){const t=Math.max(0,Math.min(1,value));return t*t*(3-2*t)}
-function regionNameOpacityForView(){
-  const fadeIn=smoothStep((DETAIL_LIMIT-vb.w)/(DETAIL_LIMIT-REGION_NAME_FADE_IN_COMPLETE_WIDTH));
-  const fadeOut=smoothStep((REGION_NAME_FADE_OUT_START_WIDTH-vb.w)/(REGION_NAME_FADE_OUT_START_WIDTH-REGION_NAME_FADE_OUT_END_WIDTH));
+function regionLabelOpacityForView(){
+  const fadeIn=smoothStep((DETAIL_LIMIT-vb.w)/(DETAIL_LIMIT-REGION_LABEL_FADE_IN_COMPLETE_WIDTH));
+  const fadeOut=smoothStep((REGION_LABEL_FADE_OUT_START_WIDTH-vb.w)/(REGION_LABEL_FADE_OUT_START_WIDTH-REGION_LABEL_FADE_OUT_END_WIDTH));
   return fadeIn*(1-fadeOut);
 }
 function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverride=1){
@@ -953,13 +953,14 @@ function draw(){
   const view={x:vb.x,y:vb.y,width:vb.w,height:vb.h},toleranceIndex=activeToleranceIndex(scale);
   const coastalFillToleranceIndex=coastalFillToleranceIndexForView();
   const detailed=vb.w<=DETAIL_LIMIT;
-  const regionNameOpacity=regionNameOpacityForView();
+  const regionLabelOpacity=regionLabelOpacityForView();
   for(const record of records){
+    const isAdministrativeLabel=record.layerId==='regionCodes'||record.layerId==='regionNames';
     const layerVisible=layerVisibility.get(record.layerId)!==false;
     if(!layerVisible&&record.layerId!=='islandFills')continue;
     if(record.layerId==='redMarkers'&&vb.w>RED_MARKER_DETAIL_LIMIT)continue;
     if(!detailed&&DETAIL_LAYERS.has(record.layerId))continue;
-    if(record.layerId==='regionNames'&&regionNameOpacity<=0)continue;
+    if(isAdministrativeLabel&&regionLabelOpacity<=0)continue;
     const fixedSizeMargin=record.tag==='circle'
       ?Math.max(0,record.radius/scale-record.radius)
       :record.tag==='text'
@@ -976,7 +977,7 @@ function draw(){
     const islandExtent=Math.max(record.bounds.width,record.bounds.height)*scale;
     const hideIsland=record.layerId==='islandFills'&&(!layerVisible||islandExtent<MIN_ISLAND_SCREEN_EXTENT);
     drawRecord(record,pathToleranceIndex,scale,hideIsland?OCEAN_COLOR:null,
-      record.layerId==='regionNames'?regionNameOpacity:1);
+      isAdministrativeLabel?regionLabelOpacity:1);
   }
 }
 function apply(){clampView();draw()}
