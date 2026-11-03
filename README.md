@@ -51,7 +51,7 @@ python -m http.server 8000
 | `tools/` | 高清分块海岸线处理工具 |
 | `diagnostics/` | 数据提取和海岸线复核时生成的诊断材料 |
 
-行政区中文名称和湩语名称分别维护在 [`data/province_names.json`](data/province_names.json) 与 [`data/province_tongue_names.json`](data/province_tongue_names.json)，标注位置维护在 `data/region_code_labels.geojson`。地图标签按“中文（编号）”和下一行湩语显示。目前地图包含 45 个两字母行政区编号；其中 `TT` 在地图上有两个标注位置。
+行政区中文名称和湩语名称分别维护在 [`data/province_names.json`](data/province_names.json) 与 [`data/province_tongue_names.json`](data/province_tongue_names.json)，标注位置维护在 `data/region_code_labels.geojson`。地图标签按“中文（编号）”和下一行湩语显示，中文与湩语图层可分别开关。目前地图包含 45 个两字母行政区编号；其中 `TT` 在地图上有两个标注位置。
 
 ## 重新生成数据
 

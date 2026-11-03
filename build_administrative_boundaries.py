@@ -475,9 +475,10 @@ def build_label_groups(
     label_features: list[dict],
     province_names: dict[str, str],
     province_tongue_names: dict[str, str],
-) -> tuple[str, str, str, str]:
+) -> tuple[str, str, str, str, str]:
     canvas_code_tags = []
     canvas_name_tags = []
+    canvas_tongue_tags = []
     preview_code_tags = []
     preview_name_tags = []
     missing_codes = set()
@@ -506,19 +507,23 @@ def build_label_groups(
         )
         canvas_name_tags.append(
             f'<text x="{x:g}" y="{y:g}" data-pair-text="{safe_code}" '
-            f'data-tongue-text="{safe_tongue_name}" '
             f'dominant-baseline="central" stroke="#fff" stroke-width=".6" '
             f'paint-order="stroke">{safe_name}</text>'
         )
+        canvas_tongue_tags.append(
+            f'<text x="{x:g}" y="{y:g}" data-language="tongue" '
+            f'dominant-baseline="central" stroke="#fff" stroke-width=".55" '
+            f'paint-order="stroke">{safe_tongue_name}</text>'
+        )
 
         preview_name_tags.append(
-            f'<text x="{x:g}" y="{y - 8:g}" font-size="11" font-weight="600" '
+            f'<text x="{x:g}" y="{y - 6:g}" font-size="11" font-weight="600" '
             f'text-anchor="middle" dominant-baseline="central" '
             f'stroke="#fff" stroke-width=".6" paint-order="stroke">'
             f'{safe_name_with_code}</text>'
         )
         preview_name_tags.append(
-            f'<text x="{x:g}" y="{y + 8:g}" font-size="10" font-weight="600" '
+            f'<text x="{x:g}" y="{y + 6:g}" font-size="10" font-weight="600" '
             f'text-anchor="middle" dominant-baseline="central" '
             f'stroke="#fff" stroke-width=".55" paint-order="stroke">'
             f'{safe_tongue_name}</text>'
@@ -553,6 +558,13 @@ def build_label_groups(
         + "".join(canvas_name_tags)
         + "</g>"
     )
+    canvas_tongue_names = (
+        '<g id="regionTongueNames" data-layer="regionTongueNames" '
+        'pointer-events="none" font-family="Arial,sans-serif" font-size="10" '
+        'font-weight="600" text-anchor="middle" fill="#168d7b" fill-opacity=".9">'
+        + "".join(canvas_tongue_tags)
+        + "</g>"
+    )
     preview_codes = (
         '<g id="region-codes" pointer-events="none" '
         'font-family="Arial,sans-serif" font-size="21" font-weight="600" '
@@ -567,7 +579,7 @@ def build_label_groups(
         + "".join(preview_name_tags)
         + "</g>"
     )
-    return canvas_codes, canvas_names, preview_codes, preview_names
+    return canvas_codes, canvas_names, canvas_tongue_names, preview_codes, preview_names
 
 
 def move_group_after(source: str, moving_id: str, target_id: str) -> str:
@@ -727,6 +739,7 @@ def update_render_files(
     (
         canvas_codes_group,
         canvas_names_group,
+        canvas_tongue_names_group,
         preview_codes_group,
         preview_names_group,
     ) = build_label_groups(label_features, province_names, province_tongue_names)
@@ -898,10 +911,17 @@ def update_render_files(
         "['provinceBoundaries',9],['majorRegionBoundaries',10],['majorRegionNames',11],"
         "['nationalBorder',12],['blackMarkers',13],['redMarkers',14],"
         "['specialCapitalMarker',14],['nationalCapitalMarker',14],"
-        "['regionCodes',15],['regionNames',16]"
+        "['regionCodes',15],['regionNames',16],['regionTongueNames',17],"
+        "['provinceCapitalLabels',18],['nationalCapitalLabels',19],['cityLabels',20]"
     )
     draw_order_match = re.search(
-        r"\['provinceBoundaries',9\].*?\['regionNames',(?:15|16)\]", index, re.DOTALL
+        r"\['provinceBoundaries',9\].*?\['regionNames',(?:15|16)\]"
+        r"(?:,\['regionTongueNames',17\])?"
+        r"(?:,\['provinceCapitalLabels',(?:17|18)\])?"
+        r"(?:,\['nationalCapitalLabels',(?:18|19)\])?"
+        r"(?:,\['cityLabels',(?:19|20)\])?",
+        index,
+        re.DOTALL,
     )
     if draw_order_match:
         index = (
@@ -947,8 +967,9 @@ def update_render_files(
     index = replace_group(
         index,
         r'(?:<g id="labels"[^>]*>.*?</g>|'
-        r'<g id="regionCodes"[^>]*>.*?</g><g id="regionNames"[^>]*>.*?</g>)',
-        canvas_codes_group + canvas_names_group,
+        r'<g id="regionCodes"[^>]*>.*?</g><g id="regionNames"[^>]*>.*?</g>'
+        r'<g id="regionTongueNames"[^>]*>.*?</g>)',
+        canvas_codes_group + canvas_names_group + canvas_tongue_names_group,
         label="Canvas geometric-center labels",
     )
     index_path.write_text(index, encoding="utf-8", newline="\n")
