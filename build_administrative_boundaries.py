@@ -472,24 +472,33 @@ def write_geojson(filename: str, name: str, features: list[dict]) -> None:
 
 
 def build_label_groups(
-    label_features: list[dict], province_names: dict[str, str]
+    label_features: list[dict],
+    province_names: dict[str, str],
+    province_tongue_names: dict[str, str],
 ) -> tuple[str, str, str, str]:
     canvas_code_tags = []
     canvas_name_tags = []
     preview_code_tags = []
     preview_name_tags = []
     missing_codes = set()
+    missing_tongue_codes = set()
 
     for feature in label_features:
         code = feature["properties"].get("region_code", "")
         name = province_names.get(code)
-        if not name:
-            missing_codes.add(code or "<empty>")
+        tongue_name = province_tongue_names.get(code)
+        if not name or not tongue_name:
+            if not name:
+                missing_codes.add(code or "<empty>")
+            if not tongue_name:
+                missing_tongue_codes.add(code or "<empty>")
             continue
 
         x, y = feature["geometry"]["coordinates"]
         safe_code = html.escape(code, quote=True)
         safe_name = html.escape(name, quote=True)
+        safe_tongue_name = html.escape(tongue_name, quote=True)
+        safe_name_with_code = html.escape(f"{name}（{code}）", quote=True)
         canvas_code_tags.append(
             f'<text x="{x:g}" y="{y:g}" data-pair-text="{safe_name}" '
             f'dominant-baseline="central" stroke="#fff" stroke-width=".7" '
@@ -497,31 +506,37 @@ def build_label_groups(
         )
         canvas_name_tags.append(
             f'<text x="{x:g}" y="{y:g}" data-pair-text="{safe_code}" '
+            f'data-tongue-text="{safe_tongue_name}" '
             f'dominant-baseline="central" stroke="#fff" stroke-width=".6" '
             f'paint-order="stroke">{safe_name}</text>'
         )
 
-        # The standalone SVG scales labels with the map, so estimate the pair
-        # width in its native font sizes and keep the pair centered on the anchor.
-        code_width = 25.2
-        name_width = len(name) * 12
-        gap = 4
-        code_x = x - (code_width + name_width + gap) / 2 + code_width
-        name_x = code_x + gap
-        preview_code_tags.append(
-            f'<text x="{code_x:g}" y="{y:g}" text-anchor="end" '
-            f'dominant-baseline="central" stroke="#fff" stroke-width=".7" '
-            f'paint-order="stroke">{safe_code}</text>'
+        preview_name_tags.append(
+            f'<text x="{x:g}" y="{y - 8:g}" font-size="11" font-weight="600" '
+            f'text-anchor="middle" dominant-baseline="central" '
+            f'stroke="#fff" stroke-width=".6" paint-order="stroke">'
+            f'{safe_name_with_code}</text>'
         )
         preview_name_tags.append(
-            f'<text x="{name_x:g}" y="{y:g}" dominant-baseline="central" '
-            f'stroke="#fff" stroke-width=".55" paint-order="stroke">{safe_name}</text>'
+            f'<text x="{x:g}" y="{y + 8:g}" font-size="10" font-weight="600" '
+            f'text-anchor="middle" dominant-baseline="central" '
+            f'stroke="#fff" stroke-width=".55" paint-order="stroke">'
+            f'{safe_tongue_name}</text>'
         )
 
-    if missing_codes:
+    if missing_codes or missing_tongue_codes:
+        errors = []
+        if missing_codes:
+            errors.append(
+                "missing Chinese names for codes: " + ", ".join(sorted(missing_codes))
+            )
+        if missing_tongue_codes:
+            errors.append(
+                "missing Tongue names for codes: "
+                + ", ".join(sorted(missing_tongue_codes))
+            )
         raise RuntimeError(
-            "Missing Chinese administrative names for region codes: "
-            + ", ".join(sorted(missing_codes))
+            "Missing administrative label names; " + "; ".join(errors)
         )
 
     canvas_codes = (
@@ -533,7 +548,7 @@ def build_label_groups(
     )
     canvas_names = (
         '<g id="regionNames" data-layer="regionNames" pointer-events="none" '
-        'font-family="Arial,sans-serif" font-size="12" font-weight="500" '
+        'font-family="Arial,sans-serif" font-size="11" font-weight="600" '
         'text-anchor="middle" fill="#168d7b" fill-opacity=".9">'
         + "".join(canvas_name_tags)
         + "</g>"
@@ -547,7 +562,7 @@ def build_label_groups(
     )
     preview_names = (
         '<g id="region-names" pointer-events="none" '
-        'font-family="Arial,sans-serif" font-size="12" font-weight="500" '
+        'font-family="Arial,sans-serif" font-size="11" font-weight="600" '
         'fill="#168d7b" fill-opacity=".9">'
         + "".join(preview_name_tags)
         + "</g>"
@@ -578,6 +593,7 @@ def update_render_files(
     neighbor_borders: list[dict],
     label_features: list[dict],
     province_names: dict[str, str],
+    province_tongue_names: dict[str, str],
     coastlines: list[dict],
     ocean_surface_path: str,
 ) -> None:
@@ -713,7 +729,7 @@ def update_render_files(
         canvas_names_group,
         preview_codes_group,
         preview_names_group,
-    ) = build_label_groups(label_features, province_names)
+    ) = build_label_groups(label_features, province_names, province_tongue_names)
     preview_path = ROOT / "vector_preview.svg"
     preview = preview_path.read_text(encoding="utf-8")
     preview = replace_group(
@@ -954,6 +970,9 @@ def main() -> None:
     province_names = json.loads(
         (DATA / "province_names.json").read_text(encoding="utf-8")
     )
+    province_tongue_names = json.loads(
+        (DATA / "province_tongue_names.json").read_text(encoding="utf-8")
+    )
     (
         major_region_membership,
         major_region_names,
@@ -978,6 +997,12 @@ def main() -> None:
         raise RuntimeError(
             "Missing Chinese administrative names for region codes: "
             + ", ".join(sorted(missing_names))
+        )
+    missing_tongue_names = label_codes - province_tongue_names.keys()
+    if missing_tongue_names:
+        raise RuntimeError(
+            "Missing Tongue administrative names for region codes: "
+            + ", ".join(sorted(missing_tongue_names))
         )
     ocean_surface_path_data = json.loads(
         (DATA / "ocean_surface_path.json").read_text(encoding="utf-8")
@@ -1065,6 +1090,7 @@ def main() -> None:
         neighbor_borders,
         label_features,
         province_names,
+        province_tongue_names,
         coastlines,
         ocean_surface_path,
     )
