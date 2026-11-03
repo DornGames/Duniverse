@@ -11,7 +11,7 @@
       "id": "east",
       "name": "东湩大区",
       "codes": ["FN", "WT", "SB", "FS", "PP", "ST", "BP"],
-      "tongue_name": "Is’hiadonhfak Tonho"
+      "tongue_name": "Is'hiadonhfak Tonho"
     },
     {
       "id": "north",
@@ -23,7 +23,7 @@
       "id": "west",
       "name": "西湩大区",
       "codes": ["LK", "XD", "VA", "MM"],
-      "tongue_name": "Es’hiadonhfak Tonho"
+      "tongue_name": "Es'hiadonhfak Tonho"
     },
     {
       "id": "south",

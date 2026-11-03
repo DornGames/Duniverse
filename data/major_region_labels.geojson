@@ -25,7 +25,7 @@
         "major_region_id": "east",
         "major_region_name": "东湩大区",
         "source": "major_region_geometry_center",
-        "major_region_name_tongue": "Is’hiadonhfak Tonho"
+        "major_region_name_tongue": "Is'hiadonhfak Tonho"
       },
       "geometry": {
         "type": "Point",
@@ -57,7 +57,7 @@
         "major_region_id": "west",
         "major_region_name": "西湩大区",
         "source": "major_region_geometry_center",
-        "major_region_name_tongue": "Es’hiadonhfak Tonho"
+        "major_region_name_tongue": "Es'hiadonhfak Tonho"
       },
       "geometry": {
         "type": "Point",
