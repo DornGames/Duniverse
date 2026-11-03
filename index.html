@@ -667,12 +667,12 @@ const ctx=canvas.getContext('2d',{alpha:false,desynchronized:true});
 const hitCanvas=document.createElement('canvas');
 const hitCtx=hitCanvas.getContext('2d');
 const SOURCE_W=2048,MAP_W=2300,MAP_H=1448,DETAIL_LIMIT=1380,RED_MARKER_DETAIL_LIMIT=1900,PAN_MARGIN=.12;
-const MIN_VIEW_WIDTH=60,COASTAL_FILL_SCREEN_ERROR=2,MIN_ISLAND_SCREEN_EXTENT=2;
+const MIN_VIEW_WIDTH=60,COASTAL_DETAIL_COMPLETE_PROGRESS=.65,MIN_ISLAND_SCREEN_EXTENT=2;
 const OCEAN_COLOR='#b1d0ed';
 const FIXED_CODE_FONT_PX=16;
 // Land and sea fills get coarser overview and finer close-up geometry levels.
 const LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];
-const COASTAL_FILL_LOD_TOLERANCES=[.12,.25,.5,1,2,4,8,16];
+const COASTAL_FILL_LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];
 const DETAIL_LAYERS=new Set(['labels','blackMarkers']);
 const DRAW_ORDER=new Map([
   ['oceanFill',0],['coastlineFills',1],['regions',1],['lakes',2],['rivers',3],['canals',4],['canalTicks',5],
@@ -871,6 +871,16 @@ function activeToleranceIndex(scale,tolerances=LOD_TOLERANCES,screenError=.75){
   const index=tolerances.findIndex(tolerance=>tolerance>=target);
   return index<0?tolerances.length-1:index;
 }
+function coastalFillToleranceIndexForView(){
+  // Wheel zoom changes scale multiplicatively, so measure progress logarithmically.
+  const progress=Math.max(0,Math.min(1,
+    Math.log(MAP_W/vb.w)/Math.log(MAP_W/MIN_VIEW_WIDTH)
+  ));
+  if(progress>=COASTAL_DETAIL_COMPLETE_PROGRESS)return 0;
+  const lastIndex=COASTAL_FILL_LOD_TOLERANCES.length-1;
+  const step=Math.floor(progress/COASTAL_DETAIL_COMPLETE_PROGRESS*lastIndex);
+  return lastIndex-step;
+}
 function overlaps(bounds,view,margin=0){
   return bounds.x+bounds.width>=view.x-margin&&bounds.x<=view.x+view.width+margin&&
     bounds.y+bounds.height>=view.y-margin&&bounds.y<=view.y+view.height+margin;
@@ -913,7 +923,7 @@ function draw(){
   ctx.setTransform(pixelRatio*scale,0,0,pixelRatio*scale,pixelRatio*(offsetX-vb.x*scale),pixelRatio*(offsetY-vb.y*scale));
   ctx.lineJoin='round';ctx.lineCap='round';
   const view={x:vb.x,y:vb.y,width:vb.w,height:vb.h},toleranceIndex=activeToleranceIndex(scale);
-  const coastalFillToleranceIndex=activeToleranceIndex(scale,COASTAL_FILL_LOD_TOLERANCES,COASTAL_FILL_SCREEN_ERROR);
+  const coastalFillToleranceIndex=coastalFillToleranceIndexForView();
   const detailed=vb.w<=DETAIL_LIMIT;
   for(const record of records){
     const layerVisible=layerVisibility.get(record.layerId)!==false;
