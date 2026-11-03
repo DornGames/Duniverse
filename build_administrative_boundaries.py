@@ -628,7 +628,7 @@ def update_render_files(
         )
         major_name_canvas_tags.append(
             f'<text x="{x:g}" y="{y + 9:g}" data-language="tongue" '
-            f'font-size="9" font-weight="500" data-letter-spacing="0" '
+            f'font-size="10" font-weight="600" data-letter-spacing="0" '
             f'dominant-baseline="central" stroke="#f5f8f9" stroke-width="0.8" '
             f'paint-order="stroke">{tongue_name}</text>'
         )
@@ -639,7 +639,7 @@ def update_render_files(
         )
         major_name_preview_tags.append(
             f'<text x="{x:g}" y="{y + 9:g}" text-anchor="middle" '
-            f'dominant-baseline="central" font-size="9" font-weight="500" '
+            f'dominant-baseline="central" font-size="10" font-weight="600" '
             f'letter-spacing="0" stroke="#f5f8f9" stroke-width="0.8" '
             f'paint-order="stroke">{tongue_name}</text>'
         )
