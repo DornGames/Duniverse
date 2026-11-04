@@ -1005,6 +1005,10 @@ function createRecord(element,drawGroup,layerId){
     record.textAlign=style.textAnchor==='middle'?'center':style.textAnchor==='end'?'right':'left';
     record.glyphCount=Array.from(record.text).length;
     record.baseFontSize=Number.parseFloat(record.font.match(/[\d.]+px/)?.[0])||21;
+    if(layerId==='cityLabels'||layerId==='cityTongueLabels'){
+      record.cityPointX=Number.parseFloat(element.dataset.cityPointX);
+      record.cityPointY=Number.parseFloat(element.dataset.cityPointY);
+    }
   }
   return record;
 }
@@ -1326,6 +1330,7 @@ for(const [pointX,pointY,offsetX,offsetY,anchor,name] of CITY_LABELS){
   label.setAttribute('stroke','#fff');
   label.setAttribute('stroke-width','2');
   label.setAttribute('paint-order','stroke');
+  label.dataset.cityPointX=pointX;label.dataset.cityPointY=pointY;
   label.textContent=name;
   cityLabelLayer.append(label);
 }
@@ -1350,6 +1355,7 @@ for(const [pointX,pointY,offsetX,offsetY,anchor,name] of CITY_LABELS){
   label.setAttribute('stroke','#fff');
   label.setAttribute('stroke-width','1.2');
   label.setAttribute('paint-order','stroke');
+  label.dataset.cityPointX=pointX;label.dataset.cityPointY=pointY;
   label.textContent=tongueName;
   cityTongueLabelLayer.append(label);
 }
@@ -1545,6 +1551,10 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
     const screenFont=record.font.replace(/[\d.]+px/,`${fontSize}px`);
     ctx.font=screenFont.replace(/[\d.]+px/,`${fontSize/scale}px`);ctx.textBaseline=record.textBaseline;
     let textX=record.x,textY=record.y,textAlign=record.textAlign,displayText=record.text;
+    if((isCityLabel||isCityTongueLabel)&&Number.isFinite(record.cityPointX)&&Number.isFinite(record.cityPointY)){
+      textX=record.cityPointX+(record.x-record.cityPointX)/scale;
+      textY=record.cityPointY+(record.y-record.cityPointY)/scale;
+    }
     const tongueNamesVisible=layerVisibility.get('regionTongueNames')!==false;
     if(isRegionName){
       if(layerVisibility.get('regionCodes')!==false&&record.pairText){
