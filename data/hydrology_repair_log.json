@@ -5030,6 +5030,182 @@
           769.75
         ],
         "vertices": 70
+      },
+      {
+        "issue_id": "LAKE-OUTLINE-001",
+        "type": "lake outline",
+        "status": "replaced_with_official_12x_red_raster_contour",
+        "lake_id": 1,
+        "old_area_px2": 443.72,
+        "new_area_px2": 500.42,
+        "old_bbox": [
+          999.12,
+          1368.88,
+          1025.62,
+          1388.62
+        ],
+        "new_bbox": [
+          997.0,
+          1366.58,
+          1028.33,
+          1390.83
+        ],
+        "vertices": 51,
+        "tile_id": "R06C04"
+      },
+      {
+        "issue_id": "LAKE-OUTLINE-002",
+        "type": "lake outline",
+        "status": "replaced_with_official_12x_red_raster_contour",
+        "lake_id": 2,
+        "old_area_px2": 176.34,
+        "new_area_px2": 247.01,
+        "old_bbox": [
+          1189.12,
+          1321.88,
+          1209.12,
+          1332.12
+        ],
+        "new_bbox": [
+          1186.5,
+          1319.58,
+          1211.92,
+          1334.42
+        ],
+        "vertices": 25,
+        "tile_id": "R06C05"
+      },
+      {
+        "issue_id": "LAKE-OUTLINE-003",
+        "type": "lake outline",
+        "status": "replaced_with_official_12x_red_raster_contour",
+        "lake_id": 3,
+        "old_area_px2": 3599.88,
+        "new_area_px2": 3729.9,
+        "old_bbox": [
+          447.62,
+          1231.38,
+          539.88,
+          1286.12
+        ],
+        "new_bbox": [
+          445.17,
+          1229.25,
+          542.42,
+          1288.5
+        ],
+        "vertices": 85,
+        "tile_id": "R05C02"
+      },
+      {
+        "issue_id": "LAKE-OUTLINE-004",
+        "type": "lake outline",
+        "status": "replaced_with_official_12x_red_raster_contour",
+        "lake_id": 4,
+        "old_area_px2": 813.38,
+        "new_area_px2": 907.2,
+        "old_bbox": [
+          698.62,
+          1203.38,
+          729.12,
+          1236.38
+        ],
+        "new_bbox": [
+          696.0,
+          1201.08,
+          731.92,
+          1240.0
+        ],
+        "vertices": 52,
+        "tile_id": "R05C03"
+      },
+      {
+        "issue_id": "LAKE-OUTLINE-006",
+        "type": "lake outline",
+        "status": "replaced_with_official_12x_red_raster_contour",
+        "lake_id": 6,
+        "old_area_px2": 1111.22,
+        "new_area_px2": 1196.38,
+        "old_bbox": [
+          970.38,
+          1071.38,
+          1001.38,
+          1124.38
+        ],
+        "new_bbox": [
+          968.17,
+          1066.75,
+          1003.75,
+          1127.17
+        ],
+        "vertices": 61,
+        "tile_id": "R05C04"
+      },
+      {
+        "issue_id": "LAKE-OUTLINE-008",
+        "type": "lake outline",
+        "status": "replaced_with_official_12x_red_raster_contour",
+        "lake_id": 8,
+        "old_area_px2": 645.72,
+        "new_area_px2": 733.6,
+        "old_bbox": [
+          581.62,
+          702.88,
+          610.38,
+          727.62
+        ],
+        "new_bbox": [
+          579.5,
+          700.58,
+          612.83,
+          729.92
+        ],
+        "vertices": 39,
+        "tile_id": "R03C03"
+      },
+      {
+        "issue_id": "LAKE-OUTLINE-009",
+        "type": "lake outline",
+        "status": "replaced_with_official_12x_red_raster_contour",
+        "lake_id": 9,
+        "old_area_px2": 551.31,
+        "new_area_px2": 641.42,
+        "old_bbox": [
+          1009.62,
+          438.88,
+          1028.12,
+          477.88
+        ],
+        "new_bbox": [
+          1007.5,
+          436.0,
+          1030.58,
+          480.5
+        ],
+        "vertices": 28,
+        "tile_id": "R02C04"
+      },
+      {
+        "issue_id": "LAKE-OUTLINE-010",
+        "type": "lake outline",
+        "status": "replaced_with_official_12x_red_raster_contour",
+        "lake_id": 10,
+        "old_area_px2": 896.5,
+        "new_area_px2": 1004.69,
+        "old_bbox": [
+          934.38,
+          265.12,
+          974.38,
+          289.62
+        ],
+        "new_bbox": [
+          932.0,
+          262.75,
+          976.92,
+          291.83
+        ],
+        "vertices": 51,
+        "tile_id": "R02C04"
       }
     ]
   }
