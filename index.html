@@ -1833,7 +1833,7 @@ function renderRegionSearchSuggestions(){
 }
 function formatRegionArea(areaKm2){
   if(!Number.isFinite(areaKm2))return '暂无面积';
-  return `${new Intl.NumberFormat('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2}).format(areaKm2/10000)} 万 km²`;
+  return `${new Intl.NumberFormat('zh-CN',{minimumFractionDigits:3,maximumFractionDigits:3}).format(areaKm2/10000)} 万 km²`;
 }
 function createRegionInfoLevel(label,entry){
   const card=document.createElement('section');card.className='regionInfoLevel';
