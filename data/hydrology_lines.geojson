@@ -4982,27 +4982,83 @@
       "type": "Feature",
       "properties": {
         "segment_id": 122,
-        "length_px": 65.0,
-        "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment",
+        "length_px": 66.256,
+        "source": "official_12x_river_raster_centerline_skeleton",
+        "review_status": "manually_retraced_against_official_12x_river_raster",
         "audit_gap_issue_ids": [
           "GAP-0025"
-        ]
+        ],
+        "raster_scale": 12,
+        "reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "geometry_simplification_tolerance_px": 0.12,
+        "audit_curve_issue_id": "CURVE-SEG-122-01"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            967.5,
-            265.5
+            971.145,
+            268.855
           ],
           [
-            991.0,
-            266.0
+            972.792,
+            269.125
           ],
           [
-            1020.0,
-            272.0
+            980.208,
+            267.625
+          ],
+          [
+            982.208,
+            266.958
+          ],
+          [
+            990.375,
+            266.458
+          ],
+          [
+            997.708,
+            268.042
+          ],
+          [
+            1000.625,
+            268.958
+          ],
+          [
+            1005.125,
+            269.458
+          ],
+          [
+            1007.875,
+            269.458
+          ],
+          [
+            1011.458,
+            270.208
+          ],
+          [
+            1018.542,
+            271.042
+          ],
+          [
+            1021.958,
+            272.375
+          ],
+          [
+            1023.208,
+            272.208
+          ],
+          [
+            1026.792,
+            270.625
+          ],
+          [
+            1028.458,
+            270.292
+          ],
+          [
+            1031.042,
+            270.042
           ],
           [
             1036.0,
@@ -12652,6 +12708,4575 @@
           [
             850.125,
             1408.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 337,
+        "length_px": 6.338,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-001",
+        "source_audit_candidate_id": "GAP-0001",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "high",
+        "gap_px": 2.0,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-25",
+        "feature_a_layer": "river",
+        "feature_b": "segment-36",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1161.0,
+            946.0
+          ],
+          [
+            1160.9583,
+            947.0417
+          ],
+          [
+            1161.9583,
+            947.375
+          ],
+          [
+            1162.2083,
+            947.0417
+          ],
+          [
+            1161.9583,
+            944.2083
+          ],
+          [
+            1161.0,
+            944.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 338,
+        "length_px": 3.061,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-002",
+        "source_audit_candidate_id": "GAP-0002",
+        "audit_tile_id": "R01C05",
+        "audit_machine_confidence": "high",
+        "gap_px": 2.121,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-9",
+        "feature_a_layer": "cross_border_river",
+        "feature_b": "segment-28",
+        "feature_b_layer": "cross_border_river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1166.5,
+            151.5
+          ],
+          [
+            1165.375,
+            151.7917
+          ],
+          [
+            1164.875,
+            150.4583
+          ],
+          [
+            1165.0,
+            150.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 339,
+        "length_px": 3.931,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-003",
+        "source_audit_candidate_id": "GAP-0003",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 2.5,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-43",
+        "feature_a_layer": "river",
+        "feature_b": "segment-66",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            932.0,
+            1367.0
+          ],
+          [
+            932.7917,
+            1367.2083
+          ],
+          [
+            932.625,
+            1364.7917
+          ],
+          [
+            932.0,
+            1364.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 340,
+        "length_px": 3.234,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-004",
+        "source_audit_candidate_id": "GAP-0005",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.127,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-115",
+        "feature_a_layer": "river",
+        "feature_b": "segment-259",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            752.0,
+            1375.0
+          ],
+          [
+            751.875,
+            1373.9583
+          ],
+          [
+            752.125,
+            1372.2083
+          ],
+          [
+            751.875,
+            1371.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 341,
+        "length_px": 3.193,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-005",
+        "source_audit_candidate_id": "GAP-0006",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.147,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-126",
+        "feature_a_layer": "river",
+        "feature_b": "segment-298",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            966.0,
+            1361.0
+          ],
+          [
+            966.0417,
+            1359.125
+          ],
+          [
+            965.625,
+            1357.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 342,
+        "length_px": 3.245,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-006",
+        "source_audit_candidate_id": "GAP-0007",
+        "audit_tile_id": "R01C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.245,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-36",
+        "feature_a_layer": "cross_border_river",
+        "feature_b": "segment-47",
+        "feature_b_layer": "cross_border_river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            939.0,
+            15.0
+          ],
+          [
+            938.125,
+            11.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 343,
+        "length_px": 5.477,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-007",
+        "source_audit_candidate_id": "GAP-0008",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.302,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-1",
+        "feature_a_layer": "river",
+        "feature_b": "segment-163",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            923.0,
+            323.0
+          ],
+          [
+            923.2917,
+            322.5417
+          ],
+          [
+            923.0417,
+            322.125
+          ],
+          [
+            921.7083,
+            322.4583
+          ],
+          [
+            921.0417,
+            324.2917
+          ],
+          [
+            920.7083,
+            324.7083
+          ],
+          [
+            920.125,
+            324.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 344,
+        "length_px": 4.003,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-008",
+        "source_audit_candidate_id": "GAP-0009",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.359,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-132",
+        "feature_a_layer": "river",
+        "feature_b": "segment-151",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            814.0,
+            292.0
+          ],
+          [
+            813.625,
+            292.375
+          ],
+          [
+            813.0417,
+            292.0417
+          ],
+          [
+            811.625,
+            289.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 345,
+        "length_px": 3.377,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-009",
+        "source_audit_candidate_id": "GAP-0010",
+        "audit_tile_id": "R01C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.377,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-27",
+        "feature_a_layer": "river",
+        "feature_b": "segment-156",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            786.0,
+            251.0
+          ],
+          [
+            785.875,
+            254.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 346,
+        "length_px": 3.377,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-010",
+        "source_audit_candidate_id": "GAP-0011",
+        "audit_tile_id": "R04C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.377,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-93",
+        "feature_a_layer": "river",
+        "feature_b": "segment-183",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1006.0,
+            914.0
+          ],
+          [
+            1006.125,
+            910.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 347,
+        "length_px": 3.421,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-011",
+        "source_audit_candidate_id": "GAP-0012",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.396,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-34",
+        "feature_a_layer": "river",
+        "feature_b": "segment-326",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            874.0,
+            1379.0
+          ],
+          [
+            871.5417,
+            1378.5417
+          ],
+          [
+            870.625,
+            1378.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 348,
+        "length_px": 4.413,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-012",
+        "source_audit_candidate_id": "GAP-0013",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.432,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-18",
+        "feature_a_layer": "river",
+        "feature_b": "segment-160",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            882.0,
+            310.0
+          ],
+          [
+            882.2083,
+            310.375
+          ],
+          [
+            882.0417,
+            310.625
+          ],
+          [
+            880.7917,
+            310.4583
+          ],
+          [
+            878.625,
+            309.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 349,
+        "length_px": 3.826,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-013",
+        "source_audit_candidate_id": "GAP-0014",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.432,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-28",
+        "feature_a_layer": "river",
+        "feature_b": "segment-156",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            781.0,
+            270.0
+          ],
+          [
+            781.7917,
+            269.9583
+          ],
+          [
+            782.875,
+            267.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 350,
+        "length_px": 4.02,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-014",
+        "source_audit_candidate_id": "GAP-0015",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.487,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-115",
+        "feature_a_layer": "river",
+        "feature_b": "segment-334",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            764.0,
+            1387.0
+          ],
+          [
+            764.2083,
+            1387.4583
+          ],
+          [
+            765.2917,
+            1387.375
+          ],
+          [
+            767.375,
+            1386.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 351,
+        "length_px": 4.66,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-015",
+        "source_audit_candidate_id": "GAP-0016",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.522,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-58",
+        "feature_a_layer": "river",
+        "feature_b": "segment-236",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            730.0,
+            1289.0
+          ],
+          [
+            729.2083,
+            1289.375
+          ],
+          [
+            729.7917,
+            1290.625
+          ],
+          [
+            731.2083,
+            1291.5417
+          ],
+          [
+            731.625,
+            1292.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 352,
+        "length_px": 3.611,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-016",
+        "source_audit_candidate_id": "GAP-0017",
+        "audit_tile_id": "R02C05",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.536,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-4",
+        "feature_a_layer": "river",
+        "feature_b": "segment-139",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1158.5,
+            376.5
+          ],
+          [
+            1157.7083,
+            376.875
+          ],
+          [
+            1155.7083,
+            377.125
+          ],
+          [
+            1155.0,
+            377.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 353,
+        "length_px": 4.63,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-017",
+        "source_audit_candidate_id": "GAP-0018",
+        "audit_tile_id": "R05C06",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.558,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-218",
+        "feature_a_layer": "river",
+        "feature_b": "canal-1-centerline",
+        "feature_b_layer": "canal",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1403.375,
+            1130.125
+          ],
+          [
+            1400.625,
+            1130.7083
+          ],
+          [
+            1400.0,
+            1129.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 354,
+        "length_px": 3.609,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-018",
+        "source_audit_candidate_id": "GAP-0019",
+        "audit_tile_id": "R04C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.575,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-3",
+        "feature_a_layer": "river",
+        "feature_b": "segment-183",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1004.0,
+            874.0
+          ],
+          [
+            1003.4583,
+            875.125
+          ],
+          [
+            1001.875,
+            876.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 355,
+        "length_px": 4.334,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-019",
+        "source_audit_candidate_id": "GAP-0020",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.575,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-132",
+        "feature_a_layer": "river",
+        "feature_b": "segment-161",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            830.0,
+            302.0
+          ],
+          [
+            830.5417,
+            302.375
+          ],
+          [
+            830.2083,
+            302.7917
+          ],
+          [
+            830.375,
+            303.2083
+          ],
+          [
+            831.125,
+            303.2917
+          ],
+          [
+            832.875,
+            304.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 356,
+        "length_px": 3.859,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-020",
+        "source_audit_candidate_id": "GAP-0021",
+        "audit_tile_id": "R03C05",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.627,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-2",
+        "feature_a_layer": "river",
+        "feature_b": "segment-177",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1074.0,
+            531.0
+          ],
+          [
+            1073.625,
+            531.4583
+          ],
+          [
+            1070.375,
+            531.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 357,
+        "length_px": 4.507,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-021",
+        "source_audit_candidate_id": "GAP-0022",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.644,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-18",
+        "feature_a_layer": "river",
+        "feature_b": "segment-164",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            903.0,
+            319.0
+          ],
+          [
+            902.625,
+            319.2917
+          ],
+          [
+            902.7917,
+            319.7917
+          ],
+          [
+            906.125,
+            320.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 358,
+        "length_px": 3.713,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-022",
+        "source_audit_candidate_id": "GAP-0023",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.644,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-103",
+        "feature_a_layer": "river",
+        "feature_b": "segment-336",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            828.0,
+            1408.0
+          ],
+          [
+            828.7083,
+            1408.2083
+          ],
+          [
+            831.625,
+            1407.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 359,
+        "length_px": 4.149,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-023",
+        "source_audit_candidate_id": "GAP-0024",
+        "audit_tile_id": "R02C05",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.678,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-120",
+        "feature_a_layer": "river",
+        "feature_b": "segment-165",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1051.0,
+            328.0
+          ],
+          [
+            1050.5417,
+            328.5417
+          ],
+          [
+            1047.7917,
+            327.7917
+          ],
+          [
+            1047.375,
+            327.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 360,
+        "length_px": 4.719,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-024",
+        "source_audit_candidate_id": "GAP-0025",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.729,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-144",
+        "feature_a_layer": "river",
+        "feature_b": "segment-176",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1014.0,
+            498.0
+          ],
+          [
+            1014.7917,
+            497.875
+          ],
+          [
+            1014.7083,
+            497.2083
+          ],
+          [
+            1013.125,
+            494.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 361,
+        "length_px": 5.52,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-025",
+        "source_audit_candidate_id": "GAP-0026",
+        "audit_tile_id": "R01C05",
+        "audit_machine_confidence": "high",
+        "gap_px": 3.925,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-18",
+        "feature_a_layer": "cross_border_river",
+        "feature_b": "segment-50",
+        "feature_b_layer": "cross_border_river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1065.0,
+            159.0
+          ],
+          [
+            1065.2083,
+            158.625
+          ],
+          [
+            1065.7917,
+            158.625
+          ],
+          [
+            1065.5417,
+            160.125
+          ],
+          [
+            1064.375,
+            162.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 362,
+        "length_px": 4.431,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-026",
+        "source_audit_candidate_id": "GAP-0027",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "high",
+        "gap_px": 4.202,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-60",
+        "feature_a_layer": "river",
+        "feature_b": "segment-305",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1405.0,
+            1363.0
+          ],
+          [
+            1404.7917,
+            1363.5417
+          ],
+          [
+            1403.4583,
+            1363.7083
+          ],
+          [
+            1401.125,
+            1364.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 363,
+        "length_px": 5.256,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-027",
+        "source_audit_candidate_id": "GAP-0028",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "high",
+        "gap_px": 4.272,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-9",
+        "feature_a_layer": "river",
+        "feature_b": "segment-26",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1177.0,
+            967.5
+          ],
+          [
+            1177.0417,
+            966.625
+          ],
+          [
+            1174.875,
+            965.9583
+          ],
+          [
+            1174.4583,
+            965.9583
+          ],
+          [
+            1174.125,
+            966.2917
+          ],
+          [
+            1173.375,
+            966.2917
+          ],
+          [
+            1173.0,
+            966.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 364,
+        "length_px": 4.636,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-028",
+        "source_audit_candidate_id": "GAP-0030",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 4.377,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-40",
+        "feature_a_layer": "river",
+        "feature_b": "segment-295",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1005.0,
+            1328.0
+          ],
+          [
+            1004.2083,
+            1328.4583
+          ],
+          [
+            1002.7917,
+            1327.9583
+          ],
+          [
+            1000.875,
+            1328.0417
+          ],
+          [
+            1000.625,
+            1327.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 365,
+        "length_px": 5.129,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-029",
+        "source_audit_candidate_id": "GAP-0031",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "high",
+        "gap_px": 4.707,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-90",
+        "feature_a_layer": "river",
+        "feature_b": "segment-207",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1244.0,
+            995.0
+          ],
+          [
+            1244.2917,
+            995.2083
+          ],
+          [
+            1244.4583,
+            995.875
+          ],
+          [
+            1244.2083,
+            997.4583
+          ],
+          [
+            1243.7917,
+            998.875
+          ],
+          [
+            1243.125,
+            999.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 366,
+        "length_px": 4.932,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-030",
+        "source_audit_candidate_id": "GAP-0032",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "high",
+        "gap_px": 4.854,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-305",
+        "feature_a_layer": "river",
+        "feature_b": "segment-312",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1391.625,
+            1367.125
+          ],
+          [
+            1391.0417,
+            1367.0417
+          ],
+          [
+            1388.625,
+            1367.9583
+          ],
+          [
+            1386.875,
+            1368.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 367,
+        "length_px": 5.709,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-031",
+        "source_audit_candidate_id": "GAP-0033",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "high",
+        "gap_px": 5.056,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-226",
+        "feature_a_layer": "river",
+        "feature_b": "segment-235",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            757.375,
+            1341.875
+          ],
+          [
+            757.625,
+            1343.375
+          ],
+          [
+            758.4583,
+            1345.625
+          ],
+          [
+            758.5417,
+            1346.875
+          ],
+          [
+            758.375,
+            1347.0417
+          ],
+          [
+            758.125,
+            1346.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 368,
+        "length_px": 5.917,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-032",
+        "source_audit_candidate_id": "GAP-0034",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "high",
+        "gap_px": 5.772,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-292",
+        "feature_a_layer": "river",
+        "feature_b": "segment-299",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            969.625,
+            1354.125
+          ],
+          [
+            968.4583,
+            1354.125
+          ],
+          [
+            964.875,
+            1353.375
+          ],
+          [
+            964.2083,
+            1353.7083
+          ],
+          [
+            963.875,
+            1353.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 369,
+        "length_px": 6.59,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-033",
+        "source_audit_candidate_id": "GAP-0035",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 6.25,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-150",
+        "feature_a_layer": "river",
+        "feature_b": "segment-152",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            795.375,
+            261.125
+          ],
+          [
+            794.625,
+            261.0417
+          ],
+          [
+            793.625,
+            259.875
+          ],
+          [
+            791.9583,
+            257.375
+          ],
+          [
+            791.625,
+            256.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 370,
+        "length_px": 7.843,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-034",
+        "source_audit_candidate_id": "GAP-0036",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 6.933,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-289",
+        "feature_a_layer": "river",
+        "feature_b": "segment-293",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            991.375,
+            1339.375
+          ],
+          [
+            991.625,
+            1339.5417
+          ],
+          [
+            992.125,
+            1339.375
+          ],
+          [
+            992.5417,
+            1338.7917
+          ],
+          [
+            993.0417,
+            1335.2083
+          ],
+          [
+            994.375,
+            1333.7083
+          ],
+          [
+            994.5417,
+            1333.375
+          ],
+          [
+            994.375,
+            1333.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 371,
+        "length_px": 7.905,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-035",
+        "source_audit_candidate_id": "GAP-0037",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "gap_px": 6.975,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-75",
+        "feature_a_layer": "river",
+        "feature_b": "segment-304",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1318.5,
+            1386.0
+          ],
+          [
+            1318.9583,
+            1386.2083
+          ],
+          [
+            1319.375,
+            1387.2083
+          ],
+          [
+            1319.7917,
+            1388.625
+          ],
+          [
+            1319.875,
+            1390.4583
+          ],
+          [
+            1321.2917,
+            1390.875
+          ],
+          [
+            1322.625,
+            1391.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 372,
+        "length_px": 7.291,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-036",
+        "source_audit_candidate_id": "GAP-0038",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "medium",
+        "gap_px": 7.179,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-53",
+        "feature_a_layer": "river",
+        "feature_b": "segment-201",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1141.0,
+            1008.0
+          ],
+          [
+            1141.5417,
+            1007.875
+          ],
+          [
+            1142.7917,
+            1008.4583
+          ],
+          [
+            1144.4583,
+            1008.7083
+          ],
+          [
+            1148.125,
+            1008.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 373,
+        "length_px": 7.6,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-037",
+        "source_audit_candidate_id": "GAP-0039",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 7.517,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-166",
+        "feature_a_layer": "river",
+        "feature_b": "segment-174",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            983.875,
+            331.625
+          ],
+          [
+            987.9583,
+            330.7917
+          ],
+          [
+            991.375,
+            331.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 374,
+        "length_px": 7.57,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-038",
+        "source_audit_candidate_id": "GAP-0040",
+        "audit_tile_id": "R02C05",
+        "audit_machine_confidence": "medium",
+        "gap_px": 7.537,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-165",
+        "feature_a_layer": "river",
+        "feature_b": "segment-171",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1041.875,
+            324.875
+          ],
+          [
+            1037.875,
+            324.125
+          ],
+          [
+            1034.375,
+            324.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 375,
+        "length_px": 7.774,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-039",
+        "source_audit_candidate_id": "GAP-0041",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "gap_px": 7.701,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-310",
+        "feature_a_layer": "river",
+        "feature_b": "segment-316",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1356.375,
+            1384.375
+          ],
+          [
+            1357.7917,
+            1384.2083
+          ],
+          [
+            1360.0417,
+            1383.375
+          ],
+          [
+            1363.2917,
+            1382.9583
+          ],
+          [
+            1363.875,
+            1382.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 376,
+        "length_px": 8.351,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-040",
+        "source_audit_candidate_id": "GAP-0042",
+        "audit_tile_id": "R03C05",
+        "audit_machine_confidence": "medium",
+        "gap_px": 7.81,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-177",
+        "feature_a_layer": "river",
+        "feature_b": "segment-181",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1065.125,
+            528.375
+          ],
+          [
+            1063.9583,
+            528.2083
+          ],
+          [
+            1063.4583,
+            527.7083
+          ],
+          [
+            1063.0417,
+            526.625
+          ],
+          [
+            1062.375,
+            526.0417
+          ],
+          [
+            1060.7083,
+            525.375
+          ],
+          [
+            1059.7917,
+            524.7083
+          ],
+          [
+            1059.125,
+            523.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 377,
+        "length_px": 8.538,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-041",
+        "source_audit_candidate_id": "GAP-0043",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 8.07,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-271",
+        "feature_a_layer": "river",
+        "feature_b": "segment-282",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            640.625,
+            1350.875
+          ],
+          [
+            640.875,
+            1351.0417
+          ],
+          [
+            643.7083,
+            1350.7083
+          ],
+          [
+            645.9583,
+            1350.2083
+          ],
+          [
+            648.2917,
+            1349.125
+          ],
+          [
+            648.375,
+            1348.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 378,
+        "length_px": 8.429,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-042",
+        "source_audit_candidate_id": "GAP-0044",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 8.143,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-167",
+        "feature_a_layer": "river",
+        "feature_b": "segment-175",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            976.125,
+            334.125
+          ],
+          [
+            977.375,
+            334.0417
+          ],
+          [
+            982.4583,
+            332.625
+          ],
+          [
+            983.875,
+            331.9583
+          ],
+          [
+            983.875,
+            331.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 379,
+        "length_px": 8.337,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-043",
+        "source_audit_candidate_id": "GAP-0045",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 8.254,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-230",
+        "feature_a_layer": "river",
+        "feature_b": "segment-245",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            720.625,
+            1348.375
+          ],
+          [
+            715.625,
+            1348.0417
+          ],
+          [
+            713.9583,
+            1348.5417
+          ],
+          [
+            712.375,
+            1348.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 380,
+        "length_px": 8.629,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-044",
+        "source_audit_candidate_id": "GAP-0046",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 8.322,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-149",
+        "feature_a_layer": "river",
+        "feature_b": "segment-154",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            795.375,
+            261.125
+          ],
+          [
+            795.7917,
+            262.375
+          ],
+          [
+            796.875,
+            263.7083
+          ],
+          [
+            799.2083,
+            268.0417
+          ],
+          [
+            799.875,
+            268.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 381,
+        "length_px": 8.918,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-045",
+        "source_audit_candidate_id": "GAP-0047",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "gap_px": 8.404,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-313",
+        "feature_a_layer": "river",
+        "feature_b": "segment-320",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1386.875,
+            1368.125
+          ],
+          [
+            1387.0417,
+            1368.4583
+          ],
+          [
+            1386.7083,
+            1368.7917
+          ],
+          [
+            1383.4583,
+            1370.2917
+          ],
+          [
+            1381.625,
+            1371.4583
+          ],
+          [
+            1380.875,
+            1372.2083
+          ],
+          [
+            1379.625,
+            1372.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 382,
+        "length_px": 8.711,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-046",
+        "source_audit_candidate_id": "GAP-0048",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 8.5,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-150",
+        "feature_a_layer": "river",
+        "feature_b": "segment-155",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            799.875,
+            268.125
+          ],
+          [
+            800.125,
+            269.5417
+          ],
+          [
+            802.5417,
+            274.2083
+          ],
+          [
+            803.2083,
+            275.2917
+          ],
+          [
+            803.875,
+            275.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 383,
+        "length_px": 9.031,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-047",
+        "source_audit_candidate_id": "GAP-0049",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "medium",
+        "gap_px": 8.62,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-199",
+        "feature_a_layer": "river",
+        "feature_b": "segment-200",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1170.625,
+            993.875
+          ],
+          [
+            1170.9583,
+            993.9583
+          ],
+          [
+            1170.7917,
+            995.2917
+          ],
+          [
+            1169.875,
+            997.2083
+          ],
+          [
+            1168.125,
+            1002.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 384,
+        "length_px": 10.594,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-048",
+        "source_audit_candidate_id": "GAP-0050",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 8.678,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-234",
+        "feature_a_layer": "river",
+        "feature_b": "segment-251",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            753.125,
+            1348.875
+          ],
+          [
+            753.5417,
+            1349.0417
+          ],
+          [
+            753.2917,
+            1350.125
+          ],
+          [
+            751.0417,
+            1352.625
+          ],
+          [
+            750.4583,
+            1353.7917
+          ],
+          [
+            749.7083,
+            1354.625
+          ],
+          [
+            748.2083,
+            1355.0417
+          ],
+          [
+            747.125,
+            1354.9583
+          ],
+          [
+            746.625,
+            1354.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 385,
+        "length_px": 9.028,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-049",
+        "source_audit_candidate_id": "GAP-0051",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 8.732,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-230",
+        "feature_a_layer": "river",
+        "feature_b": "segment-251",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            729.375,
+            1350.375
+          ],
+          [
+            729.9583,
+            1351.2083
+          ],
+          [
+            733.2083,
+            1352.9583
+          ],
+          [
+            735.875,
+            1353.875
+          ],
+          [
+            737.375,
+            1353.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 386,
+        "length_px": 10.349,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-050",
+        "source_audit_candidate_id": "GAP-0052",
+        "audit_tile_id": "R04C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 8.855,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-133",
+        "feature_a_layer": "river",
+        "feature_b": "segment-186",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            918.0,
+            907.0
+          ],
+          [
+            918.0417,
+            906.7083
+          ],
+          [
+            918.375,
+            906.7083
+          ],
+          [
+            922.2083,
+            907.625
+          ],
+          [
+            924.625,
+            912.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 387,
+        "length_px": 9.189,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-051",
+        "source_audit_candidate_id": "GAP-0053",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 8.976,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-229",
+        "feature_a_layer": "river",
+        "feature_b": "segment-285",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            720.625,
+            1348.375
+          ],
+          [
+            720.875,
+            1348.2083
+          ],
+          [
+            723.2917,
+            1348.2917
+          ],
+          [
+            725.125,
+            1348.7917
+          ],
+          [
+            727.9583,
+            1350.125
+          ],
+          [
+            729.375,
+            1350.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 388,
+        "length_px": 9.598,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-052",
+        "source_audit_candidate_id": "GAP-0054",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.031,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-227",
+        "feature_a_layer": "river",
+        "feature_b": "segment-258",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            758.125,
+            1346.875
+          ],
+          [
+            758.5417,
+            1347.2917
+          ],
+          [
+            759.0417,
+            1348.5417
+          ],
+          [
+            759.0417,
+            1349.2917
+          ],
+          [
+            757.7083,
+            1353.7917
+          ],
+          [
+            757.625,
+            1355.7083
+          ],
+          [
+            757.375,
+            1355.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 389,
+        "length_px": 9.213,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-053",
+        "source_audit_candidate_id": "GAP-0055",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.169,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-158",
+        "feature_a_layer": "river",
+        "feature_b": "segment-160",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            863.375,
+            304.125
+          ],
+          [
+            867.125,
+            304.5417
+          ],
+          [
+            871.2083,
+            305.7917
+          ],
+          [
+            872.375,
+            305.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 390,
+        "length_px": 9.666,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-054",
+        "source_audit_candidate_id": "GAP-0056",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.28,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-252",
+        "feature_a_layer": "river",
+        "feature_b": "segment-285",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            746.625,
+            1354.625
+          ],
+          [
+            746.2917,
+            1354.7917
+          ],
+          [
+            740.0417,
+            1354.7917
+          ],
+          [
+            737.875,
+            1354.4583
+          ],
+          [
+            737.375,
+            1354.125
+          ],
+          [
+            737.375,
+            1353.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 391,
+        "length_px": 10.384,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-055",
+        "source_audit_candidate_id": "GAP-0057",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.334,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-291",
+        "feature_a_layer": "river",
+        "feature_b": "segment-297",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            978.375,
+            1350.875
+          ],
+          [
+            978.7083,
+            1351.125
+          ],
+          [
+            978.4583,
+            1351.7917
+          ],
+          [
+            976.2917,
+            1353.0417
+          ],
+          [
+            969.625,
+            1354.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 392,
+        "length_px": 9.613,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-056",
+        "source_audit_candidate_id": "GAP-0058",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.334,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-309",
+        "feature_a_layer": "river",
+        "feature_b": "segment-317",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1356.375,
+            1384.375
+          ],
+          [
+            1356.2083,
+            1384.875
+          ],
+          [
+            1352.7083,
+            1386.2917
+          ],
+          [
+            1348.2917,
+            1387.7083
+          ],
+          [
+            1347.625,
+            1387.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 393,
+        "length_px": 9.597,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-057",
+        "source_audit_candidate_id": "GAP-0059",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.341,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-222",
+        "feature_a_layer": "river",
+        "feature_b": "segment-271",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            619.875,
+            1355.875
+          ],
+          [
+            620.7083,
+            1355.4583
+          ],
+          [
+            621.2083,
+            1354.875
+          ],
+          [
+            623.2083,
+            1353.9583
+          ],
+          [
+            628.875,
+            1353.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 394,
+        "length_px": 10.194,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-058",
+        "source_audit_candidate_id": "GAP-0060",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.424,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-309",
+        "feature_a_layer": "river",
+        "feature_b": "segment-320",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1363.875,
+            1382.625
+          ],
+          [
+            1365.875,
+            1382.4583
+          ],
+          [
+            1369.375,
+            1381.5417
+          ],
+          [
+            1372.4583,
+            1380.0417
+          ],
+          [
+            1372.875,
+            1379.375
+          ],
+          [
+            1372.625,
+            1379.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 395,
+        "length_px": 9.616,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-059",
+        "source_audit_candidate_id": "GAP-0061",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.451,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-151",
+        "feature_a_layer": "river",
+        "feature_b": "segment-154",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            809.625,
+            283.125
+          ],
+          [
+            808.9583,
+            282.7917
+          ],
+          [
+            806.9583,
+            279.7917
+          ],
+          [
+            804.4583,
+            277.125
+          ],
+          [
+            803.875,
+            275.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 396,
+        "length_px": 9.613,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-060",
+        "source_audit_candidate_id": "GAP-0062",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.464,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-166",
+        "feature_a_layer": "river",
+        "feature_b": "segment-168",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            976.125,
+            334.125
+          ],
+          [
+            975.4583,
+            334.7083
+          ],
+          [
+            972.4583,
+            335.5417
+          ],
+          [
+            966.875,
+            336.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 397,
+        "length_px": 9.727,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-061",
+        "source_audit_candidate_id": "GAP-0063",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.464,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-168",
+        "feature_a_layer": "river",
+        "feature_b": "segment-169",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            954.375,
+            335.875
+          ],
+          [
+            950.875,
+            335.7917
+          ],
+          [
+            948.4583,
+            335.375
+          ],
+          [
+            945.7917,
+            334.625
+          ],
+          [
+            945.125,
+            333.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 398,
+        "length_px": 9.915,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-062",
+        "source_audit_candidate_id": "GAP-0064",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.499,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-208",
+        "feature_a_layer": "river",
+        "feature_b": "canal-3-centerline",
+        "feature_b_layer": "canal",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1242.125,
+            1003.375
+          ],
+          [
+            1242.375,
+            1003.125
+          ],
+          [
+            1242.625,
+            1001.125
+          ],
+          [
+            1243.9583,
+            998.5417
+          ],
+          [
+            1244.2083,
+            997.4583
+          ],
+          [
+            1244.4583,
+            995.875
+          ],
+          [
+            1243.88,
+            994.04
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 399,
+        "length_px": 9.863,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-063",
+        "source_audit_candidate_id": "GAP-0065",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.503,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-304",
+        "feature_a_layer": "river",
+        "feature_b": "segment-317",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1329.875,
+            1393.125
+          ],
+          [
+            1332.375,
+            1393.7083
+          ],
+          [
+            1335.5417,
+            1393.7083
+          ],
+          [
+            1338.9583,
+            1393.2917
+          ],
+          [
+            1339.2917,
+            1393.2083
+          ],
+          [
+            1339.375,
+            1392.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 400,
+        "length_px": 11.091,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-064",
+        "source_audit_candidate_id": "GAP-0066",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.569,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-288",
+        "feature_a_layer": "river",
+        "feature_b": "segment-291",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            991.375,
+            1339.375
+          ],
+          [
+            991.5417,
+            1339.625
+          ],
+          [
+            990.7917,
+            1341.4583
+          ],
+          [
+            991.0417,
+            1343.7917
+          ],
+          [
+            990.7083,
+            1344.625
+          ],
+          [
+            989.2917,
+            1346.125
+          ],
+          [
+            987.875,
+            1347.125
+          ],
+          [
+            986.125,
+            1347.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 401,
+        "length_px": 10.098,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-065",
+        "source_audit_candidate_id": "GAP-0067",
+        "audit_tile_id": "R05C06",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.572,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-216",
+        "feature_a_layer": "river",
+        "feature_b": "segment-218",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1413.875,
+            1117.625
+          ],
+          [
+            1414.0417,
+            1117.875
+          ],
+          [
+            1413.5417,
+            1118.7917
+          ],
+          [
+            1409.2083,
+            1121.7083
+          ],
+          [
+            1407.375,
+            1123.7917
+          ],
+          [
+            1406.625,
+            1123.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 402,
+        "length_px": 10.523,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-066",
+        "source_audit_candidate_id": "GAP-0068",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.65,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-221",
+        "feature_a_layer": "river",
+        "feature_b": "segment-270",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            619.875,
+            1355.875
+          ],
+          [
+            619.7083,
+            1357.125
+          ],
+          [
+            618.4583,
+            1357.625
+          ],
+          [
+            612.4583,
+            1358.625
+          ],
+          [
+            610.625,
+            1358.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 403,
+        "length_px": 10.427,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-067",
+        "source_audit_candidate_id": "GAP-0069",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.724,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-314",
+        "feature_a_layer": "river",
+        "feature_b": "segment-316",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1379.625,
+            1372.375
+          ],
+          [
+            1379.875,
+            1372.625
+          ],
+          [
+            1379.625,
+            1373.375
+          ],
+          [
+            1375.9583,
+            1377.2083
+          ],
+          [
+            1374.0417,
+            1378.875
+          ],
+          [
+            1372.625,
+            1379.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 404,
+        "length_px": 10.731,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-068",
+        "source_audit_candidate_id": "GAP-0070",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.779,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-307",
+        "feature_a_layer": "river",
+        "feature_b": "segment-310",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1339.375,
+            1392.875
+          ],
+          [
+            1341.2917,
+            1392.7917
+          ],
+          [
+            1344.625,
+            1391.375
+          ],
+          [
+            1347.625,
+            1388.625
+          ],
+          [
+            1347.875,
+            1388.0417
+          ],
+          [
+            1347.625,
+            1387.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 405,
+        "length_px": 9.815,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-069",
+        "source_audit_candidate_id": "GAP-0071",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.801,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-158",
+        "feature_a_layer": "river",
+        "feature_b": "segment-161",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            853.125,
+            304.375
+          ],
+          [
+            851.0417,
+            304.375
+          ],
+          [
+            843.375,
+            303.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 406,
+        "length_px": 10.0,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-070",
+        "source_audit_candidate_id": "GAP-0072",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 9.801,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-173",
+        "feature_a_layer": "river",
+        "feature_b": "segment-175",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1001.125,
+            332.125
+          ],
+          [
+            1000.9583,
+            332.375
+          ],
+          [
+            998.0417,
+            332.375
+          ],
+          [
+            991.375,
+            331.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 407,
+        "length_px": 10.083,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-071",
+        "source_audit_candidate_id": "GAP-0073",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 10.05,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-219",
+        "feature_a_layer": "river",
+        "feature_b": "segment-272",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            668.375,
+            1342.125
+          ],
+          [
+            664.4583,
+            1342.2917
+          ],
+          [
+            660.125,
+            1343.125
+          ],
+          [
+            658.375,
+            1343.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 408,
+        "length_px": 10.273,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-072",
+        "source_audit_candidate_id": "GAP-0074",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 10.078,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-219",
+        "feature_a_layer": "river",
+        "feature_b": "segment-243",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            679.125,
+            1340.875
+          ],
+          [
+            679.4583,
+            1341.2917
+          ],
+          [
+            681.2917,
+            1342.125
+          ],
+          [
+            684.4583,
+            1342.9583
+          ],
+          [
+            687.125,
+            1344.7083
+          ],
+          [
+            688.375,
+            1344.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 409,
+        "length_px": 10.443,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-073",
+        "source_audit_candidate_id": "GAP-0075",
+        "audit_tile_id": "R04C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 10.198,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-187",
+        "feature_a_layer": "river",
+        "feature_b": "segment-195",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            989.375,
+            933.375
+          ],
+          [
+            989.4583,
+            933.7083
+          ],
+          [
+            990.4583,
+            933.9583
+          ],
+          [
+            996.375,
+            934.875
+          ],
+          [
+            996.7917,
+            935.125
+          ],
+          [
+            999.375,
+            935.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 410,
+        "length_px": 10.352,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-074",
+        "source_audit_candidate_id": "GAP-0076",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 10.253,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-159",
+        "feature_a_layer": "river",
+        "feature_b": "segment-162",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            863.375,
+            304.125
+          ],
+          [
+            856.7917,
+            304.625
+          ],
+          [
+            853.4583,
+            304.625
+          ],
+          [
+            853.125,
+            304.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 411,
+        "length_px": 10.492,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-075",
+        "source_audit_candidate_id": "GAP-0077",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 10.371,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-235",
+        "feature_a_layer": "river",
+        "feature_b": "segment-259",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            757.375,
+            1355.875
+          ],
+          [
+            757.4583,
+            1357.0417
+          ],
+          [
+            757.125,
+            1359.0417
+          ],
+          [
+            754.875,
+            1364.625
+          ],
+          [
+            754.625,
+            1365.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 412,
+        "length_px": 11.092,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-076",
+        "source_audit_candidate_id": "GAP-0078",
+        "audit_tile_id": "R05C05",
+        "audit_machine_confidence": "medium",
+        "gap_px": 10.467,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-205",
+        "feature_a_layer": "river",
+        "feature_b": "segment-214",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1248.125,
+            1052.375
+          ],
+          [
+            1247.7083,
+            1052.4583
+          ],
+          [
+            1246.625,
+            1052.125
+          ],
+          [
+            1245.0417,
+            1050.5417
+          ],
+          [
+            1242.2917,
+            1046.5417
+          ],
+          [
+            1241.7917,
+            1045.625
+          ],
+          [
+            1241.625,
+            1044.5417
+          ],
+          [
+            1241.375,
+            1044.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 413,
+        "length_px": 11.542,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-077",
+        "source_audit_candidate_id": "GAP-0079",
+        "audit_tile_id": "R03C05",
+        "audit_machine_confidence": "medium",
+        "gap_px": 10.684,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-144",
+        "feature_a_layer": "river",
+        "feature_b": "segment-182",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1054.0,
+            514.0
+          ],
+          [
+            1053.7917,
+            514.2083
+          ],
+          [
+            1053.9583,
+            515.2917
+          ],
+          [
+            1054.625,
+            516.5417
+          ],
+          [
+            1055.2083,
+            518.625
+          ],
+          [
+            1055.875,
+            519.125
+          ],
+          [
+            1056.125,
+            520.4583
+          ],
+          [
+            1058.2083,
+            523.2083
+          ],
+          [
+            1059.125,
+            523.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 414,
+        "length_px": 11.404,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-078",
+        "source_audit_candidate_id": "GAP-0080",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "medium",
+        "gap_px": 10.762,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-198",
+        "feature_a_layer": "river",
+        "feature_b": "segment-202",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1176.125,
+            984.625
+          ],
+          [
+            1176.375,
+            985.2083
+          ],
+          [
+            1175.625,
+            986.7083
+          ],
+          [
+            1172.2083,
+            992.0417
+          ],
+          [
+            1171.5417,
+            993.625
+          ],
+          [
+            1171.125,
+            993.9583
+          ],
+          [
+            1170.625,
+            993.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 415,
+        "length_px": 10.955,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-079",
+        "source_audit_candidate_id": "GAP-0081",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "medium",
+        "gap_px": 10.796,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-231",
+        "feature_a_layer": "river",
+        "feature_b": "segment-249",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            494.875,
+            1307.625
+          ],
+          [
+            494.5417,
+            1308.2917
+          ],
+          [
+            493.7083,
+            1312.125
+          ],
+          [
+            493.625,
+            1313.2917
+          ],
+          [
+            494.0417,
+            1317.0417
+          ],
+          [
+            493.875,
+            1318.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 416,
+        "length_px": 11.025,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-080",
+        "source_audit_candidate_id": "GAP-0082",
+        "audit_tile_id": "R05C05",
+        "audit_machine_confidence": "medium",
+        "gap_px": 10.892,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-204",
+        "feature_a_layer": "river",
+        "feature_b": "segment-211",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1275.875,
+            1109.125
+          ],
+          [
+            1276.125,
+            1108.9583
+          ],
+          [
+            1276.4583,
+            1106.7083
+          ],
+          [
+            1277.0417,
+            1100.2083
+          ],
+          [
+            1277.625,
+            1098.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 417,
+        "length_px": 12.525,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-081",
+        "source_audit_candidate_id": "GAP-0083",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "medium",
+        "gap_px": 10.892,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-228",
+        "feature_a_layer": "river",
+        "feature_b": "segment-247",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            493.125,
+            1296.875
+          ],
+          [
+            493.4583,
+            1297.875
+          ],
+          [
+            496.0417,
+            1300.0417
+          ],
+          [
+            496.7083,
+            1301.4583
+          ],
+          [
+            496.625,
+            1303.375
+          ],
+          [
+            495.375,
+            1305.875
+          ],
+          [
+            494.875,
+            1307.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 418,
+        "length_px": 12.123,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-082",
+        "source_audit_candidate_id": "GAP-0084",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "medium",
+        "gap_px": 10.983,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-189",
+        "feature_a_layer": "river",
+        "feature_b": "segment-196",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1057.875,
+            921.375
+          ],
+          [
+            1063.4583,
+            921.2917
+          ],
+          [
+            1065.125,
+            921.0417
+          ],
+          [
+            1067.0417,
+            920.5417
+          ],
+          [
+            1068.7917,
+            919.7083
+          ],
+          [
+            1069.0417,
+            919.2917
+          ],
+          [
+            1068.625,
+            919.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 419,
+        "length_px": 11.339,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-083",
+        "source_audit_candidate_id": "GAP-0085",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 11.045,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-232",
+        "feature_a_layer": "river",
+        "feature_b": "segment-267",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            538.375,
+            1354.125
+          ],
+          [
+            537.875,
+            1354.2917
+          ],
+          [
+            535.4583,
+            1353.9583
+          ],
+          [
+            530.9583,
+            1353.7917
+          ],
+          [
+            529.4583,
+            1354.0417
+          ],
+          [
+            527.375,
+            1355.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 420,
+        "length_px": 11.636,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-084",
+        "source_audit_candidate_id": "GAP-0086",
+        "audit_tile_id": "R04C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 11.068,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-193",
+        "feature_a_layer": "river",
+        "feature_b": "segment-195",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1025.375,
+            929.875
+          ],
+          [
+            1025.5417,
+            930.2083
+          ],
+          [
+            1025.125,
+            930.625
+          ],
+          [
+            1023.4583,
+            931.2083
+          ],
+          [
+            1019.0417,
+            932.375
+          ],
+          [
+            1017.0417,
+            933.2083
+          ],
+          [
+            1014.875,
+            933.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 421,
+        "length_px": 11.653,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-085",
+        "source_audit_candidate_id": "GAP-0087",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 11.071,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-224",
+        "feature_a_layer": "river",
+        "feature_b": "segment-256",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            577.125,
+            1361.625
+          ],
+          [
+            577.7083,
+            1362.2917
+          ],
+          [
+            584.7083,
+            1366.4583
+          ],
+          [
+            586.375,
+            1366.7083
+          ],
+          [
+            587.0417,
+            1366.625
+          ],
+          [
+            587.125,
+            1366.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 422,
+        "length_px": 11.493,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-086",
+        "source_audit_candidate_id": "GAP-0088",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 11.231,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-238",
+        "feature_a_layer": "river",
+        "feature_b": "segment-241",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            744.875,
+            1309.625
+          ],
+          [
+            745.125,
+            1310.875
+          ],
+          [
+            746.0417,
+            1312.625
+          ],
+          [
+            746.2083,
+            1314.9583
+          ],
+          [
+            747.125,
+            1318.9583
+          ],
+          [
+            747.5417,
+            1319.9583
+          ],
+          [
+            748.125,
+            1320.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 423,
+        "length_px": 11.856,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-087",
+        "source_audit_candidate_id": "GAP-0089",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 11.413,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-277",
+        "feature_a_layer": "river",
+        "feature_b": "segment-281",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            648.375,
+            1348.625
+          ],
+          [
+            650.625,
+            1348.375
+          ],
+          [
+            652.7917,
+            1347.4583
+          ],
+          [
+            654.9583,
+            1345.875
+          ],
+          [
+            656.875,
+            1343.9583
+          ],
+          [
+            658.2917,
+            1343.4583
+          ],
+          [
+            658.375,
+            1343.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 424,
+        "length_px": 11.97,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-088",
+        "source_audit_candidate_id": "GAP-0090",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "gap_px": 11.543,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-327",
+        "feature_a_layer": "river",
+        "feature_b": "segment-330",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            854.125,
+            1386.625
+          ],
+          [
+            854.125,
+            1387.0417
+          ],
+          [
+            853.0417,
+            1387.375
+          ],
+          [
+            842.625,
+            1387.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 425,
+        "length_px": 11.931,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-089",
+        "source_audit_candidate_id": "GAP-0091",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 11.718,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-236",
+        "feature_a_layer": "river",
+        "feature_b": "segment-240",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            738.375,
+            1299.875
+          ],
+          [
+            739.0417,
+            1301.375
+          ],
+          [
+            742.7083,
+            1305.5417
+          ],
+          [
+            744.375,
+            1309.375
+          ],
+          [
+            744.875,
+            1309.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 426,
+        "length_px": 11.939,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-090",
+        "source_audit_candidate_id": "GAP-0092",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 11.792,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-225",
+        "feature_a_layer": "river",
+        "feature_b": "segment-233",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            577.125,
+            1361.625
+          ],
+          [
+            575.7917,
+            1361.375
+          ],
+          [
+            572.875,
+            1359.875
+          ],
+          [
+            569.7917,
+            1358.7083
+          ],
+          [
+            566.5417,
+            1357.875
+          ],
+          [
+            566.125,
+            1357.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 427,
+        "length_px": 12.058,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-091",
+        "source_audit_candidate_id": "GAP-0093",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 11.824,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-233",
+        "feature_a_layer": "river",
+        "feature_b": "segment-268",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            549.875,
+            1356.875
+          ],
+          [
+            549.125,
+            1357.0417
+          ],
+          [
+            546.7083,
+            1356.7083
+          ],
+          [
+            543.2917,
+            1355.4583
+          ],
+          [
+            539.2083,
+            1354.7083
+          ],
+          [
+            538.7083,
+            1354.5417
+          ],
+          [
+            538.375,
+            1354.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 428,
+        "length_px": 12.352,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-092",
+        "source_audit_candidate_id": "GAP-0094",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "medium",
+        "gap_px": 11.919,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-276",
+        "feature_a_layer": "river",
+        "feature_b": "segment-278",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            491.375,
+            1354.625
+          ],
+          [
+            490.875,
+            1354.2083
+          ],
+          [
+            490.2917,
+            1352.125
+          ],
+          [
+            489.7917,
+            1347.5417
+          ],
+          [
+            489.7083,
+            1342.9583
+          ],
+          [
+            489.375,
+            1342.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 429,
+        "length_px": 12.347,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-093",
+        "source_audit_candidate_id": "GAP-0095",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "gap_px": 11.94,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-222",
+        "feature_a_layer": "river",
+        "feature_b": "segment-256",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            610.625,
+            1358.625
+          ],
+          [
+            610.7083,
+            1358.9583
+          ],
+          [
+            610.4583,
+            1359.125
+          ],
+          [
+            607.375,
+            1359.9583
+          ],
+          [
+            602.9583,
+            1361.9583
+          ],
+          [
+            601.2083,
+            1362.4583
+          ],
+          [
+            599.375,
+            1362.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 430,
+        "length_px": 12.315,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-094",
+        "source_audit_candidate_id": "GAP-0096",
+        "audit_tile_id": "R05C05",
+        "audit_machine_confidence": "medium",
+        "gap_px": 11.963,
+        "official_4x_blue_support_fraction": 1.0,
+        "feature_a": "segment-209",
+        "feature_a_layer": "river",
+        "feature_b": "segment-215",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1239.125,
+            1032.625
+          ],
+          [
+            1238.875,
+            1036.0417
+          ],
+          [
+            1239.2917,
+            1039.7917
+          ],
+          [
+            1240.375,
+            1042.9583
+          ],
+          [
+            1240.875,
+            1043.9583
+          ],
+          [
+            1241.375,
+            1044.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 431,
+        "length_px": 13.802,
+        "source": "official_12x_river_raster_centerline_gap_bridge",
+        "review_status": "manually_verified_official_12x_centerline_gap_bridge",
+        "bridge_issue_id": "GAP12X-095",
+        "source_audit_candidate_id": "GAP-0097",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "medium",
+        "gap_px": 8.041,
+        "official_4x_blue_support_fraction": 0.812,
+        "feature_a": "segment-25",
+        "feature_a_layer": "river",
+        "feature_b": "segment-198",
+        "feature_b_layer": "river",
+        "official_12x_reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1177.0,
+            967.5
+          ],
+          [
+            1177.7917,
+            966.9583
+          ],
+          [
+            1179.4583,
+            967.7917
+          ],
+          [
+            1181.875,
+            968.5417
+          ],
+          [
+            1182.4583,
+            969.2917
+          ],
+          [
+            1182.0417,
+            969.9583
+          ],
+          [
+            1181.2083,
+            970.625
+          ],
+          [
+            1180.7917,
+            972.4583
+          ],
+          [
+            1179.4583,
+            974.9583
+          ],
+          [
+            1178.625,
+            975.375
           ]
         ]
       }
