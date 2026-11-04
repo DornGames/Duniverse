@@ -15,21 +15,36 @@
 *{box-sizing:border-box}
 html,body{width:100%;height:100%;margin:0}
 body{overflow:hidden;background:#dfe9eb;color:var(--ink);font-family:system-ui,"Microsoft YaHei",sans-serif}
-button,select{font:inherit}
+button,select,input{font:inherit}
 button{cursor:pointer}
-button:focus-visible,select:focus-visible,#mapCanvas:focus-visible{outline:3px solid #72aebc;outline-offset:3px}
+button:focus-visible,select:focus-visible,input:focus-visible,#mapCanvas:focus-visible{outline:3px solid #72aebc;outline-offset:3px}
 header.mapHeader{position:fixed;z-index:30;inset:14px 14px auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,280px) minmax(0,1fr);align-items:start;gap:12px;pointer-events:none}
 .mapHeader>*{pointer-events:auto}
-.brandLockup,.mapActions,.regionJump select{border:1px solid var(--line);background:var(--surface);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}
+.brandLockup,.mapActions,.regionSearch .searchField{border:1px solid var(--line);background:var(--surface);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}
 .brandLockup{display:flex;align-items:center;gap:10px;width:max-content;max-width:100%;min-height:54px;padding:8px 15px 8px 9px;border-radius:var(--radius)}
 .brandMark{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;border-radius:10px;background:#244b50;color:#fff;font-size:16px;font-weight:750;letter-spacing:-.06em}
 .brandText{display:grid;gap:2px;min-width:0}
 .brandEyebrow{margin:0;color:#7a9094;font-size:9px;font-weight:700;letter-spacing:.16em;line-height:1.1;text-transform:uppercase}
 h1{margin:0;color:var(--ink);font-size:15px;font-weight:650;letter-spacing:.01em;line-height:1.2;white-space:nowrap}
-.regionJump{position:relative;display:block;width:100%;margin:0}
-.regionJump label.srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.regionJump select{display:block;width:100%;min-height:54px;padding:0 40px 0 15px;border-radius:var(--radius);color:var(--ink);font-size:13px;cursor:pointer;appearance:none}
-.regionJump:after{content:"";position:absolute;top:50%;right:16px;width:7px;height:7px;transform:translateY(-70%) rotate(45deg);border-right:1.5px solid #718489;border-bottom:1.5px solid #718489;pointer-events:none}
+.srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.regionSearch{position:relative;display:block;width:100%;margin:0}
+.searchField{display:flex;align-items:center;gap:10px;min-height:54px;padding:0 14px;border-radius:var(--radius);transition:border-color .16s,box-shadow .16s}
+.regionSearch:focus-within .searchField{border-color:#a6c0c1;box-shadow:0 0 0 3px rgba(73,137,140,.12),var(--shadow)}
+.searchIcon{flex:0 0 17px;width:17px;height:17px;color:#718489}
+.searchField input{width:100%;min-width:0;padding:0;border:0;outline:0;background:transparent;color:var(--ink);font-size:13px}
+.searchField input:focus-visible{outline:0}
+.searchField input::placeholder{color:#7a8d91;opacity:1}
+.searchPopup{position:absolute;z-index:45;top:calc(100% + 8px);left:0;width:100%;max-height:min(420px,calc(100dvh - 90px));overflow:auto;padding:6px;border:1px solid rgba(211,224,225,.98);border-radius:14px;background:var(--surface);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--shadow);animation:panel-in .14s ease-out}
+.searchPopup[hidden]{display:none}
+.searchOption{display:grid;gap:3px;width:100%;padding:9px 10px;border:0;border-radius:9px;background:transparent;color:var(--ink);text-align:left;cursor:pointer;transition:background-color .14s}
+.searchOption:hover,.searchOption[aria-selected="true"]{background:#edf4f3}
+.searchOption:focus-visible{outline:2px solid #72aebc;outline-offset:-2px}
+.searchOptionMain{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0;font-size:13px;font-weight:620}
+.searchOptionName{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.searchOptionType{flex:0 0 auto;padding:2px 6px;border-radius:999px;background:#f0f5f4;color:#617a7d;font-size:10px;font-weight:550}
+.searchOptionMeta{overflow:hidden;color:var(--muted);font-size:11px;line-height:1.35;text-overflow:ellipsis;white-space:nowrap}
+.searchStatus{margin:0;padding:9px 10px;color:var(--muted);font-size:12px;line-height:1.45}
+.searchStatus[hidden]{display:none}
 .mapActions{justify-self:end;display:flex;align-items:center;gap:4px;min-height:54px;padding:5px;border-radius:var(--radius)}
 .mapButton{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;gap:7px;min-width:42px;height:42px;padding:0 11px;border:0;border-radius:10px;background:transparent;color:#34494f;font-size:13px;font-weight:560;line-height:1;white-space:nowrap;transition:background-color .16s,color .16s,transform .16s}
 .mapButton:hover{background:#edf4f3;color:var(--accent-dark)}
@@ -58,6 +73,16 @@ aside[hidden]{display:none}
 .panelKicker{margin:0 0 5px;color:#789094;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 .closePanel{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;padding:0;border:0;border-radius:9px;background:transparent;color:#65797e;font-size:21px;line-height:1}
 .closePanel:hover{background:#edf3f3;color:#20343a}
+.regionInfoLevels{display:grid;gap:8px}
+.regionInfoLevel{padding:11px 12px;border:1px solid #e4ebeb;border-radius:11px;background:rgba(255,255,255,.76)}
+.regionInfoLevelLabel{margin:0 0 4px;color:#71868a;font-size:10px;font-weight:650;letter-spacing:.04em}
+.regionInfoLevelName{margin:0;color:var(--ink);font-size:14px;font-weight:650;line-height:1.4}
+.regionInfoLevelTongue{margin:4px 0 0;color:#53817d;font-size:12px;line-height:1.4;overflow-wrap:anywhere}
+.regionAreaCard{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border-radius:11px;background:#edf5f3;color:#416b68;font-size:12px}
+.regionAreaCard strong{color:#244b50;font-size:15px;font-weight:700;text-align:right}
+.regionDescription{padding:11px 12px;border:1px solid #e4ebeb;border-radius:11px;background:#f8fafa}
+.regionDescription h3{margin:0 0 6px;color:#71868a;font-size:11px;font-weight:650}
+.regionDescription p{margin:0;color:#536a70;font-size:12px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
 .layerList{display:grid;gap:9px}
 .layerGroup{display:grid;gap:5px}
 .layerParent{display:flex;align-items:center;gap:7px;min-height:44px;padding:5px 8px;border:1px solid #e2eaea;border-radius:11px;background:#f7f9f9;font-size:13px}
@@ -96,9 +121,10 @@ aside[hidden]{display:none}
   .buttonDivider{height:21px;margin:0 1px}
   .compactLabel{display:inline}
   .wideLabel{display:none}
-  .regionJump{grid-column:1 / -1;grid-row:2;width:min(100%,360px)}
-  .regionJump select{min-height:42px;padding-left:12px;border-radius:12px;font-size:12px}
-  .regionJump:after{right:13px}
+  .regionSearch{grid-column:1 / -1;grid-row:2;width:min(100%,360px)}
+  .searchField{min-height:42px;padding:0 11px;border-radius:12px}
+  .searchField input{font-size:12px}
+  .searchPopup{max-height:calc(100dvh - 164px)}
   aside{top:106px;right:8px;width:min(360px,calc(100vw - 16px));max-height:calc(100dvh - 116px);padding:13px;border-radius:15px}
   #mapHud{left:8px;bottom:8px;max-width:calc(100vw - 16px)}
   #selected{padding:8px 10px;font-size:12px}
@@ -114,11 +140,15 @@ aside[hidden]{display:none}
   .buttonDivider{display:none}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
-@media(prefers-reduced-transparency:reduce){.brandLockup,.mapActions,.regionJump select,aside,#selected,.mapHint{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media(prefers-reduced-transparency:reduce){.brandLockup,.mapActions,.regionSearch .searchField,.searchPopup,aside,#selected,.mapHint{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}}
 </style></head><body>
 <header class="mapHeader" aria-label="地图工具栏">
 <div class="brandLockup"><span class="brandMark" aria-hidden="true">D</span><div class="brandText"><p class="brandEyebrow">DUNIVERSE · MAP ATLAS</p><h1>湩国行政区划图</h1></div></div>
-<div class="regionJump"><label class="srOnly" for="regionJump">定位行政区</label><select id="regionJump" aria-label="定位行政区"><option value="">定位行政区</option></select></div>
+<div class="regionSearch" id="regionSearch">
+<label class="srOnly" for="regionSearchInput">搜索大区、省级行政区、城市或湩语名称</label>
+<div class="searchField"><svg class="searchIcon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m13.1 13.1 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><input id="regionSearchInput" type="search" role="combobox" aria-label="搜索地区或城市" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="regionSearchList" autocomplete="off" placeholder="搜索大区、省级地区、城市或湩语名"></div>
+<div class="searchPopup" id="regionSearchPopup" hidden><div id="regionSearchList" role="listbox" aria-label="地区搜索建议"></div><p id="regionSearchStatus" class="searchStatus" role="status" aria-live="polite" hidden></p></div>
+</div>
 <div class="mapActions" role="group" aria-label="地图操作">
 <button id="togglePanel" class="mapButton layers" type="button" aria-controls="mapPanel" aria-expanded="false" aria-label="打开图层面板"><span class="wideLabel">图层</span><span class="compactLabel">层</span></button>
 <span class="buttonDivider" aria-hidden="true"></span>
@@ -691,7 +721,7 @@ aside[hidden]{display:none}
 <circle cx="1325.4" cy="1400.2" r="3.0"/>
 <circle cx="1211.2" cy="1408.9" r="3.0"/>
 <circle cx="971.0" cy="1416.8" r="3.0"/>
-</g><g id="redMarkers" pointer-events="none" fill="#e52323">
+<circle cx="1343.50" cy="961.88" r="3.0"/><circle cx="1355.38" cy="982.88" r="3.0"/><circle cx="1245.50" cy="774.00" r="3.0"/><circle cx="960.86" cy="293.21" r="3.0"/><circle cx="1469.12" cy="1217.62" r="3.0"/><circle cx="1437.62" cy="1243.88" r="3.0"/><circle cx="1475.38" cy="1240.12" r="3.0"/><circle cx="1471.50" cy="1195.00" r="3.0"/><circle cx="1449.88" cy="1259.88" r="3.0"/></g><g id="redMarkers" pointer-events="none" fill="#e52323">
 <circle cx="904.3" cy="50.4" r="3.4"/>
 <circle cx="952.5" cy="260.0" r="3.4"/>
 <circle cx="1024.9" cy="262.6" r="3.4"/>
@@ -741,7 +771,7 @@ aside[hidden]{display:none}
 <circle cx="1360.9" cy="1335.3" r="3.4"/>
 <circle cx="1033.9" cy="1352.8" r="3.4"/>
 <circle cx="876.6" cy="1411.9" r="3.4"/>
-</g><g id="provinceCapitalLabels" data-layer="provinceCapitalLabels" pointer-events="none" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#c32631"><text x="912.3" y="52.4" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">北𣿅市</text><text x="944.5" y="252.0" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">羟基市</text><text x="1032.9" y="271.6" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">后雄市</text><text x="734.0" y="300.4" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">大尔市</text><text x="936.1" y="358.1" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">塔马市</text><text x="846.0" y="438.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">乍曲市</text><text x="1597.1" y="432.1" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">总统（𣿅赫）特别市</text><text x="1316.1" y="486.2" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">四九市</text><text x="1244.0" y="659.5" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">邦普市</text><text x="744.4" y="675.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">拉基市</text><text x="618.0" y="674.2" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">西𣿅市</text><text x="1848.8" y="709.9" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">东𣿅市</text><text x="634.0" y="684.9" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">梅马市</text><text x="610.9" y="712.9" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">瓦莱莉市</text><text x="1244.6" y="724.4" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">刺梨市</text><text x="1029.0" y="733.3" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">瑞丰特别市</text><text x="999.3" y="807.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">圣光安市</text><text x="1052.3" y="851.2" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">马尔通市</text><text x="1112.0" y="882.6" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">白告市</text><text x="1144.1" y="902.6" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">立里市</text><text x="1240.0" y="918.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">四六市</text><text x="1007.3" y="952.8" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">武宗特别市</text><text x="1363.7" y="950.1" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">王德发市</text><text x="902.8" y="961.9" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">天鸡市</text><text x="1155.1" y="1017.4" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">尼根市</text><text x="1259.3" y="1041.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">萨比市</text><text x="450.0" y="1120.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">千里市</text><text x="558.2" y="1151.9" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">西贝特市</text><text x="1454.7" y="1148.9" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">雪梨市</text><text x="1201.0" y="1166.4" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">香樟市</text><text x="488.1" y="1230.8" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">托易雷特市</text><text x="977.9" y="1241.8" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">剟城</text><text x="708.0" y="1254.6" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">古维克市</text><text x="564.0" y="1268.3" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">西南𣿅市</text><text x="1414.0" y="1262.5" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">三董市</text><text x="1479.6" y="1285.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">草泥马市</text><text x="867.7" y="1311.2" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">圣维皮市</text><text x="1253.5" y="1310.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">肯塔基市</text><text x="1022.0" y="1312.7" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">天狗市</text><text x="915.0" y="1337.6" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">欧芹市</text><text x="1368.9" y="1334.3" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">东南𣿅市</text><text x="1041.9" y="1353.8" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">南𣿅市</text><text x="884.6" y="1410.9" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">萨姆市</text><text x="1249.0" y="629.0" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">土星市</text></g><g id="provinceCapitalTongueLabels" data-layer="provinceCapitalTongueLabels" pointer-events="none" font-family="Arial,sans-serif" font-size="10" font-weight="600" fill="#c32631"><text x="912.3" y="52.4" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Nohiadonhfak Tork</text><text x="944.5" y="252.0" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Cheutonh Tork</text><text x="1032.9" y="271.6" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Hosh Tonk</text><text x="734.0" y="300.4" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Daêdœ Tork</text><text x="936.1" y="358.1" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Tamad Tork</text><text x="846.0" y="438.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Zacq Tork</text><text x="1597.1" y="432.1" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Tonhfak Shimflash</text><text x="1316.1" y="486.2" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Donma Tork</text><text x="1244.0" y="659.5" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Bannpwi Tork</text><text x="744.4" y="675.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Lauid Tork</text><text x="618.0" y="674.2" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Es&#x27;hiadonhfak Tork</text><text x="1848.8" y="709.9" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Ishiadonhfak Tork</text><text x="634.0" y="684.9" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Mæmar Tork</text><text x="610.9" y="712.9" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Valæhi Tork</text><text x="1244.6" y="724.4" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Repwifak Tork</text><text x="1029.0" y="733.3" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Ræf Shimflash</text><text x="999.3" y="807.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Stwgnwan Tork</text><text x="1052.3" y="851.2" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Martonh Tork</text><text x="1112.0" y="882.6" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Toh Tork</text><text x="1144.1" y="902.6" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Thao Tork</text><text x="1240.0" y="918.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Donsa Tork</text><text x="1007.3" y="952.8" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Wzonh Shimflash</text><text x="1363.7" y="950.1" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Wendfar Tork</text><text x="902.8" y="961.9" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Cesik Tork</text><text x="1155.1" y="1017.4" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Naig Tork</text><text x="1259.3" y="1041.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Sabid Tork</text><text x="450.0" y="1120.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Senfor Tork</text><text x="558.2" y="1151.9" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Hibait Tork</text><text x="1454.7" y="1148.9" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Binta Tork</text><text x="1201.0" y="1166.4" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Tontoshfak Tork</text><text x="488.1" y="1230.8" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Taolitait Tork</text><text x="977.9" y="1241.8" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Dhotork</text><text x="708.0" y="1254.6" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Gwak Tork</text><text x="564.0" y="1268.3" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Eswhiadonhfak Tork</text><text x="1414.0" y="1262.5" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Hidon Tork</text><text x="1479.6" y="1285.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Conma Tork</text><text x="867.7" y="1311.2" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Stwiapid Tork</text><text x="1253.5" y="1310.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Vevws Tork</text><text x="1022.0" y="1312.7" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Tonhr Tork</text><text x="915.0" y="1337.6" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Wchin Tork</text><text x="1368.9" y="1334.3" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Iswhiadonhfak Tork</text><text x="1041.9" y="1353.8" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Swhiadonhfak Tork</text><text x="884.6" y="1410.9" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Sem Tork</text><text x="1249.0" y="629.0" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Satornfak Tork</text></g><g id="nationalCapitalLabels" data-layer="nationalCapitalLabels" pointer-events="none" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#c32631"><text x="1002.0" y="877.0" text-anchor="middle" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">臭都特别市</text></g><g id="regionCodes" data-layer="regionCodes" pointer-events="none" font-family="Arial,sans-serif" font-size="21" font-weight="600" text-anchor="middle" fill="#00a98e" fill-opacity=".78"><text x="904.4" y="155.36" data-pair-text="北湩省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">BD</text><text x="925.86" y="238.52" data-pair-text="羟基省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">OH</text><text x="1212.95" y="310.07" data-pair-text="后雄省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">HX</text><text x="696.56" y="346.64" data-pair-text="大尔省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">DE</text><text x="804.72" y="374.37" data-pair-text="扎克省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">ZC</text><text x="1051.97" y="407.87" data-pair-text="塔马省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">TM</text><text x="1294.5" y="498.5" data-pair-text="四九特别行政区" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">FN</text><text x="705.83" y="590.49" data-pair-text="拉基省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">LK</text><text x="472.05" y="677.64" data-pair-text="西湩省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">XD</text><text x="654.83" y="814.37" data-pair-text="瓦莱莉省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">VA</text><text x="833.82" y="775.79" data-pair-text="梅马省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">MM</text><text x="923.6" y="653.11" data-pair-text="光安省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">GA</text><text x="1080.17" y="650.85" data-pair-text="瑞丰特别市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">RF</text><text x="1188.7" y="689.39" data-pair-text="土星省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">ST</text><text x="1279.04" y="602.97" data-pair-text="邦普省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">BP</text><text x="1294.21" y="748.32" data-pair-text="刺梨省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">PP</text><text x="1101.08" y="796.79" data-pair-text="马尔通市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">MT</text><text x="1283.02" y="881.87" data-pair-text="四六省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">FS</text><text x="999.84" y="890.12" data-pair-text="臭都特别市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">GR</text><text x="1104.53" y="896.09" data-pair-text="白告市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">BG</text><text x="1157.93" y="917.35" data-pair-text="立里市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">LL</text><text x="828.49" y="997.88" data-pair-text="凤凰省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">PN</text><text x="933.83" y="1049.19" data-pair-text="武宗特别市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">WZ</text><text x="1070.74" y="1027" data-pair-text="尼根市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">NG</text><text x="342.36" y="1148.82" data-pair-text="千里省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">TL</text><text x="623.64" y="1104.59" data-pair-text="西贝特省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">HB</text><text x="456.4" y="1195.51" data-pair-text="托易雷特省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">TT</text><text x="609.76" y="1319.75" data-pair-text="托易雷特省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">TT</text><text x="441.94" y="1326.84" data-pair-text="西南湩省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">SW</text><text x="795.06" y="1235.27" data-pair-text="古维克省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">GW</text><text x="898.7" y="1214.52" data-pair-text="圣维皮省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">SP</text><text x="986.42" y="1265.02" data-pair-text="出塞特别行政区" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">CS</text><text x="1114.54" y="1172.92" data-pair-text="福利省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">FL</text><text x="1140.85" y="1291.51" data-pair-text="天狗省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">TG</text><text x="1292.06" y="1062.64" data-pair-text="萨比省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">SB</text><text x="1331.78" y="1174.61" data-pair-text="冰糖-雪梨省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">UE</text><text x="1316.82" y="1260.61" data-pair-text="肯塔基省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">KT</text><text x="1413.8" y="1230" data-pair-text="三董省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">SD</text><text x="1440.96" y="1311.76" data-pair-text="草泥马省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">CM</text><text x="1378.52" y="1374.09" data-pair-text="东南湩省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">SE</text><text x="806.93" y="1332.55" data-pair-text="欧芹省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">OC</text><text x="1154.57" y="1371.53" data-pair-text="南湩省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">ND</text><text x="800.96" y="1392.28" data-pair-text="萨姆省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">SM</text><text x="1597.82" y="448.31" data-pair-text="总统（湩赫）特别行政区" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">TO</text><text x="1828.5" y="684" data-pair-text="东湩特别行政区" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">DD</text><text x="1351.63" y="974.62" data-pair-text="王德发特别行政区" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">WT</text></g><g id="regionNames" data-layer="regionNames" pointer-events="none" font-family="Arial,sans-serif" font-size="11" font-weight="600" text-anchor="middle" fill="#168d7b" fill-opacity=".9"><text x="904.4" y="155.36" data-pair-text="BD" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">北湩省</text><text x="925.86" y="238.52" data-pair-text="OH" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">羟基省</text><text x="1212.95" y="310.07" data-pair-text="HX" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">后雄省</text><text x="696.56" y="346.64" data-pair-text="DE" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">大尔省</text><text x="804.72" y="374.37" data-pair-text="ZC" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">扎克省</text><text x="1051.97" y="407.87" data-pair-text="TM" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">塔马省</text><text x="1294.5" y="498.5" data-pair-text="FN" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">四九特别行政区</text><text x="705.83" y="590.49" data-pair-text="LK" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">拉基省</text><text x="472.05" y="677.64" data-pair-text="XD" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">西湩省</text><text x="654.83" y="814.37" data-pair-text="VA" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">瓦莱莉省</text><text x="833.82" y="775.79" data-pair-text="MM" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">梅马省</text><text x="923.6" y="653.11" data-pair-text="GA" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">光安省</text><text x="1080.17" y="650.85" data-pair-text="RF" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">瑞丰特别市</text><text x="1188.7" y="689.39" data-pair-text="ST" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">土星省</text><text x="1279.04" y="602.97" data-pair-text="BP" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">邦普省</text><text x="1294.21" y="748.32" data-pair-text="PP" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">刺梨省</text><text x="1101.08" y="796.79" data-pair-text="MT" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">马尔通市</text><text x="1283.02" y="881.87" data-pair-text="FS" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">四六省</text><text x="999.84" y="890.12" data-pair-text="GR" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">臭都特别市</text><text x="1104.53" y="896.09" data-pair-text="BG" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">白告市</text><text x="1157.93" y="917.35" data-pair-text="LL" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">立里市</text><text x="828.49" y="997.88" data-pair-text="PN" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">凤凰省</text><text x="933.83" y="1049.19" data-pair-text="WZ" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">武宗特别市</text><text x="1070.74" y="1027" data-pair-text="NG" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">尼根市</text><text x="342.36" y="1148.82" data-pair-text="TL" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">千里省</text><text x="623.64" y="1104.59" data-pair-text="HB" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">西贝特省</text><text x="456.4" y="1195.51" data-pair-text="TT" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">托易雷特省</text><text x="609.76" y="1319.75" data-pair-text="TT" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">托易雷特省</text><text x="441.94" y="1326.84" data-pair-text="SW" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">西南湩省</text><text x="795.06" y="1235.27" data-pair-text="GW" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">古维克省</text><text x="898.7" y="1214.52" data-pair-text="SP" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">圣维皮省</text><text x="986.42" y="1265.02" data-pair-text="CS" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">出塞特别行政区</text><text x="1114.54" y="1172.92" data-pair-text="FL" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">福利省</text><text x="1140.85" y="1291.51" data-pair-text="TG" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">天狗省</text><text x="1292.06" y="1062.64" data-pair-text="SB" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">萨比省</text><text x="1331.78" y="1174.61" data-pair-text="UE" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">冰糖-雪梨省</text><text x="1316.82" y="1260.61" data-pair-text="KT" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">肯塔基省</text><text x="1413.8" y="1230" data-pair-text="SD" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">三董省</text><text x="1440.96" y="1311.76" data-pair-text="CM" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">草泥马省</text><text x="1378.52" y="1374.09" data-pair-text="SE" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">东南湩省</text><text x="806.93" y="1332.55" data-pair-text="OC" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">欧芹省</text><text x="1154.57" y="1371.53" data-pair-text="ND" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">南湩省</text><text x="800.96" y="1392.28" data-pair-text="SM" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">萨姆省</text><text x="1597.82" y="448.31" data-pair-text="TO" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">总统（湩赫）特别行政区</text><text x="1828.5" y="684" data-pair-text="DD" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">东湩特别行政区</text><text x="1351.63" y="974.62" data-pair-text="WT" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">王德发特别行政区</text></g><g id="regionTongueNames" data-layer="regionTongueNames" pointer-events="none" font-family="Arial,sans-serif" font-size="10" font-weight="600" text-anchor="middle" fill="#168d7b" fill-opacity=".9"><text x="904.4" y="155.36" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Nohiadonhfak Tonkez</text><text x="925.86" y="238.52" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Cheutonh Tonkez</text><text x="1212.95" y="310.07" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Hosh Tonkez</text><text x="696.56" y="346.64" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Daêdœ Tonkez</text><text x="804.72" y="374.37" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Zak Tonkez</text><text x="1051.97" y="407.87" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Tamad Tonkez</text><text x="1294.5" y="498.5" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Donma Donkez</text><text x="705.83" y="590.49" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Lauid Tonkez</text><text x="472.05" y="677.64" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Es&#x27;hiadonhfak Tonkez</text><text x="654.83" y="814.37" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Valæhi Tonkez</text><text x="833.82" y="775.79" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Mæmar Tonkez</text><text x="923.6" y="653.11" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Gnwan Tonkez</text><text x="1080.17" y="650.85" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Ræf Shimflash</text><text x="1188.7" y="689.39" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Satornfak Tonkez</text><text x="1279.04" y="602.97" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Bannpwi Tonkez</text><text x="1294.21" y="748.32" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Repwifak Tonkez</text><text x="1101.08" y="796.79" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Martonh Tork</text><text x="1283.02" y="881.87" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Donsa Tonkez</text><text x="999.84" y="890.12" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Græt Shimflash</text><text x="1104.53" y="896.09" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Toh Tork</text><text x="1157.93" y="917.35" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Thao Tork</text><text x="828.49" y="997.88" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Enadohlfak Tork</text><text x="933.83" y="1049.19" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Wzonh Shimflash</text><text x="1070.74" y="1027" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Naig Tork</text><text x="342.36" y="1148.82" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Senfor Tonkez</text><text x="623.64" y="1104.59" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Hibait Tonkez</text><text x="456.4" y="1195.51" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Taoilait Tonkez</text><text x="609.76" y="1319.75" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Taoilait Tonkez</text><text x="441.94" y="1326.84" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Eswhiadonhfak Tonkez</text><text x="795.06" y="1235.27" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Gwak Tonkez</text><text x="898.7" y="1214.52" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Stwiapid Tonkez</text><text x="986.42" y="1265.02" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Cwasain Donkez</text><text x="1114.54" y="1172.92" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Soblash Tonkez</text><text x="1140.85" y="1291.51" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Tonhr Tonkez</text><text x="1292.06" y="1062.64" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Sabid Tonkez</text><text x="1331.78" y="1174.61" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Bintashêrli Tonkez</text><text x="1316.82" y="1260.61" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Vevws Tork</text><text x="1413.8" y="1230" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Hidon Tonkez</text><text x="1440.96" y="1311.76" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Conma Tonkez</text><text x="1378.52" y="1374.09" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Iswhiadonhfak Tonkez</text><text x="806.93" y="1332.55" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Wchin Tonkez</text><text x="1154.57" y="1371.53" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Swhiadonhfak Tonkez</text><text x="800.96" y="1392.28" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Sem Tonkez</text><text x="1597.82" y="448.31" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Tonhfak Donkez</text><text x="1828.5" y="684" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Ishiadonhfak Donkez</text><text x="1351.63" y="974.62" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Wendfar Donkez</text></g></svg></div><aside id="mapPanel" aria-label="&#x5730;&#x56fe;&#x56fe;&#x5c42;&#x63a7;&#x5236;" hidden>
+</g><g id="provinceCapitalLabels" data-layer="provinceCapitalLabels" pointer-events="none" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#c32631"><text x="912.3" y="52.4" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">北𣿅市</text><text x="944.5" y="252.0" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">羟基市</text><text x="1032.9" y="271.6" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">后雄市</text><text x="734.0" y="300.4" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">大尔市</text><text x="936.1" y="358.1" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">塔马市</text><text x="846.0" y="438.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">乍曲市</text><text x="1597.1" y="432.1" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">总统（𣿅赫）特别市</text><text x="1316.1" y="486.2" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">四九市</text><text x="1244.0" y="659.5" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">邦普市</text><text x="744.4" y="675.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">拉基市</text><text x="618.0" y="674.2" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">西𣿅市</text><text x="1848.8" y="709.9" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">东𣿅市</text><text x="634.0" y="684.9" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">梅马市</text><text x="610.9" y="712.9" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">瓦莱莉市</text><text x="1244.6" y="724.4" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">刺梨市</text><text x="1029.0" y="733.3" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">瑞丰特别市</text><text x="999.3" y="807.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">圣光安市</text><text x="1052.3" y="851.2" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">马尔通市</text><text x="1112.0" y="882.6" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">白告市</text><text x="1144.1" y="902.6" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">立里市</text><text x="1240.0" y="918.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">四六市</text><text x="1007.3" y="952.8" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">武宗特别市</text><text x="1363.7" y="950.1" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">王德发市</text><text x="902.8" y="961.9" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">天鸡市</text><text x="1155.1" y="1017.4" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">尼根市</text><text x="1259.3" y="1041.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">萨比市</text><text x="450.0" y="1120.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">千里市</text><text x="558.2" y="1151.9" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">西贝特市</text><text x="1454.7" y="1148.9" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">雪梨市</text><text x="1201.0" y="1166.4" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">香樟市</text><text x="488.1" y="1230.8" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">托易雷特市</text><text x="977.9" y="1241.8" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">剟城</text><text x="708.0" y="1254.6" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">古维克市</text><text x="564.0" y="1268.3" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">西南𣿅市</text><text x="1414.0" y="1262.5" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">三董市</text><text x="1479.6" y="1285.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">草泥马市</text><text x="867.7" y="1311.2" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">圣维皮市</text><text x="1253.5" y="1310.0" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">肯塔基市</text><text x="1022.0" y="1312.7" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">天狗市</text><text x="915.0" y="1337.6" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">欧芹市</text><text x="1368.9" y="1334.3" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">东南𣿅市</text><text x="1041.9" y="1353.8" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">南𣿅市</text><text x="884.6" y="1410.9" text-anchor="start" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">萨姆市</text><text x="1249.0" y="629.0" text-anchor="end" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">土星市</text></g><g id="provinceCapitalTongueLabels" data-layer="provinceCapitalTongueLabels" pointer-events="none" font-family="Arial,sans-serif" font-size="10" font-weight="600" fill="#c32631"><text x="912.3" y="52.4" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Nohiadonhfak Tork</text><text x="944.5" y="252.0" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Cheutonh Tork</text><text x="1032.9" y="271.6" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Hosh Tonk</text><text x="734.0" y="300.4" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Daêdœ Tork</text><text x="936.1" y="358.1" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Tamad Tork</text><text x="846.0" y="438.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Zacq Tork</text><text x="1597.1" y="432.1" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Tonhfak Shimflash</text><text x="1316.1" y="486.2" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Donma Tork</text><text x="1244.0" y="659.5" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Bannpwi Tork</text><text x="744.4" y="675.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Lauid Tork</text><text x="618.0" y="674.2" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Es’hiadonhfak Tork</text><text x="1848.8" y="709.9" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Ishiadonhfak Tork</text><text x="634.0" y="684.9" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Mæmar Tork</text><text x="610.9" y="712.9" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Valæhi Tork</text><text x="1244.6" y="724.4" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Repwifak Tork</text><text x="1029.0" y="733.3" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Ræf Shimflash</text><text x="999.3" y="807.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Stwgnwan Tork</text><text x="1052.3" y="851.2" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Martonh Tork</text><text x="1112.0" y="882.6" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Toh Tork</text><text x="1144.1" y="902.6" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Thao Tork</text><text x="1240.0" y="918.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Donsa Tork</text><text x="1007.3" y="952.8" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Wzonh Shimflash</text><text x="1363.7" y="950.1" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Wendfar Tork</text><text x="902.8" y="961.9" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Cesik Tork</text><text x="1155.1" y="1017.4" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Naig Tork</text><text x="1259.3" y="1041.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Sabid Tork</text><text x="450.0" y="1120.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Senfor Tork</text><text x="558.2" y="1151.9" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Hibait Tork</text><text x="1454.7" y="1148.9" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Binta Tork</text><text x="1201.0" y="1166.4" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Tontoshfak Tork</text><text x="488.1" y="1230.8" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Taolitait Tork</text><text x="977.9" y="1241.8" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Dhotork</text><text x="708.0" y="1254.6" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Gwak Tork</text><text x="564.0" y="1268.3" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Eswhiadonhfak Tork</text><text x="1414.0" y="1262.5" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Hidon Tork</text><text x="1479.6" y="1285.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Conma Tork</text><text x="867.7" y="1311.2" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Stwiapid Tork</text><text x="1253.5" y="1310.0" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Vevws Tork</text><text x="1022.0" y="1312.7" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Tonhr Tork</text><text x="915.0" y="1337.6" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Wchin Tork</text><text x="1368.9" y="1334.3" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Iswhiadonhfak Tork</text><text x="1041.9" y="1353.8" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Swhiadonhfak Tork</text><text x="884.6" y="1410.9" text-anchor="start" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Sem Tork</text><text x="1249.0" y="629.0" text-anchor="end" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width="1.2" paint-order="stroke">Satornfak Tork</text></g><g id="nationalCapitalLabels" data-layer="nationalCapitalLabels" pointer-events="none" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#c32631"><text x="1002.0" y="877.0" text-anchor="middle" dominant-baseline="central" stroke="#fff" stroke-width="2" paint-order="stroke">臭都特别市</text></g><g id="regionCodes" data-layer="regionCodes" pointer-events="none" font-family="Arial,sans-serif" font-size="21" font-weight="600" text-anchor="middle" fill="#00a98e" fill-opacity=".78"><text x="904.4" y="155.36" data-pair-text="北湩省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">BD</text><text x="925.86" y="238.52" data-pair-text="羟基省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">OH</text><text x="1212.95" y="310.07" data-pair-text="后雄省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">HX</text><text x="696.56" y="346.64" data-pair-text="大尔省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">DE</text><text x="804.72" y="374.37" data-pair-text="扎克省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">ZC</text><text x="1051.97" y="407.87" data-pair-text="塔马省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">TM</text><text x="1294.5" y="498.5" data-pair-text="四九特别行政区" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">FN</text><text x="705.83" y="590.49" data-pair-text="拉基省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">LK</text><text x="472.05" y="677.64" data-pair-text="西湩省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">XD</text><text x="654.83" y="814.37" data-pair-text="瓦莱莉省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">VA</text><text x="833.82" y="775.79" data-pair-text="梅马省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">MM</text><text x="923.6" y="653.11" data-pair-text="光安省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">GA</text><text x="1080.17" y="650.85" data-pair-text="瑞丰特别市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">RF</text><text x="1188.7" y="689.39" data-pair-text="土星省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">ST</text><text x="1279.04" y="602.97" data-pair-text="邦普省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">BP</text><text x="1294.21" y="748.32" data-pair-text="刺梨省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">PP</text><text x="1101.08" y="796.79" data-pair-text="马尔通市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">MT</text><text x="1283.02" y="881.87" data-pair-text="四六省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">FS</text><text x="999.84" y="890.12" data-pair-text="臭都特别市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">GR</text><text x="1104.53" y="896.09" data-pair-text="白告市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">BG</text><text x="1157.93" y="917.35" data-pair-text="立里市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">LL</text><text x="828.49" y="997.88" data-pair-text="凤凰省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">PN</text><text x="933.83" y="1049.19" data-pair-text="武宗特别市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">WZ</text><text x="1070.74" y="1027" data-pair-text="尼根市" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">NG</text><text x="342.36" y="1148.82" data-pair-text="千里省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">TL</text><text x="623.64" y="1104.59" data-pair-text="西贝特省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">HB</text><text x="456.4" y="1195.51" data-pair-text="托易雷特省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">TT</text><text x="609.76" y="1319.75" data-pair-text="托易雷特省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">TT</text><text x="441.94" y="1326.84" data-pair-text="西南湩省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">SW</text><text x="795.06" y="1235.27" data-pair-text="古维克省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">GW</text><text x="898.7" y="1214.52" data-pair-text="圣维皮省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">SP</text><text x="986.42" y="1265.02" data-pair-text="出塞特别行政区" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">CS</text><text x="1114.54" y="1172.92" data-pair-text="福利省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">FL</text><text x="1140.85" y="1291.51" data-pair-text="天狗省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">TG</text><text x="1292.06" y="1062.64" data-pair-text="萨比省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">SB</text><text x="1331.78" y="1174.61" data-pair-text="冰糖-雪梨省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">UE</text><text x="1316.82" y="1260.61" data-pair-text="肯塔基省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">KT</text><text x="1413.8" y="1230" data-pair-text="三董省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">SD</text><text x="1440.96" y="1311.76" data-pair-text="草泥马省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">CM</text><text x="1378.52" y="1374.09" data-pair-text="东南湩省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">SE</text><text x="806.93" y="1332.55" data-pair-text="欧芹省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">OC</text><text x="1154.57" y="1371.53" data-pair-text="南湩省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">ND</text><text x="800.96" y="1392.28" data-pair-text="萨姆省" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">SM</text><text x="1597.82" y="448.31" data-pair-text="总统（湩赫）特别行政区" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">TO</text><text x="1828.5" y="684" data-pair-text="东湩特别行政区" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">DD</text><text x="1351.63" y="974.62" data-pair-text="王德发特别行政区" dominant-baseline="central" stroke="#fff" stroke-width=".7" paint-order="stroke">WT</text></g><g id="regionNames" data-layer="regionNames" pointer-events="none" font-family="Arial,sans-serif" font-size="11" font-weight="600" text-anchor="middle" fill="#168d7b" fill-opacity=".9"><text x="904.4" y="155.36" data-pair-text="BD" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">北湩省</text><text x="925.86" y="238.52" data-pair-text="OH" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">羟基省</text><text x="1212.95" y="310.07" data-pair-text="HX" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">后雄省</text><text x="696.56" y="346.64" data-pair-text="DE" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">大尔省</text><text x="804.72" y="374.37" data-pair-text="ZC" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">扎克省</text><text x="1051.97" y="407.87" data-pair-text="TM" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">塔马省</text><text x="1294.5" y="498.5" data-pair-text="FN" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">四九特别行政区</text><text x="705.83" y="590.49" data-pair-text="LK" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">拉基省</text><text x="472.05" y="677.64" data-pair-text="XD" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">西湩省</text><text x="654.83" y="814.37" data-pair-text="VA" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">瓦莱莉省</text><text x="833.82" y="775.79" data-pair-text="MM" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">梅马省</text><text x="923.6" y="653.11" data-pair-text="GA" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">光安省</text><text x="1080.17" y="650.85" data-pair-text="RF" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">瑞丰特别市</text><text x="1188.7" y="689.39" data-pair-text="ST" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">土星省</text><text x="1279.04" y="602.97" data-pair-text="BP" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">邦普省</text><text x="1294.21" y="748.32" data-pair-text="PP" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">刺梨省</text><text x="1101.08" y="796.79" data-pair-text="MT" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">马尔通市</text><text x="1283.02" y="881.87" data-pair-text="FS" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">四六省</text><text x="999.84" y="890.12" data-pair-text="GR" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">臭都特别市</text><text x="1104.53" y="896.09" data-pair-text="BG" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">白告市</text><text x="1157.93" y="917.35" data-pair-text="LL" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">立里市</text><text x="828.49" y="997.88" data-pair-text="PN" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">凤凰省</text><text x="933.83" y="1049.19" data-pair-text="WZ" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">武宗特别市</text><text x="1070.74" y="1027" data-pair-text="NG" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">尼根市</text><text x="342.36" y="1148.82" data-pair-text="TL" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">千里省</text><text x="623.64" y="1104.59" data-pair-text="HB" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">西贝特省</text><text x="456.4" y="1195.51" data-pair-text="TT" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">托易雷特省</text><text x="609.76" y="1319.75" data-pair-text="TT" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">托易雷特省</text><text x="441.94" y="1326.84" data-pair-text="SW" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">西南湩省</text><text x="795.06" y="1235.27" data-pair-text="GW" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">古维克省</text><text x="898.7" y="1214.52" data-pair-text="SP" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">圣维皮省</text><text x="986.42" y="1265.02" data-pair-text="CS" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">出塞特别行政区</text><text x="1114.54" y="1172.92" data-pair-text="FL" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">福利省</text><text x="1140.85" y="1291.51" data-pair-text="TG" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">天狗省</text><text x="1292.06" y="1062.64" data-pair-text="SB" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">萨比省</text><text x="1331.78" y="1174.61" data-pair-text="UE" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">冰糖-雪梨省</text><text x="1316.82" y="1260.61" data-pair-text="KT" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">肯塔基省</text><text x="1413.8" y="1230" data-pair-text="SD" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">三董省</text><text x="1440.96" y="1311.76" data-pair-text="CM" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">草泥马省</text><text x="1378.52" y="1374.09" data-pair-text="SE" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">东南湩省</text><text x="806.93" y="1332.55" data-pair-text="OC" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">欧芹省</text><text x="1154.57" y="1371.53" data-pair-text="ND" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">南湩省</text><text x="800.96" y="1392.28" data-pair-text="SM" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">萨姆省</text><text x="1597.82" y="448.31" data-pair-text="TO" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">总统（湩赫）特别行政区</text><text x="1828.5" y="684" data-pair-text="DD" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">东湩特别行政区</text><text x="1351.63" y="974.62" data-pair-text="WT" dominant-baseline="central" stroke="#fff" stroke-width=".6" paint-order="stroke">王德发特别行政区</text></g><g id="regionTongueNames" data-layer="regionTongueNames" pointer-events="none" font-family="Arial,sans-serif" font-size="10" font-weight="600" text-anchor="middle" fill="#168d7b" fill-opacity=".9"><text x="904.4" y="155.36" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Nohiadonhfak Tonkez</text><text x="925.86" y="238.52" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Cheutonh Tonkez</text><text x="1212.95" y="310.07" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Hosh Tonkez</text><text x="696.56" y="346.64" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Daêdœ Tonkez</text><text x="804.72" y="374.37" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Zak Tonkez</text><text x="1051.97" y="407.87" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Tamad Tonkez</text><text x="1294.5" y="498.5" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Donma Donkez</text><text x="705.83" y="590.49" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Lauid Tonkez</text><text x="472.05" y="677.64" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Es&#x27;hiadonhfak Tonkez</text><text x="654.83" y="814.37" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Valæhi Tonkez</text><text x="833.82" y="775.79" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Mæmar Tonkez</text><text x="923.6" y="653.11" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Gnwan Tonkez</text><text x="1080.17" y="650.85" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Ræf Shimflash</text><text x="1188.7" y="689.39" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Satornfak Tonkez</text><text x="1279.04" y="602.97" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Bannpwi Tonkez</text><text x="1294.21" y="748.32" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Repwifak Tonkez</text><text x="1101.08" y="796.79" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Martonh Tork</text><text x="1283.02" y="881.87" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Donsa Tonkez</text><text x="999.84" y="890.12" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Græt Shimflash</text><text x="1104.53" y="896.09" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Toh Tork</text><text x="1157.93" y="917.35" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Thao Tork</text><text x="828.49" y="997.88" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Enadohlfak Tork</text><text x="933.83" y="1049.19" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Wzonh Shimflash</text><text x="1070.74" y="1027" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Naig Tork</text><text x="342.36" y="1148.82" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Senfor Tonkez</text><text x="623.64" y="1104.59" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Hibait Tonkez</text><text x="456.4" y="1195.51" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Taoilait Tonkez</text><text x="609.76" y="1319.75" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Taoilait Tonkez</text><text x="441.94" y="1326.84" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Eswhiadonhfak Tonkez</text><text x="795.06" y="1235.27" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Gwak Tonkez</text><text x="898.7" y="1214.52" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Stwiapid Tonkez</text><text x="986.42" y="1265.02" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Cwasain Donkez</text><text x="1114.54" y="1172.92" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Soblash Tonkez</text><text x="1140.85" y="1291.51" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Tonhr Tonkez</text><text x="1292.06" y="1062.64" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Sabid Tonkez</text><text x="1331.78" y="1174.61" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Bintashêrli Tonkez</text><text x="1316.82" y="1260.61" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Vevws Tork</text><text x="1413.8" y="1230" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Hidon Tonkez</text><text x="1440.96" y="1311.76" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Conma Tonkez</text><text x="1378.52" y="1374.09" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Iswhiadonhfak Tonkez</text><text x="806.93" y="1332.55" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Wchin Tonkez</text><text x="1154.57" y="1371.53" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Swhiadonhfak Tonkez</text><text x="800.96" y="1392.28" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Sem Tonkez</text><text x="1597.82" y="448.31" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Tonhfak Donkez</text><text x="1828.5" y="684" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Ishiadonhfak Donkez</text><text x="1351.63" y="974.62" data-language="tongue" dominant-baseline="central" stroke="#fff" stroke-width=".55" paint-order="stroke">Wendfar Donkez</text></g></svg></div><aside id="mapPanel" aria-label="&#x5730;&#x56fe;&#x56fe;&#x5c42;&#x63a7;&#x5236;" hidden>
 <div class="panelIntro"><div><p class="panelKicker">MAP LAYERS</p><h2>地图图层</h2></div><button id="closePanel" class="closePanel" type="button" aria-label="&#x5173;&#x95ed;&#x56fe;&#x5c42;&#x9762;&#x677f;">&times;</button></div>
 <div class="layerList">
 <section class="layerGroup" data-layer-group>
@@ -785,7 +815,16 @@ aside[hidden]{display:none}
 </div>
 </section>
 </div>
-</aside><div id="mapHud"><div id="selected" aria-live="polite" hidden></div><p class="mapHint">&#x6eda;&#x8f6e;&#x7f29;&#x653e; &#x00b7; &#x62d6;&#x62fd;&#x5e73;&#x79fb; &#x00b7; &#x70b9;&#x51fb;&#x533a;&#x57df;&#x67e5;&#x770b;&#x540d;&#x79f0;&#x4e0e;&#x7f16;&#x53f7;</p></div></div>
+</aside>
+<aside id="regionInfoPanel" role="region" aria-labelledby="regionInfoTitle" hidden>
+<div class="panelIntro"><div><p id="regionInfoKicker" class="panelKicker">REGION INFORMATION</p><h2 id="regionInfoTitle" aria-live="polite"></h2><p id="regionInfoSubtitle" class="muted"></p></div><button id="closeRegionInfo" class="closePanel" type="button" aria-label="关闭地区介绍">×</button></div>
+<div id="regionInfoLevels" class="regionInfoLevels"></div>
+<div class="regionAreaCard"><span>面积</span><strong id="regionInfoArea"></strong></div>
+<section class="regionDescription" aria-labelledby="regionDescriptionTitle"><h3 id="regionDescriptionTitle">介绍</h3><p id="regionInfoDescription">暂无介绍</p></section>
+</aside>
+<div id="mapHud"><div id="selected" aria-live="polite" hidden></div><p class="mapHint">&#x6eda;&#x8f6e;&#x7f29;&#x653e; &#x00b7; &#x62d6;&#x62fd;&#x5e73;&#x79fb; &#x00b7; &#x70b9;&#x51fb;&#x533a;&#x57df;&#x67e5;&#x770b;&#x540d;&#x79f0;&#x4e0e;&#x7f16;&#x53f7;</p></div></div>
+<script src="data/region_directory.js"></script>
+<script src="data/city_directory.js"></script>
 <script>
 const sourceSvg=document.getElementById('mapSvg');
 const canvas=document.getElementById('mapCanvas');
@@ -816,9 +855,18 @@ let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
 let drag=null,framePending=false,viewAnimation=null,zoomAnimation=null,zoomTarget=null,zoomLastTime=null,hoveredCode=null,pixelRatio=1;
 let records=[],regionRecords=[],regionBounds=new Map();
+const REGION_DIRECTORY=window.DUNIVERSE_REGION_DIRECTORY||[];
+const REGION_BY_ID=new Map(REGION_DIRECTORY.map(entry=>[entry.id,entry]));
+const CITY_DIRECTORY=window.DUNIVERSE_CITY_DIRECTORY||[];
+const REGION_SEARCH_DIRECTORY=[...REGION_DIRECTORY,...CITY_DIRECTORY];
 const layerInputs=[...document.querySelectorAll('input[data-layer]')];
 const layerVisibility=new Map(layerInputs.map(input=>[input.dataset.layer,input.checked]));
-const regionJump=document.getElementById('regionJump');
+const regionSearch=document.getElementById('regionSearch');
+const regionSearchInput=document.getElementById('regionSearchInput');
+const regionSearchPopup=document.getElementById('regionSearchPopup');
+const regionSearchList=document.getElementById('regionSearchList');
+const regionSearchStatus=document.getElementById('regionSearchStatus');
+let regionSearchResults=[],activeRegionSearchIndex=-1;
 
 function parseSubpaths(d){
   const tokens=d.match(/[MLZ]|[+-]?(?:\d*\.)?\d+(?:e[+-]?\d+)?/gi)||[];
@@ -977,538 +1025,280 @@ function buildRegionIndex(){
       regionBounds.set(record.code,{x:left,y:top,width:right-left,height:bottom-top});
     }else regionBounds.set(record.code,{x:bounds.x,y:bounds.y,width:bounds.width,height:bounds.height});
   }
-  for(const code of [...regionBounds.keys()].sort()){
-    const option=document.createElement('option');option.value=code;option.textContent=code;regionJump.append(option);
-  }
 }
 
-const CITY_TONGUE_NAMES={
-  "圣金丰市": "Stwhenuref Tork",
-  "尔比市": "Elbid Tork",
-  "米共市": "Chdab Tork",
-  "鱼小市": "Ytin Tork",
-  "绿水市": "Haohfak Tork",
-  "几丁市": "Swkdeb Tork",
-  "马德市": "Madêr Tork",
-  "地鼠市": "Blentonh Tork",
-  "摩勒斯特市": "Mlest Tork",
-  "冰狗市": "Gog Tork",
-  "以巴市": "Daibal Tork",
-  "昌阁市": "Clintork",
-  "卷沟市": "Beniuob Tork",
-  "梅德市": "Mæd Tork",
-  "东冬市": "Cens’hdod Tork",
-  "菠萝市": "Lingef Tork",
-  "莱菁市": "Laich Tork",
-  "崤瑾托克市": "Sorchtork",
-  "威猛市": "Ueclin Tork",
-  "格里亚奇市": "Ghriach Tork",
-  "马迪帕德市": "Madipadœr Tork",
-  "欧干尼克市": "Wkanika Tork",
-  "长岭市": "Zoyo Gos",
-  "瓦史鲁姆市": "Wastm Tork",
-  "德那索市": "Densor Tork",
-  "汉乔布市": "Henship Tork",
-  "蜂蜜市": "Femjyc Tork",
-  "明光市": "Chominh Tork",
-  "尼干马市": "Nigmaj Tork",
-  "提琴城": "Kaptlshdonhfak Tork",
-  "也平市": "Uichtork",
-  "无穷市": "Kecyc Tork",
-  "杰格市": "Ueg Tork",
-  "咸蛋市": "Kapthaich Tork",
-  "天龙市": "Naphitork",
-  "三林市": "Hisdintsfaks Tork",
-  "欧朝市": "Wcios Tork",
-  "薛梅托克市": "Shmætork",
-  "莱布特瑞市": "Labtar Tork",
-  "大声江市": "Uenuronn Tork",
-  "特拉斯市": "Tlash Tork",
-  "德色市": "Ders Tork",
-  "葫芦市": "Binoe Tork",
-  "加马市": "Gam Tork",
-  "马勒戈壁市": "Malgbid Tork",
-  "旺克市": "Vanke Tork",
-  "沁园市": "Shmedon Tork",
-  "百灵鸟市": "Betgou Tork",
-  "尼梅市": "Nimæd Tork",
-  "留春市": "Loctork",
-  "香蕉市": "Lonzishfak Tork",
-  "新瓦莱莉市": "Uydvalæhi Tork",
-  "治文武市": "Bingtork",
-  "别林斯𣿅市": "Belenstonh Tork",
-  "尼塔市": "Etatork",
-  "阿尔法市": "Arf Tork",
-  "加克亚斯市": "Uakac Tork",
-  "坚果市": "Pivz Tork",
-  "番茄市": "Tonbwch Tork",
-  "深原市": "Gesh Tork",
-  "约恩市": "Yorn Tork",
-  "派城": "Paitork",
-  "苹果市": "Korndfak Tork",
-  "红柚市": "Bejanposdetfak Tork",
-  "法因市": "Faitork",
-  "南希市": "Nacia Tork",
-  "卡吉市": "Kau Tork",
-  "龙子山市": "Loclvin Tork",
-  "星环市": "Satornia Tork",
-  "六七市": "Sabi Tork",
-  "四银市": "Donlwft Tork",
-  "西尔特市": "Shiêrtork",
-  "松杉市": "Joms Tork",
-  "雷斯特卢市": "Raistm Tork",
-  "斯科布勒思市": "Skeblos Tork",
-  "乔治市": "Cyh Tork",
-  "斯莫里亚市": "Smolaitork",
-  "通安市": "Tongrabac Tork",
-  "𣿅安市": "Dorian Tork",
-  "小号市": "Baitork",
-  "鲁城": "Zenltork",
-  "三维市": "Shmekeb Tork",
-  "小米市": "Tonhswj Tork",
-  "碱硼托克市": "Jemptork",
-  "米巴市": "Ladab Tork",
-  "硶州市": "Cnimatork",
-  "法尼市": "Fanmagop Tork",
-  "碱锌托克市": "Uenshtork",
-  "达希市": "Desh Tork",
-  "木子山市": "Kfechvin Tork",
-  "拉堡市": "Labrotork",
-  "新高年市": "Uydgorn Tork",
-  "皮德菲拉市": "Paiaflar Tork",
-  "仙人掌市": "Pviz Tork",
-  "欧特曼市": "Wtma Tork",
-  "多格市": "Dog Tork",
-  "周一城": "Zœitork",
-  "盛云市": "Senuwin Tork",
-  "椰树市": "Dod Tork",
-  "核平城": "Viophashtork",
-  "泉费市": "Bakin Tork",
-  "玛斯特贝市": "Mastapaid Tork",
-  "泡面市": "Tonhaichfak Tork",
-  "重草市": "Tondon Tork",
-  "远舟市": "Geshnait Tork",
-  "昌眺市": "Chant Tork",
-  "尼哥市": "Euian Tork",
-  "书华市": "Enswh Tork",
-  "金瓶古镇": "Uinpsidfaktornk",
-  "汤平市": "Uenimad Tork",
-  "小白市": "Zenclin Tork",
-  "欧特𣿅市": "Wtdon Tork",
-  "后来市": "Hynz Tork",
-  "红林市": "Bejansdintsfaks Tork",
-  "花火市": "Tonhaid Tork",
-  "棕榈市": "Vilishthiktfak Tork",
-  "甲鱼市": "Uaitork",
-  "羊驼市": "Conmad Tork",
-  "顺风市": "Senfêr Tork",
-  "欧榭市": "Wshit Tork",
-  "江南市": "Dlihc Tork",
-  "多恩市": "Dorn Tork",
-  "卫星市": "Satfak Tork",
-  "格拉巴茨市": "Grabac Tork",
-  "眺高市": "Tonhsed Tork",
-  "拉姆达市": "Lamd Tork",
-  "天星市": "Naphidsoton Tork",
-  "红滨市": "Chrionb Tork",
-  "爱勒拉夫市": "Irelavid Tork",
-  "法克市": "Fakin Tork",
-  "斯朗姆皮特市": "Strampid Tork",
-  "星穹市": "Tonhev Tork",
-  "泡椒市": "Uiufak Tork",
-  "彤管市": "Tonk Tork",
-  "欧米亚市": "Wmmia Tork",
-  "卡斯瑞特市": "Kasthet Tork",
-  "观山市": "Vinfak Tork",
-  "布森敏市": "Posmid Tork",
-  "摩尔市": "Mortork",
-  "亚斯市": "Astork",
-  "圣𣿅芬市": "Stwdoclif Tork",
-  "马奇市": "Mach Tork",
-  "冻梨市": "Bsenksdohtfak Tork",
-  "金炮市": "Uinptwtan Tork",
-  "拉贝斯市": "Labes Tork",
-  "四翼市": "Donlid Tork",
-  "橘子市": "Nephon Tork",
-  "加克西市": "Uakic Tork",
-  "三十市": "Hidê Tork",
-  "贝塔市": "Hbait Tork",
-  "巴伽市": "Bag Tork",
-  "𣿅山市": "Donvin Tork",
-  "佩奇市": "Uou Tork",
-  "甘蔗市": "Nenkfak Tork",
-  "理想之树市": "Haoriasdint Tork",
-  "皓月市": "Kaptlshdon Tork",
-  "钒铝市": "Val Tork",
-  "乡江市": "Tonhuys Tork",
-  "寒秋市": "Tonhshmæ Tork",
-  "法特市": "Fat Tork",
-  "欧米伽市": "Wmmek Tork",
-  "凤凰市": "Enadohlfak Tork",
-  "康家庄市": "Kensf Tork",
-  "新友市": "Sjotork",
-  "维克多市": "Viktork",
-  "尤西市": "Uosh Tork",
-  "金鱼市": "Henushêrli Tork",
-  "帕斯卡市": "Basgaltork",
-  "洛城": "Rœtork",
-  "圣𣿅瀚市": "Stwvictorn Tork",
-  "氨醛市": "Gwangtork",
-  "成岗市": "Ucenc Tork",
-  "𣿅环市": "Sadornia Tork Tork",
-  "土豆市": "Pomt Tork",
-  "金汤湖市": "Sbench Tork",
-  "飞天市": "Tesenf Tork",
-  "布提里申市": "Britlis Tork",
-  "安第里亚市": "Atliad Tork",
-  "宾塔库兹市": "Bintakwc Tork",
-  "兰花市": "Kaptliadfak Tork",
-  "基哥市": "Zoft Tork",
-  "山梨市": "Vinsdohtfak Tork",
-  "哥尔德市": "Gœrt Tork",
-  "红尾市": "Hwedorn Tork",
-  "巴斯鲁姆市": "Baslom Tork",
-  "牛耶市": "Noj Tork",
-  "四五市": "Donhao Tork",
-  "铁山市": "Têsenk Tork",
-  "贾斯帕市": "Uaspatork",
-  "圣雅宾市": "Stwuasbingœ Tork",
-  "𣿅儿塔市": "Dorta Tork",
-  "山林丽花市": "Tonhhihfak Tork",
-  "三色瑾市": "Soutork",
-  "佳景市": "Uautork",
-  "鸭梨市": "Sdohtfak Tork",
-  "雀食市": "Ches Tork",
-  "博恩市": "Born Tork",
-  "金榜市": "Lenhlin Tork",
-  "圣诞城": "Kris Tork",
-  "克劳迪亚市": "Klwta Tork",
-  "紫沙市": "Kaptasab Tork",
-  "梅花山市": "Shmævin Tork",
-  "四十市": "Dondê Tork",
-  "威利亚市": "Viliad Tork",
-  "伊府市": "Iftork",
-  "芷英市": "Ceshk Tork",
-  "二阶行列市": "Læv Hreshtork",
-  "三阶行列市": "Hiv Hreshtork",
-  "十四阶行列市": "Vadonv Hreshtork",
-  "四阶行列市": "Donv Hreshtork",
-  "十五阶行列市": "Vahaov Hreshtork",
-  "十六阶行列市": "Vasav Hreshtork",
-  "五阶行列市": "Haov Hreshtork",
-  "十三阶行列市": "Vahiv Hreshtork",
-  "六阶行列市": "Sav Hreshtork",
-  "七阶行列市": "Biv Hreshtork",
-  "八阶行列市": "Tav Hreshtork",
-  "十一阶行列市": "Vavav Hreshtork",
-  "九阶行列市": "Mav Hreshtork",
-  "十阶行列市": "Dêv Hreshtork",
-  "二十阶行列市": "Læv Hreshtork",
-  "十七阶行列市": "Vabiv Hreshtork",
-  "十九阶行列市": "Vamav Hreshtork",
-  "二十一阶行列市": "Lævav Hreshtork",
-  "剑山市": "Jistork",
-  "罗尔市": "Rortork",
-  "佩亚诺市": "Pejann Tork",
-  "柯西市": "Korshtork",
-  "米哈市": "Minhtork",
-  "哈基米市": "Katork",
-  "爪形行列市": "Enad Hreshtork",
-  "范德蒙德行列市": "Ventmot Hreshtork",
-  "娟儿市": "Jenêrtork",
-  "蔓叶市": "Majtork",
-  "箕舌市": "Kiishtork",
-  "花林市": "Holin Tork",
-  "拉格朗日市": "Laghannu Tork",
-  "伯努利市": "Benwj Tork",
-  "莱布尼茨市": "Laibnic Tork",
-  "海森堡市": "Haizênbg Tork",
-  "麦克劳林市": "Makrorin Tork",
-  "泰勒市": "Tæltork",
-  "钾钍市": "Kath Tork",
-  "袋鼠鱼子市": "Des'shiic Tork",
-  "鱼子市": "Shic Tork",
-  "芙里莲市": "Forian Tork",
-  "美桑市": "Mestork",
-  "核移位市": "Hywtork",
-  "拉鲁斯市": "Lahws Tork",
-  "哈密瓜市": "Hamtork",
-  "凯莱市": "Kaltork",
-  "谢尔曼市": "Shœrmon Tork",
-  "莫里森市": "Moristork",
-  "科技市": "Tohnob Tork",
-  "萝卜市": "Zotfau Tork",
-  "鸽子市": "Gectork",
-  "顺照竹子市": "Shecdes Tork",
-  "欧特尼克市": "Otnik Tork",
-  "伍德布瑞市": "Ortbres Tork"
-};
+const CITY_TONGUE_NAMES=window.DUNIVERSE_CITY_TONGUE_NAMES||{};
 const CITY_LABELS=[
-  [915.15,107.85,-6,0,'end','大声江市'],
-  [990.59,152.98,-6,0,'end','洛城'],
-  [913.15,155.85,0,10,'middle','江南市'],
-  [943.50,187.20,-6,-8,'end','成岗市'],
-  [986.93,189.81,6,0,'start','蔓叶市'],
-  [801.50,204.20,-6,-8,'end','小白市'],
-  [870.00,212.24,-6,-8,'end','沁园市'],
-  [767.76,213.00,6,10,'start','旺克市'],
-  [962.50,224.05,6,0,'start','三色瑾市'],
-  [808.24,225.00,6,10,'start','周一城'],
-  [908.56,230.73,6,-8,'start','书华市'],
-  [748.67,237.00,-6,0,'end','娟儿市'],
-  [789.00,239.24,6,10,'start','硶州市'],
-  [892.00,244.24,-6,0,'end','甲鱼市'],
-  [695.00,252.76,-6,10,'end','地鼠市'],
-  [721.00,258.33,6,0,'start','二阶行列市'],
-  [975.92,259.20,6,0,'start','也平市'],
-  [893.76,268.00,-6,0,'end','飞天市'],
-  [773.00,279.24,-6,10,'end','西尔特市'],
-  [818.24,281.00,-6,-10,'end','法尼市'],
-  [839.15,290.15,6,0,'start','治文武市'],
-  [881.00,316.76,-6,0,'end','箕舌市'],
-  [985.90,321.62,6,0,'start','花林市'],
-  [626.98,327.59,6,0,'start','顺风市'],
-  [782.15,329.15,6,10,'start','法克市'],
-  [647.00,376.76,6,0,'start','贾斯帕市'],
-  [807.67,378.00,6,10,'start','法特市'],
-  [944.76,396.00,-6,0,'end','长岭市'],
-  [1009.05,434.50,-6,10,'end','铁山市'],
-  [741.19,444.07,-6,-8,'end','牛耶市'],
-  [876.33,484.00,-6,0,'end','三阶行列市'],
-  [996.02,510.41,-6,10,'end','斯朗姆皮特市'],
-  [870.15,516.85,-6,10,'end','观山市'],
-  [763.59,519.98,6,10,'start','通安市'],
-  [844.76,561.00,-6,0,'end','四十市'],
-  [620.00,566.76,6,10,'start','斯莫里亚市'],
-  [818.05,580.50,-6,0,'end','三十市'],
-  [997.15,593.85,-6,-8,'end','剑山市'],
-  [464.59,600.98,6,10,'start','尤西市'],
-  [800.00,609.67,-6,0,'end','德色市'],
-  [985.02,628.41,-6,-8,'end','十四阶行列市'],
-  [799.00,634.24,6,10,'start','四阶行列市'],
-  [767.85,640.15,-6,0,'end','布森敏市'],
-  [682.41,651.02,6,-8,'start','特拉斯市'],
-  [873.15,651.15,-6,0,'end','拉贝斯市'],
-  [378.12,659.46,6,10,'start','巴伽市'],
-  [999.15,670.85,-6,0,'end','金鱼市'],
-  [591.00,697.24,0,-10,'middle','新瓦莱莉市'],
-  [530.00,702.50,-6,0,'end','芷英市'],
-  [836.50,720.95,0,-10,'middle','拉鲁斯市'],
-  // NE labels
-  [1050.38,188.10,6,0,'start','维克多市'],
-  [1076.44,204.73,-6,0,'end','三维市'],
-  [1077.24,227.00,6,0,'start','四翼市'],
-  [1196.50,228.80,-6,0,'end','新高年市'],
-  [1047.05,238.50,-6,0,'end','帕斯卡市'],
-  [1228.41,247.02,-6,0,'end','金榜市'],
-  [1222.38,284.10,-6,0,'end','百灵鸟市'],
-  [1325.02,286.41,-6,0,'end','拉格朗日市'],
-  [1102.65,292.25,-6,0,'end','天星市'],
-  [1160.50,298.67,6,0,'start','伯努利市'],
-  [1040.85,312.15,6,0,'start','尼梅市'],
-  [1231.32,317.17,-6,0,'end','薛梅托克市'],
-  [1210.80,331.50,-6,0,'end','梅德市'],
-  [1050.76,338.00,-6,0,'end','𣿅儿塔市'],
-  [1351.41,337.98,-6,0,'end','紫沙市'],
-  [1278.15,343.15,0,13,'middle','理想之树市'],
-  [1231.24,349.00,-6,0,'end','罗尔市'],
-  [1176.85,373.85,-6,0,'end','莱布尼茨市'],
-  [1095.15,399.15,-6,0,'end','爪形行列市'],
-  [1201.33,405.00,-6,0,'end','兰花市'],
-  [1278.78,406.82,-6,0,'end','海森堡市'],
-  [1334.76,415.00,-6,0,'end','东冬市'],
-  [1109.15,438.85,-6,0,'end','麦克劳林市'],
-  [1320.76,441.00,-6,0,'end','泰勒市'],
-  [1333.00,460.76,6,0,'start','四五市'],
-  [1302.02,465.41,-6,0,'end','皓月市'],
-  [1032.00,477.76,-6,0,'end','哈基米市'],
-  [1123.00,486.50,-6,0,'end','四银市'],
-  [1184.46,484.88,-6,0,'end','柯西市'],
-  [1235.76,501.00,-6,0,'end','𣿅山市'],
-  [1075.00,517.24,-6,0,'end','薛梅托克市'],
-  [1205.98,525.59,-6,0,'end','安第里亚市'],
-  [1050.85,537.15,-6,0,'end','尼哥市'],
-  [1112.65,537.75,-6,23,'end','十五阶行列市'],
-  [1295.85,539.15,-6,0,'end','威利亚市'],
-  [1138.00,547.24,6,0,'start','佩亚诺市'],
-  [1209.00,584.67,-6,0,'end','威猛市'],
-  [1251.85,598.15,-6,0,'end','南希市'],
-  [1343.85,610.15,-6,0,'end','贝塔市'],
-  [1200.83,614.68,-6,0,'end','星环市'],
-  [1277.00,636.24,-6,0,'end','十六阶行列市'],
-  [1360.02,671.59,-6,0,'end','盛云市'],
-  [1206.85,694.15,-6,0,'end','𣿅环市'],
-  [1398.00,707.33,-6,0,'end','菠萝市'],
-  [1134.00,709.24,-6,0,'end','星穹市'],
-
-  // SW labels
-  [405.15,726.85,6,0,'start','尼干马市'],
-  [937.00,727.24,6,0,'start','哥尔德市'],
-  [698.00,736.24,-6,0,'end','布提里申市'],
-  [737.50,734.80,6,0,'start','五阶行列市'],
-  [473.85,738.85,6,0,'start','绿水市'],
-  [772.00,746.76,6,12,'start','碱硼托克市'],
-  [1006.50,753.80,6,0,'start','重草市'],
-  [1002.24,772.00,6,0,'start','十三阶行列市'],
-  [400.76,788.00,6,0,'start','马勒戈壁市'],
-  [826.23,803.17,6,0,'start','卡斯瑞特市'],
-  [843.59,818.98,6,0,'start','六阶行列市'],
-  [935.50,849.00,6,0,'start','马德市'],
-  [865.00,856.76,6,0,'start','基哥市'],
-  [580.26,860.74,6,0,'start','钒铝市'],
-  [877.41,889.02,6,0,'start','爱勒拉夫市'],
-  [903.76,905.00,6,0,'start','圣金丰市'],
-  [792.76,920.00,6,0,'start','钾钍市'],
-  [920.00,921.76,6,0,'start','凤凰市'],
-  [716.24,947.00,-6,0,'end','袋鼠鱼子市'],
-  [781.44,956.27,6,0,'start','天龙市'],
-  [892.00,980.24,6,0,'start','七阶行列市'],
-  [572.24,1000.00,6,0,'start','咸蛋市'],
-  [865.00,1014.76,6,0,'start','小米市'],
-  [703.00,1029.76,6,0,'start','鱼子市'],
-  [805.20,1035.50,6,0,'start','无穷市'],
-  [447.15,1054.85,6,0,'start','玛斯特贝市'],
-  [412.19,1081.93,6,0,'start','芙里莲市'],
-  [701.76,1083.00,6,0,'start','小号市'],
-  [838.59,1086.02,6,0,'start','泡椒市'],
-  [537.00,1094.76,6,0,'start','摩勒斯特市'],
-  [829.65,1115.75,-6,0,'end','八阶行列市'],
-  [1007.27,1117.56,6,0,'start','留春市'],
-  [849.15,1119.15,6,0,'start','圣𣿅瀚市'],
-  [298.85,1121.85,6,0,'start','昌眺市'],
-  [430.76,1139.00,6,0,'start','瓦史鲁姆市'],
-  [929.50,1142.05,6,0,'start','圣𣿅芬市'],
-  [996.00,1141.24,6,0,'start','梅花山市'],
-  [399.00,1146.24,-6,0,'end','眺高市'],
-  [810.24,1153.00,6,0,'start','彤管市'],
-  [995.00,1162.76,-6,0,'end','十一阶行列市'],
-  [505.00,1164.76,6,0,'start','美桑市'],
-  [608.15,1171.15,6,0,'start','米巴市'],
-  [771.00,1171.24,6,0,'start','米哈市'],
-  [866.10,1173.62,6,12,'start','斯科布勒思市'],
-  [296.00,1177.24,6,0,'start','深原市'],
-  [423.00,1183.24,6,0,'start','卡吉市'],
-  [710.24,1192.00,-6,0,'end','米共市'],
-  [959.00,1198.24,6,0,'start','提琴城'],
-  [748.00,1201.33,6,0,'start','马奇市'],
-  [399.19,1215.07,-6,0,'end','格里亚奇市'],
-  [897.15,1219.85,6,0,'start','加马市'],
-  [976.85,1222.15,6,12,'start','核移位市'],
-  [439.85,1223.15,6,-12,'start','约恩市'],
-  [683.33,1231.00,6,0,'start','阿尔法市'],
-  [335.26,1246.26,6,0,'start','莱菁市'],
-  [924.50,1253.80,-6,0,'end','红滨市'],
-  [712.00,1272.33,6,0,'start','九阶行列市'],
-  [919.77,1277.17,6,0,'start','十阶行列市'],
-  [378.24,1280.00,6,0,'start','顺照竹子市'],
-  [686.33,1280.00,0,-13,'middle','达希市'],
-  [551.15,1287.85,6,0,'start','鲁城'],
-  [604.07,1289.81,6,-23,'start','哈密瓜市'],
-  [651.00,1289.24,6,12,'start','凯莱市'],
-  [793.85,1290.85,6,0,'start','别林斯𣿅市'],
-  [460.50,1295.95,6,0,'start','杰格市'],
-  [723.00,1295.33,6,0,'start','欧朝市'],
-  [951.73,1299.44,6,12,'start','核平城'],
-  [928.00,1305.33,-6,0,'end','红尾市'],
-  [623.27,1307.44,-6,0,'end','巴斯鲁姆市'],
-  [762.33,1326.00,6,0,'start','欧特曼市'],
-  [844.67,1327.00,6,0,'start','欧特尼克市'],
-  [679.67,1329.00,-6,0,'end','莱布特瑞市'],
-  [1004.00,1337.24,6,-23,'start','二十阶行列市'],
-  [332.00,1338.76,6,0,'start','拉姆达市'],
-  [706.76,1340.00,6,-12,'start','欧榭市'],
-  [746.00,1342.24,6,0,'start','欧干尼克市'],
-  [506.15,1347.15,6,0,'start','山林丽花市'],
-  [586.85,1348.85,6,0,'start','雷斯特卢市'],
-  [940.85,1353.85,6,-12,'start','苹果市'],
-  [816.07,1358.19,-6,0,'end','欧米伽市'],
-  [982.17,1359.32,6,0,'start','红柚市'],
-  [538.33,1363.00,-6,0,'end','谢尔曼市'],
-  [569.00,1364.67,0,13,'middle','莫里森市'],
-  [919.81,1363.07,0,13,'middle','欧米亚市'],
-  [617.18,1366.59,6,0,'start','伍德布瑞市'],
-  [874.76,1369.00,0,-13,'middle','欧特𣿅市'],
-  [842.73,1375.56,-6,0,'end','六七市'],
-  [962.93,1379.81,6,0,'start','红林市'],
-  [746.00,1388.24,-6,0,'end','克劳迪亚市'],
-  [938.76,1395.00,6,0,'start','木子山市'],
-  [1004.00,1399.24,6,0,'start','龙子山市'],
-  [971.00,1416.76,6,0,'start','香蕉市'],
-
-  // SE labels
-  [1378.81,730.93,-6,0,'end','宾塔库兹市'],
-  [1194.15,742.15,-6,0,'end','卫星市'],
-  [1280.15,748.15,6,0,'start','仙人掌市'],
-  [1225.67,752.00,6,0,'start','多恩市'],
-  [1336.32,763.17,-6,0,'end','博恩市'],
-  [1191.60,773.81,6,0,'start','十七阶行列市'],
-  [1185.00,804.33,-6,0,'end','后来市'],
-  [1241.00,828.33,-6,0,'end','范德蒙德行列市'],
-  [1369.19,849.93,-6,0,'end','𣿅安市'],
-  [1229.00,889.33,-6,0,'end','乡江市'],
-  [1309.14,919.76,-6,0,'end','寒秋市'],
-  [1195.15,961.15,-6,0,'end','金炮市'],
-  [1271.14,969.24,-6,0,'end','远舟市'],
-  [1185.85,987.85,-6,0,'end','雀食市'],
-  [1290.00,986.76,-6,0,'end','佩奇市'],
-  [1230.00,1012.33,-6,0,'end','马迪帕德市'],
-  [1379.93,1025.19,6,0,'start','科技市'],
-  [1338.00,1028.24,-6,0,'end','乔治市'],
-  [1271.00,1079.33,-6,0,'end','橘子市'],
-  [1404.35,1089.75,-6,0,'end','圣雅宾市'],
-  [1163.25,1094.35,-6,0,'end','鱼小市'],
-  [1236.24,1111.00,-6,0,'end','德那索市'],
-  [1104.76,1118.00,-6,0,'end','佳景市'],
-  [1423.58,1121.02,-6,0,'end','康家庄市'],
-  [1289.76,1127.00,-6,0,'end','尔比市'],
-  [1210.00,1138.33,-6,-12,'end','崤瑾托克市'],
-  [1182.83,1139.22,-6,12,'end','十九阶行列市'],
-  [1381.00,1140.76,-6,0,'end','鸭梨市'],
-  [1288.33,1156.00,-6,0,'end','几丁市'],
-  [1237.33,1157.00,0,13,'middle','甘蔗市'],
-  [1074.67,1165.00,-6,0,'end','昌阁市'],
-  [1363.00,1176.33,-6,0,'end','冻梨市'],
-  [1458.50,1184.95,6,0,'start','椰树市'],
-  [1287.50,1189.50,-6,0,'end','葫芦市'],
-  [1427.95,1189.50,-6,0,'end','三林市'],
-  [1209.00,1206.24,-6,0,'end','松杉市'],
-  [1403.33,1209.00,-6,0,'end','尼塔市'],
-  [1033.56,1212.56,6,0,'start','碱锌托克市'],
-  [1313.15,1215.85,-6,0,'end','番茄市'],
-  [1248.85,1241.15,-6,0,'end','卷沟市'],
-  [1136.15,1245.15,-6,0,'end','金瓶古镇'],
-  [1187.00,1245.24,-6,0,'end','汤平市'],
-  [1382.81,1245.93,-6,0,'end','圣诞城'],
-  [1468.00,1256.33,6,0,'start','格拉巴茨市'],
-  [1056.15,1263.15,-6,0,'end','花火市'],
-  [1397.24,1265.00,-6,0,'end','皮德菲拉市'],
-  [1214.41,1278.98,-6,0,'end','汉乔布市'],
-  [1380.00,1282.76,-6,0,'end','土豆市'],
-  [1070.33,1291.00,6,0,'start','冰狗市'],
-  [1035.00,1295.76,-6,0,'end','以巴市'],
-  [1323.76,1298.00,-6,0,'end','拉堡市'],
-  [1403.24,1297.00,-6,0,'end','法因市'],
-  [1445.67,1308.00,0,-13,'middle','加克亚斯市'],
-  [1483.35,1307.25,6,0,'start','亚斯市'],
-  [1285.67,1312.00,6,0,'start','二十一阶行列市'],
-  [1189.76,1313.00,-6,0,'end','金汤湖市'],
-  [1221.20,1322.50,-6,12,'end','坚果市'],
-  [1386.00,1326.67,6,0,'start','加克西市'],
-  [1131.00,1330.76,-6,0,'end','泉费市'],
-  [1054.85,1338.15,-6,0,'end','多格市'],
-  [1165.00,1336.76,-6,12,'end','蜂蜜市'],
-  [1436.85,1341.15,-6,0,'end','羊驼市'],
-  [1094.50,1343.33,-6,12,'end','泡面市'],
-  [1230.00,1350.33,-6,0,'end','萝卜市'],
-  [1265.98,1355.41,6,0,'start','鸽子市'],
-  [1316.24,1372.00,-6,0,'end','派城'],
-  [1358.76,1375.00,6,0,'start','氨醛市'],
-  [1433.44,1381.73,6,0,'start','新友市'],
-  [1034.51,1383.58,6,0,'start','山梨市'],
-  [1084.24,1385.00,6,0,'start','棕榈市'],
-  [1388.07,1396.81,-6,0,'end','明光市'],
-  [1325.40,1400.19,-6,0,'end','摩尔市'],
-  [1211.19,1408.93,-6,0,'end','伊府市'],
+  [915.15,107.85,-6,0,"end","大声江市"],
+  [990.59,152.98,-6,0,"end","洛城"],
+  [913.15,155.85,0,10,"middle","江南市"],
+  [943.50,187.20,-6,-8,"end","成岗市"],
+  [1050.38,188.10,6,0,"start","维克多市"],
+  [986.93,189.81,6,0,"start","蔓叶市"],
+  [801.50,204.20,-6,-8,"end","小白市"],
+  [1076.44,204.73,-6,0,"end","三维市"],
+  [870.00,212.24,-6,-8,"end","沁园市"],
+  [767.76,213.00,6,10,"start","旺克市"],
+  [962.50,224.05,6,0,"start","三色瑾市"],
+  [808.24,225.00,6,10,"start","周一城"],
+  [1077.24,227.00,6,0,"start","四翼市"],
+  [1196.50,228.80,-6,0,"end","新高年市"],
+  [908.56,230.73,6,-8,"start","书华市"],
+  [748.67,237.00,-6,0,"end","娟儿市"],
+  [1047.05,238.50,-6,0,"end","帕斯卡市"],
+  [789.00,239.24,6,10,"start","硶州市"],
+  [892.00,244.24,-6,0,"end","甲鱼市"],
+  [1228.41,247.02,-6,0,"end","金榜市"],
+  [695.00,252.76,-6,10,"end","地鼠市"],
+  [721.00,258.33,6,0,"start","二阶行列市"],
+  [975.92,259.20,6,0,"start","也平市"],
+  [893.76,268.00,-6,0,"end","飞天市"],
+  [773.00,279.24,-6,10,"end","西尔特市"],
+  [818.24,281.00,-6,-10,"end","法尼市"],
+  [1222.38,284.10,-6,0,"end","百灵鸟市"],
+  [1325.02,286.41,-6,0,"end","拉格朗日市"],
+  [839.15,290.15,6,0,"start","治文武市"],
+  [1102.65,292.25,-6,0,"end","天星市"],
+  [960.86,293.21,-6,0,"end","四叶玫瑰市"],
+  [1160.50,298.67,6,0,"start","伯努利市"],
+  [1040.85,312.15,6,0,"start","尼梅市"],
+  [881.00,316.76,-6,0,"end","箕舌市"],
+  [1231.32,317.17,-6,0,"end","洛必达市"],
+  [985.90,321.62,6,0,"start","华林市"],
+  [626.98,327.59,6,0,"start","顺风市"],
+  [782.15,329.15,6,10,"start","法克市"],
+  [1210.80,331.50,-6,0,"end","梅德市"],
+  [1351.41,337.98,-6,0,"end","紫沙市"],
+  [1050.76,338.00,-6,0,"end","𣿅儿塔市"],
+  [1278.15,343.15,0,13,"middle","理想之树市"],
+  [1231.24,349.00,-6,0,"end","罗尔市"],
+  [1176.85,373.85,-6,0,"end","莱布尼茨市"],
+  [647.00,376.76,6,0,"start","贾斯帕市"],
+  [807.67,378.00,6,10,"start","法特市"],
+  [944.76,396.00,-6,0,"end","长岭市"],
+  [1095.15,399.15,-6,0,"end","爪形行列市"],
+  [1201.33,405.00,-6,0,"end","兰花市"],
+  [1278.78,406.82,-6,0,"end","海森堡市"],
+  [1334.76,415.00,-6,0,"end","东冬市"],
+  [1009.05,434.50,-6,10,"end","铁山市"],
+  [1109.15,438.85,-6,0,"end","麦克劳林市"],
+  [1320.76,441.00,-6,0,"end","泰勒市"],
+  [741.19,444.07,-6,-8,"end","牛耶市"],
+  [1333.00,460.76,6,0,"start","四五市"],
+  [1302.02,465.41,-6,0,"end","皓月市"],
+  [1032.00,477.76,-6,0,"end","哈基米市"],
+  [876.33,484.00,-6,0,"end","三阶行列市"],
+  [1184.46,484.88,-6,0,"end","柯西市"],
+  [1123.00,486.50,-6,0,"end","四银市"],
+  [1235.76,501.00,-6,0,"end","𣿅山市"],
+  [996.02,510.41,-6,10,"end","斯朗姆皮特市"],
+  [870.15,516.85,-6,10,"end","观山市"],
+  [1075.00,517.24,-6,0,"end","薛梅托克市"],
+  [763.59,519.98,6,10,"start","通安市"],
+  [1205.98,525.59,-6,0,"end","安第里亚市"],
+  [1050.85,537.15,-6,0,"end","尼哥市"],
+  [1112.65,537.75,-6,23,"end","十五阶行列市"],
+  [1295.85,539.15,-6,0,"end","威利亚市"],
+  [1138.00,547.24,6,0,"start","佩亚诺市"],
+  [844.76,561.00,-6,0,"end","四十市"],
+  [620.00,566.76,6,10,"start","斯莫里亚市"],
+  [818.05,580.50,-6,0,"end","三十市"],
+  [1209.00,584.67,-6,0,"end","威猛市"],
+  [997.15,593.85,-6,-8,"end","剑山市"],
+  [1251.85,598.15,-6,0,"end","南希市"],
+  [464.59,600.98,6,10,"start","尤西市"],
+  [800.00,609.67,-6,0,"end","德色市"],
+  [1343.85,610.15,-6,0,"end","贝塔市"],
+  [1200.83,614.68,-6,0,"end","星环市"],
+  [985.02,628.41,-6,-8,"end","十四阶行列市"],
+  [799.00,634.24,6,10,"start","四阶行列市"],
+  [1277.00,636.24,-6,0,"end","十六阶行列市"],
+  [767.85,640.15,-6,0,"end","布森敏市"],
+  [682.41,651.02,6,-8,"start","特拉斯市"],
+  [873.15,651.15,-6,0,"end","拉贝斯市"],
+  [378.12,659.46,6,10,"start","巴伽市"],
+  [999.15,670.85,-6,0,"end","金鱼市"],
+  [1360.02,671.59,-6,0,"end","盛云市"],
+  [1206.85,694.15,-6,0,"end","𣿅环市"],
+  [591.00,697.24,0,-10,"middle","新瓦莱莉市"],
+  [530.00,702.50,-6,0,"end","芷英市"],
+  [1398.00,707.33,-6,0,"end","菠萝市"],
+  [1134.00,709.24,-6,0,"end","星穹市"],
+  [836.50,720.95,0,-10,"middle","拉鲁斯市"],
+  [405.15,726.85,6,0,"start","尼干马市"],
+  [937.00,727.24,6,0,"start","哥尔德市"],
+  [1378.81,730.93,-6,0,"end","宾塔库兹市"],
+  [737.50,734.80,6,0,"start","五阶行列市"],
+  [698.00,736.24,-6,0,"end","布提里申市"],
+  [473.85,738.85,6,0,"start","绿水市"],
+  [1194.15,742.15,-6,0,"end","卫星市"],
+  [772.00,746.76,6,12,"start","碱硼托克市"],
+  [1280.15,748.15,6,0,"start","仙人掌市"],
+  [1225.67,752.00,6,0,"start","多恩市"],
+  [1006.50,753.80,6,0,"start","重草市"],
+  [1336.32,763.17,-6,0,"end","博恩市"],
+  [1002.24,772.00,6,0,"start","十三阶行列市"],
+  [1191.60,773.81,6,0,"start","十七阶行列市"],
+  [1245.50,774.00,-6,0,"end","凤梨市"],
+  [400.76,788.00,6,0,"start","马勒戈壁市"],
+  [826.23,803.17,6,0,"start","卡斯瑞特市"],
+  [1185.00,804.33,-6,0,"end","后来市"],
+  [843.59,818.98,6,0,"start","六阶行列市"],
+  [1241.00,828.33,-6,0,"end","范德蒙德行列市"],
+  [935.50,849.00,6,0,"start","马德市"],
+  [1369.19,849.93,-6,0,"end","𣿅安市"],
+  [865.00,856.76,6,0,"start","基哥市"],
+  [580.26,860.74,6,0,"start","钒铝市"],
+  [877.41,889.02,6,0,"start","爱勒拉夫市"],
+  [1229.00,889.33,-6,0,"end","乡江市"],
+  [903.76,905.00,6,0,"start","圣金丰市"],
+  [1309.14,919.76,-6,0,"end","寒秋市"],
+  [792.76,920.00,6,0,"start","铒钇市"],
+  [920.00,921.76,6,0,"start","凤凰市"],
+  [716.24,947.00,-6,0,"end","袋鼠鱼子市"],
+  [781.44,956.27,6,0,"start","天龙市"],
+  [1195.15,961.15,-6,0,"end","金炮市"],
+  [1343.50,961.88,-6,0,"end","百岁山市"],
+  [1271.14,969.24,-6,0,"end","远舟市"],
+  [892.00,980.24,6,0,"start","七阶行列市"],
+  [1355.38,982.88,6,12,"start","劳璨市"],
+  [1290.00,986.76,-6,0,"end","佩奇市"],
+  [1185.85,987.85,-6,0,"end","雀食市"],
+  [572.24,1000.00,6,0,"start","咸蛋市"],
+  [1230.00,1012.33,-6,0,"end","马迪帕德市"],
+  [865.00,1014.76,6,0,"start","小米市"],
+  [1379.93,1025.19,6,0,"start","科技市"],
+  [1338.00,1028.24,-6,0,"end","乔治市"],
+  [703.00,1029.76,6,0,"start","鱼子市"],
+  [805.20,1035.50,6,0,"start","无穷市"],
+  [447.15,1054.85,6,0,"start","玛斯特贝市"],
+  [1271.00,1079.33,-6,0,"end","橘子市"],
+  [412.19,1081.93,6,0,"start","芙里莲市"],
+  [701.76,1083.00,6,0,"start","小号市"],
+  [838.59,1086.02,6,0,"start","泡椒市"],
+  [1404.35,1089.75,-6,0,"end","圣雅宾市"],
+  [1163.25,1094.35,-6,0,"end","鱼小市"],
+  [537.00,1094.76,6,0,"start","摩勒斯特市"],
+  [1236.24,1111.00,-6,0,"end","德那索市"],
+  [829.65,1115.75,-6,0,"end","八阶行列市"],
+  [1007.27,1117.56,6,0,"start","留春市"],
+  [1104.76,1118.00,-6,0,"end","佳景市"],
+  [849.15,1119.15,6,0,"start","圣𣿅瀚市"],
+  [1423.58,1121.02,-6,0,"end","康家庄市"],
+  [298.85,1121.85,6,0,"start","昌眺市"],
+  [1289.76,1127.00,-6,0,"end","尔比市"],
+  [1210.00,1138.33,-6,-12,"end","崤瑾托克市"],
+  [430.76,1139.00,6,0,"start","瓦史鲁姆市"],
+  [1182.83,1139.22,-6,12,"end","十九阶行列市"],
+  [1381.00,1140.76,-6,0,"end","鸭梨市"],
+  [996.00,1141.24,6,0,"start","梅花山市"],
+  [929.50,1142.05,6,0,"start","圣𣿅芬市"],
+  [399.00,1146.24,-6,0,"end","眺高市"],
+  [810.24,1153.00,6,0,"start","彤管市"],
+  [1288.33,1156.00,-6,0,"end","几丁市"],
+  [1237.33,1157.00,0,13,"middle","甘蔗市"],
+  [995.00,1162.76,-6,0,"end","十一阶行列市"],
+  [505.00,1164.76,6,0,"start","美桑市"],
+  [1074.67,1165.00,-6,0,"end","昌阁市"],
+  [608.15,1171.15,6,0,"start","米巴市"],
+  [771.00,1171.24,6,0,"start","米哈市"],
+  [866.10,1173.62,6,12,"start","斯科布勒思市"],
+  [1363.00,1176.33,-6,0,"end","冻梨市"],
+  [296.00,1177.24,6,0,"start","深原市"],
+  [423.00,1183.24,6,0,"start","卡吉市"],
+  [1458.50,1184.95,6,0,"start","椰树市"],
+  [1287.50,1189.50,-6,0,"end","葫芦市"],
+  [1427.95,1189.50,-6,0,"end","三林市"],
+  [710.24,1192.00,-6,0,"end","米共市"],
+  [1471.50,1195.00,6,0,"start","上三角行列市"],
+  [959.00,1198.24,6,0,"start","提琴城"],
+  [748.00,1201.33,6,0,"start","马奇市"],
+  [1209.00,1206.24,-6,0,"end","松杉市"],
+  [1403.33,1209.00,-6,0,"end","尼塔市"],
+  [1033.56,1212.56,6,0,"start","碱锌托克市"],
+  [399.19,1215.07,-6,0,"end","格里亚奇市"],
+  [1313.15,1215.85,-6,0,"end","番茄市"],
+  [1469.12,1217.62,6,0,"start","朱干市"],
+  [897.15,1219.85,6,0,"start","加马市"],
+  [976.85,1222.15,6,12,"start","核移位市"],
+  [439.85,1223.15,6,-12,"start","约恩市"],
+  [683.33,1231.00,6,0,"start","阿尔法市"],
+  [1475.38,1240.12,6,0,"start","二十二阶行列市"],
+  [1248.85,1241.15,-6,0,"end","卷沟市"],
+  [1437.62,1243.88,-6,0,"end","三角洲市"],
+  [1136.15,1245.15,-6,0,"end","金瓶古镇"],
+  [1187.00,1245.24,-6,0,"end","汤平市"],
+  [1382.81,1245.93,-6,0,"end","圣诞城"],
+  [335.26,1246.26,6,0,"start","莱菁市"],
+  [924.50,1253.80,-6,0,"end","红滨市"],
+  [1468.00,1256.33,6,0,"start","格拉巴茨市"],
+  [1449.88,1259.88,-6,0,"end","下三角行列市"],
+  [1056.15,1263.15,-6,0,"end","花火市"],
+  [1397.24,1265.00,-6,0,"end","皮德菲拉市"],
+  [712.00,1272.33,6,0,"start","九阶行列市"],
+  [919.77,1277.17,6,0,"start","十阶行列市"],
+  [1214.41,1278.98,-6,0,"end","汉乔布市"],
+  [378.24,1280.00,6,0,"start","顺煦竹子市"],
+  [686.33,1280.00,0,-13,"middle","达希市"],
+  [1380.00,1282.76,-6,0,"end","土豆市"],
+  [551.15,1287.85,6,0,"start","鲁城"],
+  [651.00,1289.24,6,12,"start","凯莱市"],
+  [604.07,1289.81,6,-23,"start","哈密尔顿市"],
+  [793.85,1290.85,6,0,"start","别林斯𣿅市"],
+  [1070.33,1291.00,6,0,"start","冰狗市"],
+  [723.00,1295.33,6,0,"start","欧朝市"],
+  [1035.00,1295.76,-6,0,"end","以巴市"],
+  [460.50,1295.95,6,0,"start","杰格市"],
+  [1403.24,1297.00,-6,0,"end","法因市"],
+  [1323.76,1298.00,-6,0,"end","拉堡市"],
+  [951.73,1299.44,6,12,"start","核平城"],
+  [928.00,1305.33,-6,0,"end","红尾市"],
+  [1483.35,1307.25,6,0,"start","亚斯市"],
+  [623.27,1307.44,-6,0,"end","巴斯鲁姆市"],
+  [1445.67,1308.00,0,-13,"middle","加克亚斯市"],
+  [1285.67,1312.00,6,0,"start","二十一阶行列市"],
+  [1189.76,1313.00,-6,0,"end","金汤湖市"],
+  [1221.20,1322.50,-6,12,"end","坚果市"],
+  [762.33,1326.00,6,0,"start","欧特曼市"],
+  [1386.00,1326.67,6,0,"start","加克西市"],
+  [844.67,1327.00,6,0,"start","欧萨市"],
+  [679.67,1329.00,-6,0,"end","莱布特瑞市"],
+  [1131.00,1330.76,-6,0,"end","泉费市"],
+  [1165.00,1336.76,-6,12,"end","蜂蜜市"],
+  [1004.00,1337.24,6,-23,"start","二十阶行列市"],
+  [1054.85,1338.15,-6,0,"end","多格市"],
+  [332.00,1338.76,6,0,"start","拉姆达市"],
+  [706.76,1340.00,6,-12,"start","欧榭市"],
+  [1436.85,1341.15,-6,0,"end","羊驼市"],
+  [746.00,1342.24,6,0,"start","欧干尼克市"],
+  [1094.50,1343.33,-6,12,"end","泡面市"],
+  [506.15,1347.15,6,0,"start","山林丽花市"],
+  [586.85,1348.85,6,0,"start","雷斯特卢市"],
+  [1230.00,1350.33,-6,0,"end","萝卜市"],
+  [1378.00,1352.00,0,0,"start","里伊尔市"],
+  [940.85,1353.85,6,-12,"start","苹果市"],
+  [1265.98,1355.41,6,0,"start","鸽子市"],
+  [816.07,1358.19,-6,0,"end","欧米伽市"],
+  [982.17,1359.32,6,0,"start","红柚市"],
+  [538.33,1363.00,-6,0,"end","谢尔曼市"],
+  [919.81,1363.07,0,13,"middle","欧米亚市"],
+  [569.00,1364.67,0,13,"middle","莫里森市"],
+  [617.18,1366.59,6,0,"start","伍德布瑞市"],
+  [874.76,1369.00,0,-13,"middle","欧特𣿅市"],
+  [1316.24,1372.00,-6,0,"end","派城"],
+  [1358.76,1375.00,6,0,"start","氨醛市"],
+  [842.73,1375.56,-6,0,"end","六七市"],
+  [962.93,1379.81,6,0,"start","红林市"],
+  [1433.44,1381.73,6,0,"start","新友市"],
+  [1034.51,1383.58,6,0,"start","山梨市"],
+  [1084.24,1385.00,6,0,"start","棕榈市"],
+  [746.00,1388.24,-6,0,"end","克劳迪亚市"],
+  [938.76,1395.00,6,0,"start","木子山市"],
+  [1388.07,1396.81,-6,0,"end","明光市"],
+  [1004.00,1399.24,6,0,"start","龙子山市"],
+  [1325.40,1400.19,-6,0,"end","摩尔市"],
+  [1211.19,1408.93,-6,0,"end","伊府市"],
+  [971.00,1416.76,6,0,"start","香蕉市"],
 ];
 const cityLabelLayer=document.createElementNS('http://www.w3.org/2000/svg','g');
 cityLabelLayer.id='cityLabels';
@@ -1827,8 +1617,8 @@ function zoom(factor,clientX=null,clientY=null){
   if(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){stopZoomAnimation();vb=target;apply();return;}
   zoomTarget=target;animateZoom();
 }
-function zoomToRegion(code,animate=true){
-  const bounds=regionBounds.get(code);if(!bounds)return;
+function zoomToBounds(bounds,animate=true){
+  if(!bounds)return;
   const aspect=viewAspect(),padding=1.4;
   const height=Math.min(Math.max(MAP_H,MAP_W/aspect),Math.max(bounds.height*padding,bounds.width/aspect*padding,180*MAP_H/MAP_W));
   const width=height*aspect;
@@ -1836,12 +1626,38 @@ function zoomToRegion(code,animate=true){
   const target={x:centerX-width/2,y:centerY-height/2,w:width,h:height};
   if(animate)animateView(target);else{stopViewAnimation();stopZoomAnimation();vb=target;apply();}
 }
-function selectRegion(code,animate=true){
-  if(!regionBounds.has(code))return;
-  hoveredCode=null;regionJump.value=code;
+function zoomToRegion(code,animate=true){zoomToBounds(regionBounds.get(code),animate)}
+function boundsForDirectoryEntry(entry){
+  if(entry.kind==='province')return regionBounds.get(entry.code)||null;
+  let bounds=null;
+  for(const child of REGION_DIRECTORY){
+    if(child.kind!=='province'||child.parentId!==entry.id)continue;
+    const next=regionBounds.get(child.code);if(!next)continue;
+    if(!bounds)bounds={...next};
+    else{
+      const left=Math.min(bounds.x,next.x),top=Math.min(bounds.y,next.y);
+      const right=Math.max(bounds.x+bounds.width,next.x+next.width),bottom=Math.max(bounds.y+bounds.height,next.y+next.height);
+      bounds={x:left,y:top,width:right-left,height:bottom-top};
+    }
+  }
+  return bounds;
+}
+function selectArea(entry,animate=true,showInfo=true){
+  if(!entry)return;
+  hoveredCode=null;regionSearchInput.value=entry.name;closeRegionSearchPopup();
   const selected=document.getElementById('selected');selected.hidden=false;
-  selected.innerHTML=`<b>&#x5df2;&#x9009;&#x62e9;&#x884c;&#x653f;&#x533a;&#xff1a;${code}</b><br><span class="muted">&#x5df2;&#x5e73;&#x6ed1;&#x5b9a;&#x4f4d;&#x5230;&#x8be5;&#x533a;&#x57df;</span>`;
-  zoomToRegion(code,animate);
+  const label=document.createElement('b');
+  label.textContent=`已选择${entry.kind==='major'?'大区':'省级行政区'}：${entry.name}${entry.code?`（${entry.code}）`:''}`;
+  const status=document.createElement('span');status.className='muted';status.textContent='已平滑定位到该区域';
+  selected.replaceChildren(label,document.createElement('br'),status);
+  zoomToBounds(boundsForDirectoryEntry(entry),animate);
+  setMapPanelOpen(false);
+  if(showInfo)openRegionInfo(entry);else document.getElementById('regionInfoPanel').hidden=true;
+}
+function selectRegion(code,animate=true){
+  const entry=REGION_BY_ID.get(`province:${code}`);
+  if(!entry||!regionBounds.has(code))return;
+  selectArea(entry,animate,true);
 }
 function hitTestRegion(point){
   for(const record of regionRecords){
@@ -1907,7 +1723,135 @@ for(const group of document.querySelectorAll('[data-layer-group]')){
   }));
   syncLayerGroup(group);
 }
-regionJump.addEventListener('change',()=>{if(regionJump.value)selectRegion(regionJump.value,true)});
+function closeRegionSearchPopup(){
+  regionSearchPopup.hidden=true;
+  regionSearchInput.setAttribute('aria-expanded','false');
+  regionSearchInput.removeAttribute('aria-activedescendant');
+  activeRegionSearchIndex=-1;
+}
+function normalizeSearchText(value){
+  return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase().trim();
+}
+function regionSearchFields(entry){
+  const own=[entry.name,entry.tongueName,entry.code||'',entry.postalCode||'',entry.id.split(':').slice(1).join(':')];
+  const parent=entry.parentId?REGION_BY_ID.get(entry.parentId):null;
+  const grandparent=parent?.parentId?REGION_BY_ID.get(parent.parentId):null;
+  const parentFields=parent?[parent.name,parent.tongueName,parent.id.split(':').slice(1).join(':')]:[];
+  const grandparentFields=grandparent?[grandparent.name,grandparent.tongueName,grandparent.id.split(':').slice(1).join(':')]:[];
+  return {own:own.map(normalizeSearchText).filter(Boolean),parent:[...parentFields,...grandparentFields].map(normalizeSearchText).filter(Boolean),parent,grandparent};
+}
+function getRegionSearchResults(query){
+  const needle=normalizeSearchText(query);
+  if(!needle)return REGION_DIRECTORY.filter(entry=>entry.kind==='major');
+  return REGION_SEARCH_DIRECTORY.map(entry=>{
+    const fields=regionSearchFields(entry);
+    let score=Infinity;
+    if(fields.own.some(field=>field===needle))score=0;
+    else if(fields.own.some(field=>field.startsWith(needle)))score=1;
+    else if(fields.own.some(field=>field.includes(needle)))score=2;
+    else if(fields.parent.some(field=>field.includes(needle)))score=3;
+    return {entry,score};
+  }).filter(result=>Number.isFinite(result.score))
+    .sort((a,b)=>a.score-b.score||(({major:0,province:1,city:2}[a.entry.kind]??3)-({major:0,province:1,city:2}[b.entry.kind]??3))||a.entry.name.localeCompare(b.entry.name,'zh-CN'))
+    .map(result=>result.entry);
+}
+function updateActiveRegionSearchOption(index){
+  const options=[...regionSearchList.querySelectorAll('[role="option"]')];
+  activeRegionSearchIndex=options.length?Math.max(0,Math.min(index,options.length-1)):-1;
+  options.forEach((option,optionIndex)=>option.setAttribute('aria-selected',String(optionIndex===activeRegionSearchIndex)));
+  if(activeRegionSearchIndex>=0){
+    const option=options[activeRegionSearchIndex];regionSearchInput.setAttribute('aria-activedescendant',option.id);option.scrollIntoView({block:'nearest'});
+  }else regionSearchInput.removeAttribute('aria-activedescendant');
+}
+function renderRegionSearchSuggestions(){
+  regionSearchResults=getRegionSearchResults(regionSearchInput.value);
+  activeRegionSearchIndex=-1;regionSearchList.replaceChildren();
+  regionSearchInput.removeAttribute('aria-activedescendant');
+  regionSearchPopup.hidden=false;regionSearchInput.setAttribute('aria-expanded','true');
+  if(!regionSearchResults.length){
+    regionSearchList.hidden=true;regionSearchStatus.hidden=false;regionSearchStatus.textContent='没有找到匹配的地区或城市';return;
+  }
+  regionSearchList.hidden=false;regionSearchStatus.hidden=true;regionSearchStatus.textContent='';
+  regionSearchResults.forEach((entry,index)=>{
+    const option=document.createElement('button');option.type='button';option.className='searchOption';option.id=`regionSearchOption-${index}`;option.setAttribute('role','option');option.setAttribute('aria-selected','false');option.tabIndex=-1;option.dataset.index=String(index);
+    const main=document.createElement('span');main.className='searchOptionMain';
+    const name=document.createElement('span');name.className='searchOptionName';name.textContent=entry.name;
+    const type=document.createElement('span');type.className='searchOptionType';type.textContent=entry.kind==='major'?'大区':entry.kind==='province'?'省级地区':'城市';
+    main.append(name,type);
+    const meta=document.createElement('span');meta.className='searchOptionMeta';
+    const parent=entry.parentId?REGION_BY_ID.get(entry.parentId):null;
+    meta.textContent=entry.kind==='major'?entry.tongueName:entry.kind==='city'?`${parent?.name||entry.adminName||''}${entry.tongueName?` · ${entry.tongueName}`:''}`:`${parent?.name||''}${parent?' · ':''}${entry.code} · ${entry.tongueName}`;
+    option.append(main,meta);regionSearchList.append(option);
+  });
+  regionSearchStatus.hidden=false;regionSearchStatus.textContent=`找到 ${regionSearchResults.length} 个匹配地区或城市`;
+}
+function formatRegionArea(areaKm2){
+  if(!Number.isFinite(areaKm2))return '暂无面积';
+  return `${new Intl.NumberFormat('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2}).format(areaKm2/10000)} 万 km²`;
+}
+function createRegionInfoLevel(label,entry){
+  const card=document.createElement('section');card.className='regionInfoLevel';
+  const level=document.createElement('p');level.className='regionInfoLevelLabel';level.textContent=label;
+  const name=document.createElement('p');name.className='regionInfoLevelName';name.textContent=entry.name;
+  const tongue=document.createElement('p');tongue.className='regionInfoLevelTongue';tongue.textContent=entry.tongueName||'暂无湩语名称';
+  card.append(level,name,tongue);return card;
+}
+function openRegionInfo(entry){
+  const title=document.getElementById('regionInfoTitle'),subtitle=document.getElementById('regionInfoSubtitle');
+  document.getElementById('regionInfoKicker').textContent='地区介绍';
+  title.textContent=entry.name;
+  const province=entry.kind==='city'&&entry.parentId?REGION_BY_ID.get(entry.parentId):null;
+  const major=entry.kind==='major'?entry:REGION_BY_ID.get((entry.kind==='city'?province:entry)?.parentId);
+  subtitle.textContent=entry.kind==='city'?`${province?.name||entry.adminName} · 邮政区号 ${entry.postalCode}`:entry.code?`省级行政区 · 编号 ${entry.code}`:'大区';
+  const levels=document.getElementById('regionInfoLevels');levels.replaceChildren();
+  const hierarchy=entry.kind==='city'?[major,province,entry].filter(Boolean):entry.kind==='province'?[REGION_BY_ID.get(entry.parentId),entry].filter(Boolean):[entry];
+  hierarchy.forEach(item=>levels.append(createRegionInfoLevel(item.kind==='major'?'大区':item.kind==='province'?'省级行政区':'城市',item)));
+  document.getElementById('regionInfoArea').textContent=formatRegionArea(entry.areaKm2);
+  const description=typeof entry.description==='string'&&entry.description.trim()?entry.description.trim():'暂无介绍';
+  document.getElementById('regionInfoDescription').textContent=description;
+  document.getElementById('regionInfoPanel').hidden=false;
+}
+function selectCitySearchResult(entry){
+  if(!entry)return;
+  hoveredCode=null;regionSearchInput.value=entry.name;closeRegionSearchPopup();
+  const selected=document.getElementById('selected');selected.hidden=false;
+  const label=document.createElement('b');label.textContent=`已选择城市：${entry.name}`;
+  const status=document.createElement('span');status.className='muted';
+  if(Number.isFinite(entry.pointX)&&Number.isFinite(entry.pointY)){
+    status.textContent='已平滑定位到该城市';
+    zoomToBounds({x:entry.pointX-.5,y:entry.pointY-.5,width:1,height:1},true);
+  }else status.textContent='该城市暂无可确认的地图位置';
+  selected.replaceChildren(label,document.createElement('br'),status);
+  setMapPanelOpen(false);openRegionInfo(entry);
+}
+function chooseRegionSearchResult(index){
+  const entry=regionSearchResults[index];if(!entry)return;
+  if(entry.kind==='city')selectCitySearchResult(entry);else selectArea(entry,true,true);
+}
+regionSearchInput.addEventListener('focus',renderRegionSearchSuggestions);
+regionSearchInput.addEventListener('input',()=>{
+  document.getElementById('regionInfoPanel').hidden=true;
+  renderRegionSearchSuggestions();
+});
+regionSearchInput.addEventListener('keydown',event=>{
+  if(event.key==='ArrowDown'||event.key==='ArrowUp'){
+    if(regionSearchPopup.hidden)renderRegionSearchSuggestions();
+    if(regionSearchResults.length){
+      const next=event.key==='ArrowDown'?activeRegionSearchIndex+1:(activeRegionSearchIndex<0?regionSearchResults.length-1:activeRegionSearchIndex-1);
+      updateActiveRegionSearchOption((next+regionSearchResults.length)%regionSearchResults.length);event.preventDefault();
+    }
+  }else if(event.key==='Enter'&&!regionSearchPopup.hidden&&regionSearchResults.length){
+    chooseRegionSearchResult(activeRegionSearchIndex<0?0:activeRegionSearchIndex);event.preventDefault();
+  }
+});
+regionSearchList.addEventListener('mousedown',event=>{if(event.target.closest('[role="option"]'))event.preventDefault()});
+regionSearchList.addEventListener('click',event=>{
+  const option=event.target.closest('[role="option"]');if(option)chooseRegionSearchResult(Number(option.dataset.index));
+});
+regionSearch.addEventListener('focusout',event=>{
+  if(!regionSearch.contains(event.relatedTarget))closeRegionSearchPopup();
+});
+document.addEventListener('pointerdown',event=>{if(!regionSearch.contains(event.target))closeRegionSearchPopup()});
 canvas.addEventListener('wheel',event=>{
   event.preventDefault();
   const deltaScale=event.deltaMode===1?16:event.deltaMode===2?canvas.clientHeight:1;
@@ -1955,8 +1899,9 @@ canvas.addEventListener('keydown',event=>{
 document.getElementById('zoomIn').onclick=()=>zoom(.8);
 document.getElementById('zoomOut').onclick=()=>zoom(1.25);
 document.getElementById('fit').onclick=()=>{stopViewAnimation();stopZoomAnimation();vb=fullMapView();apply()};
-const mapPanel=document.getElementById('mapPanel'),panelToggle=document.getElementById('togglePanel');
+const mapPanel=document.getElementById('mapPanel'),panelToggle=document.getElementById('togglePanel'),regionInfoPanel=document.getElementById('regionInfoPanel');
 function setMapPanelOpen(open){
+  if(open){regionInfoPanel.hidden=true;closeRegionSearchPopup()}
   mapPanel.hidden=!open;panelToggle.setAttribute('aria-expanded',String(open));
   panelToggle.setAttribute('aria-label',open?'\u5173\u95ed\u56fe\u5c42\u9762\u677f':'\u6253\u5f00\u56fe\u5c42\u9762\u677f');
 }
@@ -1964,8 +1909,14 @@ panelToggle.addEventListener('click',()=>setMapPanelOpen(mapPanel.hidden));
 document.getElementById('closePanel').addEventListener('click',()=>{
   setMapPanelOpen(false);panelToggle.focus();
 });
+document.getElementById('closeRegionInfo').addEventListener('click',()=>{
+  regionInfoPanel.hidden=true;regionSearchInput.focus();
+});
 document.addEventListener('keydown',event=>{
-  if(event.key==='Escape'&&!mapPanel.hidden){setMapPanelOpen(false);panelToggle.focus();}
+  if(event.key!=='Escape')return;
+  if(!regionSearchPopup.hidden){closeRegionSearchPopup();event.preventDefault();}
+  else if(!regionInfoPanel.hidden){regionInfoPanel.hidden=true;regionSearchInput.focus();event.preventDefault();}
+  else if(!mapPanel.hidden){setMapPanelOpen(false);panelToggle.focus();event.preventDefault();}
 });
 const resizeObserver=new ResizeObserver(resizeCanvas);resizeObserver.observe(canvas);
 window.addEventListener('resize',resizeCanvas);
