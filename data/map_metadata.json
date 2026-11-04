@@ -9,6 +9,11 @@
   "image_height_px": 1448,
   "coordinate_system": "image pixel coordinates; origin top-left; x right; y down",
   "georeferenced": false,
+  "derived_coordinate_reference": {
+    "file": "data/georeference.json",
+    "status": "constructed, area-calibrated Saturn project reference",
+    "coordinate_system": "DUNIVERSE-SATURN-SCALED-LAT-2026"
+  },
   "scale_bar_detected": false,
-  "notes": "No latitude/longitude or projected coordinate reference was detected. All extracted coordinates are image-space coordinates."
+  "notes": "The official source has no latitude/longitude, scale bar, or geographic registration. Extracted layers remain in image pixels; the separate project reference in data/georeference.json is an area-calibrated assumption, not recovered official GIS data."
 }

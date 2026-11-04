@@ -1,0 +1,1038 @@
+{
+  "type": "FeatureCollection",
+  "name": "canal_centerline_and_ruler_ticks",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "name": "南部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "symbol_part": "centerline",
+        "review_status": "manually_traced_from_high_resolution_source",
+        "length_px": 126.9
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.266154531355255,
+            4.4051595620213
+          ],
+          [
+            2.299116779084045,
+            4.404456785780413
+          ],
+          [
+            2.3320790268128633,
+            4.4040351247172
+          ],
+          [
+            2.365041274541653,
+            4.403472915426417
+          ],
+          [
+            2.3980035222704714,
+            4.402770162586008
+          ],
+          [
+            2.4309657699992613,
+            4.402207967330232
+          ],
+          [
+            2.4639280177280796,
+            4.401505232028632
+          ],
+          [
+            2.4968902654568694,
+            4.400943050799943
+          ],
+          [
+            2.5380930751178994,
+            4.400380875802976
+          ],
+          [
+            2.579295884778901,
+            4.399959248643877
+          ],
+          [
+            2.6204986944399025,
+            4.399959248643877
+          ],
+          [
+            2.661701504100904,
+            4.399959248643877
+          ],
+          [
+            2.7029043137619055,
+            4.4000997906409
+          ],
+          [
+            2.744107123422907,
+            4.4006619625225945
+          ],
+          [
+            2.7853099330839086,
+            4.401364686137152
+          ],
+          [
+            2.818272180812727,
+            4.40234851555956
+          ],
+          [
+            2.8512344285415168,
+            4.4040351247172
+          ],
+          [
+            2.884196676270335,
+            4.406143465148295
+          ],
+          [
+            2.917158923999125,
+            4.408673589617884
+          ],
+          [
+            2.950121171727943,
+            4.4112038407157526
+          ],
+          [
+            2.983083419456733,
+            4.41429654200826
+          ],
+          [
+            3.0160456671855513,
+            4.4175300233978
+          ],
+          [
+            3.049007914914341,
+            4.420341915055727
+          ],
+          [
+            3.0819701626431595,
+            4.422732146513818
+          ],
+          [
+            3.1149324103719493,
+            4.424560047254282
+          ],
+          [
+            3.156135220032951,
+            4.425825555961427
+          ],
+          [
+            3.1973380296939524,
+            4.426528630137123
+          ],
+          [
+            3.238540839354954,
+            4.426669246154018
+          ],
+          [
+            3.2797436490159555,
+            4.427653569304998
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "name": "南部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 1,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4145670517542044,
+            4.402489064178619
+          ],
+          [
+            2.419428983294182,
+            4.410177668053116
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "name": "南部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 2,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.505130827389081,
+            4.4008306153020635
+          ],
+          [
+            2.5090862971165393,
+            4.4085330238266325
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "name": "南部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 3,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.604017570575479,
+            4.399959248643877
+          ],
+          [
+            2.604017570575479,
+            4.407689637285136
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "name": "南部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 4,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.694663751829694,
+            4.40007168221035
+          ],
+          [
+            2.6928508282046266,
+            4.407802088011322
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "name": "南部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 5,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.7853099330839086,
+            4.401364686137152
+          ],
+          [
+            2.77912951163475,
+            4.4090250058059395
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "name": "南部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 6,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.884196676270335,
+            4.406143465148295
+          ],
+          [
+            2.866891496212702,
+            4.413298422242616
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "name": "南部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 7,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.983083419456733,
+            4.41429654200826
+          ],
+          [
+            2.9608339022397843,
+            4.421030852471194
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "name": "南部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 8,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            3.074059223188243,
+            4.422155668531014
+          ],
+          [
+            3.0575780993238197,
+            4.429369150107333
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "name": "南部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 9,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            3.172698749516684,
+            4.426106784450049
+          ],
+          [
+            3.1675896011187206,
+            4.433798995090407
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 1,
+        "name": "南部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 10,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            3.2633449307708986,
+            4.427259837727484
+          ],
+          [
+            3.2570821037024302,
+            4.434924097501809
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "symbol_part": "centerline",
+        "review_status": "manually_traced_from_high_resolution_source",
+        "length_px": 283.4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.2060140483050361,
+            4.084960246209029
+          ],
+          [
+            0.2307357341016143,
+            4.082864399144208
+          ],
+          [
+            0.2636979818304326,
+            4.081746645105983
+          ],
+          [
+            0.29666022955922244,
+            4.081467209971058
+          ],
+          [
+            2.5380930751178994,
+            4.081467209971058
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 1,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.2801791056948275,
+            4.081606927369822
+          ],
+          [
+            0.28265127427448533,
+            4.087880586571331
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 2,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.37906584888125394,
+            4.081467209971058
+          ],
+          [
+            0.37906584888125394,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 3,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.4944337159320469,
+            4.081467209971058
+          ],
+          [
+            0.4944337159320469,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 4,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.5933204591184733,
+            4.081467209971058
+          ],
+          [
+            0.5933204591184733,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 5,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.700447764237083,
+            4.081467209971058
+          ],
+          [
+            0.700447764237083,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 6,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.7828533835590861,
+            4.081467209971058
+          ],
+          [
+            0.7828533835590861,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 7,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.8817401267455125,
+            4.081467209971058
+          ],
+          [
+            0.8817401267455125,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 8,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.9888674318641222,
+            4.081467209971058
+          ],
+          [
+            0.9888674318641222,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 9,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.0877541750505202,
+            4.081467209971058
+          ],
+          [
+            1.0877541750505202,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 10,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.178400356304735,
+            4.081467209971058
+          ],
+          [
+            1.178400356304735,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 11,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.277287099491133,
+            4.081467209971058
+          ],
+          [
+            1.277287099491133,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 12,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.3761738426775594,
+            4.081467209971058
+          ],
+          [
+            1.3761738426775594,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 13,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.4585794619995625,
+            4.081467209971058
+          ],
+          [
+            1.4585794619995625,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 14,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.5657067671181721,
+            4.081467209971058
+          ],
+          [
+            1.5657067671181721,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 15,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.6645935103045986,
+            4.081467209971058
+          ],
+          [
+            1.6645935103045986,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 16,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.7469991296266016,
+            4.081467209971058
+          ],
+          [
+            1.7469991296266016,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 17,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.8294047489486047,
+            4.081467209971058
+          ],
+          [
+            1.8294047489486047,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 18,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.9365320540672144,
+            4.081467209971058
+          ],
+          [
+            1.9365320540672144,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 19,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.0189376733892175,
+            4.081467209971058
+          ],
+          [
+            2.0189376733892175,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 20,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.117824416575644,
+            4.081467209971058
+          ],
+          [
+            2.117824416575644,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 21,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2084705978298587,
+            4.081467209971058
+          ],
+          [
+            2.2084705978298587,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 22,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.28263565521965,
+            4.081467209971058
+          ],
+          [
+            2.28263565521965,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 23,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.35680071260947,
+            4.081467209971058
+          ],
+          [
+            2.35680071260947,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 24,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.455687455795868,
+            4.081467209971058
+          ],
+          [
+            2.455687455795868,
+            4.087754827243951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 2,
+        "name": "南部底部运河",
+        "source": "Administrative-Division-Map-of-Donh-2026.png",
+        "tick_id": 25,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.5380930751178994,
+            4.081467209971058
+          ],
+          [
+            2.5380930751178994,
+            4.087754827243951
+          ]
+        ]
+      }
+    }
+  ],
+  "source_coordinate_reference_note": "Image pixel coordinates; origin top-left; x right; y down. Not georeferenced.",
+  "coordinate_reference_note": "Geometry coordinates use the custom Saturn reference in data/georeference.json; not WGS 84 / EPSG:4326.",
+  "coordinate_reference": {
+    "identifier": "DUNIVERSE-SATURN-SCALED-LAT-2026",
+    "body": "Saturn",
+    "latitude_type": "custom latitude scaled from planetographic latitude",
+    "physical_planetographic_degrees_per_map_degree": 6,
+    "atlas_latitude_bounds_deg": [
+      -15,
+      15
+    ],
+    "longitude_positive_direction": "east",
+    "prime_meridian": {
+      "definition": "Local project meridian through the capital, not Saturn System III",
+      "longitude_deg": 0,
+      "capital": "臭都特别市",
+      "capital_pixel_xy": [
+        1002.0,
+        877.0
+      ]
+    },
+    "reference_file": "data/georeference.json",
+    "warning": "Custom Saturn coordinates; these values are not WGS 84 / EPSG:4326."
+  }
+}
