@@ -1848,7 +1848,8 @@ function regionSearchFields(entry){
   const grandparent=parent?.parentId?REGION_BY_ID.get(parent.parentId):null;
   const parentFields=parent?[parent.name,parent.tongueName,parent.id.split(':').slice(1).join(':')]:[];
   const grandparentFields=grandparent?[grandparent.name,grandparent.tongueName,grandparent.id.split(':').slice(1).join(':')]:[];
-  return {own:own.map(normalizeSearchText).filter(Boolean),parent:[...parentFields,...grandparentFields].map(normalizeSearchText).filter(Boolean),parent,grandparent};
+  const ancestors=[...parentFields,...grandparentFields].map(normalizeSearchText).filter(Boolean);
+  return {own:own.map(normalizeSearchText).filter(Boolean),ancestors};
 }
 function getRegionSearchResults(query){
   const needle=normalizeSearchText(query);
@@ -1859,7 +1860,7 @@ function getRegionSearchResults(query){
     if(fields.own.some(field=>field===needle))score=0;
     else if(fields.own.some(field=>field.startsWith(needle)))score=1;
     else if(fields.own.some(field=>field.includes(needle)))score=2;
-    else if(fields.parent.some(field=>field.includes(needle)))score=3;
+    else if(fields.ancestors.some(field=>field.includes(needle)))score=3;
     return {entry,score};
   }).filter(result=>Number.isFinite(result.score))
     .sort((a,b)=>a.score-b.score||(({major:0,province:1,city:2}[a.entry.kind]??3)-({major:0,province:1,city:2}[b.entry.kind]??3))||a.entry.name.localeCompare(b.entry.name,'zh-CN'))
