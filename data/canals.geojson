@@ -1010,6 +1010,750 @@
           ]
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "centerline",
+        "review_status": "vectorized_and_manually_checked_against_official_12x_river_raster",
+        "length_px": 255.9
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1263.79,
+            767.96
+          ],
+          [
+            1261.71,
+            768.21
+          ],
+          [
+            1261.29,
+            768.62
+          ],
+          [
+            1261.04,
+            770.29
+          ],
+          [
+            1258.79,
+            774.88
+          ],
+          [
+            1258.54,
+            776.21
+          ],
+          [
+            1257.54,
+            776.88
+          ],
+          [
+            1253.96,
+            781.71
+          ],
+          [
+            1252.54,
+            783.79
+          ],
+          [
+            1252.12,
+            785.29
+          ],
+          [
+            1251.46,
+            785.62
+          ],
+          [
+            1250.29,
+            787.21
+          ],
+          [
+            1247.62,
+            789.79
+          ],
+          [
+            1245.04,
+            792.96
+          ],
+          [
+            1244.71,
+            794.12
+          ],
+          [
+            1243.79,
+            794.46
+          ],
+          [
+            1242.96,
+            795.29
+          ],
+          [
+            1240.38,
+            798.46
+          ],
+          [
+            1239.04,
+            800.79
+          ],
+          [
+            1236.79,
+            803.62
+          ],
+          [
+            1236.54,
+            804.71
+          ],
+          [
+            1235.62,
+            805.29
+          ],
+          [
+            1234.79,
+            806.62
+          ],
+          [
+            1232.88,
+            810.21
+          ],
+          [
+            1231.88,
+            813.04
+          ],
+          [
+            1230.71,
+            818.12
+          ],
+          [
+            1230.54,
+            822.54
+          ],
+          [
+            1231.04,
+            828.54
+          ],
+          [
+            1230.79,
+            836.54
+          ],
+          [
+            1231.79,
+            842.54
+          ],
+          [
+            1231.96,
+            846.71
+          ],
+          [
+            1232.21,
+            847.96
+          ],
+          [
+            1232.54,
+            848.21
+          ],
+          [
+            1232.71,
+            849.62
+          ],
+          [
+            1234.38,
+            853.46
+          ],
+          [
+            1237.96,
+            860.88
+          ],
+          [
+            1238.54,
+            861.29
+          ],
+          [
+            1238.71,
+            862.62
+          ],
+          [
+            1240.04,
+            866.54
+          ],
+          [
+            1240.54,
+            869.29
+          ],
+          [
+            1240.54,
+            872.21
+          ],
+          [
+            1239.46,
+            875.12
+          ],
+          [
+            1238.54,
+            881.62
+          ],
+          [
+            1238.54,
+            883.54
+          ],
+          [
+            1239.21,
+            888.04
+          ],
+          [
+            1239.21,
+            891.54
+          ],
+          [
+            1238.04,
+            895.29
+          ],
+          [
+            1237.12,
+            895.88
+          ],
+          [
+            1234.46,
+            899.88
+          ],
+          [
+            1231.96,
+            902.79
+          ],
+          [
+            1229.38,
+            905.21
+          ],
+          [
+            1229.21,
+            905.79
+          ],
+          [
+            1227.46,
+            906.88
+          ],
+          [
+            1223.71,
+            910.96
+          ],
+          [
+            1221.62,
+            914.71
+          ],
+          [
+            1220.71,
+            918.29
+          ],
+          [
+            1220.88,
+            923.88
+          ],
+          [
+            1221.96,
+            927.04
+          ],
+          [
+            1223.54,
+            928.79
+          ],
+          [
+            1226.38,
+            930.29
+          ],
+          [
+            1227.79,
+            931.54
+          ],
+          [
+            1228.62,
+            933.12
+          ],
+          [
+            1229.29,
+            933.62
+          ],
+          [
+            1229.54,
+            934.96
+          ],
+          [
+            1230.71,
+            936.88
+          ],
+          [
+            1237.62,
+            943.46
+          ],
+          [
+            1239.54,
+            946.62
+          ],
+          [
+            1240.21,
+            950.96
+          ],
+          [
+            1240.29,
+            955.71
+          ],
+          [
+            1240.12,
+            958.88
+          ],
+          [
+            1239.62,
+            960.46
+          ],
+          [
+            1239.04,
+            964.46
+          ],
+          [
+            1239.12,
+            967.71
+          ],
+          [
+            1239.62,
+            971.62
+          ],
+          [
+            1239.29,
+            978.62
+          ],
+          [
+            1240.12,
+            982.04
+          ],
+          [
+            1241.79,
+            986.46
+          ],
+          [
+            1242.46,
+            987.38
+          ],
+          [
+            1243.12,
+            991.71
+          ],
+          [
+            1243.88,
+            994.04
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 1,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1258.54,
+            776.21
+          ],
+          [
+            1262.21,
+            778.29
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 2,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1252.04,
+            785.38
+          ],
+          [
+            1255.62,
+            787.54
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 3,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1244.71,
+            794.12
+          ],
+          [
+            1249.04,
+            796.79
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 4,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1236.46,
+            804.79
+          ],
+          [
+            1241.21,
+            807.38
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 5,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1231.04,
+            817.46
+          ],
+          [
+            1235.79,
+            818.38
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 6,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1230.96,
+            832.71
+          ],
+          [
+            1234.71,
+            832.62
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 7,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1232.54,
+            848.21
+          ],
+          [
+            1236.46,
+            847.62
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 8,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1238.54,
+            861.29
+          ],
+          [
+            1242.71,
+            859.96
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 9,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1239.29,
+            877.29
+          ],
+          [
+            1244.71,
+            876.88
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 10,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1238.04,
+            895.29
+          ],
+          [
+            1241.71,
+            896.71
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 11,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1229.12,
+            905.88
+          ],
+          [
+            1232.62,
+            908.21
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 12,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1220.62,
+            920.54
+          ],
+          [
+            1225.71,
+            920.54
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 13,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1229.21,
+            933.54
+          ],
+          [
+            1233.29,
+            930.96
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 14,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1239.54,
+            946.62
+          ],
+          [
+            1244.71,
+            945.54
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 15,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1240.04,
+            959.21
+          ],
+          [
+            1243.71,
+            959.71
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 16,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1239.62,
+            973.38
+          ],
+          [
+            1243.04,
+            973.54
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "tick_id": 17,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1242.38,
+            987.12
+          ],
+          [
+            1248.12,
+            986.62
+          ]
+        ]
+      }
     }
   ]
 }

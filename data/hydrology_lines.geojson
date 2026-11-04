@@ -755,19 +755,41 @@
       "type": "Feature",
       "properties": {
         "segment_id": 14,
-        "length_px": 15.8,
+        "length_px": 27.9,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment",
+        "review_status": "manually_extended_to_official_lake_shoreline",
         "audit_gap_issue_ids": [
           "GAP-0006"
-        ]
+        ],
+        "followup_issue_id": "INLET-LAKE-005-01",
+        "followup_source": "official_12x_river_raster"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1233.76,
-            1146.2
+            1244.49,
+            1144.6
+          ],
+          [
+            1243.46,
+            1144.46
+          ],
+          [
+            1242.96,
+            1144.12
+          ],
+          [
+            1241.46,
+            1144.62
+          ],
+          [
+            1237.79,
+            1144.88
+          ],
+          [
+            1233.96,
+            1146.79
           ],
           [
             1228.0,
@@ -2622,9 +2644,11 @@
       "type": "Feature",
       "properties": {
         "segment_id": 60,
-        "length_px": 113.8,
+        "length_px": 117.8,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "terminal_reach_traced_from_official_12x_river_raster",
+        "followup_issue_id": "MOUTH-SEG-060-01",
+        "followup_source": "official_12x_river_raster_and_boundary_super_raster"
       },
       "geometry": {
         "type": "LineString",
@@ -2650,12 +2674,32 @@
             1315.0
           ],
           [
-            1468.0,
-            1298.0
+            1468.21,
+            1298.38
           ],
           [
-            1488.0,
-            1291.0
+            1471.12,
+            1296.71
+          ],
+          [
+            1473.88,
+            1295.62
+          ],
+          [
+            1482.96,
+            1292.88
+          ],
+          [
+            1485.46,
+            1292.29
+          ],
+          [
+            1488.38,
+            1291.29
+          ],
+          [
+            1491.71,
+            1289.38
           ]
         ]
       }

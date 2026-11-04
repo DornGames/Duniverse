@@ -32,8 +32,8 @@
   "cross_border_river_segments": 50,
   "neighbor_border_segments": 1,
   "ocean_pixels": 971243,
-  "canal_centerlines": 2,
-  "canal_ruler_ticks": 35,
+  "canal_centerlines": 3,
+  "canal_ruler_ticks": 52,
   "seasonal_river_features": 2,
   "national_seasonal_river_candidates": 0,
   "canal_trace_source_image": "Administrative-Division-Map-of-Donh-2026.png",
@@ -42,5 +42,9 @@
   "raster_supported_endpoint_gap_repairs": 25,
   "lake_boundary_refinements": 10,
   "manual_review_false_positive_candidates": 144,
-  "hydrology_coordinate_mapping": "data/hydrology_coordinate_mapping.json"
+  "hydrology_coordinate_mapping": "data/hydrology_coordinate_mapping.json",
+  "canal_trace_source_images": [
+    "Administrative-Division-Map-of-Donh-2026.png",
+    "official_map/Administrative Division Map of Donh 2026-river-super.png"
+  ]
 }

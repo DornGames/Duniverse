@@ -4962,5 +4962,75 @@
     "manual_review_center/review_RCH-0113_0224.csv",
     "manual_review_RCH-0225-0336.csv"
   ],
-  "coordinate_mapping_file": "data/hydrology_coordinate_mapping.json"
+  "coordinate_mapping_file": "data/hydrology_coordinate_mapping.json",
+  "official_12x_followup_repairs": {
+    "reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+    "coordinate_mapping": "X=12*x+5.5; Y=12*y+5.5",
+    "repairs": [
+      {
+        "issue_id": "CANAL-003",
+        "type": "new canal centerline and ruler ticks",
+        "tile_id": "R04C05",
+        "centerline_source_points": 80,
+        "tick_count": 17,
+        "status": "added_to_canal_generator_and_map"
+      },
+      {
+        "issue_id": "INLET-LAKE-005-01",
+        "type": "west inlet gap at lake 5",
+        "tile_id": "R05C05",
+        "status": "river segment 14 extended to official lake shoreline"
+      },
+      {
+        "issue_id": "MOUTH-SEG-060-01",
+        "type": "coastal river endpoint and terminal curvature",
+        "tile_id": "R06C06",
+        "status": "segment 60 terminal reach re-traced to official raster endpoint"
+      },
+      {
+        "issue_id": "LAKE-OUTLINE-005",
+        "type": "lake outline",
+        "tile_id": "R05C05",
+        "status": "replaced with user-selected red raster contour",
+        "lake_id": 5,
+        "old_area_px2": 897.03,
+        "new_area_px2": 988.48,
+        "old_bbox": [
+          1246.38,
+          1118.38,
+          1281.12,
+          1155.88
+        ],
+        "new_bbox": [
+          1243.92,
+          1115.83,
+          1283.5,
+          1158.17
+        ],
+        "vertices": 49
+      },
+      {
+        "issue_id": "LAKE-OUTLINE-007",
+        "type": "lake outline",
+        "tile_id": "R03C05",
+        "status": "replaced with user-selected red raster contour",
+        "lake_id": 7,
+        "old_area_px2": 1239.44,
+        "new_area_px2": 1334.68,
+        "old_bbox": [
+          1242.62,
+          719.62,
+          1276.12,
+          767.38
+        ],
+        "new_bbox": [
+          1240.58,
+          717.08,
+          1278.58,
+          769.75
+        ],
+        "vertices": 70
+      }
+    ]
+  }
 }

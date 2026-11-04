@@ -178,5 +178,55 @@
       6
     ],
     "total_tiles": 48
+  },
+  "official_river_superbig": {
+    "file": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+    "dimensions_px": [
+      24579,
+      17376
+    ],
+    "canonical_source_pixel_center_to_raster_pixel_center_affine": [
+      [
+        12.0,
+        0.0,
+        5.5
+      ],
+      [
+        0.0,
+        12.0,
+        5.5
+      ]
+    ],
+    "formula": "X=12*x+5.5; Y=12*y+5.5 (input_map pixel coordinates; top-left origin; x right; y down)",
+    "relationship": "3x expansion of the 8193x5792 4x working raster; shares the project pixel coordinate grid",
+    "registration_check": "locally verified by overlaying centerline skeletons from the official river raster on the existing vector network; not a geographic CRS or absolute geodetic registration"
+  },
+  "official_border_superbig": {
+    "file": "official_map/Administrative Division Map of Donh 2026-border-super.png",
+    "dimensions_px": [
+      24579,
+      17376
+    ],
+    "canonical_source_pixel_center_to_raster_pixel_center_affine": [
+      [
+        12.0,
+        0.0,
+        5.5
+      ],
+      [
+        0.0,
+        12.0,
+        5.5
+      ]
+    ],
+    "formula": "X=12*x+5.5; Y=12*y+5.5 (input_map pixel coordinates; top-left origin; x right; y down)",
+    "relationship": "3x expansion of the 8193x5792 4x working raster; shares the project pixel coordinate grid",
+    "registration_check": "locally verified by overlaying centerline skeletons from the official river raster on the existing vector network; not a geographic CRS or absolute geodetic registration"
+  },
+  "current_followup_reference": {
+    "method": "12x official river-only raster for river/canal centerlines and lake water outlines; official boundary super raster for coast/mouth context",
+    "coordinate_unit": "input_map pixel",
+    "display_trace_precision_px": 0.16,
+    "note": "The 0.16 px simplification tolerance describes vectorization tolerance only, not absolute geographic accuracy."
   }
 }
