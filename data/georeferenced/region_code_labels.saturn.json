@@ -1,0 +1,908 @@
+{
+  "type": "FeatureCollection",
+  "name": "region_geometric_center_labels",
+  "coordinate_system": "source image pixels; not georeferenced",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "BD",
+        "matched_component_ids": [
+          2
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.8042788445827966,
+          5.819902045475659
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "OH",
+        "matched_component_ids": [
+          3
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.6274363855177683,
+          5.698815638695784
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "HX",
+        "matched_component_ids": [
+          4
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.738346539597785,
+          5.5950161765967295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "DE",
+        "matched_component_ids": [
+          6
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.5169972365714557,
+          5.542094165983669
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "ZC",
+        "matched_component_ids": [
+          5
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.6256980579846072,
+          5.502022324981521
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "TM",
+        "matched_component_ids": [
+          7
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.41178087975208655,
+          5.453677141505964
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "FN",
+        "matched_component_ids": [
+          47,
+          48,
+          49
+        ],
+        "match_distance_px": 23.54,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.4103643651687605,
+          5.323229267708817
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "LK",
+        "matched_component_ids": [
+          10
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4406072274599353,
+          5.191314779115378
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "XD",
+        "matched_component_ids": [
+          12
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.367085795969871,
+          5.066772123293752
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "VA",
+        "matched_component_ids": [
+          19
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.860875886002191,
+          4.872168450878264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "MM",
+        "matched_component_ids": [
+          17
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.385897705757543,
+          4.9269839761985255
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "GA",
+        "matched_component_ids": [
+          9
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.6460600554845541,
+          5.101785911209207
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "RF",
+        "matched_component_ids": [
+          11
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.6441647262401489,
+          5.105013403139927
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "ST",
+        "matched_component_ids": [
+          13
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.5385129127419077,
+          5.050011499687325
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "BP",
+        "matched_component_ids": [
+          8
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.2829652776969453,
+          5.173454918445152
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "PP",
+        "matched_component_ids": [
+          18
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.4079746022084407,
+          4.966058590523845
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "MT",
+        "matched_component_ids": [
+          20
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.8164748762424665,
+          4.897137638459003
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "FS",
+        "matched_component_ids": [
+          21
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.315762714187116,
+          4.7764333442374705
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "GR",
+        "matched_component_ids": [
+          23
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.017799613773547662,
+          4.764746938665749
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "BG",
+        "matched_component_ids": [
+          24
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.844904814908574,
+          4.756292173993193
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "LL",
+        "matched_component_ids": [
+          22
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.284950822088092,
+          4.7261967364370125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "PN",
+        "matched_component_ids": [
+          25
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.429819900856188,
+          4.612381450663697
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "WZ",
+        "matched_component_ids": [
+          27
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.5617591069181458,
+          4.540009218433636
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "NG",
+        "matched_component_ids": [
+          26
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.5664562272195042,
+          4.571294393634763
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "TL",
+        "matched_component_ids": [
+          29
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.435804272957029,
+          4.399790598761341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "HB",
+        "matched_component_ids": [
+          1
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.11789901266755,
+          4.461990463193917
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "TT",
+        "matched_component_ids": [
+          34
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.496050590208824,
+          4.334213869042733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "TT",
+        "matched_component_ids": [
+          33
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2322780122864856,
+          4.160112165112891
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SW",
+        "matched_component_ids": [
+          40
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "largest_component_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.615209115748456,
+          4.150193393527508
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "GW",
+        "matched_component_ids": [
+          35
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.7053018862496572,
+          4.2784354863794105
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SP",
+        "matched_component_ids": [
+          31
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.851250047596352,
+          4.307537815600988
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "CS",
+        "matched_component_ids": [
+          36
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12838795490370103,
+          4.236738105598078
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "FL",
+        "matched_component_ids": [
+          30
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.9273928398498867,
+          4.365931385186918
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "TG",
+        "matched_component_ids": [
+          41
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.144202024286102,
+          4.199636891644831
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SB",
+        "matched_component_ids": [
+          28
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.3902573940542027,
+          4.521056319111599
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "UE",
+        "matched_component_ids": [
+          32
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.7175725140012332,
+          4.363557864944821
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "KT",
+        "matched_component_ids": [
+          38
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5942937074954955,
+          4.242917092592572
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SD",
+        "matched_component_ids": [
+          37
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.393463403680329,
+          4.285825264543334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "CM",
+        "matched_component_ids": [
+          42
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6172770657589126,
+          4.17129212564952
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SE",
+        "matched_component_ids": [
+          45
+        ],
+        "match_distance_px": 2.59,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1027363787122795,
+          4.084135870629609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "OC",
+        "matched_component_ids": [
+          43
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.6074864161144262,
+          4.14220648722305
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "ND",
+        "matched_component_ids": [
+          44
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.2572625339958847,
+          4.08771290752906
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "SM",
+        "matched_component_ids": [
+          46
+        ],
+        "match_distance_px": 0.19,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.6566825708496822,
+          4.058725700489576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "TO",
+        "matched_component_ids": [
+          50
+        ],
+        "match_distance_px": 0.0,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.909891610443964,
+          5.395408927249768
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "DD",
+        "matched_component_ids": [
+          14,
+          15,
+          16
+        ],
+        "match_distance_px": 5.2,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8108244369640545,
+          5.057699097817687
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_code": "WT",
+        "matched_component_ids": [
+          51
+        ],
+        "match_distance_px": 2.24,
+        "transcription_method": "unioned_region_geometric_center",
+        "review_status": "derived_from_region_geometry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.8811476683554247,
+          4.645226334060088
+        ]
+      }
+    }
+  ],
+  "coordinate_reference_note": "Geometry coordinates use the custom Saturn reference in data/georeference.json; not WGS 84 / EPSG:4326.",
+  "coordinate_reference": {
+    "identifier": "DUNIVERSE-SATURN-SCALED-LAT-2026",
+    "body": "Saturn",
+    "latitude_type": "custom latitude scaled from planetographic latitude",
+    "physical_planetographic_degrees_per_map_degree": 6,
+    "atlas_latitude_bounds_deg": [
+      -15,
+      15
+    ],
+    "longitude_positive_direction": "east",
+    "prime_meridian": {
+      "definition": "Local project meridian through the capital, not Saturn System III",
+      "longitude_deg": 0,
+      "capital": "臭都特别市",
+      "capital_pixel_xy": [
+        1002.0,
+        877.0
+      ]
+    },
+    "reference_file": "data/georeference.json",
+    "warning": "Custom Saturn coordinates; these values are not WGS 84 / EPSG:4326."
+  }
+}
