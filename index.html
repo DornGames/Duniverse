@@ -83,6 +83,14 @@ aside[hidden]{display:none}
 .regionDescription{padding:11px 12px;border:1px solid #e4ebeb;border-radius:11px;background:#f8fafa}
 .regionDescription h3{margin:0 0 6px;color:#71868a;font-size:11px;font-weight:650}
 .regionDescription p{margin:0;color:#536a70;font-size:12px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.regionCoordinatePanel{display:grid;gap:8px;padding:11px 12px;border:1px solid #dce8e7;border-radius:11px;background:#f3f8f7}
+.regionCoordinatePanel[hidden]{display:none}
+.regionCoordinatePanel h3{margin:0;color:#526d70;font-size:11px;font-weight:700}
+#regionInfoCoordinateContent{display:grid;gap:7px}
+.regionCoordinateNote{margin:0;color:#71868a;font-size:10px;line-height:1.5}
+.regionCoordinateRow{display:grid;gap:3px;padding:8px 9px;border-radius:9px;background:rgba(255,255,255,.8)}
+.regionCoordinateRow strong{color:#36575c;font-size:11px;font-weight:700}
+.regionCoordinateRow p{margin:0;color:#536a70;font-size:11px;line-height:1.5;overflow-wrap:anywhere}
 .layerList{display:grid;gap:9px}
 .layerGroup{display:grid;gap:5px}
 .layerParent{display:flex;align-items:center;gap:7px;min-height:44px;padding:5px 8px;border:1px solid #e2eaea;border-radius:11px;background:#f7f9f9;font-size:13px}
@@ -821,11 +829,14 @@ aside[hidden]{display:none}
 <div class="panelIntro"><div><p id="regionInfoKicker" class="panelKicker">REGION INFORMATION</p><h2 id="regionInfoTitle" aria-live="polite"></h2><p id="regionInfoSubtitle" class="muted"></p></div><button id="closeRegionInfo" class="closePanel" type="button" aria-label="关闭地区介绍">×</button></div>
 <div id="regionInfoLevels" class="regionInfoLevels"></div>
 <div class="regionAreaCard"><span>面积</span><strong id="regionInfoArea"></strong></div>
+<section id="regionInfoCoordinatePanel" class="regionCoordinatePanel" aria-labelledby="regionInfoCoordinateTitle" hidden><h3 id="regionInfoCoordinateTitle">土星坐标</h3><div id="regionInfoCoordinateContent"></div></section>
 <section class="regionDescription" aria-labelledby="regionDescriptionTitle"><h3 id="regionDescriptionTitle">介绍</h3><p id="regionInfoDescription">暂无介绍</p></section>
 </aside>
-<div id="mapHud"><div id="selected" aria-live="polite" hidden></div><p class="mapHint">&#x6eda;&#x8f6e;&#x7f29;&#x653e; &#x00b7; &#x62d6;&#x62fd;&#x5e73;&#x79fb; &#x00b7; &#x70b9;&#x51fb;&#x533a;&#x57df;&#x67e5;&#x770b;&#x540d;&#x79f0;&#x4e0e;&#x7f16;&#x53f7;</p></div></div>
+<div id="mapHud"><div id="selected" aria-live="polite" hidden></div><p class="mapHint">&#x6eda;&#x8f6e;&#x7f29;&#x653e; &#x00b7; &#x62d6;&#x62fd;&#x5e73;&#x79fb; &#x00b7; &#x70b9;&#x51fb;&#x5730;&#x533a;&#x6216;&#x57ce;&#x5e02;&#x540d;&#x79f0;&#x67e5;&#x770b;&#x4ecb;&#x7ecd;</p></div></div>
 <script src="data/region_directory.js"></script>
 <script src="data/city_directory.js"></script>
+<script src="data/city_coordinates.js"></script>
+<script src="data/region_extrema.js"></script>
 <script>
 const sourceSvg=document.getElementById('mapSvg');
 const canvas=document.getElementById('mapCanvas');
@@ -864,6 +875,13 @@ const textMetricsCache=new Map();
 const REGION_DIRECTORY=window.DUNIVERSE_REGION_DIRECTORY||[];
 const REGION_BY_ID=new Map(REGION_DIRECTORY.map(entry=>[entry.id,entry]));
 const CITY_DIRECTORY=window.DUNIVERSE_CITY_DIRECTORY||[];
+const CITY_BY_ID=new Map(CITY_DIRECTORY.map(entry=>[entry.id,entry]));
+const CITY_BY_NAME=new Map(CITY_DIRECTORY.map(entry=>[entry.name,entry]));
+const CITY_BY_TONGUE_NAME=new Map();
+for(const entry of CITY_DIRECTORY){if(entry.tongueName){const group=CITY_BY_TONGUE_NAME.get(entry.tongueName)||[];group.push(entry);CITY_BY_TONGUE_NAME.set(entry.tongueName,group);}}
+const CITY_COORDINATE_DATA=window.DUNIVERSE_CITY_COORDINATES||{cities:[]};
+const CITY_COORDINATE_BY_ID=new Map(CITY_COORDINATE_DATA.cities.map(entry=>[entry.id,entry]));
+const REGION_EXTREMA_BY_ID=new Map((window.DUNIVERSE_REGION_EXTREMA||{regions:[]}).regions.map(entry=>[entry.id,entry]));
 const REGION_SEARCH_DIRECTORY=[...REGION_DIRECTORY,...CITY_DIRECTORY];
 const layerInputs=[...document.querySelectorAll('input[data-layer]')];
 const layerVisibility=new Map(layerInputs.map(input=>[input.dataset.layer,input.checked]));
@@ -1611,9 +1629,6 @@ function draw(){
   const regionLabelOpacity=regionLabelOpacityForView();
   const majorRegionLabelOpacity=majorRegionLabelOpacityForView();
   for(const record of records){
-    const secondaryLanguageLabel=record.layerId==='regionTongueNames'||record.layerId==='provinceCapitalTongueLabels'||record.layerId==='cityTongueLabels'||
-      (record.drawGroup==='majorRegionNames'&&record.language==='tongue');
-    if(interactiveRender&&secondaryLanguageLabel)continue;
     const isAdministrativeLabel=record.layerId==='regionCodes'||record.layerId==='regionNames'||record.layerId==='regionTongueNames';
     const isMajorRegionLabel=record.drawGroup==='majorRegionNames';
     const layerVisible=layerVisibility.get(record.layerId)!==false;
@@ -1788,6 +1803,100 @@ function hitTestRegion(point){
   }
   return null;
 }
+function cityEntryForLabel(record){
+  if(record.layerId.startsWith('nationalCapital')){
+    const capital=CITY_COORDINATE_DATA.cities.find(city=>city.role==='capital');
+    return capital?CITY_BY_ID.get(capital.id):null;
+  }
+  let candidates=record.layerId.includes('Tongue')
+    ?(CITY_BY_TONGUE_NAME.get(record.text)||[])
+    :[CITY_BY_NAME.get(record.text)].filter(Boolean);
+  if(!candidates.length&&record.layerId.includes('Tongue')){
+    const chineseName=Object.keys(CITY_TONGUE_NAMES).find(name=>CITY_TONGUE_NAMES[name]===record.text);
+    const entry=chineseName?CITY_BY_NAME.get(chineseName):null;
+    if(entry)candidates=[entry];
+  }
+  if(candidates.length===1)return candidates[0];
+  if(!candidates.length)return null;
+  const x=Number.isFinite(record.cityPointX)?record.cityPointX:record.x;
+  const y=Number.isFinite(record.cityPointY)?record.cityPointY:record.y;
+  if(!Number.isFinite(x)||!Number.isFinite(y))return null;
+  let closest=null,distance=Infinity;
+  for(const city of candidates){
+    const next=Math.hypot(city.pointX-x,city.pointY-y);
+    if(next<distance){closest=city;distance=next;}
+  }
+  return distance<=24?closest:null;
+}
+function cityLabelHitTest(clientX,clientY){
+  const metrics=canvasMetrics(),zoomWidth=viewZoomWidth();
+  const left=metrics.rect.left+canvas.clientLeft+metrics.offsetX;
+  const top=metrics.rect.top+canvas.clientTop+metrics.offsetY;
+  const eligibleLayers=new Set(['cityLabels','cityTongueLabels','provinceCapitalLabels','provinceCapitalTongueLabels','nationalCapitalLabels','nationalCapitalTongueLabels']);
+  for(let index=records.length-1;index>=0;index--){
+    const record=records[index];
+    if(record.tag!=='text'||!eligibleLayers.has(record.layerId)||layerVisibility.get(record.layerId)===false)continue;
+    const isCityTongue=record.layerId==='cityTongueLabels';
+    const isCityChinese=record.layerId==='cityLabels';
+    const isCapitalTongue=record.layerId==='provinceCapitalTongueLabels'||record.layerId==='nationalCapitalTongueLabels';
+    const isCapital=record.layerId==='provinceCapitalLabels'||record.layerId==='nationalCapitalLabels';
+    if((isCityTongue||isCityChinese)&&zoomWidth>CITY_LABEL_DETAIL_LIMIT)continue;
+    if((isCapitalTongue||isCapital)&&zoomWidth>CAPITAL_LABEL_DETAIL_LIMIT)continue;
+    const city=cityEntryForLabel(record);if(!city)continue;
+    let textX=record.x,textY=record.y;
+    if((isCityTongue||isCityChinese)&&Number.isFinite(record.cityPointX)&&Number.isFinite(record.cityPointY)){
+      textX=record.cityPointX+(record.x-record.cityPointX)/metrics.scale;
+      textY=record.cityPointY+(record.y-record.cityPointY)/metrics.scale;
+    }
+    if(isCityChinese&&layerVisibility.get('cityTongueLabels')!==false&&CITY_TONGUE_NAMES[record.text])textY-=FIXED_CITY_LABEL_LINE_OFFSET_PX/metrics.scale;
+    else if(isCityTongue&&layerVisibility.get('cityLabels')!==false)textY+=FIXED_CITY_LABEL_LINE_OFFSET_PX/metrics.scale;
+    if(record.layerId==='provinceCapitalLabels'&&layerVisibility.get('provinceCapitalTongueLabels')!==false)textY-=FIXED_CAPITAL_LABEL_LINE_OFFSET_PX/metrics.scale;
+    else if(record.layerId==='provinceCapitalTongueLabels'&&layerVisibility.get('provinceCapitalLabels')!==false)textY+=FIXED_CAPITAL_LABEL_LINE_OFFSET_PX/metrics.scale;
+    const fontSize=isCityTongue?FIXED_CITY_TONGUE_LABEL_FONT_PX:isCityChinese?FIXED_CITY_LABEL_FONT_PX:isCapitalTongue?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:FIXED_CAPITAL_LABEL_FONT_PX;
+    textMetricsCtx.font=record.font.replace(/[\d.]+px/,`${fontSize}px`);
+    const width=textMetricsCtx.measureText(record.text).width;
+    const screenX=left+(textX-vb.x)*metrics.scale,screenY=top+(textY-vb.y)*metrics.scale;
+    const boxLeft=screenX-(record.textAlign==='center'?width/2:record.textAlign==='right'?width:0)-4;
+    const boxRight=boxLeft+width+8,halfHeight=Math.max(8,fontSize*.7);
+    if(clientX>=boxLeft&&clientX<=boxRight&&clientY>=screenY-halfHeight&&clientY<=screenY+halfHeight)return city;
+  }
+  return null;
+}
+function formatSaturnDegrees(value){return `${Number(Number(value).toFixed(2)).toFixed(2)}°`;}
+function appendCoordinateRow(container,title,lines){
+  const row=document.createElement('div');row.className='regionCoordinateRow';
+  const heading=document.createElement('strong');heading.textContent=title;row.append(heading);
+  for(const line of lines){const detail=document.createElement('p');detail.textContent=line;row.append(detail);}
+  container.append(row);
+}
+function formatCoordinatePair(point){return `${formatSaturnDegrees(point.longitudeDeg)}，${formatSaturnDegrees(point.mapLatitudeDeg)}`;}
+function renderCoordinateInfo(entry){
+  const panel=document.getElementById('regionInfoCoordinatePanel');
+  const title=document.getElementById('regionInfoCoordinateTitle');
+  const content=document.getElementById('regionInfoCoordinateContent');content.replaceChildren();
+  if(entry.kind==='city'){
+    const coordinate=CITY_COORDINATE_BY_ID.get(entry.id);
+    if(!coordinate){panel.hidden=true;return;}
+    title.textContent='城市坐标';
+    const role=coordinate.role==='capital'?'首都':coordinate.role==='province-capital'?'省会':'普通城市';
+    appendCoordinateRow(content,'城市类别',[role]);
+    appendCoordinateRow(content,'经度 / 自定义纬度',[formatCoordinatePair(coordinate)]);
+  }else{
+    const region=REGION_EXTREMA_BY_ID.get(entry.id);
+    if(!region){panel.hidden=true;return;}
+    title.textContent='四至边界与方向城市';
+    for(const [direction,label] of [['east','最东'],['south','最南'],['west','最西'],['north','最北']]){
+      const item=region.extrema[direction];
+      appendCoordinateRow(content,label,[
+        `边界点（经度，自定义纬度）：${formatCoordinatePair(item.boundaryPoint)}`,
+        `${label}城市：${item.extremeCity.name}（${formatCoordinatePair(item.extremeCity)}）`
+      ]);
+    }
+  }
+  const note=document.createElement('p');note.className='regionCoordinateNote';
+  note.textContent='纬度为项目自定义土星纬度（真实行星地理纬度 ÷ 6）；坐标显示至小数点后两位。';
+  content.append(note);panel.hidden=false;
+}
 function resizeCanvas(){
   stopZoomAnimation();
   const width=canvas.clientWidth,height=canvas.clientHeight;
@@ -1923,11 +2032,12 @@ function openRegionInfo(entry){
   title.textContent=entry.name;
   const province=entry.kind==='city'&&entry.parentId?REGION_BY_ID.get(entry.parentId):null;
   const major=entry.kind==='major'?entry:REGION_BY_ID.get((entry.kind==='city'?province:entry)?.parentId);
-  subtitle.textContent=entry.kind==='city'?`${province?.name||entry.adminName} · 邮政区号 ${entry.postalCode}`:entry.code?`省级行政区 · 编号 ${entry.code}`:'大区';
+  subtitle.textContent=entry.kind==='city'?`${province?.name||entry.adminName}${entry.postalCode?` · 邮政区号 ${entry.postalCode}`:''}`:entry.code?`省级行政区 · 编号 ${entry.code}`:'大区';
   const levels=document.getElementById('regionInfoLevels');levels.replaceChildren();
   const hierarchy=entry.kind==='city'?[major,province,entry].filter(Boolean):entry.kind==='province'?[REGION_BY_ID.get(entry.parentId),entry].filter(Boolean):[entry];
   hierarchy.forEach(item=>levels.append(createRegionInfoLevel(item.kind==='major'?'大区':item.kind==='province'?'省级行政区':'城市',item)));
   document.getElementById('regionInfoArea').textContent=formatRegionArea(entry.areaKm2);
+  renderCoordinateInfo(entry);
   const description=typeof entry.description==='string'&&entry.description.trim()?entry.description.trim():'暂无介绍';
   document.getElementById('regionInfoDescription').textContent=description;
   document.getElementById('regionInfoPanel').hidden=false;
@@ -1983,7 +2093,7 @@ canvas.addEventListener('pointerdown',event=>{
   if(event.button!==0)return;
   stopViewAnimation();stopZoomAnimation();
   beginInteractiveRender();
-  drag={x:event.clientX,y:event.clientY,vx:vb.x,vy:vb.y,moved:false,code:hitTestRegion(canvasToMap(event.clientX,event.clientY))};
+  drag={x:event.clientX,y:event.clientY,vx:vb.x,vy:vb.y,moved:false,city:cityLabelHitTest(event.clientX,event.clientY),code:hitTestRegion(canvasToMap(event.clientX,event.clientY))};
   canvas.classList.add('dragging');canvas.setPointerCapture(event.pointerId);
 });
 canvas.addEventListener('pointermove',event=>{
@@ -1996,19 +2106,20 @@ canvas.addEventListener('pointermove',event=>{
     return;
   }
   const next=hitTestRegion(canvasToMap(event.clientX,event.clientY));
-  canvas.classList.toggle('overRegion',Boolean(next));
+  const cityLabel=cityLabelHitTest(event.clientX,event.clientY);
+  canvas.classList.toggle('overRegion',Boolean(next||cityLabel));
   if(next!==hoveredCode){hoveredCode=next;draw();}
 });
 function endDrag(event){
   if(!drag)return;
-  const {moved,code}=drag;drag=null;canvas.classList.remove('dragging');
+  const {moved,code,city}=drag;drag=null;canvas.classList.remove('dragging');
   finishInteractiveRender();
-  if(event.type==='pointerup'&&!moved&&code)selectRegion(code,true);
+  if(event.type==='pointerup'&&!moved){if(city)selectCitySearchResult(city);else if(code)selectRegion(code,true);}
 }
 canvas.addEventListener('pointerup',endDrag);
 canvas.addEventListener('pointercancel',endDrag);
 canvas.addEventListener('lostpointercapture',endDrag);
-canvas.addEventListener('pointerleave',()=>{if(!drag&&hoveredCode){hoveredCode=null;canvas.classList.remove('overRegion');draw()}});
+canvas.addEventListener('pointerleave',()=>{if(!drag){canvas.classList.remove('overRegion');if(hoveredCode){hoveredCode=null;draw();}}});
 canvas.addEventListener('keydown',event=>{
   const horizontalDistance=vb.w*.08,verticalDistance=vb.h*.08;
   if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key))beginInteractiveRender();
