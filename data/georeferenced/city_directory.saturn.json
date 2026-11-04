@@ -5675,6 +5675,42 @@
         "mapLatitudeDeg": 5.020772424132326,
         "physicalPlanetographicLatitudeDeg": 30.124634544793956
       }
+    },
+    {
+      "id": "city:map-label:118283-113922",
+      "kind": "city",
+      "name": "十九阶行列市",
+      "tongueName": "Vamav Hreshtork",
+      "parentId": "province:FL",
+      "adminName": "福利省",
+      "postalCode": null,
+      "areaKm2": null,
+      "description": null,
+      "pointX": 1182.83,
+      "pointY": 1139.22,
+      "saturnCoordinates": {
+        "longitudeDeg": 1.49014081419989,
+        "mapLatitudeDeg": 4.4132843643587565,
+        "physicalPlanetographicLatitudeDeg": 26.47970618615254
+      }
+    },
+    {
+      "id": "city:map-label:99500-116276",
+      "kind": "city",
+      "name": "十一阶行列市",
+      "tongueName": "Vavav Hreshtork",
+      "parentId": "province:FL",
+      "adminName": "福利省",
+      "postalCode": null,
+      "areaKm2": null,
+      "description": null,
+      "pointX": 995.0,
+      "pointY": 1162.76,
+      "saturnCoordinates": {
+        "longitudeDeg": -0.05768393352539647,
+        "mapLatitudeDeg": 4.380202907973104,
+        "physicalPlanetographicLatitudeDeg": 26.28121744783863
+      }
     }
   ]
 }
