@@ -5153,6 +5153,159 @@
           1411.91
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker_type": "city_marker_candidate",
+        "color": "#111111",
+        "component_area_px": 41,
+        "shape_score": 1.0,
+        "review_status": "verified_from_high_resolution_map"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1343.5,
+          961.88
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker_type": "city_marker_candidate",
+        "color": "#111111",
+        "component_area_px": 41,
+        "shape_score": 1.0,
+        "review_status": "verified_from_high_resolution_map"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1355.38,
+          982.88
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker_type": "city_marker_candidate",
+        "color": "#111111",
+        "component_area_px": 41,
+        "shape_score": 1.0,
+        "review_status": "verified_from_high_resolution_map"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1245.5,
+          774.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker_type": "city_marker_candidate",
+        "color": "#111111",
+        "component_area_px": 41,
+        "shape_score": 1.0,
+        "review_status": "verified_from_high_resolution_map"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          960.86,
+          293.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker_type": "city_marker_candidate",
+        "color": "#111111",
+        "component_area_px": 41,
+        "shape_score": 1.0,
+        "review_status": "verified_from_high_resolution_map"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1469.12,
+          1217.62
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker_type": "city_marker_candidate",
+        "color": "#111111",
+        "component_area_px": 41,
+        "shape_score": 1.0,
+        "review_status": "verified_from_high_resolution_map"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1437.62,
+          1243.88
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker_type": "city_marker_candidate",
+        "color": "#111111",
+        "component_area_px": 41,
+        "shape_score": 1.0,
+        "review_status": "verified_from_high_resolution_map"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1475.38,
+          1240.12
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker_type": "city_marker_candidate",
+        "color": "#111111",
+        "component_area_px": 41,
+        "shape_score": 1.0,
+        "review_status": "verified_from_high_resolution_map"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1471.5,
+          1195.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker_type": "city_marker_candidate",
+        "color": "#111111",
+        "component_area_px": 41,
+        "shape_score": 1.0,
+        "review_status": "verified_from_high_resolution_map"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1449.88,
+          1259.88
+        ]
+      }
     }
   ]
 }

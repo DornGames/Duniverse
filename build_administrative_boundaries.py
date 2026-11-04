@@ -472,24 +472,34 @@ def write_geojson(filename: str, name: str, features: list[dict]) -> None:
 
 
 def build_label_groups(
-    label_features: list[dict], province_names: dict[str, str]
-) -> tuple[str, str, str, str]:
+    label_features: list[dict],
+    province_names: dict[str, str],
+    province_tongue_names: dict[str, str],
+) -> tuple[str, str, str, str, str]:
     canvas_code_tags = []
     canvas_name_tags = []
+    canvas_tongue_tags = []
     preview_code_tags = []
     preview_name_tags = []
     missing_codes = set()
+    missing_tongue_codes = set()
 
     for feature in label_features:
         code = feature["properties"].get("region_code", "")
         name = province_names.get(code)
-        if not name:
-            missing_codes.add(code or "<empty>")
+        tongue_name = province_tongue_names.get(code)
+        if not name or not tongue_name:
+            if not name:
+                missing_codes.add(code or "<empty>")
+            if not tongue_name:
+                missing_tongue_codes.add(code or "<empty>")
             continue
 
         x, y = feature["geometry"]["coordinates"]
         safe_code = html.escape(code, quote=True)
         safe_name = html.escape(name, quote=True)
+        safe_tongue_name = html.escape(tongue_name, quote=True)
+        safe_name_with_code = html.escape(f"{name}（{code}）", quote=True)
         canvas_code_tags.append(
             f'<text x="{x:g}" y="{y:g}" data-pair-text="{safe_name}" '
             f'dominant-baseline="central" stroke="#fff" stroke-width=".7" '
@@ -500,28 +510,38 @@ def build_label_groups(
             f'dominant-baseline="central" stroke="#fff" stroke-width=".6" '
             f'paint-order="stroke">{safe_name}</text>'
         )
+        canvas_tongue_tags.append(
+            f'<text x="{x:g}" y="{y:g}" data-language="tongue" '
+            f'dominant-baseline="central" stroke="#fff" stroke-width=".55" '
+            f'paint-order="stroke">{safe_tongue_name}</text>'
+        )
 
-        # The standalone SVG scales labels with the map, so estimate the pair
-        # width in its native font sizes and keep the pair centered on the anchor.
-        code_width = 25.2
-        name_width = len(name) * 12
-        gap = 4
-        code_x = x - (code_width + name_width + gap) / 2 + code_width
-        name_x = code_x + gap
-        preview_code_tags.append(
-            f'<text x="{code_x:g}" y="{y:g}" text-anchor="end" '
-            f'dominant-baseline="central" stroke="#fff" stroke-width=".7" '
-            f'paint-order="stroke">{safe_code}</text>'
+        preview_name_tags.append(
+            f'<text x="{x:g}" y="{y - 6:g}" font-size="11" font-weight="600" '
+            f'text-anchor="middle" dominant-baseline="central" '
+            f'stroke="#fff" stroke-width=".6" paint-order="stroke">'
+            f'{safe_name_with_code}</text>'
         )
         preview_name_tags.append(
-            f'<text x="{name_x:g}" y="{y:g}" dominant-baseline="central" '
-            f'stroke="#fff" stroke-width=".55" paint-order="stroke">{safe_name}</text>'
+            f'<text x="{x:g}" y="{y + 6:g}" font-size="10" font-weight="600" '
+            f'text-anchor="middle" dominant-baseline="central" '
+            f'stroke="#fff" stroke-width=".55" paint-order="stroke">'
+            f'{safe_tongue_name}</text>'
         )
 
-    if missing_codes:
+    if missing_codes or missing_tongue_codes:
+        errors = []
+        if missing_codes:
+            errors.append(
+                "missing Chinese names for codes: " + ", ".join(sorted(missing_codes))
+            )
+        if missing_tongue_codes:
+            errors.append(
+                "missing Tongue names for codes: "
+                + ", ".join(sorted(missing_tongue_codes))
+            )
         raise RuntimeError(
-            "Missing Chinese administrative names for region codes: "
-            + ", ".join(sorted(missing_codes))
+            "Missing administrative label names; " + "; ".join(errors)
         )
 
     canvas_codes = (
@@ -533,9 +553,16 @@ def build_label_groups(
     )
     canvas_names = (
         '<g id="regionNames" data-layer="regionNames" pointer-events="none" '
-        'font-family="Arial,sans-serif" font-size="12" font-weight="500" '
+        'font-family="Arial,sans-serif" font-size="11" font-weight="600" '
         'text-anchor="middle" fill="#168d7b" fill-opacity=".9">'
         + "".join(canvas_name_tags)
+        + "</g>"
+    )
+    canvas_tongue_names = (
+        '<g id="regionTongueNames" data-layer="regionTongueNames" '
+        'pointer-events="none" font-family="Arial,sans-serif" font-size="10" '
+        'font-weight="600" text-anchor="middle" fill="#168d7b" fill-opacity=".9">'
+        + "".join(canvas_tongue_tags)
         + "</g>"
     )
     preview_codes = (
@@ -547,12 +574,117 @@ def build_label_groups(
     )
     preview_names = (
         '<g id="region-names" pointer-events="none" '
-        'font-family="Arial,sans-serif" font-size="12" font-weight="500" '
+        'font-family="Arial,sans-serif" font-size="11" font-weight="600" '
         'fill="#168d7b" fill-opacity=".9">'
         + "".join(preview_name_tags)
         + "</g>"
     )
-    return canvas_codes, canvas_names, preview_codes, preview_names
+    return canvas_codes, canvas_names, canvas_tongue_names, preview_codes, preview_names
+
+
+def build_province_capital_tongue_group(
+    source: str, province_capital_tongue_names: dict[str, str]
+) -> str:
+    match = re.search(
+        r'<g id="provinceCapitalLabels"[^>]*>(.*?)</g>', source, flags=re.DOTALL
+    )
+    if not match:
+        raise RuntimeError("Could not find the province-capital Chinese labels")
+
+    tags = []
+    missing_names = set()
+    for attributes, text in re.findall(
+        r'<text\b([^>]*)>(.*?)</text>', match.group(1), flags=re.DOTALL
+    ):
+        name = html.unescape(text).strip()
+        tongue_name = province_capital_tongue_names.get(name)
+        if not tongue_name:
+            missing_names.add(name or "<empty>")
+            continue
+        values = {}
+        for attribute in ("x", "y", "text-anchor"):
+            attribute_match = re.search(
+                rf'\b{re.escape(attribute)}="([^"]+)"', attributes
+            )
+            if attribute_match:
+                values[attribute] = attribute_match.group(1)
+        if not all(attribute in values for attribute in ("x", "y", "text-anchor")):
+            raise RuntimeError(f"Province-capital label is missing position/alignment: {name}")
+        safe_tongue_name = html.escape(tongue_name, quote=True)
+        tags.append(
+            f'<text x="{values["x"]}" y="{values["y"]}" '
+            f'text-anchor="{values["text-anchor"]}" data-language="tongue" '
+            f'dominant-baseline="central" stroke="#fff" stroke-width="1.2" '
+            f'paint-order="stroke">{safe_tongue_name}</text>'
+        )
+
+    if missing_names:
+        raise RuntimeError(
+            "Missing Tongue names for province-capital labels: "
+            + ", ".join(sorted(missing_names))
+        )
+
+    return (
+        '<g id="provinceCapitalTongueLabels" '
+        'data-layer="provinceCapitalTongueLabels" pointer-events="none" '
+        'font-family="Arial,sans-serif" font-size="10" font-weight="600" '
+        'fill="#c32631">'
+        + "".join(tags)
+        + "</g>"
+    )
+
+
+def update_province_capital_tongue_group(
+    source: str, province_capital_tongue_names: dict[str, str]
+) -> str:
+    group = build_province_capital_tongue_group(source, province_capital_tongue_names)
+    if re.search(r'<g id="provinceCapitalTongueLabels"(?=[ >])', source):
+        return replace_group(
+            source,
+            r'<g id="provinceCapitalTongueLabels"[^>]*>.*?</g>',
+            group,
+            label="Canvas province-capital Tongue names",
+        )
+
+    updated, count = re.subn(
+        r'(<g id="provinceCapitalLabels"[^>]*>.*?</g>)',
+        lambda match: match.group(1) + group,
+        source,
+        count=1,
+        flags=re.DOTALL,
+    )
+    if count != 1:
+        raise RuntimeError("Could not insert Canvas province-capital Tongue names")
+    return updated
+
+
+def update_city_tongue_names_constant(
+    source: str, city_tongue_names: dict[str, str]
+) -> str:
+    declaration = (
+        "const CITY_TONGUE_NAMES="
+        + json.dumps(city_tongue_names, ensure_ascii=False, indent=2)
+        + ";"
+    )
+    updated, count = re.subn(
+        r"const CITY_TONGUE_NAMES\s*=\s*\{.*?\};",
+        declaration,
+        source,
+        count=1,
+        flags=re.DOTALL,
+    )
+    if count == 1:
+        return updated
+
+    updated, count = re.subn(
+        r"(?=const CITY_LABELS=\[)",
+        lambda _: declaration + "\n",
+        source,
+        count=1,
+    )
+    if count != 1:
+        raise RuntimeError("Could not insert the Canvas city Tongue-name mapping")
+    return updated
 
 
 def move_group_after(source: str, moving_id: str, target_id: str) -> str:
@@ -578,6 +710,9 @@ def update_render_files(
     neighbor_borders: list[dict],
     label_features: list[dict],
     province_names: dict[str, str],
+    province_tongue_names: dict[str, str],
+    province_capital_tongue_names: dict[str, str],
+    city_tongue_names: dict[str, str],
     coastlines: list[dict],
     ocean_surface_path: str,
 ) -> None:
@@ -711,9 +846,10 @@ def update_render_files(
     (
         canvas_codes_group,
         canvas_names_group,
+        canvas_tongue_names_group,
         preview_codes_group,
         preview_names_group,
-    ) = build_label_groups(label_features, province_names)
+    ) = build_label_groups(label_features, province_names, province_tongue_names)
     preview_path = ROOT / "vector_preview.svg"
     preview = preview_path.read_text(encoding="utf-8")
     preview = replace_group(
@@ -882,10 +1018,20 @@ def update_render_files(
         "['provinceBoundaries',9],['majorRegionBoundaries',10],['majorRegionNames',11],"
         "['nationalBorder',12],['blackMarkers',13],['redMarkers',14],"
         "['specialCapitalMarker',14],['nationalCapitalMarker',14],"
-        "['regionCodes',15],['regionNames',16]"
+        "['regionCodes',15],['regionNames',16],['regionTongueNames',17],"
+        "['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],"
+        "['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22]"
     )
     draw_order_match = re.search(
-        r"\['provinceBoundaries',9\].*?\['regionNames',(?:15|16)\]", index, re.DOTALL
+        r"\['provinceBoundaries',9\].*?\['regionNames',(?:15|16)\]"
+        r"(?:,\['regionTongueNames',17\])?"
+        r"(?:,\['provinceCapitalLabels',(?:17|18)\])?"
+        r"(?:,\['provinceCapitalTongueLabels',(?:18|19)\])?"
+        r"(?:,\['nationalCapitalLabels',(?:18|19|20)\])?"
+        r"(?:,\['cityLabels',(?:19|20|21)\])?"
+        r"(?:,\['cityTongueLabels',(?:20|21|22)\])?",
+        index,
+        re.DOTALL,
     )
     if draw_order_match:
         index = (
@@ -931,10 +1077,15 @@ def update_render_files(
     index = replace_group(
         index,
         r'(?:<g id="labels"[^>]*>.*?</g>|'
-        r'<g id="regionCodes"[^>]*>.*?</g><g id="regionNames"[^>]*>.*?</g>)',
-        canvas_codes_group + canvas_names_group,
+        r'<g id="regionCodes"[^>]*>.*?</g><g id="regionNames"[^>]*>.*?</g>'
+        r'<g id="regionTongueNames"[^>]*>.*?</g>)',
+        canvas_codes_group + canvas_names_group + canvas_tongue_names_group,
         label="Canvas geometric-center labels",
     )
+    index = update_province_capital_tongue_group(
+        index, province_capital_tongue_names
+    )
+    index = update_city_tongue_names_constant(index, city_tongue_names)
     index_path.write_text(index, encoding="utf-8", newline="\n")
 
 
@@ -953,6 +1104,15 @@ def main() -> None:
     label_features = build_region_label_anchors(regions, label_candidates)
     province_names = json.loads(
         (DATA / "province_names.json").read_text(encoding="utf-8")
+    )
+    province_tongue_names = json.loads(
+        (DATA / "province_tongue_names.json").read_text(encoding="utf-8")
+    )
+    province_capital_tongue_names = json.loads(
+        (DATA / "province_capital_tongue_names.json").read_text(encoding="utf-8")
+    )
+    city_tongue_names = json.loads(
+        (DATA / "city_tongue_names.json").read_text(encoding="utf-8")
     )
     (
         major_region_membership,
@@ -978,6 +1138,12 @@ def main() -> None:
         raise RuntimeError(
             "Missing Chinese administrative names for region codes: "
             + ", ".join(sorted(missing_names))
+        )
+    missing_tongue_names = label_codes - province_tongue_names.keys()
+    if missing_tongue_names:
+        raise RuntimeError(
+            "Missing Tongue administrative names for region codes: "
+            + ", ".join(sorted(missing_tongue_names))
         )
     ocean_surface_path_data = json.loads(
         (DATA / "ocean_surface_path.json").read_text(encoding="utf-8")
@@ -1065,6 +1231,9 @@ def main() -> None:
         neighbor_borders,
         label_features,
         province_names,
+        province_tongue_names,
+        province_capital_tongue_names,
+        city_tongue_names,
         coastlines,
         ocean_surface_path,
     )
