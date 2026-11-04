@@ -854,6 +854,8 @@ const INTERACTIVE_RENDER_SCALE=.75,INTERACTIVE_SCREEN_ERROR=1.8,INTERACTION_SETT
 const FIXED_CODE_FONT_PX=16;
 const FIXED_CAPITAL_LABEL_FONT_PX=13;
 const FIXED_CAPITAL_TONGUE_LABEL_FONT_PX=10,FIXED_CAPITAL_LABEL_LINE_OFFSET_PX=6;
+const NATIONAL_CAPITAL_LABEL_GAP_PX=6;
+const CAPITAL_MARKER_MATCH_MAX_DISTANCE=40;
 const FIXED_CITY_LABEL_FONT_PX=13;
 const FIXED_CITY_TONGUE_LABEL_FONT_PX=10,FIXED_CITY_LABEL_LINE_OFFSET_PX=6;
   const FIXED_REGION_NAME_FONT_PX=11,FIXED_REGION_TONGUE_FONT_PX=10,FIXED_REGION_LABEL_LINE_OFFSET_PX=6,FIXED_MAJOR_REGION_NAME_FONT_PX=12,FIXED_MAJOR_REGION_TONGUE_FONT_PX=10;
@@ -1054,6 +1056,54 @@ function buildRegionIndex(){
       const bottom=Math.max(previous.y+previous.height,bounds.y+bounds.height);
       regionBounds.set(record.code,{x:left,y:top,width:right-left,height:bottom-top});
     }else regionBounds.set(record.code,{x:bounds.x,y:bounds.y,width:bounds.width,height:bounds.height});
+  }
+}
+
+function bindCapitalLabelsToMarkers(){
+  // Capital labels and their red map dots were digitized separately; match each label to one nearby dot.
+  const capitalLabels=records.filter(record=>record.tag==='text'&&record.layerId==='provinceCapitalLabels');
+  const capitalMarkers=records.filter(record=>record.tag==='circle'&&record.layerId==='redMarkers');
+  const candidatePairs=[];
+  for(let labelIndex=0;labelIndex<capitalLabels.length;labelIndex++){
+    const label=capitalLabels[labelIndex],city=CITY_BY_NAME.get(label.text);
+    if(!city)continue;
+    for(let markerIndex=0;markerIndex<capitalMarkers.length;markerIndex++){
+      const marker=capitalMarkers[markerIndex];
+      candidatePairs.push({labelIndex,markerIndex,city,marker,distance:Math.hypot(label.x-marker.cx,label.y-marker.cy)});
+    }
+  }
+  candidatePairs.sort((a,b)=>a.distance-b.distance||a.labelIndex-b.labelIndex||a.markerIndex-b.markerIndex);
+
+  const usedLabels=new Set(),usedMarkers=new Set(),markerByCityId=new Map();
+  for(const pair of candidatePairs){
+    if(pair.distance>CAPITAL_MARKER_MATCH_MAX_DISTANCE||usedLabels.has(pair.labelIndex)||usedMarkers.has(pair.markerIndex))continue;
+    usedLabels.add(pair.labelIndex);usedMarkers.add(pair.markerIndex);
+    markerByCityId.set(pair.city.id,pair.marker);
+  }
+  const bindAnchor=(record,marker)=>{
+    if(!marker)return;
+    record.cityPointX=marker.cx;record.cityPointY=marker.cy;
+    record.cityPointMarkerRadius=marker.radius;
+  };
+  for(const record of capitalLabels){
+    const city=CITY_BY_NAME.get(record.text);
+    bindAnchor(record,city&&markerByCityId.get(city.id));
+  }
+  for(const record of records.filter(item=>item.tag==='text'&&item.layerId==='provinceCapitalTongueLabels')){
+    const pairedLabel=capitalLabels
+      .map(label=>({label,distance:Math.hypot(label.x-record.x,label.y-record.y)}))
+      .sort((a,b)=>a.distance-b.distance)[0];
+    if(pairedLabel&&pairedLabel.distance<=1){
+      const city=CITY_BY_NAME.get(pairedLabel.label.text);
+      bindAnchor(record,city&&markerByCityId.get(city.id));
+    }
+  }
+
+  const nationalMarker=records
+    .filter(record=>record.tag==='circle'&&record.layerId==='nationalCapitalMarker')
+    .sort((a,b)=>b.radius-a.radius)[0];
+  for(const record of records.filter(item=>item.tag==='text'&&['nationalCapitalLabels','nationalCapitalTongueLabels'].includes(item.layerId))){
+    bindAnchor(record,nationalMarker);
   }
 }
 
@@ -1445,6 +1495,7 @@ appendSaturnGraticule();
 // Build Canvas paths from the extracted geometry, then remove the source SVG from the page.
 collectRecords(sourceSvg);
 records.sort((a,b)=>(DRAW_ORDER.get(a.drawGroup)??50)-(DRAW_ORDER.get(b.drawGroup)??50));
+bindCapitalLabelsToMarkers();
 buildRegionIndex();
 sourceSvg.remove();
 
@@ -1535,6 +1586,18 @@ function paintText(record,x,y,align,method,scale,text=record.text,screenFont=rec
     ctx[method](metrics.glyphs[i],cursor,y);cursor+=metrics.advances[i]/scale+spacing;
   }
 }
+function screenStableLabelPoint(record,scale){
+  if(!Number.isFinite(record.cityPointX)||!Number.isFinite(record.cityPointY))return{x:record.x,y:record.y};
+  const x=record.cityPointX+(record.x-record.cityPointX)/scale;
+  let y=record.cityPointY+(record.y-record.cityPointY)/scale;
+  if(record.layerId==='nationalCapitalLabels'||record.layerId==='nationalCapitalTongueLabels'){
+    const fontSize=record.layerId==='nationalCapitalTongueLabels'?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:FIXED_CAPITAL_LABEL_FONT_PX;
+    const markerRadius=(record.cityPointMarkerRadius||0)/Math.min(scale,1);
+    // The national marker grows with zoom, so keep the label above its rendered edge.
+    y=record.cityPointY-markerRadius-(fontSize/2+NATIONAL_CAPITAL_LABEL_GAP_PX)/scale;
+  }
+  return{x,y};
+}
 function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverride=1,fastText=false){
   const hovered=record.code&&record.code===hoveredCode;
   const specialCapitalMarker=record.drawGroup==='specialCapitalMarker';
@@ -1562,6 +1625,7 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
   }else if(record.tag==='text'){
     const isRegionCode=record.layerId==='regionCodes',isRegionName=record.layerId==='regionNames',isRegionTongueName=record.layerId==='regionTongueNames';
     const isProvinceCapitalLabel=record.layerId==='provinceCapitalLabels',isProvinceCapitalTongueLabel=record.layerId==='provinceCapitalTongueLabels';
+    const isNationalCapitalNameLabel=record.layerId==='nationalCapitalLabels'||record.layerId==='nationalCapitalTongueLabels';
     const isCityTongueLabel=record.layerId==='cityTongueLabels';
     const isMajorRegionName=record.drawGroup==='majorRegionNames',isCapitalLabel=isProvinceCapitalLabel||record.layerId==='nationalCapitalLabels',isCityLabel=record.layerId==='cityLabels';
     const isMajorRegionTongueName=isMajorRegionName&&record.language==='tongue';
@@ -1569,9 +1633,10 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
     const screenFont=record.font.replace(/[\d.]+px/,`${fontSize}px`);
     ctx.font=screenFont.replace(/[\d.]+px/,`${fontSize/scale}px`);ctx.textBaseline=record.textBaseline;
     let textX=record.x,textY=record.y,textAlign=record.textAlign,displayText=record.text;
-    if((isCityLabel||isCityTongueLabel)&&Number.isFinite(record.cityPointX)&&Number.isFinite(record.cityPointY)){
-      textX=record.cityPointX+(record.x-record.cityPointX)/scale;
-      textY=record.cityPointY+(record.y-record.cityPointY)/scale;
+    if((isCityLabel||isCityTongueLabel||isProvinceCapitalLabel||isProvinceCapitalTongueLabel||isNationalCapitalNameLabel)&&
+       Number.isFinite(record.cityPointX)&&Number.isFinite(record.cityPointY)){
+      const stablePoint=screenStableLabelPoint(record,scale);
+      textX=stablePoint.x;textY=stablePoint.y;
     }
     const tongueNamesVisible=layerVisibility.get('regionTongueNames')!==false;
     if(isRegionName){
@@ -1653,12 +1718,14 @@ function draw(){
           ?Math.max(0,((record.bounds.width+record.letterSpacing*Math.max(0,record.glyphCount-1))/scale-record.bounds.width)/2)
           :Math.max(0,(FIXED_CODE_FONT_PX/record.baseFontSize/scale-1)*Math.max(record.bounds.width,record.bounds.height)/2)
         :0;
+    const stableTextPoint=record.tag==='text'?screenStableLabelPoint(record,scale):null;
+    const anchorAdjustmentMargin=stableTextPoint?Math.hypot(record.x-stableTextPoint.x,record.y-stableTextPoint.y):0;
     const isCoastalFill=['oceanFill','islandFills'].includes(record.layerId);
     const pathToleranceIndex=isCoastalFill?coastalFillToleranceIndex:toleranceIndex;
     const pathTolerance=isCoastalFill
       ?COASTAL_FILL_LOD_TOLERANCES[pathToleranceIndex]
       :LOD_TOLERANCES[pathToleranceIndex];
-    if(!overlaps(record.bounds,view,Math.max(record.lineWidth+pathTolerance,fixedSizeMargin)))continue;
+    if(!overlaps(record.bounds,view,Math.max(record.lineWidth+pathTolerance,fixedSizeMargin+anchorAdjustmentMargin)))continue;
     if(['rivers','canals','seasonalRivers','crossBorderRivers'].includes(record.layerId)&&
        Math.max(record.bounds.width,record.bounds.height)*scale<.7)continue;
     const islandExtent=Math.max(record.bounds.width,record.bounds.height)*scale;
@@ -1844,9 +1911,9 @@ function cityLabelHitTest(clientX,clientY){
     if((isCapitalTongue||isCapital)&&zoomWidth>CAPITAL_LABEL_DETAIL_LIMIT)continue;
     const city=cityEntryForLabel(record);if(!city)continue;
     let textX=record.x,textY=record.y;
-    if((isCityTongue||isCityChinese)&&Number.isFinite(record.cityPointX)&&Number.isFinite(record.cityPointY)){
-      textX=record.cityPointX+(record.x-record.cityPointX)/metrics.scale;
-      textY=record.cityPointY+(record.y-record.cityPointY)/metrics.scale;
+    if((isCityTongue||isCityChinese||isCapitalTongue||isCapital)&&Number.isFinite(record.cityPointX)&&Number.isFinite(record.cityPointY)){
+      const stablePoint=screenStableLabelPoint(record,metrics.scale);
+      textX=stablePoint.x;textY=stablePoint.y;
     }
     if(isCityChinese&&layerVisibility.get('cityTongueLabels')!==false&&CITY_TONGUE_NAMES[record.text])textY-=FIXED_CITY_LABEL_LINE_OFFSET_PX/metrics.scale;
     else if(isCityTongue&&layerVisibility.get('cityLabels')!==false)textY+=FIXED_CITY_LABEL_LINE_OFFSET_PX/metrics.scale;
