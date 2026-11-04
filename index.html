@@ -837,6 +837,8 @@ const MAJOR_REGION_LABEL_FADE_OUT_START_WIDTH=1750;
 const MIN_VIEW_WIDTH=60,COASTAL_DETAIL_COMPLETE_PROGRESS=.65,MIN_ISLAND_SCREEN_EXTENT=2;
 const MAJOR_REGION_BOUNDARY_HIDE_WIDTH=1200,PROVINCE_BOUNDARY_HIDE_WIDTH=560;
 const OCEAN_COLOR='#b1d0ed';
+// While the view is moving, lower raster and path detail; restore the full map shortly after it settles.
+const INTERACTIVE_RENDER_SCALE=.75,INTERACTIVE_SCREEN_ERROR=1.8,INTERACTION_SETTLE_DELAY=140;
 const FIXED_CODE_FONT_PX=16;
 const FIXED_CAPITAL_LABEL_FONT_PX=13;
 const FIXED_CAPITAL_TONGUE_LABEL_FONT_PX=10,FIXED_CAPITAL_LABEL_LINE_OFFSET_PX=6;
@@ -853,8 +855,11 @@ const DRAW_ORDER=new Map([
 ]);
 let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
-let drag=null,framePending=false,viewAnimation=null,zoomAnimation=null,zoomTarget=null,zoomLastTime=null,hoveredCode=null,pixelRatio=1;
+let drag=null,framePending=false,viewAnimation=null,zoomAnimation=null,zoomTarget=null,zoomLastTime=null,hoveredCode=null,pixelRatio=1,interactiveRender=false,renderQualityTimer=null;
 let records=[],regionRecords=[],regionBounds=new Map();
+const textMetricsCanvas=document.createElement('canvas');
+const textMetricsCtx=textMetricsCanvas.getContext('2d');
+const textMetricsCache=new Map();
 const REGION_DIRECTORY=window.DUNIVERSE_REGION_DIRECTORY||[];
 const REGION_BY_ID=new Map(REGION_DIRECTORY.map(entry=>[entry.id,entry]));
 const CITY_DIRECTORY=window.DUNIVERSE_CITY_DIRECTORY||[];
@@ -997,6 +1002,8 @@ function createRecord(element,drawGroup,layerId){
     record.textBaseline=style.dominantBaseline==='central'?'middle':'alphabetic';
     record.font=`${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
     record.textAlign=style.textAnchor==='middle'?'center':style.textAnchor==='end'?'right':'left';
+    record.glyphCount=Array.from(record.text).length;
+    record.baseFontSize=Number.parseFloat(record.font.match(/[\d.]+px/)?.[0])||21;
   }
   return record;
 }
@@ -1422,18 +1429,24 @@ function majorRegionLabelOpacityForView(){
     (MAJOR_REGION_LABEL_FADE_OUT_START_WIDTH-DETAIL_LIMIT));
   return 1-fadeOut;
 }
-function paintText(record,x,y,align,method,scale,text=record.text){
+function paintText(record,x,y,align,method,scale,text=record.text,screenFont=record.font){
   if(record.letterSpacing<=0){ctx.textAlign=align;ctx[method](text,x,y);return}
-  const glyphs=Array.from(text),spacing=record.letterSpacing/scale;
-  const advances=glyphs.map(glyph=>ctx.measureText(glyph).width);
-  const totalWidth=advances.reduce((sum,width)=>sum+width,0)+spacing*Math.max(0,glyphs.length-1);
+  const cacheKey=`${screenFont}\u0000${record.letterSpacing}\u0000${text}`;
+  let metrics=textMetricsCache.get(cacheKey);
+  if(!metrics){
+    textMetricsCtx.font=screenFont;
+    const glyphs=Array.from(text),advances=glyphs.map(glyph=>textMetricsCtx.measureText(glyph).width);
+    metrics={glyphs,advances,totalWidth:advances.reduce((sum,width)=>sum+width,0)+record.letterSpacing*Math.max(0,glyphs.length-1)};
+    textMetricsCache.set(cacheKey,metrics);
+  }
+  const spacing=record.letterSpacing/scale,totalWidth=metrics.totalWidth/scale;
   let cursor=x-(align==='center'?totalWidth/2:align==='right'?totalWidth:0);
   ctx.textAlign='left';
-  for(let i=0;i<glyphs.length;i++){
-    ctx[method](glyphs[i],cursor,y);cursor+=advances[i]+spacing;
+  for(let i=0;i<metrics.glyphs.length;i++){
+    ctx[method](metrics.glyphs[i],cursor,y);cursor+=metrics.advances[i]/scale+spacing;
   }
 }
-function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverride=1){
+function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverride=1,fastText=false){
   const hovered=record.code&&record.code===hoveredCode;
   const specialCapitalMarker=record.drawGroup==='specialCapitalMarker';
   const fixedScreenSize=(record.tag==='circle'&&!specialCapitalMarker)||record.tag==='text'||
@@ -1463,7 +1476,8 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
     const isMajorRegionName=record.drawGroup==='majorRegionNames',isCapitalLabel=isProvinceCapitalLabel||record.layerId==='nationalCapitalLabels',isCityLabel=record.layerId==='cityLabels';
     const isMajorRegionTongueName=isMajorRegionName&&record.language==='tongue';
     const fontSize=isRegionName?FIXED_REGION_NAME_FONT_PX:isRegionTongueName?FIXED_REGION_TONGUE_FONT_PX:isProvinceCapitalTongueLabel?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:isCityTongueLabel?FIXED_CITY_TONGUE_LABEL_FONT_PX:isMajorRegionTongueName?FIXED_MAJOR_REGION_TONGUE_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:isCityLabel?FIXED_CITY_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
-    ctx.font=record.font.replace(/[\d.]+px/,`${fontSize/scale}px`);ctx.textBaseline=record.textBaseline;
+    const screenFont=record.font.replace(/[\d.]+px/,`${fontSize}px`);
+    ctx.font=screenFont.replace(/[\d.]+px/,`${fontSize/scale}px`);ctx.textBaseline=record.textBaseline;
     let textX=record.x,textY=record.y,textAlign=record.textAlign,displayText=record.text;
     const tongueNamesVisible=layerVisibility.get('regionTongueNames')!==false;
     if(isRegionName){
@@ -1491,33 +1505,39 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
       textY+=FIXED_CITY_LABEL_LINE_OFFSET_PX/scale;
     }
     ctx.textAlign=textAlign;
-    if(record.stroke!=='none'&&record.lineWidth>0){
+    if(!fastText&&record.stroke!=='none'&&record.lineWidth>0){
       ctx.strokeStyle=record.stroke;ctx.globalAlpha=record.strokeOpacity*opacityOverride;
-      paintText(record,textX,textY,textAlign,'strokeText',scale,displayText);
+      paintText(record,textX,textY,textAlign,'strokeText',scale,displayText,screenFont);
     }
     if(record.fill!=='none'){
       ctx.fillStyle=record.fill;ctx.globalAlpha=record.fillOpacity*opacityOverride;
-      paintText(record,textX,textY,textAlign,'fillText',scale,displayText);
+      paintText(record,textX,textY,textAlign,'fillText',scale,displayText,screenFont);
     }
   }
   ctx.restore();
 }
 function draw(){
   const m=canvasMetrics();if(!m.width||!m.height)return;
-  ctx.setTransform(pixelRatio,0,0,pixelRatio,0,0);
+  const drawPixelRatio=canvas.width/m.width||pixelRatio;
+  ctx.setTransform(drawPixelRatio,0,0,drawPixelRatio,0,0);
   ctx.clearRect(0,0,m.width,m.height);
   ctx.fillStyle='#f5f8f9';ctx.fillRect(0,0,m.width,m.height);
   const scale=m.scale,offsetX=m.offsetX,offsetY=m.offsetY;
   ctx.fillStyle='#fff';ctx.fillRect(offsetX-vb.x*scale,offsetY-vb.y*scale,SOURCE_W*scale,MAP_H*scale);
   ctx.fillStyle=OCEAN_COLOR;ctx.fillRect(offsetX+(SOURCE_W-2-vb.x)*scale,offsetY-vb.y*scale,(MAP_W-SOURCE_W+2)*scale,MAP_H*scale);
-  ctx.setTransform(pixelRatio*scale,0,0,pixelRatio*scale,pixelRatio*(offsetX-vb.x*scale),pixelRatio*(offsetY-vb.y*scale));
+  ctx.setTransform(drawPixelRatio*scale,0,0,drawPixelRatio*scale,drawPixelRatio*(offsetX-vb.x*scale),drawPixelRatio*(offsetY-vb.y*scale));
   ctx.lineJoin='round';ctx.lineCap='round';
-  const view={x:vb.x,y:vb.y,width:vb.w,height:vb.h},toleranceIndex=activeToleranceIndex(scale);
-  const coastalFillToleranceIndex=coastalFillToleranceIndexForView();
+  const view={x:vb.x,y:vb.y,width:vb.w,height:vb.h},toleranceIndex=activeToleranceIndex(scale,LOD_TOLERANCES,interactiveRender?INTERACTIVE_SCREEN_ERROR:.75);
+  const coastalFillToleranceIndex=interactiveRender
+    ?activeToleranceIndex(scale,COASTAL_FILL_LOD_TOLERANCES,INTERACTIVE_SCREEN_ERROR)
+    :coastalFillToleranceIndexForView();
   const zoomWidth=viewZoomWidth(),detailed=zoomWidth<=DETAIL_LIMIT;
   const regionLabelOpacity=regionLabelOpacityForView();
   const majorRegionLabelOpacity=majorRegionLabelOpacityForView();
   for(const record of records){
+    const secondaryLanguageLabel=record.layerId==='regionTongueNames'||record.layerId==='provinceCapitalTongueLabels'||record.layerId==='cityTongueLabels'||
+      (record.drawGroup==='majorRegionNames'&&record.language==='tongue');
+    if(interactiveRender&&secondaryLanguageLabel)continue;
     const isAdministrativeLabel=record.layerId==='regionCodes'||record.layerId==='regionNames'||record.layerId==='regionTongueNames';
     const isMajorRegionLabel=record.drawGroup==='majorRegionNames';
     const layerVisible=layerVisibility.get(record.layerId)!==false;
@@ -1539,8 +1559,8 @@ function draw(){
         ?(record.layerId==='regionNames'||record.layerId==='regionTongueNames')
           ?72/scale
           :record.letterSpacing>0
-          ?Math.max(0,((record.bounds.width+record.letterSpacing*Math.max(0,Array.from(record.text).length-1))/scale-record.bounds.width)/2)
-          :Math.max(0,(FIXED_CODE_FONT_PX/(Number.parseFloat(record.font.match(/[\d.]+px/)?.[0])||21)/scale-1)*Math.max(record.bounds.width,record.bounds.height)/2)
+          ?Math.max(0,((record.bounds.width+record.letterSpacing*Math.max(0,record.glyphCount-1))/scale-record.bounds.width)/2)
+          :Math.max(0,(FIXED_CODE_FONT_PX/record.baseFontSize/scale-1)*Math.max(record.bounds.width,record.bounds.height)/2)
         :0;
     const isCoastalFill=['oceanFill','islandFills'].includes(record.layerId);
     const pathToleranceIndex=isCoastalFill?coastalFillToleranceIndex:toleranceIndex;
@@ -1553,8 +1573,31 @@ function draw(){
     const islandExtent=Math.max(record.bounds.width,record.bounds.height)*scale;
     const hideIsland=record.layerId==='islandFills'&&(!layerVisible||islandExtent<MIN_ISLAND_SCREEN_EXTENT);
     drawRecord(record,pathToleranceIndex,scale,hideIsland?OCEAN_COLOR:null,
-      isAdministrativeLabel?regionLabelOpacity:isMajorRegionLabel?majorRegionLabelOpacity:1);
+      isAdministrativeLabel?regionLabelOpacity:isMajorRegionLabel?majorRegionLabelOpacity:1,interactiveRender);
   }
+}
+function updateCanvasBackingStore(){
+  const width=canvas.clientWidth,height=canvas.clientHeight;
+  if(!width||!height)return;
+  const renderScale=pixelRatio*(interactiveRender?INTERACTIVE_RENDER_SCALE:1);
+  const pixelWidth=Math.max(1,Math.round(width*renderScale)),pixelHeight=Math.max(1,Math.round(height*renderScale));
+  if(canvas.width!==pixelWidth)canvas.width=pixelWidth;
+  if(canvas.height!==pixelHeight)canvas.height=pixelHeight;
+}
+function beginInteractiveRender(){
+  if(renderQualityTimer!==null){clearTimeout(renderQualityTimer);renderQualityTimer=null;}
+  if(interactiveRender)return;
+  interactiveRender=true;updateCanvasBackingStore();draw();
+}
+function finishInteractiveRender(){
+  if(!interactiveRender)return;
+  if(renderQualityTimer!==null)clearTimeout(renderQualityTimer);
+  renderQualityTimer=setTimeout(()=>{
+    renderQualityTimer=null;
+    if(!interactiveRender)return;
+    if(drag||viewAnimation!==null||zoomAnimation!==null)return;
+    interactiveRender=false;updateCanvasBackingStore();draw();
+  },INTERACTION_SETTLE_DELAY);
 }
 function apply(){clampView();draw()}
 function queueApply(){
@@ -1581,14 +1624,15 @@ function animateZoom(){
     const remaining=Math.max(Math.abs(vb.x-target.x)/Math.max(1,target.w),
       Math.abs(vb.y-target.y)/Math.max(1,target.h),Math.abs(vb.w-target.w)/Math.max(1,target.w),
       Math.abs(vb.h-target.h)/Math.max(1,target.h));
-    if(remaining<.001){vb={...target};zoomAnimation=null;zoomTarget=null;zoomLastTime=null;apply();return;}
+    if(remaining<.001){vb={...target};zoomAnimation=null;zoomTarget=null;zoomLastTime=null;apply();finishInteractiveRender();return;}
     apply();zoomAnimation=requestAnimationFrame(frame);
   }
   zoomAnimation=requestAnimationFrame(frame);
 }
 function animateView(target,duration=520){
   stopViewAnimation();stopZoomAnimation();
-  if(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){vb=target;apply();return;}
+  if(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){vb=target;apply();finishInteractiveRender();return;}
+  beginInteractiveRender();
   const start={...vb};let startTime=null;
   function frame(now){
     if(startTime===null)startTime=now;
@@ -1596,7 +1640,7 @@ function animateView(target,duration=520){
     vb={x:start.x+(target.x-start.x)*eased,y:start.y+(target.y-start.y)*eased,
       w:start.w+(target.w-start.w)*eased,h:start.h+(target.h-start.h)*eased};
     apply();
-    if(progress<1)viewAnimation=requestAnimationFrame(frame);else viewAnimation=null;
+    if(progress<1)viewAnimation=requestAnimationFrame(frame);else{viewAnimation=null;finishInteractiveRender();}
   }
   viewAnimation=requestAnimationFrame(frame);
 }
@@ -1614,7 +1658,8 @@ function zoom(factor,clientX=null,clientY=null){
   const aspect=viewAspect(),minHeight=MIN_VIEW_WIDTH*MAP_H/MAP_W;
   const maxHeight=Math.max(MAP_H,MAP_W/aspect),height=Math.max(minHeight,Math.min(maxHeight,base.h*factor)),width=height*aspect;
   const target=clampView({x:anchorX-fractionX*width,y:anchorY-fractionY*height,w:width,h:height});
-  if(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){stopZoomAnimation();vb=target;apply();return;}
+  if(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){stopZoomAnimation();vb=target;apply();finishInteractiveRender();return;}
+  beginInteractiveRender();
   zoomTarget=target;animateZoom();
 }
 function zoomToBounds(bounds,animate=true){
@@ -1624,7 +1669,7 @@ function zoomToBounds(bounds,animate=true){
   const width=height*aspect;
   const centerX=bounds.x+bounds.width/2,centerY=bounds.y+bounds.height/2;
   const target={x:centerX-width/2,y:centerY-height/2,w:width,h:height};
-  if(animate)animateView(target);else{stopViewAnimation();stopZoomAnimation();vb=target;apply();}
+  if(animate)animateView(target);else{stopViewAnimation();stopZoomAnimation();vb=target;apply();finishInteractiveRender();}
 }
 function zoomToRegion(code,animate=true){zoomToBounds(regionBounds.get(code),animate)}
 function boundsForDirectoryEntry(entry){
@@ -1682,10 +1727,9 @@ function resizeCanvas(){
     clampView();
   }
   pixelRatio=Math.min(2,Math.max(1,window.devicePixelRatio||1));
-  const pixelWidth=Math.round(width*pixelRatio),pixelHeight=Math.round(height*pixelRatio);
-  if(canvas.width!==pixelWidth)canvas.width=pixelWidth;
-  if(canvas.height!==pixelHeight)canvas.height=pixelHeight;
+  updateCanvasBackingStore();
   draw();
+  finishInteractiveRender();
 }
 
 function syncLayerGroup(group){
@@ -1861,6 +1905,7 @@ canvas.addEventListener('wheel',event=>{
 canvas.addEventListener('pointerdown',event=>{
   if(event.button!==0)return;
   stopViewAnimation();stopZoomAnimation();
+  beginInteractiveRender();
   drag={x:event.clientX,y:event.clientY,vx:vb.x,vy:vb.y,moved:false,code:hitTestRegion(canvasToMap(event.clientX,event.clientY))};
   canvas.classList.add('dragging');canvas.setPointerCapture(event.pointerId);
 });
@@ -1880,6 +1925,7 @@ canvas.addEventListener('pointermove',event=>{
 function endDrag(event){
   if(!drag)return;
   const {moved,code}=drag;drag=null;canvas.classList.remove('dragging');
+  finishInteractiveRender();
   if(event.type==='pointerup'&&!moved&&code)selectRegion(code,true);
 }
 canvas.addEventListener('pointerup',endDrag);
@@ -1888,17 +1934,18 @@ canvas.addEventListener('lostpointercapture',endDrag);
 canvas.addEventListener('pointerleave',()=>{if(!drag&&hoveredCode){hoveredCode=null;canvas.classList.remove('overRegion');draw()}});
 canvas.addEventListener('keydown',event=>{
   const horizontalDistance=vb.w*.08,verticalDistance=vb.h*.08;
-  if(event.key==='ArrowLeft'){stopViewAnimation();stopZoomAnimation();vb.x-=horizontalDistance;event.preventDefault();apply()}
-  else if(event.key==='ArrowRight'){stopViewAnimation();stopZoomAnimation();vb.x+=horizontalDistance;event.preventDefault();apply()}
-  else if(event.key==='ArrowUp'){stopViewAnimation();stopZoomAnimation();vb.y-=verticalDistance;event.preventDefault();apply()}
-  else if(event.key==='ArrowDown'){stopViewAnimation();stopZoomAnimation();vb.y+=verticalDistance;event.preventDefault();apply()}
+  if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key))beginInteractiveRender();
+  if(event.key==='ArrowLeft'){stopViewAnimation();stopZoomAnimation();vb.x-=horizontalDistance;event.preventDefault();apply();finishInteractiveRender()}
+  else if(event.key==='ArrowRight'){stopViewAnimation();stopZoomAnimation();vb.x+=horizontalDistance;event.preventDefault();apply();finishInteractiveRender()}
+  else if(event.key==='ArrowUp'){stopViewAnimation();stopZoomAnimation();vb.y-=verticalDistance;event.preventDefault();apply();finishInteractiveRender()}
+  else if(event.key==='ArrowDown'){stopViewAnimation();stopZoomAnimation();vb.y+=verticalDistance;event.preventDefault();apply();finishInteractiveRender()}
   else if(event.key==='+'||event.key==='='){zoom(.8);event.preventDefault()}
   else if(event.key==='-'||event.key==='_'){zoom(1.25);event.preventDefault()}
-  else if(event.key==='Home'){stopViewAnimation();stopZoomAnimation();vb=fullMapView();apply();event.preventDefault()}
+  else if(event.key==='Home'){stopViewAnimation();stopZoomAnimation();vb=fullMapView();apply();finishInteractiveRender();event.preventDefault()}
 });
 document.getElementById('zoomIn').onclick=()=>zoom(.8);
 document.getElementById('zoomOut').onclick=()=>zoom(1.25);
-document.getElementById('fit').onclick=()=>{stopViewAnimation();stopZoomAnimation();vb=fullMapView();apply()};
+document.getElementById('fit').onclick=()=>{stopViewAnimation();stopZoomAnimation();vb=fullMapView();apply();finishInteractiveRender()};
 const mapPanel=document.getElementById('mapPanel'),panelToggle=document.getElementById('togglePanel'),regionInfoPanel=document.getElementById('regionInfoPanel');
 function setMapPanelOpen(open){
   if(open){regionInfoPanel.hidden=true;closeRegionSearchPopup()}
