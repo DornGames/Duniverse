@@ -1,6 +1,6 @@
 {
   "type": "FeatureCollection",
-  "name": "hydrology_rivers_without_canal",
+  "name": "hydrology_rivers_with_manually_verified_high_resolution_repairs",
   "coordinate_reference_note": "Image pixel coordinates; origin top-left; x right; y down. Not georeferenced.",
   "features": [
     {
@@ -347,14 +347,18 @@
         "segment_id": 4,
         "length_px": 27.0,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0017",
+          "GAP-0019"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1162.0,
-            376.0
+            1158.5,
+            376.5
           ],
           [
             1172.0,
@@ -365,8 +369,8 @@
             387.0
           ],
           [
-            1182.0,
-            391.0
+            1182.5,
+            393.5
           ]
         ]
       }
@@ -585,14 +589,17 @@
         "segment_id": 9,
         "length_px": 71.9,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0022"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1181.0,
-            969.0
+            1177.0,
+            967.5
           ],
           [
             1186.0,
@@ -619,14 +626,17 @@
         "segment_id": 10,
         "length_px": 40.7,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0021"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            414.0,
-            1123.0
+            410.5,
+            1121.5
           ],
           [
             417.0,
@@ -747,7 +757,10 @@
         "segment_id": 14,
         "length_px": 15.8,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0006"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -761,8 +774,8 @@
             1148.0
           ],
           [
-            1218.41,
-            1146.26
+            1217.51,
+            1146.29
           ]
         ]
       }
@@ -773,14 +786,17 @@
         "segment_id": 15,
         "length_px": 7.3,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0006"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1216.61,
-            1146.32
+            1217.51,
+            1146.29
           ],
           [
             1211.0,
@@ -795,7 +811,10 @@
         "segment_id": 16,
         "length_px": 57.6,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0009"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -817,8 +836,8 @@
             409.0
           ],
           [
-            979.0,
-            427.0
+            980.0,
+            427.5
           ]
         ]
       }
@@ -829,14 +848,17 @@
         "segment_id": 17,
         "length_px": 23.6,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0010"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1102.0,
-            405.0
+            1103.0,
+            404.5
           ],
           [
             1095.0,
@@ -1101,22 +1123,26 @@
         "segment_id": 25,
         "length_px": 22.3,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0011",
+          "GAP-0022"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1173.0,
-            966.0
+            1177.0,
+            967.5
           ],
           [
             1165.0,
             956.0
           ],
           [
-            1162.0,
-            947.0
+            1161.0,
+            946.0
           ]
         ]
       }
@@ -1161,14 +1187,17 @@
         "segment_id": 27,
         "length_px": 19.2,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0012"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            775.0,
-            236.0
+            774.0,
+            234.5
           ],
           [
             785.0,
@@ -1309,14 +1338,18 @@
         "segment_id": 31,
         "length_px": 28.2,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0001",
+          "GAP-0012"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            755.0,
-            212.0
+            754.5,
+            211.5
           ],
           [
             763.0,
@@ -1327,8 +1360,8 @@
             230.0
           ],
           [
-            773.0,
-            233.0
+            774.0,
+            234.5
           ]
         ]
       }
@@ -1533,7 +1566,10 @@
         "segment_id": 39,
         "length_px": 25.2,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0002"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -1543,8 +1579,8 @@
             1325.0
           ],
           [
-            309.0,
-            1339.0
+            308.5,
+            1339.5
           ]
         ]
       }
@@ -1651,14 +1687,17 @@
         "segment_id": 42,
         "length_px": 20.5,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0014"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
             932.0,
-            1367.0
+            1364.5
           ],
           [
             936.0,
@@ -2055,14 +2094,17 @@
         "segment_id": 48,
         "length_px": 24.8,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0011"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1160.0,
-            945.0
+            1161.0,
+            946.0
           ],
           [
             1155.0,
@@ -2213,7 +2255,10 @@
         "segment_id": 51,
         "length_px": 227.5,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0020"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -2263,8 +2308,8 @@
             1312.0
           ],
           [
-            1210.0,
-            1321.0
+            1211.0,
+            1324.5
           ]
         ]
       }
@@ -2677,14 +2722,17 @@
         "segment_id": 63,
         "length_px": 54.1,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0015"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            900.0,
-            947.0
+            901.5,
+            949.0
           ],
           [
             900.0,
@@ -2723,7 +2771,10 @@
         "segment_id": 64,
         "length_px": 67.0,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0009"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -2745,8 +2796,8 @@
             425.0
           ],
           [
-            981.0,
-            428.0
+            980.0,
+            427.5
           ]
         ]
       }
@@ -2835,7 +2886,10 @@
         "segment_id": 66,
         "length_px": 45.2,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0014"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -2854,7 +2908,7 @@
           ],
           [
             932.0,
-            1362.0
+            1364.5
           ]
         ]
       }
@@ -2953,7 +3007,10 @@
         "segment_id": 69,
         "length_px": 21.5,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0018"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -2963,8 +3020,8 @@
             934.0
           ],
           [
-            1119.0,
-            915.0
+            1120.5,
+            912.0
           ]
         ]
       }
@@ -3073,14 +3130,17 @@
         "segment_id": 73,
         "length_px": 46.9,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0007"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
             1054.0,
-            232.0
+            231.0
           ],
           [
             1055.0,
@@ -3103,18 +3163,22 @@
         "segment_id": 74,
         "length_px": 22.4,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0008",
+          "GAP-0023"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1319.0,
-            1391.0
+            1318.5,
+            1386.0
           ],
           [
             1315.0,
-            1413.0
+            1414.0
           ]
         ]
       }
@@ -3125,14 +3189,18 @@
         "segment_id": 75,
         "length_px": 148.0,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0020",
+          "GAP-0023"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1212.0,
-            1328.0
+            1211.0,
+            1324.5
           ],
           [
             1228.0,
@@ -3171,8 +3239,8 @@
             1376.0
           ],
           [
-            1318.0,
-            1381.0
+            1318.5,
+            1386.0
           ]
         ]
       }
@@ -3183,14 +3251,17 @@
         "segment_id": 76,
         "length_px": 31.4,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0013"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            286.0,
-            1115.0
+            284.5,
+            1113.5
           ],
           [
             291.0,
@@ -3205,7 +3276,10 @@
         "segment_id": 77,
         "length_px": 22.8,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0019"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -3215,8 +3289,8 @@
             395.0
           ],
           [
-            1155.0,
-            377.0
+            1158.5,
+            376.5
           ]
         ]
       }
@@ -3329,14 +3403,17 @@
         "segment_id": 81,
         "length_px": 26.5,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0016"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1448.0,
-            1252.0
+            1446.0,
+            1253.5
           ],
           [
             1448.0,
@@ -3381,14 +3458,17 @@
         "segment_id": 83,
         "length_px": 26.0,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0018"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1122.0,
-            909.0
+            1120.5,
+            912.0
           ],
           [
             1127.0,
@@ -3407,7 +3487,10 @@
         "segment_id": 84,
         "length_px": 43.5,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0010"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -3429,8 +3512,8 @@
             402.0
           ],
           [
-            1104.0,
-            404.0
+            1103.0,
+            404.5
           ]
         ]
       }
@@ -3647,14 +3730,17 @@
         "segment_id": 92,
         "length_px": 198.8,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0003"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            386.0,
-            782.0
+            385.5,
+            782.5
           ],
           [
             397.0,
@@ -3705,14 +3791,17 @@
         "segment_id": 93,
         "length_px": 22.4,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0004"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            996.0,
-            934.0
+            995.5,
+            934.5
           ],
           [
             1006.0,
@@ -3863,14 +3952,17 @@
         "segment_id": 98,
         "length_px": 21.0,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0016"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1444.0,
-            1255.0
+            1446.0,
+            1253.5
           ],
           [
             1428.0,
@@ -4271,7 +4363,10 @@
         "segment_id": 108,
         "length_px": 91.4,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0007"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -4306,7 +4401,7 @@
           ],
           [
             1054.0,
-            230.0
+            231.0
           ]
         ]
       }
@@ -4419,14 +4514,17 @@
         "segment_id": 112,
         "length_px": 60.8,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0025"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            963.0,
-            262.0
+            967.5,
+            265.5
           ],
           [
             958.0,
@@ -4487,14 +4585,17 @@
         "segment_id": 114,
         "length_px": 352.1,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0015"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            903.0,
-            951.0
+            901.5,
+            949.0
           ],
           [
             911.0,
@@ -4839,14 +4940,17 @@
         "segment_id": 122,
         "length_px": 65.0,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0025"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            972.0,
-            269.0
+            967.5,
+            265.5
           ],
           [
             991.0,
@@ -5507,7 +5611,10 @@
         "segment_id": 136,
         "length_px": 42.1,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0021"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -5525,8 +5632,8 @@
             1121.0
           ],
           [
-            407.0,
-            1120.0
+            410.5,
+            1121.5
           ]
         ]
       }
@@ -5563,14 +5670,17 @@
         "segment_id": 138,
         "length_px": 141.2,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0004"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            995.0,
-            935.0
+            995.5,
+            934.5
           ],
           [
             989.0,
@@ -6003,7 +6113,10 @@
         "segment_id": 148,
         "length_px": 18.9,
         "source": "blue_hydrology_mask_skeleton",
-        "review_status": "candidate_line_segment"
+        "review_status": "candidate_line_segment",
+        "audit_gap_issue_ids": [
+          "GAP-0017"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -6013,8 +6126,6488 @@
             412.0
           ],
           [
-            1183.0,
-            396.0
+            1182.5,
+            393.5
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 149,
+        "length_px": 6.557,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0013",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-27",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            795.375,
+            261.125
+          ],
+          [
+            793.875,
+            260.375
+          ],
+          [
+            791.875,
+            257.375
+          ],
+          [
+            791.625,
+            256.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 150,
+        "length_px": 8.701,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0014",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-27",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            795.375,
+            261.125
+          ],
+          [
+            795.625,
+            262.375
+          ],
+          [
+            796.875,
+            263.875
+          ],
+          [
+            798.625,
+            267.375
+          ],
+          [
+            799.375,
+            268.125
+          ],
+          [
+            799.875,
+            268.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 151,
+        "length_px": 6.868,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0015",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-132",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            811.625,
+            289.625
+          ],
+          [
+            809.625,
+            284.375
+          ],
+          [
+            809.625,
+            283.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 152,
+        "length_px": 4.175,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0016",
+        "audit_tile_id": "R01C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-27",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            791.625,
+            256.125
+          ],
+          [
+            790.375,
+            255.125
+          ],
+          [
+            789.125,
+            252.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 153,
+        "length_px": 3.26,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0017",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-132",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            806.625,
+            273.875
+          ],
+          [
+            803.875,
+            275.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 154,
+        "length_px": 8.812,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0018",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-28",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            799.875,
+            268.125
+          ],
+          [
+            800.125,
+            269.875
+          ],
+          [
+            802.875,
+            275.125
+          ],
+          [
+            803.875,
+            275.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 155,
+        "length_px": 9.748,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0019",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-132",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            809.625,
+            283.125
+          ],
+          [
+            808.875,
+            282.875
+          ],
+          [
+            807.125,
+            280.125
+          ],
+          [
+            804.125,
+            276.875
+          ],
+          [
+            803.875,
+            275.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 156,
+        "length_px": 13.179,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0020",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-27",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            782.875,
+            267.125
+          ],
+          [
+            785.375,
+            259.625
+          ],
+          [
+            785.875,
+            254.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 157,
+        "length_px": 3.559,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0023",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-18",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            874.375,
+            303.125
+          ],
+          [
+            873.875,
+            303.375
+          ],
+          [
+            873.875,
+            303.875
+          ],
+          [
+            872.375,
+            305.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 158,
+        "length_px": 10.302,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0025",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-18",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            863.375,
+            304.125
+          ],
+          [
+            860.375,
+            304.125
+          ],
+          [
+            857.625,
+            304.625
+          ],
+          [
+            853.125,
+            304.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 159,
+        "length_px": 9.195,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0026",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-18",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            863.375,
+            304.125
+          ],
+          [
+            866.375,
+            304.375
+          ],
+          [
+            872.375,
+            305.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 160,
+        "length_px": 7.275,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0027",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-18",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            878.625,
+            309.375
+          ],
+          [
+            872.875,
+            306.625
+          ],
+          [
+            872.375,
+            305.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 161,
+        "length_px": 10.6,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0030",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-132",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            832.875,
+            304.125
+          ],
+          [
+            836.375,
+            304.125
+          ],
+          [
+            839.125,
+            303.375
+          ],
+          [
+            843.375,
+            303.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 162,
+        "length_px": 9.821,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0031",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-132",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            853.125,
+            304.375
+          ],
+          [
+            850.375,
+            304.375
+          ],
+          [
+            843.375,
+            303.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 163,
+        "length_px": 8.556,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0032",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-1",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            920.125,
+            324.625
+          ],
+          [
+            914.625,
+            323.375
+          ],
+          [
+            912.125,
+            321.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 164,
+        "length_px": 6.11,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0033",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-18",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            906.125,
+            320.875
+          ],
+          [
+            908.875,
+            321.625
+          ],
+          [
+            912.125,
+            321.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 165,
+        "length_px": 6.218,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0035",
+        "audit_tile_id": "R02C05",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-119",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1047.375,
+            327.375
+          ],
+          [
+            1045.125,
+            326.875
+          ],
+          [
+            1042.125,
+            325.375
+          ],
+          [
+            1041.875,
+            324.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 166,
+        "length_px": 8.333,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0037",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-124",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            976.125,
+            334.125
+          ],
+          [
+            982.375,
+            332.625
+          ],
+          [
+            983.625,
+            332.125
+          ],
+          [
+            983.875,
+            331.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 167,
+        "length_px": 9.612,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0038",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-124",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            976.125,
+            334.125
+          ],
+          [
+            975.625,
+            334.625
+          ],
+          [
+            973.125,
+            335.375
+          ],
+          [
+            966.875,
+            336.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 168,
+        "length_px": 12.544,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0040",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-124",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            966.875,
+            336.125
+          ],
+          [
+            963.375,
+            336.125
+          ],
+          [
+            960.125,
+            335.625
+          ],
+          [
+            954.375,
+            335.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 169,
+        "length_px": 4.295,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0045",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-124",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            945.125,
+            333.875
+          ],
+          [
+            943.625,
+            333.875
+          ],
+          [
+            941.125,
+            332.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 170,
+        "length_px": 9.781,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0046",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-124",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            945.125,
+            333.875
+          ],
+          [
+            945.625,
+            334.625
+          ],
+          [
+            948.125,
+            335.375
+          ],
+          [
+            954.375,
+            335.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 171,
+        "length_px": 7.749,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0048",
+        "audit_tile_id": "R02C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-119",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1034.375,
+            324.125
+          ],
+          [
+            1031.125,
+            324.625
+          ],
+          [
+            1028.625,
+            325.625
+          ],
+          [
+            1026.875,
+            325.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 172,
+        "length_px": 7.585,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0049",
+        "audit_tile_id": "R02C05",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-119",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1034.375,
+            324.125
+          ],
+          [
+            1038.625,
+            324.125
+          ],
+          [
+            1041.875,
+            324.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 173,
+        "length_px": 9.055,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0052",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-119",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1010.125,
+            331.125
+          ],
+          [
+            1001.125,
+            332.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 174,
+        "length_px": 9.879,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0053",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-16",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1001.125,
+            332.125
+          ],
+          [
+            997.875,
+            332.375
+          ],
+          [
+            991.375,
+            331.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 175,
+        "length_px": 7.675,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0054",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-124",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            983.875,
+            331.625
+          ],
+          [
+            985.625,
+            331.375
+          ],
+          [
+            986.375,
+            330.875
+          ],
+          [
+            991.375,
+            331.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 176,
+        "length_px": 12.044,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0069",
+        "audit_tile_id": "R02C04",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-143",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1013.125,
+            494.375
+          ],
+          [
+            1011.625,
+            489.375
+          ],
+          [
+            1012.625,
+            482.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 177,
+        "length_px": 6.349,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0070",
+        "audit_tile_id": "R03C05",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-3",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1070.375,
+            531.125
+          ],
+          [
+            1068.625,
+            530.875
+          ],
+          [
+            1065.875,
+            529.625
+          ],
+          [
+            1065.125,
+            528.875
+          ],
+          [
+            1065.125,
+            528.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 178,
+        "length_px": 2.965,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0071",
+        "audit_tile_id": "R03C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-140",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1058.375,
+            517.625
+          ],
+          [
+            1057.625,
+            518.375
+          ],
+          [
+            1055.875,
+            519.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 179,
+        "length_px": 3.052,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0072",
+        "audit_tile_id": "R03C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-2",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1066.875,
+            525.875
+          ],
+          [
+            1065.125,
+            528.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 180,
+        "length_px": 3.059,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0073",
+        "audit_tile_id": "R03C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-140",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1061.375,
+            521.375
+          ],
+          [
+            1060.375,
+            522.625
+          ],
+          [
+            1059.125,
+            523.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 181,
+        "length_px": 5.851,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0074",
+        "audit_tile_id": "R03C05",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-140",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1055.875,
+            519.125
+          ],
+          [
+            1055.875,
+            520.375
+          ],
+          [
+            1056.875,
+            521.875
+          ],
+          [
+            1058.125,
+            523.125
+          ],
+          [
+            1059.125,
+            523.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 182,
+        "length_px": 8.356,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0075",
+        "audit_tile_id": "R03C05",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-3",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1065.125,
+            528.375
+          ],
+          [
+            1063.875,
+            528.125
+          ],
+          [
+            1062.375,
+            526.125
+          ],
+          [
+            1060.375,
+            525.375
+          ],
+          [
+            1059.375,
+            524.375
+          ],
+          [
+            1059.125,
+            523.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 183,
+        "length_px": 35.997,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0111",
+        "audit_tile_id": "R04C04",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-93",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1001.875,
+            876.875
+          ],
+          [
+            999.125,
+            882.375
+          ],
+          [
+            998.875,
+            886.375
+          ],
+          [
+            1000.125,
+            890.375
+          ],
+          [
+            1000.125,
+            895.625
+          ],
+          [
+            1002.875,
+            902.125
+          ],
+          [
+            1005.625,
+            906.375
+          ],
+          [
+            1006.125,
+            910.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 184,
+        "length_px": 11.167,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0115",
+        "audit_tile_id": "R04C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-63",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            958.625,
+            915.625
+          ],
+          [
+            958.125,
+            916.375
+          ],
+          [
+            955.125,
+            917.875
+          ],
+          [
+            950.375,
+            919.125
+          ],
+          [
+            948.375,
+            919.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 185,
+        "length_px": 13.629,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0117",
+        "audit_tile_id": "R04C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-138",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            968.375,
+            922.125
+          ],
+          [
+            968.625,
+            923.625
+          ],
+          [
+            972.125,
+            926.625
+          ],
+          [
+            977.125,
+            928.875
+          ],
+          [
+            979.125,
+            929.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 186,
+        "length_px": 12.49,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0120",
+        "audit_tile_id": "R04C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-63",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            924.625,
+            912.875
+          ],
+          [
+            924.875,
+            914.375
+          ],
+          [
+            925.875,
+            915.125
+          ],
+          [
+            929.875,
+            916.125
+          ],
+          [
+            934.125,
+            917.875
+          ],
+          [
+            935.125,
+            917.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 187,
+        "length_px": 11.37,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0122",
+        "audit_tile_id": "R04C04",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-138",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            979.125,
+            929.125
+          ],
+          [
+            979.625,
+            929.875
+          ],
+          [
+            985.875,
+            932.875
+          ],
+          [
+            989.375,
+            933.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 188,
+        "length_px": 11.527,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0127",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-69",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1057.875,
+            921.375
+          ],
+          [
+            1065.125,
+            921.125
+          ],
+          [
+            1068.375,
+            919.875
+          ],
+          [
+            1068.625,
+            919.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 189,
+        "length_px": 24.655,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0128",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-93",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1057.875,
+            921.375
+          ],
+          [
+            1056.625,
+            922.125
+          ],
+          [
+            1046.125,
+            921.875
+          ],
+          [
+            1041.125,
+            920.875
+          ],
+          [
+            1037.125,
+            919.375
+          ],
+          [
+            1035.625,
+            919.625
+          ],
+          [
+            1034.125,
+            920.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 190,
+        "length_px": 10.776,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0130",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-69",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1104.625,
+            920.875
+          ],
+          [
+            1103.875,
+            918.375
+          ],
+          [
+            1102.625,
+            917.125
+          ],
+          [
+            1100.375,
+            915.875
+          ],
+          [
+            1096.625,
+            915.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 191,
+        "length_px": 12.204,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0132",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-69",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1104.625,
+            920.875
+          ],
+          [
+            1103.875,
+            925.625
+          ],
+          [
+            1103.875,
+            928.375
+          ],
+          [
+            1104.875,
+            930.875
+          ],
+          [
+            1106.125,
+            932.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 192,
+        "length_px": 6.445,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0133",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-93",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1030.875,
+            915.125
+          ],
+          [
+            1033.125,
+            919.625
+          ],
+          [
+            1034.125,
+            920.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 193,
+        "length_px": 13.425,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0134",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-93",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1034.125,
+            920.625
+          ],
+          [
+            1030.375,
+            927.125
+          ],
+          [
+            1027.625,
+            929.375
+          ],
+          [
+            1026.625,
+            929.875
+          ],
+          [
+            1025.375,
+            929.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 194,
+        "length_px": 11.367,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0137",
+        "audit_tile_id": "R04C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-93",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1014.875,
+            933.375
+          ],
+          [
+            1016.125,
+            933.375
+          ],
+          [
+            1019.375,
+            932.125
+          ],
+          [
+            1022.375,
+            931.625
+          ],
+          [
+            1024.875,
+            930.625
+          ],
+          [
+            1025.375,
+            929.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 195,
+        "length_px": 16.069,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0138",
+        "audit_tile_id": "R04C04",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-93",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1014.875,
+            933.375
+          ],
+          [
+            1014.625,
+            933.875
+          ],
+          [
+            1012.375,
+            934.625
+          ],
+          [
+            1005.875,
+            935.875
+          ],
+          [
+            999.375,
+            935.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 196,
+        "length_px": 28.618,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0139",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-69",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1068.625,
+            919.125
+          ],
+          [
+            1073.875,
+            917.125
+          ],
+          [
+            1081.625,
+            917.125
+          ],
+          [
+            1086.375,
+            916.375
+          ],
+          [
+            1090.375,
+            915.125
+          ],
+          [
+            1096.625,
+            915.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 197,
+        "length_px": 18.609,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0141",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-26",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1135.375,
+            989.125
+          ],
+          [
+            1135.375,
+            986.625
+          ],
+          [
+            1136.875,
+            981.875
+          ],
+          [
+            1136.875,
+            979.625
+          ],
+          [
+            1135.625,
+            975.625
+          ],
+          [
+            1135.875,
+            972.625
+          ],
+          [
+            1136.625,
+            971.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 198,
+        "length_px": 9.664,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0143",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-9",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1176.125,
+            984.625
+          ],
+          [
+            1178.125,
+            979.625
+          ],
+          [
+            1178.625,
+            975.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 199,
+        "length_px": 10.908,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0144",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-9",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1176.125,
+            984.625
+          ],
+          [
+            1175.125,
+            987.375
+          ],
+          [
+            1171.625,
+            993.125
+          ],
+          [
+            1170.625,
+            993.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 200,
+        "length_px": 14.696,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0147",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-53",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1158.375,
+            1010.375
+          ],
+          [
+            1166.625,
+            1007.625
+          ],
+          [
+            1168.125,
+            1005.625
+          ],
+          [
+            1168.125,
+            1002.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 201,
+        "length_px": 11.244,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0148",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-53",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1158.375,
+            1010.375
+          ],
+          [
+            1157.125,
+            1011.375
+          ],
+          [
+            1154.375,
+            1011.625
+          ],
+          [
+            1150.875,
+            1009.625
+          ],
+          [
+            1148.125,
+            1008.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 202,
+        "length_px": 8.75,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0149",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-26",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1170.625,
+            993.875
+          ],
+          [
+            1170.625,
+            995.125
+          ],
+          [
+            1168.125,
+            1001.125
+          ],
+          [
+            1168.125,
+            1002.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 203,
+        "length_px": 11.051,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0155",
+        "audit_tile_id": "R05C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "canal-1-centerline",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1275.875,
+            1109.125
+          ],
+          [
+            1276.875,
+            1099.375
+          ],
+          [
+            1277.625,
+            1098.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 204,
+        "length_px": 5.455,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0156",
+        "audit_tile_id": "R05C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "canal-1-centerline",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1275.875,
+            1109.125
+          ],
+          [
+            1275.375,
+            1109.375
+          ],
+          [
+            1274.125,
+            1112.625
+          ],
+          [
+            1273.125,
+            1113.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 205,
+        "length_px": 12.297,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0160",
+        "audit_tile_id": "R05C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-9",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1258.125,
+            1059.125
+          ],
+          [
+            1256.625,
+            1058.625
+          ],
+          [
+            1252.625,
+            1055.625
+          ],
+          [
+            1249.125,
+            1053.875
+          ],
+          [
+            1248.125,
+            1052.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 206,
+        "length_px": 14.152,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0161",
+        "audit_tile_id": "R05C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-9",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1258.125,
+            1059.125
+          ],
+          [
+            1258.125,
+            1060.125
+          ],
+          [
+            1259.375,
+            1062.125
+          ],
+          [
+            1262.375,
+            1065.125
+          ],
+          [
+            1266.125,
+            1066.625
+          ],
+          [
+            1268.625,
+            1066.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 207,
+        "length_px": 3.962,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0163",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-9",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1242.125,
+            1003.375
+          ],
+          [
+            1242.125,
+            1001.875
+          ],
+          [
+            1243.125,
+            999.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 208,
+        "length_px": 15.349,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0165",
+        "audit_tile_id": "R04C05",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-9",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1242.125,
+            1003.375
+          ],
+          [
+            1242.125,
+            1009.625
+          ],
+          [
+            1241.125,
+            1014.625
+          ],
+          [
+            1241.125,
+            1018.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 209,
+        "length_px": 14.209,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0168",
+        "audit_tile_id": "R05C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-9",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1241.125,
+            1018.625
+          ],
+          [
+            1240.875,
+            1023.875
+          ],
+          [
+            1239.375,
+            1029.625
+          ],
+          [
+            1239.125,
+            1032.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 210,
+        "length_px": 10.139,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0169",
+        "audit_tile_id": "R05C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "canal-1-centerline",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1283.625,
+            1084.375
+          ],
+          [
+            1283.875,
+            1082.375
+          ],
+          [
+            1283.125,
+            1078.125
+          ],
+          [
+            1281.625,
+            1074.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 211,
+        "length_px": 15.393,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0171",
+        "audit_tile_id": "R05C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "canal-1-centerline",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1283.625,
+            1084.375
+          ],
+          [
+            1282.625,
+            1087.375
+          ],
+          [
+            1278.875,
+            1093.625
+          ],
+          [
+            1277.875,
+            1096.375
+          ],
+          [
+            1277.625,
+            1098.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 212,
+        "length_px": 4.07,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0172",
+        "audit_tile_id": "R05C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-9",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1268.625,
+            1066.875
+          ],
+          [
+            1271.375,
+            1063.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 213,
+        "length_px": 15.528,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0173",
+        "audit_tile_id": "R05C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "canal-1-centerline",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1268.625,
+            1066.875
+          ],
+          [
+            1269.125,
+            1067.875
+          ],
+          [
+            1277.375,
+            1072.125
+          ],
+          [
+            1279.375,
+            1073.375
+          ],
+          [
+            1280.125,
+            1074.375
+          ],
+          [
+            1281.625,
+            1074.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 214,
+        "length_px": 12.484,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0174",
+        "audit_tile_id": "R05C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-9",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1239.125,
+            1032.625
+          ],
+          [
+            1238.875,
+            1039.125
+          ],
+          [
+            1239.875,
+            1042.375
+          ],
+          [
+            1240.625,
+            1043.875
+          ],
+          [
+            1241.375,
+            1044.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 215,
+        "length_px": 11.115,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0176",
+        "audit_tile_id": "R05C05",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-9",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1241.375,
+            1044.375
+          ],
+          [
+            1242.125,
+            1046.625
+          ],
+          [
+            1244.875,
+            1050.625
+          ],
+          [
+            1246.375,
+            1052.125
+          ],
+          [
+            1248.125,
+            1052.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 216,
+        "length_px": 7.334,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0183",
+        "audit_tile_id": "R05C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "canal-1-centerline",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1419.375,
+            1113.125
+          ],
+          [
+            1419.125,
+            1113.875
+          ],
+          [
+            1415.375,
+            1117.125
+          ],
+          [
+            1413.875,
+            1117.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 217,
+        "length_px": 9.882,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0184",
+        "audit_tile_id": "R05C06",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "canal-1-centerline",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1413.875,
+            1117.625
+          ],
+          [
+            1413.125,
+            1119.125
+          ],
+          [
+            1409.875,
+            1121.125
+          ],
+          [
+            1407.125,
+            1123.875
+          ],
+          [
+            1406.625,
+            1123.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 218,
+        "length_px": 7.825,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0185",
+        "audit_tile_id": "R05C06",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "canal-1-centerline",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1403.375,
+            1130.125
+          ],
+          [
+            1405.125,
+            1129.375
+          ],
+          [
+            1405.875,
+            1128.625
+          ],
+          [
+            1406.625,
+            1126.125
+          ],
+          [
+            1406.625,
+            1123.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 219,
+        "length_px": 10.884,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0203",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            679.125,
+            1340.875
+          ],
+          [
+            676.875,
+            1340.875
+          ],
+          [
+            671.125,
+            1342.125
+          ],
+          [
+            668.375,
+            1342.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 220,
+        "length_px": 10.426,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0204",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            679.125,
+            1340.875
+          ],
+          [
+            679.375,
+            1341.375
+          ],
+          [
+            681.625,
+            1342.375
+          ],
+          [
+            684.125,
+            1342.875
+          ],
+          [
+            687.125,
+            1344.875
+          ],
+          [
+            688.375,
+            1344.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 221,
+        "length_px": 9.617,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0206",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            619.875,
+            1355.875
+          ],
+          [
+            622.375,
+            1354.125
+          ],
+          [
+            626.625,
+            1353.375
+          ],
+          [
+            628.875,
+            1353.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 222,
+        "length_px": 10.367,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0207",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            619.875,
+            1355.875
+          ],
+          [
+            619.625,
+            1356.875
+          ],
+          [
+            618.625,
+            1357.625
+          ],
+          [
+            612.875,
+            1358.625
+          ],
+          [
+            610.625,
+            1358.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 223,
+        "length_px": 3.953,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0208",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            502.625,
+            1360.125
+          ],
+          [
+            501.375,
+            1363.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 224,
+        "length_px": 12.01,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0210",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            577.125,
+            1361.625
+          ],
+          [
+            574.875,
+            1361.125
+          ],
+          [
+            571.625,
+            1359.375
+          ],
+          [
+            567.875,
+            1358.125
+          ],
+          [
+            566.875,
+            1358.125
+          ],
+          [
+            566.125,
+            1357.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 225,
+        "length_px": 11.515,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0211",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            577.125,
+            1361.625
+          ],
+          [
+            578.875,
+            1363.125
+          ],
+          [
+            584.875,
+            1366.625
+          ],
+          [
+            587.125,
+            1366.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 226,
+        "length_px": 12.586,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0212",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            757.375,
+            1341.875
+          ],
+          [
+            756.625,
+            1341.625
+          ],
+          [
+            755.125,
+            1339.125
+          ],
+          [
+            754.875,
+            1337.875
+          ],
+          [
+            755.875,
+            1334.875
+          ],
+          [
+            755.875,
+            1333.125
+          ],
+          [
+            754.875,
+            1330.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 227,
+        "length_px": 5.132,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0214",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            757.375,
+            1341.875
+          ],
+          [
+            757.625,
+            1344.125
+          ],
+          [
+            758.125,
+            1345.125
+          ],
+          [
+            758.125,
+            1346.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 228,
+        "length_px": 6.558,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0216",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-44",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            489.875,
+            1291.625
+          ],
+          [
+            489.875,
+            1292.625
+          ],
+          [
+            490.875,
+            1294.875
+          ],
+          [
+            492.375,
+            1296.625
+          ],
+          [
+            493.125,
+            1296.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 229,
+        "length_px": 8.31,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0218",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            720.625,
+            1348.375
+          ],
+          [
+            714.625,
+            1348.125
+          ],
+          [
+            712.375,
+            1348.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 230,
+        "length_px": 9.156,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0219",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            720.625,
+            1348.375
+          ],
+          [
+            723.875,
+            1348.375
+          ],
+          [
+            727.625,
+            1350.125
+          ],
+          [
+            729.375,
+            1350.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 231,
+        "length_px": 12.523,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0221",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-44",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            493.125,
+            1296.875
+          ],
+          [
+            493.125,
+            1297.625
+          ],
+          [
+            496.125,
+            1300.375
+          ],
+          [
+            496.625,
+            1301.875
+          ],
+          [
+            496.625,
+            1302.875
+          ],
+          [
+            495.125,
+            1305.875
+          ],
+          [
+            494.875,
+            1307.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 232,
+        "length_px": 12.062,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0223",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            549.875,
+            1356.875
+          ],
+          [
+            546.875,
+            1356.875
+          ],
+          [
+            543.875,
+            1355.625
+          ],
+          [
+            539.375,
+            1354.875
+          ],
+          [
+            538.375,
+            1354.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 233,
+        "length_px": 16.32,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0224",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            549.875,
+            1356.875
+          ],
+          [
+            562.125,
+            1356.875
+          ],
+          [
+            563.875,
+            1357.375
+          ],
+          [
+            566.125,
+            1357.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 234,
+        "length_px": 5.6,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0225",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            758.125,
+            1346.875
+          ],
+          [
+            755.875,
+            1347.125
+          ],
+          [
+            754.125,
+            1348.625
+          ],
+          [
+            753.125,
+            1348.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 235,
+        "length_px": 9.337,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0226",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            758.125,
+            1346.875
+          ],
+          [
+            758.875,
+            1349.375
+          ],
+          [
+            757.625,
+            1352.875
+          ],
+          [
+            757.375,
+            1355.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 236,
+        "length_px": 10.466,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0227",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-59",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            738.375,
+            1299.875
+          ],
+          [
+            737.375,
+            1299.375
+          ],
+          [
+            735.625,
+            1296.125
+          ],
+          [
+            731.625,
+            1292.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 237,
+        "length_px": 4.25,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0228",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-59",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            738.375,
+            1299.875
+          ],
+          [
+            742.125,
+            1297.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 238,
+        "length_px": 12.098,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0229",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-59",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            738.375,
+            1299.875
+          ],
+          [
+            738.625,
+            1301.125
+          ],
+          [
+            741.875,
+            1304.625
+          ],
+          [
+            744.125,
+            1309.375
+          ],
+          [
+            744.875,
+            1309.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 239,
+        "length_px": 3.816,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0230",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-59",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            748.125,
+            1320.375
+          ],
+          [
+            751.375,
+            1318.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 240,
+        "length_px": 11.629,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0231",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-59",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            748.125,
+            1320.375
+          ],
+          [
+            747.375,
+            1320.125
+          ],
+          [
+            746.875,
+            1318.875
+          ],
+          [
+            745.875,
+            1312.625
+          ],
+          [
+            744.875,
+            1309.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 241,
+        "length_px": 12.689,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0232",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-59",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            748.125,
+            1320.375
+          ],
+          [
+            748.125,
+            1321.375
+          ],
+          [
+            750.875,
+            1325.875
+          ],
+          [
+            753.625,
+            1329.875
+          ],
+          [
+            754.375,
+            1330.625
+          ],
+          [
+            754.875,
+            1330.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 242,
+        "length_px": 4.831,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0233",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            688.375,
+            1344.875
+          ],
+          [
+            689.875,
+            1340.875
+          ],
+          [
+            690.375,
+            1340.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 243,
+        "length_px": 12.675,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0234",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            688.375,
+            1344.875
+          ],
+          [
+            688.875,
+            1345.625
+          ],
+          [
+            693.125,
+            1346.375
+          ],
+          [
+            697.125,
+            1348.125
+          ],
+          [
+            700.125,
+            1348.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 244,
+        "length_px": 4.366,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0235",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-44",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            493.625,
+            1341.875
+          ],
+          [
+            489.375,
+            1342.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 245,
+        "length_px": 13.386,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0236",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            712.375,
+            1348.625
+          ],
+          [
+            711.625,
+            1349.375
+          ],
+          [
+            710.125,
+            1349.875
+          ],
+          [
+            704.125,
+            1350.625
+          ],
+          [
+            700.625,
+            1349.875
+          ],
+          [
+            700.125,
+            1348.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 246,
+        "length_px": 3.052,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0237",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-59",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            757.375,
+            1328.875
+          ],
+          [
+            754.875,
+            1330.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 247,
+        "length_px": 11.084,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0238",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-44",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            493.875,
+            1318.375
+          ],
+          [
+            493.375,
+            1312.875
+          ],
+          [
+            494.375,
+            1308.125
+          ],
+          [
+            494.875,
+            1307.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 248,
+        "length_px": 4.5,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0239",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-44",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            493.875,
+            1318.375
+          ],
+          [
+            498.375,
+            1318.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 249,
+        "length_px": 12.286,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0240",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-44",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            493.875,
+            1318.375
+          ],
+          [
+            493.625,
+            1321.625
+          ],
+          [
+            493.125,
+            1323.125
+          ],
+          [
+            493.125,
+            1327.125
+          ],
+          [
+            492.375,
+            1328.625
+          ],
+          [
+            492.125,
+            1330.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 250,
+        "length_px": 3.886,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0241",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            746.625,
+            1354.625
+          ],
+          [
+            746.625,
+            1352.875
+          ],
+          [
+            745.875,
+            1350.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 251,
+        "length_px": 9.5,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0242",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            746.625,
+            1354.625
+          ],
+          [
+            738.375,
+            1354.625
+          ],
+          [
+            737.375,
+            1353.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 252,
+        "length_px": 9.776,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0243",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            746.625,
+            1354.625
+          ],
+          [
+            749.375,
+            1354.625
+          ],
+          [
+            752.875,
+            1350.375
+          ],
+          [
+            753.125,
+            1348.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 253,
+        "length_px": 4.924,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0244",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            702.125,
+            1344.375
+          ],
+          [
+            700.125,
+            1348.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 254,
+        "length_px": 4.123,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0245",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            598.375,
+            1358.625
+          ],
+          [
+            599.375,
+            1362.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 255,
+        "length_px": 4.636,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0246",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            587.125,
+            1366.375
+          ],
+          [
+            587.125,
+            1363.875
+          ],
+          [
+            587.875,
+            1361.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 256,
+        "length_px": 13.028,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0247",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            587.125,
+            1366.375
+          ],
+          [
+            590.625,
+            1365.875
+          ],
+          [
+            599.125,
+            1363.125
+          ],
+          [
+            599.375,
+            1362.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 257,
+        "length_px": 4.279,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0248",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-44",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            499.125,
+            1308.125
+          ],
+          [
+            494.875,
+            1307.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 258,
+        "length_px": 10.481,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0249",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            754.625,
+            1365.875
+          ],
+          [
+            754.625,
+            1364.625
+          ],
+          [
+            756.875,
+            1359.125
+          ],
+          [
+            757.375,
+            1355.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 259,
+        "length_px": 6.904,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0250",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            754.625,
+            1365.875
+          ],
+          [
+            753.875,
+            1366.125
+          ],
+          [
+            752.625,
+            1368.875
+          ],
+          [
+            751.875,
+            1371.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 260,
+        "length_px": 5.62,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0251",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            754.625,
+            1365.875
+          ],
+          [
+            757.625,
+            1366.125
+          ],
+          [
+            760.125,
+            1365.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 261,
+        "length_px": 4.776,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0252",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            628.375,
+            1348.625
+          ],
+          [
+            628.875,
+            1353.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 262,
+        "length_px": 3.4,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0253",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-44",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            495.375,
+            1331.375
+          ],
+          [
+            492.125,
+            1330.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 263,
+        "length_px": 4.5,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0254",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            761.875,
+            1355.875
+          ],
+          [
+            757.375,
+            1355.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 264,
+        "length_px": 3.288,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0255",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            538.875,
+            1350.875
+          ],
+          [
+            538.375,
+            1354.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 265,
+        "length_px": 4.378,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0256",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            640.875,
+            1346.625
+          ],
+          [
+            640.375,
+            1347.625
+          ],
+          [
+            640.625,
+            1350.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 266,
+        "length_px": 4.67,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0257",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            609.375,
+            1354.125
+          ],
+          [
+            610.625,
+            1358.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 267,
+        "length_px": 4.57,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0258",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            527.375,
+            1355.125
+          ],
+          [
+            526.625,
+            1354.375
+          ],
+          [
+            526.375,
+            1350.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 268,
+        "length_px": 11.344,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0259",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            527.375,
+            1355.125
+          ],
+          [
+            529.125,
+            1354.125
+          ],
+          [
+            531.125,
+            1353.625
+          ],
+          [
+            538.375,
+            1354.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 269,
+        "length_px": 14.356,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0260",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            527.375,
+            1355.125
+          ],
+          [
+            527.125,
+            1356.125
+          ],
+          [
+            525.625,
+            1357.125
+          ],
+          [
+            520.125,
+            1356.625
+          ],
+          [
+            514.125,
+            1356.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 270,
+        "length_px": 12.135,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0261",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            599.375,
+            1362.625
+          ],
+          [
+            602.375,
+            1362.125
+          ],
+          [
+            606.625,
+            1360.125
+          ],
+          [
+            609.875,
+            1359.375
+          ],
+          [
+            610.625,
+            1358.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 271,
+        "length_px": 12.057,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0262",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            628.875,
+            1353.375
+          ],
+          [
+            634.875,
+            1352.625
+          ],
+          [
+            640.625,
+            1350.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 272,
+        "length_px": 3.707,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0263",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            657.875,
+            1339.625
+          ],
+          [
+            657.875,
+            1342.625
+          ],
+          [
+            658.375,
+            1343.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 273,
+        "length_px": 3.288,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0264",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            729.875,
+            1347.125
+          ],
+          [
+            729.375,
+            1350.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 274,
+        "length_px": 12.251,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0265",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-44",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            491.375,
+            1354.625
+          ],
+          [
+            490.625,
+            1354.125
+          ],
+          [
+            490.125,
+            1352.375
+          ],
+          [
+            489.375,
+            1342.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 275,
+        "length_px": 4.866,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0266",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-44",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            491.375,
+            1354.625
+          ],
+          [
+            494.125,
+            1353.875
+          ],
+          [
+            495.875,
+            1352.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 276,
+        "length_px": 14.999,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0267",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-44",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            491.375,
+            1354.625
+          ],
+          [
+            491.625,
+            1356.625
+          ],
+          [
+            492.875,
+            1359.125
+          ],
+          [
+            495.125,
+            1361.875
+          ],
+          [
+            500.125,
+            1363.875
+          ],
+          [
+            501.375,
+            1363.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 277,
+        "length_px": 8.343,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0268",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            640.625,
+            1350.875
+          ],
+          [
+            645.625,
+            1350.375
+          ],
+          [
+            647.375,
+            1349.625
+          ],
+          [
+            648.375,
+            1348.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 278,
+        "length_px": 14.374,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0269",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-44",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            489.375,
+            1342.875
+          ],
+          [
+            488.875,
+            1342.375
+          ],
+          [
+            487.875,
+            1339.375
+          ],
+          [
+            487.875,
+            1336.375
+          ],
+          [
+            490.875,
+            1331.125
+          ],
+          [
+            492.125,
+            1330.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 279,
+        "length_px": 4.916,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0270",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            647.875,
+            1343.875
+          ],
+          [
+            647.625,
+            1344.375
+          ],
+          [
+            648.125,
+            1345.625
+          ],
+          [
+            648.375,
+            1348.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 280,
+        "length_px": 5.006,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0271",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            668.375,
+            1342.125
+          ],
+          [
+            668.125,
+            1337.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 281,
+        "length_px": 10.11,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0272",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            668.375,
+            1342.125
+          ],
+          [
+            665.125,
+            1342.125
+          ],
+          [
+            660.625,
+            1343.125
+          ],
+          [
+            658.375,
+            1343.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 282,
+        "length_px": 11.738,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0273",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            658.375,
+            1343.125
+          ],
+          [
+            656.875,
+            1343.875
+          ],
+          [
+            653.375,
+            1347.125
+          ],
+          [
+            650.625,
+            1348.375
+          ],
+          [
+            648.375,
+            1348.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 283,
+        "length_px": 3.758,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0274",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            737.625,
+            1350.125
+          ],
+          [
+            737.375,
+            1353.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 284,
+        "length_px": 16.981,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0275",
+        "audit_tile_id": "R06C02",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-146",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            501.375,
+            1363.875
+          ],
+          [
+            502.375,
+            1364.625
+          ],
+          [
+            505.875,
+            1364.625
+          ],
+          [
+            509.875,
+            1363.125
+          ],
+          [
+            510.875,
+            1362.125
+          ],
+          [
+            512.125,
+            1358.625
+          ],
+          [
+            514.125,
+            1356.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 285,
+        "length_px": 9.162,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0276",
+        "audit_tile_id": "R06C03",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            729.375,
+            1350.375
+          ],
+          [
+            729.625,
+            1351.125
+          ],
+          [
+            733.375,
+            1353.125
+          ],
+          [
+            735.625,
+            1353.875
+          ],
+          [
+            737.375,
+            1353.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 286,
+        "length_px": 3.65,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0277",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-126",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            984.125,
+            1344.375
+          ],
+          [
+            985.125,
+            1345.375
+          ],
+          [
+            986.125,
+            1347.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 287,
+        "length_px": 3.4,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0278",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-40",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            991.375,
+            1339.375
+          ],
+          [
+            988.125,
+            1338.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 288,
+        "length_px": 7.401,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0279",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-40",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            991.375,
+            1339.375
+          ],
+          [
+            992.375,
+            1338.875
+          ],
+          [
+            992.875,
+            1335.125
+          ],
+          [
+            994.375,
+            1333.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 289,
+        "length_px": 10.856,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0280",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-40",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            991.375,
+            1339.375
+          ],
+          [
+            990.625,
+            1341.625
+          ],
+          [
+            990.625,
+            1344.625
+          ],
+          [
+            987.875,
+            1347.125
+          ],
+          [
+            986.125,
+            1347.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 290,
+        "length_px": 3.197,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0281",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-126",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            978.375,
+            1350.875
+          ],
+          [
+            977.625,
+            1348.875
+          ],
+          [
+            976.875,
+            1348.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 291,
+        "length_px": 8.835,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0282",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-126",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            978.375,
+            1350.875
+          ],
+          [
+            979.375,
+            1350.875
+          ],
+          [
+            981.625,
+            1349.375
+          ],
+          [
+            985.375,
+            1348.375
+          ],
+          [
+            986.125,
+            1347.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 292,
+        "length_px": 10.011,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0283",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-126",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            978.375,
+            1350.875
+          ],
+          [
+            978.375,
+            1351.625
+          ],
+          [
+            976.625,
+            1352.875
+          ],
+          [
+            969.625,
+            1354.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 293,
+        "length_px": 4.547,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0284",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-40",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            991.875,
+            1329.375
+          ],
+          [
+            992.875,
+            1330.375
+          ],
+          [
+            994.375,
+            1333.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 294,
+        "length_px": 4.122,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0285",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-126",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            968.875,
+            1350.125
+          ],
+          [
+            969.625,
+            1352.375
+          ],
+          [
+            969.625,
+            1354.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 295,
+        "length_px": 8.278,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0286",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-107",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            994.375,
+            1333.125
+          ],
+          [
+            996.875,
+            1331.875
+          ],
+          [
+            1000.625,
+            1327.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 296,
+        "length_px": 3.021,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0287",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-107",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1000.625,
+            1327.875
+          ],
+          [
+            999.375,
+            1325.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 297,
+        "length_px": 5.883,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0288",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-126",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            969.625,
+            1354.125
+          ],
+          [
+            967.625,
+            1354.125
+          ],
+          [
+            964.625,
+            1353.375
+          ],
+          [
+            963.875,
+            1353.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 298,
+        "length_px": 4.596,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0289",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-126",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            965.625,
+            1357.875
+          ],
+          [
+            963.875,
+            1353.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 299,
+        "length_px": 32.399,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0290",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-66",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            936.125,
+            1360.625
+          ],
+          [
+            940.625,
+            1360.125
+          ],
+          [
+            946.375,
+            1361.875
+          ],
+          [
+            948.875,
+            1361.625
+          ],
+          [
+            950.625,
+            1360.875
+          ],
+          [
+            952.875,
+            1358.875
+          ],
+          [
+            955.375,
+            1354.875
+          ],
+          [
+            957.375,
+            1352.875
+          ],
+          [
+            958.375,
+            1352.375
+          ],
+          [
+            961.125,
+            1352.375
+          ],
+          [
+            963.875,
+            1353.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 300,
+        "length_px": 15.291,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0291",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-61",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1386.875,
+            1382.125
+          ],
+          [
+            1388.875,
+            1375.625
+          ],
+          [
+            1389.125,
+            1371.875
+          ],
+          [
+            1389.875,
+            1370.125
+          ],
+          [
+            1391.875,
+            1368.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 301,
+        "length_px": 15.83,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0292",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-61",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1386.875,
+            1382.125
+          ],
+          [
+            1386.375,
+            1382.625
+          ],
+          [
+            1386.125,
+            1383.875
+          ],
+          [
+            1386.125,
+            1387.375
+          ],
+          [
+            1385.125,
+            1389.625
+          ],
+          [
+            1382.375,
+            1392.625
+          ],
+          [
+            1379.125,
+            1394.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 302,
+        "length_px": 10.623,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0293",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-61",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1386.875,
+            1382.125
+          ],
+          [
+            1391.625,
+            1383.625
+          ],
+          [
+            1393.125,
+            1383.625
+          ],
+          [
+            1393.625,
+            1384.875
+          ],
+          [
+            1392.375,
+            1387.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 303,
+        "length_px": 3.034,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0294",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-61",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1378.125,
+            1370.125
+          ],
+          [
+            1377.875,
+            1370.625
+          ],
+          [
+            1379.625,
+            1372.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 304,
+        "length_px": 7.404,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0295",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-74",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1322.625,
+            1391.625
+          ],
+          [
+            1329.875,
+            1393.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 305,
+        "length_px": 9.823,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0296",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-61",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1401.125,
+            1364.625
+          ],
+          [
+            1391.625,
+            1367.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 306,
+        "length_px": 3.579,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0297",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-74",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1329.875,
+            1393.125
+          ],
+          [
+            1330.625,
+            1389.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 307,
+        "length_px": 9.75,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0298",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-74",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1329.875,
+            1393.125
+          ],
+          [
+            1331.375,
+            1393.625
+          ],
+          [
+            1336.875,
+            1393.625
+          ],
+          [
+            1338.625,
+            1393.375
+          ],
+          [
+            1339.375,
+            1392.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 308,
+        "length_px": 3.132,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0299",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-10",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1356.375,
+            1384.375
+          ],
+          [
+            1354.875,
+            1381.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 309,
+        "length_px": 7.701,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0300",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-10",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1356.375,
+            1384.375
+          ],
+          [
+            1363.875,
+            1382.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 310,
+        "length_px": 9.454,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0301",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-10",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1356.375,
+            1384.375
+          ],
+          [
+            1355.625,
+            1385.125
+          ],
+          [
+            1353.125,
+            1386.125
+          ],
+          [
+            1347.625,
+            1387.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 311,
+        "length_px": 3.335,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0302",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-74",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1338.625,
+            1389.625
+          ],
+          [
+            1339.375,
+            1392.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 312,
+        "length_px": 3.468,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0303",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-61",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1386.875,
+            1368.125
+          ],
+          [
+            1386.375,
+            1367.625
+          ],
+          [
+            1386.125,
+            1364.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 313,
+        "length_px": 4.943,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0304",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-61",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1386.875,
+            1368.125
+          ],
+          [
+            1387.875,
+            1368.125
+          ],
+          [
+            1390.375,
+            1367.125
+          ],
+          [
+            1391.625,
+            1367.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 314,
+        "length_px": 8.571,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0305",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-61",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1386.875,
+            1368.125
+          ],
+          [
+            1386.375,
+            1368.875
+          ],
+          [
+            1384.375,
+            1369.625
+          ],
+          [
+            1381.125,
+            1371.875
+          ],
+          [
+            1379.625,
+            1372.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 315,
+        "length_px": 4.279,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0306",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-10",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1363.875,
+            1382.625
+          ],
+          [
+            1363.375,
+            1378.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 316,
+        "length_px": 9.926,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0307",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-10",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1363.875,
+            1382.625
+          ],
+          [
+            1369.125,
+            1381.625
+          ],
+          [
+            1371.875,
+            1380.375
+          ],
+          [
+            1372.625,
+            1379.625
+          ],
+          [
+            1372.625,
+            1379.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 317,
+        "length_px": 10.428,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0308",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-74",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1339.375,
+            1392.875
+          ],
+          [
+            1341.875,
+            1392.625
+          ],
+          [
+            1344.125,
+            1391.625
+          ],
+          [
+            1347.375,
+            1388.625
+          ],
+          [
+            1347.625,
+            1387.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 318,
+        "length_px": 3.824,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0309",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-61",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1371.375,
+            1375.625
+          ],
+          [
+            1371.375,
+            1376.875
+          ],
+          [
+            1372.625,
+            1379.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 319,
+        "length_px": 3.473,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0310",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-75",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1347.625,
+            1387.625
+          ],
+          [
+            1345.875,
+            1384.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 320,
+        "length_px": 10.127,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0311",
+        "audit_tile_id": "R06C06",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-61",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1372.625,
+            1379.125
+          ],
+          [
+            1373.375,
+            1379.125
+          ],
+          [
+            1374.875,
+            1378.125
+          ],
+          [
+            1379.375,
+            1373.375
+          ],
+          [
+            1379.625,
+            1372.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 321,
+        "length_px": 3.859,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0312",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            794.375,
+            1385.875
+          ],
+          [
+            794.625,
+            1383.375
+          ],
+          [
+            794.125,
+            1382.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 322,
+        "length_px": 15.951,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0313",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            794.375,
+            1385.875
+          ],
+          [
+            790.375,
+            1384.625
+          ],
+          [
+            778.625,
+            1384.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 323,
+        "length_px": 16.083,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0314",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-103",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            794.375,
+            1385.875
+          ],
+          [
+            794.875,
+            1386.375
+          ],
+          [
+            798.875,
+            1387.375
+          ],
+          [
+            810.125,
+            1387.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 324,
+        "length_px": 3.692,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0315",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            778.375,
+            1380.625
+          ],
+          [
+            778.125,
+            1381.375
+          ],
+          [
+            778.625,
+            1382.125
+          ],
+          [
+            778.625,
+            1384.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 325,
+        "length_px": 3.312,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0316",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-35",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            863.625,
+            1378.875
+          ],
+          [
+            862.875,
+            1377.875
+          ],
+          [
+            862.375,
+            1375.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 326,
+        "length_px": 7.068,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0317",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-35",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            863.625,
+            1378.875
+          ],
+          [
+            865.625,
+            1378.375
+          ],
+          [
+            870.625,
+            1378.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 327,
+        "length_px": 12.922,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0318",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-35",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            863.625,
+            1378.875
+          ],
+          [
+            862.625,
+            1381.375
+          ],
+          [
+            860.125,
+            1382.625
+          ],
+          [
+            856.375,
+            1386.125
+          ],
+          [
+            854.125,
+            1386.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 328,
+        "length_px": 3.758,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0319",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-103",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            828.125,
+            1387.625
+          ],
+          [
+            828.375,
+            1383.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 329,
+        "length_px": 18.0,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0320",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-103",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            828.125,
+            1387.625
+          ],
+          [
+            810.125,
+            1387.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 330,
+        "length_px": 14.5,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0321",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-103",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            828.125,
+            1387.625
+          ],
+          [
+            842.625,
+            1387.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 331,
+        "length_px": 5.154,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0322",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-35",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            852.875,
+            1381.625
+          ],
+          [
+            854.125,
+            1386.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 332,
+        "length_px": 11.753,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0323",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-35",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            854.125,
+            1386.625
+          ],
+          [
+            853.125,
+            1387.375
+          ],
+          [
+            842.625,
+            1387.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 333,
+        "length_px": 4.846,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0324",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-103",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            842.125,
+            1382.875
+          ],
+          [
+            842.625,
+            1384.125
+          ],
+          [
+            842.625,
+            1387.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 334,
+        "length_px": 11.619,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0325",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-115",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            767.375,
+            1386.125
+          ],
+          [
+            770.375,
+            1384.625
+          ],
+          [
+            778.625,
+            1384.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 335,
+        "length_px": 3.5,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0326",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "low",
+        "nearest_current_feature_id": "segment-103",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            810.125,
+            1384.125
+          ],
+          [
+            810.125,
+            1387.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 336,
+        "length_px": 18.828,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0333",
+        "audit_tile_id": "R06C04",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-103",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            831.625,
+            1407.625
+          ],
+          [
+            837.375,
+            1406.875
+          ],
+          [
+            845.125,
+            1408.875
+          ],
+          [
+            850.125,
+            1408.375
           ]
         ]
       }

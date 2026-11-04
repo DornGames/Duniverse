@@ -1,0 +1,182 @@
+{
+  "title": "Temporary pixel mapping for the hydrology audit",
+  "status": "internal working reference; not an official geographic registration",
+  "source_image": {
+    "file": "input_map.png",
+    "width_px": 2048,
+    "height_px": 1448
+  },
+  "official_full_superbig": {
+    "file": "official_map\\Administrative-Division-Map-of-Donh-2026-super-big.png",
+    "width_px": 24576,
+    "height_px": 17376,
+    "canonical_source_pixel_center_to_superbig_pixel_center_affine": [
+      [
+        12.0,
+        0.0,
+        5.5
+      ],
+      [
+        0.0,
+        12.0,
+        5.5
+      ]
+    ],
+    "formula": "X=12*x+5.5; Y=12*y+5.5 (pixel centers; top-left origin; x right; y down)",
+    "registration_refined_affine": [
+      [
+        11.999921341687937,
+        -0.0001689128921394755,
+        5.776954271649576
+      ],
+      [
+        0.00021067097619009237,
+        12.000076108568786,
+        5.259278987691852
+      ]
+    ],
+    "control_points": {
+      "method": "SIFT matches on non-water detail after reducing the 8192x5792 full map to 2048x1448",
+      "matches_after_ratio_test": 4093,
+      "ransac_inliers": 3897,
+      "residual_px_at_2048_grid": {
+        "p50": 0.1204,
+        "p90": 0.3938,
+        "p95": 0.4988,
+        "p99": 0.6899,
+        "p100": 0.9303
+      },
+      "identity_fit_residual_px_at_2048_grid": {
+        "p50": 0.1218,
+        "p90": 0.3907,
+        "p95": 0.4957,
+        "p99": 0.6901,
+        "p100": 0.9341
+      }
+    }
+  },
+  "official_clean_superbig": {
+    "file": "official_map\\Administrative Division Map of Donh 2026-no-text-super-big.png",
+    "dimensions_px": [
+      24579,
+      17376
+    ],
+    "note": "Three extra columns occur at the far right edge; national features are registered using the 8193x5792 clean working raster."
+  },
+  "clean_4x_working_raster": {
+    "file": "official_map\\Administrative Division Map of Donh 2026-no-text.png",
+    "dimensions_px": [
+      8193,
+      5792
+    ],
+    "registered_source_to_raster_affine": [
+      [
+        4.000010393318112,
+        0.00023296525861289322,
+        1.8809257688839056
+      ],
+      [
+        -1.981467247383871e-05,
+        3.999935756671774,
+        1.4993209021767768
+      ]
+    ],
+    "normalized_source_to_work_grid_affine": [
+      [
+        4.0,
+        0.0,
+        1.5
+      ],
+      [
+        0.0,
+        4.0,
+        1.5
+      ]
+    ],
+    "control_points": {
+      "matches_after_ratio_test": 429,
+      "ransac_inliers": 308,
+      "residual_px_at_2048_grid": {
+        "p50": 0.1499,
+        "p90": 0.3791,
+        "p95": 0.557,
+        "p99": 0.7585,
+        "p100": 0.8628
+      },
+      "identity_fit_residual_px_at_2048_grid": {
+        "p50": 0.158,
+        "p90": 0.3942,
+        "p95": 0.5393,
+        "p99": 0.6957,
+        "p100": 0.9347
+      }
+    }
+  },
+  "custom_coordinate_reference": {
+    "identifier": "DUNIVERSE-SATURN-SCALED-LAT-2026",
+    "coordinate_system": {
+      "latitude_type": "custom latitude scaled from planetographic latitude",
+      "latitude_positive_direction": "north",
+      "map_degrees_per_physical_planetographic_degree": 0.16666666666666666,
+      "physical_planetographic_degrees_per_map_degree": 6,
+      "physical_planetographic_latitude_domain_deg": [
+        -90,
+        90
+      ],
+      "longitude_positive_direction": "east",
+      "longitude_domain_deg": [
+        -180,
+        180
+      ],
+      "longitude_domain_convention": "[-180, 180); 360 degrees for one complete turn around Saturn",
+      "atlas_latitude_bounds_deg": [
+        -15,
+        15
+      ],
+      "prime_meridian": {
+        "definition": "Local project meridian through the capital, not Saturn System III",
+        "longitude_deg": 0,
+        "capital": "臭都特别市",
+        "capital_pixel_xy": [
+          1002.0,
+          877.0
+        ]
+      }
+    },
+    "projection": {
+      "name": "Ellipsoidal Cylindrical Equal-Area (CEA)",
+      "purpose": "Area-preserving conversion from official-map image pixels to the custom Saturn longitude/latitude frame",
+      "anchor_pixel_xy": [
+        1002.0,
+        877.0
+      ],
+      "anchor_longitude_deg": 0,
+      "anchor_map_latitude_deg": 4.783333333333334,
+      "anchor_physical_planetographic_latitude_deg": 28.7,
+      "anchor_rationale": "A non-round, approximate northern-subtropical placement chosen as a worldbuilding fit for southern agriculture and western aridity; these climate clues do not uniquely determine latitude.",
+      "standard_parallel_physical_planetographic_deg": 26.28251565833631,
+      "pixel_scale_km_per_px": 7.7719530772698535,
+      "image_y_direction": "down",
+      "formulas": {
+        "eccentricity_squared": "e2 = 1 - (polar_radius_km / equatorial_radius_km)^2",
+        "standard_parallel": "cos(phi_ts) = cos(phi0_physical) / sqrt(1 - e2 * sin(phi0_physical)^2)",
+        "projected_x_km": "X = pixel_scale_km_per_px * (x_px - capital_x_px)",
+        "projected_y_km": "Y = pixel_scale_km_per_px * (capital_y_px - y_px)",
+        "longitude_rad": "lambda = lambda0 + X / (equatorial_radius_km * cos(phi_ts))",
+        "authalic_q": "q(phi) = (1-e2) * (sin(phi)/(1-e2*sin(phi)^2) - ln((1-e*sin(phi))/(1+e*sin(phi)))/(2*e))",
+        "physical_latitude_rad": "q(phi_physical) = q(phi0_physical) + 2*cos(phi_ts)*Y/equatorial_radius_km; solve for phi_physical",
+        "map_latitude_deg": "map_latitude_deg = degrees(phi_physical) / 6"
+      }
+    },
+    "interpretation": "Temporary project Saturn coordinates derived from input_map pixels; not official map coordinates or WGS 84."
+  },
+  "tile_scheme": {
+    "tile_size_input_px": 256,
+    "overlap_input_px": 16,
+    "grid": [
+      8,
+      6
+    ],
+    "total_tiles": 48
+  }
+}

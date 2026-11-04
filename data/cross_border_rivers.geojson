@@ -1,6 +1,6 @@
 {
   "type": "FeatureCollection",
-  "name": "cross_border_rivers_without_seasonal_rivers",
+  "name": "cross_border_rivers_with_manually_verified_high_resolution_repairs",
   "coordinate_reference_note": "Image pixel coordinates; origin top-left; x right; y down. Not georeferenced.",
   "features": [
     {
@@ -9,7 +9,10 @@
         "segment_id": 1,
         "length_px": 269.0,
         "source": "source_image_blue_hydrology_outside_national_outline",
-        "review_status": "candidate_cross_border_river"
+        "review_status": "candidate_cross_border_river",
+        "audit_gap_issue_ids": [
+          "GAP-0001"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -119,8 +122,8 @@
             209.0
           ],
           [
-            754.0,
-            211.0
+            754.5,
+            211.5
           ]
         ]
       }
@@ -327,14 +330,17 @@
         "segment_id": 8,
         "length_px": 187.4,
         "source": "source_image_blue_hydrology_outside_national_outline",
-        "review_status": "candidate_cross_border_river"
+        "review_status": "candidate_cross_border_river",
+        "audit_gap_issue_ids": [
+          "GAP-0002"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            308.0,
-            1340.0
+            308.5,
+            1339.5
           ],
           [
             303.0,
@@ -401,14 +407,17 @@
         "segment_id": 9,
         "length_px": 141.7,
         "source": "source_image_blue_hydrology_outside_national_outline",
-        "review_status": "candidate_cross_border_river"
+        "review_status": "candidate_cross_border_river",
+        "audit_gap_issue_ids": [
+          "GAP-0005"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            1166.0,
-            152.0
+            1166.5,
+            151.5
           ],
           [
             1165.0,
@@ -603,7 +612,10 @@
         "segment_id": 14,
         "length_px": 142.7,
         "source": "source_image_blue_hydrology_outside_national_outline",
-        "review_status": "candidate_cross_border_river"
+        "review_status": "candidate_cross_border_river",
+        "audit_gap_issue_ids": [
+          "GAP-0013"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -661,8 +673,8 @@
             1106.0
           ],
           [
-            283.0,
-            1112.0
+            284.5,
+            1113.5
           ]
         ]
       }
@@ -977,7 +989,10 @@
         "segment_id": 21,
         "length_px": 132.9,
         "source": "source_image_blue_hydrology_outside_national_outline",
-        "review_status": "candidate_cross_border_river"
+        "review_status": "candidate_cross_border_river",
+        "audit_gap_issue_ids": [
+          "GAP-0005"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -1015,8 +1030,8 @@
             157.0
           ],
           [
-            1167.0,
-            151.0
+            1166.5,
+            151.5
           ]
         ]
       }
@@ -1975,7 +1990,10 @@
         "segment_id": 42,
         "length_px": 461.4,
         "source": "source_image_blue_hydrology_outside_national_outline",
-        "review_status": "candidate_cross_border_river"
+        "review_status": "candidate_cross_border_river",
+        "audit_gap_issue_ids": [
+          "GAP-0024"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -2129,8 +2147,8 @@
             799.0
           ],
           [
-            225.59,
-            806.62
+            228.875,
+            810.5550000000001
           ]
         ]
       }
@@ -2141,14 +2159,18 @@
         "segment_id": 43,
         "length_px": 172.1,
         "source": "source_image_blue_hydrology_outside_national_outline",
-        "review_status": "candidate_cross_border_river"
+        "review_status": "candidate_cross_border_river",
+        "audit_gap_issue_ids": [
+          "GAP-0003",
+          "GAP-0024"
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            232.16,
-            814.49
+            228.875,
+            810.5550000000001
           ],
           [
             238.0,
@@ -2207,8 +2229,8 @@
             785.0
           ],
           [
-            385.0,
-            783.0
+            385.5,
+            782.5
           ]
         ]
       }
@@ -2219,7 +2241,10 @@
         "segment_id": 44,
         "length_px": 36.6,
         "source": "source_image_blue_hydrology_outside_national_outline",
-        "review_status": "candidate_cross_border_river"
+        "review_status": "candidate_cross_border_river",
+        "audit_gap_issue_ids": [
+          "GAP-0008"
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -2242,7 +2267,7 @@
           ],
           [
             1315.0,
-            1415.0
+            1414.0
           ]
         ]
       }
@@ -2319,6 +2344,162 @@
           [
             824.0,
             1434.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 47,
+        "length_px": 12.794,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0001",
+        "audit_tile_id": "R01C04",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-36",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            938.125,
+            11.875
+          ],
+          [
+            935.875,
+            3.625
+          ],
+          [
+            935.375,
+            0.125
+          ],
+          [
+            934.875,
+            -0.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 48,
+        "length_px": 13.348,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0009",
+        "audit_tile_id": "R01C05",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-18",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1065.875,
+            140.875
+          ],
+          [
+            1075.875,
+            141.375
+          ],
+          [
+            1079.125,
+            142.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 49,
+        "length_px": 16.506,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0010",
+        "audit_tile_id": "R01C05",
+        "audit_machine_confidence": "medium",
+        "nearest_current_feature_id": "segment-39",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1065.875,
+            140.875
+          ],
+          [
+            1065.125,
+            142.375
+          ],
+          [
+            1062.625,
+            143.625
+          ],
+          [
+            1060.625,
+            144.125
+          ],
+          [
+            1058.125,
+            144.125
+          ],
+          [
+            1054.125,
+            142.125
+          ],
+          [
+            1052.375,
+            142.125
+          ],
+          [
+            1051.375,
+            142.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 50,
+        "length_px": 13.726,
+        "source": "manually_reviewed_4x_high_resolution_blue_water_centerline",
+        "review_status": "manually_verified_missing_reach",
+        "audit_candidate_id": "RCH-0011",
+        "audit_tile_id": "R01C05",
+        "audit_machine_confidence": "high",
+        "nearest_current_feature_id": "segment-19",
+        "geometry_simplification_tolerance_px": 0.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1064.375,
+            162.875
+          ],
+          [
+            1063.375,
+            166.125
+          ],
+          [
+            1061.625,
+            169.625
+          ],
+          [
+            1060.625,
+            171.125
+          ],
+          [
+            1057.125,
+            174.125
           ]
         ]
       }

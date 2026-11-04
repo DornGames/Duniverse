@@ -210,21 +210,21 @@ def convert_all(input_dir: Path, output_dir: Path, reference: dict[str, Any]) ->
         document = json.loads(source.read_text(encoding="utf-8"))
         converted = convert_geojson(document, reference)
         destination = output_dir / f"{source.stem}.saturn.json"
-        destination.write_text(json.dumps(converted, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        destination.write_text(json.dumps(converted, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
     ocean_path = input_dir / "ocean_surface_path.json"
     if ocean_path.exists():
         document = json.loads(ocean_path.read_text(encoding="utf-8"))
         converted = convert_svg_path_document(document, reference)
         destination = output_dir / "ocean_surface_path.saturn.json"
-        destination.write_text(json.dumps(converted, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        destination.write_text(json.dumps(converted, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
         files.append(ocean_path)
 
     city_directory = input_dir / "city_directory.js"
     if city_directory.exists():
         converted = convert_city_directory(city_directory, reference)
         destination = output_dir / "city_directory.saturn.json"
-        destination.write_text(json.dumps(converted, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        destination.write_text(json.dumps(converted, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
         files.append(city_directory)
 
     return len(files)
@@ -259,7 +259,7 @@ def main() -> None:
         document = json.loads(args.geojson.read_text(encoding="utf-8"))
         converted = convert_geojson(document, reference)
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(json.dumps(converted, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        args.output.write_text(json.dumps(converted, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
         print(f"Wrote custom Saturn coordinates to {args.output}")
         return
 

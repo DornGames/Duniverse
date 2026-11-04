@@ -272,7 +272,7 @@ def path_data(geometry: dict) -> str:
         if len(coordinates) < 3:
             commands.append(f"M {point_text(coordinates[0])} L {point_text(coordinates[-1])}")
             continue
-        radius = 2.0
+        radius = 0.75
         toward = lambda point, target: (
             point[0] + (target[0] - point[0]) * min(radius / (math.dist(point, target) or 1), 0.4),
             point[1] + (target[1] - point[1]) * min(radius / (math.dist(point, target) or 1), 0.4),
@@ -308,6 +308,82 @@ def render_preview_group(group_id: str, features: list[dict], style: str) -> str
     return f'<g id="{group_id}" {style} pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
 
 
+def polygon_path_data(geometry: dict) -> str:
+    geom = shape(geometry)
+    polygons = list(geom.geoms) if geom.geom_type == "MultiPolygon" else [geom]
+    commands = []
+    for polygon in polygons:
+        if polygon.geom_type != "Polygon" or polygon.is_empty:
+            continue
+        for ring in [polygon.exterior, *polygon.interiors]:
+            coordinates = list(ring.coords)
+            if len(coordinates) < 4:
+                continue
+            if coordinates[0] == coordinates[-1]:
+                coordinates = coordinates[:-1]
+            point_text = lambda point: f"{point[0]:.2f},{point[1]:.2f}"
+            commands.append(
+                "M " + point_text(coordinates[0]) + " L "
+                + " L ".join(point_text(point) for point in coordinates[1:]) + " Z"
+            )
+    return " ".join(commands)
+
+
+def render_lakes_group(features: list[dict], *, preview: bool = False) -> str:
+    paths = []
+    for feature in features:
+        path = polygon_path_data(feature["geometry"])
+        if path:
+            paths.append(f'<path d="{path}"/>')
+    style = 'fill="#b1d0ed" fill-rule="evenodd" stroke="#83b8e8" stroke-width="1.1"'
+    if preview:
+        style = 'fill="#b1d0ed" fill-rule="evenodd" stroke="#83b8e8" stroke-width="1.2"'
+    return f'<g id="lakes" {style} pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
+
+
+def update_hydrology_lod_precision(index: str) -> str:
+    replacements = [
+        (
+            "const LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];",
+            "const LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];\n"
+            "const HYDROLOGY_LAYER_IDS=new Set(['lakes','rivers','canals','seasonalRivers','crossBorderRivers']);\n"
+            "const HYDROLOGY_LOD_TOLERANCES=[.12,.25,.5,1,1.5];",
+        ),
+        (
+            "['rivers','canals','seasonalRivers','crossBorderRivers'].includes(layerId)?2:0;",
+            "HYDROLOGY_LAYER_IDS.has(layerId)?0.75:0;",
+        ),
+        (
+            "const tolerances=['oceanFill','islandFills'].includes(layerId)?COASTAL_FILL_LOD_TOLERANCES:LOD_TOLERANCES;",
+            "const tolerances=['oceanFill','islandFills'].includes(layerId)?COASTAL_FILL_LOD_TOLERANCES:\n"
+            "      HYDROLOGY_LAYER_IDS.has(layerId)?HYDROLOGY_LOD_TOLERANCES:LOD_TOLERANCES;",
+        ),
+        (
+            "const path=record.variants[toleranceIndex];",
+            "const path=record.variants[Math.min(toleranceIndex,record.variants.length-1)];",
+        ),
+        (
+            "const pathToleranceIndex=isCoastalFill?coastalFillToleranceIndex:toleranceIndex;\n"
+            "    const pathTolerance=isCoastalFill\n"
+            "      ?COASTAL_FILL_LOD_TOLERANCES[pathToleranceIndex]\n"
+            "      :LOD_TOLERANCES[pathToleranceIndex];",
+            "const isHydrology=HYDROLOGY_LAYER_IDS.has(record.layerId);\n"
+            "    const pathToleranceIndex=isCoastalFill?coastalFillToleranceIndex:\n"
+            "      isHydrology?Math.min(toleranceIndex,HYDROLOGY_LOD_TOLERANCES.length-1):toleranceIndex;\n"
+            "    const pathTolerance=isCoastalFill?COASTAL_FILL_LOD_TOLERANCES[pathToleranceIndex]:\n"
+            "      isHydrology?HYDROLOGY_LOD_TOLERANCES[pathToleranceIndex]:LOD_TOLERANCES[pathToleranceIndex];",
+        ),
+    ]
+    for old, new in replacements:
+        if new in index:
+            continue
+        count = index.count(old)
+        if count != 1:
+            raise RuntimeError(f"Expected one map-render precision marker, found {count}: {old[:72]}")
+        index = index.replace(old, new, 1)
+    return index
+
+
 def upsert_group(source: str, group: str, group_id: str, after_id: str | None) -> str:
     pattern = rf'<g id="{re.escape(group_id)}"[^>]*>.*?</g>'
     updated, count = re.subn(pattern, lambda _: group, source, count=1, flags=re.DOTALL)
@@ -322,6 +398,7 @@ def upsert_group(source: str, group: str, group_id: str, after_id: str | None) -
 
 
 def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[dict], cross_border: list[dict]) -> None:
+    lakes = read_fc(DATA / "lakes.geojson")["features"]
     index_groups = [
         render_group("rivers", "rivers", rivers,
                      'fill="none" stroke="#83b8e8" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
@@ -341,6 +418,8 @@ def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[d
     index = upsert_group(index, index_groups[2], "canalTicks", "canals")
     index = upsert_group(index, index_groups[3], "seasonalRivers", "canalTicks")
     index = upsert_group(index, index_groups[4], "crossBorderRivers", "seasonalRivers")
+    index = upsert_group(index, render_lakes_group(lakes), "lakes", None)
+    index = update_hydrology_lod_precision(index)
     index_path.write_text(index, encoding="utf-8", newline="\n")
 
     preview_path = ROOT / "vector_preview.svg"
@@ -362,6 +441,7 @@ def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[d
     preview = upsert_group(preview, preview_groups[2], "canal-ticks", "canals")
     preview = upsert_group(preview, preview_groups[3], "seasonal-rivers", "canal-ticks")
     preview = upsert_group(preview, preview_groups[4], "cross-border-rivers", "seasonal-rivers")
+    preview = upsert_group(preview, render_lakes_group(lakes, preview=True), "lakes", None)
     preview_path.write_text(preview, encoding="utf-8", newline="\n")
 
 
