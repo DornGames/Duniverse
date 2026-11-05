@@ -1,0 +1,7 @@
+issue_id,reference_layer,right_edge_ocean_component_count,candidate_ocean_boundary_pixel_count,candidate_boundary_pixels_over_threshold,threshold_reference_px,candidate_boundary_distance_p50_reference_px,candidate_boundary_distance_p95_reference_px,uncovered_centroids_local_px
+SHORE-GAP-0002,no-river,4,0,0,9.0,,,[]
+SHORE-GAP-0002,no-text,4,0,0,9.0,,,[]
+SHORE-GAP-0003,no-river,1,0,0,9.0,,,[]
+SHORE-GAP-0003,no-text,1,0,0,9.0,,,[]
+SHORE-GAP-0005,no-river,5,0,0,9.0,,,[]
+SHORE-GAP-0005,no-text,5,0,0,9.0,,,[]

@@ -9314,11 +9314,12 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "coastline",
-        "length_px": 24.786,
+        "role": "island_shoreline",
+        "length_px": 24.854,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
-        "review_id": "official-tile-0127"
+        "review_id": "official-tile-0127",
+        "review_status": "reviewed_closed_highres_island"
       },
       "geometry": {
         "type": "LineString",
@@ -9536,7 +9537,7 @@
             512.75
           ],
           [
-            1303.25,
+            1303.333,
             512.083
           ]
         ]
@@ -22722,11 +22723,12 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "coastline",
-        "length_px": 10.291,
+        "role": "island_shoreline",
+        "length_px": 10.371,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
-        "review_id": "official-tile-0379"
+        "review_id": "official-tile-0379",
+        "review_status": "reviewed_closed_highres_island"
       },
       "geometry": {
         "type": "LineString",
@@ -22844,7 +22846,7 @@
             988.75
           ],
           [
-            1353.417,
+            1353.5,
             988.667
           ]
         ]
@@ -26260,7 +26262,9 @@
         "length_px": 8.275,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
-        "review_id": "official-tile-0443"
+        "review_id": "official-tile-0443",
+        "review_status": "rejected",
+        "review_note": "12x reference shows a pale gray marker-like blob with a white center, without dark shoreline ink."
       },
       "geometry": {
         "type": "LineString",
@@ -35811,11 +35815,12 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "coastline",
-        "length_px": 13.281,
+        "role": "island_shoreline",
+        "length_px": 13.326,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
-        "review_id": "official-tile-0547"
+        "review_id": "official-tile-0547",
+        "review_status": "reviewed_closed_highres_island"
       },
       "geometry": {
         "type": "LineString",
@@ -35917,7 +35922,7 @@
             938.0
           ],
           [
-            1457.583,
+            1457.5,
             938.583
           ]
         ]
