@@ -158,9 +158,59 @@ CANAL_CENTERLINES = [
             LineString([(1242.38, 987.12), (1248.12, 986.62)]),
         ],
     },
+    {
+        "canal_id": 4,
+        "name": "中北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_checked_against_official_12x_river_raster_and_latest_overlay",
+        "subtract_from_rivers": True,
+        # Reclassified from the ordinary river vectors so this ruler-marked
+        # reach can be toggled independently. The trace follows the official
+        # 12x raster from its first ruler mark to the eastern junction.
+        "line": LineString([
+            (935.21, 917.79), (935.38, 918.04), (935.88, 918.21),
+            (936.88, 918.38), (938.21, 918.79), (938.96, 919.12),
+            (940.79, 920.29), (942.12, 920.71), (943.12, 920.71),
+            (944.71, 920.38), (946.88, 919.62), (948.62, 919.29),
+            (948.79, 919.04), (950.54, 918.96), (953.46, 918.38),
+            (955.21, 917.79), (958.54, 916.21), (958.88, 915.62),
+            (960.38, 915.46), (961.29, 915.12), (962.21, 914.96),
+            (963.04, 915.04), (963.62, 915.46), (966.12, 920.04),
+            (966.46, 920.38), (967.21, 921.62), (967.71, 922.12),
+            (968.46, 922.38), (968.71, 923.46), (970.54, 925.29),
+            (972.54, 926.71), (977.38, 928.79), (977.54, 928.96),
+            (979.21, 929.21), (979.54, 929.71), (981.88, 930.71),
+            (982.29, 931.04), (985.04, 932.38), (988.04, 933.38),
+            (989.04, 933.46), (989.12, 933.62), (991.04, 933.96),
+            (991.38, 934.12), (994.46, 934.71), (995.21, 934.71),
+            (995.46, 934.88), (996.38, 934.88), (996.46, 935.04),
+            (998.29, 935.21), (998.79, 935.38), (1001.04, 935.54),
+            (1001.54, 935.71), (1003.62, 935.79),
+        ]),
+        # Seven ruler marks are visible along this reach. Four had already
+        # been digitized as river branches; the three at x≈935, 949 and 959
+        # were visibly absent from the overlay.
+        "ticks": [
+            LineString([(935.21, 917.79), (935.46, 914.04)]),
+            LineString([(948.79, 919.12), (947.46, 915.21)]),
+            LineString([(958.88, 915.62), (957.29, 911.96)]),
+            LineString([(968.46, 922.38), (971.38, 919.29)]),
+            LineString([(979.21, 929.21), (981.12, 924.38)]),
+            LineString([(989.04, 933.46), (990.62, 928.29)]),
+            LineString([(1003.62, 935.79), (1003.54, 930.96)]),
+        ],
+    },
 ]
 CANAL_RIVER_EXCLUSION_BUFFER_PX = 3.5
 SEASONAL_CROSS_BORDER_EXCLUSION_BUFFER_PX = 2.5
+# These short segments were manually checked against the official 12x raster
+# and are duplicate fragments of the two dashed seasonal traces, not separate
+# neighboring rivers. Keep the nearby real confluences (90, 93) and lake mouth
+# (119) intact.
+SEASONAL_DASH_RESIDUAL_SEGMENT_IDS = frozenset({
+    *range(43, 54), 60, 61, 64, 72, 75, 88, 89,
+    97, *range(111, 119),
+})
 
 
 def read_fc(path: Path) -> dict:
@@ -193,10 +243,10 @@ def line_parts(geometry) -> list[LineString]:
     return []
 
 
-def round_line(line: LineString) -> dict:
+def round_line(line: LineString, digits: int = 2) -> dict:
     return {
         "type": "LineString",
-        "coordinates": [[round(x, 2), round(y, 2)] for x, y in line.coords],
+        "coordinates": [[round(x, digits), round(y, digits)] for x, y in line.coords],
     }
 
 
@@ -247,6 +297,7 @@ def canal_features() -> list[dict]:
             "canal_id": canal["canal_id"],
             "name": canal["name"],
             "source": canal.get("source", HIGH_RES_SOURCE.name),
+            "separate_from_rivers": bool(canal.get("subtract_from_rivers", False)),
         }
         features.append({
             "type": "Feature",
@@ -305,6 +356,55 @@ def remove_canal_from_rivers(features: list[dict]) -> list[dict]:
     return result
 
 
+def remove_separated_canal_reaches(features: list[dict], canals: list[dict]) -> list[dict]:
+    """Keep verified, independently toggled canal geometry out of rivers."""
+    corridors = []
+    for canal in canals:
+        properties = canal["properties"]
+        if not properties.get("separate_from_rivers"):
+            continue
+        geometry = shape(canal["geometry"])
+        if properties.get("symbol_part") == "centerline":
+            corridors.append(geometry.buffer(0.9, cap_style="flat"))
+        elif properties.get("symbol_part") == "ruler_tick":
+            corridors.append(geometry.buffer(0.8, cap_style="flat"))
+    if not corridors:
+        return features
+    corridor = unary_union(corridors)
+    next_segment_id = max(
+        (feature["properties"].get("segment_id", 0) for feature in features),
+        default=0,
+    ) + 1
+    result = []
+    for feature in features:
+        source_geometry = shape(feature["geometry"])
+        if not source_geometry.intersects(corridor):
+            result.append(feature)
+            continue
+        geometry = source_geometry.difference(corridor)
+        if source_geometry.equals(geometry):
+            result.append(feature)
+            continue
+        for part in line_parts(geometry):
+            if part.length < 2:
+                continue
+            properties = {
+                **feature["properties"],
+                "length_px": round(part.length, 3),
+            }
+            if result and properties.get("segment_id") in {
+                prior["properties"].get("segment_id") for prior in result
+            }:
+                properties["segment_id"] = next_segment_id
+                next_segment_id += 1
+            result.append({
+                "type": "Feature",
+                "properties": properties,
+                "geometry": round_line(part, digits=3),
+            })
+    return result
+
+
 def remove_seasonal_from_cross_border(features: list[dict], seasonal: list[dict]) -> list[dict]:
     corridor = unary_union([
         shape(feature["geometry"]).buffer(SEASONAL_CROSS_BORDER_EXCLUSION_BUFFER_PX,
@@ -327,6 +427,13 @@ def remove_seasonal_from_cross_border(features: list[dict], seasonal: list[dict]
                 "geometry": round_line(part),
             })
     return result
+
+
+def remove_verified_seasonal_dash_residuals(features: list[dict]) -> list[dict]:
+    return [
+        feature for feature in features
+        if feature["properties"].get("segment_id") not in SEASONAL_DASH_RESIDUAL_SEGMENT_IDS
+    ]
 
 
 def path_data(geometry: dict) -> str:
@@ -422,11 +529,11 @@ def update_hydrology_lod_precision(index: str) -> str:
         index = index.replace(
             marker,
             marker + "\n"
-            "const HYDROLOGY_LAYER_IDS=new Set(['lakes','rivers','canals','seasonalRivers','crossBorderRivers']);\n"
+            "const HYDROLOGY_LAYER_IDS=new Set(['lakes','rivers','canals','canalTicks','seasonalRivers','crossBorderRivers']);\n"
             + hydrology_lod,
             1,
         )
-    legacy_radius = "['rivers','canals','seasonalRivers','crossBorderRivers'].includes(layerId)?2:0;"
+    legacy_radius = "['rivers','canals','canalTicks','seasonalRivers','crossBorderRivers'].includes(layerId)?2:0;"
     legacy_radius_updated = "HYDROLOGY_LAYER_IDS.has(layerId)?0.35:0;"
     old_hydrology_radius = "HYDROLOGY_LAYER_IDS.has(layerId)?0.75:0;"
     if legacy_radius in index:
@@ -487,7 +594,7 @@ def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[d
                      'fill="none" stroke="#83b8e8" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
         render_group("canals", "canals", [f for f in canals if f["properties"].get("symbol_part") == "centerline"],
                      'fill="none" stroke="#347ca5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"'),
-        render_group("canalTicks", "canals", [f for f in canals if f["properties"].get("symbol_part") == "ruler_tick"],
+        render_group("canalTicks", "canalTicks", [f for f in canals if f["properties"].get("symbol_part") == "ruler_tick"],
                      'fill="none" stroke="#347ca5" stroke-width="1.5" stroke-linecap="round"'),
         render_group("seasonalRivers", "seasonalRivers", seasonal,
                      'fill="none" stroke="#82b8e9" stroke-width="1.8" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"'),
@@ -546,20 +653,31 @@ def main() -> None:
     with Image.open(SOURCE) as source_image, Image.open(HIGH_RES_SOURCE) as high_res:
         if high_res.width != source_image.width * 4 or high_res.height != source_image.height * 4:
             raise ValueError("The high-resolution trace source must be exactly 4x input_map.png")
-    river_fc = read_fc(DATA / "hydrology_lines.geojson")
-    # The checked-in river layer already has the original canal overlaps
-    # removed. Repeating a geometric difference on the rounded output can
-    # trim nearby river junctions a second time, so generation only renders it.
-    river_features = river_fc["features"]
+    river_source_fc = read_fc(DATA / "hydrology_lines.geojson")
+    # Subtract only reaches marked for the independent canal layer. The
+    # geometric difference is idempotent, so rerunning this generator keeps
+    # the river/canal separation stable.
     canals = canal_features()
+    canal_additions_fc = read_fc(DATA / "canal_additions.geojson")
+    canals.extend(canal_additions_fc["features"])
+    river_features = remove_separated_canal_reaches(river_source_fc["features"], canals)
     seasonal = seasonal_features()
     cross_border_fc = read_fc(DATA / "cross_border_rivers.geojson")
-    # This layer is also checked in after its seasonal overlap was removed;
-    # keep it stable when regenerating render groups.
-    cross_border = cross_border_fc["features"]
+    # Remove only short fragments manually matched to the dashed seasonal
+    # traces on the official raster. True river junctions and the lake mouth
+    # remain in the cross-border layer.
+    original_cross_border_count = len(cross_border_fc["features"])
+    cross_border = remove_verified_seasonal_dash_residuals(cross_border_fc["features"])
+    cross_border_fc["features"] = cross_border
 
     write_fc(DATA / "canals.geojson", "canal_centerline_and_ruler_ticks", canals)
+    write_fc(DATA / "rivers.geojson", "rivers_excluding_independent_canals", river_features)
     write_fc(DATA / "seasonal_rivers.geojson", "neighbor_seasonal_rivers", seasonal)
+    (DATA / "cross_border_rivers_clean.geojson").write_text(
+        json.dumps(cross_border_fc, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     update_render_files(river_features, canals, seasonal, cross_border)
     write_overlay(seasonal, canals)
 
@@ -567,16 +685,20 @@ def main() -> None:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     manifest.update({
         "river_line_segments": len(river_features),
-        "canal_centerlines": len(CANAL_CENTERLINES),
+        "canal_centerlines": len({f["properties"]["canal_id"] for f in canals}),
+        "canal_centerline_reaches": sum(
+            f["properties"].get("symbol_part") == "centerline" for f in canals
+        ),
         "canal_trace_source_image": HIGH_RES_SOURCE.name,
         "canal_trace_source_images": sorted({
-            canal.get("source", HIGH_RES_SOURCE.name)
-            for canal in CANAL_CENTERLINES
+            f["properties"].get("source", HIGH_RES_SOURCE.name)
+            for f in canals
         }),
         "canal_tick_orientation": "perpendicular_to_local_centerline_tangent",
         "canal_ruler_ticks": sum(f["properties"].get("symbol_part") == "ruler_tick" for f in canals),
         "seasonal_river_features": len(seasonal),
         "cross_border_river_segments": len(cross_border),
+        "seasonal_dash_residual_segments_removed": original_cross_border_count - len(cross_border),
         "national_seasonal_river_candidates": 0,
     })
     label_features = read_fc(DATA / "region_code_labels.geojson")["features"]
@@ -584,8 +706,8 @@ def main() -> None:
     manifest["unique_region_codes"] = len({f["properties"].get("region_code") for f in label_features})
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(
-        f"Kept {len(river_features)} regular river segments; separated {len(CANAL_CENTERLINES)} canals "
-        f"with {manifest['canal_ruler_ticks']} ruler ticks; traced {len(seasonal)} "
+        f"Kept {len(river_features)} regular river segments; separated {manifest['canal_centerlines']} canals "
+        f"across {manifest['canal_centerline_reaches']} reaches with {manifest['canal_ruler_ticks']} ruler ticks; traced {len(seasonal)} "
         "neighbor seasonal rivers."
     )
 
