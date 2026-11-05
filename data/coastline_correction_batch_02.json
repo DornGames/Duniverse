@@ -1,0 +1,2485 @@
+{
+  "schema_version": 1,
+  "correction_batch": "2/3",
+  "created_date": "2026-11-05",
+  "scope": {
+    "actionable_candidate_total_before_batch_01": 177,
+    "resolved_in_batches_01_and_02": 118,
+    "resolved_in_batch_02": 59,
+    "remaining_for_batch_03": 59,
+    "selection": "19 residual unsupported tile-intersection micro-rings; 17 near-closed lines with high-resolution dark-stroke support; 23 shortest endpoint gaps with 100% open-shore raster support."
+  },
+  "input": {
+    "file": "data/coastlines.geojson",
+    "sha256": "8897d8c95f55c67979c5f0ddd96bccbde4ccf8d52c4f03014db6bf31f21f7fd4",
+    "feature_count": 1295,
+    "role_counts": {
+      "coastline": 979,
+      "island_shoreline": 316
+    },
+    "reference_raster": "official_map/Administrative Division Map of Donh 2026-no-text-super-big.png",
+    "reference_raster_sha256": "c393e40393a3a1bfbced75fe8867995d1b98eb7224d60354e8268396b8cd9eb6",
+    "reference_raster_dimensions_px": [
+      24579,
+      17376
+    ],
+    "registered_window_px": [
+      24576,
+      17376
+    ],
+    "provenance_limit": "Local project reference; available files do not independently authenticate it as the official published original."
+  },
+  "coordinate_mapping": {
+    "coordinate_frame": "input_map pixel-centre indices, not longitude/latitude",
+    "base_index_to_12x_pixel_center_index": {
+      "x": "X12=12*x+5.5",
+      "y": "Y12=12*y+5.5"
+    },
+    "base_index_to_12x_pixel_edge": {
+      "x": "12*(x+0.5)",
+      "y": "12*(y+0.5)"
+    },
+    "open_coastline_stored_to_normalized_index": "subtract 11/24 from both stored x and y",
+    "connectors_use_exact_existing_raw_endpoint_coordinates": true
+  },
+  "actions": {
+    "removed_tile_intersection_micro_rings": [
+      {
+        "audit_feature_id": "feature-1207",
+        "feature_array_index_before_batch_02_zero_based": 1198,
+        "original_batch_01_index_zero_based": 1207,
+        "tile_id": "R05C07",
+        "center_index_xy_px": [
+          1535.5,
+          1194.1666265
+        ],
+        "center_edge_xy_px": [
+          1536.0,
+          1194.6666
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          18432,
+          14336
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          -0.0008
+        ],
+        "ring_length_px": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 63.2876,
+        "vertical_seam_offset_px": 0.0,
+        "horizontal_seam_offset_px": 4e-05,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "7ea9f3691bedc627ebde813f7af83cacf93ab9db01cf900ca9649a0b633371d9"
+      },
+      {
+        "audit_feature_id": "feature-1148",
+        "feature_array_index_before_batch_02_zero_based": 1147,
+        "original_batch_01_index_zero_based": 1148,
+        "tile_id": "R05C06",
+        "center_index_xy_px": [
+          1450.1666265,
+          1023.5
+        ],
+        "center_edge_xy_px": [
+          1450.6666,
+          1024.0
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          17408,
+          12288
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 57.0499,
+        "vertical_seam_offset_px": 4e-05,
+        "horizontal_seam_offset_px": 0.0,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "919b3173ba7de783862ad4192306a8fbf5ba996af6a1850510e679cb8da8026b"
+      },
+      {
+        "audit_feature_id": "feature-1147",
+        "feature_array_index_before_batch_02_zero_based": 1146,
+        "original_batch_01_index_zero_based": 1147,
+        "tile_id": "R04C06",
+        "center_index_xy_px": [
+          1450.1666265,
+          767.5
+        ],
+        "center_edge_xy_px": [
+          1450.6666,
+          768.0
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          17408,
+          9216
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 55.386,
+        "vertical_seam_offset_px": 4e-05,
+        "horizontal_seam_offset_px": 0.0,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "39d9bd95a6a7104886c85d669d8ec56296d07cfb25221e247e6a860a2436ac27"
+      },
+      {
+        "audit_feature_id": "feature-1151",
+        "feature_array_index_before_batch_02_zero_based": 1148,
+        "original_batch_01_index_zero_based": 1151,
+        "tile_id": "R02C06",
+        "center_index_xy_px": [
+          1450.166625,
+          426.166625
+        ],
+        "center_edge_xy_px": [
+          1450.6666,
+          426.6666
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          17408,
+          5120
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          -0.0008
+        ],
+        "ring_length_px": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 54.9387,
+        "vertical_seam_offset_px": 4.2e-05,
+        "horizontal_seam_offset_px": 4.2e-05,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "956717c134b499e2880efa207a4c10c8989cac51cc52622c9d0d64f761f5e628"
+      },
+      {
+        "audit_feature_id": "feature-1244",
+        "feature_array_index_before_batch_02_zero_based": 1229,
+        "original_batch_01_index_zero_based": 1244,
+        "tile_id": "R03C07",
+        "center_index_xy_px": [
+          1620.8333735,
+          511.5
+        ],
+        "center_edge_xy_px": [
+          1621.3334,
+          512.0
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          19456,
+          6144
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0
+        ],
+        "ring_length_px": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 48.8058,
+        "vertical_seam_offset_px": 4e-05,
+        "horizontal_seam_offset_px": 0.0,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "b1325fbd8e1b799e90eb3741e46530da95334623b4e539235a501e6e8f7e3c79"
+      },
+      {
+        "audit_feature_id": "feature-1298",
+        "feature_array_index_before_batch_02_zero_based": 1270,
+        "original_batch_01_index_zero_based": 1298,
+        "tile_id": "R04C08",
+        "center_index_xy_px": [
+          1791.5,
+          767.5
+        ],
+        "center_edge_xy_px": [
+          1792.0,
+          768.0
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          21504,
+          9216
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0
+        ],
+        "ring_length_px": 0.23758788,
+        "distance_to_open_ocean_shore_p95_px": 47.476,
+        "vertical_seam_offset_px": 0.0,
+        "horizontal_seam_offset_px": 0.0,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "4743040ac1d51e55dab4b30669059dc8cc7c50ab7641597c777cf6ac2d989aca"
+      },
+      {
+        "audit_feature_id": "feature-1152",
+        "feature_array_index_before_batch_02_zero_based": 1149,
+        "original_batch_01_index_zero_based": 1152,
+        "tile_id": "R03C06",
+        "center_index_xy_px": [
+          1450.1666265,
+          511.5
+        ],
+        "center_edge_xy_px": [
+          1450.6666,
+          512.0
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          17408,
+          6144
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 45.5751,
+        "vertical_seam_offset_px": 4e-05,
+        "horizontal_seam_offset_px": 0.0,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "b982334a4fb9c139f775188c115cb617747169068ef6b65c23fb3392ad5d03ce"
+      },
+      {
+        "audit_feature_id": "feature-1201",
+        "feature_array_index_before_batch_02_zero_based": 1195,
+        "original_batch_01_index_zero_based": 1201,
+        "tile_id": "R06C07",
+        "center_index_xy_px": [
+          1535.5,
+          1279.5
+        ],
+        "center_edge_xy_px": [
+          1536.0,
+          1280.0
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          18432,
+          15360
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0
+        ],
+        "ring_length_px": 0.23758788,
+        "distance_to_open_ocean_shore_p95_px": 43.5302,
+        "vertical_seam_offset_px": 0.0,
+        "horizontal_seam_offset_px": 0.0,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "8b6f8c3954f6e9537b1a608f2eed0a7d1193e4a14894195664dab354e1e65f60"
+      },
+      {
+        "audit_feature_id": "feature-1115",
+        "feature_array_index_before_batch_02_zero_based": 1115,
+        "original_batch_01_index_zero_based": 1115,
+        "tile_id": "R02C06",
+        "center_index_xy_px": [
+          1364.8333735,
+          255.5
+        ],
+        "center_edge_xy_px": [
+          1365.3334,
+          256.0
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          16384,
+          3072
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0
+        ],
+        "ring_length_px": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 42.5166,
+        "vertical_seam_offset_px": 4e-05,
+        "horizontal_seam_offset_px": 0.0,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "4ee922183f8349348d678821baf841030dcf346239a115a1aec5cfd7dbbda2bb"
+      },
+      {
+        "audit_feature_id": "feature-1205",
+        "feature_array_index_before_batch_02_zero_based": 1197,
+        "original_batch_01_index_zero_based": 1205,
+        "tile_id": "R03C07",
+        "center_index_xy_px": [
+          1535.5,
+          511.5
+        ],
+        "center_edge_xy_px": [
+          1536.0,
+          512.0
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          18432,
+          6144
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0
+        ],
+        "ring_length_px": 0.23758788,
+        "distance_to_open_ocean_shore_p95_px": 33.4008,
+        "vertical_seam_offset_px": 0.0,
+        "horizontal_seam_offset_px": 0.0,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "62e6c7e3d015ff044e5d88769539fa63e1e99c8d6db49b327841667a43da372c"
+      },
+      {
+        "audit_feature_id": "feature-1247",
+        "feature_array_index_before_batch_02_zero_based": 1230,
+        "original_batch_01_index_zero_based": 1247,
+        "tile_id": "R06C07",
+        "center_index_xy_px": [
+          1620.833375,
+          1364.833375
+        ],
+        "center_edge_xy_px": [
+          1621.3334,
+          1365.3334
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          19456,
+          16384
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0008
+        ],
+        "ring_length_px": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 27.4275,
+        "vertical_seam_offset_px": 4.2e-05,
+        "horizontal_seam_offset_px": 4.2e-05,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "4e9584a8c26aa23a6776fe28d567c4d7a9d6ba1da386e0a42dbde16d12fed8f7"
+      },
+      {
+        "audit_feature_id": "feature-1204",
+        "feature_array_index_before_batch_02_zero_based": 1196,
+        "original_batch_01_index_zero_based": 1204,
+        "tile_id": "R02C06",
+        "center_index_xy_px": [
+          1535.5,
+          426.1666265
+        ],
+        "center_edge_xy_px": [
+          1536.0,
+          426.6666
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          18432,
+          5120
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          -0.0008
+        ],
+        "ring_length_px": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 24.6345,
+        "vertical_seam_offset_px": 0.0,
+        "horizontal_seam_offset_px": 4e-05,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "796460913eae160737f4a43a81f2328e037a7ed10c7e786d2eff42846188fe80"
+      },
+      {
+        "audit_feature_id": "feature-1153",
+        "feature_array_index_before_batch_02_zero_based": 1150,
+        "original_batch_01_index_zero_based": 1153,
+        "tile_id": "R05C06",
+        "center_index_xy_px": [
+          1450.166625,
+          1108.833375
+        ],
+        "center_edge_xy_px": [
+          1450.6666,
+          1109.3334
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          17408,
+          13312
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0008
+        ],
+        "ring_length_px": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 17.276,
+        "vertical_seam_offset_px": 4.2e-05,
+        "horizontal_seam_offset_px": 4.2e-05,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "87ccc9bf016f6b7d6386d104b7e92fc37095162349ceb8763717e08685a042b7"
+      },
+      {
+        "audit_feature_id": "feature-1254",
+        "feature_array_index_before_batch_02_zero_based": 1236,
+        "original_batch_01_index_zero_based": 1254,
+        "tile_id": "R04C07",
+        "center_index_xy_px": [
+          1706.1666265,
+          767.5
+        ],
+        "center_edge_xy_px": [
+          1706.6666,
+          768.0
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          20480,
+          9216
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 16.2345,
+        "vertical_seam_offset_px": 4e-05,
+        "horizontal_seam_offset_px": 0.0,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "adf0c3b45940107e7929815035efe1c1656154a76d11370cc3924847c8c52f3f"
+      },
+      {
+        "audit_feature_id": "feature-1119",
+        "feature_array_index_before_batch_02_zero_based": 1119,
+        "original_batch_01_index_zero_based": 1119,
+        "tile_id": "R03C06",
+        "center_index_xy_px": [
+          1364.8333735,
+          511.5
+        ],
+        "center_edge_xy_px": [
+          1365.3334,
+          512.0
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          16384,
+          6144
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0
+        ],
+        "ring_length_px": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 14.0453,
+        "vertical_seam_offset_px": 4e-05,
+        "horizontal_seam_offset_px": 0.0,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "b88614bb7d2bcc7b31748230213b67a049f762448fdc9d7ba478b3577a1e9385"
+      },
+      {
+        "audit_feature_id": "feature-1118",
+        "feature_array_index_before_batch_02_zero_based": 1118,
+        "original_batch_01_index_zero_based": 1118,
+        "tile_id": "R02C06",
+        "center_index_xy_px": [
+          1364.833375,
+          426.166625
+        ],
+        "center_edge_xy_px": [
+          1365.3334,
+          426.6666
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          16384,
+          5120
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          -0.0008
+        ],
+        "ring_length_px": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 13.5337,
+        "vertical_seam_offset_px": 4.2e-05,
+        "horizontal_seam_offset_px": 4.2e-05,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "d6ffafb5b1651f105b286f04911081e2295862ff82948f458071131858f77f14"
+      },
+      {
+        "audit_feature_id": "feature-1208",
+        "feature_array_index_before_batch_02_zero_based": 1199,
+        "original_batch_01_index_zero_based": 1208,
+        "tile_id": "R06C07",
+        "center_index_xy_px": [
+          1535.5,
+          1364.8333735
+        ],
+        "center_edge_xy_px": [
+          1536.0,
+          1365.3334
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          18432,
+          16384
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0008
+        ],
+        "ring_length_px": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 9.5376,
+        "vertical_seam_offset_px": 0.0,
+        "horizontal_seam_offset_px": 4e-05,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "be408eeb6cdc12ed2db84cfab1a12f5e50735f10179c3aea01e67ddfa717970a"
+      },
+      {
+        "audit_feature_id": "feature-1243",
+        "feature_array_index_before_batch_02_zero_based": 1228,
+        "original_batch_01_index_zero_based": 1243,
+        "tile_id": "R02C07",
+        "center_index_xy_px": [
+          1620.833375,
+          426.166625
+        ],
+        "center_edge_xy_px": [
+          1621.3334,
+          426.6666
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          19456,
+          5120
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          -0.0008
+        ],
+        "ring_length_px": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 6.6984,
+        "vertical_seam_offset_px": 4.2e-05,
+        "horizontal_seam_offset_px": 4.2e-05,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "163b1cb311028c0942b7c0df105b8bbf1a80845192d50a333fa32ae3eec5b594"
+      },
+      {
+        "audit_feature_id": "feature-1116",
+        "feature_array_index_before_batch_02_zero_based": 1116,
+        "original_batch_01_index_zero_based": 1116,
+        "tile_id": "R01C06",
+        "center_index_xy_px": [
+          1364.833375,
+          84.833375
+        ],
+        "center_edge_xy_px": [
+          1365.3334,
+          85.3334
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          16384,
+          1024
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0008
+        ],
+        "ring_length_px": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 5.6969,
+        "vertical_seam_offset_px": 4.2e-05,
+        "horizontal_seam_offset_px": 4.2e-05,
+        "action": "removed; raw 12x crop shows open water without shoreline ink",
+        "source_feature_sha256": "8b3bbd98b2e4dabfdaebfebf81750fa560c7bdc4a9988f4ce415967cf4a88a3b"
+      }
+    ],
+    "closed_near_closed_shorelines": [
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-001",
+        "review_id": "official-tile-0096",
+        "feature_array_index_before_batch_02_zero_based": 92,
+        "tile_id": "R03C06",
+        "center_index_xy_px": [
+          1292.2502,
+          524.3332
+        ],
+        "stored_endpoint_xy": [
+          [
+            1292.667,
+            524.75
+          ],
+          [
+            1292.75,
+            524.833
+          ]
+        ],
+        "closure_gap_length_px": 0.1174,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 0.25,
+        "feature_sha256_before": "c7c6cbd3632d274da89bd6d087639798c1291a3f32c8c0f0fef25a120c2d40cf",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-003",
+        "review_id": "official-tile-0324",
+        "feature_array_index_before_batch_02_zero_based": 308,
+        "tile_id": "R02C06",
+        "center_index_xy_px": [
+          1341.6667,
+          435.9167
+        ],
+        "stored_endpoint_xy": [
+          [
+            1342.083,
+            436.417
+          ],
+          [
+            1342.167,
+            436.333
+          ]
+        ],
+        "closure_gap_length_px": 0.1188,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 1.5991,
+        "feature_sha256_before": "4d621e4333531e1b5fb6eca997550d35a502a91e0c6151af09ffc8526c25491d",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-004",
+        "review_id": "official-tile-0340",
+        "feature_array_index_before_batch_02_zero_based": 323,
+        "tile_id": "R02C06",
+        "center_index_xy_px": [
+          1343.6667,
+          432.9167
+        ],
+        "stored_endpoint_xy": [
+          [
+            1344.083,
+            433.417
+          ],
+          [
+            1344.167,
+            433.333
+          ]
+        ],
+        "closure_gap_length_px": 0.1188,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 2.4925,
+        "feature_sha256_before": "7dc35b5ebca47739262a08bb364901907af013b145143e246d5fa2a3b675d138",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-005",
+        "review_id": "official-tile-0367",
+        "feature_array_index_before_batch_02_zero_based": 349,
+        "tile_id": "R04C06",
+        "center_index_xy_px": [
+          1348.9167,
+          960.4167
+        ],
+        "stored_endpoint_xy": [
+          [
+            1349.333,
+            960.917
+          ],
+          [
+            1349.417,
+            960.833
+          ]
+        ],
+        "closure_gap_length_px": 0.1188,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 8.6755,
+        "feature_sha256_before": "e037878dde16b3776ec0dbd0de8dcdd5cfab70315a24cc0d1107d2afb7a51d95",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-007",
+        "review_id": "official-tile-0390",
+        "feature_array_index_before_batch_02_zero_based": 370,
+        "tile_id": "R02C06",
+        "center_index_xy_px": [
+          1354.1667,
+          414.4167
+        ],
+        "stored_endpoint_xy": [
+          [
+            1354.583,
+            414.917
+          ],
+          [
+            1354.667,
+            414.833
+          ]
+        ],
+        "closure_gap_length_px": 0.1188,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 0.25,
+        "feature_sha256_before": "0b4eaed3d6b08b6a8f096e1be611b730dd2189bbfd30dbf5de27c11c5df0a063",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-009",
+        "review_id": "official-tile-0465",
+        "feature_array_index_before_batch_02_zero_based": 443,
+        "tile_id": "R04C06",
+        "center_index_xy_px": [
+          1383.9167,
+          867.6667
+        ],
+        "stored_endpoint_xy": [
+          [
+            1384.333,
+            868.167
+          ],
+          [
+            1384.417,
+            868.083
+          ]
+        ],
+        "closure_gap_length_px": 0.1188,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 10.6853,
+        "feature_sha256_before": "767df835d0e71b7112e866a9f8c856513583d64e3e5fa16931d89eec599583d0",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-010",
+        "review_id": "official-tile-0476",
+        "feature_array_index_before_batch_02_zero_based": 454,
+        "tile_id": "R04C06",
+        "center_index_xy_px": [
+          1410.0832,
+          790.2502
+        ],
+        "stored_endpoint_xy": [
+          [
+            1410.583,
+            790.75
+          ],
+          [
+            1410.5,
+            790.667
+          ]
+        ],
+        "closure_gap_length_px": 0.1174,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 16.4142,
+        "feature_sha256_before": "a0d940c234e73c029a3b5b64aa31becf8e2a41336e963d65b561373526600e96",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-011",
+        "review_id": "official-tile-0490",
+        "feature_array_index_before_batch_02_zero_based": 467,
+        "tile_id": "R04C06",
+        "center_index_xy_px": [
+          1418.2502,
+          783.3332
+        ],
+        "stored_endpoint_xy": [
+          [
+            1418.667,
+            783.75
+          ],
+          [
+            1418.75,
+            783.833
+          ]
+        ],
+        "closure_gap_length_px": 0.1174,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 24.6599,
+        "feature_sha256_before": "9cd806b6be70ac1d46890181f5f645c6ea0804d9550cdba50679b9cdab6c5516",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-012",
+        "review_id": "official-tile-0495",
+        "feature_array_index_before_batch_02_zero_based": 472,
+        "tile_id": "R04C06",
+        "center_index_xy_px": [
+          1432.4167,
+          817.5002
+        ],
+        "stored_endpoint_xy": [
+          [
+            1432.917,
+            818.0
+          ],
+          [
+            1432.833,
+            817.917
+          ]
+        ],
+        "closure_gap_length_px": 0.1181,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 39.8136,
+        "feature_sha256_before": "d77d881eeb8168cdba587e288eca3add03e30ec5bb5ee5064d18842bdcdc371c",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-014",
+        "review_id": "official-tile-0644",
+        "feature_array_index_before_batch_02_zero_based": 614,
+        "tile_id": "R05C06",
+        "center_index_xy_px": [
+          1478.6667,
+          1228.4167
+        ],
+        "stored_endpoint_xy": [
+          [
+            1479.083,
+            1228.917
+          ],
+          [
+            1479.167,
+            1228.833
+          ]
+        ],
+        "closure_gap_length_px": 0.1188,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 4.0,
+        "feature_sha256_before": "1d872e4977a0df24ea286c113e397839d7d78e6d89d267cb51876e6f546eee3a",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-015",
+        "review_id": "official-tile-0673",
+        "feature_array_index_before_batch_02_zero_based": 641,
+        "tile_id": "R06C06",
+        "center_index_xy_px": [
+          1498.6667,
+          1292.4167
+        ],
+        "stored_endpoint_xy": [
+          [
+            1499.167,
+            1292.917
+          ],
+          [
+            1499.083,
+            1292.833
+          ]
+        ],
+        "closure_gap_length_px": 0.1188,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 7.7581,
+        "feature_sha256_before": "07df499470a81b8a033d201462423b1a00d4f55ca99e13444c3ab9c5e8d47f17",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-016",
+        "review_id": "official-tile-0702",
+        "feature_array_index_before_batch_02_zero_based": 666,
+        "tile_id": "R02C07",
+        "center_index_xy_px": [
+          1585.2502,
+          436.5002
+        ],
+        "stored_endpoint_xy": [
+          [
+            1585.75,
+            436.917
+          ],
+          [
+            1585.667,
+            437.0
+          ]
+        ],
+        "closure_gap_length_px": 0.1174,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 0.25,
+        "feature_sha256_before": "57ce8cc2e7b2d2666cd72a26476d4ce5ac669a9abc9b1f820d7c188771c943af",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-017",
+        "review_id": "official-tile-0703",
+        "feature_array_index_before_batch_02_zero_based": 667,
+        "tile_id": "R02C07",
+        "center_index_xy_px": [
+          1585.2502,
+          436.5002
+        ],
+        "stored_endpoint_xy": [
+          [
+            1585.667,
+            437.0
+          ],
+          [
+            1585.75,
+            436.917
+          ]
+        ],
+        "closure_gap_length_px": 0.1174,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 0.25,
+        "feature_sha256_before": "10dfcc49140774253d510ca30e55537309d6a5bf1981fe897aaa0b563f73b240",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-018",
+        "review_id": "official-tile-0739",
+        "feature_array_index_before_batch_02_zero_based": 701,
+        "tile_id": "R04C07",
+        "center_index_xy_px": [
+          1594.1667,
+          885.4167
+        ],
+        "stored_endpoint_xy": [
+          [
+            1594.583,
+            885.917
+          ],
+          [
+            1594.667,
+            885.833
+          ]
+        ],
+        "closure_gap_length_px": 0.1188,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 44.0456,
+        "feature_sha256_before": "36a55928b11ff16f2e92e310530f07181051c758228c49f67f9f6e12df6ada0b",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-019",
+        "review_id": "official-tile-0878",
+        "feature_array_index_before_batch_02_zero_based": 836,
+        "tile_id": "R04C07",
+        "center_index_xy_px": [
+          1741.1667,
+          812.4167
+        ],
+        "stored_endpoint_xy": [
+          [
+            1741.583,
+            812.917
+          ],
+          [
+            1741.667,
+            812.833
+          ]
+        ],
+        "closure_gap_length_px": 0.1188,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 53.7523,
+        "feature_sha256_before": "4cc776940a89be6ca7fdaafd0867a22dcffc96671896a8d86cf45a8e13193afa",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-020",
+        "review_id": "official-tile-0938",
+        "feature_array_index_before_batch_02_zero_based": 894,
+        "tile_id": "R04C07",
+        "center_index_xy_px": [
+          1785.9167,
+          785.6667
+        ],
+        "stored_endpoint_xy": [
+          [
+            1786.333,
+            786.167
+          ],
+          [
+            1786.417,
+            786.083
+          ]
+        ],
+        "closure_gap_length_px": 0.1188,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 66.4986,
+        "feature_sha256_before": "671ee42b9db85618e3ba48560b9d247f0c34c43cfe89b0eeac2085c63479e4f6",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-021",
+        "review_id": "official-tile-1002",
+        "feature_array_index_before_batch_02_zero_based": 953,
+        "tile_id": "R03C08",
+        "center_index_xy_px": [
+          1834.6667,
+          663.5832
+        ],
+        "stored_endpoint_xy": [
+          [
+            1835.083,
+            664.083
+          ],
+          [
+            1835.167,
+            664.0
+          ]
+        ],
+        "closure_gap_length_px": 0.1181,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "distance_to_open_ocean_shore_p95_px": 5.8474,
+        "feature_sha256_before": "9d8f3be83547b29e4e7b23eab90a879834e5dfd5a080725d76c2e758b698fe5e",
+        "action": "closed by appending the first coordinate; 21/21 local 12x samples have dark shoreline pixels within 2 px"
+      }
+    ],
+    "added_endpoint_connectors": [
+      {
+        "issue_id": "COAST-GAP-0001",
+        "review_id": "batch-02-coast-gap-0001",
+        "tile_id": "R01C06",
+        "connects_features": [
+          "official-tile-0036",
+          "official-tile-0046"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          34,
+          43
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1279.5417,
+            36.0417
+          ],
+          [
+            1279.5417,
+            35.9587
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            15360.0,
+            438.0
+          ],
+          [
+            15360.0,
+            437.004
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1279.5416666666667,
+            36.041666666666664
+          ],
+          [
+            1279.5416666666667,
+            35.958666666666666
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1280.0,
+            36.5
+          ],
+          [
+            1280.0,
+            36.417
+          ]
+        ],
+        "gap_length_px": 0.083,
+        "tangent_alignment_score_0_2": 1.5918,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0002",
+        "review_id": "batch-02-coast-gap-0002",
+        "tile_id": "R01C06",
+        "connects_features": [
+          "official-tile-0054",
+          "official-tile-0056"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          51,
+          53
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1279.6247,
+            76.9587
+          ],
+          [
+            1279.6247,
+            77.0417
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            15360.996,
+            929.004
+          ],
+          [
+            15360.996,
+            930.0
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1279.6246666666668,
+            76.95866666666667
+          ],
+          [
+            1279.6246666666668,
+            77.04166666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1280.083,
+            77.417
+          ],
+          [
+            1280.083,
+            77.5
+          ]
+        ],
+        "gap_length_px": 0.083,
+        "tangent_alignment_score_0_2": 1.4184,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0003",
+        "review_id": "batch-02-coast-gap-0003",
+        "tile_id": "R01C06",
+        "connects_features": [
+          "official-tile-0053",
+          "official-tile-0054"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          50,
+          51
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1279.5417,
+            76.7917
+          ],
+          [
+            1279.5417,
+            76.8747
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            15360.0,
+            927.0
+          ],
+          [
+            15360.0,
+            927.996
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1279.5416666666667,
+            76.79166666666667
+          ],
+          [
+            1279.5416666666667,
+            76.87466666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1280.0,
+            77.25
+          ],
+          [
+            1280.0,
+            77.333
+          ]
+        ],
+        "gap_length_px": 0.083,
+        "tangent_alignment_score_0_2": 1.4184,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0004",
+        "review_id": "batch-02-coast-gap-0004",
+        "tile_id": "R01C06",
+        "connects_features": [
+          "official-tile-0436",
+          "official-tile-0445"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          414,
+          423
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1364.9587,
+            91.5417
+          ],
+          [
+            1364.9587,
+            91.4587
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            16385.004,
+            1104.0
+          ],
+          [
+            16385.004,
+            1103.004
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1364.9586666666667,
+            91.54166666666667
+          ],
+          [
+            1364.9586666666667,
+            91.45866666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1365.417,
+            92.0
+          ],
+          [
+            1365.417,
+            91.917
+          ]
+        ],
+        "gap_length_px": 0.083,
+        "tangent_alignment_score_0_2": 1.4142,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0005",
+        "review_id": "batch-02-coast-gap-0005",
+        "tile_id": "R01C06",
+        "connects_features": [
+          "official-tile-0053",
+          "official-tile-0055"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          50,
+          52
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1279.5417,
+            79.3747
+          ],
+          [
+            1279.5417,
+            79.2917
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            15360.0,
+            957.996
+          ],
+          [
+            15360.0,
+            957.0
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1279.5416666666667,
+            79.37466666666667
+          ],
+          [
+            1279.5416666666667,
+            79.29166666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1280.0,
+            79.833
+          ],
+          [
+            1280.0,
+            79.75
+          ]
+        ],
+        "gap_length_px": 0.083,
+        "tangent_alignment_score_0_2": 1.3659,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0006",
+        "review_id": "batch-02-coast-gap-0006",
+        "tile_id": "R05C06",
+        "connects_features": [
+          "official-tile-0454",
+          "official-tile-0514"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          432,
+          491
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1450.1247,
+            1134.9587
+          ],
+          [
+            1450.1247,
+            1135.0417
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            17406.996,
+            13625.004
+          ],
+          [
+            17406.996,
+            13626.0
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1450.1246666666668,
+            1134.9586666666667
+          ],
+          [
+            1450.1246666666668,
+            1135.0416666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1450.583,
+            1135.417
+          ],
+          [
+            1450.583,
+            1135.5
+          ]
+        ],
+        "gap_length_px": 0.083,
+        "tangent_alignment_score_0_2": 1.44,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0007",
+        "review_id": "batch-02-coast-gap-0007",
+        "tile_id": "R02C06",
+        "connects_features": [
+          "official-tile-0288",
+          "official-tile-0305"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          275,
+          290
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1339.3747,
+            426.2917
+          ],
+          [
+            1339.4587,
+            426.2917
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            16077.996,
+            5121.0
+          ],
+          [
+            16079.004,
+            5121.0
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1339.3746666666668,
+            426.2916666666667
+          ],
+          [
+            1339.4586666666667,
+            426.2916666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1339.833,
+            426.75
+          ],
+          [
+            1339.917,
+            426.75
+          ]
+        ],
+        "gap_length_px": 0.084,
+        "tangent_alignment_score_0_2": 1.5014,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0008",
+        "review_id": "batch-02-coast-gap-0008",
+        "tile_id": "R01C06",
+        "connects_features": [
+          "official-tile-0055",
+          "official-tile-0056"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          52,
+          53
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1279.6247,
+            79.2087
+          ],
+          [
+            1279.6247,
+            79.1247
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            15360.996,
+            956.004
+          ],
+          [
+            15360.996,
+            954.996
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1279.6246666666668,
+            79.20866666666667
+          ],
+          [
+            1279.6246666666668,
+            79.12466666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1280.083,
+            79.667
+          ],
+          [
+            1280.083,
+            79.583
+          ]
+        ],
+        "gap_length_px": 0.084,
+        "tangent_alignment_score_0_2": 1.601,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "high",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0009",
+        "review_id": "batch-02-coast-gap-0009",
+        "tile_id": "R01C06",
+        "connects_features": [
+          "official-tile-0047",
+          "official-tile-0049"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          44,
+          46
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1279.5417,
+            88.4587
+          ],
+          [
+            1279.5417,
+            88.3747
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            15360.0,
+            1067.004
+          ],
+          [
+            15360.0,
+            1065.996
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1279.5416666666667,
+            88.45866666666667
+          ],
+          [
+            1279.5416666666667,
+            88.37466666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1280.0,
+            88.917
+          ],
+          [
+            1280.0,
+            88.833
+          ]
+        ],
+        "gap_length_px": 0.084,
+        "tangent_alignment_score_0_2": 1.4142,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0010",
+        "review_id": "batch-02-coast-gap-0010",
+        "tile_id": "R03C08",
+        "connects_features": [
+          "official-tile-0972",
+          "official-tile-0977"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          926,
+          931
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1808.2087,
+            682.2087
+          ],
+          [
+            1808.0417,
+            682.2087
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            21704.004,
+            8192.004
+          ],
+          [
+            21702.0,
+            8192.004
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1808.2086666666667,
+            682.2086666666667
+          ],
+          [
+            1808.0416666666667,
+            682.2086666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1808.667,
+            682.667
+          ],
+          [
+            1808.5,
+            682.667
+          ]
+        ],
+        "gap_length_px": 0.167,
+        "tangent_alignment_score_0_2": 1.4057,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0011",
+        "review_id": "batch-02-coast-gap-0011",
+        "tile_id": "R01C05",
+        "connects_features": [
+          "official-tile-0047",
+          "official-tile-0048"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          44,
+          45
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1279.4587,
+            88.5417
+          ],
+          [
+            1279.4587,
+            88.7087
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            15359.004,
+            1068.0
+          ],
+          [
+            15359.004,
+            1070.004
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1279.4586666666667,
+            88.54166666666667
+          ],
+          [
+            1279.4586666666667,
+            88.70866666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1279.917,
+            89.0
+          ],
+          [
+            1279.917,
+            89.167
+          ]
+        ],
+        "gap_length_px": 0.167,
+        "tangent_alignment_score_0_2": 1.5994,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0012",
+        "review_id": "batch-02-coast-gap-0012",
+        "tile_id": "R03C07",
+        "connects_features": [
+          "official-tile-0856",
+          "official-tile-0860"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          814,
+          818
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1736.7087,
+            645.7087
+          ],
+          [
+            1736.9587,
+            645.7087
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            20846.004,
+            7754.004
+          ],
+          [
+            20849.004,
+            7754.004
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1736.7086666666667,
+            645.7086666666667
+          ],
+          [
+            1736.9586666666667,
+            645.7086666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1737.167,
+            646.167
+          ],
+          [
+            1737.417,
+            646.167
+          ]
+        ],
+        "gap_length_px": 0.25,
+        "tangent_alignment_score_0_2": 1.7029,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": false,
+        "confidence": "high",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0013",
+        "review_id": "batch-02-coast-gap-0013",
+        "tile_id": "R01C06",
+        "connects_features": [
+          "official-tile-0437",
+          "official-tile-0445"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          415,
+          423
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1364.9587,
+            92.4587
+          ],
+          [
+            1364.9587,
+            92.7087
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            16385.004,
+            1115.004
+          ],
+          [
+            16385.004,
+            1118.004
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1364.9586666666667,
+            92.45866666666667
+          ],
+          [
+            1364.9586666666667,
+            92.70866666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1365.417,
+            92.917
+          ],
+          [
+            1365.417,
+            93.167
+          ]
+        ],
+        "gap_length_px": 0.25,
+        "tangent_alignment_score_0_2": 1.6755,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "high",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0014",
+        "review_id": "batch-02-coast-gap-0014",
+        "tile_id": "R03C08",
+        "connects_features": [
+          "official-tile-0970",
+          "official-tile-0973"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          924,
+          927
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1807.5417,
+            681.5417
+          ],
+          [
+            1807.7917,
+            681.7917
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            21696.0,
+            8184.0
+          ],
+          [
+            21699.0,
+            8187.0
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1807.5416666666667,
+            681.5416666666666
+          ],
+          [
+            1807.7916666666667,
+            681.7916666666666
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1808.0,
+            682.0
+          ],
+          [
+            1808.25,
+            682.25
+          ]
+        ],
+        "gap_length_px": 0.35355339,
+        "tangent_alignment_score_0_2": 1.4142,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": false,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0015",
+        "review_id": "batch-02-coast-gap-0015",
+        "tile_id": "R01C06",
+        "connects_features": [
+          "official-tile-0436",
+          "official-tile-0437"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          414,
+          415
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1364.7917,
+            91.7087
+          ],
+          [
+            1364.7917,
+            92.1247
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            16383.0,
+            1106.004
+          ],
+          [
+            16383.0,
+            1110.996
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1364.7916666666667,
+            91.70866666666667
+          ],
+          [
+            1364.7916666666667,
+            92.12466666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1365.25,
+            92.167
+          ],
+          [
+            1365.25,
+            92.583
+          ]
+        ],
+        "gap_length_px": 0.416,
+        "tangent_alignment_score_0_2": 1.6015,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "high",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0016",
+        "review_id": "batch-02-coast-gap-0016",
+        "tile_id": "R02C07",
+        "connects_features": [
+          "official-tile-0779",
+          "official-tile-0781"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          740,
+          742
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1611.2917,
+            435.2087
+          ],
+          [
+            1611.7087,
+            435.3747
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            19341.0,
+            5228.004
+          ],
+          [
+            19346.004,
+            5229.996
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1611.2916666666667,
+            435.20866666666666
+          ],
+          [
+            1611.7086666666667,
+            435.3746666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1611.75,
+            435.667
+          ],
+          [
+            1612.167,
+            435.833
+          ]
+        ],
+        "gap_length_px": 0.44882625,
+        "tangent_alignment_score_0_2": 1.8906,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": false,
+        "confidence": "high",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0017",
+        "review_id": "batch-02-coast-gap-0017",
+        "tile_id": "R01C05",
+        "connects_features": [
+          "official-tile-0048",
+          "official-tile-0049"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          45,
+          46
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1279.4587,
+            88.9587
+          ],
+          [
+            1279.4587,
+            89.4587
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            15359.004,
+            1073.004
+          ],
+          [
+            15359.004,
+            1079.004
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1279.4586666666667,
+            88.95866666666667
+          ],
+          [
+            1279.4586666666667,
+            89.45866666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1279.917,
+            89.417
+          ],
+          [
+            1279.917,
+            89.917
+          ]
+        ],
+        "gap_length_px": 0.5,
+        "tangent_alignment_score_0_2": 1.3658,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": true,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0018",
+        "review_id": "batch-02-coast-gap-0018",
+        "tile_id": "R02C06",
+        "connects_features": [
+          "official-tile-0260",
+          "official-tile-0261"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          247,
+          248
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1334.5417,
+            467.3747
+          ],
+          [
+            1335.2087,
+            467.1247
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            16020.0,
+            5613.996
+          ],
+          [
+            16028.004,
+            5610.996
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1334.5416666666667,
+            467.3746666666667
+          ],
+          [
+            1335.2086666666667,
+            467.1246666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1335.0,
+            467.833
+          ],
+          [
+            1335.667,
+            467.583
+          ]
+        ],
+        "gap_length_px": 0.71231243,
+        "tangent_alignment_score_0_2": 1.8728,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": false,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0019",
+        "review_id": "batch-02-coast-gap-0019",
+        "tile_id": "R02C05",
+        "connects_features": [
+          "official-tile-0017",
+          "official-tile-0020"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          17,
+          19
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1258.5417,
+            480.2087
+          ],
+          [
+            1259.2087,
+            479.7917
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            15108.0,
+            5768.004
+          ],
+          [
+            15116.004,
+            5763.0
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1258.5416666666667,
+            480.20866666666666
+          ],
+          [
+            1259.2086666666667,
+            479.7916666666667
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1259.0,
+            480.667
+          ],
+          [
+            1259.667,
+            480.25
+          ]
+        ],
+        "gap_length_px": 0.78662443,
+        "tangent_alignment_score_0_2": 1.5425,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": false,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0020",
+        "review_id": "batch-02-coast-gap-0020",
+        "tile_id": "R05C06",
+        "connects_features": [
+          "official-tile-0539",
+          "official-tile-0540"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          515,
+          516
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1454.0417,
+            1234.8747
+          ],
+          [
+            1454.4587,
+            1234.1247
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            17454.0,
+            14823.996
+          ],
+          [
+            17459.004,
+            14814.996
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1454.0416666666667,
+            1234.8746666666668
+          ],
+          [
+            1454.4586666666667,
+            1234.1246666666668
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1454.5,
+            1235.333
+          ],
+          [
+            1454.917,
+            1234.583
+          ]
+        ],
+        "gap_length_px": 0.85813111,
+        "tangent_alignment_score_0_2": 1.3599,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": false,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0021",
+        "review_id": "batch-02-coast-gap-0021",
+        "tile_id": "R02C07",
+        "connects_features": [
+          "official-tile-0796",
+          "official-tile-0808"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          757,
+          769
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1623.3747,
+            443.4587
+          ],
+          [
+            1624.1247,
+            442.9587
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            19485.996,
+            5327.004
+          ],
+          [
+            19494.996,
+            5321.004
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1623.3746666666668,
+            443.45866666666666
+          ],
+          [
+            1624.1246666666668,
+            442.95866666666666
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1623.833,
+            443.917
+          ],
+          [
+            1624.583,
+            443.417
+          ]
+        ],
+        "gap_length_px": 0.90138782,
+        "tangent_alignment_score_0_2": 1.3868,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": false,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0022",
+        "review_id": "batch-02-coast-gap-0022",
+        "tile_id": "R02C06",
+        "connects_features": [
+          "official-tile-0091",
+          "official-tile-0092"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          87,
+          88
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1291.1247,
+            502.7087
+          ],
+          [
+            1292.0417,
+            502.9587
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            15498.996,
+            6038.004
+          ],
+          [
+            15510.0,
+            6041.004
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1291.1246666666668,
+            502.70866666666666
+          ],
+          [
+            1292.0416666666667,
+            502.95866666666666
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1291.583,
+            503.167
+          ],
+          [
+            1292.5,
+            503.417
+          ]
+        ],
+        "gap_length_px": 0.95046778,
+        "tangent_alignment_score_0_2": 1.3644,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": false,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      },
+      {
+        "issue_id": "COAST-GAP-0023",
+        "review_id": "batch-02-coast-gap-0023",
+        "tile_id": "R02C07",
+        "connects_features": [
+          "official-tile-0708",
+          "official-tile-0721"
+        ],
+        "feature_array_indices_before_batch_02_zero_based": [
+          672,
+          685
+        ],
+        "candidate_endpoint_center_index_xy_px": [
+          [
+            1587.2917,
+            462.3747
+          ],
+          [
+            1588.2917,
+            462.4587
+          ]
+        ],
+        "candidate_reference_12x_pixel_center_index_xy": [
+          [
+            19053.0,
+            5553.996
+          ],
+          [
+            19065.0,
+            5555.004
+          ]
+        ],
+        "exact_normalized_endpoint_xy_px": [
+          [
+            1587.2916666666667,
+            462.3746666666667
+          ],
+          [
+            1588.2916666666667,
+            462.45866666666666
+          ]
+        ],
+        "exact_stored_geometry_xy": [
+          [
+            1587.75,
+            462.833
+          ],
+          [
+            1588.75,
+            462.917
+          ]
+        ],
+        "gap_length_px": 1.0035218,
+        "tangent_alignment_score_0_2": 1.7603,
+        "official_shore_support_pct": 100.0,
+        "source_tile_seam_candidate": false,
+        "confidence": "medium",
+        "action": "added connector between the exact existing endpoints"
+      }
+    ],
+    "reviewed_but_deferred_near_closed_cases": [
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-002",
+        "review_id": "official-tile-0127",
+        "tile_id": "R03C06",
+        "center_index_xy_px": [
+          1302.8332,
+          511.6247
+        ],
+        "gap_length_px": 0.083,
+        "dark_reference_support_samples": 0,
+        "sample_count": 21,
+        "reason": "closure path has no dark shoreline support"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-006",
+        "review_id": "official-tile-0379",
+        "tile_id": "R04C06",
+        "center_index_xy_px": [
+          1353.0002,
+          988.2087
+        ],
+        "gap_length_px": 0.083,
+        "dark_reference_support_samples": 0,
+        "sample_count": 21,
+        "reason": "closure path has no dark shoreline support"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-008",
+        "review_id": "official-tile-0443",
+        "tile_id": "R01C06",
+        "center_index_xy_px": [
+          1364.8747,
+          98.1667
+        ],
+        "gap_length_px": 0.084,
+        "dark_reference_support_samples": 0,
+        "sample_count": 21,
+        "reason": "closure path has no dark shoreline support"
+      },
+      {
+        "audit_issue_id": "GEOM-NEAR-CLOSE-013",
+        "review_id": "official-tile-0547",
+        "tile_id": "R04C06",
+        "center_index_xy_px": [
+          1457.0832,
+          938.1247
+        ],
+        "gap_length_px": 0.083,
+        "dark_reference_support_samples": 21,
+        "sample_count": 21,
+        "reason": "ambiguous island versus map symbol"
+      }
+    ]
+  },
+  "review_evidence": {
+    "removed_micro_rings": {
+      "file": "docs/coastline_correction_batch_02_rings_review.png",
+      "sha256": "b5f98a20362ad090939d74c807e16e5e0c3ea1125f6c289af269ba8c5e90968f"
+    },
+    "endpoint_connectors": {
+      "file": "docs/coastline_correction_batch_02_endpoints_review.png",
+      "sha256": "d522f711991b602c6ca613d6639b8edc8d8187b8e12ced6d807572bf8bba9ed9"
+    },
+    "near_closed_lines": {
+      "file": "docs/coastline_correction_batch_02_nearclose_review.png",
+      "sha256": "4cad93111c6f4207289882373e33766d776710faf97a2e22b436f2f5b3e1a46b"
+    }
+  },
+  "change": {
+    "removed_feature_count": 19,
+    "closed_existing_feature_count": 17,
+    "added_connector_feature_count": 23,
+    "total_issue_records_resolved": 59,
+    "output_feature_count": 1299,
+    "output_role_counts": {
+      "coastline": 1002,
+      "island_shoreline": 297
+    },
+    "output_closed_geometry_counts": {
+      "coastline": 17,
+      "island_shoreline": 297
+    },
+    "output_simple_ring_counts": {
+      "coastline": 17,
+      "island_shoreline": 296
+    },
+    "preserved_non_simple_closed_geometry_count": 1,
+    "output_open_geometry_counts": {
+      "coastline": 985
+    },
+    "output_sha256": "36d06e5c7f3db67db96c01b424325b6180c8594ad85710f8eaf41b014a2ef73f"
+  },
+  "batch_03_remaining_issue_counts": {
+    "unpaired_endpoint_pairs": 8,
+    "near_closed_lines_deferred": 4,
+    "uncovered_shoreline_candidates": 23,
+    "river_mouth_candidates_excluding_connected_context": 16,
+    "non_simple_closed_ring": 1,
+    "shared_vector_overlaps": 7,
+    "total": 59
+  }
+}
