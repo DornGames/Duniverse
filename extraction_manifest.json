@@ -10,7 +10,7 @@
   "region_code_label_instances": 46,
   "national_outline_components": 8,
   "river_line_segments": 263,
-  "lake_candidates": 10,
+  "lake_candidates": 12,
   "black_marker_candidates": 260,
   "red_marker_candidates": 43,
   "ocr_text_candidates": 459,
@@ -29,7 +29,7 @@
     "Administrative Division Map of Donh 2026-no-river-super-big.png",
     "Administrative Division Map of Donh 2026-no-text-super-big.png"
   ],
-  "cross_border_river_segments": 76,
+  "cross_border_river_segments": 67,
   "neighbor_border_segments": 1,
   "ocean_pixels": 971243,
   "canal_centerlines": 9,
@@ -53,7 +53,7 @@
   "seasonal_river_trace_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
   "seasonal_river_trace_method": "centerline_through_centers_of_official_12x_dash_strokes",
   "cross_border_input_river_segments": 147,
-  "cross_border_lake_edge_residual_segments_removed": 1,
+  "cross_border_lake_edge_residual_segments_removed": 0,
   "seasonal_river_trace_coordinate_space": "input_map.png image pixels",
   "seasonal_dash_residual_segment_ids_removed": [
     43,
@@ -127,7 +127,29 @@
     115,
     116
   ],
-  "cross_border_lake_edge_residual_segment_ids_removed": [
-    118
-  ]
+  "cross_border_lake_edge_residual_segment_ids_removed": [],
+  "neighboring_lake_features": 2,
+  "neighboring_lake_ids": [
+    11,
+    12
+  ],
+  "cross_border_lake_fill_segments_removed": 10,
+  "cross_border_lake_fill_segment_ids_removed": [
+    38,
+    39,
+    40,
+    41,
+    42,
+    117,
+    118,
+    119,
+    120,
+    121
+  ],
+  "cross_border_lake_fill_segments_clipped": 2,
+  "cross_border_lake_fill_segment_ids_clipped": [
+    18,
+    122
+  ],
+  "cross_border_lake_fill_line_length_removed_px": 127.845
 }

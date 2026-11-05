@@ -3392,51 +3392,23 @@
       "type": "Feature",
       "properties": {
         "segment_id": 18,
-        "length_px": 252.756,
+        "length_px": 241.651,
         "source": "official_12x_river_raster_centerline_trace",
         "review_status": "traced_from_official_high_resolution_river_raster",
         "territory": "neighboring_country",
         "raster_scale": 12,
-        "geometry_simplification_tolerance_px": 0.08
+        "geometry_simplification_tolerance_px": 0.08,
+        "lake_overlap_removed_px": 11.106,
+        "lake_clip_ids": [
+          11
+        ]
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            424.542,
-            290.125
-          ],
-          [
-            422.875,
-            288.458
-          ],
-          [
-            422.458,
-            287.792
-          ],
-          [
-            422.125,
-            286.458
-          ],
-          [
-            422.208,
-            283.542
-          ],
-          [
-            421.958,
-            282.708
-          ],
-          [
-            422.208,
-            281.542
-          ],
-          [
-            422.208,
-            280.875
-          ],
-          [
-            422.375,
-            280.542
+            422.496191,
+            279.9876
           ],
           [
             422.958,
@@ -6467,231 +6439,6 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 38,
-        "length_px": 13.331,
-        "source": "official_12x_river_raster_centerline_trace",
-        "review_status": "traced_from_official_high_resolution_river_raster",
-        "territory": "neighboring_country",
-        "raster_scale": 12,
-        "geometry_simplification_tolerance_px": 0.08
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            436.958,
-            285.542
-          ],
-          [
-            433.625,
-            286.875
-          ],
-          [
-            433.375,
-            286.875
-          ],
-          [
-            432.542,
-            287.292
-          ],
-          [
-            432.292,
-            287.292
-          ],
-          [
-            430.958,
-            288.125
-          ],
-          [
-            428.625,
-            289.042
-          ],
-          [
-            425.875,
-            289.875
-          ],
-          [
-            424.542,
-            290.125
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": 39,
-        "length_px": 11.397,
-        "source": "official_12x_river_raster_centerline_trace",
-        "review_status": "traced_from_official_high_resolution_river_raster",
-        "territory": "neighboring_country",
-        "raster_scale": 12,
-        "geometry_simplification_tolerance_px": 0.08
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            415.292,
-            296.292
-          ],
-          [
-            418.125,
-            294.792
-          ],
-          [
-            419.708,
-            294.125
-          ],
-          [
-            419.958,
-            294.125
-          ],
-          [
-            420.625,
-            293.708
-          ],
-          [
-            420.875,
-            293.708
-          ],
-          [
-            422.875,
-            292.042
-          ],
-          [
-            424.542,
-            290.292
-          ],
-          [
-            424.542,
-            290.125
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": 40,
-        "length_px": 16.669,
-        "source": "official_12x_river_raster_centerline_trace",
-        "review_status": "traced_from_official_high_resolution_river_raster",
-        "territory": "neighboring_country",
-        "raster_scale": 12,
-        "geometry_simplification_tolerance_px": 0.08
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            415.125,
-            305.208
-          ],
-          [
-            417.208,
-            306.958
-          ],
-          [
-            419.292,
-            309.125
-          ],
-          [
-            420.625,
-            310.708
-          ],
-          [
-            422.542,
-            312.625
-          ],
-          [
-            424.458,
-            314.292
-          ],
-          [
-            427.792,
-            315.708
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": 41,
-        "length_px": 10.269,
-        "source": "official_12x_river_raster_centerline_trace",
-        "review_status": "traced_from_official_high_resolution_river_raster",
-        "territory": "neighboring_country",
-        "raster_scale": 12,
-        "geometry_simplification_tolerance_px": 0.08
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            438.042,
-            316.125
-          ],
-          [
-            430.958,
-            315.625
-          ],
-          [
-            427.792,
-            315.708
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": 42,
-        "length_px": 5.947,
-        "source": "official_12x_river_raster_centerline_trace",
-        "review_status": "traced_from_official_high_resolution_river_raster",
-        "territory": "neighboring_country",
-        "raster_scale": 12,
-        "geometry_simplification_tolerance_px": 0.08
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            429.208,
-            321.375
-          ],
-          [
-            429.292,
-            320.708
-          ],
-          [
-            428.958,
-            319.625
-          ],
-          [
-            428.792,
-            319.458
-          ],
-          [
-            428.542,
-            318.208
-          ],
-          [
-            427.792,
-            316.125
-          ],
-          [
-            427.792,
-            315.708
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "segment_id": 90,
         "length_px": 372.869,
         "source": "official_12x_river_raster_centerline_trace",
@@ -8088,225 +7835,17 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": 117,
-        "length_px": 9.929,
-        "source": "official_12x_river_raster_centerline_trace",
-        "review_status": "traced_from_official_high_resolution_river_raster",
-        "territory": "neighboring_country",
-        "raster_scale": 12,
-        "geometry_simplification_tolerance_px": 0.08
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            191.958,
-            992.958
-          ],
-          [
-            192.542,
-            993.792
-          ],
-          [
-            192.958,
-            994.125
-          ],
-          [
-            193.208,
-            994.792
-          ],
-          [
-            193.208,
-            995.458
-          ],
-          [
-            192.958,
-            996.125
-          ],
-          [
-            192.958,
-            998.292
-          ],
-          [
-            192.708,
-            999.208
-          ],
-          [
-            192.542,
-            1002.375
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": 119,
-        "length_px": 20.326,
-        "source": "official_12x_river_raster_centerline_trace",
-        "review_status": "traced_from_official_high_resolution_river_raster",
-        "territory": "neighboring_country",
-        "raster_scale": 12,
-        "geometry_simplification_tolerance_px": 0.08
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            194.875,
-            1007.458
-          ],
-          [
-            198.708,
-            1007.375
-          ],
-          [
-            200.125,
-            1007.208
-          ],
-          [
-            201.292,
-            1006.875
-          ],
-          [
-            203.208,
-            1005.875
-          ],
-          [
-            204.708,
-            1004.458
-          ],
-          [
-            205.542,
-            1003.875
-          ],
-          [
-            206.208,
-            1003.542
-          ],
-          [
-            208.375,
-            1002.958
-          ],
-          [
-            209.375,
-            1002.542
-          ],
-          [
-            210.208,
-            1001.875
-          ],
-          [
-            210.708,
-            1001.125
-          ],
-          [
-            210.458,
-            1000.208
-          ],
-          [
-            209.542,
-            998.875
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": 120,
-        "length_px": 9.972,
-        "source": "official_12x_river_raster_centerline_trace",
-        "review_status": "traced_from_official_high_resolution_river_raster",
-        "territory": "neighboring_country",
-        "raster_scale": 12,
-        "geometry_simplification_tolerance_px": 0.08
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            192.542,
-            1002.375
-          ],
-          [
-            191.792,
-            1001.708
-          ],
-          [
-            191.542,
-            1001.625
-          ],
-          [
-            189.208,
-            1001.625
-          ],
-          [
-            187.458,
-            1001.708
-          ],
-          [
-            185.708,
-            1001.958
-          ],
-          [
-            185.042,
-            1002.208
-          ],
-          [
-            184.542,
-            1002.208
-          ],
-          [
-            183.958,
-            1002.542
-          ],
-          [
-            183.625,
-            1002.542
-          ],
-          [
-            183.042,
-            1002.792
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": 121,
-        "length_px": 5.593,
-        "source": "official_12x_river_raster_centerline_trace",
-        "review_status": "traced_from_official_high_resolution_river_raster",
-        "territory": "neighboring_country",
-        "raster_scale": 12,
-        "geometry_simplification_tolerance_px": 0.08
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            192.542,
-            1002.375
-          ],
-          [
-            194.875,
-            1007.458
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "segment_id": 122,
-        "length_px": 155.156,
+        "length_px": 142.334,
         "source": "official_12x_river_raster_centerline_trace",
         "review_status": "traced_from_official_high_resolution_river_raster",
         "territory": "neighboring_country",
         "raster_scale": 12,
-        "geometry_simplification_tolerance_px": 0.08
+        "geometry_simplification_tolerance_px": 0.08,
+        "lake_overlap_removed_px": 12.822,
+        "lake_clip_ids": [
+          12
+        ]
       },
       "geometry": {
         "type": "LineString",
@@ -8608,28 +8147,8 @@
             1018.625
           ],
           [
-            199.875,
-            1016.708
-          ],
-          [
-            199.792,
-            1015.542
-          ],
-          [
-            194.375,
-            1010.042
-          ],
-          [
-            194.375,
-            1008.958
-          ],
-          [
-            194.542,
-            1008.125
-          ],
-          [
-            194.875,
-            1007.458
+            200.191609,
+            1017.921879
           ]
         ]
       }

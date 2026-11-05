@@ -218,10 +218,10 @@ CANAL_RIVER_EXCLUSION_BUFFER_PX = 3.5
 SEASONAL_CROSS_BORDER_EXCLUSION_BUFFER_PX = 2.5
 # These raster fragments were manually checked against the official 12x source.
 # They duplicate strokes on the two seasonal routes. ID 76 is included because
-# the high-resolution overlay confirms it lies on seasonal trace 1; keep ID 42
-# as a separate nearby feature, IDs 90/93 as real headwater junctions, ID 117
-# as the solid lake connection after the seasonal dashes end, and ID 119 as the
-# lake mouth.
+# the high-resolution overlay confirms it lies on seasonal trace 1; keep IDs
+# 90/93 as real headwater junctions. Cross-border river geometry is clipped to
+# verified neighboring lake fills below, so lake inlets/outlets remain at the
+# shoreline without drawing broken centerlines across the lake surface.
 SEASONAL_DASH_RESIDUAL_SEGMENT_IDS = frozenset({
     *range(43, 90), *range(94, 117),
 })
@@ -458,6 +458,77 @@ def remove_cross_border_lake_edge_residuals(features: list[dict]) -> list[dict]:
     ]
 
 
+def clip_cross_border_rivers_to_neighbor_lakes(
+    features: list[dict], lakes: list[dict]
+) -> tuple[list[dict], list[int], list[int], float]:
+    """Remove misclassified lake interiors while retaining river reaches to shore."""
+    neighboring_lakes = [
+        feature for feature in lakes
+        if feature.get("properties", {}).get("territory") == "neighboring_country"
+    ]
+    if not neighboring_lakes:
+        return features, [], [], 0.0
+
+    lake_geometries = {
+        int(feature["properties"]["lake_id"]): shape(feature["geometry"])
+        for feature in neighboring_lakes
+    }
+    lake_area = unary_union(list(lake_geometries.values()))
+    lake_clip_area = lake_area.buffer(0.001)
+    result = []
+    removed_ids = []
+    clipped_ids = []
+    total_removed_length = 0.0
+
+    for feature in features:
+        source = shape(feature["geometry"])
+        if source.disjoint(lake_area):
+            result.append(feature)
+            continue
+
+        outside = source.difference(lake_clip_area)
+        parts = [part for part in line_parts(outside) if part.length >= 2.0]
+        kept_length = sum(part.length for part in parts)
+        removed_length = max(0.0, source.length - kept_length)
+        if removed_length <= 0.02:
+            result.append(feature)
+            continue
+
+        segment_id = int(feature["properties"].get("segment_id", 0))
+        total_removed_length += removed_length
+        if not parts:
+            removed_ids.append(segment_id)
+            continue
+
+        clipped_ids.append(segment_id)
+        lake_ids = sorted(
+            lake_id for lake_id, geometry in lake_geometries.items()
+            if source.intersects(geometry)
+        )
+        if len(parts) == 1:
+            geometry = round_line(parts[0], digits=6)
+        else:
+            geometry = {
+                "type": "MultiLineString",
+                "coordinates": [
+                    [[round(x, 6), round(y, 6)] for x, y in part.coords]
+                    for part in parts
+                ],
+            }
+        result.append({
+            **feature,
+            "properties": {
+                **feature["properties"],
+                "length_px": round(kept_length, 3),
+                "lake_overlap_removed_px": round(removed_length, 3),
+                "lake_clip_ids": lake_ids,
+            },
+            "geometry": geometry,
+        })
+
+    return result, sorted(removed_ids), sorted(clipped_ids), total_removed_length
+
+
 def path_data(geometry: dict) -> str:
     commands = []
     for line in line_parts(shape(geometry)):
@@ -686,13 +757,29 @@ def main() -> None:
     seasonal = seasonal_features()
     cross_border_fc = read_fc(DATA / "cross_border_rivers.geojson")
     # Exclude raster fragments that exactly repeat the seasonal dash strokes.
-    # Keep nearby solid streams and confluences; remove one separate subpixel
-    # lake-edge fragment from the cross-border candidate layer.
+    # Then clip any river traces that entered the two verified neighboring
+    # lake fills, retaining the reaches that connect to the shoreline.
     original_cross_border_count = len(cross_border_fc["features"])
     cross_border = remove_verified_seasonal_dash_residuals(cross_border_fc["features"])
     seasonal_dash_residual_count = original_cross_border_count - len(cross_border)
+    lakes = read_fc(DATA / "lakes.geojson")["features"]
+    (
+        cross_border,
+        lake_fill_segment_ids_removed,
+        lake_fill_segment_ids_clipped,
+        lake_fill_line_length_removed,
+    ) = clip_cross_border_rivers_to_neighbor_lakes(cross_border, lakes)
+    cross_border_ids_before_edge_filter = {
+        int(feature["properties"].get("segment_id", 0)) for feature in cross_border
+    }
     cross_border = remove_cross_border_lake_edge_residuals(cross_border)
-    lake_edge_residual_count = original_cross_border_count - seasonal_dash_residual_count - len(cross_border)
+    cross_border_ids_after_edge_filter = {
+        int(feature["properties"].get("segment_id", 0)) for feature in cross_border
+    }
+    lake_edge_residual_ids_removed = sorted(
+        cross_border_ids_before_edge_filter - cross_border_ids_after_edge_filter
+    )
+    lake_edge_residual_count = len(lake_edge_residual_ids_removed)
     cross_border_fc["features"] = cross_border
 
     write_fc(DATA / "canals.geojson", "canal_centerline_and_ruler_ticks", canals)
@@ -710,6 +797,7 @@ def main() -> None:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     manifest.update({
         "river_line_segments": len(river_features),
+        "lake_candidates": len(lakes),
         "canal_centerlines": len({f["properties"]["canal_id"] for f in canals}),
         "canal_centerline_reaches": sum(
             f["properties"].get("symbol_part") == "centerline" for f in canals
@@ -729,8 +817,22 @@ def main() -> None:
         "cross_border_river_segments": len(cross_border),
         "seasonal_dash_residual_segments_removed": seasonal_dash_residual_count,
         "seasonal_dash_residual_segment_ids_removed": sorted(SEASONAL_DASH_RESIDUAL_SEGMENT_IDS),
+        "neighboring_lake_features": sum(
+            feature.get("properties", {}).get("territory") == "neighboring_country"
+            for feature in lakes
+        ),
+        "neighboring_lake_ids": sorted(
+            int(feature["properties"]["lake_id"])
+            for feature in lakes
+            if feature.get("properties", {}).get("territory") == "neighboring_country"
+        ),
+        "cross_border_lake_fill_segments_removed": len(lake_fill_segment_ids_removed),
+        "cross_border_lake_fill_segment_ids_removed": lake_fill_segment_ids_removed,
+        "cross_border_lake_fill_segments_clipped": len(lake_fill_segment_ids_clipped),
+        "cross_border_lake_fill_segment_ids_clipped": lake_fill_segment_ids_clipped,
+        "cross_border_lake_fill_line_length_removed_px": round(lake_fill_line_length_removed, 3),
         "cross_border_lake_edge_residual_segments_removed": lake_edge_residual_count,
-        "cross_border_lake_edge_residual_segment_ids_removed": sorted(CROSS_BORDER_LAKE_EDGE_RESIDUAL_SEGMENT_IDS),
+        "cross_border_lake_edge_residual_segment_ids_removed": lake_edge_residual_ids_removed,
         "national_seasonal_river_candidates": 0,
     })
     label_features = read_fc(DATA / "region_code_labels.geojson")["features"]
@@ -740,7 +842,9 @@ def main() -> None:
     print(
         f"Kept {len(river_features)} regular river segments; separated {manifest['canal_centerlines']} canals "
         f"across {manifest['canal_centerline_reaches']} reaches with {manifest['canal_ruler_ticks']} ruler ticks; "
-        f"removed {seasonal_dash_residual_count} duplicated seasonal dashes and {lake_edge_residual_count} lake-edge fragment; "
+        f"removed {seasonal_dash_residual_count} duplicated seasonal dashes, "
+        f"clipped {len(lake_fill_segment_ids_clipped)} river traces at neighboring lake shores, "
+        f"removed {len(lake_fill_segment_ids_removed)} lake-interior fragments and {lake_edge_residual_count} lake-edge fragment; "
         f"traced {len(seasonal)} neighbor seasonal rivers."
     )
 
