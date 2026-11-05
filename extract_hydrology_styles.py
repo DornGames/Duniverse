@@ -72,7 +72,7 @@ CANAL_CENTERLINES = [
         # From the reservoir outlet, the channel dips south, turns northeast,
         # then meets the eastern river network before the coastline.
         "line": LineString([
-            (1277, 1145.0), (1281, 1145.5), (1285, 1145.8),
+            (1282.581, 1145.619), (1285, 1145.8),
             (1289, 1146.2), (1293, 1146.7), (1297, 1147.1),
             (1301, 1147.6), (1305, 1148.0), (1310, 1148.4),
             (1315, 1148.7), (1320, 1148.7), (1325, 1148.7),
@@ -117,6 +117,7 @@ CANAL_CENTERLINES = [
         "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
         "review_status": "vectorized_and_manually_checked_against_official_12x_river_raster",
         "exclude_river_overlap": False,
+        "subtract_from_rivers": True,
         # Centerline skeletonized from the pure-river 12x reference. The short
         # ruler marks are stored separately below, so they do not distort the
         # centerline or get misclassified as river branches.

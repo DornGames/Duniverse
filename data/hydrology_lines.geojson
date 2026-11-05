@@ -4515,7 +4515,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": 21,
-        "length_px": 219.218,
+        "length_px": 223.338,
         "source": "official_12x_river_raster_centerline_trace",
         "review_status": "traced_from_official_high_resolution_river_raster",
         "territory": "national",
@@ -5064,6 +5064,22 @@
           [
             1353.042,
             354.292
+          ],
+          [
+            1353.125,
+            353.2916666666667
+          ],
+          [
+            1353.2916666666667,
+            353.2083333333333
+          ],
+          [
+            1355.0416666666667,
+            353.2083333333333
+          ],
+          [
+            1356.2086666666667,
+            353.0416666666667
           ]
         ]
       }
@@ -9930,7 +9946,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": 52,
-        "length_px": 180.92,
+        "length_px": 184.95,
         "source": "official_12x_river_raster_centerline_trace",
         "review_status": "traced_from_official_high_resolution_river_raster",
         "territory": "national",
@@ -10383,6 +10399,18 @@
           [
             1249.042,
             487.375
+          ],
+          [
+            1250.5416666666667,
+            487.7083333333333
+          ],
+          [
+            1251.375,
+            487.7083333333333
+          ],
+          [
+            1252.9586666666667,
+            488.2083333333333
           ]
         ]
       }
@@ -15904,7 +15932,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": 70,
-        "length_px": 123.463,
+        "length_px": 126.695,
         "source": "official_12x_river_raster_centerline_trace",
         "review_status": "traced_from_official_high_resolution_river_raster",
         "territory": "national",
@@ -16165,6 +16193,14 @@
           [
             1381.208,
             742.208
+          ],
+          [
+            1382.875,
+            743.125
+          ],
+          [
+            1384.133671540039,
+            743.5532708849298
           ]
         ]
       }
@@ -21724,7 +21760,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": 150,
-        "length_px": 49.523,
+        "length_px": 53.355,
         "source": "official_12x_river_raster_centerline_trace",
         "review_status": "traced_from_official_high_resolution_river_raster",
         "territory": "national",
@@ -21817,6 +21853,14 @@
           [
             1288.875,
             976.125
+          ],
+          [
+            1292.125,
+            975.4583333333334
+          ],
+          [
+            1292.5926263718218,
+            975.2457845791921
           ]
         ]
       }
@@ -25238,7 +25282,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": 188,
-        "length_px": 2.288,
+        "length_px": 4.017,
         "source": "official_12x_river_raster_centerline_trace",
         "review_status": "traced_from_official_high_resolution_river_raster",
         "territory": "national",
@@ -25248,6 +25292,18 @@
       "geometry": {
         "type": "LineString",
         "coordinates": [
+          [
+            1423.5416666666667,
+            1112.2916666666667
+          ],
+          [
+            1422.2083333333333,
+            1112.5416666666667
+          ],
+          [
+            1421.875,
+            1112.708
+          ],
           [
             1421.875,
             1112.708
@@ -33214,7 +33270,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": 248,
-        "length_px": 113.978,
+        "length_px": 113.979,
         "source": "official_12x_river_raster_centerline_trace",
         "review_status": "traced_from_official_high_resolution_river_raster",
         "territory": "national",
@@ -33224,6 +33280,10 @@
       "geometry": {
         "type": "LineString",
         "coordinates": [
+          [
+            1487.292,
+            1291.708
+          ],
           [
             1487.292,
             1291.708
