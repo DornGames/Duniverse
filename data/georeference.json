@@ -1,0 +1,114 @@
+{
+  "identifier": "DUNIVERSE-SATURN-SCALED-LAT-2026",
+  "title": "Dunh custom Saturn map reference with latitude scaled by six",
+  "body": "Saturn",
+  "reference_surface": {
+    "definition": "Oblate spheroid at the 1-bar reference level",
+    "equatorial_radius_km": 60268,
+    "polar_radius_km": 54364,
+    "eccentricity_squared": 0.18632823035361423,
+    "surface_area_km2": 42693977386.376686
+  },
+  "coordinate_system": {
+    "latitude_type": "custom latitude scaled from planetographic latitude",
+    "latitude_positive_direction": "north",
+    "map_degrees_per_physical_planetographic_degree": 0.16666666666666666,
+    "physical_planetographic_degrees_per_map_degree": 6,
+    "physical_planetographic_latitude_domain_deg": [
+      -90,
+      90
+    ],
+    "longitude_positive_direction": "east",
+    "longitude_domain_deg": [
+      -180,
+      180
+    ],
+    "longitude_domain_convention": "[-180, 180); 360 degrees for one complete turn around Saturn",
+    "atlas_latitude_bounds_deg": [
+      -15,
+      15
+    ],
+    "prime_meridian": {
+      "definition": "Local project meridian through the capital, not Saturn System III",
+      "longitude_deg": 0,
+      "capital": "臭都特别市",
+      "capital_pixel_xy": [
+        1002.0,
+        877.0
+      ]
+    }
+  },
+  "projection": {
+    "name": "Ellipsoidal Cylindrical Equal-Area (CEA)",
+    "purpose": "Area-preserving conversion from official-map image pixels to the custom Saturn longitude/latitude frame",
+    "anchor_pixel_xy": [
+      1002.0,
+      877.0
+    ],
+    "anchor_longitude_deg": 0,
+    "anchor_map_latitude_deg": 4.783333333333334,
+    "anchor_physical_planetographic_latitude_deg": 28.7,
+    "anchor_rationale": "A non-round, approximate northern-subtropical placement chosen as a worldbuilding fit for southern agriculture and western aridity; these climate clues do not uniquely determine latitude.",
+    "standard_parallel_physical_planetographic_deg": 26.28251565833631,
+    "pixel_scale_km_per_px": 7.7719530772698535,
+    "image_y_direction": "down",
+    "formulas": {
+      "eccentricity_squared": "e2 = 1 - (polar_radius_km / equatorial_radius_km)^2",
+      "standard_parallel": "cos(phi_ts) = cos(phi0_physical) / sqrt(1 - e2 * sin(phi0_physical)^2)",
+      "projected_x_km": "X = pixel_scale_km_per_px * (x_px - capital_x_px)",
+      "projected_y_km": "Y = pixel_scale_km_per_px * (capital_y_px - y_px)",
+      "longitude_rad": "lambda = lambda0 + X / (equatorial_radius_km * cos(phi_ts))",
+      "authalic_q": "q(phi) = (1-e2) * (sin(phi)/(1-e2*sin(phi)^2) - ln((1-e*sin(phi))/(1+e*sin(phi)))/(2*e))",
+      "physical_latitude_rad": "q(phi_physical) = q(phi0_physical) + 2*cos(phi_ts)*Y/equatorial_radius_km; solve for phi_physical",
+      "map_latitude_deg": "map_latitude_deg = degrees(phi_physical) / 6"
+    }
+  },
+  "calibration": {
+    "target_country_area_km2": 66490000,
+    "national_outline_source": "data/national_outline.geojson",
+    "national_outline_polygon_count": 8,
+    "national_outline_area_px2": 1100768.5,
+    "national_outline_pixel_bounds": [
+      234.0,
+      28.0,
+      1846.0,
+      1443.0
+    ],
+    "pixel_area_km2": 60.40325463528435,
+    "country_area_fraction_of_saturn": 0.0015573625150515126,
+    "administrative_region_area_reconciliation": {
+      "source_file": "data/administrative_regions.geojson",
+      "raw_mask_area_px2": 1050187.0,
+      "national_outline_area_px2": 1100768.5,
+      "mask_coverage_ratio": 0.9540489212763629,
+      "raw_mask_area_under_national_scale_km2": 63434712.775665365,
+      "allocation_formula": "A_i = target_country_area_km2 * region_area_px2_i / sum(region_area_px2)",
+      "major_region_formula": "A_major = sum(A_i for member provinces)",
+      "area_normalization_factor": 1.048164279314065
+    }
+  },
+  "measured_country_extent": {
+    "longitude_bounds_deg": [
+      -6.328751563930312,
+      6.955034270777583
+    ],
+    "map_latitude_bounds_deg": [
+      3.987931329457032,
+      6.006329020642551
+    ],
+    "physical_planetographic_latitude_bounds_deg": [
+      23.927587976742192,
+      36.03797412385531
+    ],
+    "east_west_parallel_distance_km_at_anchor_latitude": 12528.388360559007,
+    "north_south_meridional_geodesic_distance_km": 11141.310164766359,
+    "projected_bbox_width_km": 12528.388360559004,
+    "projected_bbox_height_km": 10997.313604336843
+  },
+  "notes": [
+    "The original official map has no geographic coordinates or scale bar. The reference above is a constructed, area-calibrated project coordinate system.",
+    "All existing map layer coordinates remain in source image pixels; use tools/georeference_map.py to convert them.",
+    "Project latitude is physical planetographic latitude divided by six: physical poles at plus/minus 90 degrees map to atlas limits at plus/minus 15 degrees.",
+    "The reference surface is a cartographic convention for a gas giant, not a solid ground surface."
+  ]
+}

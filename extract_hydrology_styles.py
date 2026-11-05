@@ -98,6 +98,66 @@ CANAL_CENTERLINES = [
         ],
         "tick_length_px": 4.5,
     },
+    {
+        "canal_id": 3,
+        "name": "湖区南向运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "vectorized_and_manually_checked_against_official_12x_river_raster",
+        "exclude_river_overlap": False,
+        # Centerline skeletonized from the pure-river 12x reference. The short
+        # ruler marks are stored separately below, so they do not distort the
+        # centerline or get misclassified as river branches.
+        "line": LineString([
+            (1263.79, 767.96), (1261.71, 768.21), (1261.29, 768.62),
+            (1261.04, 770.29), (1258.79, 774.88), (1258.54, 776.21),
+            (1257.54, 776.88), (1253.96, 781.71), (1252.54, 783.79),
+            (1252.12, 785.29), (1251.46, 785.62), (1250.29, 787.21),
+            (1247.62, 789.79), (1245.04, 792.96), (1244.71, 794.12),
+            (1243.79, 794.46), (1242.96, 795.29), (1240.38, 798.46),
+            (1239.04, 800.79), (1236.79, 803.62), (1236.54, 804.71),
+            (1235.62, 805.29), (1234.79, 806.62), (1232.88, 810.21),
+            (1231.88, 813.04), (1230.71, 818.12), (1230.54, 822.54),
+            (1231.04, 828.54), (1230.79, 836.54), (1231.79, 842.54),
+            (1231.96, 846.71), (1232.21, 847.96), (1232.54, 848.21),
+            (1232.71, 849.62), (1234.38, 853.46), (1237.96, 860.88),
+            (1238.54, 861.29), (1238.71, 862.62), (1240.04, 866.54),
+            (1240.54, 869.29), (1240.54, 872.21), (1239.46, 875.12),
+            (1238.54, 881.62), (1238.54, 883.54), (1239.21, 888.04),
+            (1239.21, 891.54), (1238.04, 895.29), (1237.12, 895.88),
+            (1234.46, 899.88), (1231.96, 902.79), (1229.38, 905.21),
+            (1229.21, 905.79), (1227.46, 906.88), (1223.71, 910.96),
+            (1221.62, 914.71), (1220.71, 918.29), (1220.88, 923.88),
+            (1221.96, 927.04), (1223.54, 928.79), (1226.38, 930.29),
+            (1227.79, 931.54), (1228.62, 933.12), (1229.29, 933.62),
+            (1229.54, 934.96), (1230.71, 936.88), (1237.62, 943.46),
+            (1239.54, 946.62), (1240.21, 950.96), (1240.29, 955.71),
+            (1240.12, 958.88), (1239.62, 960.46), (1239.04, 964.46),
+            (1239.12, 967.71), (1239.62, 971.62), (1239.29, 978.62),
+            (1240.12, 982.04), (1241.79, 986.46), (1242.46, 987.38),
+            (1243.12, 991.71), (1243.88, 994.04),
+        ]),
+        # Individual ruler marks traced from their visible centerline anchors
+        # and tips in the official raster.
+        "ticks": [
+            LineString([(1258.54, 776.21), (1262.21, 778.29)]),
+            LineString([(1252.04, 785.38), (1255.62, 787.54)]),
+            LineString([(1244.71, 794.12), (1249.04, 796.79)]),
+            LineString([(1236.46, 804.79), (1241.21, 807.38)]),
+            LineString([(1231.04, 817.46), (1235.79, 818.38)]),
+            LineString([(1230.96, 832.71), (1234.71, 832.62)]),
+            LineString([(1232.54, 848.21), (1236.46, 847.62)]),
+            LineString([(1238.54, 861.29), (1242.71, 859.96)]),
+            LineString([(1239.29, 877.29), (1244.71, 876.88)]),
+            LineString([(1238.04, 895.29), (1241.71, 896.71)]),
+            LineString([(1229.12, 905.88), (1232.62, 908.21)]),
+            LineString([(1220.62, 920.54), (1225.71, 920.54)]),
+            LineString([(1229.21, 933.54), (1233.29, 930.96)]),
+            LineString([(1239.54, 946.62), (1244.71, 945.54)]),
+            LineString([(1240.04, 959.21), (1243.71, 959.71)]),
+            LineString([(1239.62, 973.38), (1243.04, 973.54)]),
+            LineString([(1242.38, 987.12), (1248.12, 986.62)]),
+        ],
+    },
 ]
 CANAL_RIVER_EXCLUSION_BUFFER_PX = 3.5
 SEASONAL_CROSS_BORDER_EXCLUSION_BUFFER_PX = 2.5
@@ -119,7 +179,7 @@ def write_fc(path: Path, name: str, features: list[dict]) -> None:
             "features": features,
         }, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
-        newline="\r\n" if path.name == "cross_border_rivers.geojson" else "\n",
+        newline="\n",
     )
 
 
@@ -186,22 +246,28 @@ def canal_features() -> list[dict]:
         common = {
             "canal_id": canal["canal_id"],
             "name": canal["name"],
-            "source": HIGH_RES_SOURCE.name,
+            "source": canal.get("source", HIGH_RES_SOURCE.name),
         }
         features.append({
             "type": "Feature",
             "properties": {
                 **common,
                 "symbol_part": "centerline",
-                "review_status": "manually_traced_from_high_resolution_source",
+                "review_status": canal.get(
+                    "review_status", "manually_traced_from_high_resolution_source"
+                ),
                 "length_px": round(centerline.length, 1),
             },
             "geometry": round_line(centerline),
         })
-        for tick_id, location in enumerate(canal["tick_positions"], start=1):
-            tick = perpendicular_tick(
-                centerline, location, canal["tick_length_px"]
-            )
+        if "ticks" in canal:
+            ticks = canal["ticks"]
+        else:
+            ticks = [
+                perpendicular_tick(centerline, location, canal["tick_length_px"])
+                for location in canal["tick_positions"]
+            ]
+        for tick_id, tick in enumerate(ticks, start=1):
             features.append({
                 "type": "Feature",
                 "properties": {
@@ -219,6 +285,7 @@ def remove_canal_from_rivers(features: list[dict]) -> list[dict]:
     corridor = unary_union([
         canal["line"].buffer(CANAL_RIVER_EXCLUSION_BUFFER_PX, cap_style="flat")
         for canal in CANAL_CENTERLINES
+        if canal.get("exclude_river_overlap", True)
     ])
     result = []
     for feature in features:
@@ -272,7 +339,7 @@ def path_data(geometry: dict) -> str:
         if len(coordinates) < 3:
             commands.append(f"M {point_text(coordinates[0])} L {point_text(coordinates[-1])}")
             continue
-        radius = 2.0
+        radius = 0.35
         toward = lambda point, target: (
             point[0] + (target[0] - point[0]) * min(radius / (math.dist(point, target) or 1), 0.4),
             point[1] + (target[1] - point[1]) * min(radius / (math.dist(point, target) or 1), 0.4),
@@ -308,6 +375,98 @@ def render_preview_group(group_id: str, features: list[dict], style: str) -> str
     return f'<g id="{group_id}" {style} pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
 
 
+def polygon_path_data(geometry: dict) -> str:
+    geom = shape(geometry)
+    polygons = list(geom.geoms) if geom.geom_type == "MultiPolygon" else [geom]
+    commands = []
+    for polygon in polygons:
+        if polygon.geom_type != "Polygon" or polygon.is_empty:
+            continue
+        for ring in [polygon.exterior, *polygon.interiors]:
+            coordinates = list(ring.coords)
+            if len(coordinates) < 4:
+                continue
+            if coordinates[0] == coordinates[-1]:
+                coordinates = coordinates[:-1]
+            point_text = lambda point: f"{point[0]:.2f},{point[1]:.2f}"
+            commands.append(
+                "M " + point_text(coordinates[0]) + " L "
+                + " L ".join(point_text(point) for point in coordinates[1:]) + " Z"
+            )
+    return " ".join(commands)
+
+
+def render_lakes_group(features: list[dict], *, preview: bool = False) -> str:
+    paths = []
+    for feature in features:
+        path = polygon_path_data(feature["geometry"])
+        if path:
+            paths.append(f'<path d="{path}"/>')
+    style = 'fill="#b1d0ed" fill-rule="evenodd" stroke="#83b8e8" stroke-width="1.1"'
+    if preview:
+        style = 'fill="#b1d0ed" fill-rule="evenodd" stroke="#83b8e8" stroke-width="1.2"'
+    return f'<g id="lakes" {style} pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
+
+
+def update_hydrology_lod_precision(index: str) -> str:
+    hydrology_lod = "const HYDROLOGY_LOD_TOLERANCES=[.06,.12,.24,.48,.96];"
+    lod_pattern = r"const HYDROLOGY_LOD_TOLERANCES=\[[^\]]+\];"
+    if "const HYDROLOGY_LAYER_IDS=" in index:
+        index, count = re.subn(lod_pattern, hydrology_lod, index, count=1)
+        if count != 1:
+            raise RuntimeError("Could not find the existing hydrology LOD precision marker")
+    else:
+        marker = "const LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];"
+        if index.count(marker) != 1:
+            raise RuntimeError("Could not locate the base LOD precision marker")
+        index = index.replace(
+            marker,
+            marker + "\n"
+            "const HYDROLOGY_LAYER_IDS=new Set(['lakes','rivers','canals','seasonalRivers','crossBorderRivers']);\n"
+            + hydrology_lod,
+            1,
+        )
+    legacy_radius = "['rivers','canals','seasonalRivers','crossBorderRivers'].includes(layerId)?2:0;"
+    legacy_radius_updated = "HYDROLOGY_LAYER_IDS.has(layerId)?0.35:0;"
+    old_hydrology_radius = "HYDROLOGY_LAYER_IDS.has(layerId)?0.75:0;"
+    if legacy_radius in index:
+        index = index.replace(legacy_radius, legacy_radius_updated, 1)
+    elif old_hydrology_radius in index:
+        index = index.replace(old_hydrology_radius, legacy_radius_updated, 1)
+    elif legacy_radius_updated not in index:
+        raise RuntimeError("Could not locate the hydrology curve-smoothing marker")
+    replacements = [
+        (
+            "const tolerances=['oceanFill','islandFills'].includes(layerId)?COASTAL_FILL_LOD_TOLERANCES:LOD_TOLERANCES;",
+            "const tolerances=['oceanFill','islandFills'].includes(layerId)?COASTAL_FILL_LOD_TOLERANCES:\n"
+            "      HYDROLOGY_LAYER_IDS.has(layerId)?HYDROLOGY_LOD_TOLERANCES:LOD_TOLERANCES;",
+        ),
+        (
+            "const path=record.variants[toleranceIndex];",
+            "const path=record.variants[Math.min(toleranceIndex,record.variants.length-1)];",
+        ),
+        (
+            "const pathToleranceIndex=isCoastalFill?coastalFillToleranceIndex:toleranceIndex;\n"
+            "    const pathTolerance=isCoastalFill\n"
+            "      ?COASTAL_FILL_LOD_TOLERANCES[pathToleranceIndex]\n"
+            "      :LOD_TOLERANCES[pathToleranceIndex];",
+            "const isHydrology=HYDROLOGY_LAYER_IDS.has(record.layerId);\n"
+            "    const pathToleranceIndex=isCoastalFill?coastalFillToleranceIndex:\n"
+            "      isHydrology?Math.min(toleranceIndex,HYDROLOGY_LOD_TOLERANCES.length-1):toleranceIndex;\n"
+            "    const pathTolerance=isCoastalFill?COASTAL_FILL_LOD_TOLERANCES[pathToleranceIndex]:\n"
+            "      isHydrology?HYDROLOGY_LOD_TOLERANCES[pathToleranceIndex]:LOD_TOLERANCES[pathToleranceIndex];",
+        ),
+    ]
+    for old, new in replacements:
+        if new in index:
+            continue
+        count = index.count(old)
+        if count != 1:
+            raise RuntimeError(f"Expected one map-render precision marker, found {count}: {old[:72]}")
+        index = index.replace(old, new, 1)
+    return index
+
+
 def upsert_group(source: str, group: str, group_id: str, after_id: str | None) -> str:
     pattern = rf'<g id="{re.escape(group_id)}"[^>]*>.*?</g>'
     updated, count = re.subn(pattern, lambda _: group, source, count=1, flags=re.DOTALL)
@@ -322,6 +481,7 @@ def upsert_group(source: str, group: str, group_id: str, after_id: str | None) -
 
 
 def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[dict], cross_border: list[dict]) -> None:
+    lakes = read_fc(DATA / "lakes.geojson")["features"]
     index_groups = [
         render_group("rivers", "rivers", rivers,
                      'fill="none" stroke="#83b8e8" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
@@ -341,6 +501,8 @@ def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[d
     index = upsert_group(index, index_groups[2], "canalTicks", "canals")
     index = upsert_group(index, index_groups[3], "seasonalRivers", "canalTicks")
     index = upsert_group(index, index_groups[4], "crossBorderRivers", "seasonalRivers")
+    index = upsert_group(index, render_lakes_group(lakes), "lakes", None)
+    index = update_hydrology_lod_precision(index)
     index_path.write_text(index, encoding="utf-8", newline="\n")
 
     preview_path = ROOT / "vector_preview.svg"
@@ -362,6 +524,7 @@ def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[d
     preview = upsert_group(preview, preview_groups[2], "canal-ticks", "canals")
     preview = upsert_group(preview, preview_groups[3], "seasonal-rivers", "canal-ticks")
     preview = upsert_group(preview, preview_groups[4], "cross-border-rivers", "seasonal-rivers")
+    preview = upsert_group(preview, render_lakes_group(lakes, preview=True), "lakes", None)
     preview_path.write_text(preview, encoding="utf-8", newline="\n")
 
 
@@ -384,16 +547,19 @@ def main() -> None:
         if high_res.width != source_image.width * 4 or high_res.height != source_image.height * 4:
             raise ValueError("The high-resolution trace source must be exactly 4x input_map.png")
     river_fc = read_fc(DATA / "hydrology_lines.geojson")
-    river_features = remove_canal_from_rivers(river_fc["features"])
+    # The checked-in river layer already has the original canal overlaps
+    # removed. Repeating a geometric difference on the rounded output can
+    # trim nearby river junctions a second time, so generation only renders it.
+    river_features = river_fc["features"]
     canals = canal_features()
     seasonal = seasonal_features()
     cross_border_fc = read_fc(DATA / "cross_border_rivers.geojson")
-    cross_border = remove_seasonal_from_cross_border(cross_border_fc["features"], seasonal)
+    # This layer is also checked in after its seasonal overlap was removed;
+    # keep it stable when regenerating render groups.
+    cross_border = cross_border_fc["features"]
 
-    write_fc(DATA / "hydrology_lines.geojson", "hydrology_rivers_without_canal", river_features)
     write_fc(DATA / "canals.geojson", "canal_centerline_and_ruler_ticks", canals)
     write_fc(DATA / "seasonal_rivers.geojson", "neighbor_seasonal_rivers", seasonal)
-    write_fc(DATA / "cross_border_rivers.geojson", "cross_border_rivers_without_seasonal_rivers", cross_border)
     update_render_files(river_features, canals, seasonal, cross_border)
     write_overlay(seasonal, canals)
 
@@ -403,6 +569,10 @@ def main() -> None:
         "river_line_segments": len(river_features),
         "canal_centerlines": len(CANAL_CENTERLINES),
         "canal_trace_source_image": HIGH_RES_SOURCE.name,
+        "canal_trace_source_images": sorted({
+            canal.get("source", HIGH_RES_SOURCE.name)
+            for canal in CANAL_CENTERLINES
+        }),
         "canal_tick_orientation": "perpendicular_to_local_centerline_tangent",
         "canal_ruler_ticks": sum(f["properties"].get("symbol_part") == "ruler_tick" for f in canals),
         "seasonal_river_features": len(seasonal),

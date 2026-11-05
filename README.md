@@ -19,8 +19,10 @@ python -m http.server 8000
 ## 地图操作
 
 - 滚动鼠标滚轮缩放地图，拖动地图平移视图。
+- 地图叠加土星自定义坐标网格：纬度每 1°、经度每 10°一条浅色半透明细虚线；边缘刻度使用本项目的数字度数，不显示方向字母。自定义纬度等于真实行星纬度的六分之一。
 - 在顶部搜索框输入中文名、湩语名、行政区编号或城市邮政区号，可从动态候选项中选择大区、省级行政区或城市；选择后地图会定位到有确认位置的对象，并显示介绍、各级名称、湩语名称和面积。城市没有可核实的位置或面积时会明确显示暂无数据。
-- 点击地图上的省级行政区也会打开对应信息；缺少介绍内容时显示“暂无介绍”。
+- 点击省级行政区可查看地区信息；点击城市中文或湩语名称、首都或省会名称可打开城市介绍和土星坐标。地区介绍中包含四至边界点与对应方向的极端城市。
+- 拖动地图时，只要相应文字图层保持开启，中文和湩语标签都会继续显示。
 - 右侧图层可分别显示或隐藏行政区边界、大区边界、水系、城市标记和行政区名；行政区名分为“编号”和“中文”两个子图层。
 - 宏观视图会显示大区双语名称，中文在上、湩语小字在下；名称保持固定屏幕尺寸，进入省级视图前逐渐淡出。
 - 行政区编号和中文名称随放大同步淡入，继续放大后同步淡出；两个子图层仍可独立开关。
@@ -65,6 +67,7 @@ python extract_context_layers.py
 python tools/extract_official_coastline_tiled.py --source-dir "path/to/official_map"
 python build_administrative_boundaries.py
 python extract_hydrology_styles.py
+python tools/build_coordinate_catalog.py
 ```
 
 这些步骤应在对应源图和数据准备完成后按顺序运行。将示例路径替换为官方高清地图所在目录；该源图目录不包含在本仓库中。`extract_context_layers.py` 也会生成基础海岸线候选，精细海岸线使用分块工具生成。
@@ -73,7 +76,14 @@ python extract_hydrology_styles.py
 
 ## 坐标与数据说明
 
-地图坐标使用图像像素，原点位于左上角，横轴向右、纵轴向下；数据未转换为经纬度，也没有进行地理配准。边界和标注位置来自原图提取、矢量化或人工复核，适用于地图展示和项目编辑，不应视为官方 GIS 边界数据。
+原图没有比例尺或地理控制点，所以基础图层仍以图像像素存储：原点在左上角，横轴向右、纵轴向下。项目另建立了一套根据给定国土面积定标的土星坐标参考，参数见 [`data/georeference.json`](data/georeference.json)，测绘假设和公式见[《湩国地图测绘报告》](saturn-map-survey-report.md)。该坐标系以土星 1 bar 参考椭球为基准，臭都为 0°经线、地图纬度约 4.7833°N（对应真实行星地理纬度约 28.7°N）；真实纬度 ±90°按六分之一记为地图纬度 ±15°，经度仍为东向 360°一周。
+
+可用 `tools/georeference_map.py` 把像素点或现有 GeoJSON 转为该项目坐标。批量结果写入 `data/georeferenced/`，并标记为自定义土星坐标；这些坐标不是 WGS 84 / EPSG:4326，也不是官方地图原有的 GIS 坐标。
+`tools/build_coordinate_catalog.py` 会生成 316 个城市的全精度坐标数据和 53 个省/大区的四至及方向极端城市数据，页面介绍统一显示两位小数。对应文件为 [`data/city_coordinates.js`](data/city_coordinates.js) 与 [`data/region_extrema.js`](data/region_extrema.js)。
+
+各省面积按提取面要素的像素面积权重归一化到全国给定面积，大区面积由所属省求和；归一化因子与原始覆盖率记录在 [`data/georeference.json`](data/georeference.json) 和测绘报告中。
+
+边界和标注位置来自原图提取、矢量化或人工复核，适用于地图展示和项目编辑，不应视为官方 GIS 边界数据。
 
 中文行政区名称根据项目附带的《湩国政区清单》逐项核对。原图标题、版本、制作方和版权信息见 [`data/map_metadata.json`](data/map_metadata.json)。
 

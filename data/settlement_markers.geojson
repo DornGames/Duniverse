@@ -2371,6 +2371,24 @@
       "properties": {
         "marker_type": "city_marker_candidate",
         "color": "#111111",
+        "component_area_px": 43,
+        "shape_score": 1.0,
+        "review_status": "verified_from_high_resolution_map",
+        "city_name": "怡然市"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1189.4,
+          1078.24
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker_type": "city_marker_candidate",
+        "color": "#111111",
         "component_area_px": 42,
         "shape_score": 1.162,
         "review_status": "candidate_location_unverified"

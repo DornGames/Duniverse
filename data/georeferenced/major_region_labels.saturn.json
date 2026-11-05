@@ -1,0 +1,158 @@
+{
+  "type": "FeatureCollection",
+  "name": "major_region_geometry_center_labels",
+  "coordinate_system": "source image pixels; not georeferenced",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "central",
+        "major_region_name": "中湩大区",
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Nohiadonhfak Tonho"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.09682660270337351,
+          4.874525542007988
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "east",
+        "major_region_name": "东湩大区",
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Is'hiadonhfak Tonho"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.2612101941959395,
+          4.8576170462998345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "north",
+        "major_region_name": "北湩大区",
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Nohiadonhfak Tonho"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.06328751563930268,
+          5.549946667186124
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "west",
+        "major_region_name": "西湩大区",
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Es'hiadonhfak Tonho"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.828572883227963,
+          4.99003120653846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "south",
+        "major_region_name": "南湩大区",
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Swhiadonhfak Tonho"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.3824444792734596,
+          4.193378798375745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "southeast",
+        "major_region_name": "东南湩大区",
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Iswhiadonhfak Tonho"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.966355078734381,
+          4.248620321268443
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "southwest",
+        "major_region_name": "西南湩大区",
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Eswhiadonhfak Tonho"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2838639299820613,
+          4.360777193406636
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "major_region_id": "archipelago",
+        "major_region_name": "群岛大区",
+        "source": "major_region_geometry_center",
+        "major_region_name_tongue": "Wendfsfaks Tonho"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.8108244369640545,
+          5.057699097817687
+        ]
+      }
+    }
+  ],
+  "coordinate_reference_note": "Geometry coordinates use the custom Saturn reference in data/georeference.json; not WGS 84 / EPSG:4326.",
+  "coordinate_reference": {
+    "identifier": "DUNIVERSE-SATURN-SCALED-LAT-2026",
+    "body": "Saturn",
+    "latitude_type": "custom latitude scaled from planetographic latitude",
+    "physical_planetographic_degrees_per_map_degree": 6,
+    "atlas_latitude_bounds_deg": [
+      -15,
+      15
+    ],
+    "longitude_positive_direction": "east",
+    "prime_meridian": {
+      "definition": "Local project meridian through the capital, not Saturn System III",
+      "longitude_deg": 0,
+      "capital": "臭都特别市",
+      "capital_pixel_xy": [
+        1002.0,
+        877.0
+      ]
+    },
+    "reference_file": "data/georeference.json",
+    "warning": "Custom Saturn coordinates; these values are not WGS 84 / EPSG:4326."
+  }
+}
