@@ -4953,9 +4953,9 @@
     }
   ],
   "display_geometry_precision": {
-    "hydrology_lod_max_simplification_px": 1.5,
-    "hydrology_corner_smoothing_radius_px": 0.75,
-    "rationale": "Preserve visible river and lake curvature at overview scales while keeping other map layers on their existing LOD settings."
+    "hydrology_lod_max_simplification_px": 1.0,
+    "hydrology_corner_smoothing_radius_px": 0.35,
+    "rationale": "Higher-resolution river centerlines are traced from the official 12x raster; shared network nodes remain mandatory at every render simplification level."
   },
   "review_sources": [
     "manual_review_RCH-0001-0112.csv",
@@ -10546,5 +10546,136 @@
       "lake_boundary_offset_median_px_after_redraw": 0.25,
       "audit_outputs_external_to_project": "analysis/hydrology_followup_2026-11-05/current_vector_audit_after_12x_repairs"
     }
+  },
+  "official_12x_centerline_retrace": {
+    "reference_raster": "D:\\Desktop\\Git Repositories\\Duniverse\\official_map\\Administrative Division Map of Donh 2026-river-super.png",
+    "cross_border_domain_seed": "tools\\trace_sources\\cross_border_rivers_seed.geojson",
+    "coordinate_mapping": "X=12*x+5.5; Y=12*y+5.5",
+    "raster_size_px": [
+      24579,
+      17376
+    ],
+    "official_water_mask_pixels_before_exclusions": 7139307,
+    "raw_skeleton_paths": 553,
+    "stored_river_paths": 300,
+    "stored_cross_border_paths": 147,
+    "total_stored_paths": 447,
+    "rivers_total_length_px": 14129.139,
+    "cross_border_total_length_px": 4840.523,
+    "skipped_symbol_paths": 43,
+    "skipped_short_parts": 79,
+    "canal_tick_measurements": {
+      "reference_tick_count": 52,
+      "full_tick_length_min_median_max_px": [
+        3.424,
+        4.5,
+        5.762
+      ],
+      "along_canal_spacing_min_median_max_px": [
+        9.0,
+        12.0,
+        18.873
+      ],
+      "by_canal": [
+        {
+          "canal_id": 1,
+          "tick_count": 10,
+          "full_tick_length_min_median_max_px": [
+            5.499,
+            5.502,
+            5.506
+          ],
+          "along_canal_spacing_min_median_max_px": [
+            10.946,
+            12.001,
+            13.399
+          ]
+        },
+        {
+          "canal_id": 2,
+          "tick_count": 25,
+          "full_tick_length_min_median_max_px": [
+            4.5,
+            4.5,
+            4.5
+          ],
+          "along_canal_spacing_min_median_max_px": [
+            9.0,
+            12.0,
+            14.0
+          ]
+        },
+        {
+          "canal_id": 3,
+          "tick_count": 17,
+          "full_tick_length_min_median_max_px": [
+            3.424,
+            4.377,
+            5.762
+          ],
+          "along_canal_spacing_min_median_max_px": [
+            11.292,
+            14.629,
+            18.873
+          ]
+        }
+      ],
+      "interpretation": "The short-spur limit is calibrated against manually traced known ruler ticks; repeated spacing and orientation are required before any spur is removed."
+    },
+    "short_branch_classification": {
+      "terminal_side_spurs_before_filter": 373,
+      "short_spurs_at_or_below_threshold": 256,
+      "known_tick_remnants_matched": 44,
+      "known_ticks_with_a_matched_remnant": 39,
+      "known_tick_remnant_length_min_median_max_px": [
+        0.652,
+        3.655,
+        5.345
+      ],
+      "repeated_tick_groups": 14,
+      "repeated_tick_group_sizes": [
+        24,
+        16,
+        13,
+        9,
+        8,
+        7,
+        7,
+        5,
+        5,
+        4,
+        4,
+        4,
+        3,
+        3
+      ],
+      "removed_repeated_unknown_tick_spurs": 112,
+      "removed_total_tick_spurs": 156,
+      "retained_unknown_short_spurs": 100,
+      "retained_short_spurs": 100,
+      "short_spur_length_min_median_max_px": [
+        0.201,
+        3.325,
+        5.796
+      ],
+      "filter": {
+        "maximum_spur_length_px": 5.8,
+        "threshold_basis": "5.8 px rounds up the measured 5.762 px maximum among 52 known canal ticks; matched residual spurs measured 0.652-5.345 px with a 3.655 px median.",
+        "minimum_group_size": 3,
+        "junction_spacing_px": [
+          7.0,
+          22.0
+        ],
+        "maximum_arm_axis_difference_degrees": 30.0,
+        "maximum_perpendicular_deviation_degrees": 35.0,
+        "maximum_local_group_radius_px": 45.0,
+        "known_tick_matching": "arm <= 1.25 px from a digitized tick, within 28 degrees of its axis, and junction <= 3 px from its canal centerline"
+      }
+    },
+    "canal_tick_features_removed_before_skeleton": 52,
+    "lake_shoreline_paths_excluded": true,
+    "simplification_tolerance_px": 0.08,
+    "maximum_simplification_deviation_px": 0.07998,
+    "method": "12x official pure-river raster blue mask; national outline plus buffered current cross-border/seasonal corridors; ocean and known lake interiors removed; lake shoreline loops and dashed seasonal strokes excluded; outer tails of canal ruler ticks removed while retaining short stems for graph classification; repeated groups of at least three short, similarly oriented, regularly spaced perpendicular spurs are removed while isolated or paired short tributaries are retained; 3x3 one-pixel closing; tiled raster skeleton; graph traced at shared nodes; paths clipped to the national outline and simplified with endpoint-preserving 0.08 map-pixel tolerance."
   }
 }

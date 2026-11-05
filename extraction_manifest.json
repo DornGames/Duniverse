@@ -9,7 +9,7 @@
   "unique_region_codes": 45,
   "region_code_label_instances": 46,
   "national_outline_components": 8,
-  "river_line_segments": 431,
+  "river_line_segments": 300,
   "lake_candidates": 10,
   "black_marker_candidates": 260,
   "red_marker_candidates": 43,
@@ -29,7 +29,7 @@
     "Administrative Division Map of Donh 2026-no-river-super-big.png",
     "Administrative Division Map of Donh 2026-no-text-super-big.png"
   ],
-  "cross_border_river_segments": 50,
+  "cross_border_river_segments": 147,
   "neighbor_border_segments": 1,
   "ocean_pixels": 971243,
   "canal_centerlines": 3,
@@ -46,5 +46,6 @@
   "canal_trace_source_images": [
     "Administrative-Division-Map-of-Donh-2026.png",
     "official_map/Administrative Division Map of Donh 2026-river-super.png"
-  ]
+  ],
+  "official_12x_centerline_retrace": true
 }

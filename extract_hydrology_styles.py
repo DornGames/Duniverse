@@ -339,7 +339,7 @@ def path_data(geometry: dict) -> str:
         if len(coordinates) < 3:
             commands.append(f"M {point_text(coordinates[0])} L {point_text(coordinates[-1])}")
             continue
-        radius = 0.75
+        radius = 0.35
         toward = lambda point, target: (
             point[0] + (target[0] - point[0]) * min(radius / (math.dist(point, target) or 1), 0.4),
             point[1] + (target[1] - point[1]) * min(radius / (math.dist(point, target) or 1), 0.4),
@@ -409,17 +409,33 @@ def render_lakes_group(features: list[dict], *, preview: bool = False) -> str:
 
 
 def update_hydrology_lod_precision(index: str) -> str:
-    replacements = [
-        (
-            "const LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];",
-            "const LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];\n"
+    hydrology_lod = "const HYDROLOGY_LOD_TOLERANCES=[.06,.12,.24,.48,.96];"
+    lod_pattern = r"const HYDROLOGY_LOD_TOLERANCES=\[[^\]]+\];"
+    if "const HYDROLOGY_LAYER_IDS=" in index:
+        index, count = re.subn(lod_pattern, hydrology_lod, index, count=1)
+        if count != 1:
+            raise RuntimeError("Could not find the existing hydrology LOD precision marker")
+    else:
+        marker = "const LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];"
+        if index.count(marker) != 1:
+            raise RuntimeError("Could not locate the base LOD precision marker")
+        index = index.replace(
+            marker,
+            marker + "\n"
             "const HYDROLOGY_LAYER_IDS=new Set(['lakes','rivers','canals','seasonalRivers','crossBorderRivers']);\n"
-            "const HYDROLOGY_LOD_TOLERANCES=[.12,.25,.5,1,1.5];",
-        ),
-        (
-            "['rivers','canals','seasonalRivers','crossBorderRivers'].includes(layerId)?2:0;",
-            "HYDROLOGY_LAYER_IDS.has(layerId)?0.75:0;",
-        ),
+            + hydrology_lod,
+            1,
+        )
+    legacy_radius = "['rivers','canals','seasonalRivers','crossBorderRivers'].includes(layerId)?2:0;"
+    legacy_radius_updated = "HYDROLOGY_LAYER_IDS.has(layerId)?0.35:0;"
+    old_hydrology_radius = "HYDROLOGY_LAYER_IDS.has(layerId)?0.75:0;"
+    if legacy_radius in index:
+        index = index.replace(legacy_radius, legacy_radius_updated, 1)
+    elif old_hydrology_radius in index:
+        index = index.replace(old_hydrology_radius, legacy_radius_updated, 1)
+    elif legacy_radius_updated not in index:
+        raise RuntimeError("Could not locate the hydrology curve-smoothing marker")
+    replacements = [
         (
             "const tolerances=['oceanFill','islandFills'].includes(layerId)?COASTAL_FILL_LOD_TOLERANCES:LOD_TOLERANCES;",
             "const tolerances=['oceanFill','islandFills'].includes(layerId)?COASTAL_FILL_LOD_TOLERANCES:\n"
