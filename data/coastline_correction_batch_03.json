@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "correction_batch": "3/3",
+  "created_date": "2026-11-06",
+  "scope": {
+    "remaining_candidate_total": 59,
+    "reviewed_candidate_total": 59,
+    "confirmed_geometry_edits": 3,
+    "rejected_nonshore_candidates": 1,
+    "no_geometry_change_candidates": 55,
+    "candidate_disposition_counts": {
+      "coast_endpoint_gap": 8,
+      "uncovered_shore_candidate": 23,
+      "river_mouth_candidate": 16,
+      "near_closed_open_line": 4,
+      "non_simple_closed_ring": 1,
+      "shared_vector_overlap": 7
+    }
+  },
+  "coordinate_mapping": {
+    "coordinate_frame": "input_map.png pixel-centre indices, not longitude/latitude",
+    "base_index_to_12x_pixel_center_index": "X12=12*x+5.5; Y12=12*y+5.5",
+    "open_coastline_stored_to_normalized_index": "subtract 11/24 from both stored x and y"
+  },
+  "reference": {
+    "file": "official_map/Administrative Division Map of Donh 2026-no-river-super-big.png",
+    "provenance_limit": "Local project reference; the available files do not independently authenticate it as the official published original.",
+    "evidence_image": "diagnostics/coastline_batch_03/near_close_raw_reference.png"
+  },
+  "input": {
+    "file": "data/coastlines.geojson",
+    "sha256": "36d06e5c7f3db67db96c01b424325b6180c8594ad85710f8eaf41b014a2ef73f",
+    "feature_count": 1299
+  },
+  "actions": [
+    {
+      "review_id": "official-tile-0127",
+      "feature_array_index_zero_based": 123,
+      "center_index_xy_px": [
+        1302.8332,
+        511.6247
+      ],
+      "original_start_xy": [
+        1303.333,
+        512.083
+      ],
+      "original_end_xy": [
+        1303.25,
+        512.083
+      ],
+      "gap_length_px": 0.083,
+      "closed_xy": [
+        1303.333,
+        512.083
+      ],
+      "action": "close_as_island_shoreline",
+      "reason": "12x reference has a continuous dark oval shoreline enclosing land-colored fill.",
+      "new_length_px": 24.854
+    },
+    {
+      "review_id": "official-tile-0379",
+      "feature_array_index_zero_based": 359,
+      "center_index_xy_px": [
+        1353.0002,
+        988.2087
+      ],
+      "original_start_xy": [
+        1353.5,
+        988.667
+      ],
+      "original_end_xy": [
+        1353.417,
+        988.667
+      ],
+      "gap_length_px": 0.083,
+      "closed_xy": [
+        1353.5,
+        988.667
+      ],
+      "action": "close_as_island_shoreline",
+      "reason": "12x reference has a continuous dark oval shoreline enclosing land-colored fill.",
+      "new_length_px": 10.371
+    },
+    {
+      "review_id": "official-tile-0443",
+      "feature_array_index_zero_based": 421,
+      "center_index_xy_px": [
+        1364.8747,
+        98.1667
+      ],
+      "original_start_xy": [
+        1365.333,
+        98.667
+      ],
+      "original_end_xy": [
+        1365.333,
+        98.583
+      ],
+      "gap_length_px": 0.084,
+      "action": "reject_nonshore_symbol",
+      "reason": "12x reference shows a pale gray marker-like blob with a white center, without dark shoreline ink."
+    },
+    {
+      "review_id": "official-tile-0547",
+      "feature_array_index_zero_based": 522,
+      "center_index_xy_px": [
+        1457.0832,
+        938.1247
+      ],
+      "original_start_xy": [
+        1457.5,
+        938.583
+      ],
+      "original_end_xy": [
+        1457.583,
+        938.583
+      ],
+      "gap_length_px": 0.083,
+      "closed_xy": [
+        1457.5,
+        938.583
+      ],
+      "action": "close_as_island_shoreline",
+      "reason": "12x reference has a continuous dark oval shoreline enclosing land-colored fill.",
+      "new_length_px": 13.326
+    }
+  ],
+  "output": {
+    "file": "data/coastlines.geojson",
+    "sha256": "53c066b6f3b0fdd295309541c7cc05af1f534dd3e9c81f116e9195eae97a960c",
+    "feature_count": 1299,
+    "role_counts": {
+      "coastline": 999,
+      "island_shoreline": 300
+    },
+    "closed_geometry_counts": {
+      "coastline": 17,
+      "island_shoreline": 300
+    },
+    "rejected_feature_count": 1,
+    "simple_ring_counts": {
+      "coastline": 17,
+      "island_shoreline": 299
+    },
+    "open_geometry_counts": {
+      "coastline": 982
+    },
+    "renderable_feature_count": 1298,
+    "renderable_role_counts": {
+      "coastline": 998,
+      "island_shoreline": 300
+    }
+  },
+  "candidate_disposition_file": "diagnostics/coastline_batch_03/candidate_dispositions.csv",
+  "method_note": "Open-line candidates were changed only when the high-resolution reference showed a closed, dark shoreline around land-colored fill. The gray marker candidate is retained in source data with review_status=rejected so the boundary builder excludes it from rendering.",
+  "review_evidence": {
+    "candidate_dispositions": {
+      "file": "diagnostics/coastline_batch_03/candidate_dispositions.csv",
+      "sha256": "507a37a85f26784441e94da87825a5d191eac79674c108176e9ac66c19309173",
+      "rows": 59
+    },
+    "river_endpoint_review": {
+      "file": "diagnostics/coastline_batch_03/river_mouth_review_ledger.csv",
+      "sha256": "cb09134e7391bd27a1a2578b50e908b3dcdba7220f1a1e1af37e32fc1b7328a9"
+    },
+    "ocean_mask_check": {
+      "file": "diagnostics/coastline_batch_03/uncovered_ocean_boundary_metrics.csv",
+      "sha256": "552116fb7e5825b9720ecc99ff2d1718a3b7ceead3ec2b61412f6beaaf420254"
+    },
+    "stroke_fit_check": {
+      "file": "diagnostics/coastline_batch_03/coastline_stroke_fit_metrics.csv",
+      "sha256": "88ed161d27bb743534ae12c9802f487776fb2771da5135d3907a72edc9bc7177"
+    }
+  },
+  "river_mouth_recheck": {
+    "current_endpoint_observations": 46,
+    "candidate_clusters": 10,
+    "confirmed_main_mouth_repairs_already_in_base": 6,
+    "ledger": "diagnostics/coastline_batch_03/river_mouth_review_ledger.csv"
+  }
+}

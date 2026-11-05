@@ -666,24 +666,20 @@ def update_city_tongue_names_constant(
         + json.dumps(city_tongue_names, ensure_ascii=False, indent=2)
         + ";"
     )
-    updated, count = re.subn(
-        r"const CITY_TONGUE_NAMES\s*=\s*\{.*?\};",
-        declaration,
+    updated, _ = re.subn(
+        r"const CITY_TONGUE_NAMES\s*=\s*[^;]*;",
+        "",
         source,
-        count=1,
         flags=re.DOTALL,
     )
-    if count == 1:
-        return updated
-
     updated, count = re.subn(
         r"(?=const CITY_LABELS=\[)",
         lambda _: declaration + "\n",
-        source,
+        updated,
         count=1,
     )
     if count != 1:
-        raise RuntimeError("Could not insert the Canvas city Tongue-name mapping")
+        raise RuntimeError("Could not replace the Canvas city Tongue-name mapping")
     return updated
 
 
@@ -1015,7 +1011,8 @@ def update_render_files(
         label="Canvas region hit-test",
     )
     draw_order_replacement = (
-        "['provinceBoundaries',9],['majorRegionBoundaries',10],['majorRegionNames',11],"
+        "['provinceBoundaries',9],['majorRegionBoundaries',10],['graticule',10.5],"
+        "['majorRegionNames',11],"
         "['nationalBorder',12],['blackMarkers',13],['redMarkers',14],"
         "['specialCapitalMarker',14],['nationalCapitalMarker',14],"
         "['regionCodes',15],['regionNames',16],['regionTongueNames',17],"
