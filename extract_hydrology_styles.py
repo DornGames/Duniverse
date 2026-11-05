@@ -90,6 +90,7 @@ CANAL_CENTERLINES = [
             (1398, 1129.2),
         ],
         "tick_length_px": 5.5,
+        "subtract_from_rivers": True,
     },
     {
         "canal_id": 2,
@@ -603,9 +604,9 @@ def render_lakes_group(features: list[dict], *, preview: bool = False) -> str:
         path = polygon_path_data(feature["geometry"])
         if path:
             paths.append(f'<path d="{path}"/>')
-    style = 'fill="#b1d0ed" fill-rule="evenodd" stroke="#83b8e8" stroke-width="1.1"'
+    style = 'fill="#b1d0ed" fill-rule="evenodd" stroke="#b1d0ed" stroke-width="1.1"'
     if preview:
-        style = 'fill="#b1d0ed" fill-rule="evenodd" stroke="#83b8e8" stroke-width="1.2"'
+        style = 'fill="#b1d0ed" fill-rule="evenodd" stroke="#b1d0ed" stroke-width="1.2"'
     return f'<g id="lakes" {style} pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
 
 
@@ -685,15 +686,15 @@ def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[d
     lakes = read_fc(DATA / "lakes.geojson")["features"]
     index_groups = [
         render_group("rivers", "rivers", rivers,
-                     'fill="none" stroke="#83b8e8" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
+                     'fill="none" stroke="#b1d0ed" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
         render_group("canals", "canals", [f for f in canals if f["properties"].get("symbol_part") == "centerline"],
                      'fill="none" stroke="#347ca5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"'),
         render_group("canalTicks", "canalTicks", [f for f in canals if f["properties"].get("symbol_part") == "ruler_tick"],
                      'fill="none" stroke="#347ca5" stroke-width="1.5" stroke-linecap="round"'),
         render_group("seasonalRivers", "seasonalRivers", seasonal,
-                     'fill="none" stroke="#82b8e9" stroke-width="1.8" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"'),
+                     'fill="none" stroke="#b1d0ed" stroke-width="1.8" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"'),
         render_group("crossBorderRivers", "crossBorderRivers", cross_border,
-                     'fill="none" stroke="#82b8e9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"'),
+                     'fill="none" stroke="#b1d0ed" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"'),
     ]
     index_path = ROOT / "index.html"
     index = index_path.read_text(encoding="utf-8")
@@ -710,15 +711,15 @@ def update_render_files(rivers: list[dict], canals: list[dict], seasonal: list[d
     preview = preview_path.read_text(encoding="utf-8")
     preview_groups = [
         render_preview_group("rivers", rivers,
-                            'fill="none" stroke="#83b8e8" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
+                            'fill="none" stroke="#b1d0ed" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
         render_preview_group("canals", [f for f in canals if f["properties"].get("symbol_part") == "centerline"],
                             'fill="none" stroke="#347ca5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"'),
         render_preview_group("canal-ticks", [f for f in canals if f["properties"].get("symbol_part") == "ruler_tick"],
                             'fill="none" stroke="#347ca5" stroke-width="1.5" stroke-linecap="round"'),
         render_preview_group("seasonal-rivers", seasonal,
-                            'fill="none" stroke="#82b8e9" stroke-width="1.8" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"'),
+                            'fill="none" stroke="#b1d0ed" stroke-width="1.8" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"'),
         render_preview_group("cross-border-rivers", cross_border,
-                            'fill="none" stroke="#82b8e9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"'),
+                            'fill="none" stroke="#b1d0ed" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"'),
     ]
     preview = upsert_group(preview, preview_groups[0], "rivers", None)
     preview = upsert_group(preview, preview_groups[1], "canals", "rivers")
@@ -734,11 +735,11 @@ def write_overlay(seasonal: list[dict], canals: list[dict]) -> None:
     draw = ImageDraw.Draw(image)
     for feature in seasonal:
         coords = [tuple(point) for point in feature["geometry"]["coordinates"]]
-        draw.line(coords, fill=(220, 40, 65), width=2)
+        draw.line(coords, fill=(177, 208, 237), width=2)
     for feature in canals:
         coords = [tuple(point) for point in feature["geometry"]["coordinates"]]
         width = 2
-        draw.line(coords, fill=(28, 95, 140), width=width)
+        draw.line(coords, fill=(52, 124, 165), width=width)
     DIAGNOSTICS.mkdir(exist_ok=True)
     image.save(DIAGNOSTICS / "waterway_styles_overlay.png")
 
