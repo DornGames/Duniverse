@@ -25,27 +25,40 @@ HIGH_RES_SOURCE = ROOT / "Administrative-Division-Map-of-Donh-2026.png"
 DIAGNOSTICS = ROOT / "diagnostics"
 
 SEASONAL_RIVER_PATHS = [
-    # Traced along the centers of the blue dashes in input_map.png. The old
-    # trace wandered tens of pixels off the source around the reservoir and
-    # the southern bend.
+    # Centerline traced through the dash-stroke centers on the official 12x
+    # river raster, then mapped into input_map.png pixels using the established
+    # high-resolution pixel transform. This replaces the visibly offset path.
     [
-        (128, 333), (148, 331), (165, 333), (180, 340), (194, 351),
-        (208, 355), (227, 355), (244, 355), (258, 362), (270, 375),
-        (281, 384), (289, 385), (296, 378), (301, 362), (308, 350),
-        (321, 344), (337, 343), (354, 344), (370, 346), (383, 341),
-        (394, 331), (405, 324), (416, 321), (426, 325),
-        (438, 337), (451, 345), (466, 352), (483, 361), (501, 370),
-        (518, 379), (529, 392), (532, 408), (530, 425), (526, 441),
-        (528, 458), (538, 476), (554, 492), (574, 507), (588, 520),
-        (591, 533),
+        (129.82, 336.55), (137.40, 334.56), (148.38, 333.88),
+        (159.70, 335.05), (171.08, 340.03), (180.88, 347.83),
+        (189.43, 354.05), (198.55, 356.05), (209.23, 355.61),
+        (221.68, 355.55), (232.13, 356.62), (243.42, 360.98),
+        (252.46, 366.10), (259.40, 371.34), (263.84, 378.99),
+        (268.45, 385.11), (276.27, 385.20), (283.25, 381.85),
+        (288.26, 376.98), (293.01, 369.29), (296.77, 360.46),
+        (299.87, 354.05), (306.70, 347.18), (315.60, 343.47),
+        (323.84, 342.30), (333.75, 341.47), (344.97, 342.82),
+        (352.27, 345.81), (359.28, 353.34), (367.72, 356.00),
+        (374.10, 351.08), (379.84, 341.49), (386.74, 332.81),
+        (395.63, 326.60), (405.24, 324.83), (415.19, 322.43),
+        (431.68, 326.75), (438.83, 335.84), (450.01, 344.30),
+        (462.24, 350.42), (474.05, 355.96), (485.98, 360.56),
+        (498.69, 365.33), (511.71, 370.00), (525.59, 374.91),
+        (536.76, 383.04), (543.80, 394.98), (543.37, 408.61),
+        (538.33, 421.23), (526.98, 433.32), (520.37, 445.27),
+        (520.85, 458.42), (523.65, 469.72), (531.23, 482.76),
+        (542.99, 494.31), (553.21, 502.95), (564.01, 509.62),
+        (575.11, 515.81), (579.73, 524.37), (590.07, 533.77),
     ],
     [
-        (232, 812), (220, 807), (208, 804), (195, 804), (184, 807),
-        (177, 813), (174, 820), (177, 831), (180, 842),
-        (180, 850), (175, 861), (170, 874), (169, 887), (174, 897),
-        (187, 903), (199, 910), (206, 919), (204, 928), (195, 938),
-        (187, 948), (182, 960), (181, 972), (185, 984), (196, 993),
-        (207, 999),
+        (223.07, 812.48), (214.40, 810.16), (206.31, 809.15),
+        (197.03, 810.79), (189.16, 814.87), (184.53, 822.11),
+        (186.63, 830.67), (190.12, 840.10), (190.02, 850.02),
+        (186.79, 859.14), (182.92, 867.97), (179.74, 876.96),
+        (179.73, 885.72), (183.01, 893.96), (190.02, 899.09),
+        (200.39, 902.61), (209.13, 909.24), (208.59, 916.60),
+        (200.94, 923.83), (195.13, 933.46), (190.82, 942.71),
+        (187.00, 954.76), (186.01, 967.71), (187.92, 981.08),
     ],
 ]
 
@@ -203,14 +216,16 @@ CANAL_CENTERLINES = [
 ]
 CANAL_RIVER_EXCLUSION_BUFFER_PX = 3.5
 SEASONAL_CROSS_BORDER_EXCLUSION_BUFFER_PX = 2.5
-# These short segments were manually checked against the official 12x raster
-# and are duplicate fragments of the two dashed seasonal traces, not separate
-# neighboring rivers. Keep the nearby real confluences (90, 93) and lake mouth
-# (119) intact.
+# These raster fragments were manually checked against the official 12x source.
+# They duplicate strokes on the two seasonal routes. ID 76 is included because
+# the high-resolution overlay confirms it lies on seasonal trace 1; keep ID 42
+# as a separate nearby feature, IDs 90/93 as real headwater junctions, ID 117
+# as the solid lake connection after the seasonal dashes end, and ID 119 as the
+# lake mouth.
 SEASONAL_DASH_RESIDUAL_SEGMENT_IDS = frozenset({
-    *range(43, 54), 60, 61, 64, 72, 75, 88, 89,
-    97, *range(111, 119),
+    *range(43, 90), *range(94, 117),
 })
+CROSS_BORDER_LAKE_EDGE_RESIDUAL_SEGMENT_IDS = frozenset({118})
 
 
 def read_fc(path: Path) -> dict:
@@ -262,8 +277,8 @@ def seasonal_features() -> list[dict]:
                 "territory": "neighboring_country",
                 "flow_regime": "seasonal",
                 "symbol": "blue_dashed_river",
-                "source": "manual_trace_from_source_image",
-                "review_status": "visually_checked_against_dashed_blue_strokes",
+                "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+                "review_status": "centerline_retraced_from_official_12x_dash_strokes",
                 "length_px": round(line.length, 1),
             },
             "geometry": round_line(line),
@@ -433,6 +448,13 @@ def remove_verified_seasonal_dash_residuals(features: list[dict]) -> list[dict]:
     return [
         feature for feature in features
         if feature["properties"].get("segment_id") not in SEASONAL_DASH_RESIDUAL_SEGMENT_IDS
+    ]
+
+
+def remove_cross_border_lake_edge_residuals(features: list[dict]) -> list[dict]:
+    return [
+        feature for feature in features
+        if feature["properties"].get("segment_id") not in CROSS_BORDER_LAKE_EDGE_RESIDUAL_SEGMENT_IDS
     ]
 
 
@@ -663,11 +685,14 @@ def main() -> None:
     river_features = remove_separated_canal_reaches(river_source_fc["features"], canals)
     seasonal = seasonal_features()
     cross_border_fc = read_fc(DATA / "cross_border_rivers.geojson")
-    # Remove only short fragments manually matched to the dashed seasonal
-    # traces on the official raster. True river junctions and the lake mouth
-    # remain in the cross-border layer.
+    # Exclude raster fragments that exactly repeat the seasonal dash strokes.
+    # Keep nearby solid streams and confluences; remove one separate subpixel
+    # lake-edge fragment from the cross-border candidate layer.
     original_cross_border_count = len(cross_border_fc["features"])
     cross_border = remove_verified_seasonal_dash_residuals(cross_border_fc["features"])
+    seasonal_dash_residual_count = original_cross_border_count - len(cross_border)
+    cross_border = remove_cross_border_lake_edge_residuals(cross_border)
+    lake_edge_residual_count = original_cross_border_count - seasonal_dash_residual_count - len(cross_border)
     cross_border_fc["features"] = cross_border
 
     write_fc(DATA / "canals.geojson", "canal_centerline_and_ruler_ticks", canals)
@@ -697,8 +722,15 @@ def main() -> None:
         "canal_tick_orientation": "perpendicular_to_local_centerline_tangent",
         "canal_ruler_ticks": sum(f["properties"].get("symbol_part") == "ruler_tick" for f in canals),
         "seasonal_river_features": len(seasonal),
+        "seasonal_river_trace_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "seasonal_river_trace_method": "centerline_through_centers_of_official_12x_dash_strokes",
+        "seasonal_river_trace_coordinate_space": "input_map.png image pixels",
+        "cross_border_input_river_segments": original_cross_border_count,
         "cross_border_river_segments": len(cross_border),
-        "seasonal_dash_residual_segments_removed": original_cross_border_count - len(cross_border),
+        "seasonal_dash_residual_segments_removed": seasonal_dash_residual_count,
+        "seasonal_dash_residual_segment_ids_removed": sorted(SEASONAL_DASH_RESIDUAL_SEGMENT_IDS),
+        "cross_border_lake_edge_residual_segments_removed": lake_edge_residual_count,
+        "cross_border_lake_edge_residual_segment_ids_removed": sorted(CROSS_BORDER_LAKE_EDGE_RESIDUAL_SEGMENT_IDS),
         "national_seasonal_river_candidates": 0,
     })
     label_features = read_fc(DATA / "region_code_labels.geojson")["features"]
@@ -707,8 +739,9 @@ def main() -> None:
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(
         f"Kept {len(river_features)} regular river segments; separated {manifest['canal_centerlines']} canals "
-        f"across {manifest['canal_centerline_reaches']} reaches with {manifest['canal_ruler_ticks']} ruler ticks; traced {len(seasonal)} "
-        "neighbor seasonal rivers."
+        f"across {manifest['canal_centerline_reaches']} reaches with {manifest['canal_ruler_ticks']} ruler ticks; "
+        f"removed {seasonal_dash_residual_count} duplicated seasonal dashes and {lake_edge_residual_count} lake-edge fragment; "
+        f"traced {len(seasonal)} neighbor seasonal rivers."
     )
 
 
