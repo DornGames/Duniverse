@@ -1,5 +1,5 @@
 window.DUNIVERSE_CITY_DIRECTORY =
-[{"id":"city:114514:1","kind":"city","name":"臭都特别市","tongueName":null,"parentId":"province:GR","adminName":"臭都特别市","postalCode":"114514","areaKm2":null,"description":null,"pointX":1002.0,"pointY":877.0},{"id":"city:100470:2","kind":"city","name":"瑞丰特别市","tongueName":"Ræf
+[{"id":"city:114514:1","kind":"city","name":"臭都特别市","tongueName":null,"parentId":"province:GR","adminName":"臭都特别市","postalCode":"114514","areaKm2":null,"description":"测试测试测试","pointX":1002.0,"pointY":877.0},{"id":"city:100470:2","kind":"city","name":"瑞丰特别市","tongueName":"Ræf
 Shimflash","parentId":"province:RF","adminName":"瑞丰特别市","postalCode":"100470","areaKm2":null,"description":null,"pointX":1029.0,"pointY":733.3},{"id":"city:100430:3","kind":"city","name":"武宗特别市","tongueName":"Wzonh
 Shimflash","parentId":"province:WZ","adminName":"武宗特别市","postalCode":"100430","areaKm2":null,"description":null,"pointX":1007.3,"pointY":952.8},{"id":"city:100850:4","kind":"city","name":"马尔通市","tongueName":"Martonh
 Tork","parentId":"province:MT","adminName":"马尔通市","postalCode":"100850","areaKm2":null,"description":null,"pointX":1052.3,"pointY":851.2},{"id":"city:100860:5","kind":"city","name":"立里市","tongueName":"Thao
