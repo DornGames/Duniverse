@@ -14,8 +14,8 @@
         "coastline_clipped": true,
         "major_region_a": "east",
         "major_region_b": "north",
-        "major_region_name_a": "东湩大区",
-        "major_region_name_b": "北湩大区"
+        "major_region_name_a": "东𣿅大区",
+        "major_region_name_b": "北𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -76,8 +76,8 @@
         "coastline_clipped": true,
         "major_region_a": "east",
         "major_region_b": "central",
-        "major_region_name_a": "东湩大区",
-        "major_region_name_b": "中湩大区"
+        "major_region_name_a": "东𣿅大区",
+        "major_region_name_b": "中𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -126,8 +126,8 @@
         "coastline_clipped": true,
         "major_region_a": "east",
         "major_region_b": "north",
-        "major_region_name_a": "东湩大区",
-        "major_region_name_b": "北湩大区"
+        "major_region_name_a": "东𣿅大区",
+        "major_region_name_b": "北𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -244,8 +244,8 @@
         "coastline_clipped": true,
         "major_region_a": "southeast",
         "major_region_b": "south",
-        "major_region_name_a": "东南湩大区",
-        "major_region_name_b": "南湩大区"
+        "major_region_name_a": "东南𣿅大区",
+        "major_region_name_b": "南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -314,8 +314,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southwest",
-        "major_region_name_a": "南湩大区",
-        "major_region_name_b": "西南湩大区"
+        "major_region_name_a": "南𣿅大区",
+        "major_region_name_b": "西南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -544,8 +544,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "central",
-        "major_region_name_a": "南湩大区",
-        "major_region_name_b": "中湩大区"
+        "major_region_name_a": "南𣿅大区",
+        "major_region_name_b": "中𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -596,8 +596,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "central",
-        "major_region_name_a": "南湩大区",
-        "major_region_name_b": "中湩大区"
+        "major_region_name_a": "南𣿅大区",
+        "major_region_name_b": "中𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -796,8 +796,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "east",
-        "major_region_name_a": "南湩大区",
-        "major_region_name_b": "东湩大区"
+        "major_region_name_a": "南𣿅大区",
+        "major_region_name_b": "东𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -924,8 +924,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southeast",
-        "major_region_name_a": "南湩大区",
-        "major_region_name_b": "东南湩大区"
+        "major_region_name_a": "南𣿅大区",
+        "major_region_name_b": "东南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1076,8 +1076,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "central",
-        "major_region_name_a": "南湩大区",
-        "major_region_name_b": "中湩大区"
+        "major_region_name_a": "南𣿅大区",
+        "major_region_name_b": "中𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1150,8 +1150,8 @@
         "coastline_clipped": true,
         "major_region_a": "east",
         "major_region_b": "central",
-        "major_region_name_a": "东湩大区",
-        "major_region_name_b": "中湩大区"
+        "major_region_name_a": "东𣿅大区",
+        "major_region_name_b": "中𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1364,8 +1364,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "west",
-        "major_region_name_a": "中湩大区",
-        "major_region_name_b": "西湩大区"
+        "major_region_name_a": "中𣿅大区",
+        "major_region_name_b": "西𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1610,8 +1610,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "west",
-        "major_region_name_a": "中湩大区",
-        "major_region_name_b": "西湩大区"
+        "major_region_name_a": "中𣿅大区",
+        "major_region_name_b": "西𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1896,8 +1896,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "north",
-        "major_region_name_a": "中湩大区",
-        "major_region_name_b": "北湩大区"
+        "major_region_name_a": "中𣿅大区",
+        "major_region_name_b": "北𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2106,8 +2106,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "west",
-        "major_region_name_a": "中湩大区",
-        "major_region_name_b": "西湩大区"
+        "major_region_name_a": "中𣿅大区",
+        "major_region_name_b": "西𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2188,8 +2188,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "southwest",
-        "major_region_name_a": "中湩大区",
-        "major_region_name_b": "西南湩大区"
+        "major_region_name_a": "中𣿅大区",
+        "major_region_name_b": "西南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2274,8 +2274,8 @@
         "coastline_clipped": true,
         "major_region_a": "southwest",
         "major_region_b": "south",
-        "major_region_name_a": "西南湩大区",
-        "major_region_name_b": "南湩大区"
+        "major_region_name_a": "西南𣿅大区",
+        "major_region_name_b": "南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2500,8 +2500,8 @@
         "coastline_clipped": true,
         "major_region_a": "southwest",
         "major_region_b": "west",
-        "major_region_name_a": "西南湩大区",
-        "major_region_name_b": "西湩大区"
+        "major_region_name_a": "西南𣿅大区",
+        "major_region_name_b": "西𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2550,8 +2550,8 @@
         "coastline_clipped": true,
         "major_region_a": "southeast",
         "major_region_b": "south",
-        "major_region_name_a": "东南湩大区",
-        "major_region_name_b": "南湩大区"
+        "major_region_name_a": "东南𣿅大区",
+        "major_region_name_b": "南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2732,8 +2732,8 @@
         "coastline_clipped": true,
         "major_region_a": "southeast",
         "major_region_b": "south",
-        "major_region_name_a": "东南湩大区",
-        "major_region_name_b": "南湩大区"
+        "major_region_name_a": "东南𣿅大区",
+        "major_region_name_b": "南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2866,8 +2866,8 @@
         "coastline_clipped": true,
         "major_region_a": "west",
         "major_region_b": "north",
-        "major_region_name_a": "西湩大区",
-        "major_region_name_b": "北湩大区"
+        "major_region_name_a": "西𣿅大区",
+        "major_region_name_b": "北𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2948,8 +2948,8 @@
         "coastline_clipped": true,
         "major_region_a": "west",
         "major_region_b": "north",
-        "major_region_name_a": "西湩大区",
-        "major_region_name_b": "北湩大区"
+        "major_region_name_a": "西𣿅大区",
+        "major_region_name_b": "北𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3102,8 +3102,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "east",
-        "major_region_name_a": "中湩大区",
-        "major_region_name_b": "东湩大区"
+        "major_region_name_a": "中𣿅大区",
+        "major_region_name_b": "东𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3168,8 +3168,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "east",
-        "major_region_name_a": "中湩大区",
-        "major_region_name_b": "东湩大区"
+        "major_region_name_a": "中𣿅大区",
+        "major_region_name_b": "东𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3266,8 +3266,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "east",
-        "major_region_name_a": "中湩大区",
-        "major_region_name_b": "东湩大区"
+        "major_region_name_a": "中𣿅大区",
+        "major_region_name_b": "东𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3320,8 +3320,8 @@
         "coastline_clipped": true,
         "major_region_a": "west",
         "major_region_b": "southwest",
-        "major_region_name_a": "西湩大区",
-        "major_region_name_b": "西南湩大区"
+        "major_region_name_a": "西𣿅大区",
+        "major_region_name_b": "西南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3378,8 +3378,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "east",
-        "major_region_name_a": "中湩大区",
-        "major_region_name_b": "东湩大区"
+        "major_region_name_a": "中𣿅大区",
+        "major_region_name_b": "东𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3528,8 +3528,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southeast",
-        "major_region_name_a": "南湩大区",
-        "major_region_name_b": "东南湩大区"
+        "major_region_name_a": "南𣿅大区",
+        "major_region_name_b": "东南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3650,8 +3650,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "east",
-        "major_region_name_a": "中湩大区",
-        "major_region_name_b": "东湩大区"
+        "major_region_name_a": "中𣿅大区",
+        "major_region_name_b": "东𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3756,8 +3756,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southwest",
-        "major_region_name_a": "南湩大区",
-        "major_region_name_b": "西南湩大区"
+        "major_region_name_a": "南𣿅大区",
+        "major_region_name_b": "西南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3846,8 +3846,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southwest",
-        "major_region_name_a": "南湩大区",
-        "major_region_name_b": "西南湩大区"
+        "major_region_name_a": "南𣿅大区",
+        "major_region_name_b": "西南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3936,8 +3936,8 @@
         "coastline_clipped": true,
         "major_region_a": "southwest",
         "major_region_b": "west",
-        "major_region_name_a": "西南湩大区",
-        "major_region_name_b": "西湩大区"
+        "major_region_name_a": "西南𣿅大区",
+        "major_region_name_b": "西𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4130,8 +4130,8 @@
         "coastline_clipped": true,
         "major_region_a": "southwest",
         "major_region_b": "central",
-        "major_region_name_a": "西南湩大区",
-        "major_region_name_b": "中湩大区"
+        "major_region_name_a": "西南𣿅大区",
+        "major_region_name_b": "中𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4340,8 +4340,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "east",
-        "major_region_name_a": "中湩大区",
-        "major_region_name_b": "东湩大区"
+        "major_region_name_a": "中𣿅大区",
+        "major_region_name_b": "东𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4498,8 +4498,8 @@
         "coastline_clipped": true,
         "major_region_a": "central",
         "major_region_b": "north",
-        "major_region_name_a": "中湩大区",
-        "major_region_name_b": "北湩大区"
+        "major_region_name_a": "中𣿅大区",
+        "major_region_name_b": "北𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4674,8 +4674,8 @@
         "coastline_clipped": true,
         "major_region_a": "east",
         "major_region_b": "southeast",
-        "major_region_name_a": "东湩大区",
-        "major_region_name_b": "东南湩大区"
+        "major_region_name_a": "东𣿅大区",
+        "major_region_name_b": "东南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4812,8 +4812,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southwest",
-        "major_region_name_a": "南湩大区",
-        "major_region_name_b": "西南湩大区"
+        "major_region_name_a": "南𣿅大区",
+        "major_region_name_b": "西南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4938,8 +4938,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southwest",
-        "major_region_name_a": "南湩大区",
-        "major_region_name_b": "西南湩大区"
+        "major_region_name_a": "南𣿅大区",
+        "major_region_name_b": "西南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -4972,8 +4972,8 @@
         "coastline_clipped": true,
         "major_region_a": "southwest",
         "major_region_b": "central",
-        "major_region_name_a": "西南湩大区",
-        "major_region_name_b": "中湩大区"
+        "major_region_name_a": "西南𣿅大区",
+        "major_region_name_b": "中𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -5150,8 +5150,8 @@
         "coastline_clipped": true,
         "major_region_a": "south",
         "major_region_b": "southeast",
-        "major_region_name_a": "南湩大区",
-        "major_region_name_b": "东南湩大区"
+        "major_region_name_a": "南𣿅大区",
+        "major_region_name_b": "东南𣿅大区"
       },
       "geometry": {
         "type": "MultiLineString",
