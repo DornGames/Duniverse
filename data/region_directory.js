@@ -2,7 +2,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
   {
     "id": "major:central",
     "kind": "major",
-    "name": "中湩大区",
+    "name": "中𣿅大区",
     "tongueName": "Nohiadonhfak Tonho",
     "areaKm2": 10892035.076,
     "description": "中𣿅大区地处全国中央，中央山脉自南向北贯穿全境，构成大区的地理脊梁；东南方向山峰密布，火山静伏其间，发源河流密集，呈放射状滋养四方。首都及首都圈大城市坐落于此，全国交通、通信与行政枢纽在此交汇，人流、物流、信息流以此为中枢集散。作为全国经济、政治与文化中心，中𣿅大区在国家格局中居于核心地位，其动向关乎全局。大区以𣿅国绿为代表色，以兰花为代表区花，气象沉稳内敛，而分量自在其中。中𣿅之地，即天下之地。"
@@ -10,7 +10,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
   {
     "id": "major:east",
     "kind": "major",
-    "name": "东湩大区",
+    "name": "东𣿅大区",
     "tongueName": "Is'hiadonhfak Tonho",
     "areaKm2": 6865927.735,
     "description": "东𣿅大区坐拥𣿅国东部漫长海岸线，港口密布，海洋航运发达，是𣿅国面向世界的重要门户。东𣿅运河贯穿全境，内河航运与海洋航运在此交汇，形成强大的水运网络，并带来丰富的灌溉水源，滋养两岸沃土。平原广阔，中央山脉阻挡海岸季风，形成充沛地形雨，使此地农业发达，是全国刺梨产业的核心区。东𣿅大区以航运、农业与加工业为支柱，是𣿅国东部最具活力的经济板块。大区以梨花粉为代表色，以刺梨花为代表区花，气象丰饶明朗，而根基自在其中。东𣿅之地，即丰饶之地。"
@@ -18,7 +18,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
   {
     "id": "major:north",
     "kind": "major",
-    "name": "北湩大区",
+    "name": "北𣿅大区",
     "tongueName": "Nohiadonhfak Tonho",
     "areaKm2": 13369644.463,
     "description": "北𣿅大区坐落于北𣿅高原，𣿅矿资源丰富，坐拥全球几乎全部的垄断性𣿅矿产，由此使𣿅国成为强大之国。北𣿅高原是𣿅国水塔，众多河流，包括母亲河与父亲河，均在此发源，滋养广袤国土。气候寒冷，民风淳朴，地方特色文化氛围浓郁。教育发达，拥有全国教育重省后雄省。山脉密布，山峰高耸，全国最高峰铁山即坐落于此。大区以铁山青为代表色，以雪莲为代表区花，气象雄浑高远，而底气自在其中。北𣿅之地，即𣿅国之源。"
@@ -26,7 +26,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
   {
     "id": "major:west",
     "kind": "major",
-    "name": "西湩大区",
+    "name": "西𣿅大区",
     "tongueName": "Es'hiadonhfak Tonho",
     "areaKm2": 9777829.448,
     "description": "西𣿅大区全区沙漠广布，气候干旱，但广袤沙海恰为工业布局提供了开阔土地与充足空间。这里是全国重工业强区，坐拥重工业之城瓦莱莉市，钢铁、机械、材料等产业构成国家工业支柱，众多军工产业亦汇聚于此，为𣿅国国防工业提供坚实支撑。大区以凤凰金为代表色，以仙人掌花为代表区花，气象刚硬炽烈，而力量自在其中。西𣿅之地，即𣿅国之炉。"
@@ -34,7 +34,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
   {
     "id": "major:south",
     "kind": "major",
-    "name": "南湩大区",
+    "name": "南𣿅大区",
     "tongueName": "Swhiadonhfak Tonho",
     "areaKm2": 7768637.843,
     "description": "南𣿅大区拥有山脉与广袤草原，南𣿅运河作为全𣿅最长运河贯穿其中，滋养两岸农牧。本土文化氛围浓郁，民风热情奔放，文化保留完善。南𣿅古居建筑形式新奇，为全𣿅之奇观与文化瑰宝。牧业与农业发达，众多城市以其重要农牧产品命名。区内拥有信息产业技术转型重城金瓶古镇与全国能源中心核平城。大区以兰草紫为代表色，以雏菊为代表区花，气象丰富而热烈，而底蕴自在其中。南𣿅之地，即𣿅国之原。"
@@ -42,7 +42,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
   {
     "id": "major:southeast",
     "kind": "major",
-    "name": "东南湩大区",
+    "name": "东南𣿅大区",
     "tongueName": "Iswhiadonhfak Tonho",
     "areaKm2": 3043560.128,
     "description": "东南𣿅大区拥有全国最大三角洲，三角洲范围内城市高度发达，化工重省坐落其间，化学工业发达，是全国重要的化工与制造业基地。大区地处广袤南𣿅平原范围内，与南𣿅大区农牧业功能有所交集，形成工农业并存的格局。气候高温高湿，丘陵分布，茶叶产量大，是𣿅国重要的茶产区。大区以秋茗红为代表色，以山茶花为代表区花，气象繁盛温润，而动能自在其中。东南𣿅之地，即𣿅国之枢。"
@@ -50,7 +50,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
   {
     "id": "major:southwest",
     "kind": "major",
-    "name": "西南湩大区",
+    "name": "西南𣿅大区",
     "tongueName": "Eswhiadonhfak Tonho",
     "areaKm2": 14503888.507,
     "description": "西南𣿅大区丘陵广布，地势崎岖，虽同西𣿅大区一样深入大陆，大陆性却不明显。南部南𣿅平原地形平坦，东部季风得以长驱直入，在丘陵处形成适当降水，使此地成为干旱环抱中的一片绿洲。大区音乐传统深厚，拥有全国众多音乐之城，城中人人习乐，不同城市各有代表性乐器，众多𣿅国传统乐器亦在此诞生。大区以碧屿绿为代表色，以铃兰为代表区花，气象灵秀清越，而声韵自在其中。西南𣿅之地，即𣿅国之音。"
@@ -67,7 +67,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
     "id": "province:BD",
     "kind": "province",
     "code": "BD",
-    "name": "北湩省",
+    "name": "北𣿅省",
     "tongueName": "Nohiadonhfak Tonkez",
     "parentId": "major:north",
     "areaKm2": 1362644.01,
@@ -117,7 +117,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
     "id": "province:DD",
     "kind": "province",
     "code": "DD",
-    "name": "东湩特别行政区",
+    "name": "东𣿅特别行政区",
     "tongueName": "Ishiadonhfak Donkez",
     "parentId": "major:archipelago",
     "areaKm2": 255972.574,
@@ -267,7 +267,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
     "id": "province:ND",
     "kind": "province",
     "code": "ND",
-    "name": "南湩省",
+    "name": "南𣿅省",
     "tongueName": "Swhiadonhfak Tonkez",
     "parentId": "major:south",
     "areaKm2": 2197673.019,
@@ -357,7 +357,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
     "id": "province:SE",
     "kind": "province",
     "code": "SE",
-    "name": "东南湩省",
+    "name": "东南𣿅省",
     "tongueName": "Iswhiadonhfak Tonkez",
     "parentId": "major:southeast",
     "areaKm2": 512261.711,
@@ -397,7 +397,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
     "id": "province:SW",
     "kind": "province",
     "code": "SW",
-    "name": "西南湩省",
+    "name": "西南𣿅省",
     "tongueName": "Eswhiadonhfak Tonkez",
     "parentId": "major:southwest",
     "areaKm2": 3058375.261,
@@ -437,7 +437,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
     "id": "province:TO",
     "kind": "province",
     "code": "TO",
-    "name": "总统（湩赫）特别行政区",
+    "name": "总统（𣿅赫）特别行政区",
     "tongueName": "Tonhfak Donkez",
     "parentId": "major:archipelago",
     "areaKm2": 12504.225,
@@ -497,7 +497,7 @@ window.DUNIVERSE_REGION_DIRECTORY = [
     "id": "province:XD",
     "kind": "province",
     "code": "XD",
-    "name": "西湩省",
+    "name": "西𣿅省",
     "tongueName": "Es'hiadonhfak Tonkez",
     "parentId": "major:west",
     "areaKm2": 1836696.607,

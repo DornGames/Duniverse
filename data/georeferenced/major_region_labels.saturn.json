@@ -7,7 +7,7 @@
       "type": "Feature",
       "properties": {
         "major_region_id": "central",
-        "major_region_name": "中湩大区",
+        "major_region_name": "中𣿅大区",
         "source": "major_region_geometry_center",
         "major_region_name_tongue": "Nohiadonhfak Tonho"
       },
@@ -23,7 +23,7 @@
       "type": "Feature",
       "properties": {
         "major_region_id": "east",
-        "major_region_name": "东湩大区",
+        "major_region_name": "东𣿅大区",
         "source": "major_region_geometry_center",
         "major_region_name_tongue": "Is'hiadonhfak Tonho"
       },
@@ -39,7 +39,7 @@
       "type": "Feature",
       "properties": {
         "major_region_id": "north",
-        "major_region_name": "北湩大区",
+        "major_region_name": "北𣿅大区",
         "source": "major_region_geometry_center",
         "major_region_name_tongue": "Nohiadonhfak Tonho"
       },
@@ -55,7 +55,7 @@
       "type": "Feature",
       "properties": {
         "major_region_id": "west",
-        "major_region_name": "西湩大区",
+        "major_region_name": "西𣿅大区",
         "source": "major_region_geometry_center",
         "major_region_name_tongue": "Es'hiadonhfak Tonho"
       },
@@ -71,7 +71,7 @@
       "type": "Feature",
       "properties": {
         "major_region_id": "south",
-        "major_region_name": "南湩大区",
+        "major_region_name": "南𣿅大区",
         "source": "major_region_geometry_center",
         "major_region_name_tongue": "Swhiadonhfak Tonho"
       },
@@ -87,7 +87,7 @@
       "type": "Feature",
       "properties": {
         "major_region_id": "southeast",
-        "major_region_name": "东南湩大区",
+        "major_region_name": "东南𣿅大区",
         "source": "major_region_geometry_center",
         "major_region_name_tongue": "Iswhiadonhfak Tonho"
       },
@@ -103,7 +103,7 @@
       "type": "Feature",
       "properties": {
         "major_region_id": "southwest",
-        "major_region_name": "西南湩大区",
+        "major_region_name": "西南𣿅大区",
         "source": "major_region_geometry_center",
         "major_region_name_tongue": "Eswhiadonhfak Tonho"
       },

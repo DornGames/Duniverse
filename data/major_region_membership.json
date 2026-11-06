@@ -1,45 +1,45 @@
 {
-  "source": "湩国政区清单",
+  "source": "𣿅国政区清单",
   "regions": [
     {
       "id": "central",
-      "name": "中湩大区",
+      "name": "中𣿅大区",
       "codes": ["GR", "RF", "WZ", "MT", "LL", "BG", "NG", "GA"],
       "tongue_name": "Nohiadonhfak Tonho"
     },
     {
       "id": "east",
-      "name": "东湩大区",
+      "name": "东𣿅大区",
       "codes": ["FN", "WT", "SB", "FS", "PP", "ST", "BP"],
       "tongue_name": "Is'hiadonhfak Tonho"
     },
     {
       "id": "north",
-      "name": "北湩大区",
+      "name": "北𣿅大区",
       "codes": ["BD", "ZC", "DE", "OH", "HX", "TM"],
       "tongue_name": "Nohiadonhfak Tonho"
     },
     {
       "id": "west",
-      "name": "西湩大区",
+      "name": "西𣿅大区",
       "codes": ["LK", "XD", "VA", "MM"],
       "tongue_name": "Es'hiadonhfak Tonho"
     },
     {
       "id": "south",
-      "name": "南湩大区",
+      "name": "南𣿅大区",
       "codes": ["CS", "OC", "SM", "FL", "TG", "ND"],
       "tongue_name": "Swhiadonhfak Tonho"
     },
     {
       "id": "southeast",
-      "name": "东南湩大区",
+      "name": "东南𣿅大区",
       "codes": ["SE", "CM", "KT", "SD", "UE"],
       "tongue_name": "Iswhiadonhfak Tonho"
     },
     {
       "id": "southwest",
-      "name": "西南湩大区",
+      "name": "西南𣿅大区",
       "codes": ["HB", "TL", "SW", "TT", "GW", "PN", "SP"],
       "tongue_name": "Eswhiadonhfak Tonho"
     },
@@ -51,6 +51,6 @@
     }
   ],
   "mapping_notes": [
-    "ND 在名录中同时列于南湩大区和东南湩大区，但地图只有一个 ND 面域，按首次出现归入南湩大区。"
+    "ND 在名录中同时列于南𣿅大区和东南𣿅大区，但地图只有一个 ND 面域，按首次出现归入南𣿅大区。"
   ]
 }
