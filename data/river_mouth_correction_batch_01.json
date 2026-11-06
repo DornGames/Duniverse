@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "correction_batch": "river-mouth-review-01",
+  "created_date": "2026-11-05",
+  "coordinate_frame": "input_map.png pixel-centre indices, not longitude/latitude",
+  "reference_raster": "official_map/Administrative Division Map of Donh 2026-river-super.png (local project reference)",
+  "coordinate_mapping": {
+    "input_pixel_center_to_12x_pixel_center_index": "X=12*x+5.5; Y=12*y+5.5",
+    "input_pixel_center_to_12x_image_edge": "X=12*(x+0.5); Y=12*(y+0.5)",
+    "open_coastline_storage_to_center_index": "subtract 11/24 from stored x and y before distance/snap calculations"
+  },
+  "selection": "Only the six candidate mouths whose 12x river-water skeleton continues to the open-coast vector were extended. Other inspected endpoints remain unchanged unless already connected.",
+  "input": {
+    "file": "data/hydrology_lines.geojson",
+    "sha256": "4fec6171abef51a97f588497fcd0b1d1a22f1b1b1dc3066a2351f5f19fa8fea4",
+    "feature_count": 300
+  },
+  "repairs": [
+    {
+      "layer": "national",
+      "segment_id": 52,
+      "endpoint": "end",
+      "before_xy": [
+        1249.042,
+        487.375
+      ],
+      "after_xy": [
+        1252.9586666666667,
+        488.2083333333333
+      ],
+      "route_xy": [
+        [
+          1249.042,
+          487.375
+        ],
+        [
+          1250.5416666666667,
+          487.7083333333333
+        ],
+        [
+          1251.375,
+          487.7083333333333
+        ],
+        [
+          1252.9586666666667,
+          488.2083333333333
+        ]
+      ],
+      "extension_length_px": 4.2625,
+      "original_line_length_px": 180.919,
+      "new_line_length_px": 184.95,
+      "original_point_count": 111,
+      "new_point_count": 114,
+      "raster_shore_snap_distance_px": 0.0837,
+      "method": "Follow the 12x water-raster skeleton to the nearest point on the normalized open-coast vector."
+    },
+    {
+      "layer": "national",
+      "segment_id": 150,
+      "endpoint": "end",
+      "before_xy": [
+        1288.875,
+        976.125
+      ],
+      "after_xy": [
+        1292.5926263718218,
+        975.2457845791921
+      ],
+      "route_xy": [
+        [
+          1288.875,
+          976.125
+        ],
+        [
+          1292.125,
+          975.4583333333334
+        ],
+        [
+          1292.5926263718218,
+          975.2457845791921
+        ]
+      ],
+      "extension_length_px": 4.0804,
+      "original_line_length_px": 49.524,
+      "new_line_length_px": 53.355,
+      "original_point_count": 21,
+      "new_point_count": 23,
+      "raster_shore_snap_distance_px": 0.0686,
+      "method": "Follow the 12x water-raster skeleton to the nearest point on the normalized open-coast vector."
+    },
+    {
+      "layer": "national",
+      "segment_id": 21,
+      "endpoint": "end",
+      "before_xy": [
+        1353.042,
+        354.292
+      ],
+      "after_xy": [
+        1356.2086666666667,
+        353.0416666666667
+      ],
+      "route_xy": [
+        [
+          1353.042,
+          354.292
+        ],
+        [
+          1353.125,
+          353.2916666666667
+        ],
+        [
+          1353.2916666666667,
+          353.2083333333333
+        ],
+        [
+          1355.0416666666667,
+          353.2083333333333
+        ],
+        [
+          1356.2086666666667,
+          353.0416666666667
+        ]
+      ],
+      "extension_length_px": 4.191,
+      "original_line_length_px": 219.219,
+      "new_line_length_px": 223.338,
+      "original_point_count": 135,
+      "new_point_count": 139,
+      "raster_shore_snap_distance_px": 0.0837,
+      "method": "Follow the 12x water-raster skeleton to the nearest point on the normalized open-coast vector."
+    },
+    {
+      "layer": "national",
+      "segment_id": 70,
+      "endpoint": "end",
+      "before_xy": [
+        1381.208,
+        742.208
+      ],
+      "after_xy": [
+        1384.133671540039,
+        743.5532708849298
+      ],
+      "route_xy": [
+        [
+          1381.208,
+          742.208
+        ],
+        [
+          1382.875,
+          743.125
+        ],
+        [
+          1384.133671540039,
+          743.5532708849298
+        ]
+      ],
+      "extension_length_px": 3.4788,
+      "original_line_length_px": 123.462,
+      "new_line_length_px": 126.695,
+      "original_point_count": 63,
+      "new_point_count": 65,
+      "raster_shore_snap_distance_px": 0.0927,
+      "method": "Follow the 12x water-raster skeleton to the nearest point on the normalized open-coast vector."
+    },
+    {
+      "layer": "national",
+      "segment_id": 188,
+      "endpoint": "start",
+      "before_xy": [
+        1421.875,
+        1112.708
+      ],
+      "after_xy": [
+        1425.625610972848,
+        1112.0756523591747
+      ],
+      "route_xy": [
+        [
+          1421.875,
+          1112.708
+        ],
+        [
+          1422.2083333333333,
+          1112.5416666666667
+        ],
+        [
+          1423.5416666666667,
+          1112.2916666666667
+        ],
+        [
+          1425.625610972848,
+          1112.0756523591747
+        ]
+      ],
+      "extension_length_px": 4.0541,
+      "original_line_length_px": 2.288,
+      "new_line_length_px": 4.017,
+      "original_point_count": 2,
+      "new_point_count": 5,
+      "raster_shore_snap_distance_px": 0.0974,
+      "method": "Follow the 12x water-raster skeleton to the nearest point on the normalized open-coast vector."
+    },
+    {
+      "layer": "national",
+      "segment_id": 248,
+      "endpoint": "start",
+      "before_xy": [
+        1487.292,
+        1291.708
+      ],
+      "after_xy": [
+        1490.7233529411765,
+        1290.1004117647058
+      ],
+      "route_xy": [
+        [
+          1487.292,
+          1291.708
+        ],
+        [
+          1490.7233529411765,
+          1290.1004117647058
+        ]
+      ],
+      "extension_length_px": 4.139,
+      "original_line_length_px": 113.979,
+      "new_line_length_px": 113.979,
+      "original_point_count": 58,
+      "new_point_count": 59,
+      "raster_shore_snap_distance_px": 0.1014,
+      "method": "Follow the 12x water-raster skeleton to the nearest point on the normalized open-coast vector."
+    }
+  ],
+  "output": {
+    "file": "data/hydrology_lines.geojson",
+    "sha256": "ccdf779164a8baa75d63162281c820d346a2ccc666cd3d956114e1f8a701da29",
+    "feature_count": 300
+  }
+}

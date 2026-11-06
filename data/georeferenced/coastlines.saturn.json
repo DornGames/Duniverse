@@ -8045,7 +8045,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 20.196,
+        "length_px": 20.3133,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0096"
@@ -8208,6 +8208,10 @@
           [
             2.3959433817874185,
             5.285418215573441
+          ],
+          [
+            2.395259415147052,
+            5.285537330718403
           ]
         ]
       }
@@ -9309,11 +9313,12 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "coastline",
-        "length_px": 24.786,
+        "role": "island_shoreline",
+        "length_px": 24.854,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
-        "review_id": "official-tile-0127"
+        "review_id": "official-tile-0127",
+        "review_status": "reviewed_closed_highres_island"
       },
       "geometry": {
         "type": "LineString",
@@ -9531,7 +9536,7 @@
             5.302762975709145
           ],
           [
-            2.4824692820755274,
+            2.483153248715894,
             5.303720678591291
           ]
         ]
@@ -19653,7 +19658,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 15.471,
+        "length_px": 15.5903,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0324"
@@ -19768,6 +19773,10 @@
           [
             2.80316723079099,
             5.412655665175702
+          ],
+          [
+            2.8024750235886984,
+            5.412534675895302
           ]
         ]
       }
@@ -20234,7 +20243,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 9.243,
+        "length_px": 9.3626,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0340"
@@ -20317,6 +20326,10 @@
           [
             2.819648354655385,
             5.416976992182499
+          ],
+          [
+            2.8189561474530933,
+            5.416855987574873
           ]
         ]
       }
@@ -22096,7 +22109,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 16.108,
+        "length_px": 16.226,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0367"
@@ -22211,6 +22224,10 @@
           [
             2.8629113047994394,
             4.664705687927609
+          ],
+          [
+            2.8622190975971478,
+            4.664586981018494
           ]
         ]
       }
@@ -22705,11 +22722,12 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "coastline",
-        "length_px": 10.291,
+        "role": "island_shoreline",
+        "length_px": 10.371,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
-        "review_id": "official-tile-0379"
+        "review_id": "official-tile-0379",
+        "review_status": "reviewed_closed_highres_island"
       },
       "geometry": {
         "type": "LineString",
@@ -22827,7 +22845,7 @@
             4.625270924395216
           ],
           [
-            2.8958735525282577,
+            2.896557519168624,
             4.625388117849958
           ]
         ]
@@ -23611,7 +23629,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 25.221,
+        "length_px": 25.3369,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0390"
@@ -23866,6 +23884,10 @@
           [
             2.906174254943494,
             5.443637322558902
+          ],
+          [
+            2.9054820477412022,
+            5.443516222792482
           ]
         ]
       }
@@ -26239,7 +26261,9 @@
         "length_px": 8.275,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
-        "review_id": "official-tile-0443"
+        "review_id": "official-tile-0443",
+        "review_status": "rejected",
+        "review_note": "12x reference shows a pale gray marker-like blob with a white center, without dark shoreline ink."
       },
       "geometry": {
         "type": "LineString",
@@ -28794,7 +28818,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 17.772,
+        "length_px": 17.8899,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0465"
@@ -28901,6 +28925,10 @@
           [
             3.1513309724264786,
             4.795970094329574
+          ],
+          [
+            3.150638765224187,
+            4.795851036225265
           ]
         ]
       }
@@ -30431,7 +30459,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 14.205,
+        "length_px": 14.3238,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0476"
@@ -30590,6 +30618,10 @@
           [
             3.366269549304093,
             4.905837756077379
+          ],
+          [
+            3.3669535159444592,
+            4.905719809907836
           ]
         ]
       }
@@ -31738,7 +31770,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 9.92,
+        "length_px": 10.0394,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0490"
@@ -31821,6 +31853,10 @@
           [
             3.4342541852447255,
             4.915550283490662
+          ],
+          [
+            3.433570218604359,
+            4.915668257673761
           ]
         ]
       }
@@ -32069,7 +32105,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 11.241,
+        "length_px": 11.3573,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0495"
@@ -32144,6 +32180,10 @@
           [
             3.5503060189359132,
             4.867132386373743
+          ],
+          [
+            3.5509982261382333,
+            4.867014549396959
           ]
         ]
       }
@@ -35774,11 +35814,12 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "coastline",
-        "length_px": 13.281,
+        "role": "island_shoreline",
+        "length_px": 13.326,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
-        "review_id": "official-tile-0547"
+        "review_id": "official-tile-0547",
+        "review_status": "reviewed_closed_highres_island"
       },
       "geometry": {
         "type": "LineString",
@@ -35880,7 +35921,7 @@
             4.696984279786455
           ],
           [
-            3.7542599267578964,
+            3.75357596011753,
             4.6961598167476115
           ]
         ]
@@ -41211,7 +41252,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 11.471,
+        "length_px": 11.5888,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0644"
@@ -41318,6 +41359,10 @@
           [
             3.932124215502512,
             4.2874618115529115
+          ],
+          [
+            3.93143200830022,
+            4.287344012141234
           ]
         ]
       }
@@ -42320,7 +42365,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 19.037,
+        "length_px": 19.1549,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0673"
@@ -42479,6 +42524,10 @@
           [
             4.096243246944226,
             4.197784590044816
+          ],
+          [
+            4.096935454146546,
+            4.197666985695854
           ]
         ]
       }
@@ -43591,7 +43640,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 3.887,
+        "length_px": 4.0048,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0702"
@@ -43646,6 +43695,10 @@
           [
             4.8097440612819184,
             5.411694964488409
+          ],
+          [
+            4.810428027922285,
+            5.4118145104778925
           ]
         ]
       }
@@ -43654,7 +43707,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 23.254,
+        "length_px": 23.3708,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0703"
@@ -43869,6 +43922,10 @@
           [
             4.810428027922285,
             5.4118145104778925
+          ],
+          [
+            4.8097440612819184,
+            5.411694964488409
           ]
         ]
       }
@@ -45516,7 +45573,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 26.686,
+        "length_px": 26.8042,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0739"
@@ -45703,6 +45760,10 @@
           [
             4.883909118671738,
             4.770819230214086
+          ],
+          [
+            4.883216911469418,
+            4.77070024090169
           ]
         ]
       }
@@ -51965,7 +52026,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 12.719,
+        "length_px": 12.838,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0878"
@@ -52072,6 +52133,10 @@
           [
             6.095271722705263,
             4.874350885536902
+          ],
+          [
+            6.094579515502971,
+            4.874231608364396
           ]
         ]
       }
@@ -55327,7 +55392,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 18.073,
+        "length_px": 18.1894,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-0938"
@@ -55482,6 +55547,10 @@
           [
             6.464036869171252,
             4.912352316448794
+          ],
+          [
+            6.463344661968961,
+            4.912232930468111
           ]
         ]
       }
@@ -59460,7 +59529,7 @@
       "type": "Feature",
       "properties": {
         "role": "coastline",
-        "length_px": 14.767,
+        "length_px": 14.8853,
         "source": "official_no_river_highres_tiled_open_ocean_boundary",
         "tile_size_px": 1024,
         "review_id": "official-tile-1002"
@@ -59551,6 +59620,10 @@
           [
             6.86576426336606,
             5.086237762043955
+          ],
+          [
+            6.86507205616374,
+            5.08611928321297
           ]
         ]
       }
@@ -76215,74 +76288,6 @@
         "coordinates": [
           [
             2.9937302254731435,
-            5.673425016645425
-          ],
-          [
-            2.994068088512364,
-            5.673485998837285
-          ],
-          [
-            2.99441419211351,
-            5.673425016645425
-          ],
-          [
-            2.994068088512364,
-            5.673364034573658
-          ],
-          [
-            2.9937302254731435,
-            5.673425016645425
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            2.9937302254731435,
-            5.92225419184366
-          ],
-          [
-            2.994068088512364,
-            5.922314225241788
-          ],
-          [
-            2.99441419211351,
-            5.92225419184366
-          ],
-          [
-            2.994068088512364,
-            5.922192694348577
-          ],
-          [
-            2.9937302254731435,
-            5.92225419184366
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            2.9937302254731435,
             5.549768771817931
           ],
           [
@@ -76300,74 +76305,6 @@
           [
             2.9937302254731435,
             5.549768771817931
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            2.9937302254731435,
-            5.426580943696497
-          ],
-          [
-            2.994068088512364,
-            5.426641463242401
-          ],
-          [
-            2.99441419211351,
-            5.426580943696497
-          ],
-          [
-            2.994068088512364,
-            5.4265218651961895
-          ],
-          [
-            2.9937302254731435,
-            5.426580943696497
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            2.9937302254731435,
-            5.303839854816292
-          ],
-          [
-            2.994068088512364,
-            5.303900161009979
-          ],
-          [
-            2.99441419211351,
-            5.303839854816292
-          ],
-          [
-            2.994068088512364,
-            5.3037795487248305
-          ],
-          [
-            2.9937302254731435,
-            5.303839854816292
           ]
         ]
       }
@@ -79892,278 +79829,6 @@
           [
             3.6718543074358934,
             5.317279180106675
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            3.696922096833646,
-            5.673425016645425
-          ],
-          [
-            3.6972682004347917,
-            5.673485998837285
-          ],
-          [
-            3.697606063474012,
-            5.673425016645425
-          ],
-          [
-            3.6972682004347917,
-            5.673364034573658
-          ],
-          [
-            3.696922096833646,
-            5.673425016645425
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            3.696922096833646,
-            4.938061042110973
-          ],
-          [
-            3.6972682004347917,
-            4.938120772526793
-          ],
-          [
-            3.697606063474012,
-            4.938061042110973
-          ],
-          [
-            3.6972682004347917,
-            4.938001311782264
-          ],
-          [
-            3.696922096833646,
-            4.938061042110973
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            3.696922096833646,
-            4.575525606387194
-          ],
-          [
-            3.6972682004347917,
-            4.57558484605298
-          ],
-          [
-            3.697606063474012,
-            4.575525606387194
-          ],
-          [
-            3.6972682004347917,
-            4.5754663667956565
-          ],
-          [
-            3.696922096833646,
-            4.575525606387194
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            3.696922096833646,
-            5.92225419184366
-          ],
-          [
-            3.6972682004347917,
-            5.922314225241788
-          ],
-          [
-            3.697606063474012,
-            5.92225419184366
-          ],
-          [
-            3.6972682004347917,
-            5.922192694348577
-          ],
-          [
-            3.696922096833646,
-            5.92225419184366
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            3.696922096833646,
-            5.549768771817931
-          ],
-          [
-            3.6972682004347917,
-            5.549828070165552
-          ],
-          [
-            3.697606063474012,
-            5.549768771817931
-          ],
-          [
-            3.6972682004347917,
-            5.549708027281587
-          ],
-          [
-            3.696922096833646,
-            5.549768771817931
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            3.696922096833646,
-            5.426580943696497
-          ],
-          [
-            3.6972682004347917,
-            5.426641463242401
-          ],
-          [
-            3.697606063474012,
-            5.426580943696497
-          ],
-          [
-            3.6972682004347917,
-            5.4265218651961895
-          ],
-          [
-            3.696922096833646,
-            5.426580943696497
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            3.696922096833646,
-            5.303839854816292
-          ],
-          [
-            3.6972682004347917,
-            5.303900161009979
-          ],
-          [
-            3.697606063474012,
-            5.303839854816292
-          ],
-          [
-            3.6972682004347917,
-            5.3037795487248305
-          ],
-          [
-            3.696922096833646,
-            5.303839854816292
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            3.696922096833646,
-            4.455316756663815
-          ],
-          [
-            3.6972682004347917,
-            4.455374442454727
-          ],
-          [
-            3.697606063474012,
-            4.455316756663815
-          ],
-          [
-            3.6972682004347917,
-            4.455257663971946
-          ],
-          [
-            3.696922096833646,
-            4.455316756663815
           ]
         ]
       }
@@ -84180,380 +83845,6 @@
       "type": "Feature",
       "properties": {
         "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.400113968194148,
-            5.673425016645425
-          ],
-          [
-            4.400460071795294,
-            5.673485998837285
-          ],
-          [
-            4.40080617539644,
-            5.673425016645425
-          ],
-          [
-            4.400460071795294,
-            5.673364034573658
-          ],
-          [
-            4.400113968194148,
-            5.673425016645425
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.400113968194148,
-            4.938061042110973
-          ],
-          [
-            4.400460071795294,
-            4.938120772526793
-          ],
-          [
-            4.40080617539644,
-            4.938061042110973
-          ],
-          [
-            4.400460071795294,
-            4.938001311782264
-          ],
-          [
-            4.400113968194148,
-            4.938061042110973
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.400113968194148,
-            4.575525606387194
-          ],
-          [
-            4.400460071795294,
-            4.57558484605298
-          ],
-          [
-            4.40080617539644,
-            4.575525606387194
-          ],
-          [
-            4.400460071795294,
-            4.5754663667956565
-          ],
-          [
-            4.400113968194148,
-            4.575525606387194
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.400113968194148,
-            4.215754409509228
-          ],
-          [
-            4.400460071795294,
-            4.215813231021245
-          ],
-          [
-            4.40080617539644,
-            4.215754409509228
-          ],
-          [
-            4.400460071795294,
-            4.215695588060448
-          ],
-          [
-            4.400113968194148,
-            4.215754409509228
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.400113968194148,
-            5.92225419184366
-          ],
-          [
-            4.400460071795294,
-            5.922314225241788
-          ],
-          [
-            4.40080617539644,
-            5.92225419184366
-          ],
-          [
-            4.400460071795294,
-            5.922192694348577
-          ],
-          [
-            4.400113968194148,
-            5.92225419184366
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.400113968194148,
-            5.549768771817931
-          ],
-          [
-            4.400460071795294,
-            5.549828070165552
-          ],
-          [
-            4.40080617539644,
-            5.549768771817931
-          ],
-          [
-            4.400460071795294,
-            5.549708027281587
-          ],
-          [
-            4.400113968194148,
-            5.549768771817931
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.400113968194148,
-            5.426580943696497
-          ],
-          [
-            4.400460071795294,
-            5.426641463242401
-          ],
-          [
-            4.40080617539644,
-            5.426580943696497
-          ],
-          [
-            4.400460071795294,
-            5.4265218651961895
-          ],
-          [
-            4.400113968194148,
-            5.426580943696497
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.400113968194148,
-            5.303839854816292
-          ],
-          [
-            4.400460071795294,
-            5.303900161009979
-          ],
-          [
-            4.40080617539644,
-            5.303839854816292
-          ],
-          [
-            4.400460071795294,
-            5.3037795487248305
-          ],
-          [
-            4.400113968194148,
-            5.303839854816292
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.400113968194148,
-            4.455316756663815
-          ],
-          [
-            4.400460071795294,
-            4.455374442454727
-          ],
-          [
-            4.40080617539644,
-            4.455316756663815
-          ],
-          [
-            4.400460071795294,
-            4.455257663971946
-          ],
-          [
-            4.400113968194148,
-            4.455316756663815
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.400113968194148,
-            4.335397135954659
-          ],
-          [
-            4.400460071795294,
-            4.335456089457388
-          ],
-          [
-            4.40080617539644,
-            4.335397135954659
-          ],
-          [
-            4.400460071795294,
-            4.335339586171117
-          ],
-          [
-            4.400113968194148,
-            4.335397135954659
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.400113968194148,
-            4.096372770656477
-          ],
-          [
-            4.400460071795294,
-            4.0964300695544145
-          ],
-          [
-            4.40080617539644,
-            4.096372770656477
-          ],
-          [
-            4.400460071795294,
-            4.096314074283644
-          ],
-          [
-            4.400113968194148,
-            4.096372770656477
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
         "length_px": 14.105,
         "source": "official_no_river_highres_tiled_ocean_surface_boundary",
         "tile_size_px": 1024
@@ -87414,380 +86705,6 @@
       "type": "Feature",
       "properties": {
         "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.103314080116576,
-            5.673425016645425
-          ],
-          [
-            5.103651943155796,
-            5.673485998837285
-          ],
-          [
-            5.103998046756942,
-            5.673425016645425
-          ],
-          [
-            5.103651943155796,
-            5.673364034573658
-          ],
-          [
-            5.103314080116576,
-            5.673425016645425
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.103314080116576,
-            4.938061042110973
-          ],
-          [
-            5.103651943155796,
-            4.938120772526793
-          ],
-          [
-            5.103998046756942,
-            4.938061042110973
-          ],
-          [
-            5.103651943155796,
-            4.938001311782264
-          ],
-          [
-            5.103314080116576,
-            4.938061042110973
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.103314080116576,
-            4.575525606387194
-          ],
-          [
-            5.103651943155796,
-            4.57558484605298
-          ],
-          [
-            5.103998046756942,
-            4.575525606387194
-          ],
-          [
-            5.103651943155796,
-            4.5754663667956565
-          ],
-          [
-            5.103314080116576,
-            4.575525606387194
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.103314080116576,
-            4.215754409509228
-          ],
-          [
-            5.103651943155796,
-            4.215813231021245
-          ],
-          [
-            5.103998046756942,
-            4.215754409509228
-          ],
-          [
-            5.103651943155796,
-            4.215695588060448
-          ],
-          [
-            5.103314080116576,
-            4.215754409509228
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.103314080116576,
-            5.92225419184366
-          ],
-          [
-            5.103651943155796,
-            5.922314225241788
-          ],
-          [
-            5.103998046756942,
-            5.92225419184366
-          ],
-          [
-            5.103651943155796,
-            5.922192694348577
-          ],
-          [
-            5.103314080116576,
-            5.92225419184366
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.103314080116576,
-            5.549768771817931
-          ],
-          [
-            5.103651943155796,
-            5.549828070165552
-          ],
-          [
-            5.103998046756942,
-            5.549768771817931
-          ],
-          [
-            5.103651943155796,
-            5.549708027281587
-          ],
-          [
-            5.103314080116576,
-            5.549768771817931
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.103314080116576,
-            5.426580943696497
-          ],
-          [
-            5.103651943155796,
-            5.426641463242401
-          ],
-          [
-            5.103998046756942,
-            5.426580943696497
-          ],
-          [
-            5.103651943155796,
-            5.4265218651961895
-          ],
-          [
-            5.103314080116576,
-            5.426580943696497
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.103314080116576,
-            5.303839854816292
-          ],
-          [
-            5.103651943155796,
-            5.303900161009979
-          ],
-          [
-            5.103998046756942,
-            5.303839854816292
-          ],
-          [
-            5.103651943155796,
-            5.3037795487248305
-          ],
-          [
-            5.103314080116576,
-            5.303839854816292
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.103314080116576,
-            4.455316756663815
-          ],
-          [
-            5.103651943155796,
-            4.455374442454727
-          ],
-          [
-            5.103998046756942,
-            4.455316756663815
-          ],
-          [
-            5.103651943155796,
-            4.455257663971946
-          ],
-          [
-            5.103314080116576,
-            4.455316756663815
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.103314080116576,
-            4.335397135954659
-          ],
-          [
-            5.103651943155796,
-            4.335456089457388
-          ],
-          [
-            5.103998046756942,
-            4.335397135954659
-          ],
-          [
-            5.103651943155796,
-            4.335339586171117
-          ],
-          [
-            5.103314080116576,
-            4.335397135954659
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.103314080116576,
-            4.096372770656477
-          ],
-          [
-            5.103651943155796,
-            4.0964300695544145
-          ],
-          [
-            5.103998046756942,
-            4.096372770656477
-          ],
-          [
-            5.103651943155796,
-            4.096314074283644
-          ],
-          [
-            5.103314080116576,
-            4.096372770656477
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
         "length_px": 0.499,
         "source": "official_no_river_highres_tiled_ocean_surface_boundary",
         "tile_size_px": 1024
@@ -88354,380 +87271,6 @@
           [
             5.793799004977615,
             4.92044151999095
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.806505951477078,
-            5.673425016645425
-          ],
-          [
-            5.806852055078224,
-            5.673485998837285
-          ],
-          [
-            5.8071899181174444,
-            5.673425016645425
-          ],
-          [
-            5.806852055078224,
-            5.673364034573658
-          ],
-          [
-            5.806505951477078,
-            5.673425016645425
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.806505951477078,
-            4.938061042110973
-          ],
-          [
-            5.806852055078224,
-            4.938120772526793
-          ],
-          [
-            5.8071899181174444,
-            4.938061042110973
-          ],
-          [
-            5.806852055078224,
-            4.938001311782264
-          ],
-          [
-            5.806505951477078,
-            4.938061042110973
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.806505951477078,
-            4.575525606387194
-          ],
-          [
-            5.806852055078224,
-            4.57558484605298
-          ],
-          [
-            5.8071899181174444,
-            4.575525606387194
-          ],
-          [
-            5.806852055078224,
-            4.5754663667956565
-          ],
-          [
-            5.806505951477078,
-            4.575525606387194
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.806505951477078,
-            4.215754409509228
-          ],
-          [
-            5.806852055078224,
-            4.215813231021245
-          ],
-          [
-            5.8071899181174444,
-            4.215754409509228
-          ],
-          [
-            5.806852055078224,
-            4.215695588060448
-          ],
-          [
-            5.806505951477078,
-            4.215754409509228
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.806505951477078,
-            5.92225419184366
-          ],
-          [
-            5.806852055078224,
-            5.922314225241788
-          ],
-          [
-            5.8071899181174444,
-            5.92225419184366
-          ],
-          [
-            5.806852055078224,
-            5.922192694348577
-          ],
-          [
-            5.806505951477078,
-            5.92225419184366
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.806505951477078,
-            5.549768771817931
-          ],
-          [
-            5.806852055078224,
-            5.549828070165552
-          ],
-          [
-            5.8071899181174444,
-            5.549768771817931
-          ],
-          [
-            5.806852055078224,
-            5.549708027281587
-          ],
-          [
-            5.806505951477078,
-            5.549768771817931
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.806505951477078,
-            5.426580943696497
-          ],
-          [
-            5.806852055078224,
-            5.426641463242401
-          ],
-          [
-            5.8071899181174444,
-            5.426580943696497
-          ],
-          [
-            5.806852055078224,
-            5.4265218651961895
-          ],
-          [
-            5.806505951477078,
-            5.426580943696497
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.806505951477078,
-            5.303839854816292
-          ],
-          [
-            5.806852055078224,
-            5.303900161009979
-          ],
-          [
-            5.8071899181174444,
-            5.303839854816292
-          ],
-          [
-            5.806852055078224,
-            5.3037795487248305
-          ],
-          [
-            5.806505951477078,
-            5.303839854816292
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.806505951477078,
-            4.455316756663815
-          ],
-          [
-            5.806852055078224,
-            4.455374442454727
-          ],
-          [
-            5.8071899181174444,
-            4.455316756663815
-          ],
-          [
-            5.806852055078224,
-            4.455257663971946
-          ],
-          [
-            5.806505951477078,
-            4.455316756663815
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.806505951477078,
-            4.335397135954659
-          ],
-          [
-            5.806852055078224,
-            4.335456089457388
-          ],
-          [
-            5.8071899181174444,
-            4.335397135954659
-          ],
-          [
-            5.806852055078224,
-            4.335339586171117
-          ],
-          [
-            5.806505951477078,
-            4.335397135954659
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            5.806505951477078,
-            4.096372770656477
-          ],
-          [
-            5.806852055078224,
-            4.0964300695544145
-          ],
-          [
-            5.8071899181174444,
-            4.096372770656477
-          ],
-          [
-            5.806852055078224,
-            4.096314074283644
-          ],
-          [
-            5.806505951477078,
-            4.096372770656477
           ]
         ]
       }
@@ -92646,380 +91189,6 @@
       "type": "Feature",
       "properties": {
         "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            6.50969782283758,
-            5.673425016645425
-          ],
-          [
-            6.510043926438726,
-            5.673485998837285
-          ],
-          [
-            6.510390030039872,
-            5.673425016645425
-          ],
-          [
-            6.510043926438726,
-            5.673364034573658
-          ],
-          [
-            6.50969782283758,
-            5.673425016645425
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            6.50969782283758,
-            4.938061042110973
-          ],
-          [
-            6.510043926438726,
-            4.938120772526793
-          ],
-          [
-            6.510390030039872,
-            4.938061042110973
-          ],
-          [
-            6.510043926438726,
-            4.938001311782264
-          ],
-          [
-            6.50969782283758,
-            4.938061042110973
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            6.50969782283758,
-            4.575525606387194
-          ],
-          [
-            6.510043926438726,
-            4.57558484605298
-          ],
-          [
-            6.510390030039872,
-            4.575525606387194
-          ],
-          [
-            6.510043926438726,
-            4.5754663667956565
-          ],
-          [
-            6.50969782283758,
-            4.575525606387194
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            6.50969782283758,
-            4.215754409509228
-          ],
-          [
-            6.510043926438726,
-            4.215813231021245
-          ],
-          [
-            6.510390030039872,
-            4.215754409509228
-          ],
-          [
-            6.510043926438726,
-            4.215695588060448
-          ],
-          [
-            6.50969782283758,
-            4.215754409509228
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            6.50969782283758,
-            5.92225419184366
-          ],
-          [
-            6.510043926438726,
-            5.922314225241788
-          ],
-          [
-            6.510390030039872,
-            5.92225419184366
-          ],
-          [
-            6.510043926438726,
-            5.922192694348577
-          ],
-          [
-            6.50969782283758,
-            5.92225419184366
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            6.50969782283758,
-            5.549768771817931
-          ],
-          [
-            6.510043926438726,
-            5.549828070165552
-          ],
-          [
-            6.510390030039872,
-            5.549768771817931
-          ],
-          [
-            6.510043926438726,
-            5.549708027281587
-          ],
-          [
-            6.50969782283758,
-            5.549768771817931
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            6.50969782283758,
-            5.426580943696497
-          ],
-          [
-            6.510043926438726,
-            5.426641463242401
-          ],
-          [
-            6.510390030039872,
-            5.426580943696497
-          ],
-          [
-            6.510043926438726,
-            5.4265218651961895
-          ],
-          [
-            6.50969782283758,
-            5.426580943696497
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            6.50969782283758,
-            5.303839854816292
-          ],
-          [
-            6.510043926438726,
-            5.303900161009979
-          ],
-          [
-            6.510390030039872,
-            5.303839854816292
-          ],
-          [
-            6.510043926438726,
-            5.3037795487248305
-          ],
-          [
-            6.50969782283758,
-            5.303839854816292
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            6.50969782283758,
-            4.455316756663815
-          ],
-          [
-            6.510043926438726,
-            4.455374442454727
-          ],
-          [
-            6.510390030039872,
-            4.455316756663815
-          ],
-          [
-            6.510043926438726,
-            4.455257663971946
-          ],
-          [
-            6.50969782283758,
-            4.455316756663815
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            6.50969782283758,
-            4.335397135954659
-          ],
-          [
-            6.510043926438726,
-            4.335456089457388
-          ],
-          [
-            6.510390030039872,
-            4.335397135954659
-          ],
-          [
-            6.510043926438726,
-            4.335339586171117
-          ],
-          [
-            6.50969782283758,
-            4.335397135954659
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            6.50969782283758,
-            4.096372770656477
-          ],
-          [
-            6.510043926438726,
-            4.0964300695544145
-          ],
-          [
-            6.510390030039872,
-            4.096372770656477
-          ],
-          [
-            6.510043926438726,
-            4.096314074283644
-          ],
-          [
-            6.50969782283758,
-            4.096372770656477
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "role": "island_shoreline",
         "length_px": 13.0,
         "source": "official_no_river_highres_tiled_ocean_surface_boundary",
         "tile_size_px": 1024
@@ -95647,33 +93816,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.083,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0001",
+        "issue_id": "COAST-GAP-0001",
+        "connects_features": [
+          "official-tile-0036",
+          "official-tile-0046"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.212897934760008,
-            5.673425016645425
+            2.2908762171518617,
+            5.993848254728388
           ],
           [
-            7.2132357977992285,
-            5.673485998837285
-          ],
-          [
-            7.213581901400374,
-            5.673425016645425
-          ],
-          [
-            7.2132357977992285,
-            5.673364034573658
-          ],
-          [
-            7.212897934760008,
-            5.673425016645425
+            2.2908762171518617,
+            5.993970098336125
           ]
         ]
       }
@@ -95681,33 +93847,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.083,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0002",
+        "issue_id": "COAST-GAP-0002",
+        "connects_features": [
+          "official-tile-0054",
+          "official-tile-0056"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.212897934760008,
-            4.938061042110973
+            2.291560183792228,
+            5.933847399746842
           ],
           [
-            7.2132357977992285,
-            4.938120772526793
-          ],
-          [
-            7.213581901400374,
-            4.938061042110973
-          ],
-          [
-            7.2132357977992285,
-            4.938001311782264
-          ],
-          [
-            7.212897934760008,
-            4.938061042110973
+            2.291560183792228,
+            5.9337258191265
           ]
         ]
       }
@@ -95715,33 +93878,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.083,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0003",
+        "issue_id": "COAST-GAP-0003",
+        "connects_features": [
+          "official-tile-0053",
+          "official-tile-0054"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.212897934760008,
-            4.575525606387194
+            2.2908762171518617,
+            5.9340920274065
           ],
           [
-            7.2132357977992285,
-            4.57558484605298
-          ],
-          [
-            7.213581901400374,
-            4.575525606387194
-          ],
-          [
-            7.2132357977992285,
-            4.5754663667956565
-          ],
-          [
-            7.212897934760008,
-            4.575525606387194
+            2.2908762171518617,
+            5.933970445728915
           ]
         ]
       }
@@ -95749,33 +93909,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.083,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0004",
+        "issue_id": "COAST-GAP-0004",
+        "connects_features": [
+          "official-tile-0436",
+          "official-tile-0445"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.212897934760008,
-            4.215754409509228
+            2.9947602957146557,
+            5.912493870152791
           ],
           [
-            7.2132357977992285,
-            4.215813231021245
-          ],
-          [
-            7.213581901400374,
-            4.215754409509228
-          ],
-          [
-            7.2132357977992285,
-            4.215695588060448
-          ],
-          [
-            7.212897934760008,
-            4.215754409509228
+            2.9947602957146557,
+            5.9126153594056
           ]
         ]
       }
@@ -95783,33 +93940,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.083,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0005",
+        "issue_id": "COAST-GAP-0005",
+        "connects_features": [
+          "official-tile-0053",
+          "official-tile-0055"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.212897934760008,
-            5.92225419184366
+            2.2908762171518617,
+            5.930308593158589
           ],
           [
-            7.2132357977992285,
-            5.922314225241788
-          ],
-          [
-            7.213581901400374,
-            5.92225419184366
-          ],
-          [
-            7.2132357977992285,
-            5.922192694348577
-          ],
-          [
-            7.212897934760008,
-            5.92225419184366
+            2.2908762171518617,
+            5.930430159020948
           ]
         ]
       }
@@ -95817,33 +93971,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.083,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0006",
+        "issue_id": "COAST-GAP-0006",
+        "connects_features": [
+          "official-tile-0454",
+          "official-tile-0514"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.212897934760008,
-            5.549768771817931
+            3.6965759932325,
+            4.418630860276103
           ],
           [
-            7.2132357977992285,
-            5.549828070165552
-          ],
-          [
-            7.213581901400374,
-            5.549768771817931
-          ],
-          [
-            7.2132357977992285,
-            5.549708027281587
-          ],
-          [
-            7.212897934760008,
-            5.549768771817931
+            3.6965759932325,
+            4.418514167614959
           ]
         ]
       }
@@ -95851,33 +94002,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.084,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0007",
+        "issue_id": "COAST-GAP-0007",
+        "connects_features": [
+          "official-tile-0288",
+          "official-tile-0305"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.212897934760008,
-            5.426580943696497
+            2.783933759241222,
+            5.426461345863409
           ],
           [
-            7.2132357977992285,
-            5.426641463242401
-          ],
-          [
-            7.213581901400374,
-            5.426580943696497
-          ],
-          [
-            7.2132357977992285,
-            5.4265218651961895
-          ],
-          [
-            7.212897934760008,
-            5.426580943696497
+            2.784625966443542,
+            5.426461345863409
           ]
         ]
       }
@@ -95885,33 +94033,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.084,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0008",
+        "issue_id": "COAST-GAP-0008",
+        "connects_features": [
+          "official-tile-0055",
+          "official-tile-0056"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "high",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.212897934760008,
-            5.303839854816292
+            2.291560183792228,
+            5.930551725407966
           ],
           [
-            7.2132357977992285,
-            5.303900161009979
-          ],
-          [
-            7.213581901400374,
-            5.303839854816292
-          ],
-          [
-            7.2132357977992285,
-            5.3037795487248305
-          ],
-          [
-            7.212897934760008,
-            5.303839854816292
+            2.291560183792228,
+            5.930674756984456
           ]
         ]
       }
@@ -95919,33 +94064,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.084,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0009",
+        "issue_id": "COAST-GAP-0009",
+        "connects_features": [
+          "official-tile-0047",
+          "official-tile-0049"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.212897934760008,
-            4.455316756663815
+            2.2908762171518617,
+            5.917006886903078
           ],
           [
-            7.2132357977992285,
-            4.455374442454727
-          ],
-          [
-            7.213581901400374,
-            4.455316756663815
-          ],
-          [
-            7.2132357977992285,
-            4.455257663971946
-          ],
-          [
-            7.212897934760008,
-            4.455316756663815
+            2.2908762171518617,
+            5.917129859473982
           ]
         ]
       }
@@ -95953,33 +94095,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.167,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0010",
+        "issue_id": "COAST-GAP-0010",
+        "connects_features": [
+          "official-tile-0972",
+          "official-tile-0977"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.212897934760008,
-            4.335397135954659
+            6.647389372162735,
+            5.059600549423981
           ],
           [
-            7.2132357977992285,
-            4.335456089457388
-          ],
-          [
-            7.213581901400374,
-            4.335397135954659
-          ],
-          [
-            7.2132357977992285,
-            4.335339586171117
-          ],
-          [
-            7.212897934760008,
-            4.335397135954659
+            6.646013198320048,
+            5.059600549423981
           ]
         ]
       }
@@ -95987,33 +94126,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.167,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0011",
+        "issue_id": "COAST-GAP-0011",
+        "connects_features": [
+          "official-tile-0047",
+          "official-tile-0048"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.212897934760008,
-            4.096372770656477
+            2.2901922505114953,
+            5.91688537881609
           ],
           [
-            7.2132357977992285,
-            4.0964300695544145
-          ],
-          [
-            7.213581901400374,
-            4.096372770656477
-          ],
-          [
-            7.2132357977992285,
-            4.096314074283644
-          ],
-          [
-            7.212897934760008,
-            4.096372770656477
+            2.2901922505114953,
+            5.91664090026967
           ]
         ]
       }
@@ -96021,33 +94157,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.25,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0012",
+        "issue_id": "COAST-GAP-0012",
+        "connects_features": [
+          "official-tile-0856",
+          "official-tile-0860"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "high",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.91608980612051,
-            5.673425016645425
+            6.058189194010367,
+            5.111702030463162
           ],
           [
-            7.916435909721656,
-            5.673485998837285
-          ],
-          [
-            7.916773772760877,
-            5.673425016645425
-          ],
-          [
-            7.916435909721656,
-            5.673364034573658
-          ],
-          [
-            7.91608980612051,
-            5.673425016645425
+            6.06024933449342,
+            5.111702030463162
           ]
         ]
       }
@@ -96055,33 +94188,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.25,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0013",
+        "issue_id": "COAST-GAP-0013",
+        "connects_features": [
+          "official-tile-0437",
+          "official-tile-0445"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "high",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.91608980612051,
-            4.938061042110973
+            2.9947602957146557,
+            5.911151668108455
           ],
           [
-            7.916435909721656,
-            4.938120772526793
-          ],
-          [
-            7.916773772760877,
-            4.938061042110973
-          ],
-          [
-            7.916435909721656,
-            4.938001311782264
-          ],
-          [
-            7.91608980612051,
-            4.938061042110973
+            2.9947602957146557,
+            5.910785757086134
           ]
         ]
       }
@@ -96089,33 +94219,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.3536,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0014",
+        "issue_id": "COAST-GAP-0014",
+        "connects_features": [
+          "official-tile-0970",
+          "official-tile-0973"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.91608980612051,
-            4.575525606387194
+            6.6418929173539425,
+            5.060552023185741
           ],
           [
-            7.916435909721656,
-            4.57558484605298
-          ],
-          [
-            7.916773772760877,
-            4.575525606387194
-          ],
-          [
-            7.916435909721656,
-            4.5754663667956565
-          ],
-          [
-            7.91608980612051,
-            4.575525606387194
+            6.643953057836995,
+            5.060195396121706
           ]
         ]
       }
@@ -96123,33 +94250,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.416,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0015",
+        "issue_id": "COAST-GAP-0015",
+        "connects_features": [
+          "official-tile-0436",
+          "official-tile-0437"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "high",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.91608980612051,
-            4.215754409509228
+            2.9933841218719976,
+            5.912249429498627
           ],
           [
-            7.916435909721656,
-            4.215813231021245
-          ],
-          [
-            7.916773772760877,
-            4.215754409509228
-          ],
-          [
-            7.916435909721656,
-            4.215695588060448
-          ],
-          [
-            7.91608980612051,
-            4.215754409509228
+            2.9933841218719976,
+            5.911640532599773
           ]
         ]
       }
@@ -96157,33 +94281,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.4488,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0016",
+        "issue_id": "COAST-GAP-0016",
+        "connects_features": [
+          "official-tile-0779",
+          "official-tile-0781"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "high",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.91608980612051,
-            5.92225419184366
+            5.024682638159504,
+            5.413614952505772
           ],
           [
-            7.916435909721656,
-            5.922314225241788
-          ],
-          [
-            7.916773772760877,
-            5.92225419184366
-          ],
-          [
-            7.916435909721656,
-            5.922192694348577
-          ],
-          [
-            7.91608980612051,
-            5.92225419184366
+            5.028118952485244,
+            5.41337584833651
           ]
         ]
       }
@@ -96191,33 +94312,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.5,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0017",
+        "issue_id": "COAST-GAP-0017",
+        "connects_features": [
+          "official-tile-0048",
+          "official-tile-0049"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.91608980612051,
-            5.549768771817931
+            2.2901922505114953,
+            5.916274918367619
           ],
           [
-            7.916435909721656,
-            5.549828070165552
-          ],
-          [
-            7.916773772760877,
-            5.549768771817931
-          ],
-          [
-            7.916435909721656,
-            5.549708027281587
-          ],
-          [
-            7.91608980612051,
-            5.549768771817931
+            2.2901922505114953,
+            5.915542968754572
           ]
         ]
       }
@@ -96225,33 +94343,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.7123,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0018",
+        "issue_id": "COAST-GAP-0018",
+        "connects_features": [
+          "official-tile-0260",
+          "official-tile-0261"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.91608980612051,
-            5.426580943696497
+            2.744107123422907,
+            5.3673145547404575
           ],
           [
-            7.916435909721656,
-            5.426641463242401
-          ],
-          [
-            7.916773772760877,
-            5.426580943696497
-          ],
-          [
-            7.916435909721656,
-            5.4265218651961895
-          ],
-          [
-            7.91608980612051,
-            5.426580943696497
+            2.7496035782316994,
+            5.367674170547152
           ]
         ]
       }
@@ -96259,33 +94374,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.7866,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0019",
+        "issue_id": "COAST-GAP-0019",
+        "connects_features": [
+          "official-tile-0017",
+          "official-tile-0020"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.91608980612051,
-            5.303839854816292
+            2.117824416575644,
+            5.34885830664951
           ],
           [
-            7.916435909721656,
-            5.303900161009979
-          ],
-          [
-            7.916773772760877,
-            5.303839854816292
-          ],
-          [
-            7.916435909721656,
-            5.3037795487248305
-          ],
-          [
-            7.91608980612051,
-            5.303839854816292
+            2.123320871384408,
+            5.349457830284661
           ]
         ]
       }
@@ -96293,33 +94405,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.8581,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0020",
+        "issue_id": "COAST-GAP-0020",
+        "connects_features": [
+          "official-tile-0539",
+          "official-tile-0540"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.91608980612051,
-            4.455316756663815
+            3.7288542743209234,
+            4.27834715177856
           ],
           [
-            7.916435909721656,
-            4.455374442454727
-          ],
-          [
-            7.916773772760877,
-            4.455316756663815
-          ],
-          [
-            7.916435909721656,
-            4.455257663971946
-          ],
-          [
-            7.91608980612051,
-            4.455316756663815
+            3.7322905886466344,
+            4.279398763669812
           ]
         ]
       }
@@ -96327,33 +94436,30 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.9014,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0021",
+        "issue_id": "COAST-GAP-0021",
+        "connects_features": [
+          "official-tile-0796",
+          "official-tile-0808"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.91608980612051,
-            4.335397135954659
+            5.124253347986297,
+            5.401733787006961
           ],
           [
-            7.916435909721656,
-            4.335456089457388
-          ],
-          [
-            7.916773772760877,
-            4.335397135954659
-          ],
-          [
-            7.916435909721656,
-            4.335339586171117
-          ],
-          [
-            7.91608980612051,
-            4.335397135954659
+            5.130433769435456,
+            5.402453740252313
           ]
         ]
       }
@@ -96361,33 +94467,61 @@
     {
       "type": "Feature",
       "properties": {
-        "role": "island_shoreline",
-        "length_px": 0.236,
-        "source": "official_no_river_highres_tiled_ocean_surface_boundary",
-        "tile_size_px": 1024
+        "role": "coastline",
+        "length_px": 0.9505,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0022",
+        "issue_id": "COAST-GAP-0022",
+        "connects_features": [
+          "official-tile-0091",
+          "official-tile-0092"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            7.91608980612051,
-            4.096372770656477
+            2.3863266460125487,
+            5.316525075813908
           ],
           [
-            7.916435909721656,
-            4.0964300695544145
+            2.3938832413043656,
+            5.316165984177049
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "role": "coastline",
+        "length_px": 1.0035,
+        "source": "manual_high_resolution_shore_connector_batch_02",
+        "tile_size_px": 1024,
+        "review_id": "batch-02-coast-gap-0023",
+        "issue_id": "COAST-GAP-0023",
+        "connects_features": [
+          "official-tile-0708",
+          "official-tile-0721"
+        ],
+        "official_shore_support_pct": 100.0,
+        "gap_confidence": "medium",
+        "correction_batch": "2/3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.82690915178668,
+            5.374507579129747
           ],
           [
-            7.916773772760877,
-            4.096372770656477
-          ],
-          [
-            7.916435909721656,
-            4.096314074283644
-          ],
-          [
-            7.91608980612051,
-            4.096372770656477
+            4.8351497137188915,
+            5.374386723993467
           ]
         ]
       }

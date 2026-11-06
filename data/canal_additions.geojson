@@ -1,0 +1,6938 @@
+{
+  "type": "FeatureCollection",
+  "name": "manually_verified_canal_additions",
+  "coordinate_reference_note": "Input map pixel coordinates; origin top-left; x right; y down; not georeferenced. Coordinates traced against the official 12x pure-river raster with X=12*x+5.5; Y=12*y+5.5.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河（南向续段）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "centerline",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "length_px": 147.94
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1243.88,
+            994.04
+          ],
+          [
+            1244.208,
+            996.542
+          ],
+          [
+            1244.042,
+            998.208
+          ],
+          [
+            1242.625,
+            1001.125
+          ],
+          [
+            1242.375,
+            1002.375
+          ],
+          [
+            1242.292,
+            1003.875
+          ],
+          [
+            1242.375,
+            1003.958
+          ],
+          [
+            1242.375,
+            1008.375
+          ],
+          [
+            1242.125,
+            1011.125
+          ],
+          [
+            1241.875,
+            1012.125
+          ],
+          [
+            1241.875,
+            1012.708
+          ],
+          [
+            1241.542,
+            1013.792
+          ],
+          [
+            1241.458,
+            1015.208
+          ],
+          [
+            1241.208,
+            1016.625
+          ],
+          [
+            1241.125,
+            1019.125
+          ],
+          [
+            1241.208,
+            1021.042
+          ],
+          [
+            1240.875,
+            1024.792
+          ],
+          [
+            1239.875,
+            1028.542
+          ],
+          [
+            1239.875,
+            1029.125
+          ],
+          [
+            1239.458,
+            1030.708
+          ],
+          [
+            1239.375,
+            1032.292
+          ],
+          [
+            1239.292,
+            1032.625
+          ],
+          [
+            1239.042,
+            1032.875
+          ],
+          [
+            1238.958,
+            1033.542
+          ],
+          [
+            1238.875,
+            1035.792
+          ],
+          [
+            1239.125,
+            1038.958
+          ],
+          [
+            1239.708,
+            1041.208
+          ],
+          [
+            1240.625,
+            1043.458
+          ],
+          [
+            1241.125,
+            1044.292
+          ],
+          [
+            1241.625,
+            1044.458
+          ],
+          [
+            1241.875,
+            1045.792
+          ],
+          [
+            1244.042,
+            1049.292
+          ],
+          [
+            1244.958,
+            1050.458
+          ],
+          [
+            1246.625,
+            1052.125
+          ],
+          [
+            1247.958,
+            1052.542
+          ],
+          [
+            1248.292,
+            1052.542
+          ],
+          [
+            1248.792,
+            1053.458
+          ],
+          [
+            1251.458,
+            1054.875
+          ],
+          [
+            1254.708,
+            1056.875
+          ],
+          [
+            1257.208,
+            1058.875
+          ],
+          [
+            1258.042,
+            1059.125
+          ],
+          [
+            1258.375,
+            1060.292
+          ],
+          [
+            1260.125,
+            1062.792
+          ],
+          [
+            1261.125,
+            1063.958
+          ],
+          [
+            1262.542,
+            1065.042
+          ],
+          [
+            1264.375,
+            1065.875
+          ],
+          [
+            1266.375,
+            1066.542
+          ],
+          [
+            1266.542,
+            1066.708
+          ],
+          [
+            1268.792,
+            1067.042
+          ],
+          [
+            1268.958,
+            1067.542
+          ],
+          [
+            1269.208,
+            1067.792
+          ],
+          [
+            1270.542,
+            1068.375
+          ],
+          [
+            1273.792,
+            1070.292
+          ],
+          [
+            1276.292,
+            1071.458
+          ],
+          [
+            1278.792,
+            1072.875
+          ],
+          [
+            1279.542,
+            1073.375
+          ],
+          [
+            1280.458,
+            1074.458
+          ],
+          [
+            1281.792,
+            1074.625
+          ],
+          [
+            1282.042,
+            1075.625
+          ],
+          [
+            1282.875,
+            1076.958
+          ],
+          [
+            1283.375,
+            1078.375
+          ],
+          [
+            1283.875,
+            1081.875
+          ],
+          [
+            1283.875,
+            1084.125
+          ],
+          [
+            1283.625,
+            1084.292
+          ],
+          [
+            1283.458,
+            1085.792
+          ],
+          [
+            1282.542,
+            1087.792
+          ],
+          [
+            1280.875,
+            1090.292
+          ],
+          [
+            1279.875,
+            1092.042
+          ],
+          [
+            1279.125,
+            1093.625
+          ],
+          [
+            1278.875,
+            1094.458
+          ],
+          [
+            1278.625,
+            1094.792
+          ],
+          [
+            1278.042,
+            1096.542
+          ],
+          [
+            1278.042,
+            1097.292
+          ],
+          [
+            1277.875,
+            1098.042
+          ],
+          [
+            1277.458,
+            1098.458
+          ],
+          [
+            1277.042,
+            1100.042
+          ],
+          [
+            1277.042,
+            1101.042
+          ],
+          [
+            1276.792,
+            1102.292
+          ],
+          [
+            1276.625,
+            1105.208
+          ],
+          [
+            1276.125,
+            1108.958
+          ],
+          [
+            1275.708,
+            1109.292
+          ],
+          [
+            1274.875,
+            1111.375
+          ],
+          [
+            1274.625,
+            1111.625
+          ],
+          [
+            1274.292,
+            1112.542
+          ],
+          [
+            1273.708,
+            1113.458
+          ],
+          [
+            1273.125,
+            1114.625
+          ],
+          [
+            1273.125,
+            1114.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河（南向续段）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 18,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.37
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1242.38,
+            1004.33
+          ],
+          [
+            1246.75,
+            1004.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河（南向续段）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 19,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.29
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1241.13,
+            1018.86
+          ],
+          [
+            1245.42,
+            1019.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河（南向续段）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 20,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.5
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1239.35,
+            1032.4
+          ],
+          [
+            1242.75,
+            1033.25
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河（南向续段）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 21,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.55
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1241.62,
+            1044.46
+          ],
+          [
+            1245.08,
+            1043.67
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河（南向续段）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 22,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.01
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1250.26,
+            1054.24
+          ],
+          [
+            1251.67,
+            1051.58
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河（南向续段）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 23,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 5.83
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1258.04,
+            1059.12
+          ],
+          [
+            1263.33,
+            1056.67
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河（南向续段）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 24,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.95
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1270.54,
+            1068.38
+          ],
+          [
+            1273.0,
+            1064.08
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河（南向续段）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 25,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.41
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1281.86,
+            1074.91
+          ],
+          [
+            1285.17,
+            1074.08
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河（南向续段）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 26,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.58
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1283.88,
+            1084.12
+          ],
+          [
+            1288.42,
+            1084.75
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河（南向续段）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 27,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.39
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1277.88,
+            1098.04
+          ],
+          [
+            1281.92,
+            1099.75
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 3,
+        "name": "湖区南向运河（南向续段）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 28,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 5.23
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1276.12,
+            1108.96
+          ],
+          [
+            1281.17,
+            1110.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 4,
+        "name": "中北部运河段（东延）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "centerline",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "length_px": 101.79
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1003.625,
+            935.792
+          ],
+          [
+            1003.708,
+            935.875
+          ],
+          [
+            1006.292,
+            935.875
+          ],
+          [
+            1007.208,
+            935.625
+          ],
+          [
+            1008.125,
+            935.542
+          ],
+          [
+            1009.125,
+            935.208
+          ],
+          [
+            1010.042,
+            935.125
+          ],
+          [
+            1012.208,
+            934.542
+          ],
+          [
+            1013.042,
+            934.458
+          ],
+          [
+            1013.792,
+            934.125
+          ],
+          [
+            1014.875,
+            933.875
+          ],
+          [
+            1015.125,
+            933.458
+          ],
+          [
+            1017.042,
+            933.208
+          ],
+          [
+            1017.208,
+            933.042
+          ],
+          [
+            1017.708,
+            932.958
+          ],
+          [
+            1019.208,
+            932.292
+          ],
+          [
+            1020.125,
+            932.208
+          ],
+          [
+            1022.708,
+            931.458
+          ],
+          [
+            1025.042,
+            930.625
+          ],
+          [
+            1025.458,
+            930.292
+          ],
+          [
+            1025.542,
+            930.042
+          ],
+          [
+            1026.958,
+            929.792
+          ],
+          [
+            1028.292,
+            929.042
+          ],
+          [
+            1030.458,
+            927.042
+          ],
+          [
+            1031.875,
+            925.042
+          ],
+          [
+            1033.375,
+            922.208
+          ],
+          [
+            1034.042,
+            921.375
+          ],
+          [
+            1034.292,
+            920.542
+          ],
+          [
+            1034.875,
+            920.375
+          ],
+          [
+            1035.375,
+            919.875
+          ],
+          [
+            1036.375,
+            919.458
+          ],
+          [
+            1037.625,
+            919.458
+          ],
+          [
+            1038.542,
+            919.708
+          ],
+          [
+            1040.042,
+            920.458
+          ],
+          [
+            1041.542,
+            920.875
+          ],
+          [
+            1043.708,
+            921.375
+          ],
+          [
+            1044.708,
+            921.458
+          ],
+          [
+            1045.042,
+            921.625
+          ],
+          [
+            1045.958,
+            921.625
+          ],
+          [
+            1046.125,
+            921.792
+          ],
+          [
+            1049.458,
+            922.125
+          ],
+          [
+            1055.208,
+            922.292
+          ],
+          [
+            1056.542,
+            922.125
+          ],
+          [
+            1057.625,
+            921.792
+          ],
+          [
+            1057.875,
+            921.708
+          ],
+          [
+            1058.042,
+            921.375
+          ],
+          [
+            1062.042,
+            921.375
+          ],
+          [
+            1064.125,
+            921.208
+          ],
+          [
+            1065.042,
+            920.958
+          ],
+          [
+            1065.542,
+            920.958
+          ],
+          [
+            1065.792,
+            920.792
+          ],
+          [
+            1066.208,
+            920.792
+          ],
+          [
+            1068.208,
+            920.042
+          ],
+          [
+            1068.875,
+            919.542
+          ],
+          [
+            1068.958,
+            919.208
+          ],
+          [
+            1069.875,
+            918.958
+          ],
+          [
+            1071.375,
+            917.875
+          ],
+          [
+            1072.375,
+            917.542
+          ],
+          [
+            1073.708,
+            917.292
+          ],
+          [
+            1081.292,
+            917.125
+          ],
+          [
+            1084.458,
+            916.708
+          ],
+          [
+            1084.792,
+            916.542
+          ],
+          [
+            1087.542,
+            915.958
+          ],
+          [
+            1088.958,
+            915.458
+          ],
+          [
+            1089.625,
+            915.458
+          ],
+          [
+            1091.208,
+            915.125
+          ],
+          [
+            1096.042,
+            915.125
+          ],
+          [
+            1096.208,
+            915.042
+          ],
+          [
+            1096.875,
+            915.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 4,
+        "name": "中北部运河段（东延）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 8,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.36
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1013.208,
+            929.542
+          ],
+          [
+            1015.125,
+            933.458
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 4,
+        "name": "中北部运河段（东延）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 9,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 5.48
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1023.125,
+            925.125
+          ],
+          [
+            1025.542,
+            930.042
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 4,
+        "name": "中北部运河段（东延）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 10,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 6.2
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1031.125,
+            915.208
+          ],
+          [
+            1034.292,
+            920.542
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 4,
+        "name": "中北部运河段（东延）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 11,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 5.99
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1046.875,
+            915.708
+          ],
+          [
+            1045.958,
+            921.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 4,
+        "name": "中北部运河段（东延）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 12,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 5.1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1057.625,
+            916.292
+          ],
+          [
+            1058.042,
+            921.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 4,
+        "name": "中北部运河段（东延）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 13,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 7.07
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1068.958,
+            919.208
+          ],
+          [
+            1067.958,
+            912.208
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 4,
+        "name": "中北部运河段（东延）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 14,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.43
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1081.708,
+            914.875
+          ],
+          [
+            1081.458,
+            911.458
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 4,
+        "name": "中北部运河段（东延）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 15,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.04
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1096.875,
+            915.125
+          ],
+          [
+            1097.875,
+            911.208
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "centerline",
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "length_px": 307.34
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            786.292,
+            251.042
+          ],
+          [
+            787.208,
+            250.958
+          ],
+          [
+            788.625,
+            251.708
+          ],
+          [
+            790.792,
+            255.542
+          ],
+          [
+            791.625,
+            256.042
+          ],
+          [
+            791.875,
+            257.292
+          ],
+          [
+            793.458,
+            259.625
+          ],
+          [
+            794.792,
+            261.125
+          ],
+          [
+            795.458,
+            261.292
+          ],
+          [
+            795.625,
+            262.125
+          ],
+          [
+            796.875,
+            263.708
+          ],
+          [
+            799.125,
+            267.958
+          ],
+          [
+            799.875,
+            268.375
+          ],
+          [
+            800.125,
+            269.542
+          ],
+          [
+            802.958,
+            274.958
+          ],
+          [
+            803.375,
+            275.458
+          ],
+          [
+            804.042,
+            275.708
+          ],
+          [
+            804.292,
+            276.875
+          ],
+          [
+            804.542,
+            277.208
+          ],
+          [
+            806.958,
+            279.792
+          ],
+          [
+            808.958,
+            282.792
+          ],
+          [
+            809.625,
+            283.125
+          ],
+          [
+            809.792,
+            284.292
+          ],
+          [
+            810.792,
+            286.542
+          ],
+          [
+            811.792,
+            289.708
+          ],
+          [
+            812.875,
+            291.875
+          ],
+          [
+            813.208,
+            292.208
+          ],
+          [
+            813.542,
+            292.292
+          ],
+          [
+            813.792,
+            293.292
+          ],
+          [
+            814.625,
+            294.542
+          ],
+          [
+            817.958,
+            298.125
+          ],
+          [
+            819.708,
+            299.458
+          ],
+          [
+            820.708,
+            299.625
+          ],
+          [
+            821.125,
+            300.292
+          ],
+          [
+            823.792,
+            301.458
+          ],
+          [
+            825.792,
+            302.125
+          ],
+          [
+            828.042,
+            302.625
+          ],
+          [
+            830.208,
+            302.875
+          ],
+          [
+            830.375,
+            303.208
+          ],
+          [
+            831.125,
+            303.292
+          ],
+          [
+            833.042,
+            304.125
+          ],
+          [
+            833.958,
+            304.292
+          ],
+          [
+            835.375,
+            304.292
+          ],
+          [
+            837.292,
+            303.792
+          ],
+          [
+            839.875,
+            303.375
+          ],
+          [
+            843.292,
+            303.375
+          ],
+          [
+            847.042,
+            303.708
+          ],
+          [
+            849.708,
+            304.208
+          ],
+          [
+            853.125,
+            304.458
+          ],
+          [
+            853.292,
+            304.625
+          ],
+          [
+            857.042,
+            304.625
+          ],
+          [
+            857.542,
+            304.458
+          ],
+          [
+            860.625,
+            304.208
+          ],
+          [
+            865.042,
+            304.208
+          ],
+          [
+            868.542,
+            304.875
+          ],
+          [
+            870.875,
+            305.708
+          ],
+          [
+            872.292,
+            305.875
+          ],
+          [
+            872.625,
+            306.458
+          ],
+          [
+            877.375,
+            308.708
+          ],
+          [
+            880.292,
+            310.292
+          ],
+          [
+            882.042,
+            310.542
+          ],
+          [
+            882.375,
+            311.125
+          ],
+          [
+            886.958,
+            312.542
+          ],
+          [
+            889.708,
+            313.625
+          ],
+          [
+            891.542,
+            313.875
+          ],
+          [
+            891.792,
+            314.292
+          ],
+          [
+            895.125,
+            315.792
+          ],
+          [
+            898.042,
+            317.542
+          ],
+          [
+            901.125,
+            319.125
+          ],
+          [
+            902.625,
+            319.375
+          ],
+          [
+            902.875,
+            319.875
+          ],
+          [
+            908.125,
+            321.375
+          ],
+          [
+            910.375,
+            321.792
+          ],
+          [
+            912.125,
+            321.875
+          ],
+          [
+            912.292,
+            322.208
+          ],
+          [
+            915.042,
+            323.458
+          ],
+          [
+            918.042,
+            324.042
+          ],
+          [
+            919.458,
+            324.542
+          ],
+          [
+            920.708,
+            324.708
+          ],
+          [
+            920.958,
+            325.208
+          ],
+          [
+            922.208,
+            325.708
+          ],
+          [
+            924.625,
+            326.042
+          ],
+          [
+            926.375,
+            327.042
+          ],
+          [
+            927.625,
+            327.542
+          ],
+          [
+            928.458,
+            328.125
+          ],
+          [
+            933.375,
+            330.042
+          ],
+          [
+            937.625,
+            332.042
+          ],
+          [
+            937.875,
+            331.875
+          ],
+          [
+            938.542,
+            331.875
+          ],
+          [
+            939.792,
+            332.125
+          ],
+          [
+            943.458,
+            333.708
+          ],
+          [
+            945.208,
+            333.958
+          ],
+          [
+            945.208,
+            334.125
+          ],
+          [
+            945.625,
+            334.542
+          ],
+          [
+            946.042,
+            334.708
+          ],
+          [
+            949.208,
+            335.542
+          ],
+          [
+            949.792,
+            335.542
+          ],
+          [
+            951.542,
+            335.875
+          ],
+          [
+            959.708,
+            335.708
+          ],
+          [
+            960.458,
+            335.875
+          ],
+          [
+            961.958,
+            335.875
+          ],
+          [
+            962.792,
+            336.042
+          ],
+          [
+            969.208,
+            335.958
+          ],
+          [
+            971.625,
+            335.708
+          ],
+          [
+            973.792,
+            335.208
+          ],
+          [
+            975.875,
+            334.542
+          ],
+          [
+            976.125,
+            334.208
+          ],
+          [
+            976.375,
+            334.125
+          ],
+          [
+            977.458,
+            334.042
+          ],
+          [
+            979.458,
+            333.375
+          ],
+          [
+            982.208,
+            332.708
+          ],
+          [
+            983.458,
+            332.208
+          ],
+          [
+            983.958,
+            331.792
+          ],
+          [
+            984.042,
+            331.542
+          ],
+          [
+            985.542,
+            331.375
+          ],
+          [
+            986.292,
+            331.042
+          ],
+          [
+            987.208,
+            330.875
+          ],
+          [
+            989.375,
+            330.875
+          ],
+          [
+            991.292,
+            331.042
+          ],
+          [
+            991.708,
+            331.292
+          ],
+          [
+            992.208,
+            331.292
+          ],
+          [
+            993.458,
+            331.625
+          ],
+          [
+            994.042,
+            331.625
+          ],
+          [
+            994.292,
+            331.792
+          ],
+          [
+            994.875,
+            331.792
+          ],
+          [
+            996.042,
+            332.125
+          ],
+          [
+            999.958,
+            332.458
+          ],
+          [
+            1001.625,
+            332.208
+          ],
+          [
+            1003.542,
+            332.125
+          ],
+          [
+            1004.042,
+            331.958
+          ],
+          [
+            1008.125,
+            331.542
+          ],
+          [
+            1008.792,
+            331.375
+          ],
+          [
+            1014.708,
+            330.875
+          ],
+          [
+            1017.542,
+            330.458
+          ],
+          [
+            1019.208,
+            330.042
+          ],
+          [
+            1019.625,
+            330.042
+          ],
+          [
+            1019.958,
+            329.708
+          ],
+          [
+            1021.458,
+            329.542
+          ],
+          [
+            1022.042,
+            329.292
+          ],
+          [
+            1022.375,
+            329.292
+          ],
+          [
+            1023.542,
+            328.708
+          ],
+          [
+            1023.792,
+            328.458
+          ],
+          [
+            1024.125,
+            328.375
+          ],
+          [
+            1024.625,
+            327.875
+          ],
+          [
+            1024.792,
+            327.875
+          ],
+          [
+            1026.458,
+            326.708
+          ],
+          [
+            1026.792,
+            326.292
+          ],
+          [
+            1026.875,
+            325.958
+          ],
+          [
+            1028.208,
+            325.792
+          ],
+          [
+            1028.875,
+            325.458
+          ],
+          [
+            1031.708,
+            324.625
+          ],
+          [
+            1032.208,
+            324.625
+          ],
+          [
+            1032.958,
+            324.375
+          ],
+          [
+            1034.208,
+            324.292
+          ],
+          [
+            1034.458,
+            324.125
+          ],
+          [
+            1037.958,
+            324.125
+          ],
+          [
+            1038.458,
+            324.292
+          ],
+          [
+            1039.458,
+            324.375
+          ],
+          [
+            1040.125,
+            324.625
+          ],
+          [
+            1041.708,
+            324.792
+          ],
+          [
+            1041.958,
+            324.958
+          ],
+          [
+            1042.208,
+            325.375
+          ],
+          [
+            1045.375,
+            326.875
+          ],
+          [
+            1046.125,
+            327.125
+          ],
+          [
+            1047.458,
+            327.292
+          ],
+          [
+            1047.458,
+            327.458
+          ],
+          [
+            1047.708,
+            327.708
+          ],
+          [
+            1049.542,
+            328.292
+          ],
+          [
+            1050.708,
+            328.542
+          ],
+          [
+            1052.292,
+            328.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 17,
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.46
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            945.21,
+            333.96
+          ],
+          [
+            946.5,
+            330.75
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 18,
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.47
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            955.09,
+            335.8
+          ],
+          [
+            955.0,
+            331.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 19,
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.99
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            966.97,
+            335.99
+          ],
+          [
+            966.92,
+            332.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 20,
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.34
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            976.38,
+            334.12
+          ],
+          [
+            975.83,
+            330.83
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 21,
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.11
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            991.29,
+            331.04
+          ],
+          [
+            992.08,
+            329.08
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 22,
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.94
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1002.04,
+            332.19
+          ],
+          [
+            1001.92,
+            329.25
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 23,
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.79
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1010.9,
+            331.2
+          ],
+          [
+            1010.67,
+            328.42
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 24,
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.54
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1020.11,
+            329.69
+          ],
+          [
+            1019.83,
+            327.17
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 25,
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.97
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1026.88,
+            325.96
+          ],
+          [
+            1025.67,
+            323.25
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 26,
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.45
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1034.83,
+            324.12
+          ],
+          [
+            1034.83,
+            321.67
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 27,
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.39
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1041.96,
+            324.96
+          ],
+          [
+            1043.33,
+            323.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 28,
+        "review_status": "manually_verified_against_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.62
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1047.46,
+            327.29
+          ],
+          [
+            1049.0,
+            325.17
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "centerline",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "length_px": 235.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            729.292,
+            1289.375
+          ],
+          [
+            729.875,
+            1290.708
+          ],
+          [
+            730.625,
+            1291.125
+          ],
+          [
+            731.875,
+            1292.125
+          ],
+          [
+            735.542,
+            1295.875
+          ],
+          [
+            736.708,
+            1297.625
+          ],
+          [
+            737.625,
+            1299.458
+          ],
+          [
+            738.042,
+            1299.792
+          ],
+          [
+            738.458,
+            1299.875
+          ],
+          [
+            738.625,
+            1300.792
+          ],
+          [
+            738.792,
+            1301.042
+          ],
+          [
+            742.292,
+            1304.958
+          ],
+          [
+            743.042,
+            1306.208
+          ],
+          [
+            743.958,
+            1308.375
+          ],
+          [
+            744.292,
+            1308.792
+          ],
+          [
+            744.458,
+            1309.458
+          ],
+          [
+            744.875,
+            1309.625
+          ],
+          [
+            745.208,
+            1311.042
+          ],
+          [
+            745.792,
+            1311.875
+          ],
+          [
+            746.042,
+            1312.625
+          ],
+          [
+            746.292,
+            1315.208
+          ],
+          [
+            746.458,
+            1315.542
+          ],
+          [
+            746.458,
+            1316.042
+          ],
+          [
+            746.625,
+            1316.208
+          ],
+          [
+            746.708,
+            1317.125
+          ],
+          [
+            746.875,
+            1317.458
+          ],
+          [
+            747.292,
+            1319.458
+          ],
+          [
+            747.625,
+            1320.042
+          ],
+          [
+            748.125,
+            1320.292
+          ],
+          [
+            748.375,
+            1321.375
+          ],
+          [
+            749.375,
+            1322.708
+          ],
+          [
+            751.042,
+            1325.708
+          ],
+          [
+            751.958,
+            1326.958
+          ],
+          [
+            752.792,
+            1328.375
+          ],
+          [
+            754.292,
+            1330.292
+          ],
+          [
+            754.625,
+            1330.542
+          ],
+          [
+            755.042,
+            1330.625
+          ],
+          [
+            755.292,
+            1331.542
+          ],
+          [
+            755.792,
+            1332.458
+          ],
+          [
+            756.042,
+            1334.042
+          ],
+          [
+            755.875,
+            1335.292
+          ],
+          [
+            755.208,
+            1337.042
+          ],
+          [
+            755.125,
+            1337.708
+          ],
+          [
+            755.208,
+            1338.542
+          ],
+          [
+            755.625,
+            1339.458
+          ],
+          [
+            756.625,
+            1340.875
+          ],
+          [
+            756.792,
+            1341.708
+          ],
+          [
+            756.958,
+            1341.875
+          ],
+          [
+            757.458,
+            1341.958
+          ],
+          [
+            757.625,
+            1343.375
+          ],
+          [
+            758.292,
+            1345.375
+          ],
+          [
+            758.542,
+            1347.542
+          ],
+          [
+            759.042,
+            1348.708
+          ],
+          [
+            758.958,
+            1349.792
+          ],
+          [
+            758.792,
+            1350.625
+          ],
+          [
+            758.625,
+            1350.792
+          ],
+          [
+            757.708,
+            1353.792
+          ],
+          [
+            757.292,
+            1358.292
+          ],
+          [
+            756.292,
+            1361.375
+          ],
+          [
+            756.042,
+            1361.792
+          ],
+          [
+            755.375,
+            1363.708
+          ],
+          [
+            754.958,
+            1364.458
+          ],
+          [
+            754.792,
+            1365.542
+          ],
+          [
+            754.125,
+            1366.125
+          ],
+          [
+            753.542,
+            1367.292
+          ],
+          [
+            752.542,
+            1370.042
+          ],
+          [
+            751.958,
+            1373.125
+          ],
+          [
+            751.958,
+            1374.708
+          ],
+          [
+            752.125,
+            1375.208
+          ],
+          [
+            752.458,
+            1375.458
+          ],
+          [
+            752.708,
+            1376.792
+          ],
+          [
+            753.458,
+            1378.375
+          ],
+          [
+            754.625,
+            1379.958
+          ],
+          [
+            756.292,
+            1383.042
+          ],
+          [
+            756.458,
+            1384.042
+          ],
+          [
+            756.542,
+            1386.125
+          ],
+          [
+            756.958,
+            1387.375
+          ],
+          [
+            757.292,
+            1387.708
+          ],
+          [
+            757.792,
+            1387.958
+          ],
+          [
+            759.792,
+            1388.375
+          ],
+          [
+            761.542,
+            1388.375
+          ],
+          [
+            763.458,
+            1388.042
+          ],
+          [
+            763.875,
+            1387.875
+          ],
+          [
+            764.292,
+            1387.458
+          ],
+          [
+            765.792,
+            1387.208
+          ],
+          [
+            767.208,
+            1386.375
+          ],
+          [
+            767.792,
+            1385.875
+          ],
+          [
+            769.042,
+            1385.458
+          ],
+          [
+            769.625,
+            1384.958
+          ],
+          [
+            770.292,
+            1384.708
+          ],
+          [
+            771.708,
+            1384.458
+          ],
+          [
+            777.125,
+            1384.292
+          ],
+          [
+            778.458,
+            1384.125
+          ],
+          [
+            783.208,
+            1384.208
+          ],
+          [
+            790.458,
+            1384.708
+          ],
+          [
+            790.792,
+            1384.875
+          ],
+          [
+            791.875,
+            1385.042
+          ],
+          [
+            793.042,
+            1385.542
+          ],
+          [
+            794.625,
+            1385.792
+          ],
+          [
+            794.708,
+            1386.042
+          ],
+          [
+            795.042,
+            1386.292
+          ],
+          [
+            795.875,
+            1386.625
+          ],
+          [
+            797.042,
+            1386.875
+          ],
+          [
+            797.292,
+            1387.042
+          ],
+          [
+            799.125,
+            1387.292
+          ],
+          [
+            801.292,
+            1387.292
+          ],
+          [
+            802.958,
+            1387.458
+          ],
+          [
+            811.875,
+            1387.542
+          ],
+          [
+            815.125,
+            1387.708
+          ],
+          [
+            820.208,
+            1387.708
+          ],
+          [
+            820.292,
+            1387.792
+          ],
+          [
+            827.625,
+            1387.708
+          ],
+          [
+            830.292,
+            1387.542
+          ],
+          [
+            841.125,
+            1387.625
+          ],
+          [
+            843.458,
+            1387.458
+          ],
+          [
+            853.042,
+            1387.375
+          ],
+          [
+            854.125,
+            1387.042
+          ],
+          [
+            854.458,
+            1386.625
+          ],
+          [
+            856.125,
+            1386.292
+          ],
+          [
+            857.458,
+            1385.458
+          ],
+          [
+            860.125,
+            1382.792
+          ],
+          [
+            862.792,
+            1381.208
+          ],
+          [
+            863.375,
+            1380.125
+          ],
+          [
+            863.542,
+            1379.208
+          ],
+          [
+            863.792,
+            1378.958
+          ],
+          [
+            866.542,
+            1378.375
+          ],
+          [
+            867.792,
+            1378.375
+          ],
+          [
+            869.042,
+            1378.542
+          ],
+          [
+            871.625,
+            1378.542
+          ],
+          [
+            872.625,
+            1378.792
+          ],
+          [
+            874.125,
+            1378.958
+          ],
+          [
+            874.458,
+            1379.125
+          ],
+          [
+            874.792,
+            1379.542
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 1,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.33
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            738.54,
+            1299.88
+          ],
+          [
+            742.38,
+            1297.88
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 2,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.54
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            744.96,
+            1309.63
+          ],
+          [
+            749.04,
+            1307.63
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 3,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.61
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            748.21,
+            1320.29
+          ],
+          [
+            751.46,
+            1318.71
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 4,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            755.04,
+            1330.63
+          ],
+          [
+            757.71,
+            1328.96
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 5,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.3
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            757.46,
+            1341.96
+          ],
+          [
+            761.46,
+            1340.38
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 6,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.59
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            757.63,
+            1355.71
+          ],
+          [
+            762.21,
+            1355.96
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 7,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 5.43
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            754.71,
+            1365.71
+          ],
+          [
+            760.13,
+            1365.46
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 8,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 6.45
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            752.54,
+            1375.46
+          ],
+          [
+            758.88,
+            1374.29
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 9,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.38
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            764.29,
+            1387.46
+          ],
+          [
+            763.63,
+            1383.13
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 10,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.89
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            778.96,
+            1384.04
+          ],
+          [
+            778.38,
+            1381.21
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 11,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.33
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            794.63,
+            1385.71
+          ],
+          [
+            794.54,
+            1382.38
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 12,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.83
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            810.38,
+            1387.46
+          ],
+          [
+            810.38,
+            1383.63
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 13,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.08
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            828.38,
+            1387.54
+          ],
+          [
+            828.46,
+            1383.46
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 14,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.51
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            842.71,
+            1387.46
+          ],
+          [
+            842.46,
+            1382.96
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 15,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 5.2
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            854.46,
+            1386.63
+          ],
+          [
+            853.04,
+            1381.63
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河主渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 16,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.27
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            863.63,
+            1379.04
+          ],
+          [
+            862.54,
+            1375.96
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河西支渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "centerline",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "length_px": 51.58
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            712.54,
+            1348.71
+          ],
+          [
+            714.042,
+            1348.542
+          ],
+          [
+            715.208,
+            1348.125
+          ],
+          [
+            715.958,
+            1348.042
+          ],
+          [
+            723.625,
+            1348.375
+          ],
+          [
+            725.375,
+            1348.875
+          ],
+          [
+            728.125,
+            1350.208
+          ],
+          [
+            729.292,
+            1350.375
+          ],
+          [
+            729.958,
+            1351.208
+          ],
+          [
+            733.792,
+            1353.208
+          ],
+          [
+            734.875,
+            1353.458
+          ],
+          [
+            735.792,
+            1353.875
+          ],
+          [
+            737.208,
+            1353.958
+          ],
+          [
+            737.708,
+            1354.375
+          ],
+          [
+            739.375,
+            1354.708
+          ],
+          [
+            747.125,
+            1354.792
+          ],
+          [
+            747.208,
+            1354.958
+          ],
+          [
+            748.542,
+            1354.958
+          ],
+          [
+            749.542,
+            1354.708
+          ],
+          [
+            750.375,
+            1353.958
+          ],
+          [
+            750.958,
+            1352.792
+          ],
+          [
+            751.458,
+            1352.125
+          ],
+          [
+            752.792,
+            1350.875
+          ],
+          [
+            753.208,
+            1350.292
+          ],
+          [
+            753.542,
+            1348.958
+          ],
+          [
+            754.458,
+            1348.625
+          ],
+          [
+            755.125,
+            1347.792
+          ],
+          [
+            756.292,
+            1347.125
+          ],
+          [
+            757.542,
+            1346.875
+          ],
+          [
+            758.458,
+            1347.042
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河西支渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 17,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.91
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            712.54,
+            1348.71
+          ],
+          [
+            711.88,
+            1345.88
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河西支渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 18,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.67
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            720.88,
+            1348.21
+          ],
+          [
+            720.79,
+            1345.54
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河西支渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 19,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.24
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            729.46,
+            1350.38
+          ],
+          [
+            730.13,
+            1347.21
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河西支渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 20,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.12
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            737.38,
+            1353.96
+          ],
+          [
+            737.96,
+            1349.88
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 6,
+        "name": "南部折弯运河西支渠",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 21,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.31
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            747.13,
+            1354.71
+          ],
+          [
+            746.04,
+            1350.54
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 7,
+        "name": "南部湖区运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "centerline",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "length_px": 57.98
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1007.542,
+            1328.875
+          ],
+          [
+            1007.292,
+            1329.125
+          ],
+          [
+            1006.375,
+            1329.125
+          ],
+          [
+            1005.125,
+            1328.875
+          ],
+          [
+            1003.708,
+            1328.125
+          ],
+          [
+            1002.958,
+            1327.958
+          ],
+          [
+            1000.792,
+            1328.042
+          ],
+          [
+            1000.542,
+            1328.458
+          ],
+          [
+            999.125,
+            1329.458
+          ],
+          [
+            997.875,
+            1330.958
+          ],
+          [
+            996.708,
+            1332.042
+          ],
+          [
+            995.458,
+            1332.875
+          ],
+          [
+            994.542,
+            1333.042
+          ],
+          [
+            994.375,
+            1333.708
+          ],
+          [
+            993.292,
+            1334.792
+          ],
+          [
+            993.042,
+            1335.208
+          ],
+          [
+            992.792,
+            1336.375
+          ],
+          [
+            992.708,
+            1338.042
+          ],
+          [
+            992.458,
+            1338.958
+          ],
+          [
+            992.208,
+            1339.292
+          ],
+          [
+            991.542,
+            1339.542
+          ],
+          [
+            990.875,
+            1341.375
+          ],
+          [
+            991.125,
+            1343.292
+          ],
+          [
+            991.042,
+            1343.875
+          ],
+          [
+            990.542,
+            1344.875
+          ],
+          [
+            989.625,
+            1345.875
+          ],
+          [
+            988.792,
+            1346.542
+          ],
+          [
+            987.625,
+            1347.208
+          ],
+          [
+            986.375,
+            1347.375
+          ],
+          [
+            986.292,
+            1347.708
+          ],
+          [
+            985.958,
+            1348.042
+          ],
+          [
+            984.875,
+            1348.625
+          ],
+          [
+            984.542,
+            1348.625
+          ],
+          [
+            984.292,
+            1348.792
+          ],
+          [
+            982.708,
+            1349.125
+          ],
+          [
+            981.458,
+            1349.542
+          ],
+          [
+            980.958,
+            1349.792
+          ],
+          [
+            979.958,
+            1350.625
+          ],
+          [
+            978.792,
+            1350.958
+          ],
+          [
+            978.375,
+            1351.875
+          ],
+          [
+            976.875,
+            1352.792
+          ],
+          [
+            974.958,
+            1353.375
+          ],
+          [
+            974.292,
+            1353.375
+          ],
+          [
+            971.625,
+            1353.958
+          ],
+          [
+            970.625,
+            1353.958
+          ],
+          [
+            969.792,
+            1354.125
+          ],
+          [
+            968.125,
+            1354.042
+          ],
+          [
+            965.458,
+            1353.458
+          ],
+          [
+            964.542,
+            1353.458
+          ],
+          [
+            964.208,
+            1353.708
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 7,
+        "name": "南部湖区运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 1,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.39
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1000.79,
+            1328.04
+          ],
+          [
+            999.38,
+            1324.96
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 7,
+        "name": "南部湖区运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 2,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            994.54,
+            1333.04
+          ],
+          [
+            992.13,
+            1329.54
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 7,
+        "name": "南部湖区运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 3,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.29
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            991.54,
+            1339.54
+          ],
+          [
+            988.46,
+            1338.38
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 7,
+        "name": "南部湖区运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 4,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.43
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            986.38,
+            1347.38
+          ],
+          [
+            983.79,
+            1343.79
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 7,
+        "name": "南部湖区运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 5,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.54
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            978.79,
+            1350.96
+          ],
+          [
+            977.04,
+            1347.88
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 7,
+        "name": "南部湖区运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 6,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.2
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            969.88,
+            1353.96
+          ],
+          [
+            968.88,
+            1349.88
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 8,
+        "name": "中部弯曲运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "centerline",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "length_px": 30.74
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1074.792,
+            531.875
+          ],
+          [
+            1074.458,
+            531.542
+          ],
+          [
+            1071.792,
+            531.292
+          ],
+          [
+            1071.042,
+            531.042
+          ],
+          [
+            1069.292,
+            530.958
+          ],
+          [
+            1067.792,
+            530.458
+          ],
+          [
+            1065.708,
+            529.375
+          ],
+          [
+            1065.292,
+            528.708
+          ],
+          [
+            1065.292,
+            528.458
+          ],
+          [
+            1063.875,
+            528.125
+          ],
+          [
+            1063.458,
+            527.708
+          ],
+          [
+            1063.042,
+            526.625
+          ],
+          [
+            1062.542,
+            526.125
+          ],
+          [
+            1061.042,
+            525.542
+          ],
+          [
+            1059.792,
+            524.708
+          ],
+          [
+            1059.542,
+            524.375
+          ],
+          [
+            1059.292,
+            523.542
+          ],
+          [
+            1058.208,
+            523.208
+          ],
+          [
+            1057.125,
+            521.958
+          ],
+          [
+            1056.208,
+            520.542
+          ],
+          [
+            1055.958,
+            519.208
+          ],
+          [
+            1055.708,
+            519.125
+          ],
+          [
+            1055.208,
+            518.542
+          ],
+          [
+            1054.792,
+            516.958
+          ],
+          [
+            1054.042,
+            515.375
+          ],
+          [
+            1053.792,
+            513.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 8,
+        "name": "中部弯曲运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 1,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.43
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1073.18,
+            531.42
+          ],
+          [
+            1073.5,
+            528.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 8,
+        "name": "中部弯曲运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 2,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.37
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1065.29,
+            528.46
+          ],
+          [
+            1067.67,
+            526.08
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 8,
+        "name": "中部弯曲运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 3,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1059.29,
+            523.54
+          ],
+          [
+            1062.0,
+            521.75
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 8,
+        "name": "中部弯曲运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 4,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.43
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1055.96,
+            519.21
+          ],
+          [
+            1059.17,
+            518.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 9,
+        "name": "东南斜向运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "centerline",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "length_px": 82.13
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1319.875,
+            1390.458
+          ],
+          [
+            1320.292,
+            1390.708
+          ],
+          [
+            1321.375,
+            1390.958
+          ],
+          [
+            1322.125,
+            1391.375
+          ],
+          [
+            1323.625,
+            1391.875
+          ],
+          [
+            1326.458,
+            1392.292
+          ],
+          [
+            1328.542,
+            1392.958
+          ],
+          [
+            1329.625,
+            1393.042
+          ],
+          [
+            1330.042,
+            1393.125
+          ],
+          [
+            1330.375,
+            1393.375
+          ],
+          [
+            1331.958,
+            1393.625
+          ],
+          [
+            1335.375,
+            1393.708
+          ],
+          [
+            1337.125,
+            1393.542
+          ],
+          [
+            1339.292,
+            1393.208
+          ],
+          [
+            1339.542,
+            1392.958
+          ],
+          [
+            1340.792,
+            1392.875
+          ],
+          [
+            1342.125,
+            1392.542
+          ],
+          [
+            1343.208,
+            1392.125
+          ],
+          [
+            1345.042,
+            1391.125
+          ],
+          [
+            1347.625,
+            1388.625
+          ],
+          [
+            1347.958,
+            1387.708
+          ],
+          [
+            1349.125,
+            1387.458
+          ],
+          [
+            1349.708,
+            1387.125
+          ],
+          [
+            1351.208,
+            1386.792
+          ],
+          [
+            1352.708,
+            1386.292
+          ],
+          [
+            1353.542,
+            1385.875
+          ],
+          [
+            1353.792,
+            1385.875
+          ],
+          [
+            1354.792,
+            1385.375
+          ],
+          [
+            1356.042,
+            1384.958
+          ],
+          [
+            1356.375,
+            1384.458
+          ],
+          [
+            1356.708,
+            1384.292
+          ],
+          [
+            1358.125,
+            1384.125
+          ],
+          [
+            1359.125,
+            1383.625
+          ],
+          [
+            1360.208,
+            1383.458
+          ],
+          [
+            1360.708,
+            1383.208
+          ],
+          [
+            1363.708,
+            1382.875
+          ],
+          [
+            1364.208,
+            1382.708
+          ],
+          [
+            1364.292,
+            1382.542
+          ],
+          [
+            1366.375,
+            1382.375
+          ],
+          [
+            1368.625,
+            1381.792
+          ],
+          [
+            1371.125,
+            1380.792
+          ],
+          [
+            1372.208,
+            1380.208
+          ],
+          [
+            1372.625,
+            1379.792
+          ],
+          [
+            1372.875,
+            1379.208
+          ],
+          [
+            1374.125,
+            1378.875
+          ],
+          [
+            1375.792,
+            1377.375
+          ],
+          [
+            1379.542,
+            1373.542
+          ],
+          [
+            1379.792,
+            1372.625
+          ],
+          [
+            1379.958,
+            1372.458
+          ],
+          [
+            1380.875,
+            1372.208
+          ],
+          [
+            1381.542,
+            1371.542
+          ],
+          [
+            1384.042,
+            1369.958
+          ],
+          [
+            1385.708,
+            1369.125
+          ],
+          [
+            1386.708,
+            1368.792
+          ],
+          [
+            1387.125,
+            1368.208
+          ],
+          [
+            1388.625,
+            1367.958
+          ],
+          [
+            1389.208,
+            1367.625
+          ],
+          [
+            1390.708,
+            1367.125
+          ],
+          [
+            1392.625,
+            1366.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 9,
+        "name": "东南斜向运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 1,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.42
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1330.04,
+            1393.12
+          ],
+          [
+            1331.25,
+            1389.92
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 9,
+        "name": "东南斜向运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 2,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.21
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1339.63,
+            1392.95
+          ],
+          [
+            1339.42,
+            1389.75
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 9,
+        "name": "东南斜向运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 3,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.78
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1347.96,
+            1387.71
+          ],
+          [
+            1346.67,
+            1385.25
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 9,
+        "name": "东南斜向运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 4,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.18
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1356.71,
+            1384.29
+          ],
+          [
+            1355.75,
+            1382.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 9,
+        "name": "东南斜向运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 5,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.39
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1364.29,
+            1382.54
+          ],
+          [
+            1363.92,
+            1379.17
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 9,
+        "name": "东南斜向运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 6,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.83
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1372.88,
+            1379.21
+          ],
+          [
+            1371.83,
+            1376.58
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 9,
+        "name": "东南斜向运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 7,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.2
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1379.96,
+            1372.46
+          ],
+          [
+            1378.58,
+            1370.75
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 9,
+        "name": "东南斜向运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "symbol_part": "ruler_tick",
+        "tick_id": 8,
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.97
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1387.32,
+            1368.18
+          ],
+          [
+            1386.83,
+            1365.25
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 1,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 1.8
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            791.625,
+            256.042
+          ],
+          [
+            793.292,
+            255.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 2,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.05
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            795.458,
+            261.292
+          ],
+          [
+            797.292,
+            260.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 3,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.8
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            799.875,
+            268.375
+          ],
+          [
+            802.292,
+            266.958
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 4,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.37
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            804.042,
+            275.708
+          ],
+          [
+            806.875,
+            273.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 5,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.28
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            809.625,
+            283.125
+          ],
+          [
+            811.708,
+            282.208
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 6,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.62
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            813.542,
+            292.292
+          ],
+          [
+            816.875,
+            290.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 7,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.65
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            820.708,
+            299.625
+          ],
+          [
+            822.542,
+            297.708
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 8,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.93
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            830.208,
+            302.875
+          ],
+          [
+            831.208,
+            300.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 9,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.11
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            843.292,
+            303.375
+          ],
+          [
+            844.125,
+            300.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 10,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            853.125,
+            304.458
+          ],
+          [
+            853.792,
+            301.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 11,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.68
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            863.375,
+            304.208
+          ],
+          [
+            863.625,
+            301.542
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 12,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.27
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            872.292,
+            305.875
+          ],
+          [
+            874.292,
+            303.292
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 13,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.7
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            882.042,
+            310.542
+          ],
+          [
+            884.208,
+            307.542
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 14,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            891.542,
+            313.875
+          ],
+          [
+            892.875,
+            311.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 15,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.02
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            902.625,
+            319.375
+          ],
+          [
+            904.042,
+            316.708
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 5,
+        "name": "北部运河段",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "separate_from_rivers": true,
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "tick_id": 16,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 2.85
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            912.125,
+            321.875
+          ],
+          [
+            913.125,
+            319.208
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 10,
+        "name": "???????",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "symbol_part": "centerline",
+        "length_px": 70.93
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1140.125,
+            1007.875
+          ],
+          [
+            1141.542,
+            1007.875
+          ],
+          [
+            1141.792,
+            1008.125
+          ],
+          [
+            1143.042,
+            1008.542
+          ],
+          [
+            1145.125,
+            1008.792
+          ],
+          [
+            1148.208,
+            1008.875
+          ],
+          [
+            1148.292,
+            1009.042
+          ],
+          [
+            1151.208,
+            1009.792
+          ],
+          [
+            1154.042,
+            1011.458
+          ],
+          [
+            1155.458,
+            1011.708
+          ],
+          [
+            1157.208,
+            1011.375
+          ],
+          [
+            1158.292,
+            1010.875
+          ],
+          [
+            1158.625,
+            1010.375
+          ],
+          [
+            1159.625,
+            1010.208
+          ],
+          [
+            1160.708,
+            1009.708
+          ],
+          [
+            1164.958,
+            1008.375
+          ],
+          [
+            1166.375,
+            1007.792
+          ],
+          [
+            1167.292,
+            1007.208
+          ],
+          [
+            1167.792,
+            1006.708
+          ],
+          [
+            1168.292,
+            1005.708
+          ],
+          [
+            1168.375,
+            1003.708
+          ],
+          [
+            1168.208,
+            1002.208
+          ],
+          [
+            1168.375,
+            1001.208
+          ],
+          [
+            1169.875,
+            997.292
+          ],
+          [
+            1170.792,
+            995.375
+          ],
+          [
+            1171.042,
+            993.875
+          ],
+          [
+            1171.542,
+            993.625
+          ],
+          [
+            1172.125,
+            992.125
+          ],
+          [
+            1173.042,
+            990.958
+          ],
+          [
+            1175.792,
+            986.375
+          ],
+          [
+            1176.542,
+            984.708
+          ],
+          [
+            1177.958,
+            980.458
+          ],
+          [
+            1178.708,
+            977.125
+          ],
+          [
+            1178.792,
+            975.542
+          ],
+          [
+            1179.458,
+            974.958
+          ],
+          [
+            1180.792,
+            972.458
+          ],
+          [
+            1181.208,
+            970.625
+          ],
+          [
+            1181.792,
+            970.208
+          ],
+          [
+            1182.458,
+            969.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 10,
+        "name": "???????",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "symbol_part": "ruler_tick",
+        "tick_id": 1,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.64
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1141.542,
+            1007.875
+          ],
+          [
+            1143.208,
+            1003.542
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 10,
+        "name": "???????",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "symbol_part": "ruler_tick",
+        "tick_id": 2,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.55
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1148.208,
+            1008.875
+          ],
+          [
+            1148.792,
+            1005.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 10,
+        "name": "???????",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "symbol_part": "ruler_tick",
+        "tick_id": 3,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 3.99
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1158.625,
+            1010.375
+          ],
+          [
+            1157.875,
+            1006.458
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 10,
+        "name": "???????",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "symbol_part": "ruler_tick",
+        "tick_id": 4,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 5.53
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1171.042,
+            993.875
+          ],
+          [
+            1165.792,
+            992.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 10,
+        "name": "???????",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "symbol_part": "ruler_tick",
+        "tick_id": 5,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 6.46
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1176.375,
+            984.875
+          ],
+          [
+            1170.458,
+            982.292
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 10,
+        "name": "???????",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_traced_from_official_12x_river_raster_repeated_tick_pattern",
+        "separate_from_rivers": true,
+        "symbol_part": "ruler_tick",
+        "tick_id": 6,
+        "orientation": "perpendicular_to_local_centerline",
+        "length_px": 4.27
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1178.875,
+            975.375
+          ],
+          [
+            1174.875,
+            973.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 4,
+        "name": "中北部运河段（东南接续）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "symbol_part": "centerline",
+        "length_px": 39.37
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1096.875,
+            915.125
+          ],
+          [
+            1100.042,
+            915.708
+          ],
+          [
+            1101.708,
+            916.458
+          ],
+          [
+            1102.708,
+            917.125
+          ],
+          [
+            1103.792,
+            918.208
+          ],
+          [
+            1104.375,
+            919.208
+          ],
+          [
+            1104.708,
+            920.292
+          ],
+          [
+            1104.708,
+            920.875
+          ],
+          [
+            1104.875,
+            920.958
+          ],
+          [
+            1104.708,
+            923.042
+          ],
+          [
+            1104.458,
+            923.792
+          ],
+          [
+            1104.125,
+            927.042
+          ],
+          [
+            1104.458,
+            929.208
+          ],
+          [
+            1105.125,
+            930.792
+          ],
+          [
+            1105.625,
+            931.542
+          ],
+          [
+            1107.208,
+            933.375
+          ],
+          [
+            1108.375,
+            934.542
+          ],
+          [
+            1109.042,
+            934.792
+          ],
+          [
+            1109.625,
+            934.792
+          ],
+          [
+            1109.708,
+            934.958
+          ],
+          [
+            1109.542,
+            937.125
+          ],
+          [
+            1109.208,
+            937.625
+          ],
+          [
+            1108.792,
+            940.792
+          ],
+          [
+            1108.625,
+            941.292
+          ],
+          [
+            1108.625,
+            942.708
+          ],
+          [
+            1108.458,
+            943.292
+          ],
+          [
+            1108.208,
+            946.042
+          ],
+          [
+            1108.208,
+            946.542
+          ],
+          [
+            1108.375,
+            946.708
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 4,
+        "name": "中北部运河段（东南接续）",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "symbol_part": "ruler_tick",
+        "tick_id": 1,
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1104.875,
+            920.958
+          ],
+          [
+            1107.958,
+            919.792
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "symbol_part": "centerline",
+        "length_px": 316.48
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            489.958,
+            1288.875
+          ],
+          [
+            489.708,
+            1289.208
+          ],
+          [
+            489.792,
+            1291.375
+          ],
+          [
+            490.208,
+            1293.042
+          ],
+          [
+            490.708,
+            1294.125
+          ],
+          [
+            492.042,
+            1296.208
+          ],
+          [
+            492.375,
+            1296.542
+          ],
+          [
+            493.208,
+            1296.875
+          ],
+          [
+            493.458,
+            1297.875
+          ],
+          [
+            495.292,
+            1299.292
+          ],
+          [
+            496.292,
+            1300.375
+          ],
+          [
+            496.625,
+            1301.125
+          ],
+          [
+            496.792,
+            1302.292
+          ],
+          [
+            496.542,
+            1303.458
+          ],
+          [
+            496.125,
+            1304.625
+          ],
+          [
+            495.292,
+            1306.208
+          ],
+          [
+            495.125,
+            1307.542
+          ],
+          [
+            494.875,
+            1307.625
+          ],
+          [
+            494.625,
+            1307.958
+          ],
+          [
+            494.625,
+            1308.375
+          ],
+          [
+            494.458,
+            1308.542
+          ],
+          [
+            494.458,
+            1308.958
+          ],
+          [
+            494.208,
+            1309.625
+          ],
+          [
+            493.792,
+            1311.625
+          ],
+          [
+            493.708,
+            1314.125
+          ],
+          [
+            493.875,
+            1314.958
+          ],
+          [
+            494.042,
+            1318.458
+          ],
+          [
+            493.958,
+            1318.458
+          ],
+          [
+            493.875,
+            1319.292
+          ],
+          [
+            493.792,
+            1321.125
+          ],
+          [
+            493.625,
+            1321.958
+          ],
+          [
+            493.458,
+            1322.208
+          ],
+          [
+            493.375,
+            1323.042
+          ],
+          [
+            493.375,
+            1324.458
+          ],
+          [
+            493.542,
+            1325.625
+          ],
+          [
+            493.292,
+            1327.125
+          ],
+          [
+            492.458,
+            1328.875
+          ],
+          [
+            492.208,
+            1330.292
+          ],
+          [
+            491.625,
+            1330.542
+          ],
+          [
+            490.792,
+            1331.625
+          ],
+          [
+            490.792,
+            1331.792
+          ],
+          [
+            489.208,
+            1334.208
+          ],
+          [
+            488.125,
+            1336.292
+          ],
+          [
+            487.875,
+            1337.375
+          ],
+          [
+            487.958,
+            1338.958
+          ],
+          [
+            488.208,
+            1339.375
+          ],
+          [
+            488.208,
+            1339.708
+          ],
+          [
+            488.708,
+            1341.208
+          ],
+          [
+            488.958,
+            1341.625
+          ],
+          [
+            488.958,
+            1341.875
+          ],
+          [
+            489.208,
+            1342.292
+          ],
+          [
+            489.208,
+            1342.542
+          ],
+          [
+            489.708,
+            1343.042
+          ],
+          [
+            489.708,
+            1346.125
+          ],
+          [
+            489.875,
+            1349.208
+          ],
+          [
+            490.042,
+            1349.708
+          ],
+          [
+            490.042,
+            1350.375
+          ],
+          [
+            490.458,
+            1352.875
+          ],
+          [
+            490.958,
+            1354.375
+          ],
+          [
+            491.542,
+            1354.708
+          ],
+          [
+            491.792,
+            1356.292
+          ],
+          [
+            492.875,
+            1358.625
+          ],
+          [
+            494.125,
+            1360.625
+          ],
+          [
+            495.125,
+            1361.792
+          ],
+          [
+            500.292,
+            1363.792
+          ],
+          [
+            501.625,
+            1363.958
+          ],
+          [
+            501.875,
+            1364.375
+          ],
+          [
+            503.208,
+            1364.625
+          ],
+          [
+            505.542,
+            1364.625
+          ],
+          [
+            507.792,
+            1364.125
+          ],
+          [
+            509.792,
+            1363.208
+          ],
+          [
+            510.792,
+            1362.292
+          ],
+          [
+            511.208,
+            1361.708
+          ],
+          [
+            511.792,
+            1360.458
+          ],
+          [
+            512.125,
+            1359.208
+          ],
+          [
+            512.625,
+            1358.125
+          ],
+          [
+            513.208,
+            1357.458
+          ],
+          [
+            513.708,
+            1357.125
+          ],
+          [
+            513.958,
+            1357.125
+          ],
+          [
+            514.458,
+            1356.625
+          ],
+          [
+            518.875,
+            1356.625
+          ],
+          [
+            522.542,
+            1357.042
+          ],
+          [
+            523.958,
+            1357.125
+          ],
+          [
+            525.625,
+            1357.042
+          ],
+          [
+            526.542,
+            1356.792
+          ],
+          [
+            527.125,
+            1356.375
+          ],
+          [
+            527.458,
+            1354.958
+          ],
+          [
+            528.542,
+            1354.625
+          ],
+          [
+            529.375,
+            1354.042
+          ],
+          [
+            531.958,
+            1353.792
+          ],
+          [
+            538.208,
+            1354.208
+          ],
+          [
+            538.542,
+            1354.292
+          ],
+          [
+            538.875,
+            1354.625
+          ],
+          [
+            539.542,
+            1354.708
+          ],
+          [
+            540.208,
+            1354.958
+          ],
+          [
+            541.708,
+            1355.125
+          ],
+          [
+            543.625,
+            1355.542
+          ],
+          [
+            545.542,
+            1356.375
+          ],
+          [
+            546.708,
+            1356.708
+          ],
+          [
+            547.625,
+            1356.792
+          ],
+          [
+            548.042,
+            1356.958
+          ],
+          [
+            549.958,
+            1357.042
+          ],
+          [
+            550.292,
+            1357.208
+          ],
+          [
+            552.875,
+            1357.292
+          ],
+          [
+            558.458,
+            1356.875
+          ],
+          [
+            561.708,
+            1356.875
+          ],
+          [
+            562.875,
+            1356.958
+          ],
+          [
+            564.208,
+            1357.292
+          ],
+          [
+            566.292,
+            1357.458
+          ],
+          [
+            566.292,
+            1357.625
+          ],
+          [
+            566.542,
+            1357.875
+          ],
+          [
+            567.625,
+            1358.042
+          ],
+          [
+            569.792,
+            1358.708
+          ],
+          [
+            572.875,
+            1359.875
+          ],
+          [
+            575.792,
+            1361.375
+          ],
+          [
+            577.292,
+            1361.625
+          ],
+          [
+            577.292,
+            1361.792
+          ],
+          [
+            577.708,
+            1362.292
+          ],
+          [
+            581.208,
+            1364.292
+          ],
+          [
+            584.375,
+            1366.292
+          ],
+          [
+            585.208,
+            1366.625
+          ],
+          [
+            586.625,
+            1366.708
+          ],
+          [
+            587.125,
+            1366.625
+          ],
+          [
+            587.292,
+            1366.375
+          ],
+          [
+            589.125,
+            1366.208
+          ],
+          [
+            592.458,
+            1365.292
+          ],
+          [
+            594.458,
+            1364.542
+          ],
+          [
+            599.208,
+            1363.125
+          ],
+          [
+            599.708,
+            1362.625
+          ],
+          [
+            601.625,
+            1362.375
+          ],
+          [
+            604.125,
+            1361.458
+          ],
+          [
+            607.375,
+            1359.958
+          ],
+          [
+            610.458,
+            1359.125
+          ],
+          [
+            610.792,
+            1358.708
+          ],
+          [
+            612.125,
+            1358.625
+          ],
+          [
+            613.375,
+            1358.458
+          ],
+          [
+            613.792,
+            1358.292
+          ],
+          [
+            617.208,
+            1357.875
+          ],
+          [
+            619.458,
+            1357.292
+          ],
+          [
+            619.792,
+            1356.875
+          ],
+          [
+            619.875,
+            1356.292
+          ],
+          [
+            620.125,
+            1355.708
+          ],
+          [
+            620.625,
+            1355.542
+          ],
+          [
+            621.042,
+            1355.042
+          ],
+          [
+            621.792,
+            1354.542
+          ],
+          [
+            622.958,
+            1354.042
+          ],
+          [
+            623.958,
+            1353.875
+          ],
+          [
+            624.292,
+            1353.708
+          ],
+          [
+            629.042,
+            1353.458
+          ],
+          [
+            629.625,
+            1353.292
+          ],
+          [
+            630.375,
+            1353.292
+          ],
+          [
+            632.458,
+            1352.958
+          ],
+          [
+            632.958,
+            1352.792
+          ],
+          [
+            634.125,
+            1352.708
+          ],
+          [
+            634.458,
+            1352.542
+          ],
+          [
+            635.792,
+            1352.375
+          ],
+          [
+            639.792,
+            1351.208
+          ],
+          [
+            640.875,
+            1351.042
+          ],
+          [
+            641.042,
+            1350.875
+          ],
+          [
+            642.958,
+            1350.792
+          ],
+          [
+            645.708,
+            1350.292
+          ],
+          [
+            646.958,
+            1349.875
+          ],
+          [
+            647.375,
+            1349.542
+          ],
+          [
+            647.708,
+            1349.458
+          ],
+          [
+            648.125,
+            1349.208
+          ],
+          [
+            648.625,
+            1348.625
+          ],
+          [
+            650.292,
+            1348.458
+          ],
+          [
+            652.792,
+            1347.458
+          ],
+          [
+            654.375,
+            1346.375
+          ],
+          [
+            656.792,
+            1344.042
+          ],
+          [
+            658.125,
+            1343.542
+          ],
+          [
+            658.458,
+            1343.208
+          ],
+          [
+            660.125,
+            1343.125
+          ],
+          [
+            663.375,
+            1342.458
+          ],
+          [
+            665.458,
+            1342.208
+          ],
+          [
+            670.375,
+            1342.125
+          ],
+          [
+            672.375,
+            1341.958
+          ],
+          [
+            677.042,
+            1340.958
+          ],
+          [
+            679.292,
+            1340.958
+          ],
+          [
+            679.542,
+            1341.292
+          ],
+          [
+            681.042,
+            1342.042
+          ],
+          [
+            684.292,
+            1342.875
+          ],
+          [
+            685.125,
+            1343.292
+          ],
+          [
+            686.958,
+            1344.625
+          ],
+          [
+            688.042,
+            1344.958
+          ],
+          [
+            688.458,
+            1344.958
+          ],
+          [
+            688.458,
+            1345.208
+          ],
+          [
+            688.708,
+            1345.542
+          ],
+          [
+            690.708,
+            1345.958
+          ],
+          [
+            691.375,
+            1345.958
+          ],
+          [
+            694.292,
+            1346.708
+          ],
+          [
+            697.125,
+            1348.042
+          ],
+          [
+            698.292,
+            1348.375
+          ],
+          [
+            698.875,
+            1348.708
+          ],
+          [
+            700.125,
+            1348.958
+          ],
+          [
+            700.208,
+            1349.458
+          ],
+          [
+            700.542,
+            1349.875
+          ],
+          [
+            700.958,
+            1349.875
+          ],
+          [
+            702.625,
+            1350.458
+          ],
+          [
+            705.375,
+            1350.542
+          ],
+          [
+            709.208,
+            1350.042
+          ],
+          [
+            710.125,
+            1349.875
+          ],
+          [
+            712.125,
+            1349.208
+          ],
+          [
+            712.542,
+            1348.708
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 1,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            493.208,
+            1296.875
+          ],
+          [
+            496.958,
+            1294.708
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 2,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            495.125,
+            1307.542
+          ],
+          [
+            499.375,
+            1308.042
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 3,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            494.042,
+            1318.458
+          ],
+          [
+            498.542,
+            1318.208
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 4,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            492.208,
+            1330.292
+          ],
+          [
+            495.542,
+            1331.292
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 5,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            489.708,
+            1343.042
+          ],
+          [
+            493.958,
+            1341.542
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 6,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            491.542,
+            1354.708
+          ],
+          [
+            496.208,
+            1352.458
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 7,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            501.625,
+            1363.958
+          ],
+          [
+            502.542,
+            1360.458
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 8,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            514.458,
+            1356.625
+          ],
+          [
+            513.875,
+            1351.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 9,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            527.458,
+            1354.958
+          ],
+          [
+            526.625,
+            1350.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 10,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            538.542,
+            1354.292
+          ],
+          [
+            539.208,
+            1350.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 11,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            550.708,
+            1357.042
+          ],
+          [
+            550.75,
+            1352.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 12,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            566.292,
+            1357.458
+          ],
+          [
+            566.708,
+            1354.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 13,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            577.292,
+            1361.625
+          ],
+          [
+            578.208,
+            1357.292
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 14,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            587.292,
+            1366.375
+          ],
+          [
+            587.875,
+            1362.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 15,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            599.708,
+            1362.625
+          ],
+          [
+            598.542,
+            1358.458
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 16,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            610.792,
+            1358.708
+          ],
+          [
+            609.625,
+            1354.375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 17,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            620.042,
+            1355.792
+          ],
+          [
+            617.958,
+            1351.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 18,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            629.125,
+            1353.375
+          ],
+          [
+            628.708,
+            1348.958
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 19,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            641.042,
+            1350.875
+          ],
+          [
+            640.958,
+            1346.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 20,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            648.625,
+            1348.625
+          ],
+          [
+            647.792,
+            1344.125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 21,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            658.458,
+            1343.208
+          ],
+          [
+            658.042,
+            1339.792
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 22,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            668.542,
+            1342.125
+          ],
+          [
+            668.458,
+            1337.625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 23,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            679.292,
+            1340.958
+          ],
+          [
+            679.542,
+            1337.792
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 24,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            688.458,
+            1344.958
+          ],
+          [
+            690.125,
+            1340.875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "canal_id": 11,
+        "name": "西南长运河",
+        "source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
+        "review_status": "manually_verified_against_official_12x_river_raster",
+        "separate_from_rivers": true,
+        "tick_id": 25,
+        "symbol_part": "ruler_tick",
+        "orientation": "perpendicular_to_local_tangent"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            700.125,
+            1348.958
+          ],
+          [
+            702.125,
+            1344.958
+          ]
+        ]
+      }
+    }
+  ]
+}

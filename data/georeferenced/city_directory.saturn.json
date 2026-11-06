@@ -964,7 +964,7 @@
       "id": "city:418050:53",
       "kind": "city",
       "name": "𣿅环市",
-      "tongueName": "Sadornia Tork Tork",
+      "tongueName": "Sadornia Tork",
       "parentId": "province:ST",
       "adminName": "土星省",
       "postalCode": "418050",
@@ -5067,7 +5067,7 @@
     {
       "id": "city:525060:281",
       "kind": "city",
-      "name": "莱菁市",
+      "name": "莱普市",
       "tongueName": "Laich Tork",
       "parentId": "province:SW",
       "adminName": "西南𣿅省",

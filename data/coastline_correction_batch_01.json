@@ -1,0 +1,2500 @@
+{
+  "schema_version": 1,
+  "correction_batch": "1/3",
+  "created_date": "2026-11-05",
+  "scope": {
+    "total_actionable_audit_candidates": 177,
+    "candidate_records_in_batch": 59,
+    "fraction_of_actionable_candidates": "1/3",
+    "context_only_records_excluded_from_denominator": 5,
+    "total_candidate_context_records_in_audit": 182,
+    "selection_policy": "Prioritize the highest-confidence, geometrically coherent false-island artifact class; within the 78 tile-intersection micro-ring candidates, select the 59 highest open-ocean-boundary-distance ranks and individually review all selected positions against raw 12x imagery."
+  },
+  "input": {
+    "file": "data/coastlines.geojson",
+    "sha256": "8be5565fe8e6fbfe346c22bf05110e31aa6af00331a054959f07e71c1a69b75a",
+    "feature_count": 1354,
+    "role_counts": {
+      "coastline": 979,
+      "island_shoreline": 375
+    },
+    "base_map_file": "input_map.png",
+    "base_map_sha256": "615405392faa20a902c629a80d0e7b30ca15bb3b4e0659fcefe5d3b2156a3f71",
+    "high_resolution_project_reference": {
+      "file": "official_map/Administrative Division Map of Donh 2026-no-text-super-big.png",
+      "sha256": "c393e40393a3a1bfbced75fe8867995d1b98eb7224d60354e8268396b8cd9eb6",
+      "dimensions_px": [
+        24579,
+        17376
+      ],
+      "registered_window_px": [
+        24576,
+        17376
+      ],
+      "provenance_limit": "Local high-resolution project reference; the available project files do not independently authenticate this as an official published map."
+    }
+  },
+  "coordinate_mapping": {
+    "coordinate_frame": "input_map pixel-centre indices; integer (x,y) names the centre of that pixel; not longitude/latitude",
+    "base_index_to_12x_reference_pixel_center_index": {
+      "x": "X12 = 12*x + 5.5",
+      "y": "Y12 = 12*y + 5.5"
+    },
+    "base_index_to_12x_reference_pixel_edge_coordinate": {
+      "x": "12*(x + 0.5)",
+      "y": "12*(y + 0.5)"
+    },
+    "source_extraction_tile_size": "1024 x 1024 px in the 12x reference",
+    "tile_intersection_match_tolerance": "0.015 px in the 12x reference"
+  },
+  "selection_and_visual_review": {
+    "candidate_class": "tiny closed island rings at source 1024x1024 extraction-tile intersections, far from the connected open-ocean shoreline",
+    "candidate_class_total": 78,
+    "selected_for_batch": 59,
+    "deferred_within_class": 19,
+    "selected_p95_distance_range_px": [
+      65.3689,
+      467.1906
+    ],
+    "next_deferred_p95_distance_px": 63.2876,
+    "geometry_thresholds": {
+      "ring_length_max_px": 0.3,
+      "intersection_residual_max_12x_px": 0.015
+    },
+    "visual_review": {
+      "individual_raw_12x_crops_reviewed": 59,
+      "crop_dimensions_px": [
+        64,
+        64
+      ],
+      "finding": "Every selected coordinate shows open-water color with no discernible black island-shoreline stroke in the raw high-resolution crop.",
+      "review_image": "docs/coastline_correction_batch_01_review.png",
+      "review_image_sha256": "f8b0c012e0ff97685b0e9eb480ce28eb9767cbd6934369e240ea8417b9425e57",
+      "annotation_note": "Magenta crosshairs mark candidate centers; crosshairs are added for review and are not part of the source map."
+    },
+    "selected_features": [
+      {
+        "feature_array_index_zero_based": 1347,
+        "audit_feature_id": "feature-1347",
+        "tile_id": "R01C08",
+        "center_index_xy_px": [
+          1962.166625,
+          84.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1962.1666,
+          84.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1962.6666,
+          85.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          23551.4995,
+          1023.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          23552,
+          1024
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 467.1906,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "f63088a4d479ef98e9e284b7d175c621d6de52d5a56d7e745c9d33e3674ea46a",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1336,
+        "audit_feature_id": "feature-1336",
+        "tile_id": "R01C08",
+        "center_index_xy_px": [
+          1876.833375,
+          84.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1876.8334,
+          84.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1877.3334,
+          85.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          22527.5005,
+          1023.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          22528,
+          1024
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 414.8519,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "ab2196b8b93d09413ef654afce80a75d5b18eaaabb836ac8f58d86f3e1e62038",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1351,
+        "audit_feature_id": "feature-1351",
+        "tile_id": "R05C08",
+        "center_index_xy_px": [
+          1962.166625,
+          1108.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1962.1666,
+          1108.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1962.6666,
+          1109.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          23551.4995,
+          13311.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          23552,
+          13312
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 411.676,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "e5182a8d18d7d6969932a46427c876e86d593901213f63313269407877dde512",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1352,
+        "audit_feature_id": "feature-1352",
+        "tile_id": "R05C08",
+        "center_index_xy_px": [
+          1962.166625,
+          1194.166625
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1962.1666,
+          1194.1666
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1962.6666,
+          1194.6666
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          23551.4995,
+          14335.4995
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          23552,
+          14336
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          -0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 402.2981,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "acd5306366602748cfb4e8dcdc9bace30cfe3bf6eeb3d7b6c8e963750e27c200",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1346,
+        "audit_feature_id": "feature-1346",
+        "tile_id": "R06C08",
+        "center_index_xy_px": [
+          1962.1666265,
+          1279.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1962.1666,
+          1279.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1962.6666,
+          1280.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          23551.499518,
+          15359.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          23552,
+          15360
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 382.531,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "e7ad26ba3bb96f3f418297490ae6c0e5d93cde9b820c6c7a69ebb42c2ad9b45c",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1340,
+        "audit_feature_id": "feature-1340",
+        "tile_id": "R05C08",
+        "center_index_xy_px": [
+          1876.833375,
+          1108.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1876.8334,
+          1108.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1877.3334,
+          1109.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          22527.5005,
+          13311.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          22528,
+          13312
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 376.6217,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "e91c0afc6955c371471bba35725ed10ef7a0a72460e31c72a71b01e5752a8615",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1343,
+        "audit_feature_id": "feature-1343",
+        "tile_id": "R01C08",
+        "center_index_xy_px": [
+          1962.1666265,
+          255.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1962.1666,
+          255.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1962.6666,
+          256.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          23551.499518,
+          3071.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          23552,
+          3072
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 367.3524,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "96a592bdf69db9c3723b67c1b5190b552e8b1877fa152ec9e5f09bad22d87da0",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1353,
+        "audit_feature_id": "feature-1353",
+        "tile_id": "R06C08",
+        "center_index_xy_px": [
+          1962.166625,
+          1364.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1962.1666,
+          1364.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1962.6666,
+          1365.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          23551.4995,
+          16383.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          23552,
+          16384
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 365.6961,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "6681b00c26b4cf9127e65cd89ede551ae4381764bd6e0008bc7d6a27acc976bd",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1301,
+        "audit_feature_id": "feature-1301",
+        "tile_id": "R01C08",
+        "center_index_xy_px": [
+          1791.5,
+          84.8333735
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1791.5,
+          84.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1792.0,
+          85.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          21503.5,
+          1023.500482
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          21504,
+          1024
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 363.5376,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 4e-05,
+        "source_feature_sha256_canonical_json": "c0e9ca96f6656cf4965832939d3b2e7f71a7a61abb219e74d9ff9abd15809a5e",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1257,
+        "audit_feature_id": "feature-1257",
+        "tile_id": "R01C07",
+        "center_index_xy_px": [
+          1706.166625,
+          84.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1706.1666,
+          84.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1706.6666,
+          85.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          20479.4995,
+          1023.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          20480,
+          1024
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 336.469,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "308006dd94ac651f8a5a7cb13d1c7a454263f53930cae2d0cbf829e291137219",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1348,
+        "audit_feature_id": "feature-1348",
+        "tile_id": "R02C08",
+        "center_index_xy_px": [
+          1962.166625,
+          340.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1962.1666,
+          340.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1962.6666,
+          341.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          23551.4995,
+          4095.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          23552,
+          4096
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 334.8554,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "ec48e3f95fcc19dd3acebc9d0bad5ceb51b3cd155cca5a0e1d62b03dc3277cc5",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1341,
+        "audit_feature_id": "feature-1341",
+        "tile_id": "R05C08",
+        "center_index_xy_px": [
+          1876.833375,
+          1194.166625
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1876.8334,
+          1194.1666
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1877.3334,
+          1194.6666
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          22527.5005,
+          14335.4995
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          22528,
+          14336
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          -0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 331.824,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "3b7db6cab366bd362903f4507baf592d5c6ef3eabcd288333de94be9c06853f4",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1345,
+        "audit_feature_id": "feature-1345",
+        "tile_id": "R05C08",
+        "center_index_xy_px": [
+          1962.1666265,
+          1023.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1962.1666,
+          1023.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1962.6666,
+          1024.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          23551.499518,
+          12287.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          23552,
+          12288
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 326.426,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "1c691f345170a4f6cbe377096a2a793b303c42ef93547cf23723a676784f40fd",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1305,
+        "audit_feature_id": "feature-1305",
+        "tile_id": "R05C08",
+        "center_index_xy_px": [
+          1791.5,
+          1108.8333735
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1791.5,
+          1108.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1792.0,
+          1109.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          21503.5,
+          13311.500482
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          21504,
+          13312
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 312.4165,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 4e-05,
+        "source_feature_sha256_canonical_json": "9f0a82be345dc88e4c6284167758704437b41e161654de6412285d3056e120e0",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1334,
+        "audit_feature_id": "feature-1334",
+        "tile_id": "R05C08",
+        "center_index_xy_px": [
+          1876.8333735,
+          1023.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1876.8334,
+          1023.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1877.3334,
+          1024.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          22527.500482,
+          12287.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          22528,
+          12288
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 301.0187,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "1a29fdb264e19b497d4567deddbc1e5f1ec40a508975dfda2f3cbf79792db575",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1335,
+        "audit_feature_id": "feature-1335",
+        "tile_id": "R06C08",
+        "center_index_xy_px": [
+          1876.8333735,
+          1279.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1876.8334,
+          1279.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1877.3334,
+          1280.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          22527.500482,
+          15359.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          22528,
+          15360
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 300.2624,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "7f6cdee430d938bf3d7afdc5fd5e9f3f4814f935c55ae1608ff7ae3b40649c80",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1332,
+        "audit_feature_id": "feature-1332",
+        "tile_id": "R02C08",
+        "center_index_xy_px": [
+          1876.8333735,
+          255.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1876.8334,
+          255.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1877.3334,
+          256.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          22527.500482,
+          3071.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          22528,
+          3072
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 296.4205,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "7bd02f9758e4320ee6567665a165d20b4acab937eb4b81afbdfd4c31a35d54a3",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1342,
+        "audit_feature_id": "feature-1342",
+        "tile_id": "R06C08",
+        "center_index_xy_px": [
+          1876.833375,
+          1364.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1876.8334,
+          1364.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1877.3334,
+          1365.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          22527.5005,
+          16383.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          22528,
+          16384
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 280.4461,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "80f3c1fbe573f28ffe283683e5c6c77cce2af5e773b4453b965bfa664582301e",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1337,
+        "audit_feature_id": "feature-1337",
+        "tile_id": "R02C08",
+        "center_index_xy_px": [
+          1876.833375,
+          340.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1876.8334,
+          340.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1877.3334,
+          341.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          22527.5005,
+          4095.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          22528,
+          4096
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 265.2675,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "caf736eb10fde70a3cdb6392788f93c02d476b90926198bd30dcb15e0b721506",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1349,
+        "audit_feature_id": "feature-1349",
+        "tile_id": "R02C08",
+        "center_index_xy_px": [
+          1962.166625,
+          426.166625
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1962.1666,
+          426.1666
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1962.6666,
+          426.6666
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          23551.4995,
+          5119.4995
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          23552,
+          5120
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          -0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 265.0446,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "a99df6791214070bd9b2fa65029f755ce9c69a019cb14d271019ae5effd34273",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1306,
+        "audit_feature_id": "feature-1306",
+        "tile_id": "R05C08",
+        "center_index_xy_px": [
+          1791.5,
+          1194.1666265
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1791.5,
+          1194.1666
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1792.0,
+          1194.6666
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          21503.5,
+          14335.499518
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          21504,
+          14336
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          -0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 263.89,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 4e-05,
+        "source_feature_sha256_canonical_json": "5c8e201fc8cd0c7ae759d5de32fa4d3f36406167fc54e600b3565f6632867f3e",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1299,
+        "audit_feature_id": "feature-1299",
+        "tile_id": "R05C08",
+        "center_index_xy_px": [
+          1791.5,
+          1023.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1791.5,
+          1023.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1792.0,
+          1024.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          21503.5,
+          12287.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          21504,
+          12288
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2376,
+        "ring_length_px_from_geometry": 0.23758788,
+        "distance_to_open_ocean_shore_p95_px": 260.9778,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "ef511bf8356f9d6e85f3b287c646bb72adfeca34a1e16512e17d92f3caaf1ea8",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1241,
+        "audit_feature_id": "feature-1241",
+        "tile_id": "R01C07",
+        "center_index_xy_px": [
+          1620.833375,
+          84.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1620.8334,
+          84.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1621.3334,
+          85.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          19455.5005,
+          1023.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          19456,
+          1024
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 251.219,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "97a0501f1b5494274dcbffc28a46ea76d4cdf20dcbe2b9907c9fc2afa6a714c1",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1261,
+        "audit_feature_id": "feature-1261",
+        "tile_id": "R05C07",
+        "center_index_xy_px": [
+          1706.166625,
+          1108.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1706.1666,
+          1108.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1706.6666,
+          1109.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          20479.4995,
+          13311.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          20480,
+          13312
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 250.252,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "2ae00b90af159b18d9334552190f9bbc6eaafd6291bb98c1f8cf167039af9822",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1297,
+        "audit_feature_id": "feature-1297",
+        "tile_id": "R01C07",
+        "center_index_xy_px": [
+          1791.5,
+          255.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1791.5,
+          255.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1792.0,
+          256.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          21503.5,
+          3071.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          21504,
+          3072
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2376,
+        "ring_length_px_from_geometry": 0.23758788,
+        "distance_to_open_ocean_shore_p95_px": 228.4638,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "86250f0b53f1c2cba3352cd63291d8da442ef43da851ff64608ef335cc05be61",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1338,
+        "audit_feature_id": "feature-1338",
+        "tile_id": "R02C08",
+        "center_index_xy_px": [
+          1876.833375,
+          426.166625
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1876.8334,
+          426.1666
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1877.3334,
+          426.6666
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          22527.5005,
+          5119.4995
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          22528,
+          5120
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          -0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 217.9159,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "ae3655f8760e6d40ba8ddd5bac85b8a1ae0ac4cbaacc240ab3d99f5e0a40f2e7",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1300,
+        "audit_feature_id": "feature-1300",
+        "tile_id": "R06C08",
+        "center_index_xy_px": [
+          1791.5,
+          1279.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1791.5,
+          1279.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1792.0,
+          1280.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          21503.5,
+          15359.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          21504,
+          15360
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2376,
+        "ring_length_px_from_geometry": 0.23758788,
+        "distance_to_open_ocean_shore_p95_px": 215.005,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "cdebfcea476a414e0c98478aa34f4ad739754d2e90cc988876f2d19a28cff014",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1262,
+        "audit_feature_id": "feature-1262",
+        "tile_id": "R05C07",
+        "center_index_xy_px": [
+          1706.166625,
+          1194.166625
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1706.1666,
+          1194.1666
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1706.6666,
+          1194.6666
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          20479.4995,
+          14335.4995
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          20480,
+          14336
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          -0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 206.5523,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "e932c87d3024f3f4fda4f06ff47a6ca6eb85a660fdb10980d86f0639a5ace269",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1350,
+        "audit_feature_id": "feature-1350",
+        "tile_id": "R03C08",
+        "center_index_xy_px": [
+          1962.1666265,
+          511.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1962.1666,
+          511.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1962.6666,
+          512.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          23551.499518,
+          6143.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          23552,
+          6144
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 197.5945,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "1422ded5a63dfa5417c8e5342a4f28a0c8613c16d78f367de1797a03cdbeed00",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1307,
+        "audit_feature_id": "feature-1307",
+        "tile_id": "R06C08",
+        "center_index_xy_px": [
+          1791.5,
+          1364.8333735
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1791.5,
+          1364.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1792.0,
+          1365.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          21503.5,
+          16383.500482
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          21504,
+          16384
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 195.1961,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 4e-05,
+        "source_feature_sha256_canonical_json": "b42e64c6489d428e706f88948af533d498a7c4d58adbad2cdcd8c203ee22c2a7",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1255,
+        "audit_feature_id": "feature-1255",
+        "tile_id": "R05C07",
+        "center_index_xy_px": [
+          1706.1666265,
+          1023.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1706.1666,
+          1023.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1706.6666,
+          1024.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          20479.499518,
+          12287.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          20480,
+          12288
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 192.8652,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "254d91bde0fa34505ff6fd574c814e9254abe03c59b4930b4eb9e86f848562cc",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1302,
+        "audit_feature_id": "feature-1302",
+        "tile_id": "R02C07",
+        "center_index_xy_px": [
+          1791.5,
+          340.8333735
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1791.5,
+          340.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1792.0,
+          341.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          21503.5,
+          4095.500482
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          21504,
+          4096
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 180.0175,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 4e-05,
+        "source_feature_sha256_canonical_json": "23ef96a4c9cbc2a087e591104977d515fd960353da86fa25f7e0a03a8af7e7ca",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1253,
+        "audit_feature_id": "feature-1253",
+        "tile_id": "R01C07",
+        "center_index_xy_px": [
+          1706.1666265,
+          255.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1706.1666,
+          255.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1706.6666,
+          256.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          20479.499518,
+          3071.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          20480,
+          3072
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 176.102,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "18d66e75d9849d02917d6ecf4f0cb6a7506de99865d681b7b54faba583687ae9",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1198,
+        "audit_feature_id": "feature-1198",
+        "tile_id": "R01C07",
+        "center_index_xy_px": [
+          1535.5,
+          255.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1535.5,
+          255.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1536.0,
+          256.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          18431.5,
+          3071.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          18432,
+          3072
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2376,
+        "ring_length_px_from_geometry": 0.23758788,
+        "distance_to_open_ocean_shore_p95_px": 170.7674,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "1ddd3cd01aa35575e6eef83be6e414d029fb9b8da343482adb6f81f949fdd914",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1245,
+        "audit_feature_id": "feature-1245",
+        "tile_id": "R05C07",
+        "center_index_xy_px": [
+          1620.833375,
+          1108.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1620.8334,
+          1108.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1621.3334,
+          1109.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          19455.5005,
+          13311.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          19456,
+          13312
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 167.1852,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "99fab4d0a096304bf8dfdd13ac96a2b9a001f949d6dbaec268cd8ac29b651d76",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1303,
+        "audit_feature_id": "feature-1303",
+        "tile_id": "R02C08",
+        "center_index_xy_px": [
+          1791.5,
+          426.1666265
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1791.5,
+          426.1666
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1792.0,
+          426.6666
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          21503.5,
+          5119.499518
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          21504,
+          5120
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          -0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 167.0221,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 4e-05,
+        "source_feature_sha256_canonical_json": "29cf5b5a2ed57931f63316ebc90eb8f98e1bd0d5d566342748797e9a7b49df4b",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1202,
+        "audit_feature_id": "feature-1202",
+        "tile_id": "R01C07",
+        "center_index_xy_px": [
+          1535.5,
+          84.8333735
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1535.5,
+          84.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1536.0,
+          85.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          18431.5,
+          1023.500482
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          18432,
+          1024
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 165.969,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 4e-05,
+        "source_feature_sha256_canonical_json": "e4b9c1faee08db01c59793a1b2146c31e521c062755f0fadf77e5318beb473e1",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1237,
+        "audit_feature_id": "feature-1237",
+        "tile_id": "R02C07",
+        "center_index_xy_px": [
+          1620.8333735,
+          255.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1620.8334,
+          255.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1621.3334,
+          256.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          19455.500482,
+          3071.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          19456,
+          3072
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 161.0868,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "ecdc3793a009fb684d30bddae0323110625d20a2a10cb7662ebdf1fb7eb1b7ee",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1246,
+        "audit_feature_id": "feature-1246",
+        "tile_id": "R05C07",
+        "center_index_xy_px": [
+          1620.833375,
+          1194.166625
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1620.8334,
+          1194.1666
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1621.3334,
+          1194.6666
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          19455.5005,
+          14335.4995
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          19456,
+          14336
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          -0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 148.5376,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "4a0480930a22df6582fbb6b93685c6cebf271b0befccff316e99cab1e1ef7bc8",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1339,
+        "audit_feature_id": "feature-1339",
+        "tile_id": "R03C08",
+        "center_index_xy_px": [
+          1876.8333735,
+          511.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1876.8334,
+          511.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1877.3334,
+          512.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          22527.500482,
+          6143.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          22528,
+          6144
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 147.5698,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "fa66696ac84d7ffcdb7120f760214c63cd69f0a27b419531dc1b8394cc776e80",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1256,
+        "audit_feature_id": "feature-1256",
+        "tile_id": "R06C07",
+        "center_index_xy_px": [
+          1706.1666265,
+          1279.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1706.1666,
+          1279.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1706.6666,
+          1280.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          20479.499518,
+          15359.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          20480,
+          15360
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 144.3391,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "80952339588d9065c5d3978367c58270842ed340aa3b94ba790582c40dea46c0",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1239,
+        "audit_feature_id": "feature-1239",
+        "tile_id": "R05C07",
+        "center_index_xy_px": [
+          1620.8333735,
+          1023.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1620.8334,
+          1023.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1621.3334,
+          1024.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          19455.500482,
+          12287.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          19456,
+          12288
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 136.1217,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "9e909a0ba6d3932a80b0d4b56f524f387d5baf304359b7d040c9fec51310f05c",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1199,
+        "audit_feature_id": "feature-1199",
+        "tile_id": "R04C07",
+        "center_index_xy_px": [
+          1535.5,
+          767.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1535.5,
+          767.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1536.0,
+          768.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          18431.5,
+          9215.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          18432,
+          9216
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2376,
+        "ring_length_px_from_geometry": 0.23758788,
+        "distance_to_open_ocean_shore_p95_px": 134.2353,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "10969278842e6bb592e4f5b7857e3ce203dbedeb3609d62444bf1a906a399e46",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1344,
+        "audit_feature_id": "feature-1344",
+        "tile_id": "R04C08",
+        "center_index_xy_px": [
+          1962.1666265,
+          767.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1962.1666,
+          767.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1962.6666,
+          768.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          23551.499518,
+          9215.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          23552,
+          9216
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 128.6209,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "019687fc6dfe8be05dc75d545722ebf0f27172e89b28de771bfa9380b966b8b3",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1263,
+        "audit_feature_id": "feature-1263",
+        "tile_id": "R06C07",
+        "center_index_xy_px": [
+          1706.166625,
+          1364.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1706.1666,
+          1364.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1706.6666,
+          1365.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          20479.4995,
+          16383.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          20480,
+          16384
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 112.6775,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "2d8cb44580d71273429fc18bbeb1a9563f8b5b816ae4e4931b388d22bc9ba169",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1258,
+        "audit_feature_id": "feature-1258",
+        "tile_id": "R02C07",
+        "center_index_xy_px": [
+          1706.166625,
+          340.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1706.1666,
+          340.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1706.6666,
+          341.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          20479.4995,
+          4095.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          20480,
+          4096
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 108.785,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "feae5d497f7b13ecaa9e79095141c18a99cd744fdb6322c51d3ad0e5c49e1486",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1200,
+        "audit_feature_id": "feature-1200",
+        "tile_id": "R05C07",
+        "center_index_xy_px": [
+          1535.5,
+          1023.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1535.5,
+          1023.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1536.0,
+          1024.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          18431.5,
+          12287.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          18432,
+          12288
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2376,
+        "ring_length_px_from_geometry": 0.23758788,
+        "distance_to_open_ocean_shore_p95_px": 107.4909,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "b7cb2b7f0b9fcc15b394014d60e9cd2e9582468e4f91e933d58b60ed1d010f90",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1146,
+        "audit_feature_id": "feature-1146",
+        "tile_id": "R01C06",
+        "center_index_xy_px": [
+          1450.1666265,
+          255.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1450.1666,
+          255.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1450.6666,
+          256.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          17407.499518,
+          3071.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          17408,
+          3072
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 102.2151,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "e5e245d61106c8b01c594a6162047803969881b3b7dfecf7b012df95d58caa5a",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1238,
+        "audit_feature_id": "feature-1238",
+        "tile_id": "R04C07",
+        "center_index_xy_px": [
+          1620.8333735,
+          767.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1620.8334,
+          767.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1621.3334,
+          768.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          19455.500482,
+          9215.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          19456,
+          9216
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 101.4845,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "1a85fe5d395a7a731f7a619a199382ce9af0ecdf577b6466a753feb15742b8e4",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1304,
+        "audit_feature_id": "feature-1304",
+        "tile_id": "R03C08",
+        "center_index_xy_px": [
+          1791.5,
+          511.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1791.5,
+          511.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1792.0,
+          512.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          21503.5,
+          6143.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          21504,
+          6144
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2376,
+        "ring_length_px_from_geometry": 0.23758788,
+        "distance_to_open_ocean_shore_p95_px": 98.5422,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "27269d3de4ecc025d71704c12a1c587a7accd5b3e9c43879dff3570ee18a9a01",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1150,
+        "audit_feature_id": "feature-1150",
+        "tile_id": "R02C06",
+        "center_index_xy_px": [
+          1450.166625,
+          340.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1450.1666,
+          340.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1450.6666,
+          341.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          17407.4995,
+          4095.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          17408,
+          4096
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 88.1736,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "a9d4795e9eb1254a9eca0e20e487bf61715197324a2c9a08e51642a52796a426",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1240,
+        "audit_feature_id": "feature-1240",
+        "tile_id": "R06C07",
+        "center_index_xy_px": [
+          1620.8333735,
+          1279.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1620.8334,
+          1279.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1621.3334,
+          1280.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          19455.500482,
+          15359.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          19456,
+          15360
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 87.8061,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "48f0b32aa17b51a6ec44b3bb0a61712237eb1714af222f2dbf10d700690a8768",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1206,
+        "audit_feature_id": "feature-1206",
+        "tile_id": "R05C07",
+        "center_index_xy_px": [
+          1535.5,
+          1108.8333735
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1535.5,
+          1108.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1536.0,
+          1109.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          18431.5,
+          13311.500482
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          18432,
+          13312
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 85.9407,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 4e-05,
+        "source_feature_sha256_canonical_json": "ab98099189c9d5b242462f48c36bfef8371d9e513a90fc9faa864b1d9dd4f0e6",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1203,
+        "audit_feature_id": "feature-1203",
+        "tile_id": "R02C07",
+        "center_index_xy_px": [
+          1535.5,
+          340.8333735
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1535.5,
+          340.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1536.0,
+          341.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          18431.5,
+          4095.500482
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          18432,
+          4096
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 85.2748,
+        "nearest_vertical_tile_seam_offset_px": 0.0,
+        "nearest_horizontal_tile_seam_offset_px": 4e-05,
+        "source_feature_sha256_canonical_json": "73a363895823ca9a4342d10396200d55c059fd2378569b45d4fce103cb347c0b",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1259,
+        "audit_feature_id": "feature-1259",
+        "tile_id": "R02C07",
+        "center_index_xy_px": [
+          1706.166625,
+          426.166625
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1706.1666,
+          426.1666
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1706.6666,
+          426.6666
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          20479.4995,
+          5119.4995
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          20480,
+          5120
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          -0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 81.5221,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "08eb7d01f311f9d4306653bd0954343b51073169990779c2b27b53ff2c7534e0",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1149,
+        "audit_feature_id": "feature-1149",
+        "tile_id": "R01C06",
+        "center_index_xy_px": [
+          1450.166625,
+          84.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1450.1666,
+          84.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1450.6666,
+          85.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          17407.4995,
+          1023.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          17408,
+          1024
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 80.469,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "b761d91292ae06c2e7b4318ba102a50c7d657ea315fd30f47eeb79bed0c3cc11",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1260,
+        "audit_feature_id": "feature-1260",
+        "tile_id": "R03C07",
+        "center_index_xy_px": [
+          1706.1666265,
+          511.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1706.1666,
+          511.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1706.6666,
+          512.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          20479.499518,
+          6143.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          20480,
+          6144
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          -0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 79.3849,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "643fab1b94dc7fc3cadc63cce38cff942c265b205cfaf37a4d05090f6f00e324",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1242,
+        "audit_feature_id": "feature-1242",
+        "tile_id": "R02C07",
+        "center_index_xy_px": [
+          1620.833375,
+          340.833375
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1620.8334,
+          340.8334
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1621.3334,
+          341.3334
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          19455.5005,
+          4095.5005
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          19456,
+          4096
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0008
+        ],
+        "ring_length_px_ledger_4dp": 0.2348,
+        "ring_length_px_from_geometry": 0.23476797,
+        "distance_to_open_ocean_shore_p95_px": 75.5868,
+        "nearest_vertical_tile_seam_offset_px": 4.2e-05,
+        "nearest_horizontal_tile_seam_offset_px": 4.2e-05,
+        "source_feature_sha256_canonical_json": "1b9608aee4640b1f0e9c1ac011bd55d01fadf00c7a22ffbe24e8a408f7680281",
+        "action": "removed as unsupported subpixel false island ring"
+      },
+      {
+        "feature_array_index_zero_based": 1333,
+        "audit_feature_id": "feature-1333",
+        "tile_id": "R04C08",
+        "center_index_xy_px": [
+          1876.8333735,
+          767.5
+        ],
+        "center_index_xy_px_ledger_4dp": [
+          1876.8334,
+          767.5
+        ],
+        "center_edge_xy_px_ledger_4dp": [
+          1877.3334,
+          768.0
+        ],
+        "reference_12x_pixel_center_index_xy": [
+          22527.500482,
+          9215.5
+        ],
+        "source_tile_intersection_12x_edge_xy": [
+          22528,
+          9216
+        ],
+        "source_tile_intersection_residual_12x_px": [
+          0.0008,
+          0.0
+        ],
+        "ring_length_px_ledger_4dp": 0.2362,
+        "ring_length_px_from_geometry": 0.23618218,
+        "distance_to_open_ocean_shore_p95_px": 65.3689,
+        "nearest_vertical_tile_seam_offset_px": 4e-05,
+        "nearest_horizontal_tile_seam_offset_px": 0.0,
+        "source_feature_sha256_canonical_json": "901970232bef6623172c592eb5229071f85bac28ebb09d5f20ecb73b755561ae",
+        "action": "removed as unsupported subpixel false island ring"
+      }
+    ],
+    "deferred_candidates": [
+      {
+        "feature_array_index_zero_based": 1207,
+        "audit_feature_id": "feature-1207",
+        "tile_id": "R05C07",
+        "center_index_xy_px": [
+          1535.5,
+          1194.1666
+        ],
+        "center_edge_xy_px": [
+          1536.0,
+          1194.6666
+        ],
+        "ring_length_px": 0.2362,
+        "distance_to_open_ocean_shore_p95_px": 63.2876
+      },
+      {
+        "feature_array_index_zero_based": 1148,
+        "audit_feature_id": "feature-1148",
+        "tile_id": "R05C06",
+        "center_index_xy_px": [
+          1450.1666,
+          1023.5
+        ],
+        "center_edge_xy_px": [
+          1450.6666,
+          1024.0
+        ],
+        "ring_length_px": 0.2362,
+        "distance_to_open_ocean_shore_p95_px": 57.0499
+      },
+      {
+        "feature_array_index_zero_based": 1147,
+        "audit_feature_id": "feature-1147",
+        "tile_id": "R04C06",
+        "center_index_xy_px": [
+          1450.1666,
+          767.5
+        ],
+        "center_edge_xy_px": [
+          1450.6666,
+          768.0
+        ],
+        "ring_length_px": 0.2362,
+        "distance_to_open_ocean_shore_p95_px": 55.386
+      },
+      {
+        "feature_array_index_zero_based": 1151,
+        "audit_feature_id": "feature-1151",
+        "tile_id": "R02C06",
+        "center_index_xy_px": [
+          1450.1666,
+          426.1666
+        ],
+        "center_edge_xy_px": [
+          1450.6666,
+          426.6666
+        ],
+        "ring_length_px": 0.2348,
+        "distance_to_open_ocean_shore_p95_px": 54.9387
+      },
+      {
+        "feature_array_index_zero_based": 1244,
+        "audit_feature_id": "feature-1244",
+        "tile_id": "R03C07",
+        "center_index_xy_px": [
+          1620.8334,
+          511.5
+        ],
+        "center_edge_xy_px": [
+          1621.3334,
+          512.0
+        ],
+        "ring_length_px": 0.2362,
+        "distance_to_open_ocean_shore_p95_px": 48.8058
+      },
+      {
+        "feature_array_index_zero_based": 1298,
+        "audit_feature_id": "feature-1298",
+        "tile_id": "R04C08",
+        "center_index_xy_px": [
+          1791.5,
+          767.5
+        ],
+        "center_edge_xy_px": [
+          1792.0,
+          768.0
+        ],
+        "ring_length_px": 0.2376,
+        "distance_to_open_ocean_shore_p95_px": 47.476
+      },
+      {
+        "feature_array_index_zero_based": 1152,
+        "audit_feature_id": "feature-1152",
+        "tile_id": "R03C06",
+        "center_index_xy_px": [
+          1450.1666,
+          511.5
+        ],
+        "center_edge_xy_px": [
+          1450.6666,
+          512.0
+        ],
+        "ring_length_px": 0.2362,
+        "distance_to_open_ocean_shore_p95_px": 45.5751
+      },
+      {
+        "feature_array_index_zero_based": 1201,
+        "audit_feature_id": "feature-1201",
+        "tile_id": "R06C07",
+        "center_index_xy_px": [
+          1535.5,
+          1279.5
+        ],
+        "center_edge_xy_px": [
+          1536.0,
+          1280.0
+        ],
+        "ring_length_px": 0.2376,
+        "distance_to_open_ocean_shore_p95_px": 43.5302
+      },
+      {
+        "feature_array_index_zero_based": 1115,
+        "audit_feature_id": "feature-1115",
+        "tile_id": "R02C06",
+        "center_index_xy_px": [
+          1364.8334,
+          255.5
+        ],
+        "center_edge_xy_px": [
+          1365.3334,
+          256.0
+        ],
+        "ring_length_px": 0.2362,
+        "distance_to_open_ocean_shore_p95_px": 42.5166
+      },
+      {
+        "feature_array_index_zero_based": 1205,
+        "audit_feature_id": "feature-1205",
+        "tile_id": "R03C07",
+        "center_index_xy_px": [
+          1535.5,
+          511.5
+        ],
+        "center_edge_xy_px": [
+          1536.0,
+          512.0
+        ],
+        "ring_length_px": 0.2376,
+        "distance_to_open_ocean_shore_p95_px": 33.4008
+      },
+      {
+        "feature_array_index_zero_based": 1247,
+        "audit_feature_id": "feature-1247",
+        "tile_id": "R06C07",
+        "center_index_xy_px": [
+          1620.8334,
+          1364.8334
+        ],
+        "center_edge_xy_px": [
+          1621.3334,
+          1365.3334
+        ],
+        "ring_length_px": 0.2348,
+        "distance_to_open_ocean_shore_p95_px": 27.4275
+      },
+      {
+        "feature_array_index_zero_based": 1204,
+        "audit_feature_id": "feature-1204",
+        "tile_id": "R02C06",
+        "center_index_xy_px": [
+          1535.5,
+          426.1666
+        ],
+        "center_edge_xy_px": [
+          1536.0,
+          426.6666
+        ],
+        "ring_length_px": 0.2362,
+        "distance_to_open_ocean_shore_p95_px": 24.6345
+      },
+      {
+        "feature_array_index_zero_based": 1153,
+        "audit_feature_id": "feature-1153",
+        "tile_id": "R05C06",
+        "center_index_xy_px": [
+          1450.1666,
+          1108.8334
+        ],
+        "center_edge_xy_px": [
+          1450.6666,
+          1109.3334
+        ],
+        "ring_length_px": 0.2348,
+        "distance_to_open_ocean_shore_p95_px": 17.276
+      },
+      {
+        "feature_array_index_zero_based": 1254,
+        "audit_feature_id": "feature-1254",
+        "tile_id": "R04C07",
+        "center_index_xy_px": [
+          1706.1666,
+          767.5
+        ],
+        "center_edge_xy_px": [
+          1706.6666,
+          768.0
+        ],
+        "ring_length_px": 0.2362,
+        "distance_to_open_ocean_shore_p95_px": 16.2345
+      },
+      {
+        "feature_array_index_zero_based": 1119,
+        "audit_feature_id": "feature-1119",
+        "tile_id": "R03C06",
+        "center_index_xy_px": [
+          1364.8334,
+          511.5
+        ],
+        "center_edge_xy_px": [
+          1365.3334,
+          512.0
+        ],
+        "ring_length_px": 0.2362,
+        "distance_to_open_ocean_shore_p95_px": 14.0453
+      },
+      {
+        "feature_array_index_zero_based": 1118,
+        "audit_feature_id": "feature-1118",
+        "tile_id": "R02C06",
+        "center_index_xy_px": [
+          1364.8334,
+          426.1666
+        ],
+        "center_edge_xy_px": [
+          1365.3334,
+          426.6666
+        ],
+        "ring_length_px": 0.2348,
+        "distance_to_open_ocean_shore_p95_px": 13.5337
+      },
+      {
+        "feature_array_index_zero_based": 1208,
+        "audit_feature_id": "feature-1208",
+        "tile_id": "R06C07",
+        "center_index_xy_px": [
+          1535.5,
+          1364.8334
+        ],
+        "center_edge_xy_px": [
+          1536.0,
+          1365.3334
+        ],
+        "ring_length_px": 0.2362,
+        "distance_to_open_ocean_shore_p95_px": 9.5376
+      },
+      {
+        "feature_array_index_zero_based": 1243,
+        "audit_feature_id": "feature-1243",
+        "tile_id": "R02C07",
+        "center_index_xy_px": [
+          1620.8334,
+          426.1666
+        ],
+        "center_edge_xy_px": [
+          1621.3334,
+          426.6666
+        ],
+        "ring_length_px": 0.2348,
+        "distance_to_open_ocean_shore_p95_px": 6.6984
+      },
+      {
+        "feature_array_index_zero_based": 1116,
+        "audit_feature_id": "feature-1116",
+        "tile_id": "R01C06",
+        "center_index_xy_px": [
+          1364.8334,
+          84.8334
+        ],
+        "center_edge_xy_px": [
+          1365.3334,
+          85.3334
+        ],
+        "ring_length_px": 0.2348,
+        "distance_to_open_ocean_shore_p95_px": 5.6969
+      }
+    ]
+  },
+  "change": {
+    "operation": "Remove only the 59 selected island_shoreline closed-line features from data/coastlines.geojson; preserve every other feature and its order unchanged.",
+    "removed_feature_count": 59,
+    "output_feature_count": 1295,
+    "output_role_counts": {
+      "coastline": 979,
+      "island_shoreline": 316
+    },
+    "output_sha256": "8897d8c95f55c67979c5f0ddd96bccbde4ccf8d52c4f03014db6bf31f21f7fd4",
+    "remaining_actionable_audit_candidates": 118
+  }
+}

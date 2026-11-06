@@ -1,0 +1,4 @@
+issue_id,x_center_index_px,y_center_index_px,sample_count,dark_ink_distance_p50_reference_px,dark_ink_distance_p95_reference_px,dark_ink_distance_p99_reference_px,dark_ink_distance_p95_input_map_px,ink_skeleton_distance_p50_reference_px,ink_skeleton_distance_p95_reference_px,ink_skeleton_distance_p95_input_map_px,best_grid_shift_x_reference_px,best_grid_shift_y_reference_px,best_shift_skeleton_p95_reference_px,ink_threshold_grayscale_lt
+SHORE-GAP-0002,1597.7885,443.6394,8519,2.0,3.597,4.197,0.2997,8.0,10.788,0.899,0,0,10.788,70
+SHORE-GAP-0003,1610.025,445.4,7519,2.0,3.597,4.197,0.2997,8.197,10.788,0.899,0,0,10.788,70
+SHORE-GAP-0005,1596.3015,446.7279,8560,2.0,3.597,4.197,0.2997,8.197,10.788,0.899,0,0,10.788,70
