@@ -100,6 +100,9 @@ aside[hidden]{display:none}
 .layerName{flex:1}
 .layerChildren{display:grid;gap:5px;margin-left:16px;padding-left:10px;border-left:1px solid #dfe8e8}
 .layerChildren[hidden]{display:none}
+.bathymetryLegend{display:grid;gap:5px;padding:2px 10px 7px 30px}
+.bathymetryColorRamp{height:10px;border:1px solid rgba(34,65,88,.16);border-radius:999px;background:linear-gradient(90deg,#c9eee8 0%,#a7dfe2 1.33%,#8dd0e1 6.67%,#72bedf 16.67%,#5da9d6 30%,#4f96cc 40%,#4785be 53.33%,#4176b0 66.67%,#3a68a0 80%,#335c91 93.33%,#2d5287 100%)}
+.bathymetryLegendLabels{display:flex;justify-content:space-between;gap:6px;color:#6d8287;font-size:9px;line-height:1.2}
 .groupDisclosure{display:flex;align-items:center;justify-content:flex-start;gap:9px;flex:1 1 auto;width:auto;height:32px;min-width:0;padding:0 3px;border:0;border-radius:7px;background:transparent;color:inherit;text-align:left}
 .groupDisclosure:hover{background:transparent}
 .groupDisclosure .layerName{flex:1}
@@ -1048,6 +1051,8 @@ aside[hidden]{display:none}
 <section class="layerGroup" data-layer-group>
 <div class="layerParent"><button class="groupDisclosure" type="button" aria-expanded="false" aria-controls="waterLayers" aria-label="&#x5c55;&#x5f00;&#x6c34;&#x7cfb;"><span class="treeChevron"></span><span class="layerSwatch" style="--swatch:#b1d0ed"></span><span class="layerName">&#x6c34;&#x7cfb;</span></button><input id="waterToggle" type="checkbox" data-group="water" checked aria-label="&#x663e;&#x793a;&#x6240;&#x6709;&#x6c34;&#x7cfb;&#x56fe;&#x5c42;"></div>
 <div class="layerChildren" id="waterLayers" role="group" aria-label="&#x6c34;&#x7cfb;&#x5b50;&#x56fe;&#x5c42;" hidden>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#256eaa"></span><span class="layerName">&#x6d77;&#x5e95;&#x6df1;&#x5ea6;</span><input type="checkbox" data-layer="bathymetry" checked aria-label="&#x663e;&#x793a;&#x6d77;&#x5e95;&#x6df1;&#x5ea6;"></label>
+<div class="bathymetryLegend" role="img" aria-label="&#x6d77;&#x5e95;&#x6df1;&#x5ea6;&#xff0c;&#x6d45;&#x8272;&#x4e3a;&#x6d45;&#x6d77;&#xff0c;&#x6df1;&#x8272;&#x4e3a;&#x6df1;&#x6d77;&#xff0c;&#x6df1;&#x5ea6;&#x8303;&#x56f4;&#x4ece; 0 &#x7c73;&#x5230;&#x8d1f; 15000 &#x7c73;"><div class="bathymetryColorRamp" aria-hidden="true"></div><div class="bathymetryLegendLabels"><span>0 m</span><span>−5,000 m</span><span>−10,000 m</span><span>−15,000 m</span></div></div>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#b1d0ed"></span><span class="layerName">&#x6cb3;&#x6d41;</span><input type="checkbox" data-layer="rivers" checked aria-label="&#x663e;&#x793a;&#x6cb3;&#x6d41;"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#b1d0ed"></span><span class="layerName">&#x8fd0;&#x6cb3;&#x4e3b;&#x7ebf;</span><input type="checkbox" data-layer="canals" checked aria-label="&#x663e;&#x793a;&#x8fd0;&#x6cb3;&#x4e3b;&#x7ebf;"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#b1d0ed"></span><span class="layerName">&#x8fd0;&#x6cb3;&#x9f7f;&#x7ebf;</span><input type="checkbox" data-layer="canalTicks" checked aria-label="&#x663e;&#x793a;&#x8fd0;&#x6cb3;&#x9f7f;&#x7ebf;"></label>
@@ -1091,6 +1096,7 @@ aside[hidden]{display:none}
 <script src="data/city_directory.js"></script>
 <script src="data/city_coordinates.js"></script>
 <script src="data/region_extrema.js"></script>
+<script src="data/bathymetry.js"></script>
 <script>
 const sourceSvg=document.getElementById('mapSvg');
 const canvas=document.getElementById('mapCanvas');
@@ -1126,6 +1132,7 @@ const DRAW_ORDER=new Map([
 let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
 let drag=null,framePending=false,viewAnimation=null,zoomAnimation=null,zoomTarget=null,zoomLastTime=null,hoveredCode=null,pixelRatio=1,interactiveRender=false,renderQualityTimer=null;
+let bathymetryRaster=null;
 let records=[],regionRecords=[],regionBounds=new Map();
 const HYDROLOGY_JUNCTION_KEYS=new Set();
 const HYDROLOGY_TOPOLOGY=new WeakMap();
@@ -2323,6 +2330,16 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
   }
   ctx.restore();
 }
+function getBathymetryRaster(){
+  if(bathymetryRaster)return bathymetryRaster;
+  const oceanRecord=records.find(record=>record.layerId==='oceanFill');
+  if(!oceanRecord)return null;
+  bathymetryRaster=window.DUNIVERSE_BATHYMETRY.createRaster({
+    width:MAP_W,height:MAP_H,sourceWidth:SOURCE_W,oceanPath:oceanRecord.variants[0],
+    islandPaths:records.filter(record=>record.layerId==='islandFills'&&record.tag==='path').map(record=>record.variants[0])
+  });
+  return bathymetryRaster;
+}
 function draw(){
   const m=canvasMetrics();if(!m.width||!m.height)return;
   const drawPixelRatio=canvas.width/m.width||pixelRatio;
@@ -2381,6 +2398,10 @@ function draw(){
     const hideIsland=record.layerId==='islandFills'&&(!layerVisible||islandExtent<MIN_ISLAND_SCREEN_EXTENT);
     drawRecord(record,pathToleranceIndex,scale,hideIsland?OCEAN_COLOR:null,
       isAdministrativeLabel?regionLabelOpacity:isMajorRegionLabel?majorRegionLabelOpacity:1,interactiveRender);
+    if(record.layerId==='oceanFill'&&layerVisibility.get('bathymetry')!==false){
+      const raster=getBathymetryRaster();
+      if(raster)ctx.drawImage(raster,0,0,MAP_W,MAP_H);
+    }
   }
 }
 function updateCanvasBackingStore(){

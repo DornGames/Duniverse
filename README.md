@@ -18,6 +18,7 @@ python -m http.server 8000
 
 ## 地图操作
 
+- “水系”图层中可单独开关海底深度，色标范围为 0 至 −15,000 米。
 - 滚动鼠标滚轮缩放地图，拖动地图平移视图。
 - 地图叠加土星自定义坐标网格：纬度每 1°、经度每 10°一条浅色半透明细虚线；边缘刻度使用本项目的数字度数，不显示方向字母。自定义纬度等于真实行星纬度的六分之一。
 - 在顶部搜索框输入中文名、𣿅语名、行政区编号或城市邮政区号，可从动态候选项中选择大区、省级行政区或城市；选择后地图会定位到有确认位置的对象，并显示介绍、各级名称、𣿅语名称和面积。城市没有可核实的位置或面积时会明确显示暂无数据。
@@ -30,6 +31,7 @@ python -m http.server 8000
 
 ## 项目内容
 
+- **海底地形**：宽大陆架、岛链海脊和浅海台地围合海盆；固定种子的细微地形起伏在刷新后保持一致。
 - **交互式地图**：Canvas 绘制行政区和地图要素；支持缩放、平移、区域定位与分组图层控制。
 - **行政区标注**：两字母编号与对应中文名称并列显示，可分别开关。
 - **矢量预览**：[`vector_preview.svg`](vector_preview.svg) 可直接在浏览器、Inkscape 或 Illustrator 中打开。
@@ -44,6 +46,7 @@ python -m http.server 8000
 | 路径 | 用途 |
 | --- | --- |
 | `index.html` | 浏览器交互地图与 Canvas 渲染逻辑 |
+| `data/bathymetry.js` | 海底深度场与连续深度配色 |
 | `vector_preview.svg` | 独立矢量地图预览 |
 | `input_map.png` | 基础地图图像 |
 | `Administrative-Division-Map-of-Donh-2026.png` | 高清地图图像，用于细节核对和水系描绘 |
@@ -75,6 +78,8 @@ python tools/build_coordinate_catalog.py
 提取流程依赖 Python 及相应图像和地理数据处理库，包括 OpenCV、NumPy、Pandas、Pillow、Shapely、SciPy 和 scikit-image。OCR 提取还需要安装 Tesseract，并提供中文、英文语言包。各工具的其他参数可查看脚本说明或运行 `--help`。
 
 ## 坐标与数据说明
+
+海底深度依据海岸线和岛群位置生成：大陆架宽度沿海岸变化，岛链之间形成海盆，南侧岛链的海脊与大陆架相接。海底颜色连续过渡，海沟最深为 −15,000 米。海底地貌参考 [NOAA 海底地形介绍](https://www.noaa.gov/education/resource-collections/ocean-coasts/ocean-floor-features)。
 
 原图没有比例尺或地理控制点，所以基础图层仍以图像像素存储：原点在左上角，横轴向右、纵轴向下。项目另建立了一套根据给定国土面积定标的土星坐标参考，参数见 [`data/georeference.json`](data/georeference.json)，测绘假设和公式见[《𣿅国地图测绘报告》](saturn-map-survey-report.md)。该坐标系以土星 1 bar 参考椭球为基准，臭都为 0°经线、地图纬度约 4.7833°N（对应真实行星地理纬度约 28.7°N）；真实纬度 ±90°按六分之一记为地图纬度 ±15°，经度仍为东向 360°一周。
 
