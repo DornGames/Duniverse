@@ -28,6 +28,7 @@
 
   // The deepest trough follows the ocean-facing side of the offshore island arc.
   const TRENCH_POINTS=[
+    {x:1626,y:10},{x:1570,y:15},{x:1520,y:30},{x:1460,y:55},{x:1410,y:85},{x:1410,y:120},{x:1400,y:145},
     {x:1390,y:170},{x:1420,y:186},{x:1450,y:207},{x:1480,y:238},
     {x:1510,y:260},{x:1535,y:278},{x:1565,y:300},{x:1590,y:325},{x:1614,y:351},
     {x:1640,y:385},{x:1690,y:480},{x:1730,y:510},{x:1790,y:535},{x:1825,y:555},
@@ -424,6 +425,8 @@
         const northwestShoulder=1-smoothStep((y-280)/140);
         const southernShoulder=smoothStep((y-820)/120);
         depth+=(450+1200*northwestShoulder+1600*southernShoulder)*trenchProfile;
+        const northwestTail=smoothStep(y/45)*smoothStep((170-y)/75);
+        depth+=4500*northwestTail*Math.exp(-.5*trenchDistanceSquared/(trenchWidth*trenchWidth))*trenchClearance;
         const deepestCore=Math.exp(-.5*trenchDistanceSquared/(trenchWidth*trenchWidth))
           *Math.exp(-.5*((y-690)/70)**2)*trenchClearance;
         depth+=(MAX_DEPTH_M-depth)*deepestCore;
