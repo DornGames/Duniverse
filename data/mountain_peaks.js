@@ -410,7 +410,8 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ],
         "elevation_m": 9145.5,
         "elevation_zone": "north_plateau",
-        "elevation_source": "terrain_cluster_estimate"
+        "elevation_source": "terrain_cluster_estimate",
+        "mountain_range": "北铁山山脉"
       }
     },
     {
@@ -454,7 +455,8 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ],
         "elevation_m": 8258.5,
         "elevation_zone": "north_plateau",
-        "elevation_source": "terrain_cluster_estimate"
+        "elevation_source": "terrain_cluster_estimate",
+        "mountain_range": "北铁山山脉"
       }
     },
     {
@@ -521,7 +523,8 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "elevation_m": 13471.543,
         "elevation_zone": "north_plateau",
         "elevation_source": "user_provided",
-        "elevation_rank": 1
+        "elevation_rank": 1,
+        "mountain_range": "铁山山脉"
       }
     },
     {
@@ -544,7 +547,8 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "elevation_m": 11471.5,
         "elevation_zone": "north_plateau",
         "elevation_source": "user_provided",
-        "elevation_rank": 3
+        "elevation_rank": 3,
+        "mountain_range": "铁山山脉"
       }
     },
     {
@@ -611,7 +615,8 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ],
         "elevation_m": 9825.1,
         "elevation_zone": "north_plateau",
-        "elevation_source": "terrain_cluster_estimate"
+        "elevation_source": "terrain_cluster_estimate",
+        "mountain_range": "长岭山脉"
       }
     },
     {
@@ -634,7 +639,8 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "elevation_m": 11134.3,
         "elevation_zone": "north_plateau",
         "elevation_source": "user_provided",
-        "elevation_rank": 4
+        "elevation_rank": 4,
+        "mountain_range": "长岭山脉"
       }
     },
     {
@@ -657,7 +663,8 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "elevation_m": 12470.0,
         "elevation_zone": "north_plateau",
         "elevation_source": "user_provided",
-        "elevation_rank": 2
+        "elevation_rank": 2,
+        "mountain_range": "长岭山脉"
       }
     },
     {
@@ -700,8 +707,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
           434.375
         ],
         "elevation_m": 9500.0,
-        "elevation_zone": "other",
-        "elevation_source": "user_class_estimate"
+        "elevation_zone": "north_plateau",
+        "elevation_source": "user_class_estimate",
+        "physiographic_region": "北湩高原",
+        "mountain_range": "长岭山脉"
       }
     },
     {
@@ -985,9 +994,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
           991.75,
           602.625
         ],
-        "elevation_m": 2518.0,
+        "elevation_m": 5100.0,
         "elevation_zone": "other",
-        "elevation_source": "terrain_cluster_estimate"
+        "elevation_source": "terrain_cluster_estimate",
+        "mountain_range": "瑞丰山脉"
       }
     },
     {
@@ -1095,9 +1105,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
           1016.5,
           705.125
         ],
-        "elevation_m": 2453.6,
+        "elevation_m": 4766.0,
         "elevation_zone": "other",
-        "elevation_source": "terrain_cluster_estimate"
+        "elevation_source": "user_provided",
+        "mountain_range": "瑞丰山脉"
       }
     },
     {

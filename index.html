@@ -50,12 +50,28 @@ h1{margin:0;color:var(--ink);font-size:15px;font-weight:650;letter-spacing:.01em
 .mapButton:hover{background:#edf4f3;color:var(--accent-dark)}
 .mapButton:active{transform:translateY(1px)}
 .mapButton.zoom{min-width:40px;padding:0;font-size:22px;font-weight:450}
+.mapButton.ranking{color:#45656b}
 .mapButton.layers{color:var(--accent-dark)}
 .mapButton.layers[aria-expanded="true"]{background:var(--accent-dark);color:#fff}
 .mapButton.fit{background:var(--accent-dark);color:#fff}
 .mapButton.fit:hover{background:#194f4d;color:#fff}
 .buttonDivider{width:1px;height:24px;margin:0 3px;background:#e3eaea}
 .compactLabel{display:none}
+.rankingDialog{width:min(660px,calc(100vw - 32px));max-width:none;max-height:min(82dvh,820px);padding:0;overflow:hidden;border:1px solid #dce6e7;border-radius:18px;background:#fff;color:var(--ink);box-shadow:0 24px 80px rgba(20,42,46,.28)}
+.rankingDialog::backdrop{background:rgba(25,43,47,.42);backdrop-filter:blur(3px)}
+.rankingHeader{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 20px;border-bottom:1px solid #e8eeee}
+.rankingHeader h2{margin:0;font-size:17px;font-weight:680}
+.rankingHeader p{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
+.rankingTableWrap{max-height:calc(82dvh - 92px);overflow:auto}
+.rankingTable{width:100%;border-collapse:collapse;font-size:13px}
+.rankingTable th{position:sticky;top:0;padding:9px 14px;background:#f4f8f7;color:#71868a;font-size:11px;font-weight:650;text-align:left}
+.rankingTable td{padding:8px 14px;border-top:1px solid #edf1f1}
+.rankingTable tr:hover td{background:#f7faf9}
+.rankingTable .rankNumber{width:64px;color:#71868a;font-variant-numeric:tabular-nums}
+.rankingTable .rankHeight{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rankingPeakLink{padding:0;border:0;background:transparent;color:#244b50;font-weight:650;text-align:left}
+.rankingPeakLink:hover{color:#246f6c;text-decoration:underline}
+.rankingNote{padding:11px 20px;color:#71868a;font-size:11px;line-height:1.5}
 .layout{position:fixed;inset:0;min-height:100dvh;overflow:hidden}
 #mapWrap{position:absolute;inset:0;overflow:hidden;background:#e8f0f2;padding:0}
 #mapCanvas{display:block;width:100%;height:100%;border:0;background:#f5f8f9;box-shadow:none;touch-action:none;cursor:grab}
@@ -78,6 +94,12 @@ aside[hidden]{display:none}
 .regionInfoLevelLabel{margin:0 0 4px;color:#71868a;font-size:10px;font-weight:650;letter-spacing:.04em}
 .regionInfoLevelName{margin:0;color:var(--ink);font-size:14px;font-weight:650;line-height:1.4}
 .regionInfoLevelTongue{margin:4px 0 0;color:#53817d;font-size:12px;line-height:1.4;overflow-wrap:anywhere}
+.regionHighestPeak{display:grid;gap:7px;padding:11px 12px;border:1px solid #dce8e7;border-radius:11px;background:#f3f8f7}
+.regionHighestPeak[hidden]{display:none}
+.regionHighestPeak h3{margin:0;color:#526d70;font-size:11px;font-weight:700}
+.regionHighestPeak p{margin:0;color:#536a70;font-size:12px;line-height:1.5}
+.regionHighestPeak button{justify-self:start;padding:0;border:0;background:transparent;color:#246f6c;font-size:12px;font-weight:650;text-align:left}
+.regionHighestPeak button:hover{text-decoration:underline}
 .regionAreaCard{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border-radius:11px;background:#edf5f3;color:#416b68;font-size:12px}
 .regionAreaCard strong{color:#244b50;font-size:15px;font-weight:700;text-align:right}
 .regionDescription{padding:11px 12px;border:1px solid #e4ebeb;border-radius:11px;background:#f8fafa}
@@ -162,6 +184,7 @@ aside[hidden]{display:none}
 </div>
 <div class="mapActions" role="group" aria-label="地图操作">
 <button id="togglePanel" class="mapButton layers" type="button" aria-controls="mapPanel" aria-expanded="false" aria-label="打开图层面板"><span class="wideLabel">图层</span><span class="compactLabel">层</span></button>
+<button id="openMountainRanking" class="mapButton ranking" type="button" aria-haspopup="dialog" aria-controls="mountainRankingDialog"><span class="wideLabel">山峰排名</span><span class="compactLabel">峰榜</span></button>
 <span class="buttonDivider" aria-hidden="true"></span>
 <button id="zoomOut" class="mapButton zoom" type="button" title="缩小" aria-label="缩小地图">−</button><button id="zoomIn" class="mapButton zoom" type="button" title="放大" aria-label="放大地图">+</button>
 <button id="fit" class="mapButton fit" type="button" title="适应窗口" aria-label="显示完整地图"><span class="wideLabel">适应窗口</span><span class="compactLabel">全图</span></button>
@@ -1050,6 +1073,7 @@ aside[hidden]{display:none}
 </section>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#34764d"></span><span class="layerName">山峰</span><input type="checkbox" data-layer="mountainPeaks" checked aria-label="显示山峰图层"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#34764d"></span><span class="layerName">山峰海拔</span><input type="checkbox" data-layer="mountainElevations" checked aria-label="显示山峰海拔图层"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#527d71"></span><span class="layerName">山脉与高原</span><input type="checkbox" data-layer="mountainRanges" checked aria-label="显示山脉与高原名称"></label>
 <section class="layerGroup" data-layer-group>
 <div class="layerParent"><button class="groupDisclosure" type="button" aria-expanded="false" aria-controls="waterLayers" aria-label="&#x5c55;&#x5f00;&#x6c34;&#x7cfb;"><span class="treeChevron"></span><span class="layerSwatch" style="--swatch:#b1d0ed"></span><span class="layerName">&#x6c34;&#x7cfb;</span></button><input id="waterToggle" type="checkbox" data-group="water" checked aria-label="&#x663e;&#x793a;&#x6240;&#x6709;&#x6c34;&#x7cfb;&#x56fe;&#x5c42;"></div>
 <div class="layerChildren" id="waterLayers" role="group" aria-label="&#x6c34;&#x7cfb;&#x5b50;&#x56fe;&#x5c42;" hidden>
@@ -1091,10 +1115,12 @@ aside[hidden]{display:none}
 <div class="panelIntro"><div><p id="regionInfoKicker" class="panelKicker">PLACE INFORMATION</p><h2 id="regionInfoTitle" aria-live="polite"></h2><p id="regionInfoSubtitle" class="muted"></p></div><button id="closeRegionInfo" class="closePanel" type="button" aria-label="关闭地名介绍">×</button></div>
 <div id="regionInfoLevels" class="regionInfoLevels"></div>
 <div class="regionAreaCard"><span id="regionInfoMetricLabel">面积</span><strong id="regionInfoArea"></strong></div>
+<section id="regionHighestPeak" class="regionHighestPeak" hidden><h3 id="regionHighestPeakHeading">区域最高峰</h3><p id="regionHighestPeakSummary"></p><button id="regionHighestPeakLink" type="button">在地图中查看 →</button></section>
 <section id="regionInfoCoordinatePanel" class="regionCoordinatePanel" aria-labelledby="regionInfoCoordinateTitle" hidden><h3 id="regionInfoCoordinateTitle">土星坐标</h3><div id="regionInfoCoordinateContent"></div></section>
 <section class="regionDescription" aria-labelledby="regionDescriptionTitle"><h3 id="regionDescriptionTitle">介绍</h3><p id="regionInfoDescription">暂无介绍</p></section>
 </aside>
 <div id="mapHud"><div id="selected" aria-live="polite" hidden></div><p class="mapHint">&#x6eda;&#x8f6e;&#x7f29;&#x653e; &#x00b7; &#x62d6;&#x62fd;&#x5e73;&#x79fb; &#x00b7; &#x70b9;&#x51fb;&#x5730;&#x533a;&#x6216;&#x57ce;&#x5e02;&#x540d;&#x79f0;&#x67e5;&#x770b;&#x4ecb;&#x7ecd; &#x00b7; 点击海洋查看深度</p></div></div>
+<dialog id="mountainRankingDialog" class="rankingDialog" aria-labelledby="mountainRankingTitle"><div class="rankingHeader"><div><h2 id="mountainRankingTitle">山峰海拔排名</h2><p>按当前记录海拔从高到低排列；推定海拔在介绍页中单独标识。</p></div><button id="closeMountainRanking" class="closePanel" type="button" aria-label="关闭山峰排名">×</button></div><div class="rankingTableWrap"><table class="rankingTable"><thead><tr><th scope="col">排名</th><th scope="col">山峰</th><th scope="col" class="rankHeight">海拔</th></tr></thead><tbody id="mountainRankingRows"></tbody></table></div><p class="rankingNote">点击山峰名称可定位到地图并打开介绍。</p></dialog>
 <script src="data/region_directory.js"></script>
 <script src="data/city_directory.js"></script>
 <script src="data/city_coordinates.js"></script>
@@ -1106,6 +1132,8 @@ aside[hidden]{display:none}
 <script>
 const sourceSvg=document.getElementById('mapSvg');
 const canvas=document.getElementById('mapCanvas');
+canvas.setAttribute('aria-label','𣿅国地图，可拖动和缩放；点击地图上的山峰、山脉、高原、湖泊、河流、城市或行政区可查看介绍。');
+document.querySelector('.mapHint').textContent='滚轮缩放 · 拖拽平移 · 点击地图上的地理事物查看介绍 · 点击海洋查看深度';
 const ctx=canvas.getContext('2d',{alpha:false,desynchronized:true});
 const hitCanvas=document.createElement('canvas');
 const hitCtx=hitCanvas.getContext('2d');
@@ -1131,10 +1159,10 @@ const HYDROLOGY_LAYER_IDS=new Set(['lakes','rivers','canals','canalTicks','seaso
 const HYDROLOGY_LOD_TOLERANCES=[.06,.12,.24,.48,.96];
 const COASTAL_FILL_LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];
 const DETAIL_LAYERS=new Set(['regionCodes','regionNames','regionTongueNames','blackMarkers']);
-const PLACE_NAME_DRAW_GROUPS=new Set(['majorRegionNames','regionNames','regionTongueNames','provinceCapitalLabels','provinceCapitalTongueLabels','nationalCapitalLabels','nationalCapitalTongueLabels','cityLabels','cityTongueLabels','mountainPeakLabels','mountainElevationLabels','lakeNameLabels']);
+const PLACE_NAME_DRAW_GROUPS=new Set(['majorRegionNames','regionNames','regionTongueNames','provinceCapitalLabels','provinceCapitalTongueLabels','nationalCapitalLabels','nationalCapitalTongueLabels','cityLabels','cityTongueLabels','mountainPeakLabels','mountainElevationLabels','lakeNameLabels','mountainRangeLabels']);
 const DRAW_ORDER=new Map([
   ['oceanFill',0],['coastlineFills',1],['regions',1],['lakes',2],['rivers',3],['canals',4],['canalTicks',5],
-  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['graticule',10.5],['majorRegionNames',11],['nationalBorder',12],['blackMarkers',13],['mountainPeakMarkers',13.5],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22],['mountainPeakLabels',23],['mountainElevationLabels',23.5],['lakeNameLabels',24]
+  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['graticule',10.5],['majorRegionNames',11],['nationalBorder',12],['mountainRangeLines',12.5],['blackMarkers',13],['mountainPeakMarkers',13.5],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22],['mountainRangeLabels',22.5],['mountainPeakLabels',23],['mountainElevationLabels',23.5],['lakeNameLabels',24]
 ]);
 let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
@@ -1142,6 +1170,7 @@ let drag=null,framePending=false,viewAnimation=null,zoomAnimation=null,zoomTarge
 let bathymetryRaster=null;
 let oceanDepthPoint=null;
 let records=[],regionRecords=[],regionBounds=new Map();
+let mountainLabelRecords=[],mountainRangeLabelRecords=[],mountainRangeLineRecords=[],lakeNameLabelRecords=[],lakePathRecords=[],majorRegionNameRecords=[];
 const HYDROLOGY_JUNCTION_KEYS=new Set();
 const HYDROLOGY_TOPOLOGY=new WeakMap();
 const textMetricsCanvas=document.createElement('canvas');
@@ -1163,8 +1192,25 @@ const MOUNTAIN_SEARCH_DIRECTORY=(window.DUNIVERSE_MOUNTAIN_PEAKS?.features||[]).
   longitudeDeg:feature.geometry?.coordinates?.[0],mapLatitudeDeg:feature.geometry?.coordinates?.[1],
   pointX:feature.properties?.source_map_pixel_xy?.[0],pointY:feature.properties?.source_map_pixel_xy?.[1],
   elevationM:feature.properties?.elevation_m,elevationSource:feature.properties?.elevation_source,
-  elevationRank:feature.properties?.elevation_rank,elevationZone:feature.properties?.elevation_zone
+  elevationRank:feature.properties?.elevation_rank,elevationZone:feature.properties?.elevation_zone,
+  mountainRangeName:feature.properties?.mountain_range||'',physiographicRegionName:feature.properties?.physiographic_region||''
 }));
+const MOUNTAIN_RANGE_SEARCH_DIRECTORY=[
+  {id:'mountain-range:beidong-plateau',kind:'mountainRange',subtype:'高原',name:'北湩高原',memberZone:'north_plateau',pointX:1035,pointY:225,fontSize:48,labelOpacity:.31,rotation:0,points:[],description:'北部高原地带，山峰整体海拔较高。鹞岳位于高原西南部，属于长岭山脉。'},
+  {id:'mountain-range:tishan',kind:'mountainRange',subtype:'山脉',name:'铁山山脉',pointX:1040,pointY:344,fontSize:20,labelOpacity:.8,rotation:0,maxMemberDistance:42,points:[[735,394],[820,379],[916,373],[1008.5,370.625],[1068,378],[1150,397]],description:'位于北湩高原中南部，整体呈东西走向，在黑头山处分出长岭山脉与北铁山山脉。'},
+  {id:'mountain-range:longling',kind:'mountainRange',subtype:'山脉',name:'长岭山脉',pointX:874,pointY:449,fontSize:19,labelOpacity:.82,rotation:0,maxMemberDistance:30,points:[[1008.5,370.625],[987,392],[960.75,409.625],[937.25,414.625],[894.5,417.375],[850,429],[804,434.375]],description:'铁山山脉从黑头山向西南分出的支脉，鹞岳位于北湩高原的长岭山脉。'},
+  {id:'mountain-range:north-tieshan',kind:'mountainRange',subtype:'山脉',name:'北铁山山脉',pointX:914,pointY:323,fontSize:18,labelOpacity:.82,rotation:0,maxMemberDistance:28,points:[[1008.5,370.625],[982,359],[947,354],[911.25,361.375],[885,353],[859.25,347.375]],description:'铁山山脉从黑头山向北分出的支脉，经过蹬马山、雪晴岑一带。'},
+  {id:'mountain-range:central',kind:'mountainRange',subtype:'山脉',name:'中央山脉',memberZone:'central_range',pointX:1141,pointY:849,fontSize:19,labelOpacity:.8,rotation:-60,points:[[1266,608.875],[1200,724],[1135,841],[1068,958],[986,1097]],description:'沿光山至武宗湖一带延伸，整体呈西南—东北走向。'},
+  {id:'mountain-range:ruifeng',kind:'mountainRange',subtype:'山脉',name:'瑞丰山脉',pointX:1030,pointY:661,fontSize:19,labelOpacity:.82,rotation:0,maxMemberDistance:28,points:[[991.75,602.625],[1004,650],[1016.5,705.125]],description:'位于瑞丰地区，雪瑞峰与剑山属于这条山脉。'}
+];
+const MOUNTAIN_RANGE_BY_ID=new Map(MOUNTAIN_RANGE_SEARCH_DIRECTORY.map(entry=>[entry.id,entry]));
+const MOUNTAIN_RANGE_BY_NAME=new Map(MOUNTAIN_RANGE_SEARCH_DIRECTORY.map(entry=>[entry.name,entry]));
+const MOUNTAIN_RANKED_PEAKS=MOUNTAIN_SEARCH_DIRECTORY.filter(entry=>Number.isFinite(entry.elevationM)).sort((a,b)=>b.elevationM-a.elevationM||a.name.localeCompare(b.name,'zh-CN'));
+let lastMountainRank=0,lastMountainElevation=null;
+MOUNTAIN_RANKED_PEAKS.forEach((entry,index)=>{
+  if(entry.elevationM!==lastMountainElevation){lastMountainRank=index+1;lastMountainElevation=entry.elevationM;}
+  entry.elevationRank=lastMountainRank;
+});
 const LAKE_SEARCH_DIRECTORY=(window.DUNIVERSE_LAKE_NAMES||[]).map(entry=>({...entry,regionLabel:entry.territory==='neighboring_country'?'邻国':''}));
 const NAMED_RIVER_SEARCH_DIRECTORY=(window.DUNIVERSE_NAMED_RIVERS||[]).map(entry=>({...entry,regionLabel:entry.territory==='neighboring_country'?'邻国':'暂无'}));
 const COUNTRY_SEARCH_ENTRY={
@@ -1172,7 +1218,7 @@ const COUNTRY_SEARCH_ENTRY={
   name:(document.querySelector('.brandText h1')?.textContent||'').replace('行政区划图','').trim()||'国家',
   tongueName:'',areaKm2:66490000,description:''
 };
-const REGION_SEARCH_DIRECTORY=[COUNTRY_SEARCH_ENTRY,...REGION_DIRECTORY,...CITY_DIRECTORY,...MOUNTAIN_SEARCH_DIRECTORY,...LAKE_SEARCH_DIRECTORY,...NAMED_RIVER_SEARCH_DIRECTORY];
+const REGION_SEARCH_DIRECTORY=[COUNTRY_SEARCH_ENTRY,...REGION_DIRECTORY,...CITY_DIRECTORY,...MOUNTAIN_SEARCH_DIRECTORY,...MOUNTAIN_RANGE_SEARCH_DIRECTORY,...LAKE_SEARCH_DIRECTORY,...NAMED_RIVER_SEARCH_DIRECTORY];
 const layerInputs=[...document.querySelectorAll('input[data-layer]')];
 const layerVisibility=new Map(layerInputs.map(input=>[input.dataset.layer,input.checked]));
 const regionSearch=document.getElementById('regionSearch');
@@ -1361,7 +1407,9 @@ function createRecord(element,drawGroup,layerId){
     lineCap:style.strokeLinecap||'butt',lineJoin:style.strokeLinejoin||'miter',
     dash:styleDash(style.strokeDasharray),
     fillOpacity:parseFloat(style.fillOpacity)||1,strokeOpacity:parseFloat(style.strokeOpacity)||1,
-    bounds:element.getBBox()
+    bounds:element.getBBox(),rangeId:element.dataset.rangeId||null,
+    rotationDeg:Number.parseFloat(element.dataset.rotationDeg)||0,
+    fixedFontSize:Number.parseFloat(element.dataset.fixedFontSize)||0
   };
   if(tag==='text'&&PLACE_NAME_DRAW_GROUPS.has(drawGroup))record.stroke='none';
   if(tag==='path'){
@@ -2236,6 +2284,34 @@ function appendMountainPeakLayer(){
   }
   sourceSvg.append(markerLayer,labelLayer,elevationLabelLayer);
 }
+function appendMountainRangeLayer(){
+  const ns='http://www.w3.org/2000/svg';
+  const lineLayer=document.createElementNS(ns,'g');
+  lineLayer.id='mountainRangeLines';lineLayer.dataset.layer='mountainRanges';
+  lineLayer.setAttribute('pointer-events','none');
+  const labelLayer=document.createElementNS(ns,'g');
+  labelLayer.id='mountainRangeLabels';labelLayer.dataset.layer='mountainRanges';
+  labelLayer.setAttribute('pointer-events','none');
+  for(const range of MOUNTAIN_RANGE_SEARCH_DIRECTORY){
+    if(range.points?.length>1){
+      const line=document.createElementNS(ns,'path');
+      line.setAttribute('d',range.points.map((point,index)=>`${index?'L':'M'} ${point[0]} ${point[1]}`).join(' '));
+      line.setAttribute('fill','none');line.setAttribute('stroke','#668c78');line.setAttribute('stroke-width','2.6');
+      line.setAttribute('stroke-opacity','.42');line.setAttribute('stroke-linecap','round');line.setAttribute('stroke-linejoin','round');
+      line.dataset.rangeId=range.id;lineLayer.append(line);
+    }
+    const label=document.createElementNS(ns,'text');
+    label.setAttribute('x',range.pointX);label.setAttribute('y',range.pointY);
+    label.setAttribute('text-anchor','middle');label.setAttribute('dominant-baseline','central');
+    label.setAttribute('font-family','Arial,"Microsoft YaHei",sans-serif');label.setAttribute('font-size',range.fontSize);
+    label.setAttribute('font-weight','700');label.setAttribute('fill','#527765');label.setAttribute('fill-opacity',range.labelOpacity);
+    label.dataset.rangeId=range.id;label.dataset.rotationDeg=range.rotation||0;label.dataset.fixedFontSize=range.fontSize;label.textContent=range.name;labelLayer.append(label);
+    const locations=[...(range.points||[]),[range.pointX,range.pointY]];
+    const xs=locations.map(point=>point[0]),ys=locations.map(point=>point[1]),padding=range.subtype==='高原'?95:44;
+    range.bounds={x:Math.min(...xs)-padding,y:Math.min(...ys)-padding,width:Math.max(...xs)-Math.min(...xs)+padding*2,height:Math.max(...ys)-Math.min(...ys)+padding*2};
+  }
+  sourceSvg.append(lineLayer,labelLayer);
+}
 function appendLakeNameLayer(){
   const entries=window.DUNIVERSE_LAKE_NAMES||[];
   const ns='http://www.w3.org/2000/svg';
@@ -2256,18 +2332,53 @@ function appendLakeNameLayer(){
 }
 appendSaturnGraticule();
 appendMountainPeakLayer();
+appendMountainRangeLayer();
 appendLakeNameLayer();
 
 // Build Canvas paths from the extracted geometry, then remove the source SVG from the page.
 buildHydrologyTopology(sourceSvg);
 collectRecords(sourceSvg);
 records.sort((a,b)=>(DRAW_ORDER.get(a.drawGroup)??50)-(DRAW_ORDER.get(b.drawGroup)??50));
+mountainLabelRecords=records.filter(record=>record.tag==='text'&&['mountainPeakLabels','mountainElevationLabels'].includes(record.drawGroup));
+mountainRangeLabelRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='mountainRangeLabels');
+mountainRangeLineRecords=records.filter(record=>record.tag==='path'&&record.drawGroup==='mountainRangeLines');
+lakeNameLabelRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='lakeNameLabels');
+lakePathRecords=records.filter(record=>record.tag==='path'&&record.layerId==='lakes');
+majorRegionNameRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='majorRegionNames');
 bindCapitalLabelsToMarkers();
 buildRegionIndex();
 for(const entry of MOUNTAIN_SEARCH_DIRECTORY){
   const code=hitTestRegion({x:entry.pointX,y:entry.pointY});
   const province=code?REGION_BY_ID.get(`province:${code}`):null;
   entry.parentId=province?.id||null;entry.adminName=province?.name||'暂无';
+}
+function pointToSegmentDistance(point,start,end){
+  const dx=end[0]-start[0],dy=end[1]-start[1],lengthSquared=dx*dx+dy*dy;
+  const amount=lengthSquared?Math.max(0,Math.min(1,((point.x-start[0])*dx+(point.y-start[1])*dy)/lengthSquared)):0;
+  return Math.hypot(point.x-(start[0]+amount*dx),point.y-(start[1]+amount*dy));
+}
+for(const entry of MOUNTAIN_SEARCH_DIRECTORY){
+  entry.physiographicRegionName=entry.physiographicRegionName||(entry.elevationZone==='north_plateau'?'北湩高原':'');
+  if(entry.mountainRangeName)continue;
+  if(entry.elevationZone==='central_range'){entry.mountainRangeName='中央山脉';continue;}
+  let closest=null,distance=Infinity;
+  for(const range of MOUNTAIN_RANGE_SEARCH_DIRECTORY){
+    if(!range.maxMemberDistance||range.points.length<2)continue;
+    for(let index=1;index<range.points.length;index++){
+      const next=pointToSegmentDistance({x:entry.pointX,y:entry.pointY},range.points[index-1],range.points[index]);
+      if(next<distance){closest=range;distance=next;}
+    }
+  }
+  if(closest&&distance<=closest.maxMemberDistance)entry.mountainRangeName=closest.name;
+}
+for(const range of MOUNTAIN_RANGE_SEARCH_DIRECTORY){
+  const code=hitTestRegion({x:range.pointX,y:range.pointY});
+  const province=code?REGION_BY_ID.get(`province:${code}`):null;
+  range.parentId=province?.id||null;range.adminName=province?.name||'暂无';
+  range.memberPeaks=range.memberZone
+    ?MOUNTAIN_SEARCH_DIRECTORY.filter(entry=>entry.elevationZone===range.memberZone)
+    :MOUNTAIN_SEARCH_DIRECTORY.filter(entry=>entry.mountainRangeName===range.name);
+  range.highestPeak=range.memberPeaks.slice().sort((a,b)=>b.elevationM-a.elevationM)[0]||null;
 }
 for(const entry of LAKE_SEARCH_DIRECTORY){
   if(entry.territory==='neighboring_country')continue;
@@ -2433,7 +2544,7 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
     const isCityTongueLabel=record.layerId==='cityTongueLabels';
     const isMajorRegionName=record.drawGroup==='majorRegionNames',isCapitalLabel=isProvinceCapitalLabel||record.layerId==='nationalCapitalLabels',isCityLabel=record.layerId==='cityLabels';
     const isMajorRegionTongueName=isMajorRegionName&&record.language==='tongue';
-    const fontSize=record.drawGroup==='graticule'?10:record.drawGroup==='mountainPeakLabels'?12:record.drawGroup==='mountainElevationLabels'?10:record.drawGroup==='lakeNameLabels'?12:isRegionName?FIXED_REGION_NAME_FONT_PX:isRegionTongueName?FIXED_REGION_TONGUE_FONT_PX:isProvinceCapitalTongueLabel?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:isCityTongueLabel?FIXED_CITY_TONGUE_LABEL_FONT_PX:isMajorRegionTongueName?FIXED_MAJOR_REGION_TONGUE_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:isCityLabel?FIXED_CITY_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
+    const fontSize=record.drawGroup==='graticule'?10:record.drawGroup==='mountainPeakLabels'?12:record.drawGroup==='mountainElevationLabels'?10:record.drawGroup==='lakeNameLabels'?12:record.drawGroup==='mountainRangeLabels'?(record.fixedFontSize||18):isRegionName?FIXED_REGION_NAME_FONT_PX:isRegionTongueName?FIXED_REGION_TONGUE_FONT_PX:isProvinceCapitalTongueLabel?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:isCityTongueLabel?FIXED_CITY_TONGUE_LABEL_FONT_PX:isMajorRegionTongueName?FIXED_MAJOR_REGION_TONGUE_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:isCityLabel?FIXED_CITY_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
     const screenFont=record.font.replace(/[\d.]+px/,`${fontSize}px`);
     ctx.font=screenFont.replace(/[\d.]+px/,`${fontSize/scale}px`);ctx.textBaseline=record.textBaseline;
     let textX=record.x,textY=record.y,textAlign=record.textAlign,displayText=record.text;
@@ -2469,6 +2580,9 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
       textY-=FIXED_CITY_LABEL_LINE_OFFSET_PX/scale;
     }else if(isCityTongueLabel&&layerVisibility.get('cityLabels')!==false){
       textY+=FIXED_CITY_LABEL_LINE_OFFSET_PX/scale;
+    }
+    if(record.drawGroup==='mountainRangeLabels'&&record.rotationDeg){
+      ctx.translate(textX,textY);ctx.rotate(record.rotationDeg*Math.PI/180);textX=0;textY=0;
     }
     ctx.textAlign=textAlign;
     if(!fastText&&record.stroke!=='none'&&record.lineWidth>0){
@@ -2790,6 +2904,118 @@ function cityLabelHitTest(clientX,clientY){
   }
   return null;
 }
+function textRecordHitTest(record,clientX,clientY,fontSize,rotationDeg=0){
+  const metrics=canvasMetrics(),left=metrics.rect.left+canvas.clientLeft+metrics.offsetX,top=metrics.rect.top+canvas.clientTop+metrics.offsetY;
+  const point=screenStableLabelPoint(record,metrics.scale);
+  const screenX=left+(point.x-vb.x)*metrics.scale,screenY=top+(point.y-vb.y)*metrics.scale;
+  let dx=clientX-screenX,dy=clientY-screenY;
+  if(rotationDeg){const angle=rotationDeg*Math.PI/180,cos=Math.cos(angle),sin=Math.sin(angle);[dx,dy]=[dx*cos+dy*sin,-dx*sin+dy*cos];}
+  const screenFont=record.font.replace(/[\d.]+px/,`${fontSize}px`);textMetricsCtx.font=screenFont;
+  const width=textMetricsCtx.measureText(record.text).width;
+  const x0=record.textAlign==='center'?-width/2:record.textAlign==='right'?-width:0;
+  return dx>=x0-5&&dx<=x0+width+5&&Math.abs(dy)<=Math.max(8,fontSize*.75);
+}
+function mountainLabelHitTest(clientX,clientY){
+  if(layerVisibility.get('mountainPeaks')===false&&layerVisibility.get('mountainElevations')===false)return null;
+  if(viewZoomWidth()>MOUNTAIN_LABEL_DETAIL_WIDTH)return null;
+  const peakByName=new Map(MOUNTAIN_SEARCH_DIRECTORY.map(entry=>[entry.name,entry]));
+  for(let index=mountainLabelRecords.length-1;index>=0;index--){
+    const record=mountainLabelRecords[index];
+    if(layerVisibility.get(record.layerId)===false)continue;
+    const fontSize=record.drawGroup==='mountainElevationLabels'?10:12;
+    if(textRecordHitTest(record,clientX,clientY,fontSize))return peakByName.get(record.text)||null;
+  }
+  return null;
+}
+function mountainMarkerHitTest(point){
+  if(layerVisibility.get('mountainPeaks')===false)return null;
+  const limit=10/Math.max(.001,canvasMetrics().scale);
+  let nearest=null,distance=Infinity;
+  for(const peak of MOUNTAIN_SEARCH_DIRECTORY){
+    const next=Math.hypot(point.x-peak.pointX,point.y-peak.pointY);
+    if(next<distance){nearest=peak;distance=next;}
+  }
+  return distance<=limit?nearest:null;
+}
+function mountainRangeHitTest(point,clientX,clientY){
+  if(layerVisibility.get('mountainRanges')===false)return null;
+  for(let index=mountainRangeLabelRecords.length-1;index>=0;index--){
+    const record=mountainRangeLabelRecords[index],range=MOUNTAIN_RANGE_BY_ID.get(record.rangeId);
+    if(range&&textRecordHitTest(record,clientX,clientY,range.fontSize,range.rotation))return range;
+  }
+  const scale=Math.max(.001,canvasMetrics().scale);
+  for(let index=mountainRangeLineRecords.length-1;index>=0;index--){
+    const record=mountainRangeLineRecords[index];
+    const bounds=record.bounds;
+    if(point.x<bounds.x-10/scale||point.x>bounds.x+bounds.width+10/scale||point.y<bounds.y-10/scale||point.y>bounds.y+bounds.height+10/scale)continue;
+    hitCtx.lineWidth=Math.max(record.lineWidth,9/scale);
+    if(hitCtx.isPointInStroke(record.variants[0],point.x,point.y))return MOUNTAIN_RANGE_BY_ID.get(record.rangeId)||null;
+  }
+  return null;
+}
+function majorRegionLabelHitTest(clientX,clientY){
+  for(let index=majorRegionNameRecords.length-1;index>=0;index--){
+    const record=majorRegionNameRecords[index];
+    const region=REGION_DIRECTORY.find(entry=>entry.kind==='major'&&(entry.name===record.text||entry.tongueName===record.text));
+    if(region&&textRecordHitTest(record,clientX,clientY,record.language==='tongue'?FIXED_MAJOR_REGION_TONGUE_FONT_PX:FIXED_MAJOR_REGION_NAME_FONT_PX))return region;
+  }
+  return null;
+}
+function lakeHitTest(point,clientX,clientY){
+  if(layerVisibility.get('lakes')===false)return null;
+  if(layerVisibility.get('lakeNames')!==false){
+    const entryByName=new Map(LAKE_SEARCH_DIRECTORY.map(entry=>[entry.name,entry]));
+    for(let index=lakeNameLabelRecords.length-1;index>=0;index--){
+      const record=lakeNameLabelRecords[index];
+      if(textRecordHitTest(record,clientX,clientY,12))return entryByName.get(record.text)||null;
+    }
+  }
+  const candidates=LAKE_SEARCH_DIRECTORY.filter(entry=>entry.territory!=='neighboring_country'&&entry.bounds&&
+    point.x>=entry.bounds.x&&point.x<=entry.bounds.x+entry.bounds.width&&point.y>=entry.bounds.y&&point.y<=entry.bounds.y+entry.bounds.height);
+  if(!candidates.length)return null;
+  const inLake=lakePathRecords.some(record=>{
+    const bounds=record.bounds;
+    return point.x>=bounds.x&&point.x<=bounds.x+bounds.width&&point.y>=bounds.y&&point.y<=bounds.y+bounds.height&&hitCtx.isPointInPath(record.variants[0],point.x,point.y,'evenodd');
+  });
+  if(!inLake)return null;
+  return candidates.sort((a,b)=>Math.hypot(point.x-a.pointX,point.y-a.pointY)-Math.hypot(point.x-b.pointX,point.y-b.pointY))[0];
+}
+function riverHitTest(point){
+  const scale=Math.max(.001,canvasMetrics().scale);
+  for(let index=records.length-1;index>=0;index--){
+    const record=records[index];if(record.tag!=='path'||!['rivers','seasonalRivers','crossBorderRivers'].includes(record.layerId))continue;
+    if(layerVisibility.get(record.layerId)===false)continue;
+    const bounds=record.bounds;if(point.x<bounds.x-8/scale||point.x>bounds.x+bounds.width+8/scale||point.y<bounds.y-8/scale||point.y>bounds.y+bounds.height+8/scale)continue;
+    hitCtx.lineWidth=Math.max(record.lineWidth,8/scale);
+    if(!hitCtx.isPointInStroke(record.variants[0],point.x,point.y))continue;
+    const named=NAMED_RIVER_SEARCH_DIRECTORY.find(entry=>entry.bounds&&point.x>=entry.bounds.x&&point.x<=entry.bounds.x+entry.bounds.width&&point.y>=entry.bounds.y&&point.y<=entry.bounds.y+entry.bounds.height);
+    if(named)return named;
+    const code=hitTestRegion(point),province=code?REGION_BY_ID.get(`province:${code}`):null;
+    return{id:`river:map:${Math.round(point.x)}:${Math.round(point.y)}`,kind:'river',name:'未命名河流',pointX:point.x,pointY:point.y,bounds:{x:point.x-40,y:point.y-40,width:80,height:80},parentId:province?.id||null,regionLabel:province?.name||'暂无',description:'暂无介绍'};
+  }
+  return null;
+}
+function mapFeatureHitTest(clientX,clientY,includeHydrology=true){
+  const point=canvasToMap(clientX,clientY);
+  const city=cityLabelHitTest(clientX,clientY);if(city)return city;
+  const mountainLabel=mountainLabelHitTest(clientX,clientY);if(mountainLabel)return mountainLabel;
+  const mountain=mountainMarkerHitTest(point);if(mountain)return mountain;
+  const range=mountainRangeHitTest(point,clientX,clientY);if(range)return range;
+  const lake=lakeHitTest(point,clientX,clientY);if(lake)return lake;
+  let cityMarker=null,cityMarkerDistance=Infinity;
+  for(const entry of CITY_DIRECTORY){
+    if(!Number.isFinite(entry.pointX)||!Number.isFinite(entry.pointY))continue;
+    const distance=Math.hypot(point.x-entry.pointX,point.y-entry.pointY);
+    if(distance<cityMarkerDistance){cityMarker=entry;cityMarkerDistance=distance;}
+  }
+  if(cityMarker&&cityMarkerDistance<=9/Math.max(.001,canvasMetrics().scale))return cityMarker;
+  if(includeHydrology){const river=riverHitTest(point);if(river)return river;}
+  const majorLabel=majorRegionLabelHitTest(clientX,clientY);if(majorLabel)return majorLabel;
+  const code=hitTestRegion(point),province=code?REGION_BY_ID.get(`province:${code}`):null;
+  if(!province)return null;
+  if(viewZoomWidth()>=MAJOR_REGION_BOUNDARY_HIDE_WIDTH){const major=province.parentId?REGION_BY_ID.get(province.parentId):null;if(major)return major;}
+  return province;
+}
 function formatSaturnDegrees(value){return `${Number(Number(value).toFixed(2)).toFixed(2)}°`;}
 function appendCoordinateRow(container,title,lines){
   const row=document.createElement('div');row.className='regionCoordinateRow';
@@ -2922,7 +3148,7 @@ function getRegionSearchResults(query){
     else if(fields.ancestors.some(field=>field.includes(needle)))score=3;
     return {entry,score};
   }).filter(result=>Number.isFinite(result.score))
-    .sort((a,b)=>a.score-b.score||(({country:0,major:1,province:2,city:3,mountain:4,lake:5,river:6}[a.entry.kind]??7)-({country:0,major:1,province:2,city:3,mountain:4,lake:5,river:6}[b.entry.kind]??7))||a.entry.name.localeCompare(b.entry.name,'zh-CN'))
+    .sort((a,b)=>a.score-b.score||(({country:0,major:1,province:2,city:3,mountain:4,mountainRange:5,lake:6,river:7}[a.entry.kind]??8)-({country:0,major:1,province:2,city:3,mountain:4,mountainRange:5,lake:6,river:7}[b.entry.kind]??8))||a.entry.name.localeCompare(b.entry.name,'zh-CN'))
     .map(result=>result.entry);
 }
 function updateActiveRegionSearchOption(index){
@@ -2946,7 +3172,7 @@ function renderRegionSearchSuggestions(){
     const option=document.createElement('button');option.type='button';option.className='searchOption';option.id=`regionSearchOption-${index}`;option.setAttribute('role','option');option.setAttribute('aria-selected','false');option.tabIndex=-1;option.dataset.index=String(index);
     const main=document.createElement('span');main.className='searchOptionMain';
     const name=document.createElement('span');name.className='searchOptionName';name.textContent=entry.name;
-    const type=document.createElement('span');type.className='searchOptionType';type.textContent=({country:'国家',major:'大区',province:'省份',city:'城市',mountain:'山峰',lake:'湖泊',river:'河流'}[entry.kind]||'地名');
+    const type=document.createElement('span');type.className='searchOptionType';type.textContent=({country:'国家',major:'大区',province:'省份',city:'城市',mountain:'山峰',mountainRange:entry.subtype||'山脉',lake:'湖泊',river:'河流'}[entry.kind]||'地名');
     main.append(name,type);
     const meta=document.createElement('span');meta.className='searchOptionMeta';
     const {major,province}=getPlaceAdministrativeParents(entry);
@@ -2955,6 +3181,8 @@ function renderRegionSearchSuggestions(){
     else if(entry.kind==='province')meta.textContent=`所属大区：${major?.name||'暂无'}${entry.code?` · ${entry.code}`:''}${entry.tongueName?` · ${entry.tongueName}`:''}`;
     else if(entry.kind==='river')meta.textContent=`所属地区：${entry.regionLabel||'暂无'}${entry.tongueName?` · ${entry.tongueName}`:''}`;
     else if(entry.kind==='lake')meta.textContent=`所属大区：${major?.name||entry.regionLabel||'暂无'} · 所属省份：${province?.name||'暂无'}`;
+    else if(entry.kind==='mountain')meta.textContent=`第 ${entry.elevationRank||'暂无'} 位 · 海拔 ${formatPlaceMetric(entry)} · 地貌区：${entry.physiographicRegionName||'暂无'}${entry.mountainRangeName?` · 所属山脉：${entry.mountainRangeName}`:''} · 行政区：${major?.name||'暂无'} / ${province?.name||'暂无'}`;
+    else if(entry.kind==='mountainRange')meta.textContent=`${entry.subtype||'山脉'} · ${entry.memberPeaks?.length||0} 座已录山峰 · 所属大区：${major?.name||'暂无'} · 所属省份：${province?.name||'暂无'}`;
     else meta.textContent=`所属大区：${major?.name||'暂无'} · 所属省份：${province?.name||'暂无'}${entry.postalCode?` · 邮政区号 ${entry.postalCode}`:''}${entry.tongueName?` · ${entry.tongueName}`:''}`;
     option.append(main,meta);regionSearchList.append(option);
   });
@@ -2983,9 +3211,41 @@ function formatPlaceMetric(entry){
     const value=new Intl.NumberFormat('zh-CN',{maximumFractionDigits:estimated?1:3}).format(entry.elevationM);
     return `${value} m`;
   }
+  if(entry.kind==='mountainRange')return `${entry.memberPeaks?.length||0} 座`;
   if(entry.kind==='lake')return '暂无面积';
   if(entry.kind==='river')return Number.isFinite(entry.lengthKm)?`${new Intl.NumberFormat('zh-CN',{maximumFractionDigits:2}).format(entry.lengthKm)} km`:'暂无';
   return formatRegionArea(entry.areaKm2);
+}
+function highestPeakForPlace(entry){
+  if(entry.kind==='mountainRange')return entry.highestPeak||null;
+  let candidates=MOUNTAIN_SEARCH_DIRECTORY;
+  if(entry.kind==='province')candidates=candidates.filter(peak=>peak.parentId===entry.id);
+  else if(entry.kind==='major')candidates=candidates.filter(peak=>REGION_BY_ID.get(peak.parentId)?.parentId===entry.id);
+  else if(entry.kind!=='country')return null;
+  return candidates.slice().sort((a,b)=>b.elevationM-a.elevationM)[0]||null;
+}
+function renderRegionHighestPeak(entry){
+  const section=document.getElementById('regionHighestPeak'),link=document.getElementById('regionHighestPeakLink');
+  if(!['country','major','province','mountainRange'].includes(entry.kind)){section.hidden=true;return;}
+  const peak=highestPeakForPlace(entry);
+  const heading=entry.kind==='mountainRange'?`${entry.subtype||'山脉'}最高峰`:
+    entry.kind==='province'?`${entry.name}最高峰`:entry.kind==='major'?`${entry.name}最高峰`:'全国最高峰';
+  document.getElementById('regionHighestPeakHeading').textContent=heading;
+  document.getElementById('regionHighestPeakSummary').textContent=peak?`${peak.name} · ${formatPlaceMetric(peak)} · 全图第 ${peak.elevationRank} 位`:'暂无记录';
+  link.hidden=!peak;
+  if(peak)link.dataset.peakId=peak.id;else delete link.dataset.peakId;
+  section.hidden=false;
+}
+function renderMountainRanking(){
+  const rows=document.getElementById('mountainRankingRows');rows.replaceChildren();
+  for(const peak of MOUNTAIN_RANKED_PEAKS){
+    const row=document.createElement('tr');
+    const rank=document.createElement('td');rank.className='rankNumber';rank.textContent=`第 ${peak.elevationRank} 位`;
+    const nameCell=document.createElement('td'),link=document.createElement('button');
+    link.type='button';link.className='rankingPeakLink';link.dataset.mountainId=peak.id;link.textContent=peak.name;nameCell.append(link);
+    const height=document.createElement('td');height.className='rankHeight';height.textContent=formatPlaceMetric(peak);
+    row.append(rank,nameCell,height);rows.append(row);
+  }
 }
 function openRegionInfo(entry){
   const title=document.getElementById('regionInfoTitle'),subtitle=document.getElementById('regionInfoSubtitle');
@@ -2993,14 +3253,15 @@ function openRegionInfo(entry){
   title.textContent=entry.name;
   const {major,province}=getPlaceAdministrativeParents(entry);
   const hierarchyLine=`所属大区：${major?.name||entry.regionLabel||'暂无'} · 所属省份：${province?.name||'暂无'}`;
-  subtitle.textContent=entry.kind==='country'?'全国地图':entry.kind==='major'?'国家级大区':entry.kind==='province'?`所属大区：${major?.name||'暂无'} · 行政区编号 ${entry.code||'暂无'}`:entry.kind==='river'?`所属地区：${entry.regionLabel||'暂无'}`:`${hierarchyLine}${entry.postalCode?` · 邮政区号 ${entry.postalCode}`:''}`;
+  subtitle.textContent=entry.kind==='country'?'全国地图':entry.kind==='major'?'国家级大区':entry.kind==='province'?`所属大区：${major?.name||'暂无'} · 行政区编号 ${entry.code||'暂无'}`:entry.kind==='river'?`所属地区：${entry.regionLabel||'暂无'}`:entry.kind==='mountain'?`${hierarchyLine}${entry.physiographicRegionName?` · ${entry.physiographicRegionName}`:''}${entry.mountainRangeName?` · 所属山脉：${entry.mountainRangeName}`:''} · 全图第 ${entry.elevationRank} 位`:entry.kind==='mountainRange'?`${hierarchyLine} · ${entry.subtype||'山脉'}`:`${hierarchyLine}${entry.postalCode?` · 邮政区号 ${entry.postalCode}`:''}`;
   const levels=document.getElementById('regionInfoLevels');levels.replaceChildren();
   const unknown={name:'暂无',tongueName:'暂无'};
   const lakeRegion=major||(entry.regionLabel?{name:entry.regionLabel,tongueName:'暂无'}:unknown);
-  const levelsForEntry=entry.kind==='country'?[['国家',entry]]:entry.kind==='major'?[['大区',entry]]:entry.kind==='province'?[['所属大区',major||unknown],['省份',entry]]:entry.kind==='river'?[['所属地区',{name:entry.regionLabel||'暂无',tongueName:'暂无'}],['河流',entry]]:entry.kind==='lake'?[['所属大区',lakeRegion],['所属省份',province||unknown],['湖泊',entry]]:[['所属大区',major||unknown],['所属省份',province||unknown],[entry.kind==='mountain'?'山峰':'城市',entry]];
+  const levelsForEntry=entry.kind==='country'?[['国家',entry]]:entry.kind==='major'?[['大区',entry]]:entry.kind==='province'?[['所属大区',major||unknown],['省份',entry]]:entry.kind==='river'?[['所属地区',{name:entry.regionLabel||'暂无',tongueName:'暂无'}],['河流',entry]]:entry.kind==='lake'?[['所属大区',lakeRegion],['所属省份',province||unknown],['湖泊',entry]]:entry.kind==='mountainRange'?[['所属大区',major||unknown],['所属省份',province||unknown],[entry.subtype||'山脉',entry]]:entry.kind==='mountain'?[['所属大区',major||unknown],['所属省份',province||unknown],...(entry.physiographicRegionName?[['所属地貌区',{name:entry.physiographicRegionName,tongueName:'暂无'}]]:[]),...(entry.mountainRangeName?[['所属山脉',{name:entry.mountainRangeName,tongueName:'暂无'}]]:[]),['山峰',entry]]:[['所属大区',major||unknown],['所属省份',province||unknown],['城市',entry]];
   levelsForEntry.forEach(([label,item])=>levels.append(createRegionInfoLevel(label,item)));
-  document.getElementById('regionInfoMetricLabel').textContent=entry.kind==='mountain'?(entry.elevationSource==='user_provided'?'海拔':'推定海拔'):entry.kind==='river'?'长度':'面积';
+  document.getElementById('regionInfoMetricLabel').textContent=entry.kind==='mountain'?(entry.elevationSource==='user_provided'?'海拔':'推定海拔'):entry.kind==='mountainRange'?'山峰数量':entry.kind==='river'?'长度':'面积';
   document.getElementById('regionInfoArea').textContent=formatPlaceMetric(entry);
+  renderRegionHighestPeak(entry);
   renderCoordinateInfo(entry);
   const description=typeof entry.description==='string'&&entry.description.trim()?entry.description.trim():'暂无介绍';
   document.getElementById('regionInfoDescription').textContent=description;
@@ -3011,7 +3272,7 @@ function selectNamedPlaceSearchResult(entry){
   clearOceanDepthSelection();
   hoveredCode=null;regionSearchInput.value=entry.name;closeRegionSearchPopup();
   const selected=document.getElementById('selected');selected.hidden=false;delete selected.dataset.kind;
-  const placeType=({city:'城市',mountain:'山峰',lake:'湖泊',river:'河流'}[entry.kind]||'地名');
+  const placeType=({city:'城市',mountain:'山峰',mountainRange:entry.subtype||'山脉',lake:'湖泊',river:'河流'}[entry.kind]||'地名');
   const label=document.createElement('b');label.textContent=`已选择${placeType}：${entry.name}`;
   const status=document.createElement('span');status.className='muted';
   const bounds=entry.bounds||(Number.isFinite(entry.pointX)&&Number.isFinite(entry.pointY)?{x:entry.pointX-(entry.kind==='mountain'?24:.5),y:entry.pointY-(entry.kind==='mountain'?24:.5),width:entry.kind==='mountain'?48:1,height:entry.kind==='mountain'?48:1}:null);
@@ -3025,6 +3286,22 @@ function chooseRegionSearchResult(index){
   const entry=regionSearchResults[index];if(!entry)return;
   if(['country','major','province'].includes(entry.kind))selectArea(entry,true,true);else selectNamedPlaceSearchResult(entry);
 }
+const mountainRankingDialog=document.getElementById('mountainRankingDialog');
+document.getElementById('openMountainRanking').addEventListener('click',()=>{
+  renderMountainRanking();closeRegionSearchPopup();
+  if(!mountainRankingDialog.open)mountainRankingDialog.showModal();
+});
+document.getElementById('closeMountainRanking').addEventListener('click',()=>mountainRankingDialog.close());
+mountainRankingDialog.addEventListener('click',event=>{if(event.target===mountainRankingDialog)mountainRankingDialog.close()});
+document.getElementById('mountainRankingRows').addEventListener('click',event=>{
+  const link=event.target.closest('[data-mountain-id]');if(!link)return;
+  const peak=MOUNTAIN_SEARCH_DIRECTORY.find(entry=>entry.id===link.dataset.mountainId);
+  mountainRankingDialog.close();if(peak)selectNamedPlaceSearchResult(peak);
+});
+document.getElementById('regionHighestPeakLink').addEventListener('click',event=>{
+  const peak=MOUNTAIN_SEARCH_DIRECTORY.find(entry=>entry.id===event.currentTarget.dataset.peakId);
+  if(peak)selectNamedPlaceSearchResult(peak);
+});
 regionSearchInput.addEventListener('focus',renderRegionSearchSuggestions);
 regionSearchInput.addEventListener('input',()=>{
   document.getElementById('regionInfoPanel').hidden=true;
@@ -3059,7 +3336,7 @@ canvas.addEventListener('pointerdown',event=>{
   if(event.button!==0)return;
   stopViewAnimation();stopZoomAnimation();
   beginInteractiveRender();
-  drag={x:event.clientX,y:event.clientY,vx:vb.x,vy:vb.y,moved:false,city:cityLabelHitTest(event.clientX,event.clientY),code:hitTestRegion(canvasToMap(event.clientX,event.clientY))};
+  drag={x:event.clientX,y:event.clientY,vx:vb.x,vy:vb.y,moved:false,place:mapFeatureHitTest(event.clientX,event.clientY,true)};
   canvas.classList.add('dragging');canvas.setPointerCapture(event.pointerId);
 });
 canvas.addEventListener('pointermove',event=>{
@@ -3072,15 +3349,18 @@ canvas.addEventListener('pointermove',event=>{
     return;
   }
   const next=hitTestRegion(canvasToMap(event.clientX,event.clientY));
-  const cityLabel=cityLabelHitTest(event.clientX,event.clientY);
-  canvas.classList.toggle('overRegion',Boolean(next||cityLabel));
+  const place=mapFeatureHitTest(event.clientX,event.clientY,false);
+  canvas.classList.toggle('overRegion',Boolean(next||place));
   if(next!==hoveredCode){hoveredCode=next;draw();}
 });
 function endDrag(event){
   if(!drag)return;
-  const {moved,code,city}=drag;drag=null;canvas.classList.remove('dragging');
+  const {moved,place}=drag;drag=null;canvas.classList.remove('dragging');
   finishInteractiveRender();
-  if(event.type==='pointerup'&&!moved){if(city)selectCitySearchResult(city);else if(code)selectRegion(code,true);else selectOceanDepth(canvasToMap(event.clientX,event.clientY));}
+  if(event.type==='pointerup'&&!moved){
+    if(place){if(['country','major','province'].includes(place.kind))selectArea(place,true,true);else selectNamedPlaceSearchResult(place);}
+    else selectOceanDepth(canvasToMap(event.clientX,event.clientY));
+  }
 }
 canvas.addEventListener('pointerup',endDrag);
 canvas.addEventListener('pointercancel',endDrag);
@@ -3115,7 +3395,8 @@ document.getElementById('closeRegionInfo').addEventListener('click',()=>{
 });
 document.addEventListener('keydown',event=>{
   if(event.key!=='Escape')return;
-  if(!regionSearchPopup.hidden){closeRegionSearchPopup();event.preventDefault();}
+  if(mountainRankingDialog.open){mountainRankingDialog.close();event.preventDefault();}
+  else if(!regionSearchPopup.hidden){closeRegionSearchPopup();event.preventDefault();}
   else if(!regionInfoPanel.hidden){regionInfoPanel.hidden=true;regionSearchInput.focus();event.preventDefault();}
   else if(!mapPanel.hidden){setMapPanelOpen(false);panelToggle.focus();event.preventDefault();}
   else if(oceanDepthPoint){clearOceanDepthSelection();event.preventDefault();}
