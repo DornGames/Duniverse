@@ -1198,15 +1198,15 @@ const MOUNTAIN_SEARCH_DIRECTORY=(window.DUNIVERSE_MOUNTAIN_PEAKS?.features||[]).
 }));
 const MOUNTAIN_RANGE_SEARCH_DIRECTORY=[
   {id:'mountain-range:beidong-plateau',kind:'mountainRange',subtype:'高原',name:'北湩高原',memberZone:'north_plateau',pointX:1035,pointY:225,fontSize:30,labelSpread:300,labelOpacity:.31,points:[],description:'北部高原地带，山峰整体海拔较高。鹞岳位于高原西南部，属于长岭山脉。'},
-  {id:'mountain-range:tishan',kind:'mountainRange',subtype:'山脉',name:'铁山山脉',pointX:1110,pointY:393,fontSize:13,labelOffset:-18,labelOpacity:.8,maxMemberDistance:42,points:[[1008.5,370.625],[1031.25,388.125],[1075,393],[1127.75,398.125],[1149.25,403.125],[1210,405]],description:'北铁山山脉为北支、长岭山脉为南支，两支在黑头山汇合；铁山山脉从黑头山向东延伸。'},
-  {id:'mountain-range:longling',kind:'mountainRange',subtype:'山脉',name:'长岭山脉',pointX:874,pointY:449,fontSize:12,labelOffset:18,labelOpacity:.82,maxMemberDistance:30,points:[[1008.5,370.625],[987,392],[960.75,409.625],[937.25,414.625],[894.5,417.375],[850,429],[804,434.375]],description:'铁山山脉的南支脉，从黑头山向西南延伸；鹞岳位于北湩高原的长岭山脉。'},
-  {id:'mountain-range:north-tieshan',kind:'mountainRange',subtype:'山脉',name:'北铁山山脉',pointX:914,pointY:323,fontSize:12,labelOffset:22,labelOpacity:.82,maxMemberDistance:28,points:[[1008.5,370.625],[982,359],[947,354],[911.25,361.375],[885,353],[859.25,347.375]],description:'铁山山脉的北支脉，从黑头山向西北延伸，经过蹬马山、雪晴岑一带。'},
+  {id:'mountain-range:tishan',kind:'mountainRange',subtype:'山脉',name:'铁山山脉',pointX:1110,pointY:393,fontSize:13,labelOffset:-18,labelStartInset:45,labelOpacity:.8,maxMemberDistance:42,points:[[1008.5,370.625],[1031.25,388.125],[1075,393],[1127.75,398.125],[1149.25,403.125],[1210,405]],description:'北铁山山脉为北支、长岭山脉为南支，两支在黑头山汇合；铁山山脉从黑头山向东延伸。'},
+  {id:'mountain-range:longling',kind:'mountainRange',subtype:'山脉',name:'长岭山脉',pointX:874,pointY:449,fontSize:12,labelOffset:-30,labelStartInset:55,labelEndInset:80,labelOpacity:.82,maxMemberDistance:30,points:[[1008.5,370.625],[987,392],[960.75,409.625],[937.25,414.625],[894.5,417.375],[850,429],[804,434.375]],description:'铁山山脉的南支脉，从黑头山向西南延伸；鹞岳位于北湩高原的长岭山脉。'},
+  {id:'mountain-range:north-tieshan',kind:'mountainRange',subtype:'山脉',name:'北铁山山脉',pointX:914,pointY:323,fontSize:12,labelOffset:22,labelStartInset:35,labelOpacity:.82,maxMemberDistance:28,points:[[1008.5,370.625],[982,359],[947,354],[911.25,361.375],[885,353],[859.25,347.375]],description:'铁山山脉的北支脉，从黑头山向西北延伸，经过蹬马山、雪晴岑一带。'},
   {id:'mountain-range:central',kind:'mountainRange',subtype:'山脉',name:'中央山脉',memberZone:'central_range',pointX:1135,pointY:913,fontSize:13,labelOffset:0,labelOpacity:.8,points:[[1012,1129],[1020,1075],[1062.75,1054.125],[1110,1015],[1134.75,1000.875],[1135,960],[1135,913],[1161,840.875],[1202.25,789.625],[1235,700],[1266,608.875]],description:'南端抵近武宗湖南岸，向东北经中部山峰延伸至光山一带，整体呈弧形走向。'},
   {id:'mountain-range:ruifeng',kind:'mountainRange',subtype:'山脉',name:'瑞丰山脉',pointX:1004,pointY:654,fontSize:12,labelOffset:14,labelOpacity:.82,maxMemberDistance:28,points:[[991.75,602.625],[1004,650],[1016.5,705.125]],description:'位于瑞丰地区，雪瑞峰与剑山属于这条山脉。'}
 ];
 const TERRAIN_REGION_SEARCH_DIRECTORY=[
-  {id:'terrain-region:aisibi-desert',kind:'terrainRegion',subtype:'沙漠',name:'艾斯比沙漠',pointX:520,pointY:650,fontSize:18,letterSpacing:5,fill:'#9a7849',boundsWidth:220,boundsHeight:120,description:'位于西部内陆的沙漠地带；具体范围暂无。'},
-  {id:'terrain-region:aisibi-uninhabited',kind:'terrainRegion',subtype:'无人区',name:'艾斯比无人区',pointX:500,pointY:820,fontSize:17,letterSpacing:4,fill:'#6f716d',boundsWidth:220,boundsHeight:120,description:'位于西部内陆的无人区；具体范围暂无。'}
+  {id:'terrain-region:aisibi-desert',kind:'terrainRegion',subtype:'沙漠',name:'艾斯比沙漠',pointX:615,pointY:650,fontSize:18,letterSpacing:105,fill:'#9a7849',boundsWidth:580,boundsHeight:120,description:'横贯西部内陆的沙漠地带；具体范围暂无。'},
+  {id:'terrain-region:aisibi-uninhabited',kind:'terrainRegion',subtype:'无人区',name:'艾斯比无人区',pointX:656,pointY:834,fontSize:17,letterSpacing:4,fill:'#6f716d',boundsWidth:220,boundsHeight:120,description:'位于西部内陆中部的无人区；具体范围暂无。'}
 ];
 const TERRAIN_REGION_BY_ID=new Map(TERRAIN_REGION_SEARCH_DIRECTORY.map(entry=>[entry.id,entry]));
 const MOUNTAIN_RANGE_BY_ID=new Map(MOUNTAIN_RANGE_SEARCH_DIRECTORY.map(entry=>[entry.id,entry]));
@@ -2539,8 +2539,11 @@ function mountainRangeLabelLayout(range){
     segments.push({start,dx,dy,length,from:totalLength});totalLength+=length;
   }
   if(!totalLength)return[];
+  const startInset=Math.min(totalLength,Math.max(0,range.labelStartInset||0));
+  const endInset=Math.min(totalLength-startInset,Math.max(0,range.labelEndInset||0));
+  const labelLength=totalLength-startInset-endInset;
   const positions=glyphs.map((_,index)=>{
-    const distance=glyphs.length===1?totalLength/2:totalLength*index/(glyphs.length-1);
+    const distance=startInset+(glyphs.length===1?labelLength/2:labelLength*index/(glyphs.length-1));
     const segment=segments.find(item=>distance<=item.from+item.length)||segments.at(-1);
     const amount=Math.max(0,Math.min(1,(distance-segment.from)/segment.length));
     const tx=segment.dx/segment.length,ty=segment.dy/segment.length;
