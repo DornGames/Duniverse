@@ -28,6 +28,7 @@
 
   // The deepest trough follows the ocean-facing side of the offshore island arc.
   const TRENCH_POINTS=[
+    {x:1390,y:170},{x:1420,y:186},{x:1450,y:207},{x:1480,y:238},
     {x:1510,y:260},{x:1535,y:278},{x:1565,y:300},{x:1590,y:325},{x:1614,y:351},
     {x:1640,y:385},{x:1690,y:480},{x:1750,y:550},
     {x:1830,y:595},{x:1900,y:625},{x:1920,y:690},{x:1910,y:760},{x:1865,y:845}
@@ -412,11 +413,11 @@
         depth+=(Math.min(depth,45)-depth)*lagoon;
 
         const trenchDistanceSquared=distanceSquaredToPolyline(x,y,TRENCH_SEGMENTS);
-        const trenchEnds=smoothStep((y-210)/145)*smoothStep((845-y)/155);
+        const trenchEnds=smoothStep((y-135)/125)*smoothStep((845-y)/155);
         const trenchWidth=15+5*smoothStep((y-540)/170);
         const trenchProfile=trenchEnds*Math.exp(-.5*trenchDistanceSquared/(trenchWidth*trenchWidth));
         const northwestShoulder=1-smoothStep((y-280)/140);
-        depth+=(450+650*northwestShoulder)*trenchProfile;
+        depth+=(450+1200*northwestShoulder)*trenchProfile;
         const deepestCore=Math.exp(-.5*trenchDistanceSquared/(trenchWidth*trenchWidth))
           *Math.exp(-.5*((y-690)/70)**2);
         depth+=(MAX_DEPTH_M-depth)*deepestCore;
