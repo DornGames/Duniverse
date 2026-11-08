@@ -1074,6 +1074,7 @@ aside[hidden]{display:none}
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#34764d"></span><span class="layerName">山峰</span><input type="checkbox" data-layer="mountainPeaks" checked aria-label="显示山峰图层"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#34764d"></span><span class="layerName">山峰海拔</span><input type="checkbox" data-layer="mountainElevations" checked aria-label="显示山峰海拔图层"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#527d71"></span><span class="layerName">山脉与高原</span><input type="checkbox" data-layer="mountainRanges" checked aria-label="显示山脉与高原名称"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#9a7849"></span><span class="layerName">沙漠与无人区</span><input type="checkbox" data-layer="terrainRegions" checked aria-label="显示沙漠与无人区名称"></label>
 <section class="layerGroup" data-layer-group>
 <div class="layerParent"><button class="groupDisclosure" type="button" aria-expanded="false" aria-controls="waterLayers" aria-label="&#x5c55;&#x5f00;&#x6c34;&#x7cfb;"><span class="treeChevron"></span><span class="layerSwatch" style="--swatch:#b1d0ed"></span><span class="layerName">&#x6c34;&#x7cfb;</span></button><input id="waterToggle" type="checkbox" data-group="water" checked aria-label="&#x663e;&#x793a;&#x6240;&#x6709;&#x6c34;&#x7cfb;&#x56fe;&#x5c42;"></div>
 <div class="layerChildren" id="waterLayers" role="group" aria-label="&#x6c34;&#x7cfb;&#x5b50;&#x56fe;&#x5c42;" hidden>
@@ -1159,10 +1160,10 @@ const HYDROLOGY_LAYER_IDS=new Set(['lakes','rivers','canals','canalTicks','seaso
 const HYDROLOGY_LOD_TOLERANCES=[.06,.12,.24,.48,.96];
 const COASTAL_FILL_LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];
 const DETAIL_LAYERS=new Set(['regionCodes','regionNames','regionTongueNames','blackMarkers']);
-const PLACE_NAME_DRAW_GROUPS=new Set(['majorRegionNames','regionNames','regionTongueNames','provinceCapitalLabels','provinceCapitalTongueLabels','nationalCapitalLabels','nationalCapitalTongueLabels','cityLabels','cityTongueLabels','mountainPeakLabels','mountainElevationLabels','lakeNameLabels','mountainRangeLabels']);
+const PLACE_NAME_DRAW_GROUPS=new Set(['majorRegionNames','regionNames','regionTongueNames','provinceCapitalLabels','provinceCapitalTongueLabels','nationalCapitalLabels','nationalCapitalTongueLabels','cityLabels','cityTongueLabels','mountainPeakLabels','mountainElevationLabels','lakeNameLabels','mountainRangeLabels','terrainRegionLabels']);
 const DRAW_ORDER=new Map([
   ['oceanFill',0],['coastlineFills',1],['regions',1],['lakes',2],['rivers',3],['canals',4],['canalTicks',5],
-  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['graticule',10.5],['majorRegionNames',11],['nationalBorder',12],['blackMarkers',13],['mountainPeakMarkers',13.5],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22],['mountainRangeLabels',22.5],['mountainPeakLabels',23],['mountainElevationLabels',23.5],['lakeNameLabels',24]
+  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['graticule',10.5],['majorRegionNames',11],['nationalBorder',12],['blackMarkers',13],['mountainPeakMarkers',13.5],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22],['mountainRangeLabels',22.5],['terrainRegionLabels',22.6],['mountainPeakLabels',23],['mountainElevationLabels',23.5],['lakeNameLabels',24]
 ]);
 let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
@@ -1170,7 +1171,7 @@ let drag=null,framePending=false,viewAnimation=null,zoomAnimation=null,zoomTarge
 let bathymetryRaster=null;
 let oceanDepthPoint=null;
 let records=[],regionRecords=[],regionBounds=new Map();
-let mountainLabelRecords=[],mountainRangeLabelRecords=[],lakeNameLabelRecords=[],lakePathRecords=[],majorRegionNameRecords=[];
+let mountainLabelRecords=[],mountainRangeLabelRecords=[],terrainRegionLabelRecords=[],lakeNameLabelRecords=[],lakePathRecords=[],majorRegionNameRecords=[];
 const HYDROLOGY_JUNCTION_KEYS=new Set();
 const HYDROLOGY_TOPOLOGY=new WeakMap();
 const textMetricsCanvas=document.createElement('canvas');
@@ -1197,12 +1198,17 @@ const MOUNTAIN_SEARCH_DIRECTORY=(window.DUNIVERSE_MOUNTAIN_PEAKS?.features||[]).
 }));
 const MOUNTAIN_RANGE_SEARCH_DIRECTORY=[
   {id:'mountain-range:beidong-plateau',kind:'mountainRange',subtype:'高原',name:'北湩高原',memberZone:'north_plateau',pointX:1035,pointY:225,fontSize:30,labelSpread:300,labelOpacity:.31,points:[],description:'北部高原地带，山峰整体海拔较高。鹞岳位于高原西南部，属于长岭山脉。'},
-  {id:'mountain-range:tishan',kind:'mountainRange',subtype:'山脉',name:'铁山山脉',pointX:900,pointY:380,fontSize:15,labelOffset:-24,labelOpacity:.8,maxMemberDistance:42,points:[[735,394],[820,379],[916,373],[1008.5,370.625]],description:'位于北湩高原中南部，整体呈东西走向，在黑头山处分出长岭山脉与北铁山山脉。'},
-  {id:'mountain-range:longling',kind:'mountainRange',subtype:'山脉',name:'长岭山脉',pointX:874,pointY:449,fontSize:14,labelOffset:18,labelOpacity:.82,maxMemberDistance:30,points:[[1008.5,370.625],[987,392],[960.75,409.625],[937.25,414.625],[894.5,417.375],[850,429],[804,434.375]],description:'铁山山脉从黑头山向西南分出的支脉，鹞岳位于北湩高原的长岭山脉。'},
-  {id:'mountain-range:north-tieshan',kind:'mountainRange',subtype:'山脉',name:'北铁山山脉',pointX:914,pointY:323,fontSize:14,labelOffset:22,labelOpacity:.82,maxMemberDistance:28,points:[[1008.5,370.625],[982,359],[947,354],[911.25,361.375],[885,353],[859.25,347.375]],description:'铁山山脉从黑头山向北分出的支脉，经过蹬马山、雪晴岑一带。'},
-  {id:'mountain-range:central',kind:'mountainRange',subtype:'山脉',name:'中央山脉',memberZone:'central_range',pointX:1141,pointY:849,fontSize:15,labelOffset:34,labelOpacity:.8,points:[[1266,608.875],[1200,724],[1135,841],[1068,958],[986,1097]],description:'沿光山至武宗湖一带延伸，整体呈西南—东北走向。'},
-  {id:'mountain-range:ruifeng',kind:'mountainRange',subtype:'山脉',name:'瑞丰山脉',pointX:1030,pointY:661,fontSize:14,labelOffset:-28,labelOpacity:.82,maxMemberDistance:28,points:[[991.75,602.625],[1004,650],[1016.5,705.125]],description:'位于瑞丰地区，雪瑞峰与剑山属于这条山脉。'}
+  {id:'mountain-range:tishan',kind:'mountainRange',subtype:'山脉',name:'铁山山脉',pointX:1110,pointY:393,fontSize:13,labelOffset:-18,labelOpacity:.8,maxMemberDistance:42,points:[[1008.5,370.625],[1031.25,388.125],[1075,393],[1127.75,398.125],[1149.25,403.125],[1210,405]],description:'北铁山山脉为北支、长岭山脉为南支，两支在黑头山汇合；铁山山脉从黑头山向东延伸。'},
+  {id:'mountain-range:longling',kind:'mountainRange',subtype:'山脉',name:'长岭山脉',pointX:874,pointY:449,fontSize:12,labelOffset:18,labelOpacity:.82,maxMemberDistance:30,points:[[1008.5,370.625],[987,392],[960.75,409.625],[937.25,414.625],[894.5,417.375],[850,429],[804,434.375]],description:'铁山山脉的南支脉，从黑头山向西南延伸；鹞岳位于北湩高原的长岭山脉。'},
+  {id:'mountain-range:north-tieshan',kind:'mountainRange',subtype:'山脉',name:'北铁山山脉',pointX:914,pointY:323,fontSize:12,labelOffset:22,labelOpacity:.82,maxMemberDistance:28,points:[[1008.5,370.625],[982,359],[947,354],[911.25,361.375],[885,353],[859.25,347.375]],description:'铁山山脉的北支脉，从黑头山向西北延伸，经过蹬马山、雪晴岑一带。'},
+  {id:'mountain-range:central',kind:'mountainRange',subtype:'山脉',name:'中央山脉',memberZone:'central_range',pointX:1135,pointY:913,fontSize:13,labelOffset:0,labelOpacity:.8,points:[[1012,1129],[1020,1075],[1062.75,1054.125],[1110,1015],[1134.75,1000.875],[1135,960],[1135,913],[1161,840.875],[1202.25,789.625],[1235,700],[1266,608.875]],description:'南端抵近武宗湖南岸，向东北经中部山峰延伸至光山一带，整体呈弧形走向。'},
+  {id:'mountain-range:ruifeng',kind:'mountainRange',subtype:'山脉',name:'瑞丰山脉',pointX:1004,pointY:654,fontSize:12,labelOffset:14,labelOpacity:.82,maxMemberDistance:28,points:[[991.75,602.625],[1004,650],[1016.5,705.125]],description:'位于瑞丰地区，雪瑞峰与剑山属于这条山脉。'}
 ];
+const TERRAIN_REGION_SEARCH_DIRECTORY=[
+  {id:'terrain-region:aisibi-desert',kind:'terrainRegion',subtype:'沙漠',name:'艾斯比沙漠',pointX:520,pointY:650,fontSize:18,letterSpacing:5,fill:'#9a7849',boundsWidth:220,boundsHeight:120,description:'位于西部内陆的沙漠地带；具体范围暂无。'},
+  {id:'terrain-region:aisibi-uninhabited',kind:'terrainRegion',subtype:'无人区',name:'艾斯比无人区',pointX:500,pointY:820,fontSize:17,letterSpacing:4,fill:'#6f716d',boundsWidth:220,boundsHeight:120,description:'位于西部内陆的无人区；具体范围暂无。'}
+];
+const TERRAIN_REGION_BY_ID=new Map(TERRAIN_REGION_SEARCH_DIRECTORY.map(entry=>[entry.id,entry]));
 const MOUNTAIN_RANGE_BY_ID=new Map(MOUNTAIN_RANGE_SEARCH_DIRECTORY.map(entry=>[entry.id,entry]));
 const MOUNTAIN_RANGE_BY_NAME=new Map(MOUNTAIN_RANGE_SEARCH_DIRECTORY.map(entry=>[entry.name,entry]));
 const MOUNTAIN_RANKED_PEAKS=MOUNTAIN_SEARCH_DIRECTORY.filter(entry=>Number.isFinite(entry.elevationM)).sort((a,b)=>b.elevationM-a.elevationM||a.name.localeCompare(b.name,'zh-CN'));
@@ -1218,7 +1224,7 @@ const COUNTRY_SEARCH_ENTRY={
   name:(document.querySelector('.brandText h1')?.textContent||'').replace('行政区划图','').trim()||'国家',
   tongueName:'',areaKm2:66490000,description:''
 };
-const REGION_SEARCH_DIRECTORY=[COUNTRY_SEARCH_ENTRY,...REGION_DIRECTORY,...CITY_DIRECTORY,...MOUNTAIN_SEARCH_DIRECTORY,...MOUNTAIN_RANGE_SEARCH_DIRECTORY,...LAKE_SEARCH_DIRECTORY,...NAMED_RIVER_SEARCH_DIRECTORY];
+const REGION_SEARCH_DIRECTORY=[COUNTRY_SEARCH_ENTRY,...REGION_DIRECTORY,...CITY_DIRECTORY,...MOUNTAIN_SEARCH_DIRECTORY,...MOUNTAIN_RANGE_SEARCH_DIRECTORY,...TERRAIN_REGION_SEARCH_DIRECTORY,...LAKE_SEARCH_DIRECTORY,...NAMED_RIVER_SEARCH_DIRECTORY];
 const layerInputs=[...document.querySelectorAll('input[data-layer]')];
 const layerVisibility=new Map(layerInputs.map(input=>[input.dataset.layer,input.checked]));
 const regionSearch=document.getElementById('regionSearch');
@@ -1407,7 +1413,7 @@ function createRecord(element,drawGroup,layerId){
     lineCap:style.strokeLinecap||'butt',lineJoin:style.strokeLinejoin||'miter',
     dash:styleDash(style.strokeDasharray),
     fillOpacity:parseFloat(style.fillOpacity)||1,strokeOpacity:parseFloat(style.strokeOpacity)||1,
-    bounds:element.getBBox(),rangeId:element.dataset.rangeId||null,
+    bounds:element.getBBox(),rangeId:element.dataset.rangeId||null,terrainRegionId:element.dataset.terrainRegionId||null,
     rotationDeg:Number.parseFloat(element.dataset.rotationDeg)||0,
     fixedFontSize:Number.parseFloat(element.dataset.fixedFontSize)||0
   };
@@ -2302,6 +2308,23 @@ function appendMountainRangeLayer(){
   }
   sourceSvg.append(labelLayer);
 }
+function appendTerrainRegionLayer(){
+  const ns='http://www.w3.org/2000/svg';
+  const labelLayer=document.createElementNS(ns,'g');
+  labelLayer.id='terrainRegionLabels';labelLayer.dataset.layer='terrainRegions';
+  labelLayer.setAttribute('pointer-events','none');
+  for(const entry of TERRAIN_REGION_SEARCH_DIRECTORY){
+    const label=document.createElementNS(ns,'text');
+    label.setAttribute('x',entry.pointX);label.setAttribute('y',entry.pointY);
+    label.setAttribute('text-anchor','middle');label.setAttribute('dominant-baseline','central');
+    label.setAttribute('font-family','Arial,"Microsoft YaHei",sans-serif');label.setAttribute('font-size',entry.fontSize);
+    label.setAttribute('font-weight','700');label.setAttribute('fill',entry.fill);label.setAttribute('fill-opacity','.82');
+    label.dataset.terrainRegionId=entry.id;label.dataset.fixedFontSize=entry.fontSize;label.dataset.letterSpacing=entry.letterSpacing;
+    label.textContent=entry.name;labelLayer.append(label);
+    entry.bounds={x:entry.pointX-entry.boundsWidth/2,y:entry.pointY-entry.boundsHeight/2,width:entry.boundsWidth,height:entry.boundsHeight};
+  }
+  sourceSvg.append(labelLayer);
+}
 function appendLakeNameLayer(){
   const entries=window.DUNIVERSE_LAKE_NAMES||[];
   const ns='http://www.w3.org/2000/svg';
@@ -2323,6 +2346,7 @@ function appendLakeNameLayer(){
 appendSaturnGraticule();
 appendMountainPeakLayer();
 appendMountainRangeLayer();
+appendTerrainRegionLayer();
 appendLakeNameLayer();
 
 // Build Canvas paths from the extracted geometry, then remove the source SVG from the page.
@@ -2331,6 +2355,7 @@ collectRecords(sourceSvg);
 records.sort((a,b)=>(DRAW_ORDER.get(a.drawGroup)??50)-(DRAW_ORDER.get(b.drawGroup)??50));
 mountainLabelRecords=records.filter(record=>record.tag==='text'&&['mountainPeakLabels','mountainElevationLabels'].includes(record.drawGroup));
 mountainRangeLabelRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='mountainRangeLabels');
+terrainRegionLabelRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='terrainRegionLabels');
 lakeNameLabelRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='lakeNameLabels');
 lakePathRecords=records.filter(record=>record.tag==='path'&&record.layerId==='lakes');
 majorRegionNameRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='majorRegionNames');
@@ -2368,6 +2393,11 @@ for(const range of MOUNTAIN_RANGE_SEARCH_DIRECTORY){
     ?MOUNTAIN_SEARCH_DIRECTORY.filter(entry=>entry.elevationZone===range.memberZone)
     :MOUNTAIN_SEARCH_DIRECTORY.filter(entry=>entry.mountainRangeName===range.name);
   range.highestPeak=range.memberPeaks.slice().sort((a,b)=>b.elevationM-a.elevationM)[0]||null;
+}
+for(const entry of TERRAIN_REGION_SEARCH_DIRECTORY){
+  const code=hitTestRegion({x:entry.pointX,y:entry.pointY});
+  const province=code?REGION_BY_ID.get(`province:${code}`):null;
+  entry.parentId=province?.id||null;entry.adminName=province?.name||'暂无';
 }
 for(const entry of LAKE_SEARCH_DIRECTORY){
   if(entry.territory==='neighboring_country')continue;
@@ -2509,16 +2539,15 @@ function mountainRangeLabelLayout(range){
     segments.push({start,dx,dy,length,from:totalLength});totalLength+=length;
   }
   if(!totalLength)return[];
-  return glyphs.map((glyph,index)=>{
-    const distance=totalLength*(index+.5)/glyphs.length;
+  const positions=glyphs.map((_,index)=>{
+    const distance=glyphs.length===1?totalLength/2:totalLength*index/(glyphs.length-1);
     const segment=segments.find(item=>distance<=item.from+item.length)||segments.at(-1);
     const amount=Math.max(0,Math.min(1,(distance-segment.from)/segment.length));
     const tx=segment.dx/segment.length,ty=segment.dy/segment.length;
-    let angle=Math.atan2(segment.dy,segment.dx);
-    if(angle>Math.PI/2)angle-=Math.PI;else if(angle< -Math.PI/2)angle+=Math.PI;
     const offset=range.labelOffset||0;
-    return{glyph,x:segment.start[0]+segment.dx*amount-ty*offset,y:segment.start[1]+segment.dy*amount+tx*offset,angle};
-  });
+    return{x:segment.start[0]+segment.dx*amount-ty*offset,y:segment.start[1]+segment.dy*amount+tx*offset,angle:0};
+  }).sort((a,b)=>a.x-b.x);
+  return positions.map((position,index)=>({...position,glyph:glyphs[index]}));
 }
 function drawMountainRangeLabel(record,range,scale,opacityOverride){
   if(!range)return;
@@ -2571,7 +2600,7 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
     const isCityTongueLabel=record.layerId==='cityTongueLabels';
     const isMajorRegionName=record.drawGroup==='majorRegionNames',isCapitalLabel=isProvinceCapitalLabel||record.layerId==='nationalCapitalLabels',isCityLabel=record.layerId==='cityLabels';
     const isMajorRegionTongueName=isMajorRegionName&&record.language==='tongue';
-    const fontSize=record.drawGroup==='graticule'?10:record.drawGroup==='mountainPeakLabels'?12:record.drawGroup==='mountainElevationLabels'?10:record.drawGroup==='lakeNameLabels'?12:record.drawGroup==='mountainRangeLabels'?(record.fixedFontSize||18):isRegionName?FIXED_REGION_NAME_FONT_PX:isRegionTongueName?FIXED_REGION_TONGUE_FONT_PX:isProvinceCapitalTongueLabel?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:isCityTongueLabel?FIXED_CITY_TONGUE_LABEL_FONT_PX:isMajorRegionTongueName?FIXED_MAJOR_REGION_TONGUE_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:isCityLabel?FIXED_CITY_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
+    const fontSize=record.drawGroup==='graticule'?10:record.drawGroup==='mountainPeakLabels'?12:record.drawGroup==='mountainElevationLabels'?10:record.drawGroup==='lakeNameLabels'?12:['mountainRangeLabels','terrainRegionLabels'].includes(record.drawGroup)?(record.fixedFontSize||18):isRegionName?FIXED_REGION_NAME_FONT_PX:isRegionTongueName?FIXED_REGION_TONGUE_FONT_PX:isProvinceCapitalTongueLabel?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:isCityTongueLabel?FIXED_CITY_TONGUE_LABEL_FONT_PX:isMajorRegionTongueName?FIXED_MAJOR_REGION_TONGUE_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:isCityLabel?FIXED_CITY_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
     const screenFont=record.font.replace(/[\d.]+px/,`${fontSize}px`);
     ctx.font=screenFont.replace(/[\d.]+px/,`${fontSize/scale}px`);ctx.textBaseline=record.textBaseline;
     let textX=record.x,textY=record.y,textAlign=record.textAlign,displayText=record.text;
@@ -2981,6 +3010,20 @@ function mountainRangeHitTest(point,clientX,clientY){
   }
   return null;
 }
+function terrainRegionHitTest(clientX,clientY){
+  if(layerVisibility.get('terrainRegions')===false)return null;
+  const metrics=canvasMetrics(),left=metrics.rect.left+canvas.clientLeft+metrics.offsetX,top=metrics.rect.top+canvas.clientTop+metrics.offsetY;
+  for(let index=terrainRegionLabelRecords.length-1;index>=0;index--){
+    const record=terrainRegionLabelRecords[index],entry=TERRAIN_REGION_BY_ID.get(record.terrainRegionId);
+    if(!entry)continue;
+    textMetricsCtx.font=record.font.replace(/[\d.]+px/,`${entry.fontSize}px`);
+    const width=textMetricsCtx.measureText(entry.name).width+entry.letterSpacing*Math.max(0,Array.from(entry.name).length-1);
+    const point=screenStableLabelPoint(record,metrics.scale);
+    const screenX=left+(point.x-vb.x)*metrics.scale,screenY=top+(point.y-vb.y)*metrics.scale;
+    if(Math.abs(clientX-screenX)<=width/2+5&&Math.abs(clientY-screenY)<=entry.fontSize*.8+4)return entry;
+  }
+  return null;
+}
 function majorRegionLabelHitTest(clientX,clientY){
   for(let index=majorRegionNameRecords.length-1;index>=0;index--){
     const record=majorRegionNameRecords[index];
@@ -3029,6 +3072,7 @@ function mapFeatureHitTest(clientX,clientY,includeHydrology=true){
   const mountainLabel=mountainLabelHitTest(clientX,clientY);if(mountainLabel)return mountainLabel;
   const mountain=mountainMarkerHitTest(point);if(mountain)return mountain;
   const range=mountainRangeHitTest(point,clientX,clientY);if(range)return range;
+  const terrainRegion=terrainRegionHitTest(clientX,clientY);if(terrainRegion)return terrainRegion;
   const lake=lakeHitTest(point,clientX,clientY);if(lake)return lake;
   let cityMarker=null,cityMarkerDistance=Infinity;
   for(const entry of CITY_DIRECTORY){
@@ -3176,7 +3220,7 @@ function getRegionSearchResults(query){
     else if(fields.ancestors.some(field=>field.includes(needle)))score=3;
     return {entry,score};
   }).filter(result=>Number.isFinite(result.score))
-    .sort((a,b)=>a.score-b.score||(({country:0,major:1,province:2,city:3,mountain:4,mountainRange:5,lake:6,river:7}[a.entry.kind]??8)-({country:0,major:1,province:2,city:3,mountain:4,mountainRange:5,lake:6,river:7}[b.entry.kind]??8))||a.entry.name.localeCompare(b.entry.name,'zh-CN'))
+    .sort((a,b)=>a.score-b.score||(({country:0,major:1,province:2,city:3,mountain:4,mountainRange:5,terrainRegion:6,lake:7,river:8}[a.entry.kind]??9)-({country:0,major:1,province:2,city:3,mountain:4,mountainRange:5,terrainRegion:6,lake:7,river:8}[b.entry.kind]??9))||a.entry.name.localeCompare(b.entry.name,'zh-CN'))
     .map(result=>result.entry);
 }
 function updateActiveRegionSearchOption(index){
@@ -3200,7 +3244,7 @@ function renderRegionSearchSuggestions(){
     const option=document.createElement('button');option.type='button';option.className='searchOption';option.id=`regionSearchOption-${index}`;option.setAttribute('role','option');option.setAttribute('aria-selected','false');option.tabIndex=-1;option.dataset.index=String(index);
     const main=document.createElement('span');main.className='searchOptionMain';
     const name=document.createElement('span');name.className='searchOptionName';name.textContent=entry.name;
-    const type=document.createElement('span');type.className='searchOptionType';type.textContent=({country:'国家',major:'大区',province:'省份',city:'城市',mountain:'山峰',mountainRange:entry.subtype||'山脉',lake:'湖泊',river:'河流'}[entry.kind]||'地名');
+    const type=document.createElement('span');type.className='searchOptionType';type.textContent=({country:'国家',major:'大区',province:'省份',city:'城市',mountain:'山峰',mountainRange:entry.subtype||'山脉',terrainRegion:entry.subtype||'地貌区',lake:'湖泊',river:'河流'}[entry.kind]||'地名');
     main.append(name,type);
     const meta=document.createElement('span');meta.className='searchOptionMeta';
     const {major,province}=getPlaceAdministrativeParents(entry);
@@ -3211,6 +3255,7 @@ function renderRegionSearchSuggestions(){
     else if(entry.kind==='lake')meta.textContent=`所属大区：${major?.name||entry.regionLabel||'暂无'} · 所属省份：${province?.name||'暂无'}`;
     else if(entry.kind==='mountain')meta.textContent=`第 ${entry.elevationRank||'暂无'} 位 · 海拔 ${formatPlaceMetric(entry)} · 地貌区：${entry.physiographicRegionName||'暂无'}${entry.mountainRangeName?` · 所属山脉：${entry.mountainRangeName}`:''} · 行政区：${major?.name||'暂无'} / ${province?.name||'暂无'}`;
     else if(entry.kind==='mountainRange')meta.textContent=`${entry.subtype||'山脉'} · ${entry.memberPeaks?.length||0} 座已录山峰 · 所属大区：${major?.name||'暂无'} · 所属省份：${province?.name||'暂无'}`;
+    else if(entry.kind==='terrainRegion')meta.textContent=`自然地貌 · 所属大区：${major?.name||'暂无'} · 所属省份：${province?.name||'暂无'}`;
     else meta.textContent=`所属大区：${major?.name||'暂无'} · 所属省份：${province?.name||'暂无'}${entry.postalCode?` · 邮政区号 ${entry.postalCode}`:''}${entry.tongueName?` · ${entry.tongueName}`:''}`;
     option.append(main,meta);regionSearchList.append(option);
   });
@@ -3281,11 +3326,11 @@ function openRegionInfo(entry){
   title.textContent=entry.name;
   const {major,province}=getPlaceAdministrativeParents(entry);
   const hierarchyLine=`所属大区：${major?.name||entry.regionLabel||'暂无'} · 所属省份：${province?.name||'暂无'}`;
-  subtitle.textContent=entry.kind==='country'?'全国地图':entry.kind==='major'?'国家级大区':entry.kind==='province'?`所属大区：${major?.name||'暂无'} · 行政区编号 ${entry.code||'暂无'}`:entry.kind==='river'?`所属地区：${entry.regionLabel||'暂无'}`:entry.kind==='mountain'?`${hierarchyLine}${entry.physiographicRegionName?` · ${entry.physiographicRegionName}`:''}${entry.mountainRangeName?` · 所属山脉：${entry.mountainRangeName}`:''} · 全图第 ${entry.elevationRank} 位`:entry.kind==='mountainRange'?`${hierarchyLine} · ${entry.subtype||'山脉'}`:`${hierarchyLine}${entry.postalCode?` · 邮政区号 ${entry.postalCode}`:''}`;
+  subtitle.textContent=entry.kind==='country'?'全国地图':entry.kind==='major'?'国家级大区':entry.kind==='province'?`所属大区：${major?.name||'暂无'} · 行政区编号 ${entry.code||'暂无'}`:entry.kind==='river'?`所属地区：${entry.regionLabel||'暂无'}`:entry.kind==='mountain'?`${hierarchyLine}${entry.physiographicRegionName?` · ${entry.physiographicRegionName}`:''}${entry.mountainRangeName?` · 所属山脉：${entry.mountainRangeName}`:''} · 全图第 ${entry.elevationRank} 位`:entry.kind==='mountainRange'?`${hierarchyLine} · ${entry.subtype||'山脉'}`:entry.kind==='terrainRegion'?`${hierarchyLine} · ${entry.subtype||'地貌区'}`:`${hierarchyLine}${entry.postalCode?` · 邮政区号 ${entry.postalCode}`:''}`;
   const levels=document.getElementById('regionInfoLevels');levels.replaceChildren();
   const unknown={name:'暂无',tongueName:'暂无'};
   const lakeRegion=major||(entry.regionLabel?{name:entry.regionLabel,tongueName:'暂无'}:unknown);
-  const levelsForEntry=entry.kind==='country'?[['国家',entry]]:entry.kind==='major'?[['大区',entry]]:entry.kind==='province'?[['所属大区',major||unknown],['省份',entry]]:entry.kind==='river'?[['所属地区',{name:entry.regionLabel||'暂无',tongueName:'暂无'}],['河流',entry]]:entry.kind==='lake'?[['所属大区',lakeRegion],['所属省份',province||unknown],['湖泊',entry]]:entry.kind==='mountainRange'?[['所属大区',major||unknown],['所属省份',province||unknown],[entry.subtype||'山脉',entry]]:entry.kind==='mountain'?[['所属大区',major||unknown],['所属省份',province||unknown],...(entry.physiographicRegionName?[['所属地貌区',{name:entry.physiographicRegionName,tongueName:'暂无'}]]:[]),...(entry.mountainRangeName?[['所属山脉',{name:entry.mountainRangeName,tongueName:'暂无'}]]:[]),['山峰',entry]]:[['所属大区',major||unknown],['所属省份',province||unknown],['城市',entry]];
+  const levelsForEntry=entry.kind==='country'?[['国家',entry]]:entry.kind==='major'?[['大区',entry]]:entry.kind==='province'?[['所属大区',major||unknown],['省份',entry]]:entry.kind==='river'?[['所属地区',{name:entry.regionLabel||'暂无',tongueName:'暂无'}],['河流',entry]]:entry.kind==='lake'?[['所属大区',lakeRegion],['所属省份',province||unknown],['湖泊',entry]]:entry.kind==='mountainRange'||entry.kind==='terrainRegion'?[['所属大区',major||unknown],['所属省份',province||unknown],[entry.subtype||'地貌区',entry]]:entry.kind==='mountain'?[['所属大区',major||unknown],['所属省份',province||unknown],...(entry.physiographicRegionName?[['所属地貌区',{name:entry.physiographicRegionName,tongueName:'暂无'}]]:[]),...(entry.mountainRangeName?[['所属山脉',{name:entry.mountainRangeName,tongueName:'暂无'}]]:[]),['山峰',entry]]:[['所属大区',major||unknown],['所属省份',province||unknown],['城市',entry]];
   levelsForEntry.forEach(([label,item])=>levels.append(createRegionInfoLevel(label,item)));
   document.getElementById('regionInfoMetricLabel').textContent=entry.kind==='mountain'?(entry.elevationSource==='user_provided'?'海拔':'推定海拔'):entry.kind==='mountainRange'?'山峰数量':entry.kind==='river'?'长度':'面积';
   document.getElementById('regionInfoArea').textContent=formatPlaceMetric(entry);
@@ -3300,7 +3345,7 @@ function selectNamedPlaceSearchResult(entry){
   clearOceanDepthSelection();
   hoveredCode=null;regionSearchInput.value=entry.name;closeRegionSearchPopup();
   const selected=document.getElementById('selected');selected.hidden=false;delete selected.dataset.kind;
-  const placeType=({city:'城市',mountain:'山峰',mountainRange:entry.subtype||'山脉',lake:'湖泊',river:'河流'}[entry.kind]||'地名');
+  const placeType=({city:'城市',mountain:'山峰',mountainRange:entry.subtype||'山脉',terrainRegion:entry.subtype||'地貌区',lake:'湖泊',river:'河流'}[entry.kind]||'地名');
   const label=document.createElement('b');label.textContent=`已选择${placeType}：${entry.name}`;
   const status=document.createElement('span');status.className='muted';
   const bounds=entry.bounds||(Number.isFinite(entry.pointX)&&Number.isFinite(entry.pointY)?{x:entry.pointX-(entry.kind==='mountain'?24:.5),y:entry.pointY-(entry.kind==='mountain'?24:.5),width:entry.kind==='mountain'?48:1,height:entry.kind==='mountain'?48:1}:null);
