@@ -1048,7 +1048,8 @@ aside[hidden]{display:none}
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#665b56"></span><span class="layerName">&#x90bb;&#x56fd;&#x8fb9;&#x754c;</span><input type="checkbox" data-layer="neighborBorders" checked aria-label="&#x663e;&#x793a;&#x90bb;&#x56fd;&#x8fb9;&#x754c;"></label>
 </div>
 </section>
-<label class="layerRow"><span class="layerSwatch" style="--swatch:#34764d"></span><span class="layerName">山峰与海拔</span><input type="checkbox" data-layer="mountainPeaks" checked aria-label="显示山峰与海拔图层"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#34764d"></span><span class="layerName">山峰</span><input type="checkbox" data-layer="mountainPeaks" checked aria-label="显示山峰图层"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#34764d"></span><span class="layerName">山峰海拔</span><input type="checkbox" data-layer="mountainElevations" checked aria-label="显示山峰海拔图层"></label>
 <section class="layerGroup" data-layer-group>
 <div class="layerParent"><button class="groupDisclosure" type="button" aria-expanded="false" aria-controls="waterLayers" aria-label="&#x5c55;&#x5f00;&#x6c34;&#x7cfb;"><span class="treeChevron"></span><span class="layerSwatch" style="--swatch:#b1d0ed"></span><span class="layerName">&#x6c34;&#x7cfb;</span></button><input id="waterToggle" type="checkbox" data-group="water" checked aria-label="&#x663e;&#x793a;&#x6240;&#x6709;&#x6c34;&#x7cfb;&#x56fe;&#x5c42;"></div>
 <div class="layerChildren" id="waterLayers" role="group" aria-label="&#x6c34;&#x7cfb;&#x5b50;&#x56fe;&#x5c42;" hidden>
@@ -1130,9 +1131,10 @@ const HYDROLOGY_LAYER_IDS=new Set(['lakes','rivers','canals','canalTicks','seaso
 const HYDROLOGY_LOD_TOLERANCES=[.06,.12,.24,.48,.96];
 const COASTAL_FILL_LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];
 const DETAIL_LAYERS=new Set(['regionCodes','regionNames','regionTongueNames','blackMarkers']);
+const PLACE_NAME_DRAW_GROUPS=new Set(['majorRegionNames','regionNames','regionTongueNames','provinceCapitalLabels','provinceCapitalTongueLabels','nationalCapitalLabels','nationalCapitalTongueLabels','cityLabels','cityTongueLabels','mountainPeakLabels','mountainElevationLabels','lakeNameLabels']);
 const DRAW_ORDER=new Map([
   ['oceanFill',0],['coastlineFills',1],['regions',1],['lakes',2],['rivers',3],['canals',4],['canalTicks',5],
-  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['graticule',10.5],['majorRegionNames',11],['nationalBorder',12],['blackMarkers',13],['mountainPeakMarkers',13.5],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22],['mountainPeakLabels',23],['lakeNameLabels',24]
+  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['graticule',10.5],['majorRegionNames',11],['nationalBorder',12],['blackMarkers',13],['mountainPeakMarkers',13.5],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22],['mountainPeakLabels',23],['mountainElevationLabels',23.5],['lakeNameLabels',24]
 ]);
 let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
@@ -1361,6 +1363,7 @@ function createRecord(element,drawGroup,layerId){
     fillOpacity:parseFloat(style.fillOpacity)||1,strokeOpacity:parseFloat(style.strokeOpacity)||1,
     bounds:element.getBBox()
   };
+  if(tag==='text'&&PLACE_NAME_DRAW_GROUPS.has(drawGroup))record.stroke='none';
   if(tag==='path'){
     const raw=element.getAttribute('d')||'',subpaths=HYDROLOGY_TOPOLOGY.get(element)||parseSubpaths(raw);
     const isRegion=element.classList.contains('region');
@@ -1404,7 +1407,10 @@ function createRecord(element,drawGroup,layerId){
     if(drawGroup==='mountainPeakLabels'){
       record.mountainPointX=Number.parseFloat(element.dataset.mountainPointX);
       record.mountainPointY=Number.parseFloat(element.dataset.mountainPointY);
-      record.mountainElevationLabel=element.dataset.mountainElevation==='true';
+    }
+    if(drawGroup==='mountainElevationLabels'){
+      record.mountainPointX=Number.parseFloat(element.dataset.mountainPointX);
+      record.mountainPointY=Number.parseFloat(element.dataset.mountainPointY);
     }
     if(drawGroup==='lakeNameLabels'){
       record.lakePointX=Number.parseFloat(element.dataset.lakePointX);
@@ -2192,6 +2198,9 @@ function appendMountainPeakLayer(){
   const labelLayer=document.createElementNS(ns,'g');
   labelLayer.id='mountainPeakLabels';labelLayer.dataset.layer='mountainPeaks';
   labelLayer.setAttribute('pointer-events','none');
+  const elevationLabelLayer=document.createElementNS(ns,'g');
+  elevationLabelLayer.id='mountainElevationLabels';elevationLabelLayer.dataset.layer='mountainElevations';
+  elevationLabelLayer.setAttribute('pointer-events','none');
   for(const feature of data.features||[]){
     const [longitude,mapLatitude]=feature.geometry?.coordinates||[];
     if(!Number.isFinite(longitude)||!Number.isFinite(mapLatitude))continue;
@@ -2207,8 +2216,6 @@ function appendMountainPeakLayer(){
     label.setAttribute('text-anchor','start');label.setAttribute('dominant-baseline','central');
     label.setAttribute('font-family','Arial,sans-serif');label.setAttribute('font-size','12');
     label.setAttribute('font-weight','600');label.setAttribute('fill','#285d3c');
-    label.setAttribute('stroke','#f7fbf8');label.setAttribute('stroke-width','2.8');
-    label.setAttribute('paint-order','stroke');
     label.dataset.mountainPointX=point.x;label.dataset.mountainPointY=point.y;
     label.textContent=feature.properties?.name||'';
     labelLayer.append(label);
@@ -2219,18 +2226,15 @@ function appendMountainPeakLayer(){
       elevationLabel.setAttribute('text-anchor','start');elevationLabel.setAttribute('dominant-baseline','central');
       elevationLabel.setAttribute('font-family','Arial,sans-serif');elevationLabel.setAttribute('font-size','10');
       elevationLabel.setAttribute('font-weight','600');elevationLabel.setAttribute('fill','#285d3c');
-      elevationLabel.setAttribute('stroke','#f7fbf8');elevationLabel.setAttribute('stroke-width','2.5');
-      elevationLabel.setAttribute('paint-order','stroke');
       elevationLabel.dataset.mountainPointX=point.x;elevationLabel.dataset.mountainPointY=point.y;
-      elevationLabel.dataset.mountainElevation='true';
       const estimated=feature.properties?.elevation_source!=='user_provided';
       const digits=estimated?1:3;
       const value=new Intl.NumberFormat('zh-CN',{maximumFractionDigits:digits}).format(elevation);
-      elevationLabel.textContent=`${estimated?'≈':''}${value} m`;
-      labelLayer.append(elevationLabel);
+      elevationLabel.textContent=`${value} m`;
+      elevationLabelLayer.append(elevationLabel);
     }
   }
-  sourceSvg.append(markerLayer,labelLayer);
+  sourceSvg.append(markerLayer,labelLayer,elevationLabelLayer);
 }
 function appendLakeNameLayer(){
   const entries=window.DUNIVERSE_LAKE_NAMES||[];
@@ -2245,8 +2249,6 @@ function appendLakeNameLayer(){
     label.setAttribute('text-anchor','middle');label.setAttribute('dominant-baseline','central');
     label.setAttribute('font-family','Arial,sans-serif');label.setAttribute('font-size','12');
     label.setAttribute('font-weight','600');label.setAttribute('fill','#236c92');
-    label.setAttribute('stroke','#f7fbff');label.setAttribute('stroke-width','2.8');
-    label.setAttribute('paint-order','stroke');
     label.dataset.lakePointX=entry.pointX;label.dataset.lakePointY=entry.pointY;
     label.textContent=entry.name;labelLayer.append(label);
   }
@@ -2372,7 +2374,7 @@ function paintText(record,x,y,align,method,scale,text=record.text,screenFont=rec
   }
 }
 function screenStableLabelPoint(record,scale){
-  const mountainLabel=record.drawGroup==='mountainPeakLabels'&&Number.isFinite(record.mountainPointX)&&Number.isFinite(record.mountainPointY);
+  const mountainLabel=['mountainPeakLabels','mountainElevationLabels'].includes(record.drawGroup)&&Number.isFinite(record.mountainPointX)&&Number.isFinite(record.mountainPointY);
   const lakeLabel=record.drawGroup==='lakeNameLabels'&&Number.isFinite(record.lakePointX)&&Number.isFinite(record.lakePointY);
   if(mountainLabel||lakeLabel){
     const pointX=mountainLabel?record.mountainPointX:record.lakePointX;
@@ -2431,11 +2433,11 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
     const isCityTongueLabel=record.layerId==='cityTongueLabels';
     const isMajorRegionName=record.drawGroup==='majorRegionNames',isCapitalLabel=isProvinceCapitalLabel||record.layerId==='nationalCapitalLabels',isCityLabel=record.layerId==='cityLabels';
     const isMajorRegionTongueName=isMajorRegionName&&record.language==='tongue';
-    const fontSize=record.drawGroup==='graticule'?10:record.drawGroup==='mountainPeakLabels'?(record.mountainElevationLabel?10:12):record.drawGroup==='lakeNameLabels'?12:isRegionName?FIXED_REGION_NAME_FONT_PX:isRegionTongueName?FIXED_REGION_TONGUE_FONT_PX:isProvinceCapitalTongueLabel?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:isCityTongueLabel?FIXED_CITY_TONGUE_LABEL_FONT_PX:isMajorRegionTongueName?FIXED_MAJOR_REGION_TONGUE_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:isCityLabel?FIXED_CITY_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
+    const fontSize=record.drawGroup==='graticule'?10:record.drawGroup==='mountainPeakLabels'?12:record.drawGroup==='mountainElevationLabels'?10:record.drawGroup==='lakeNameLabels'?12:isRegionName?FIXED_REGION_NAME_FONT_PX:isRegionTongueName?FIXED_REGION_TONGUE_FONT_PX:isProvinceCapitalTongueLabel?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:isCityTongueLabel?FIXED_CITY_TONGUE_LABEL_FONT_PX:isMajorRegionTongueName?FIXED_MAJOR_REGION_TONGUE_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:isCityLabel?FIXED_CITY_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
     const screenFont=record.font.replace(/[\d.]+px/,`${fontSize}px`);
     ctx.font=screenFont.replace(/[\d.]+px/,`${fontSize/scale}px`);ctx.textBaseline=record.textBaseline;
     let textX=record.x,textY=record.y,textAlign=record.textAlign,displayText=record.text;
-    if(record.drawGroup==='mountainPeakLabels'||record.drawGroup==='lakeNameLabels'){
+    if(['mountainPeakLabels','mountainElevationLabels','lakeNameLabels'].includes(record.drawGroup)){
       const stablePoint=screenStableLabelPoint(record,scale);
       textX=stablePoint.x;textY=stablePoint.y;
     }else if((isCityLabel||isCityTongueLabel||isProvinceCapitalLabel||isProvinceCapitalTongueLabel||isNationalCapitalNameLabel)&&
@@ -2526,7 +2528,7 @@ function draw(){
     if((record.layerId==='provinceCapitalLabels'||record.layerId==='provinceCapitalTongueLabels'||record.layerId==='nationalCapitalLabels')&&zoomWidth>CAPITAL_LABEL_DETAIL_LIMIT)continue;
     if((record.layerId==='cityLabels'||record.layerId==='cityTongueLabels')&&zoomWidth>CITY_LABEL_DETAIL_LIMIT)continue;
     if(record.drawGroup==='lakeNameLabels'&&zoomWidth>LAKE_LABEL_DETAIL_WIDTH)continue;
-    if(record.drawGroup==='mountainPeakLabels'&&zoomWidth>MOUNTAIN_LABEL_DETAIL_WIDTH)continue;
+    if(['mountainPeakLabels','mountainElevationLabels'].includes(record.drawGroup)&&zoomWidth>MOUNTAIN_LABEL_DETAIL_WIDTH)continue;
     if(!detailed&&DETAIL_LAYERS.has(record.layerId))continue;
     if(isAdministrativeLabel&&regionLabelOpacity<=0)continue;
     const fixedSizeMargin=record.tag==='circle'
@@ -2979,7 +2981,7 @@ function formatPlaceMetric(entry){
     if(!Number.isFinite(entry.elevationM))return '暂无';
     const estimated=entry.elevationSource!=='user_provided';
     const value=new Intl.NumberFormat('zh-CN',{maximumFractionDigits:estimated?1:3}).format(entry.elevationM);
-    return `${estimated?'≈':''}${value} m`;
+    return `${value} m`;
   }
   if(entry.kind==='lake')return '暂无面积';
   if(entry.kind==='river')return Number.isFinite(entry.lengthKm)?`${new Intl.NumberFormat('zh-CN',{maximumFractionDigits:2}).format(entry.lengthKm)} km`:'暂无';
