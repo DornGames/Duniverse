@@ -50,7 +50,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "嘉峪",
+        "name": "嘉嵘",
         "source_index": 2,
         "source_map_pixel_xy": [
           940.75,
@@ -72,7 +72,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "洛岱",
+        "name": "洛崮",
         "source_index": 3,
         "source_map_pixel_xy": [
           1006.25,
@@ -138,7 +138,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "苔山",
+        "name": "菪山",
         "source_index": 6,
         "source_map_pixel_xy": [
           804.5,
@@ -182,7 +182,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "昱山",
+        "name": "晃山",
         "source_index": 8,
         "source_map_pixel_xy": [
           776.5,
@@ -270,7 +270,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "宛木山",
+        "name": "窕木山",
         "source_index": 12,
         "source_map_pixel_xy": [
           897,
@@ -358,7 +358,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "峪曲山岭",
+        "name": "崛曲岭",
         "source_index": 16,
         "source_map_pixel_xy": [
           1141.75,
@@ -380,7 +380,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "江峙",
+        "name": "江峤",
         "source_index": 17,
         "source_map_pixel_xy": [
           929.5,
@@ -447,7 +447,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "蹬马山",
+        "name": "踏马山",
         "source_index": 21,
         "source_map_pixel_xy": [
           911.25,
@@ -470,7 +470,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "鸽顶",
+        "name": "鸩顶",
         "source_index": 22,
         "source_map_pixel_xy": [
           1306.5,
@@ -607,7 +607,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "长山岭",
+        "name": "长岭",
         "source_index": 28,
         "source_map_pixel_xy": [
           960.75,
@@ -790,7 +790,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "蕃山",
+        "name": "𣿅山",
         "source_index": 36,
         "source_map_pixel_xy": [
           1246.5,
@@ -834,7 +834,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "大瀑山",
+        "name": "大濂山",
         "source_index": 38,
         "source_map_pixel_xy": [
           1137.5,
@@ -1055,7 +1055,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "天嶂山",
+        "name": "天堂山",
         "source_index": 49,
         "source_map_pixel_xy": [
           1745.25,
@@ -1077,7 +1077,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "东莲山",
+        "name": "东𣿅山",
         "source_index": 50,
         "source_map_pixel_xy": [
           1826.25,
@@ -1232,7 +1232,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "江峙",
+        "name": "江峪",
         "source_index": 57,
         "source_map_pixel_xy": [
           1140,
@@ -1364,7 +1364,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "瑞岑",
+        "name": "瑙岑",
         "source_index": 63,
         "source_map_pixel_xy": [
           1062.75,
@@ -1408,7 +1408,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "芒峤",
+        "name": "芷嶂",
         "source_index": 65,
         "source_map_pixel_xy": [
           1102,
@@ -1496,7 +1496,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "梅檀山",
+        "name": "旃檀山",
         "source_index": 69,
         "source_map_pixel_xy": [
           975.5,
@@ -1518,7 +1518,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "深原岬",
+        "name": "深原崎",
         "source_index": 70,
         "source_map_pixel_xy": [
           323.25,
@@ -1562,7 +1562,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "原岌山",
+        "name": "原毗山",
         "source_index": 72,
         "source_map_pixel_xy": [
           285.75,
@@ -1584,7 +1584,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         ]
       },
       "properties": {
-        "name": "安火山",
+        "name": "萤火山",
         "source_index": 73,
         "source_map_pixel_xy": [
           1045.25,
