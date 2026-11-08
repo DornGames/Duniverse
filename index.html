@@ -156,9 +156,9 @@ aside[hidden]{display:none}
 <header class="mapHeader" aria-label="地图工具栏">
 <div class="brandLockup"><span class="brandMark" aria-hidden="true">D</span><div class="brandText"><p class="brandEyebrow">DUNIVERSE · MAP ATLAS</p><h1>𣿅国行政区划图</h1></div></div>
 <div class="regionSearch" id="regionSearch">
-<label class="srOnly" for="regionSearchInput">搜索大区、省级行政区、城市或𣿅语名称</label>
-<div class="searchField"><svg class="searchIcon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m13.1 13.1 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><input id="regionSearchInput" type="search" role="combobox" aria-label="搜索地区或城市" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="regionSearchList" autocomplete="off" placeholder="搜索大区、省级地区、城市或𣿅语名"></div>
-<div class="searchPopup" id="regionSearchPopup" hidden><div id="regionSearchList" role="listbox" aria-label="地区搜索建议"></div><p id="regionSearchStatus" class="searchStatus" role="status" aria-live="polite" hidden></p></div>
+<label class="srOnly" for="regionSearchInput">&#x641c;&#x7d22;&#x5730;&#x56fe;&#x4e0a;&#x7684;&#x5730;&#x540d;</label>
+<div class="searchField"><svg class="searchIcon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m13.1 13.1 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><input id="regionSearchInput" type="search" role="combobox" aria-label="&#x641c;&#x7d22;&#x5730;&#x540d;" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="regionSearchList" autocomplete="off" placeholder="&#x641c;&#x7d22;&#x5730;&#x533a;&#xff0c;&#x57ce;&#x5e02;&#xff0c;&#x5c71;&#x5cf0;&#x6216;&#x23fc5;&#x8bed;&#x540d;"></div>
+<div class="searchPopup" id="regionSearchPopup" hidden><div id="regionSearchList" role="listbox" aria-label="&#x5730;&#x540d;&#x641c;&#x7d22;&#x5efa;&#x8bae;"></div><p id="regionSearchStatus" class="searchStatus" role="status" aria-live="polite" hidden></p></div>
 </div>
 <div class="mapActions" role="group" aria-label="地图操作">
 <button id="togglePanel" class="mapButton layers" type="button" aria-controls="mapPanel" aria-expanded="false" aria-label="打开图层面板"><span class="wideLabel">图层</span><span class="compactLabel">层</span></button>
@@ -1086,9 +1086,9 @@ aside[hidden]{display:none}
 </div>
 </aside>
 <aside id="regionInfoPanel" role="region" aria-labelledby="regionInfoTitle" hidden>
-<div class="panelIntro"><div><p id="regionInfoKicker" class="panelKicker">REGION INFORMATION</p><h2 id="regionInfoTitle" aria-live="polite"></h2><p id="regionInfoSubtitle" class="muted"></p></div><button id="closeRegionInfo" class="closePanel" type="button" aria-label="关闭地区介绍">×</button></div>
+<div class="panelIntro"><div><p id="regionInfoKicker" class="panelKicker">PLACE INFORMATION</p><h2 id="regionInfoTitle" aria-live="polite"></h2><p id="regionInfoSubtitle" class="muted"></p></div><button id="closeRegionInfo" class="closePanel" type="button" aria-label="关闭地名介绍">×</button></div>
 <div id="regionInfoLevels" class="regionInfoLevels"></div>
-<div class="regionAreaCard"><span>面积</span><strong id="regionInfoArea"></strong></div>
+<div class="regionAreaCard"><span id="regionInfoMetricLabel">面积</span><strong id="regionInfoArea"></strong></div>
 <section id="regionInfoCoordinatePanel" class="regionCoordinatePanel" aria-labelledby="regionInfoCoordinateTitle" hidden><h3 id="regionInfoCoordinateTitle">土星坐标</h3><div id="regionInfoCoordinateContent"></div></section>
 <section class="regionDescription" aria-labelledby="regionDescriptionTitle"><h3 id="regionDescriptionTitle">介绍</h3><p id="regionInfoDescription">暂无介绍</p></section>
 </aside>
@@ -1099,6 +1099,7 @@ aside[hidden]{display:none}
 <script src="data/region_extrema.js"></script>
 <script src="data/bathymetry.js"></script>
 <script src="data/mountain_peaks.js"></script>
+<script src="data/named_rivers.js"></script>
 <script>
 const sourceSvg=document.getElementById('mapSvg');
 const canvas=document.getElementById('mapCanvas');
@@ -1152,7 +1153,19 @@ for(const entry of CITY_DIRECTORY){if(entry.tongueName){const group=CITY_BY_TONG
 const CITY_COORDINATE_DATA=window.DUNIVERSE_CITY_COORDINATES||{cities:[]};
 const CITY_COORDINATE_BY_ID=new Map(CITY_COORDINATE_DATA.cities.map(entry=>[entry.id,entry]));
 const REGION_EXTREMA_BY_ID=new Map((window.DUNIVERSE_REGION_EXTREMA||{regions:[]}).regions.map(entry=>[entry.id,entry]));
-const REGION_SEARCH_DIRECTORY=[...REGION_DIRECTORY,...CITY_DIRECTORY];
+const MOUNTAIN_SEARCH_DIRECTORY=(window.DUNIVERSE_MOUNTAIN_PEAKS?.features||[]).map(feature=>({
+  id:feature.id,kind:'mountain',name:feature.properties?.name||'未命名山峰',
+  tongueName:feature.properties?.tongue_name||'',description:feature.properties?.description||'',
+  longitudeDeg:feature.geometry?.coordinates?.[0],mapLatitudeDeg:feature.geometry?.coordinates?.[1],
+  pointX:feature.properties?.source_map_pixel_xy?.[0],pointY:feature.properties?.source_map_pixel_xy?.[1]
+}));
+const NAMED_RIVER_SEARCH_DIRECTORY=(window.DUNIVERSE_NAMED_RIVERS||[]).map(entry=>({...entry,regionLabel:entry.territory==='neighboring_country'?'邻国':'暂无'}));
+const COUNTRY_SEARCH_ENTRY={
+  id:'country:map',kind:'country',
+  name:(document.querySelector('.brandText h1')?.textContent||'').replace('行政区划图','').trim()||'国家',
+  tongueName:'',areaKm2:66490000,description:''
+};
+const REGION_SEARCH_DIRECTORY=[COUNTRY_SEARCH_ENTRY,...REGION_DIRECTORY,...CITY_DIRECTORY,...MOUNTAIN_SEARCH_DIRECTORY,...NAMED_RIVER_SEARCH_DIRECTORY];
 const layerInputs=[...document.querySelectorAll('input[data-layer]')];
 const layerVisibility=new Map(layerInputs.map(input=>[input.dataset.layer,input.checked]));
 const regionSearch=document.getElementById('regionSearch');
@@ -2201,6 +2214,11 @@ collectRecords(sourceSvg);
 records.sort((a,b)=>(DRAW_ORDER.get(a.drawGroup)??50)-(DRAW_ORDER.get(b.drawGroup)??50));
 bindCapitalLabelsToMarkers();
 buildRegionIndex();
+for(const entry of MOUNTAIN_SEARCH_DIRECTORY){
+  const code=hitTestRegion({x:entry.pointX,y:entry.pointY});
+  const province=code?REGION_BY_ID.get(`province:${code}`):null;
+  entry.parentId=province?.id||null;entry.adminName=province?.name||'暂无';
+}
 sourceSvg.remove();
 
 function viewAspect(){
@@ -2577,6 +2595,7 @@ function zoomToBounds(bounds,animate=true){
 }
 function zoomToRegion(code,animate=true){zoomToBounds(regionBounds.get(code),animate)}
 function boundsForDirectoryEntry(entry){
+  if(entry.kind==='country')return{x:0,y:0,width:MAP_W,height:MAP_H};
   if(entry.kind==='province')return regionBounds.get(entry.code)||null;
   let bounds=null;
   for(const child of REGION_DIRECTORY){
@@ -2597,7 +2616,8 @@ function selectArea(entry,animate=true,showInfo=true){
   hoveredCode=null;regionSearchInput.value=entry.name;closeRegionSearchPopup();
   const selected=document.getElementById('selected');selected.hidden=false;delete selected.dataset.kind;
   const label=document.createElement('b');
-  label.textContent=`已选择${entry.kind==='major'?'大区':'省级行政区'}：${entry.name}${entry.code?`（${entry.code}）`:''}`;
+  const selectedType=entry.kind==='country'?'全国地图':entry.kind==='major'?'大区':'省份';
+  label.textContent=`已选择${selectedType}：${entry.name}${entry.code?`（${entry.code}）`:''}`;
   const status=document.createElement('span');status.className='muted';status.textContent='已平滑定位到该区域';
   selected.replaceChildren(label,document.createElement('br'),status);
   zoomToBounds(boundsForDirectoryEntry(entry),animate);
@@ -2719,6 +2739,12 @@ function renderCoordinateInfo(entry){
     const role=coordinate.role==='capital'?'首都':coordinate.role==='province-capital'?'省会':'普通城市';
     appendCoordinateRow(content,'城市类别',[role]);
     appendCoordinateRow(content,'经度 / 自定义纬度',[formatCoordinatePair(coordinate)]);
+  }else if(entry.kind==='mountain'){
+    if(!Number.isFinite(entry.longitudeDeg)||!Number.isFinite(entry.mapLatitudeDeg)){panel.hidden=true;return;}
+    title.textContent='山峰坐标';
+    appendCoordinateRow(content,'经度 / 自定义纬度',[formatCoordinatePair(entry)]);
+  }else if(entry.kind==='country'||entry.kind==='river'){
+    panel.hidden=true;return;
   }else{
     const region=REGION_EXTREMA_BY_ID.get(entry.id);
     if(!region){panel.hidden=true;return;}
@@ -2806,7 +2832,7 @@ function normalizeSearchText(value){
   return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase().trim();
 }
 function regionSearchFields(entry){
-  const own=[entry.name,entry.tongueName,entry.code||'',entry.postalCode||'',entry.id.split(':').slice(1).join(':')];
+  const own=[entry.name,entry.tongueName,entry.code||'',entry.postalCode||'',entry.id.split(':').slice(1).join(':'),entry.regionLabel||''];
   const parent=entry.parentId?REGION_BY_ID.get(entry.parentId):null;
   const grandparent=parent?.parentId?REGION_BY_ID.get(parent.parentId):null;
   const parentFields=parent?[parent.name,parent.tongueName,parent.id.split(':').slice(1).join(':')]:[];
@@ -2816,7 +2842,7 @@ function regionSearchFields(entry){
 }
 function getRegionSearchResults(query){
   const needle=normalizeSearchText(query);
-  if(!needle)return REGION_DIRECTORY.filter(entry=>entry.kind==='major');
+  if(!needle)return [COUNTRY_SEARCH_ENTRY,...REGION_DIRECTORY.filter(entry=>entry.kind==='major')];
   return REGION_SEARCH_DIRECTORY.map(entry=>{
     const fields=regionSearchFields(entry);
     let score=Infinity;
@@ -2826,7 +2852,7 @@ function getRegionSearchResults(query){
     else if(fields.ancestors.some(field=>field.includes(needle)))score=3;
     return {entry,score};
   }).filter(result=>Number.isFinite(result.score))
-    .sort((a,b)=>a.score-b.score||(({major:0,province:1,city:2}[a.entry.kind]??3)-({major:0,province:1,city:2}[b.entry.kind]??3))||a.entry.name.localeCompare(b.entry.name,'zh-CN'))
+    .sort((a,b)=>a.score-b.score||(({country:0,major:1,province:2,city:3,mountain:4,river:5}[a.entry.kind]??6)-({country:0,major:1,province:2,city:3,mountain:4,river:5}[b.entry.kind]??6))||a.entry.name.localeCompare(b.entry.name,'zh-CN'))
     .map(result=>result.entry);
 }
 function updateActiveRegionSearchOption(index){
@@ -2843,21 +2869,25 @@ function renderRegionSearchSuggestions(){
   regionSearchInput.removeAttribute('aria-activedescendant');
   regionSearchPopup.hidden=false;regionSearchInput.setAttribute('aria-expanded','true');
   if(!regionSearchResults.length){
-    regionSearchList.hidden=true;regionSearchStatus.hidden=false;regionSearchStatus.textContent='没有找到匹配的地区或城市';return;
+    regionSearchList.hidden=true;regionSearchStatus.hidden=false;regionSearchStatus.textContent='没有找到匹配的地名';return;
   }
   regionSearchList.hidden=false;regionSearchStatus.hidden=true;regionSearchStatus.textContent='';
   regionSearchResults.forEach((entry,index)=>{
     const option=document.createElement('button');option.type='button';option.className='searchOption';option.id=`regionSearchOption-${index}`;option.setAttribute('role','option');option.setAttribute('aria-selected','false');option.tabIndex=-1;option.dataset.index=String(index);
     const main=document.createElement('span');main.className='searchOptionMain';
     const name=document.createElement('span');name.className='searchOptionName';name.textContent=entry.name;
-    const type=document.createElement('span');type.className='searchOptionType';type.textContent=entry.kind==='major'?'大区':entry.kind==='province'?'省级地区':'城市';
+    const type=document.createElement('span');type.className='searchOptionType';type.textContent=({country:'国家',major:'大区',province:'省份',city:'城市',mountain:'山峰',river:'河流'}[entry.kind]||'地名');
     main.append(name,type);
     const meta=document.createElement('span');meta.className='searchOptionMeta';
-    const parent=entry.parentId?REGION_BY_ID.get(entry.parentId):null;
-    meta.textContent=entry.kind==='major'?entry.tongueName:entry.kind==='city'?`${parent?.name||entry.adminName||''}${entry.tongueName?` · ${entry.tongueName}`:''}`:`${parent?.name||''}${parent?' · ':''}${entry.code} · ${entry.tongueName}`;
+    const {major,province}=getPlaceAdministrativeParents(entry);
+    if(entry.kind==='country')meta.textContent='全域地图';
+    else if(entry.kind==='major')meta.textContent=entry.tongueName||'大区';
+    else if(entry.kind==='province')meta.textContent=`所属大区：${major?.name||'暂无'}${entry.code?` · ${entry.code}`:''}${entry.tongueName?` · ${entry.tongueName}`:''}`;
+    else if(entry.kind==='river')meta.textContent=`所属地区：${entry.regionLabel||'暂无'}${entry.tongueName?` · ${entry.tongueName}`:''}`;
+    else meta.textContent=`所属大区：${major?.name||'暂无'} · 所属省份：${province?.name||'暂无'}${entry.postalCode?` · 邮政区号 ${entry.postalCode}`:''}${entry.tongueName?` · ${entry.tongueName}`:''}`;
     option.append(main,meta);regionSearchList.append(option);
   });
-  regionSearchStatus.hidden=false;regionSearchStatus.textContent=`找到 ${regionSearchResults.length} 个匹配地区或城市`;
+  regionSearchStatus.hidden=false;regionSearchStatus.textContent=`找到 ${regionSearchResults.length} 个匹配地名`;
 }
 function formatRegionArea(areaKm2){
   if(!Number.isFinite(areaKm2))return '暂无面积';
@@ -2870,39 +2900,52 @@ function createRegionInfoLevel(label,entry){
   const tongue=document.createElement('p');tongue.className='regionInfoLevelTongue';tongue.textContent=entry.tongueName||'暂无𣿅语名称';
   card.append(level,name,tongue);return card;
 }
+function getPlaceAdministrativeParents(entry){
+  const province=entry.kind==='province'?entry:(entry.parentId?REGION_BY_ID.get(entry.parentId):null);
+  const major=entry.kind==='major'?entry:(province?.parentId?REGION_BY_ID.get(province.parentId):null);
+  return{major,province};
+}
+function formatPlaceMetric(entry){
+  if(entry.kind==='mountain')return Number.isFinite(entry.elevationM)?`${new Intl.NumberFormat('zh-CN',{maximumFractionDigits:3}).format(entry.elevationM)} m`:'暂无';
+  if(entry.kind==='river')return Number.isFinite(entry.lengthKm)?`${new Intl.NumberFormat('zh-CN',{maximumFractionDigits:2}).format(entry.lengthKm)} km`:'暂无';
+  return formatRegionArea(entry.areaKm2);
+}
 function openRegionInfo(entry){
   const title=document.getElementById('regionInfoTitle'),subtitle=document.getElementById('regionInfoSubtitle');
-  document.getElementById('regionInfoKicker').textContent='地区介绍';
+  document.getElementById('regionInfoKicker').textContent='地名介绍';
   title.textContent=entry.name;
-  const province=entry.kind==='city'&&entry.parentId?REGION_BY_ID.get(entry.parentId):null;
-  const major=entry.kind==='major'?entry:REGION_BY_ID.get((entry.kind==='city'?province:entry)?.parentId);
-  subtitle.textContent=entry.kind==='city'?`${province?.name||entry.adminName}${entry.postalCode?` · 邮政区号 ${entry.postalCode}`:''}`:entry.code?`省级行政区 · 编号 ${entry.code}`:'大区';
+  const {major,province}=getPlaceAdministrativeParents(entry);
+  const hierarchyLine=`所属大区：${major?.name||entry.regionLabel||'暂无'} · 所属省份：${province?.name||'暂无'}`;
+  subtitle.textContent=entry.kind==='country'?'全国地图':entry.kind==='major'?'国家级大区':entry.kind==='province'?`所属大区：${major?.name||'暂无'} · 行政区编号 ${entry.code||'暂无'}`:entry.kind==='river'?`所属地区：${entry.regionLabel||'暂无'}`:`${hierarchyLine}${entry.postalCode?` · 邮政区号 ${entry.postalCode}`:''}`;
   const levels=document.getElementById('regionInfoLevels');levels.replaceChildren();
-  const hierarchy=entry.kind==='city'?[major,province,entry].filter(Boolean):entry.kind==='province'?[REGION_BY_ID.get(entry.parentId),entry].filter(Boolean):[entry];
-  hierarchy.forEach(item=>levels.append(createRegionInfoLevel(item.kind==='major'?'大区':item.kind==='province'?'省级行政区':'城市',item)));
-  document.getElementById('regionInfoArea').textContent=formatRegionArea(entry.areaKm2);
+  const unknown={name:'暂无',tongueName:'暂无'};
+  const levelsForEntry=entry.kind==='country'?[['国家',entry]]:entry.kind==='major'?[['大区',entry]]:entry.kind==='province'?[['所属大区',major||unknown],['省份',entry]]:entry.kind==='river'?[['所属地区',{name:entry.regionLabel||'暂无',tongueName:'暂无'}],['河流',entry]]:[['所属大区',major||unknown],['所属省份',province||unknown],[entry.kind==='mountain'?'山峰':'城市',entry]];
+  levelsForEntry.forEach(([label,item])=>levels.append(createRegionInfoLevel(label,item)));
+  document.getElementById('regionInfoMetricLabel').textContent=entry.kind==='mountain'?'海拔':entry.kind==='river'?'长度':'面积';
+  document.getElementById('regionInfoArea').textContent=formatPlaceMetric(entry);
   renderCoordinateInfo(entry);
   const description=typeof entry.description==='string'&&entry.description.trim()?entry.description.trim():'暂无介绍';
   document.getElementById('regionInfoDescription').textContent=description;
   document.getElementById('regionInfoPanel').hidden=false;
 }
-function selectCitySearchResult(entry){
+function selectNamedPlaceSearchResult(entry){
   if(!entry)return;
   clearOceanDepthSelection();
   hoveredCode=null;regionSearchInput.value=entry.name;closeRegionSearchPopup();
   const selected=document.getElementById('selected');selected.hidden=false;delete selected.dataset.kind;
-  const label=document.createElement('b');label.textContent=`已选择城市：${entry.name}`;
+  const placeType=({city:'城市',mountain:'山峰',river:'河流'}[entry.kind]||'地名');
+  const label=document.createElement('b');label.textContent=`已选择${placeType}：${entry.name}`;
   const status=document.createElement('span');status.className='muted';
-  if(Number.isFinite(entry.pointX)&&Number.isFinite(entry.pointY)){
-    status.textContent='已平滑定位到该城市';
-    zoomToBounds({x:entry.pointX-.5,y:entry.pointY-.5,width:1,height:1},true);
-  }else status.textContent='该城市暂无可确认的地图位置';
+  const bounds=entry.bounds||(Number.isFinite(entry.pointX)&&Number.isFinite(entry.pointY)?{x:entry.pointX-(entry.kind==='mountain'?24:.5),y:entry.pointY-(entry.kind==='mountain'?24:.5),width:entry.kind==='mountain'?48:1,height:entry.kind==='mountain'?48:1}:null);
+  if(bounds){status.textContent=`已平滑定位到该${placeType}`;zoomToBounds(bounds,true);}
+  else status.textContent=`该${placeType}暂无可确认的地图位置`;
   selected.replaceChildren(label,document.createElement('br'),status);
   setMapPanelOpen(false);openRegionInfo(entry);
 }
+function selectCitySearchResult(entry){selectNamedPlaceSearchResult(entry)}
 function chooseRegionSearchResult(index){
   const entry=regionSearchResults[index];if(!entry)return;
-  if(entry.kind==='city')selectCitySearchResult(entry);else selectArea(entry,true,true);
+  if(['country','major','province'].includes(entry.kind))selectArea(entry,true,true);else selectNamedPlaceSearchResult(entry);
 }
 regionSearchInput.addEventListener('focus',renderRegionSearchSuggestions);
 regionSearchInput.addEventListener('input',()=>{
