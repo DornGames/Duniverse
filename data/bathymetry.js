@@ -1,24 +1,30 @@
 (function(){
   'use strict';
 
-  const MAX_DEPTH_M=15000;
+  const MAX_DEPTH_M=15130;
   const MAP_PIXEL_KM=7.7719530772698535;
   const COLOR_STOPS=[
     [0,174,205,228],[200,160,198,224],[1000,140,189,220],[2500,114,177,218],
     [4500,93,169,214],[6000,79,150,204],[8000,71,133,190],[10000,65,118,176],
-    [12000,58,104,160],[14000,51,92,145],[15000,45,82,135]
+    [12000,58,104,160],[14000,51,92,145],[15130,45,82,135]
   ];
 
   // Coast-near outlets were matched to the mapped river network; the fans widen seaward.
   const RIVER_MOUTH_FANS=[
-    {x:1448,y:1252,dx:.93,dy:.37,length:72,nearWidth:3,farWidth:26,relief:1150},
-    {x:1328,y:435,dx:1,dy:.08,length:54,nearWidth:3,farWidth:20,relief:800},
-    {x:1290,y:976,dx:1,dy:0,length:52,nearWidth:3,farWidth:22,relief:900},
-    {x:1381,y:742,dx:1,dy:0,length:48,nearWidth:3,farWidth:18,relief:700}
+    {x:1448,y:1252,dx:.93,dy:.37,length:72,nearWidth:3,farWidth:26,relief:90},
+    {x:1328,y:435,dx:1,dy:.08,length:54,nearWidth:3,farWidth:20,relief:65},
+    {x:1290,y:976,dx:1,dy:0,length:52,nearWidth:3,farWidth:22,relief:75},
+    {x:1381,y:742,dx:1,dy:0,length:48,nearWidth:3,farWidth:18,relief:55}
   ].map(fan=>{
     const length=Math.hypot(fan.dx,fan.dy)||1;
     return{...fan,dx:fan.dx/length,dy:fan.dy/length};
   });
+  // A few sheltered estuaries have shallow, broad harbor basins around 20 m deep.
+  const HARBOR_BASINS=[
+    {x:1340,y:445,rx:8,ry:5,angle:.22},
+    {x:1393,y:754,rx:10,ry:6,angle:-.31},
+    {x:1459,y:1242,rx:11,ry:7,angle:.36}
+  ];
 
   // The deepest trough follows the ocean-facing side of the offshore island arc.
   const TRENCH_POINTS=[
@@ -153,10 +159,10 @@
   function continentalProfile(distanceKm,shelfWidth){
     if(distanceKm<=shelfWidth)return 180*smoothStep(distanceKm/shelfWidth);
     const beyond=distanceKm-shelfWidth;
-    if(beyond<=260)return 180+3020*smoothStep(beyond/260);
-    if(beyond<=600)return 3200+2000*smoothStep((beyond-260)/340);
-    if(beyond<=900)return 5200+600*smoothStep((beyond-600)/300);
-    return 5800;
+    if(beyond<=260)return 180+1820*smoothStep(beyond/260);
+    if(beyond<=600)return 2000+450*smoothStep((beyond-260)/340);
+    if(beyond<=900)return 2450+150*smoothStep((beyond-600)/300);
+    return 2600;
   }
 
   function mainlandCoastByRow(water,width,height,sourceWidth){
@@ -204,6 +210,28 @@
       relief+=fan.relief*Math.sin(Math.PI*progress)*crossFactor;
     }
     return relief;
+  }
+
+  function harborWeight(x,y){
+    let strongest=0;
+    for(const basin of HARBOR_BASINS){
+      const dx=x-basin.x,dy=y-basin.y,cos=Math.cos(basin.angle),sin=Math.sin(basin.angle);
+      const along=(cos*dx+sin*dy)/basin.rx,across=(-sin*dx+cos*dy)/basin.ry;
+      const radius=Math.hypot(along,across);
+      const irregularEdge=1+.07*valueNoise(x,y,20,4931);
+      strongest=Math.max(strongest,smoothStep((irregularEdge-radius)/.28));
+    }
+    return strongest;
+  }
+
+  function setRiverMouthDepth(x,y,depth){
+    for(const fan of RIVER_MOUTH_FANS){
+      const distance=Math.hypot(x-fan.x,y-fan.y);
+      if(distance>4)continue;
+      const target=2+7*Math.exp(-.5*(distance/2.5)**2);
+      depth=Math.min(depth,target);
+    }
+    return Math.max(2,depth);
   }
 
   function buildDistanceWaterMask(maskPixels,width,height){
@@ -340,29 +368,29 @@
 
         const basinDistanceSquared=distanceSquaredToPolyline(x,y,BASIN_AXIS);
         const basinGate=smoothStep((marginDistance-rowShelfWidth*.55)/450);
-        depth+=1650*basinGate*Math.exp(-.5*basinDistanceSquared/(68*68));
+        depth+=350*basinGate*Math.exp(-.5*basinDistanceSquared/(68*68));
         depth+=sampleReliefNoise(reliefNoise,x,y)*smoothStep((depth-400)/1800);
 
         const ridgeDistanceSquared=distanceSquaredToPolyline(x,y,ridgeSegments);
-        const mainArc=2800*Math.exp(-.5*ridgeDistanceSquared/(24*24));
+        const mainArc=1600*Math.exp(-.5*ridgeDistanceSquared/(24*24));
         const coastalBankDistanceSquared=distanceSquaredToPolyline(x,y,COASTAL_BANK_SEGMENTS);
         depth-=900*Math.exp(-.5*coastalBankDistanceSquared/(12*12));
         const arcBranchDistanceSquared=distanceSquaredToPolyline(x,y,ARC_BRANCH_SEGMENTS);
         const branchFade=1-smoothStep((y-710)/95);
-        const branchArc=2200*branchFade*Math.exp(-.5*arcBranchDistanceSquared/(21*21));
+        const branchArc=1200*branchFade*Math.exp(-.5*arcBranchDistanceSquared/(21*21));
         const southernEastDistance=distanceSquaredToPolyline(x,y,SOUTHERN_RIDGE_EAST);
         const southernWestDistance=distanceSquaredToPolyline(x,y,SOUTHERN_RIDGE_WEST);
         const eastFade=smoothStep((y-700)/75)*smoothStep((915-y)/75);
         const westFade=smoothStep((x-1440)/70)*smoothStep((1740-x)/70);
-        const easternRidge=2800*eastFade*Math.exp(-.5*southernEastDistance/(25*25));
-        const westernRidge=2500*westFade*Math.exp(-.5*southernWestDistance/(27*27));
+        const easternRidge=1500*eastFade*Math.exp(-.5*southernEastDistance/(25*25));
+        const westernRidge=1350*westFade*Math.exp(-.5*southernWestDistance/(27*27));
         depth-=Math.max(mainArc,branchArc,easternRidge,westernRidge);
         const ridgeNorth=distanceSquaredToPolyline(x,y,OUTER_RIDGE_NORTH);
         const ridgeSouth=distanceSquaredToPolyline(x,y,OUTER_RIDGE_SOUTH);
         const northFade=smoothStep((y-165)/100)*smoothStep((385-y)/100);
         const southFade=smoothStep((y-460)/110)*smoothStep((705-y)/110);
-        depth-=700*northFade*Math.exp(-.5*ridgeNorth/(35*35));
-        depth-=600*southFade*Math.exp(-.5*ridgeSouth/(38*38));
+        depth-=350*northFade*Math.exp(-.5*ridgeNorth/(35*35));
+        depth-=300*southFade*Math.exp(-.5*ridgeSouth/(38*38));
         depth-=riverFanRelief(x,y);
 
         // Nearby islands merge into shared banks; scattered tiny islets make only subtle rises.
@@ -385,9 +413,15 @@
         const trenchDistanceSquared=distanceSquaredToPolyline(x,y,TRENCH_SEGMENTS);
         const trenchEnds=smoothStep((y-385)/155)*smoothStep((845-y)/155);
         const trenchWidth=15+5*smoothStep((y-540)/170);
-        const deepest=6200*Math.exp(-.5*((y-690)/70)**2);
-        depth+=(3200+deepest)*trenchEnds*Math.exp(-.5*trenchDistanceSquared/(trenchWidth*trenchWidth));
-        depth=Math.max(0,Math.min(MAX_DEPTH_M,depth));
+        const trenchProfile=trenchEnds*Math.exp(-.5*trenchDistanceSquared/(trenchWidth*trenchWidth));
+        depth+=450*trenchProfile;
+        const deepestCore=Math.exp(-.5*trenchDistanceSquared/(trenchWidth*trenchWidth))
+          *Math.exp(-.5*((y-690)/70)**2);
+        depth+=(MAX_DEPTH_M-depth)*deepestCore;
+        const harbor=harborWeight(x,y);
+        depth+=(20-depth)*harbor;
+        depth=setRiverMouthDepth(x,y,depth);
+        depth=Math.max(2,Math.min(MAX_DEPTH_M,depth));
         depthValues[index]=Math.round(depth);
         const colorOffset=Math.round(depth)*4,pixelOffset=index*4;
         pixels[pixelOffset]=COLOR_LOOKUP[colorOffset];
