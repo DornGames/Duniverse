@@ -30,8 +30,10 @@
   const TRENCH_POINTS=[
     {x:1390,y:170},{x:1420,y:186},{x:1450,y:207},{x:1480,y:238},
     {x:1510,y:260},{x:1535,y:278},{x:1565,y:300},{x:1590,y:325},{x:1614,y:351},
-    {x:1640,y:385},{x:1690,y:480},{x:1750,y:550},
-    {x:1830,y:595},{x:1900,y:625},{x:1920,y:690},{x:1910,y:760},{x:1865,y:845}
+    {x:1640,y:385},{x:1690,y:480},{x:1730,y:510},{x:1790,y:535},{x:1825,y:555},
+    {x:1865,y:570},{x:1895,y:615},{x:1915,y:670},{x:1920,y:690},
+    {x:1910,y:760},{x:1885,y:845},{x:1920,y:880},{x:1890,y:920},
+    {x:1840,y:950},{x:1760,y:975},{x:1715,y:980}
   ];
   const TRENCH_SEGMENTS=makeSegments(TRENCH_POINTS);
   // The mapped island groups form a nearshore north-south belt and a separate offshore NW-SE arc.
@@ -413,13 +415,17 @@
         depth+=(Math.min(depth,45)-depth)*lagoon;
 
         const trenchDistanceSquared=distanceSquaredToPolyline(x,y,TRENCH_SEGMENTS);
-        const trenchEnds=smoothStep((y-135)/125)*smoothStep((845-y)/155);
+        const trenchEnds=smoothStep((y-135)/125)*smoothStep((1060-y)/160);
         const trenchWidth=15+5*smoothStep((y-540)/170);
-        const trenchProfile=trenchEnds*Math.exp(-.5*trenchDistanceSquared/(trenchWidth*trenchWidth));
+        // Fade the trench across the island banks so no deep channel renders beneath an island.
+        const islandBuffer=bankPixels[index*4+3]/255;
+        const trenchClearance=1-smoothStep((islandBuffer-.06)/.52);
+        const trenchProfile=trenchEnds*Math.exp(-.5*trenchDistanceSquared/(trenchWidth*trenchWidth))*trenchClearance;
         const northwestShoulder=1-smoothStep((y-280)/140);
-        depth+=(450+1200*northwestShoulder)*trenchProfile;
+        const southernShoulder=smoothStep((y-820)/120);
+        depth+=(450+1200*northwestShoulder+1600*southernShoulder)*trenchProfile;
         const deepestCore=Math.exp(-.5*trenchDistanceSquared/(trenchWidth*trenchWidth))
-          *Math.exp(-.5*((y-690)/70)**2);
+          *Math.exp(-.5*((y-690)/70)**2)*trenchClearance;
         depth+=(MAX_DEPTH_M-depth)*deepestCore;
         const harbor=harborWeight(x,y);
         depth+=(20-depth)*harbor;
