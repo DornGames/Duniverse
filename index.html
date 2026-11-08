@@ -1205,7 +1205,7 @@ const MOUNTAIN_RANGE_SEARCH_DIRECTORY=[
   {id:'mountain-range:ruifeng',kind:'mountainRange',subtype:'山脉',name:'瑞丰山脉',pointX:1004,pointY:654,fontSize:12,labelOffset:14,labelOpacity:.82,maxMemberDistance:28,points:[[991.75,602.625],[1004,650],[1016.5,705.125]],description:'位于瑞丰地区，雪瑞峰与剑山属于这条山脉。'}
 ];
 const TERRAIN_REGION_SEARCH_DIRECTORY=[
-  {id:'terrain-region:aisibi-desert',kind:'terrainRegion',subtype:'沙漠',name:'艾斯比沙漠',pointX:615,pointY:650,fontSize:18,letterSpacing:105,fill:'#9a7849',boundsWidth:580,boundsHeight:120,description:'横贯西部内陆的沙漠地带；具体范围暂无。'},
+  {id:'terrain-region:aisibi-desert',kind:'terrainRegion',subtype:'沙漠',name:'艾斯比沙漠',pointX:615,pointY:650,fontSize:18,letterSpacing:0,labelPath:[[355,470],[875,830]],fill:'#9a7849',boundsWidth:590,boundsHeight:430,description:'沿西北—东南方向横贯西部内陆的广大沙漠地带；具体范围暂无。'},
   {id:'terrain-region:aisibi-uninhabited',kind:'terrainRegion',subtype:'无人区',name:'艾斯比无人区',pointX:656,pointY:834,fontSize:17,letterSpacing:4,fill:'#6f716d',boundsWidth:220,boundsHeight:120,description:'位于西部内陆中部的无人区；具体范围暂无。'}
 ];
 const TERRAIN_REGION_BY_ID=new Map(TERRAIN_REGION_SEARCH_DIRECTORY.map(entry=>[entry.id,entry]));
@@ -1417,6 +1417,10 @@ function createRecord(element,drawGroup,layerId){
     rotationDeg:Number.parseFloat(element.dataset.rotationDeg)||0,
     fixedFontSize:Number.parseFloat(element.dataset.fixedFontSize)||0
   };
+  if(tag==='text'&&drawGroup==='terrainRegionLabels'&&record.terrainRegionId){
+    const entry=TERRAIN_REGION_BY_ID.get(record.terrainRegionId);
+    if(entry?.bounds)record.bounds={...entry.bounds};
+  }
   if(tag==='text'&&PLACE_NAME_DRAW_GROUPS.has(drawGroup))record.stroke='none';
   if(tag==='path'){
     const raw=element.getAttribute('d')||'',subpaths=HYDROLOGY_TOPOLOGY.get(element)||parseSubpaths(raw);
@@ -2325,6 +2329,28 @@ function appendTerrainRegionLayer(){
   }
   sourceSvg.append(labelLayer);
 }
+function terrainRegionLabelLayout(entry){
+  const glyphs=Array.from(entry?.name||''),points=entry?.labelPath||[];
+  if(!glyphs.length||points.length<2)return null;
+  const segments=[];let totalLength=0;
+  for(let index=1;index<points.length;index++){
+    const start=points[index-1],end=points[index],dx=end[0]-start[0],dy=end[1]-start[1],length=Math.hypot(dx,dy);
+    if(!length)continue;
+    segments.push({start,dx,dy,length,from:totalLength});totalLength+=length;
+  }
+  if(!totalLength)return null;
+  return glyphs.map((glyph,index)=>{
+    const distance=glyphs.length===1?totalLength/2:totalLength*index/(glyphs.length-1);
+    const segment=segments.find(item=>distance<=item.from+item.length)||segments.at(-1);
+    const amount=Math.max(0,Math.min(1,(distance-segment.from)/segment.length));
+    return{
+      glyph,
+      x:segment.start[0]+segment.dx*amount,
+      y:segment.start[1]+segment.dy*amount,
+      angle:Math.atan2(segment.dy,segment.dx)
+    };
+  });
+}
 function appendLakeNameLayer(){
   const entries=window.DUNIVERSE_LAKE_NAMES||[];
   const ns='http://www.w3.org/2000/svg';
@@ -2561,6 +2587,19 @@ function drawMountainRangeLabel(record,range,scale,opacityOverride){
     ctx.save();ctx.translate(item.x,item.y);ctx.rotate(item.angle);ctx.fillText(item.glyph,0,0);ctx.restore();
   }
 }
+function drawTerrainRegionLabel(record,entry,scale,opacityOverride){
+  if(!entry)return;
+  const fontSize=entry.fontSize||record.fixedFontSize||18;
+  const screenFont=record.font.replace(/[\d.]+px/,`${fontSize}px`);
+  ctx.font=screenFont.replace(/[\d.]+px/,`${fontSize/scale}px`);
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle=record.fill;ctx.globalAlpha=record.fillOpacity*opacityOverride;
+  const layout=terrainRegionLabelLayout(entry);
+  if(layout){
+    for(const item of layout){
+      ctx.save();ctx.translate(item.x,item.y);ctx.rotate(item.angle);ctx.fillText(item.glyph,0,0);ctx.restore();
+    }
+  }else paintText(record,record.x,record.y,'center','fillText',scale,record.text,screenFont);
+}
 function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverride=1,fastText=false){
   const hovered=record.code&&record.code===hoveredCode;
   const specialCapitalMarker=record.drawGroup==='specialCapitalMarker';
@@ -2595,6 +2634,10 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
   }else if(record.tag==='text'){
     if(record.drawGroup==='mountainRangeLabels'){
       drawMountainRangeLabel(record,MOUNTAIN_RANGE_BY_ID.get(record.rangeId),scale,opacityOverride);
+      ctx.restore();return;
+    }
+    if(record.drawGroup==='terrainRegionLabels'){
+      drawTerrainRegionLabel(record,TERRAIN_REGION_BY_ID.get(record.terrainRegionId),scale,opacityOverride);
       ctx.restore();return;
     }
     const isRegionCode=record.layerId==='regionCodes',isRegionName=record.layerId==='regionNames',isRegionTongueName=record.layerId==='regionTongueNames';
@@ -3020,10 +3063,21 @@ function terrainRegionHitTest(clientX,clientY){
     const record=terrainRegionLabelRecords[index],entry=TERRAIN_REGION_BY_ID.get(record.terrainRegionId);
     if(!entry)continue;
     textMetricsCtx.font=record.font.replace(/[\d.]+px/,`${entry.fontSize}px`);
-    const width=textMetricsCtx.measureText(entry.name).width+entry.letterSpacing*Math.max(0,Array.from(entry.name).length-1);
-    const point=screenStableLabelPoint(record,metrics.scale);
-    const screenX=left+(point.x-vb.x)*metrics.scale,screenY=top+(point.y-vb.y)*metrics.scale;
-    if(Math.abs(clientX-screenX)<=width/2+5&&Math.abs(clientY-screenY)<=entry.fontSize*.8+4)return entry;
+    const layout=terrainRegionLabelLayout(entry);
+    if(layout){
+      for(const item of layout){
+        const screenX=left+(item.x-vb.x)*metrics.scale,screenY=top+(item.y-vb.y)*metrics.scale;
+        let dx=clientX-screenX,dy=clientY-screenY;
+        const cos=Math.cos(item.angle),sin=Math.sin(item.angle);[dx,dy]=[dx*cos+dy*sin,-dx*sin+dy*cos];
+        const width=textMetricsCtx.measureText(item.glyph).width;
+        if(Math.abs(dx)<=width/2+5&&Math.abs(dy)<=entry.fontSize*.8+4)return entry;
+      }
+    }else{
+      const width=textMetricsCtx.measureText(entry.name).width+entry.letterSpacing*Math.max(0,Array.from(entry.name).length-1);
+      const point=screenStableLabelPoint(record,metrics.scale);
+      const screenX=left+(point.x-vb.x)*metrics.scale,screenY=top+(point.y-vb.y)*metrics.scale;
+      if(Math.abs(clientX-screenX)<=width/2+5&&Math.abs(clientY-screenY)<=entry.fontSize*.8+4)return entry;
+    }
   }
   return null;
 }
