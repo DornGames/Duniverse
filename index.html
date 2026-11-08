@@ -101,7 +101,7 @@ aside[hidden]{display:none}
 .layerChildren{display:grid;gap:5px;margin-left:16px;padding-left:10px;border-left:1px solid #dfe8e8}
 .layerChildren[hidden]{display:none}
 .bathymetryLegend{display:grid;gap:5px;padding:2px 10px 7px 30px}
-.bathymetryColorRamp{height:10px;border:1px solid rgba(34,65,88,.16);border-radius:999px;background:linear-gradient(90deg,#bbdbeb 0%,#a4cfe5 1.33%,#89c3e0 6.67%,#72b5d8 16.67%,#5da9d6 30%,#4f96cc 40%,#4785be 53.33%,#4176b0 66.67%,#3a68a0 80%,#335c91 93.33%,#2d5287 100%)}
+.bathymetryColorRamp{height:10px;border:1px solid rgba(34,65,88,.16);border-radius:999px;background:linear-gradient(90deg,#aecde4 0%,#a0c6e0 1.33%,#8cbddc 6.67%,#72b1da 16.67%,#5da9d6 30%,#4f96cc 40%,#4785be 53.33%,#4176b0 66.67%,#3a68a0 80%,#335c91 93.33%,#2d5287 100%)}
 .bathymetryLegendLabels{display:flex;justify-content:space-between;gap:6px;color:#6d8287;font-size:9px;line-height:1.2}
 .groupDisclosure{display:flex;align-items:center;justify-content:flex-start;gap:9px;flex:1 1 auto;width:auto;height:32px;min-width:0;padding:0 3px;border:0;border-radius:7px;background:transparent;color:inherit;text-align:left}
 .groupDisclosure:hover{background:transparent}
@@ -2347,15 +2347,18 @@ function draw(){
   ctx.clearRect(0,0,m.width,m.height);
   ctx.fillStyle='#f5f8f9';ctx.fillRect(0,0,m.width,m.height);
   const scale=m.scale,offsetX=m.offsetX,offsetY=m.offsetY;
+  const zoomWidth=viewZoomWidth(),bathymetryOpacity=smoothStep((zoomWidth-400)/650);
+  const riverColor=records.find(record=>record.layerId==='rivers'&&record.stroke!=='none')?.stroke||OCEAN_COLOR;
   ctx.fillStyle='#fff';ctx.fillRect(offsetX-vb.x*scale,offsetY-vb.y*scale,SOURCE_W*scale,MAP_H*scale);
   ctx.fillStyle=OCEAN_COLOR;ctx.fillRect(offsetX+(SOURCE_W-2-vb.x)*scale,offsetY-vb.y*scale,(MAP_W-SOURCE_W+2)*scale,MAP_H*scale);
+  if(bathymetryOpacity<1){ctx.save();ctx.globalAlpha=1-bathymetryOpacity;ctx.fillStyle=riverColor;ctx.fillRect(offsetX+(SOURCE_W-2-vb.x)*scale,offsetY-vb.y*scale,(MAP_W-SOURCE_W+2)*scale,MAP_H*scale);ctx.restore();}
   ctx.setTransform(drawPixelRatio*scale,0,0,drawPixelRatio*scale,drawPixelRatio*(offsetX-vb.x*scale),drawPixelRatio*(offsetY-vb.y*scale));
   ctx.lineJoin='round';ctx.lineCap='round';
   const view={x:vb.x,y:vb.y,width:vb.w,height:vb.h},toleranceIndex=activeToleranceIndex(scale,LOD_TOLERANCES,interactiveRender?INTERACTIVE_SCREEN_ERROR:.75);
   const coastalFillToleranceIndex=interactiveRender
     ?activeToleranceIndex(scale,COASTAL_FILL_LOD_TOLERANCES,INTERACTIVE_SCREEN_ERROR)
     :coastalFillToleranceIndexForView();
-  const zoomWidth=viewZoomWidth(),detailed=zoomWidth<=DETAIL_LIMIT;
+  const detailed=zoomWidth<=DETAIL_LIMIT;
   const regionLabelOpacity=regionLabelOpacityForView();
   const majorRegionLabelOpacity=majorRegionLabelOpacityForView();
   for(const record of records){
@@ -2396,11 +2399,14 @@ function draw(){
        Math.max(record.bounds.width,record.bounds.height)*scale<.7)continue;
     const islandExtent=Math.max(record.bounds.width,record.bounds.height)*scale;
     const hideIsland=record.layerId==='islandFills'&&(!layerVisible||islandExtent<MIN_ISLAND_SCREEN_EXTENT);
-    drawRecord(record,pathToleranceIndex,scale,hideIsland?OCEAN_COLOR:null,
+    drawRecord(record,pathToleranceIndex,scale,hideIsland?(bathymetryOpacity===0?riverColor:OCEAN_COLOR):null,
       isAdministrativeLabel?regionLabelOpacity:isMajorRegionLabel?majorRegionLabelOpacity:1,interactiveRender);
-    if(record.layerId==='oceanFill'&&layerVisibility.get('bathymetry')!==false){
-      const raster=getBathymetryRaster();
-      if(raster)ctx.drawImage(raster,0,0,MAP_W,MAP_H);
+    if(record.layerId==='oceanFill'){
+      if(bathymetryOpacity<1){ctx.save();ctx.globalAlpha=1-bathymetryOpacity;ctx.fillStyle=riverColor;ctx.fill(record.variants[pathToleranceIndex]);ctx.restore();}
+      if(layerVisibility.get('bathymetry')!==false&&bathymetryOpacity>0){
+        const raster=getBathymetryRaster();
+        if(raster){ctx.save();ctx.globalAlpha=bathymetryOpacity;ctx.drawImage(raster,0,0,MAP_W,MAP_H);ctx.restore();}
+      }
     }
   }
 }
