@@ -1091,7 +1091,7 @@ aside[hidden]{display:none}
 <section id="regionInfoCoordinatePanel" class="regionCoordinatePanel" aria-labelledby="regionInfoCoordinateTitle" hidden><h3 id="regionInfoCoordinateTitle">土星坐标</h3><div id="regionInfoCoordinateContent"></div></section>
 <section class="regionDescription" aria-labelledby="regionDescriptionTitle"><h3 id="regionDescriptionTitle">介绍</h3><p id="regionInfoDescription">暂无介绍</p></section>
 </aside>
-<div id="mapHud"><div id="selected" aria-live="polite" hidden></div><p class="mapHint">&#x6eda;&#x8f6e;&#x7f29;&#x653e; &#x00b7; &#x62d6;&#x62fd;&#x5e73;&#x79fb; &#x00b7; &#x70b9;&#x51fb;&#x5730;&#x533a;&#x6216;&#x57ce;&#x5e02;&#x540d;&#x79f0;&#x67e5;&#x770b;&#x4ecb;&#x7ecd;</p></div></div>
+<div id="mapHud"><div id="selected" aria-live="polite" hidden></div><p class="mapHint">&#x6eda;&#x8f6e;&#x7f29;&#x653e; &#x00b7; &#x62d6;&#x62fd;&#x5e73;&#x79fb; &#x00b7; &#x70b9;&#x51fb;&#x5730;&#x533a;&#x6216;&#x57ce;&#x5e02;&#x540d;&#x79f0;&#x67e5;&#x770b;&#x4ecb;&#x7ecd; &#x00b7; 点击海洋查看深度</p></div></div>
 <script src="data/region_directory.js"></script>
 <script src="data/city_directory.js"></script>
 <script src="data/city_coordinates.js"></script>
@@ -1133,6 +1133,7 @@ let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
 let drag=null,framePending=false,viewAnimation=null,zoomAnimation=null,zoomTarget=null,zoomLastTime=null,hoveredCode=null,pixelRatio=1,interactiveRender=false,renderQualityTimer=null;
 let bathymetryRaster=null;
+let oceanDepthPoint=null;
 let records=[],regionRecords=[],regionBounds=new Map();
 const HYDROLOGY_JUNCTION_KEYS=new Set();
 const HYDROLOGY_TOPOLOGY=new WeakMap();
@@ -2409,6 +2410,10 @@ function draw(){
       }
     }
   }
+  if(oceanDepthPoint){
+    ctx.save();ctx.beginPath();ctx.arc(oceanDepthPoint.x,oceanDepthPoint.y,5/scale,0,Math.PI*2);
+    ctx.fillStyle='#245d73';ctx.fill();ctx.lineWidth=2/scale;ctx.strokeStyle='#fff';ctx.stroke();ctx.restore();
+  }
 }
 function updateCanvasBackingStore(){
   const width=canvas.clientWidth,height=canvas.clientHeight;
@@ -2523,8 +2528,9 @@ function boundsForDirectoryEntry(entry){
 }
 function selectArea(entry,animate=true,showInfo=true){
   if(!entry)return;
+  clearOceanDepthSelection();
   hoveredCode=null;regionSearchInput.value=entry.name;closeRegionSearchPopup();
-  const selected=document.getElementById('selected');selected.hidden=false;
+  const selected=document.getElementById('selected');selected.hidden=false;delete selected.dataset.kind;
   const label=document.createElement('b');
   label.textContent=`已选择${entry.kind==='major'?'大区':'省级行政区'}：${entry.name}${entry.code?`（${entry.code}）`:''}`;
   const status=document.createElement('span');status.className='muted';status.textContent='已平滑定位到该区域';
@@ -2545,6 +2551,30 @@ function hitTestRegion(point){
     if(hitCtx.isPointInPath(record.variants[0],point.x,point.y))return record.code;
   }
   return null;
+}
+function clearOceanDepthSelection(){
+  const selected=document.getElementById('selected');
+  if(selected.dataset.kind==='oceanDepth'){selected.hidden=true;delete selected.dataset.kind;}
+  if(oceanDepthPoint){oceanDepthPoint=null;draw();}
+}
+function selectOceanDepth(point){
+  const selected=document.getElementById('selected');
+  for(const record of records){
+    if(record.layerId!=='islandFills'||record.tag!=='path')continue;
+    const bounds=record.bounds;
+    if(point.x<bounds.x||point.x>bounds.x+bounds.width||point.y<bounds.y||point.y>bounds.y+bounds.height)continue;
+    if(hitCtx.isPointInPath(record.variants[0],point.x,point.y,'evenodd')){clearOceanDepthSelection();return false;}
+  }
+  const raster=getBathymetryRaster(),depth=raster?.getDepthAt(point.x,point.y);
+  if(depth==null){
+    clearOceanDepthSelection();
+    return false;
+  }
+  oceanDepthPoint={x:point.x,y:point.y};
+  const label=document.createElement('b');label.textContent=`海底深度：${depth===0?'0':`−${depth.toLocaleString('zh-CN')}`} 米`;
+  selected.dataset.kind='oceanDepth';selected.hidden=false;selected.replaceChildren(label);
+  document.getElementById('regionInfoPanel').hidden=true;
+  draw();return true;
 }
 function cityEntryForLabel(record){
   if(record.layerId.startsWith('nationalCapital')){
@@ -2787,8 +2817,9 @@ function openRegionInfo(entry){
 }
 function selectCitySearchResult(entry){
   if(!entry)return;
+  clearOceanDepthSelection();
   hoveredCode=null;regionSearchInput.value=entry.name;closeRegionSearchPopup();
-  const selected=document.getElementById('selected');selected.hidden=false;
+  const selected=document.getElementById('selected');selected.hidden=false;delete selected.dataset.kind;
   const label=document.createElement('b');label.textContent=`已选择城市：${entry.name}`;
   const status=document.createElement('span');status.className='muted';
   if(Number.isFinite(entry.pointX)&&Number.isFinite(entry.pointY)){
@@ -2857,7 +2888,7 @@ function endDrag(event){
   if(!drag)return;
   const {moved,code,city}=drag;drag=null;canvas.classList.remove('dragging');
   finishInteractiveRender();
-  if(event.type==='pointerup'&&!moved){if(city)selectCitySearchResult(city);else if(code)selectRegion(code,true);}
+  if(event.type==='pointerup'&&!moved){if(city)selectCitySearchResult(city);else if(code)selectRegion(code,true);else selectOceanDepth(canvasToMap(event.clientX,event.clientY));}
 }
 canvas.addEventListener('pointerup',endDrag);
 canvas.addEventListener('pointercancel',endDrag);
@@ -2895,6 +2926,7 @@ document.addEventListener('keydown',event=>{
   if(!regionSearchPopup.hidden){closeRegionSearchPopup();event.preventDefault();}
   else if(!regionInfoPanel.hidden){regionInfoPanel.hidden=true;regionSearchInput.focus();event.preventDefault();}
   else if(!mapPanel.hidden){setMapPanelOpen(false);panelToggle.focus();event.preventDefault();}
+  else if(oceanDepthPoint){clearOceanDepthSelection();event.preventDefault();}
 });
 const resizeObserver=new ResizeObserver(resizeCanvas);resizeObserver.observe(canvas);
 window.addEventListener('resize',resizeCanvas);

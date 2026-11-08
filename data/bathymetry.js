@@ -322,6 +322,7 @@
     outputCanvas.width=width;outputCanvas.height=height;
     const outputContext=outputCanvas.getContext('2d');
     const image=outputContext.createImageData(width,height);
+    const depthValues=new Uint16Array(size);depthValues.fill(65535);
     const pixels=image.data,mask=maskPixels.data;
     const ridgeSegments=makeSegments([
       {x:1571,y:436},{x:1602,y:448},{x:1674,y:526},{x:1742,y:658},{x:1808,y:686}
@@ -387,6 +388,7 @@
         const deepest=6200*Math.exp(-.5*((y-690)/70)**2);
         depth+=(3200+deepest)*trenchEnds*Math.exp(-.5*trenchDistanceSquared/(trenchWidth*trenchWidth));
         depth=Math.max(0,Math.min(MAX_DEPTH_M,depth));
+        depthValues[index]=Math.round(depth);
         const colorOffset=Math.round(depth)*4,pixelOffset=index*4;
         pixels[pixelOffset]=COLOR_LOOKUP[colorOffset];
         pixels[pixelOffset+1]=COLOR_LOOKUP[colorOffset+1];
@@ -396,6 +398,19 @@
     }
 
     outputContext.putImageData(image,0,0);
+    outputCanvas.getDepthAt=(x,y)=>{
+      if(!Number.isFinite(x)||!Number.isFinite(y)||x<0||y<0||x>=width||y>=height)return null;
+      if(depthValues[Math.floor(y)*width+Math.floor(x)]===65535)return null;
+      const px=x-.5,py=y-.5,x0=Math.floor(px),y0=Math.floor(py),tx=px-x0,ty=py-y0;
+      let total=0,weight=0;
+      for(let dy=0;dy<=1;dy++)for(let dx=0;dx<=1;dx++){
+        const xx=x0+dx,yy=y0+dy;
+        if(xx<0||yy<0||xx>=width||yy>=height)continue;
+        const value=depthValues[yy*width+xx];if(value===65535)continue;
+        const w=(dx?tx:1-tx)*(dy?ty:1-ty);total+=value*w;weight+=w;
+      }
+      return weight?Math.round(total/weight):null;
+    };
     return outputCanvas;
   }
 
