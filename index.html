@@ -1383,6 +1383,10 @@ function createRecord(element,drawGroup,layerId){
       record.cityPointX=Number.parseFloat(element.dataset.cityPointX);
       record.cityPointY=Number.parseFloat(element.dataset.cityPointY);
     }
+    if(drawGroup==='mountainPeakLabels'){
+      record.mountainPointX=Number.parseFloat(element.dataset.mountainPointX);
+      record.mountainPointY=Number.parseFloat(element.dataset.mountainPointY);
+    }
   }
   return record;
 }
@@ -2181,7 +2185,9 @@ function appendMountainPeakLayer(){
     label.setAttribute('font-family','Arial,sans-serif');label.setAttribute('font-size','12');
     label.setAttribute('font-weight','600');label.setAttribute('fill','#285d3c');
     label.setAttribute('stroke','#f7fbf8');label.setAttribute('stroke-width','2.8');
-    label.setAttribute('paint-order','stroke');label.textContent=feature.properties?.name||'';
+    label.setAttribute('paint-order','stroke');
+    label.dataset.mountainPointX=point.x;label.dataset.mountainPointY=point.y;
+    label.textContent=feature.properties?.name||'';
     labelLayer.append(label);
   }
   sourceSvg.append(markerLayer,labelLayer);
@@ -2285,6 +2291,12 @@ function paintText(record,x,y,align,method,scale,text=record.text,screenFont=rec
   }
 }
 function screenStableLabelPoint(record,scale){
+  if(record.drawGroup==='mountainPeakLabels'&&Number.isFinite(record.mountainPointX)&&Number.isFinite(record.mountainPointY)){
+    return{
+      x:record.mountainPointX+(record.x-record.mountainPointX)/scale,
+      y:record.mountainPointY+(record.y-record.mountainPointY)/scale
+    };
+  }
   if(!Number.isFinite(record.cityPointX)||!Number.isFinite(record.cityPointY))return{x:record.x,y:record.y};
   const x=record.cityPointX+(record.x-record.cityPointX)/scale;
   let y=record.cityPointY+(record.y-record.cityPointY)/scale;
