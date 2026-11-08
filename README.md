@@ -85,6 +85,7 @@ python tools/build_coordinate_catalog.py
 原图没有比例尺或地理控制点，所以基础图层仍以图像像素存储：原点在左上角，横轴向右、纵轴向下。项目另建立了一套根据给定国土面积定标的土星坐标参考，参数见 [`data/georeference.json`](data/georeference.json)，测绘假设和公式见[《𣿅国地图测绘报告》](saturn-map-survey-report.md)。该坐标系以土星 1 bar 参考椭球为基准，臭都为 0°经线、地图纬度约 4.7833°N（对应真实行星地理纬度约 28.7°N）；真实纬度 ±90°按六分之一记为地图纬度 ±15°，经度仍为东向 360°一周。
 
 可用 `tools/georeference_map.py` 把像素点或现有 GeoJSON 转为该项目坐标。批量结果写入 `data/georeferenced/`，并标记为自定义土星坐标；这些坐标不是 WGS 84 / EPSG:4326，也不是官方地图原有的 GIS 坐标。
+山峰图层位于 [`data/mountain_peaks.js`](data/mountain_peaks.js)，包含 87 个点要素。每个点保留原图像素位置，并用 `[longitude_deg, map_latitude_deg]` 存储同一套自定义坐标；页面的 `saturnMapCoordinatesToPixel()` 与经纬网共用投影参数，把经纬度反算到数字地图像素。山峰图层默认开启，缩放到细节视图时显示名称。
 `tools/build_coordinate_catalog.py` 会生成 316 个城市的全精度坐标数据和 53 个省/大区的四至及方向极端城市数据，页面介绍统一显示两位小数。对应文件为 [`data/city_coordinates.js`](data/city_coordinates.js) 与 [`data/region_extrema.js`](data/region_extrema.js)。
 
 各省面积按提取面要素的像素面积权重归一化到全国给定面积，大区面积由所属省求和；归一化因子与原始覆盖率记录在 [`data/georeference.json`](data/georeference.json) 和测绘报告中。

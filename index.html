@@ -1048,6 +1048,7 @@ aside[hidden]{display:none}
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#665b56"></span><span class="layerName">&#x90bb;&#x56fd;&#x8fb9;&#x754c;</span><input type="checkbox" data-layer="neighborBorders" checked aria-label="&#x663e;&#x793a;&#x90bb;&#x56fd;&#x8fb9;&#x754c;"></label>
 </div>
 </section>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#34764d"></span><span class="layerName">山峰</span><input type="checkbox" data-layer="mountainPeaks" checked aria-label="显示山峰图层"></label>
 <section class="layerGroup" data-layer-group>
 <div class="layerParent"><button class="groupDisclosure" type="button" aria-expanded="false" aria-controls="waterLayers" aria-label="&#x5c55;&#x5f00;&#x6c34;&#x7cfb;"><span class="treeChevron"></span><span class="layerSwatch" style="--swatch:#b1d0ed"></span><span class="layerName">&#x6c34;&#x7cfb;</span></button><input id="waterToggle" type="checkbox" data-group="water" checked aria-label="&#x663e;&#x793a;&#x6240;&#x6709;&#x6c34;&#x7cfb;&#x56fe;&#x5c42;"></div>
 <div class="layerChildren" id="waterLayers" role="group" aria-label="&#x6c34;&#x7cfb;&#x5b50;&#x56fe;&#x5c42;" hidden>
@@ -1097,13 +1098,14 @@ aside[hidden]{display:none}
 <script src="data/city_coordinates.js"></script>
 <script src="data/region_extrema.js"></script>
 <script src="data/bathymetry.js"></script>
+<script src="data/mountain_peaks.js"></script>
 <script>
 const sourceSvg=document.getElementById('mapSvg');
 const canvas=document.getElementById('mapCanvas');
 const ctx=canvas.getContext('2d',{alpha:false,desynchronized:true});
 const hitCanvas=document.createElement('canvas');
 const hitCtx=hitCanvas.getContext('2d');
-const SOURCE_W=2048,MAP_W=2300,MAP_H=1448,DETAIL_LIMIT=1380,RED_MARKER_DETAIL_LIMIT=1900,CAPITAL_LABEL_DETAIL_LIMIT=1700,CITY_LABEL_DETAIL_LIMIT=1200,PAN_MARGIN=.12;
+const SOURCE_W=2048,MAP_W=2300,MAP_H=1448,DETAIL_LIMIT=1380,RED_MARKER_DETAIL_LIMIT=1900,CAPITAL_LABEL_DETAIL_LIMIT=1700,CITY_LABEL_DETAIL_LIMIT=1200,MOUNTAIN_LABEL_DETAIL_WIDTH=640,PAN_MARGIN=.12;
 const REGION_LABEL_FADE_IN_COMPLETE_WIDTH=960,REGION_LABEL_FADE_OUT_START_WIDTH=640,REGION_LABEL_FADE_OUT_END_WIDTH=400;
 const MAJOR_REGION_LABEL_FADE_OUT_START_WIDTH=1750;
 const MIN_VIEW_WIDTH=60,COASTAL_DETAIL_COMPLETE_PROGRESS=.65,MIN_ISLAND_SCREEN_EXTENT=2;
@@ -1127,7 +1129,7 @@ const COASTAL_FILL_LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];
 const DETAIL_LAYERS=new Set(['regionCodes','regionNames','regionTongueNames','blackMarkers']);
 const DRAW_ORDER=new Map([
   ['oceanFill',0],['coastlineFills',1],['regions',1],['lakes',2],['rivers',3],['canals',4],['canalTicks',5],
-  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['graticule',10.5],['majorRegionNames',11],['nationalBorder',12],['blackMarkers',13],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22]
+  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['graticule',10.5],['majorRegionNames',11],['nationalBorder',12],['blackMarkers',13],['mountainPeakMarkers',13.5],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22],['mountainPeakLabels',23]
 ]);
 let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
@@ -1364,6 +1366,7 @@ function createRecord(element,drawGroup,layerId){
     record.cx=parseFloat(element.getAttribute('cx'))||0;
     record.cy=parseFloat(element.getAttribute('cy'))||0;
     record.radius=parseFloat(element.getAttribute('r'))||0;
+    record.markerShape=element.dataset.markerShape||'circle';
   }else if(tag==='text'){
     record.x=parseFloat(element.getAttribute('x'))||0;
     record.y=parseFloat(element.getAttribute('y'))||0;
@@ -2084,25 +2087,32 @@ for(const [pointX,pointY,offsetX,offsetY,anchor,name] of CITY_LABELS){
 }
 sourceSvg.append(cityTongueLabelLayer);
 
+const SATURN_MAP_REFERENCE=Object.freeze({
+  id:'DUNIVERSE-SATURN-SCALED-LAT-2026',equatorialRadiusKm:60268,
+  eccentricitySquared:.18632823035361423,pixelScaleKmPerPixel:7.7719530772698535,
+  anchorX:1002,anchorY:877,anchorLongitude:0,anchorPhysicalLatitude:28.7*Math.PI/180,
+  standardParallel:26.28251565833631*Math.PI/180,physicalDegreesPerMapDegree:6
+});
+function saturnAuthalicQ(latitude){
+  const p=SATURN_MAP_REFERENCE,eccentricity=Math.sqrt(p.eccentricitySquared);
+  const sine=Math.sin(latitude),denominator=1-p.eccentricitySquared*sine*sine;
+  return(1-p.eccentricitySquared)*(sine/denominator-
+    Math.log((1-eccentricity*sine)/(1+eccentricity*sine))/(2*eccentricity));
+}
+function saturnMapCoordinatesToPixel(longitude,mapLatitude){
+  const p=SATURN_MAP_REFERENCE,degrees=Math.PI/180;
+  const physicalLatitude=mapLatitude*p.physicalDegreesPerMapDegree*degrees;
+  const projectedY=p.equatorialRadiusKm*(saturnAuthalicQ(physicalLatitude)-saturnAuthalicQ(p.anchorPhysicalLatitude))/
+    (2*Math.cos(p.standardParallel));
+  return{
+    x:p.anchorX+(longitude-p.anchorLongitude)*degrees*p.equatorialRadiusKm*Math.cos(p.standardParallel)/p.pixelScaleKmPerPixel,
+    y:p.anchorY-projectedY/p.pixelScaleKmPerPixel
+  };
+}
 function appendSaturnGraticule(){
-  const ns='http://www.w3.org/2000/svg',degrees=Math.PI/180;
-  const equatorialRadius=60268,eccentricitySquared=.18632823035361423;
-  const eccentricity=Math.sqrt(eccentricitySquared),pixelScale=7.7719530772698535;
-  const anchorX=1002,anchorY=877,anchorPhysicalLatitude=28.7*degrees;
-  const standardParallel=26.28251565833631*degrees;
-  const authalicQ=phi=>{
-    const sine=Math.sin(phi),denominator=1-eccentricitySquared*sine*sine;
-    return(1-eccentricitySquared)*(sine/denominator-
-      Math.log((1-eccentricity*sine)/(1+eccentricity*sine))/(2*eccentricity));
-  };
-  const xForLongitude=longitude=>anchorX+
-    degrees*longitude*equatorialRadius*Math.cos(standardParallel)/pixelScale;
-  const yForLatitude=latitude=>{
-    const physicalLatitude=latitude*6*degrees;
-    const projectedY=equatorialRadius*(authalicQ(physicalLatitude)-authalicQ(anchorPhysicalLatitude))/
-      (2*Math.cos(standardParallel));
-    return anchorY-projectedY/pixelScale;
-  };
+  const ns='http://www.w3.org/2000/svg';
+  const xForLongitude=longitude=>saturnMapCoordinatesToPixel(longitude,0).x;
+  const yForLatitude=latitude=>saturnMapCoordinatesToPixel(0,latitude).y;
   const graticule=document.createElementNS(ns,'g');
   graticule.id='graticule';graticule.dataset.layer='graticule';
   graticule.setAttribute('pointer-events','none');
@@ -2145,7 +2155,39 @@ function appendSaturnGraticule(){
   }
   sourceSvg.append(graticule);
 }
+function appendMountainPeakLayer(){
+  const data=window.DUNIVERSE_MOUNTAIN_PEAKS;
+  if(data?.coordinate_reference_system?.id!==SATURN_MAP_REFERENCE.id)return;
+  const ns='http://www.w3.org/2000/svg';
+  const markerLayer=document.createElementNS(ns,'g');
+  markerLayer.id='mountainPeakMarkers';markerLayer.dataset.layer='mountainPeaks';
+  markerLayer.setAttribute('pointer-events','none');
+  const labelLayer=document.createElementNS(ns,'g');
+  labelLayer.id='mountainPeakLabels';labelLayer.dataset.layer='mountainPeaks';
+  labelLayer.setAttribute('pointer-events','none');
+  for(const feature of data.features||[]){
+    const [longitude,mapLatitude]=feature.geometry?.coordinates||[];
+    if(!Number.isFinite(longitude)||!Number.isFinite(mapLatitude))continue;
+    const point=saturnMapCoordinatesToPixel(longitude,mapLatitude);
+    if(point.x<0||point.x>SOURCE_W||point.y<0||point.y>MAP_H)continue;
+    const marker=document.createElementNS(ns,'circle');
+    marker.setAttribute('cx',point.x.toFixed(3));marker.setAttribute('cy',point.y.toFixed(3));
+    marker.setAttribute('r','5');marker.setAttribute('data-marker-shape','triangle');
+    marker.setAttribute('fill','#34764d');marker.setAttribute('stroke','#f7fbf8');
+    marker.setAttribute('stroke-width','1.25');markerLayer.append(marker);
+    const label=document.createElementNS(ns,'text');
+    label.setAttribute('x',(point.x+7).toFixed(3));label.setAttribute('y',(point.y-5).toFixed(3));
+    label.setAttribute('text-anchor','start');label.setAttribute('dominant-baseline','central');
+    label.setAttribute('font-family','Arial,sans-serif');label.setAttribute('font-size','12');
+    label.setAttribute('font-weight','600');label.setAttribute('fill','#285d3c');
+    label.setAttribute('stroke','#f7fbf8');label.setAttribute('stroke-width','2.8');
+    label.setAttribute('paint-order','stroke');label.textContent=feature.properties?.name||'';
+    labelLayer.append(label);
+  }
+  sourceSvg.append(markerLayer,labelLayer);
+}
 appendSaturnGraticule();
+appendMountainPeakLayer();
 
 // Build Canvas paths from the extracted geometry, then remove the source SVG from the page.
 buildHydrologyTopology(sourceSvg);
@@ -2275,7 +2317,14 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
     }
   }else if(record.tag==='circle'){
     const circleScale=specialCapitalMarker?Math.min(scale,1):scale;
-    ctx.beginPath();ctx.arc(record.cx,record.cy,record.radius/circleScale,0,Math.PI*2);
+    const radius=record.radius/circleScale;
+    ctx.beginPath();
+    if(record.markerShape==='triangle'){
+      ctx.moveTo(record.cx,record.cy-radius);
+      ctx.lineTo(record.cx+radius*.88,record.cy+radius*.72);
+      ctx.lineTo(record.cx-radius*.88,record.cy+radius*.72);
+      ctx.closePath();
+    }else ctx.arc(record.cx,record.cy,radius,0,Math.PI*2);
     if(record.fill!=='none'){ctx.fillStyle=record.fill;ctx.globalAlpha=record.fillOpacity;ctx.fill()}
     if(record.stroke!=='none'&&record.lineWidth>0){ctx.strokeStyle=record.stroke;ctx.globalAlpha=record.strokeOpacity;ctx.stroke()}
   }else if(record.tag==='text'){
@@ -2285,7 +2334,7 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
     const isCityTongueLabel=record.layerId==='cityTongueLabels';
     const isMajorRegionName=record.drawGroup==='majorRegionNames',isCapitalLabel=isProvinceCapitalLabel||record.layerId==='nationalCapitalLabels',isCityLabel=record.layerId==='cityLabels';
     const isMajorRegionTongueName=isMajorRegionName&&record.language==='tongue';
-    const fontSize=record.drawGroup==='graticule'?10:isRegionName?FIXED_REGION_NAME_FONT_PX:isRegionTongueName?FIXED_REGION_TONGUE_FONT_PX:isProvinceCapitalTongueLabel?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:isCityTongueLabel?FIXED_CITY_TONGUE_LABEL_FONT_PX:isMajorRegionTongueName?FIXED_MAJOR_REGION_TONGUE_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:isCityLabel?FIXED_CITY_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
+    const fontSize=record.drawGroup==='graticule'?10:record.drawGroup==='mountainPeakLabels'?12:isRegionName?FIXED_REGION_NAME_FONT_PX:isRegionTongueName?FIXED_REGION_TONGUE_FONT_PX:isProvinceCapitalTongueLabel?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:isCityTongueLabel?FIXED_CITY_TONGUE_LABEL_FONT_PX:isMajorRegionTongueName?FIXED_MAJOR_REGION_TONGUE_FONT_PX:isMajorRegionName?FIXED_MAJOR_REGION_NAME_FONT_PX:isCapitalLabel?FIXED_CAPITAL_LABEL_FONT_PX:isCityLabel?FIXED_CITY_LABEL_FONT_PX:FIXED_CODE_FONT_PX;
     const screenFont=record.font.replace(/[\d.]+px/,`${fontSize}px`);
     ctx.font=screenFont.replace(/[\d.]+px/,`${fontSize/scale}px`);ctx.textBaseline=record.textBaseline;
     let textX=record.x,textY=record.y,textAlign=record.textAlign,displayText=record.text;
@@ -2376,6 +2425,7 @@ function draw(){
     if(record.layerId==='nationalCapitalMarker'&&zoomWidth>RED_MARKER_DETAIL_LIMIT)continue;
     if((record.layerId==='provinceCapitalLabels'||record.layerId==='provinceCapitalTongueLabels'||record.layerId==='nationalCapitalLabels')&&zoomWidth>CAPITAL_LABEL_DETAIL_LIMIT)continue;
     if((record.layerId==='cityLabels'||record.layerId==='cityTongueLabels')&&zoomWidth>CITY_LABEL_DETAIL_LIMIT)continue;
+    if(record.drawGroup==='mountainPeakLabels'&&zoomWidth>MOUNTAIN_LABEL_DETAIL_WIDTH)continue;
     if(!detailed&&DETAIL_LAYERS.has(record.layerId))continue;
     if(isAdministrativeLabel&&regionLabelOpacity<=0)continue;
     const fixedSizeMargin=record.tag==='circle'
@@ -2697,6 +2747,12 @@ function syncLayerGroup(group){
   parent.checked=enabled===children.length;
   parent.indeterminate=enabled>0&&enabled<children.length;
   parent.setAttribute('aria-checked',parent.indeterminate?'mixed':String(parent.checked));
+}
+for(const input of layerInputs.filter(input=>!input.closest('[data-layer-group]'))){
+  input.addEventListener('change',()=>{
+    layerVisibility.set(input.dataset.layer,input.checked);
+    draw();
+  });
 }
 for(const group of document.querySelectorAll('[data-layer-group]')){
   const disclosure=group.querySelector('.groupDisclosure');
