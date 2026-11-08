@@ -1162,7 +1162,7 @@ const DETAIL_LAYERS=new Set(['regionCodes','regionNames','regionTongueNames','bl
 const PLACE_NAME_DRAW_GROUPS=new Set(['majorRegionNames','regionNames','regionTongueNames','provinceCapitalLabels','provinceCapitalTongueLabels','nationalCapitalLabels','nationalCapitalTongueLabels','cityLabels','cityTongueLabels','mountainPeakLabels','mountainElevationLabels','lakeNameLabels','mountainRangeLabels']);
 const DRAW_ORDER=new Map([
   ['oceanFill',0],['coastlineFills',1],['regions',1],['lakes',2],['rivers',3],['canals',4],['canalTicks',5],
-  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['graticule',10.5],['majorRegionNames',11],['nationalBorder',12],['mountainRangeLines',12.5],['blackMarkers',13],['mountainPeakMarkers',13.5],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22],['mountainRangeLabels',22.5],['mountainPeakLabels',23],['mountainElevationLabels',23.5],['lakeNameLabels',24]
+  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['graticule',10.5],['majorRegionNames',11],['nationalBorder',12],['blackMarkers',13],['mountainPeakMarkers',13.5],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22],['mountainRangeLabels',22.5],['mountainPeakLabels',23],['mountainElevationLabels',23.5],['lakeNameLabels',24]
 ]);
 let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
@@ -1170,7 +1170,7 @@ let drag=null,framePending=false,viewAnimation=null,zoomAnimation=null,zoomTarge
 let bathymetryRaster=null;
 let oceanDepthPoint=null;
 let records=[],regionRecords=[],regionBounds=new Map();
-let mountainLabelRecords=[],mountainRangeLabelRecords=[],mountainRangeLineRecords=[],lakeNameLabelRecords=[],lakePathRecords=[],majorRegionNameRecords=[];
+let mountainLabelRecords=[],mountainRangeLabelRecords=[],lakeNameLabelRecords=[],lakePathRecords=[],majorRegionNameRecords=[];
 const HYDROLOGY_JUNCTION_KEYS=new Set();
 const HYDROLOGY_TOPOLOGY=new WeakMap();
 const textMetricsCanvas=document.createElement('canvas');
@@ -1196,12 +1196,12 @@ const MOUNTAIN_SEARCH_DIRECTORY=(window.DUNIVERSE_MOUNTAIN_PEAKS?.features||[]).
   mountainRangeName:feature.properties?.mountain_range||'',physiographicRegionName:feature.properties?.physiographic_region||''
 }));
 const MOUNTAIN_RANGE_SEARCH_DIRECTORY=[
-  {id:'mountain-range:beidong-plateau',kind:'mountainRange',subtype:'高原',name:'北湩高原',memberZone:'north_plateau',pointX:1035,pointY:225,fontSize:48,labelOpacity:.31,rotation:0,points:[],description:'北部高原地带，山峰整体海拔较高。鹞岳位于高原西南部，属于长岭山脉。'},
-  {id:'mountain-range:tishan',kind:'mountainRange',subtype:'山脉',name:'铁山山脉',pointX:1040,pointY:344,fontSize:20,labelOpacity:.8,rotation:0,maxMemberDistance:42,points:[[735,394],[820,379],[916,373],[1008.5,370.625],[1068,378],[1150,397]],description:'位于北湩高原中南部，整体呈东西走向，在黑头山处分出长岭山脉与北铁山山脉。'},
-  {id:'mountain-range:longling',kind:'mountainRange',subtype:'山脉',name:'长岭山脉',pointX:874,pointY:449,fontSize:19,labelOpacity:.82,rotation:0,maxMemberDistance:30,points:[[1008.5,370.625],[987,392],[960.75,409.625],[937.25,414.625],[894.5,417.375],[850,429],[804,434.375]],description:'铁山山脉从黑头山向西南分出的支脉，鹞岳位于北湩高原的长岭山脉。'},
-  {id:'mountain-range:north-tieshan',kind:'mountainRange',subtype:'山脉',name:'北铁山山脉',pointX:914,pointY:323,fontSize:18,labelOpacity:.82,rotation:0,maxMemberDistance:28,points:[[1008.5,370.625],[982,359],[947,354],[911.25,361.375],[885,353],[859.25,347.375]],description:'铁山山脉从黑头山向北分出的支脉，经过蹬马山、雪晴岑一带。'},
-  {id:'mountain-range:central',kind:'mountainRange',subtype:'山脉',name:'中央山脉',memberZone:'central_range',pointX:1141,pointY:849,fontSize:19,labelOpacity:.8,rotation:-60,points:[[1266,608.875],[1200,724],[1135,841],[1068,958],[986,1097]],description:'沿光山至武宗湖一带延伸，整体呈西南—东北走向。'},
-  {id:'mountain-range:ruifeng',kind:'mountainRange',subtype:'山脉',name:'瑞丰山脉',pointX:1030,pointY:661,fontSize:19,labelOpacity:.82,rotation:0,maxMemberDistance:28,points:[[991.75,602.625],[1004,650],[1016.5,705.125]],description:'位于瑞丰地区，雪瑞峰与剑山属于这条山脉。'}
+  {id:'mountain-range:beidong-plateau',kind:'mountainRange',subtype:'高原',name:'北湩高原',memberZone:'north_plateau',pointX:1035,pointY:225,fontSize:30,labelSpread:300,labelOpacity:.31,points:[],description:'北部高原地带，山峰整体海拔较高。鹞岳位于高原西南部，属于长岭山脉。'},
+  {id:'mountain-range:tishan',kind:'mountainRange',subtype:'山脉',name:'铁山山脉',pointX:900,pointY:380,fontSize:15,labelOffset:-24,labelOpacity:.8,maxMemberDistance:42,points:[[735,394],[820,379],[916,373],[1008.5,370.625]],description:'位于北湩高原中南部，整体呈东西走向，在黑头山处分出长岭山脉与北铁山山脉。'},
+  {id:'mountain-range:longling',kind:'mountainRange',subtype:'山脉',name:'长岭山脉',pointX:874,pointY:449,fontSize:14,labelOffset:18,labelOpacity:.82,maxMemberDistance:30,points:[[1008.5,370.625],[987,392],[960.75,409.625],[937.25,414.625],[894.5,417.375],[850,429],[804,434.375]],description:'铁山山脉从黑头山向西南分出的支脉，鹞岳位于北湩高原的长岭山脉。'},
+  {id:'mountain-range:north-tieshan',kind:'mountainRange',subtype:'山脉',name:'北铁山山脉',pointX:914,pointY:323,fontSize:14,labelOffset:22,labelOpacity:.82,maxMemberDistance:28,points:[[1008.5,370.625],[982,359],[947,354],[911.25,361.375],[885,353],[859.25,347.375]],description:'铁山山脉从黑头山向北分出的支脉，经过蹬马山、雪晴岑一带。'},
+  {id:'mountain-range:central',kind:'mountainRange',subtype:'山脉',name:'中央山脉',memberZone:'central_range',pointX:1141,pointY:849,fontSize:15,labelOffset:34,labelOpacity:.8,points:[[1266,608.875],[1200,724],[1135,841],[1068,958],[986,1097]],description:'沿光山至武宗湖一带延伸，整体呈西南—东北走向。'},
+  {id:'mountain-range:ruifeng',kind:'mountainRange',subtype:'山脉',name:'瑞丰山脉',pointX:1030,pointY:661,fontSize:14,labelOffset:-28,labelOpacity:.82,maxMemberDistance:28,points:[[991.75,602.625],[1004,650],[1016.5,705.125]],description:'位于瑞丰地区，雪瑞峰与剑山属于这条山脉。'}
 ];
 const MOUNTAIN_RANGE_BY_ID=new Map(MOUNTAIN_RANGE_SEARCH_DIRECTORY.map(entry=>[entry.id,entry]));
 const MOUNTAIN_RANGE_BY_NAME=new Map(MOUNTAIN_RANGE_SEARCH_DIRECTORY.map(entry=>[entry.name,entry]));
@@ -2286,31 +2286,21 @@ function appendMountainPeakLayer(){
 }
 function appendMountainRangeLayer(){
   const ns='http://www.w3.org/2000/svg';
-  const lineLayer=document.createElementNS(ns,'g');
-  lineLayer.id='mountainRangeLines';lineLayer.dataset.layer='mountainRanges';
-  lineLayer.setAttribute('pointer-events','none');
   const labelLayer=document.createElementNS(ns,'g');
   labelLayer.id='mountainRangeLabels';labelLayer.dataset.layer='mountainRanges';
   labelLayer.setAttribute('pointer-events','none');
   for(const range of MOUNTAIN_RANGE_SEARCH_DIRECTORY){
-    if(range.points?.length>1){
-      const line=document.createElementNS(ns,'path');
-      line.setAttribute('d',range.points.map((point,index)=>`${index?'L':'M'} ${point[0]} ${point[1]}`).join(' '));
-      line.setAttribute('fill','none');line.setAttribute('stroke','#668c78');line.setAttribute('stroke-width','2.6');
-      line.setAttribute('stroke-opacity','.42');line.setAttribute('stroke-linecap','round');line.setAttribute('stroke-linejoin','round');
-      line.dataset.rangeId=range.id;lineLayer.append(line);
-    }
     const label=document.createElementNS(ns,'text');
     label.setAttribute('x',range.pointX);label.setAttribute('y',range.pointY);
     label.setAttribute('text-anchor','middle');label.setAttribute('dominant-baseline','central');
     label.setAttribute('font-family','Arial,"Microsoft YaHei",sans-serif');label.setAttribute('font-size',range.fontSize);
     label.setAttribute('font-weight','700');label.setAttribute('fill','#527765');label.setAttribute('fill-opacity',range.labelOpacity);
-    label.dataset.rangeId=range.id;label.dataset.rotationDeg=range.rotation||0;label.dataset.fixedFontSize=range.fontSize;label.textContent=range.name;labelLayer.append(label);
+    label.dataset.rangeId=range.id;label.dataset.fixedFontSize=range.fontSize;label.textContent=range.name;labelLayer.append(label);
     const locations=[...(range.points||[]),[range.pointX,range.pointY]];
     const xs=locations.map(point=>point[0]),ys=locations.map(point=>point[1]),padding=range.subtype==='高原'?95:44;
     range.bounds={x:Math.min(...xs)-padding,y:Math.min(...ys)-padding,width:Math.max(...xs)-Math.min(...xs)+padding*2,height:Math.max(...ys)-Math.min(...ys)+padding*2};
   }
-  sourceSvg.append(lineLayer,labelLayer);
+  sourceSvg.append(labelLayer);
 }
 function appendLakeNameLayer(){
   const entries=window.DUNIVERSE_LAKE_NAMES||[];
@@ -2341,7 +2331,6 @@ collectRecords(sourceSvg);
 records.sort((a,b)=>(DRAW_ORDER.get(a.drawGroup)??50)-(DRAW_ORDER.get(b.drawGroup)??50));
 mountainLabelRecords=records.filter(record=>record.tag==='text'&&['mountainPeakLabels','mountainElevationLabels'].includes(record.drawGroup));
 mountainRangeLabelRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='mountainRangeLabels');
-mountainRangeLineRecords=records.filter(record=>record.tag==='path'&&record.drawGroup==='mountainRangeLines');
 lakeNameLabelRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='lakeNameLabels');
 lakePathRecords=records.filter(record=>record.tag==='path'&&record.layerId==='lakes');
 majorRegionNameRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='majorRegionNames');
@@ -2506,6 +2495,40 @@ function screenStableLabelPoint(record,scale){
   }
   return{x,y};
 }
+function mountainRangeLabelLayout(range){
+  const glyphs=Array.from(range.name||'');
+  if(!glyphs.length)return[];
+  if(!range.points||range.points.length<2){
+    const spacing=glyphs.length>1?(range.labelSpread||((glyphs.length-1)*44))/(glyphs.length-1):0;
+    return glyphs.map((glyph,index)=>({glyph,x:range.pointX+(index-(glyphs.length-1)/2)*spacing,y:range.pointY,angle:0}));
+  }
+  const segments=[];let totalLength=0;
+  for(let index=1;index<range.points.length;index++){
+    const start=range.points[index-1],end=range.points[index],dx=end[0]-start[0],dy=end[1]-start[1],length=Math.hypot(dx,dy);
+    if(!length)continue;
+    segments.push({start,dx,dy,length,from:totalLength});totalLength+=length;
+  }
+  if(!totalLength)return[];
+  return glyphs.map((glyph,index)=>{
+    const distance=totalLength*(index+.5)/glyphs.length;
+    const segment=segments.find(item=>distance<=item.from+item.length)||segments.at(-1);
+    const amount=Math.max(0,Math.min(1,(distance-segment.from)/segment.length));
+    const tx=segment.dx/segment.length,ty=segment.dy/segment.length;
+    let angle=Math.atan2(segment.dy,segment.dx);
+    if(angle>Math.PI/2)angle-=Math.PI;else if(angle< -Math.PI/2)angle+=Math.PI;
+    const offset=range.labelOffset||0;
+    return{glyph,x:segment.start[0]+segment.dx*amount-ty*offset,y:segment.start[1]+segment.dy*amount+tx*offset,angle};
+  });
+}
+function drawMountainRangeLabel(record,range,scale,opacityOverride){
+  if(!range)return;
+  const fontSize=range.fontSize||record.fixedFontSize||15;
+  ctx.font=record.font.replace(/[\d.]+px/,`${fontSize/scale}px`);
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle=record.fill;ctx.globalAlpha=record.fillOpacity*opacityOverride;
+  for(const item of mountainRangeLabelLayout(range)){
+    ctx.save();ctx.translate(item.x,item.y);ctx.rotate(item.angle);ctx.fillText(item.glyph,0,0);ctx.restore();
+  }
+}
 function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverride=1,fastText=false){
   const hovered=record.code&&record.code===hoveredCode;
   const specialCapitalMarker=record.drawGroup==='specialCapitalMarker';
@@ -2538,6 +2561,10 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
     if(record.fill!=='none'){ctx.fillStyle=record.fill;ctx.globalAlpha=record.fillOpacity;ctx.fill()}
     if(record.stroke!=='none'&&record.lineWidth>0){ctx.strokeStyle=record.stroke;ctx.globalAlpha=record.strokeOpacity;ctx.stroke()}
   }else if(record.tag==='text'){
+    if(record.drawGroup==='mountainRangeLabels'){
+      drawMountainRangeLabel(record,MOUNTAIN_RANGE_BY_ID.get(record.rangeId),scale,opacityOverride);
+      ctx.restore();return;
+    }
     const isRegionCode=record.layerId==='regionCodes',isRegionName=record.layerId==='regionNames',isRegionTongueName=record.layerId==='regionTongueNames';
     const isProvinceCapitalLabel=record.layerId==='provinceCapitalLabels',isProvinceCapitalTongueLabel=record.layerId==='provinceCapitalTongueLabels';
     const isNationalCapitalNameLabel=record.layerId==='nationalCapitalLabels'||record.layerId==='nationalCapitalTongueLabels';
@@ -2939,17 +2966,18 @@ function mountainMarkerHitTest(point){
 }
 function mountainRangeHitTest(point,clientX,clientY){
   if(layerVisibility.get('mountainRanges')===false)return null;
+  const metrics=canvasMetrics(),left=metrics.rect.left+canvas.clientLeft+metrics.offsetX,top=metrics.rect.top+canvas.clientTop+metrics.offsetY;
   for(let index=mountainRangeLabelRecords.length-1;index>=0;index--){
     const record=mountainRangeLabelRecords[index],range=MOUNTAIN_RANGE_BY_ID.get(record.rangeId);
-    if(range&&textRecordHitTest(record,clientX,clientY,range.fontSize,range.rotation))return range;
-  }
-  const scale=Math.max(.001,canvasMetrics().scale);
-  for(let index=mountainRangeLineRecords.length-1;index>=0;index--){
-    const record=mountainRangeLineRecords[index];
-    const bounds=record.bounds;
-    if(point.x<bounds.x-10/scale||point.x>bounds.x+bounds.width+10/scale||point.y<bounds.y-10/scale||point.y>bounds.y+bounds.height+10/scale)continue;
-    hitCtx.lineWidth=Math.max(record.lineWidth,9/scale);
-    if(hitCtx.isPointInStroke(record.variants[0],point.x,point.y))return MOUNTAIN_RANGE_BY_ID.get(record.rangeId)||null;
+    if(!range)continue;
+    textMetricsCtx.font=record.font.replace(/[\d.]+px/,`${range.fontSize}px`);
+    for(const item of mountainRangeLabelLayout(range)){
+      const screenX=left+(item.x-vb.x)*metrics.scale,screenY=top+(item.y-vb.y)*metrics.scale;
+      let dx=clientX-screenX,dy=clientY-screenY;
+      const cos=Math.cos(item.angle),sin=Math.sin(item.angle);[dx,dy]=[dx*cos+dy*sin,-dx*sin+dy*cos];
+      const width=textMetricsCtx.measureText(item.glyph).width;
+      if(Math.abs(dx)<=width/2+5&&Math.abs(dy)<=range.fontSize*.8+4)return range;
+    }
   }
   return null;
 }
