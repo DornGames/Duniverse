@@ -33,7 +33,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           904,
           20.625
-        ]
+        ],
+        "elevation_m": 9519.0,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -52,7 +55,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           940.75,
           106.375
-        ]
+        ],
+        "elevation_m": 7813.4,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -71,7 +77,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1006.25,
           142.375
-        ]
+        ],
+        "elevation_m": 9593.4,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -90,7 +99,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1037,
           169.125
-        ]
+        ],
+        "elevation_m": 7029.4,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -109,7 +121,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           875,
           173.875
-        ]
+        ],
+        "elevation_m": 7357.8,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -128,7 +143,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           804.5,
           176.625
-        ]
+        ],
+        "elevation_m": 8173.6,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -147,7 +165,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           970.25,
           199.875
-        ]
+        ],
+        "elevation_m": 8105.3,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -166,7 +187,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           776.5,
           203.125
-        ]
+        ],
+        "elevation_m": 9857.9,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -185,7 +209,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1087,
           214.375
-        ]
+        ],
+        "elevation_m": 9488.4,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -204,7 +231,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1051.5,
           215.125
-        ]
+        ],
+        "elevation_m": 8489.9,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -223,7 +253,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1144,
           266.875
-        ]
+        ],
+        "elevation_m": 7577.5,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -242,7 +275,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           897,
           277.625
-        ]
+        ],
+        "elevation_m": 9437.6,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -261,7 +297,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1001,
           290.625
-        ]
+        ],
+        "elevation_m": 8877.7,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -280,7 +319,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1075.75,
           304.375
-        ]
+        ],
+        "elevation_m": 7543.3,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -299,7 +341,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1284.25,
           323.875
-        ]
+        ],
+        "elevation_m": 9026.0,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -318,7 +363,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1141.75,
           333.375
-        ]
+        ],
+        "elevation_m": 9787.4,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -337,7 +385,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           929.5,
           335.625
-        ]
+        ],
+        "elevation_m": 8277.2,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -356,7 +407,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           859.25,
           347.375
-        ]
+        ],
+        "elevation_m": 9145.5,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -375,7 +429,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1091,
           352.125
-        ]
+        ],
+        "elevation_m": 6999.6,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -394,7 +451,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           911.25,
           361.375
-        ]
+        ],
+        "elevation_m": 8258.5,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -413,7 +473,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1306.5,
           363.125
-        ]
+        ],
+        "elevation_m": 2792.0,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -432,7 +495,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1218.75,
           364.625
-        ]
+        ],
+        "elevation_m": 9266.2,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -451,7 +517,11 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1008.5,
           370.625
-        ]
+        ],
+        "elevation_m": 13471.543,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "user_provided",
+        "elevation_rank": 1
       }
     },
     {
@@ -470,7 +540,11 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1031.25,
           388.125
-        ]
+        ],
+        "elevation_m": 11471.5,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "user_provided",
+        "elevation_rank": 3
       }
     },
     {
@@ -489,7 +563,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1127.75,
           398.125
-        ]
+        ],
+        "elevation_m": 7348.2,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -508,7 +585,11 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1149.25,
           403.125
-        ]
+        ],
+        "elevation_m": 10862.7,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "rank_constrained_estimate",
+        "elevation_rank": 5
       }
     },
     {
@@ -527,7 +608,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           960.75,
           409.625
-        ]
+        ],
+        "elevation_m": 9825.1,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -546,7 +630,11 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           937.25,
           414.625
-        ]
+        ],
+        "elevation_m": 11134.3,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "user_provided",
+        "elevation_rank": 4
       }
     },
     {
@@ -565,7 +653,11 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           894.5,
           417.375
-        ]
+        ],
+        "elevation_m": 12470.0,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "user_provided",
+        "elevation_rank": 2
       }
     },
     {
@@ -584,7 +676,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1110.75,
           418.875
-        ]
+        ],
+        "elevation_m": 8721.0,
+        "elevation_zone": "north_plateau",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -603,7 +698,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           804,
           434.375
-        ]
+        ],
+        "elevation_m": 3955.0,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -622,7 +720,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1202.75,
           461.375
-        ]
+        ],
+        "elevation_m": 6382.2,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -641,7 +742,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1231.75,
           471.875
-        ]
+        ],
+        "elevation_m": 5157.0,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -660,7 +764,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1142.25,
           476.875
-        ]
+        ],
+        "elevation_m": 7202.1,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -679,7 +786,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1246.5,
           494.375
-        ]
+        ],
+        "elevation_m": 7379.9,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -698,7 +808,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           852,
           500.625
-        ]
+        ],
+        "elevation_m": 3662.9,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -717,7 +830,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1137.5,
           503.875
-        ]
+        ],
+        "elevation_m": 7312.7,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -736,7 +852,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           982.5,
           505.625
-        ]
+        ],
+        "elevation_m": 2662.1,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -755,7 +874,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1309.5,
           506.125
-        ]
+        ],
+        "elevation_m": 5795.8,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -774,7 +896,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1109,
           508.375
-        ]
+        ],
+        "elevation_m": 7434.6,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -793,7 +918,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           921.25,
           515.375
-        ]
+        ],
+        "elevation_m": 3899.9,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -812,7 +940,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1090,
           526.125
-        ]
+        ],
+        "elevation_m": 5698.4,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -831,7 +962,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1206.5,
           571.625
-        ]
+        ],
+        "elevation_m": 7173.0,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -850,7 +984,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           991.75,
           602.625
-        ]
+        ],
+        "elevation_m": 2361.1,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -869,7 +1006,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1266,
           608.875
-        ]
+        ],
+        "elevation_m": 7473.4,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -888,7 +1028,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1268.75,
           650.875
-        ]
+        ],
+        "elevation_m": 7042.3,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -907,7 +1050,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1745.25,
           665.375
-        ]
+        ],
+        "elevation_m": 2214.5,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -926,7 +1072,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1826.25,
           687.625
-        ]
+        ],
+        "elevation_m": 2552.9,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -945,7 +1094,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1016.5,
           705.125
-        ]
+        ],
+        "elevation_m": 5166.0,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -964,7 +1116,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1202.25,
           789.625
-        ]
+        ],
+        "elevation_m": 5209.6,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -983,7 +1138,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1161,
           840.875
-        ]
+        ],
+        "elevation_m": 5132.7,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1002,7 +1160,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1164,
           882.125
-        ]
+        ],
+        "elevation_m": 6613.6,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1021,7 +1182,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1111.25,
           913.875
-        ]
+        ],
+        "elevation_m": 5184.2,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1040,7 +1204,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           889.25,
           927.625
-        ]
+        ],
+        "elevation_m": 2302.3,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1059,7 +1226,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1140,
           939.375
-        ]
+        ],
+        "elevation_m": 7741.3,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1078,7 +1248,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           919.25,
           956.625
-        ]
+        ],
+        "elevation_m": 5446.3,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1097,7 +1270,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1350,
           960.625
-        ]
+        ],
+        "elevation_m": 3351.7,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1116,7 +1292,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1134.75,
           1000.875
-        ]
+        ],
+        "elevation_m": 6971.6,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1135,7 +1314,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           428,
           1040.875
-        ]
+        ],
+        "elevation_m": 2848.9,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1154,7 +1336,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1141.5,
           1052.625
-        ]
+        ],
+        "elevation_m": 4743.0,
+        "elevation_zone": "central_range",
+        "elevation_source": "user_provided"
       }
     },
     {
@@ -1173,7 +1358,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1062.75,
           1054.125
-        ]
+        ],
+        "elevation_m": 7869.8,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1192,7 +1380,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           382.5,
           1069.625
-        ]
+        ],
+        "elevation_m": 2678.7,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1211,7 +1402,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1102,
           1092.125
-        ]
+        ],
+        "elevation_m": 7613.4,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1230,7 +1424,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1012.5,
           1105.125
-        ]
+        ],
+        "elevation_m": 5204.0,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1249,7 +1446,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           999.5,
           1149.875
-        ]
+        ],
+        "elevation_m": 5132.7,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1268,7 +1468,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           360.25,
           1150.375
-        ]
+        ],
+        "elevation_m": 3438.2,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1287,7 +1490,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           975.5,
           1155.875
-        ]
+        ],
+        "elevation_m": 6724.3,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1306,7 +1512,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           323.25,
           1207.125
-        ]
+        ],
+        "elevation_m": 3217.4,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1325,7 +1534,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           677,
           1256.375
-        ]
+        ],
+        "elevation_m": 4074.4,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1344,7 +1556,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           285.75,
           1281.125
-        ]
+        ],
+        "elevation_m": 3386.9,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1363,7 +1578,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1045.25,
           1281.625
-        ]
+        ],
+        "elevation_m": 7314.6,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1382,7 +1600,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           368,
           1302.625
-        ]
+        ],
+        "elevation_m": 3165.6,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1401,7 +1622,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1050,
           1306.125
-        ]
+        ],
+        "elevation_m": 6993.5,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1420,7 +1644,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           994.75,
           1313.375
-        ]
+        ],
+        "elevation_m": 4852.7,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1439,7 +1666,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           954.5,
           1314.125
-        ]
+        ],
+        "elevation_m": 7331.2,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1458,7 +1688,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           773.25,
           1348.125
-        ]
+        ],
+        "elevation_m": 1919.8,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1477,7 +1710,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           997,
           1348.875
-        ]
+        ],
+        "elevation_m": 7196.2,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1496,7 +1732,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           959.75,
           1358.375
-        ]
+        ],
+        "elevation_m": 6387.5,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1515,7 +1754,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           493.75,
           1369.125
-        ]
+        ],
+        "elevation_m": 3615.2,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1534,7 +1776,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1011.5,
           1392.375
-        ]
+        ],
+        "elevation_m": 4915.5,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1553,7 +1798,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1418.75,
           1396.625
-        ]
+        ],
+        "elevation_m": 4079.5,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1572,7 +1820,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           926.25,
           1400.375
-        ]
+        ],
+        "elevation_m": 4656.5,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1591,7 +1842,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           956.75,
           1409.625
-        ]
+        ],
+        "elevation_m": 7250.2,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1610,7 +1864,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           1386.25,
           1410.125
-        ]
+        ],
+        "elevation_m": 3366.1,
+        "elevation_zone": "isolated",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1629,7 +1886,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           778.5,
           1412.875
-        ]
+        ],
+        "elevation_m": 6739.5,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1648,7 +1908,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           854.75,
           1415.125
-        ]
+        ],
+        "elevation_m": 6114.9,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     },
     {
@@ -1667,7 +1930,10 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "source_map_pixel_xy": [
           890.75,
           1441.125
-        ]
+        ],
+        "elevation_m": 5432.5,
+        "elevation_zone": "central_range",
+        "elevation_source": "terrain_cluster_estimate"
       }
     }
   ]

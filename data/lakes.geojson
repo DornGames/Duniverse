@@ -18,7 +18,9 @@
         "boundary_review_status": "manually_checked_against_official_12x_raster",
         "audit_boundary_candidate_id": "OFFLAKE-013",
         "boundary_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
-        "raster_scale": 12
+        "raster_scale": 12,
+        "name": "南波",
+        "name_source": "official_map_label"
       },
       "geometry": {
         "type": "Polygon",
@@ -247,7 +249,9 @@
         "boundary_review_status": "manually_checked_against_official_12x_raster",
         "audit_boundary_candidate_id": "OFFLAKE-012",
         "boundary_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
-        "raster_scale": 12
+        "raster_scale": 12,
+        "name": "金汤湖",
+        "name_source": "official_map_label"
       },
       "geometry": {
         "type": "Polygon",
@@ -372,7 +376,9 @@
         "boundary_review_status": "manually_checked_against_official_12x_raster",
         "audit_boundary_candidate_id": "OFFLAKE-011",
         "boundary_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
-        "raster_scale": 12
+        "raster_scale": 12,
+        "name": "海底湖",
+        "name_source": "official_map_label"
       },
       "geometry": {
         "type": "Polygon",
@@ -737,7 +743,9 @@
         "boundary_review_status": "manually_checked_against_official_12x_raster",
         "audit_boundary_candidate_id": "OFFLAKE-010",
         "boundary_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
-        "raster_scale": 12
+        "raster_scale": 12,
+        "name": "莫考湖",
+        "name_source": "official_map_label"
       },
       "geometry": {
         "type": "Polygon",
@@ -970,7 +978,9 @@
         "boundary_review_status": "user_selected_official_raster_contour",
         "audit_boundary_candidate_id": "OFFLAKE-009",
         "boundary_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
-        "raster_scale": 12
+        "raster_scale": 12,
+        "name": "知汇湖",
+        "name_source": "official_map_label"
       },
       "geometry": {
         "type": "Polygon",
@@ -1191,7 +1201,9 @@
         "boundary_review_status": "manually_checked_against_official_12x_raster",
         "audit_boundary_candidate_id": "OFFLAKE-008",
         "boundary_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
-        "raster_scale": 12
+        "raster_scale": 12,
+        "name": "武宗湖",
+        "name_source": "official_map_label"
       },
       "geometry": {
         "type": "Polygon",
@@ -1460,7 +1472,9 @@
         "boundary_review_status": "user_selected_official_raster_contour",
         "audit_boundary_candidate_id": "OFFLAKE-006",
         "boundary_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
-        "raster_scale": 12
+        "raster_scale": 12,
+        "name": "绿川湖",
+        "name_source": "official_map_label"
       },
       "geometry": {
         "type": "Polygon",
@@ -1765,7 +1779,9 @@
         "boundary_review_status": "manually_checked_against_official_12x_raster",
         "audit_boundary_candidate_id": "OFFLAKE-005",
         "boundary_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
-        "raster_scale": 12
+        "raster_scale": 12,
+        "name": "氯化池",
+        "name_source": "official_map_label"
       },
       "geometry": {
         "type": "Polygon",
@@ -1946,7 +1962,9 @@
         "boundary_review_status": "manually_checked_against_official_12x_raster",
         "audit_boundary_candidate_id": "OFFLAKE-004",
         "boundary_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
-        "raster_scale": 12
+        "raster_scale": 12,
+        "name": "铁山天池",
+        "name_source": "official_map_label"
       },
       "geometry": {
         "type": "Polygon",
@@ -2083,7 +2101,9 @@
         "boundary_review_status": "manually_checked_against_official_12x_raster",
         "audit_boundary_candidate_id": "OFFLAKE-001",
         "boundary_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
-        "raster_scale": 12
+        "raster_scale": 12,
+        "name": "不夜湖",
+        "name_source": "official_map_label"
       },
       "geometry": {
         "type": "Polygon",
@@ -2313,7 +2333,10 @@
         "audit_boundary_candidate_id": "EXTLAKE-SEASONAL-11",
         "boundary_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
         "raster_scale": 12,
-        "territory": "neighboring_country"
+        "territory": "neighboring_country",
+        "name": "西北邻湖",
+        "name_source": "project_assigned",
+        "name_note": "官方地图未标注该邻国湖泊；项目按其位于西北侧暂名“西北邻湖”。"
       },
       "geometry": {
         "type": "Polygon",
@@ -2527,7 +2550,9 @@
         "audit_boundary_candidate_id": "EXTLAKE-SEASONAL-12",
         "boundary_source": "official_map/Administrative Division Map of Donh 2026-river-super.png",
         "raster_scale": 12,
-        "territory": "neighboring_country"
+        "territory": "neighboring_country",
+        "name": "基湖",
+        "name_source": "official_map_label"
       },
       "geometry": {
         "type": "Polygon",

@@ -37,7 +37,7 @@ python -m http.server 8000
 - **行政区标注**：两字母编号与对应中文名称并列显示，可分别开关。
 - **矢量预览**：[`vector_preview.svg`](vector_preview.svg) 可直接在浏览器、Inkscape 或 Illustrator 中打开。
 - **地图数据**：提取并整理了行政区面、共享省界、大区界、国境线、邻国边界、海岸线、河流、运河、湖泊、城市及省会标记。
-- **地名搜索与介绍**：支持按中文名、𣿅语名、行政区编号和城市邮政区号动态搜索国家、大区、省份、城市、山峰和已命名河流。行政区和城市信息维护在 [`data/region_directory.js`](data/region_directory.js) 与 [`data/city_directory.js`](data/city_directory.js)，山峰信息来自 [`data/mountain_peaks.js`](data/mountain_peaks.js)。城市清单以启用的 `cities.js` 记录为准，注释中的隐匿城市不纳入搜索；地图上未能确认位置的地名仍可搜索并查看标注为“暂无”的资料。
+- **地名搜索与介绍**：支持按中文名、𣿅语名、行政区编号和城市邮政区号动态搜索国家、大区、省份、城市、山峰、湖泊和已命名河流。行政区、城市、山峰与湖泊信息分别维护在 [`data/region_directory.js`](data/region_directory.js)、[`data/city_directory.js`](data/city_directory.js)、[`data/mountain_peaks.js`](data/mountain_peaks.js) 与 [`data/lake_names.js`](data/lake_names.js)。地图上未能确认位置或没有简介的地名仍可搜索，并显示“暂无”。
 - **数据处理工具**：仓库包含地图要素提取、边界生成和水系样式处理脚本，便于继续修订和重新生成图层。
 
 概览时显示大区界和大区双语名称，不显示省界；逐渐放大时大区名先淡出，随后省名和编号淡入，并切换为更细的虚线省界。继续放大后，大区界和省界按层级隐藏。边界线在缩放时保持屏幕粗细不变。海岸线不作为大区边界绘制。大区归属与𣿅语名称维护在 [`data/major_region_membership.json`](data/major_region_membership.json)，大区名称标注位置记录在 `data/major_region_labels.geojson`。
@@ -85,7 +85,7 @@ python tools/build_coordinate_catalog.py
 原图没有比例尺或地理控制点，所以基础图层仍以图像像素存储：原点在左上角，横轴向右、纵轴向下。项目另建立了一套根据给定国土面积定标的土星坐标参考，参数见 [`data/georeference.json`](data/georeference.json)，测绘假设和公式见[《𣿅国地图测绘报告》](saturn-map-survey-report.md)。该坐标系以土星 1 bar 参考椭球为基准，臭都为 0°经线、地图纬度约 4.7833°N（对应真实行星地理纬度约 28.7°N）；真实纬度 ±90°按六分之一记为地图纬度 ±15°，经度仍为东向 360°一周。
 
 可用 `tools/georeference_map.py` 把像素点或现有 GeoJSON 转为该项目坐标。批量结果写入 `data/georeferenced/`，并标记为自定义土星坐标；这些坐标不是 WGS 84 / EPSG:4326，也不是官方地图原有的 GIS 坐标。
-山峰图层位于 [`data/mountain_peaks.js`](data/mountain_peaks.js)，包含 87 个点要素。每个点保留原图像素位置，并用 `[longitude_deg, map_latitude_deg]` 存储同一套自定义坐标；页面的 `saturnMapCoordinatesToPixel()` 与经纬网共用投影参数，把经纬度反算到数字地图像素。山峰图层默认开启，缩放到细节视图时显示名称。
+山峰图层位于 [`data/mountain_peaks.js`](data/mountain_peaks.js)，包含 87 个点要素及海拔值。每个点保留原图像素位置，并用 `[longitude_deg, map_latitude_deg]` 存储同一套自定义坐标；页面的 `saturnMapCoordinatesToPixel()` 与经纬网共用投影参数，把经纬度反算到数字地图像素。山峰与海拔图层默认开启，细节视图会同时显示峰名和海拔；带“≈”的值为按山峰聚合分区推定，计算方法见 [`data/mountain_elevation_model.md`](data/mountain_elevation_model.md)。湖泊名称来自官方地图标注；未标名的邻国湖泊以项目方位名收录，图层默认开启并支持搜索。
 `tools/build_coordinate_catalog.py` 会生成 316 个城市的全精度坐标数据和 53 个省/大区的四至及方向极端城市数据，页面介绍统一显示两位小数。对应文件为 [`data/city_coordinates.js`](data/city_coordinates.js) 与 [`data/region_extrema.js`](data/region_extrema.js)。
 
 各省面积按提取面要素的像素面积权重归一化到全国给定面积，大区面积由所属省求和；归一化因子与原始覆盖率记录在 [`data/georeference.json`](data/georeference.json) 和测绘报告中。
