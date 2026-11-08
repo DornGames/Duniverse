@@ -2350,7 +2350,10 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
     const screenFont=record.font.replace(/[\d.]+px/,`${fontSize}px`);
     ctx.font=screenFont.replace(/[\d.]+px/,`${fontSize/scale}px`);ctx.textBaseline=record.textBaseline;
     let textX=record.x,textY=record.y,textAlign=record.textAlign,displayText=record.text;
-    if((isCityLabel||isCityTongueLabel||isProvinceCapitalLabel||isProvinceCapitalTongueLabel||isNationalCapitalNameLabel)&&
+    if(record.drawGroup==='mountainPeakLabels'){
+      const stablePoint=screenStableLabelPoint(record,scale);
+      textX=stablePoint.x;textY=stablePoint.y;
+    }else if((isCityLabel||isCityTongueLabel||isProvinceCapitalLabel||isProvinceCapitalTongueLabel||isNationalCapitalNameLabel)&&
        Number.isFinite(record.cityPointX)&&Number.isFinite(record.cityPointY)){
       const stablePoint=screenStableLabelPoint(record,scale);
       textX=stablePoint.x;textY=stablePoint.y;
