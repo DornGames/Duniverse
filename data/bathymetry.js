@@ -398,7 +398,7 @@
         depth-=300*southFade*Math.exp(-.5*ridgeSouth/(38*38));
         depth-=riverFanRelief(x,y);
 
-        // Nearby islands merge into shared banks; scattered tiny islets make only subtle rises.
+        // Keep island shallows tight so the surrounding ridges and basin relief stay visible.
         const bank=smoothStep((bankPixels[index*4+3]/255-.30)/.55);
         depth+=(Math.min(depth,500)-depth)*bank;
         const spurDistance=Math.sqrt(distanceSquaredToPolyline(x,y,SHELF_SPUR_SEGMENTS));
@@ -407,12 +407,17 @@
         const shelfWedge=shelfWedgeWeight(x,y);
         depth+=(Math.min(depth,260)-depth)*shelfWedge;
 
-        // A shared shallow island platform surrounds the group; its sheltered inner water is flatter and shallower.
+        // A shared island-chain bank follows the arc instead of making circular banks around each island.
         const platformDistance=Math.sqrt(distanceSquaredToPolyline(x,y,ARCHIPELAGO_PLATFORM_SEGMENTS));
-        const platform=smoothStep((56-platformDistance)/30);
-        depth+=(Math.min(depth,260)-depth)*platform;
+        const platformShape=valueNoise(x,y,48,3719),platformDetail=valueNoise(x,y,18,6109);
+        const platformWidth=50+platformShape*8+platformDetail*3;
+        const platform=smoothStep((platformWidth-platformDistance)/24);
+        const platformDepth=Math.min(45,22+18*Math.max(0,valueNoise(x,y,42,1267))
+          +15*Math.max(0,valueNoise(x,y,17,7721)));
+        depth+=(Math.min(depth,platformDepth)-depth)*platform;
         const lagoonX=(x-1775)/34,lagoonY=(y-685)/22;
-        const lagoon=smoothStep((1-Math.hypot(lagoonX,lagoonY))/.45);
+        const lagoonEdgeNoise=.17*valueNoise(x,y,28,5471)+.07*valueNoise(x,y,10,6193);
+        const lagoon=smoothStep((1+lagoonEdgeNoise-Math.hypot(lagoonX,lagoonY))/.45);
         depth+=(Math.min(depth,45)-depth)*lagoon;
 
         const trenchDistanceSquared=distanceSquaredToPolyline(x,y,TRENCH_SEGMENTS);
