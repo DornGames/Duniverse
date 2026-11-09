@@ -8,7 +8,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "臭都特别市",
     postalCode: "114514",
     areaKm2: null,
-    description: "测试",
+    description: "𣿅国的首都。经济、政治、文化与外交中心。位于全𣿅之域中，坐拥全𣿅顶尖核心资源，经济与科技高度发达，全国优秀人才与资源高度集中，引领着𣿅国未来发展的方向。",
     pointX: 1002.0,
     pointY: 877.0
   },
@@ -21,7 +21,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "瑞丰特别市",
     postalCode: "100470",
     areaKm2: null,
-    description: null,
+    description: "首都圈超级大都市，面积巨大的城市，高度城市化，拥有极高的城市化率。北部紧邻北𣿅高原，水利与旅游资源丰富。瑞丰大学是国家军事与国防名校，诞生众多军官与国家高层人员。",
     pointX: 1029.0,
     pointY: 733.3
   },
@@ -34,7 +34,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "武宗特别市",
     postalCode: "100430",
     areaKm2: null,
-    description: null,
+    description: "首都圈南部的超级大城，面积广大的直辖市，经济与产业高度发达。同时坐拥𣿅国著名大湖泊“武宗瀚”，是𣿅国的重要旅游与沿河朝圣目的地之一。",
     pointX: 1007.3,
     pointY: 952.8
   },
@@ -47,7 +47,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "马尔通市",
     postalCode: "100850",
     areaKm2: null,
-    description: null,
+    description: "𣿅国著名大城市，首都圈直辖市，最邻近首都臭都的大型城市，与首都交流密切，承担首都副城市中心的作用。",
     pointX: 1052.3,
     pointY: 851.2
   },
@@ -60,7 +60,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "立里市",
     postalCode: "100860",
     areaKm2: null,
-    description: null,
+    description: "中𣿅山脉核心地带上的直辖市，山峰广布，发源多条河流，是首都与海岸之间的天然防护屏障。与白告市共同交流协作，促进首都圈城市发展。",
     pointX: 1144.1,
     pointY: 902.6
   },
@@ -73,7 +73,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "白告市",
     postalCode: "100870",
     areaKm2: null,
-    description: null,
+    description: "首都圈中的重要直辖市。紧邻𣿅国首都臭都，同时与立里市共同协作，构建首都圈强大城市群。",
     pointX: 1112.0,
     pointY: 882.6
   },
@@ -86,7 +86,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "尼根市",
     postalCode: "100880",
     areaKm2: null,
-    description: null,
+    description: "首都圈内的直辖市，位于中央山脉的核心地带，拥有全𣿅最大火山，是国家级火山地质旅游与科研目的地。",
     pointX: 1155.1,
     pointY: 1017.4
   },
@@ -255,7 +255,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "四九特别行政区",
     postalCode: "101490",
     areaKm2: null,
-    description: null,
+    description: "主打贸易与自由港，拥有发达的海洋运输和航空运输，港口众多。是𣿅国东北沿海的重要出海通道。",
     pointX: 1316.1,
     pointY: 486.2
   },
@@ -268,7 +268,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "四九特别行政区",
     postalCode: "101450",
     areaKm2: null,
-    description: null,
+    description: "四九市的副城市中心，承接四九市的其他传统产业。",
     pointX: 1333.0,
     pointY: 460.76
   },
@@ -281,7 +281,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "王德发特别行政区",
     postalCode: "102220",
     areaKm2: null,
-    description: null,
+    description: "东南沿海的大城市与重要港口，海洋运输与航空运输枢纽，货运与客运交通枢纽，是前往群岛地区的关键交通结点。",
     pointX: 1363.7,
     pointY: 950.1
   },
@@ -294,7 +294,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "王德发特别行政区",
     postalCode: "102230",
     areaKm2: null,
-    description: null,
+    description: "东南沿海的重要港口与物流枢纽，为王德发市提供副城市中心作用。拥有先进的海洋相关产业与研究。教育资源丰富，师资力量雄厚，诞生多所𣿅国著名高校。百岁山大学、𣿅国海洋大学与特区医科大学是𣿅国名校。百岁山是𣿅国名山，是热门旅游目的地之一。",
     pointX: 1343.5,
     pointY: 961.88
   },
@@ -307,7 +307,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "王德发特别行政区",
     postalCode: "102240",
     areaKm2: null,
-    description: null,
+    description: "承接区内传统产业。海洋特色文化历史悠久，古城保留完好，是𣿅国海洋文化与实践的活化石，优良的研究和旅游目的地。",
     pointX: 1355.38,
     pointY: 982.88
   },
@@ -1503,7 +1503,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210020",
     areaKm2: null,
-    description: null,
+    description: "𣿅国著名超级大城，拥有全国最高山峰铁山与𣿅国著名山峰黑头山。历史悠久，流放黑头山哨岗的历史故事在此发生，是历史文化名城。山峰带来本地发达的旅游产业，以及丰富的矿产资源，包括𣿅矿，由此衍生出先进的本地矿业。𣿅国矿业大学是𣿅国著名高校。",
     pointX: 1009.05,
     pointY: 434.5
   },
@@ -1542,7 +1542,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210050",
     areaKm2: null,
-    description: null,
+    description: "𣿅国大城市与著名城市。以长岭中的特殊石头“赤石”而文明，这是一块特殊的红色石头，是𣿅国的国家宝藏。由此，长岭市成为了𣿅国重要的旅游目的地之一，文旅产业高度发达。",
     pointX: 944.76,
     pointY: 396.0
   },
@@ -2127,7 +2127,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "出塞特别行政区",
     postalCode: "102330",
     areaKm2: null,
-    description: null,
+    description: "为全国能源中心提供有力后备支持，是能源中心特区中的生活区与生活物资保障区。",
     pointX: 977.9,
     pointY: 1241.8
   },
@@ -2140,7 +2140,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "出塞特别行政区",
     postalCode: "106880",
     areaKm2: null,
-    description: null,
+    description: "全国能源中心。利用𣿅国独占𣿅矿资源，大力发展𣿅聚变、𣿅裂变、𣿅矿发电等先进技术，并将其运用于民生。",
     pointX: 951.73,
     pointY: 1299.44
   },
@@ -2153,7 +2153,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "出塞特别行政区",
     postalCode: "106660",
     areaKm2: null,
-    description: null,
+    description: "全国𣿅元素研究中心。依托𣿅元素优势，发展基于𣿅元素的先进科技与研究，注重基于𣿅矿的军工技术研发，以确保𣿅国国家安全",
     pointX: 976.85,
     pointY: 1222.15
   },
@@ -4064,7 +4064,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "总统（𣿅赫）特别市",
     postalCode: "100460",
     areaKm2: null,
-    description: null,
+    description: "群岛地区的重要大城，𣿅赫民族传统文化保留地，代表了𣿅赫民族的骄傲。远洋贸易与运输业发达。",
     pointX: 1597.1,
     pointY: 432.1
   },
@@ -4077,7 +4077,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "东𣿅特别行政区",
     postalCode: "101140",
     areaKm2: null,
-    description: null,
+    description: "充分利用其远离大陆、深入海洋的区位特点，发展自由港贸易与航空航天等产业，以及边境的国防事业。𣿅国航空航天大学是本地有名的𣿅国名校。在海洋文化的背景下，海岛环境也令此成为了与世隔绝的世外桃源，吸引人们来此度假旅游。",
     pointX: 1848.8,
     pointY: 709.9
   },
