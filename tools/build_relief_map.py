@@ -32,6 +32,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 sys.path.insert(0, str(ROOT / "tools"))
 import georeference_map  # noqa: E402
+from build_region_elevation_stats import build_region_elevation_stats  # noqa: E402
 
 WIDTH, HEIGHT = 2048, 1448
 STEP = 2
@@ -2493,6 +2494,7 @@ def main():
         & (ridge_total_full < 1100.0)
         & (peak_distance_full >= 54.0)
     )
+    region_elevation_stats_summary = build_region_elevation_stats(ROOT)
     print(json.dumps({
         "model": str(DATA / "relief_model.js"),
         "preview": str(ROOT / "relief_preview.png"),
@@ -2528,6 +2530,7 @@ def main():
         "coastal_0_20px_share_above_500_pct": round(float(np.mean(z_full[land_full & (coast_distance_full < 20.0)] > 500.0) * 100.0), 1),
         "east_southeast_nonmountain_lowland_max_m": int(np.nanmax(z_full[east_southeast_nonmountain_mask])),
         "east_southeast_nonmountain_coastal_max_m": int(np.nanmax(z_full[east_southeast_nonmountain_mask & (coast_distance_full < 6.0)])),
+        "region_elevation_stats": region_elevation_stats_summary,
     }, ensure_ascii=False, indent=2))
 
 

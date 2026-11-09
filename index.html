@@ -1130,6 +1130,7 @@ aside[hidden]{display:none}
 <div class="panelIntro"><div><p id="regionInfoKicker" class="panelKicker">PLACE INFORMATION</p><h2 id="regionInfoTitle" aria-live="polite"></h2><p id="regionInfoSubtitle" class="muted"></p></div><button id="closeRegionInfo" class="closePanel" type="button" aria-label="关闭地名介绍">×</button></div>
 <div id="regionInfoLevels" class="regionInfoLevels"></div>
 <div class="regionAreaCard"><span id="regionInfoMetricLabel">面积</span><strong id="regionInfoArea"></strong></div>
+<section id="regionElevationStatsPanel" class="regionCoordinatePanel" aria-labelledby="regionElevationStatsTitle" hidden><h3 id="regionElevationStatsTitle">区域海拔</h3><div id="regionElevationStatsContent"></div></section>
 <section id="regionHighestPeak" class="regionHighestPeak" hidden><h3 id="regionHighestPeakHeading">区域最高峰</h3><p id="regionHighestPeakSummary"></p><button id="regionHighestPeakLink" type="button">在地图中查看 →</button></section>
 <section id="regionInfoCoordinatePanel" class="regionCoordinatePanel" aria-labelledby="regionInfoCoordinateTitle" hidden><h3 id="regionInfoCoordinateTitle">土星坐标</h3><div id="regionInfoCoordinateContent"></div></section>
 <section class="regionDescription" aria-labelledby="regionDescriptionTitle"><h3 id="regionDescriptionTitle">介绍</h3><p id="regionInfoDescription">暂无介绍</p></section>
@@ -1137,6 +1138,7 @@ aside[hidden]{display:none}
 <div id="mapHud"><div id="selected" aria-live="polite" hidden></div><p class="mapHint">&#x6eda;&#x8f6e;&#x7f29;&#x653e; &#x00b7; &#x62d6;&#x62fd;&#x5e73;&#x79fb; &#x00b7; 点击地图上的地理事物查看介绍 · 点击海洋查看深度</p></div></div>
 <dialog id="mountainRankingDialog" class="rankingDialog" aria-labelledby="mountainRankingTitle"><div class="rankingHeader"><div><h2 id="mountainRankingTitle">山峰海拔排名</h2><p>按当前记录海拔从高到低排列；推定海拔在介绍页中单独标识。</p></div><button id="closeMountainRanking" class="closePanel" type="button" aria-label="关闭山峰排名">×</button></div><div class="rankingTableWrap"><table class="rankingTable"><thead><tr><th scope="col">排名</th><th scope="col">山峰</th><th scope="col" class="rankHeight">海拔</th></tr></thead><tbody id="mountainRankingRows"></tbody></table></div><p class="rankingNote">点击山峰名称可定位到地图并打开介绍。</p></dialog>
 <script src="data/region_directory.js"></script>
+<script src="data/region_elevation_stats.js"></script>
 <script src="data/city_directory.js"></script>
 <script src="data/relief_city_coordinates.js"></script>
 <script src="data/region_extrema.js"></script>
@@ -3404,6 +3406,21 @@ function renderRegionHighestPeak(entry){
   if(peak)link.dataset.peakId=peak.id;else delete link.dataset.peakId;
   section.hidden=false;
 }
+function renderRegionElevationStats(entry){
+  const panel=document.getElementById('regionElevationStatsPanel');
+  const content=document.getElementById('regionElevationStatsContent');content.replaceChildren();
+  if(!['major','province'].includes(entry.kind)){panel.hidden=true;return;}
+  const stat=window.DUNIVERSE_REGION_ELEVATION_STATS?.regions?.[entry.id];
+  if(!stat){panel.hidden=true;return;}
+  const formatElevation=value=>`${new Intl.NumberFormat('zh-CN',{minimumFractionDigits:1,maximumFractionDigits:1}).format(value)} 米`;
+  const formatPoint=point=>`地图位置：${point.x}, ${point.y}`;
+  appendCoordinateRow(content,'平均海拔',[formatElevation(stat.meanElevationM)]);
+  appendCoordinateRow(content,'最高海拔点',[formatElevation(stat.highest.elevationM),formatPoint(stat.highest)]);
+  appendCoordinateRow(content,'最低海拔点',[formatElevation(stat.lowest.elevationM),formatPoint(stat.lowest)]);
+  const note=document.createElement('p');note.className='regionCoordinateNote';
+  note.textContent='按固定地形栅格预先统计；均值不计河湖水面，极值包含内陆湖盆底部。坐标为地图像素。';
+  content.append(note);panel.hidden=false;
+}
 function renderMountainRanking(){
   const rows=document.getElementById('mountainRankingRows');rows.replaceChildren();
   for(const peak of MOUNTAIN_RANKED_PEAKS){
@@ -3429,6 +3446,7 @@ function openRegionInfo(entry){
   levelsForEntry.forEach(([label,item])=>levels.append(createRegionInfoLevel(label,item)));
   document.getElementById('regionInfoMetricLabel').textContent=entry.kind==='mountain'?(entry.elevationSource==='user_provided'?'海拔':'推定海拔'):entry.kind==='mountainRange'?'山峰数量':entry.kind==='river'?'长度':'面积';
   document.getElementById('regionInfoArea').textContent=formatPlaceMetric(entry);
+  renderRegionElevationStats(entry);
   renderRegionHighestPeak(entry);
   renderCoordinateInfo(entry);
   const description=typeof entry.description==='string'&&entry.description.trim()?entry.description.trim():'暂无介绍';
