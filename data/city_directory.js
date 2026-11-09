@@ -216,7 +216,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "光安省",
     postalCode: "210280",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第四座“里程碑”式城市。",
     pointX: 799.0,
     pointY: 634.24
   },
@@ -229,7 +229,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "光安省",
     postalCode: "210290",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第十三座“里程碑”式城市。",
     pointX: 1002.24,
     pointY: 772.0
   },
@@ -242,7 +242,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "光安省",
     postalCode: "210300",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第十四座“里程碑”式城市。",
     pointX: 985.02,
     pointY: 628.41
   },
@@ -320,7 +320,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "萨比省",
     postalCode: "419010",
     areaKm2: null,
-    description: null,
+    description: "东𣿅运河上的𣿅国大城市，𣿅国历史名城。以本城为中心，建设了贯穿东𣿅的运河，引水灌溉，带来了肥沃的土壤，成就东𣿅刺梨农业的腾飞，铸就伟大的“刺梨运河精神”。",
     pointX: 1259.3,
     pointY: 1041.0
   },
@@ -346,7 +346,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "萨比省",
     postalCode: "419030",
     areaKm2: null,
-    description: null,
+    description: "这座城市漫山遍野尽是橘园，秋来金果压枝，连风里都带着清甜的橘香，因此得名。城中人世代以橘为业，街巷间橘摊连缀，空气里飘着剥橘时溅开的微酸气息。",
     pointX: 1271.0,
     pointY: 1079.33
   },
@@ -489,7 +489,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "四六省",
     postalCode: "428040",
     areaKm2: null,
-    description: null,
+    description: "𣿅国新型城建与规划示范城市，拥有著名地标“𣿅安铁塔”。",
     pointX: 1369.19,
     pointY: 849.93
   },
@@ -528,7 +528,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "四六省",
     postalCode: "428070",
     areaKm2: null,
-    description: null,
+    description: "位于范德蒙德地区，东𣿅运河上的城市。",
     pointX: 1241.0,
     pointY: 828.33
   },
@@ -541,7 +541,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "刺梨省",
     postalCode: "417010",
     areaKm2: null,
-    description: null,
+    description: "𣿅国诗曰：“刺梨青青，在水之滨。”此乃绿川湖畔的大都会，𣿅国国饮原料“刺梨”的核心产区。夕阳把湖面染成碎金，岸边低矮的刺梨丛挂满青黄相间的小果，在风里轻轻晃动。湖水安静地映着天光与那一片带刺的绿意，波纹细碎而温柔。",
     pointX: 1244.6,
     pointY: 724.4
   },
@@ -554,7 +554,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "刺梨省",
     postalCode: "417020",
     areaKm2: null,
-    description: null,
+    description: "以种植仙人掌科作物为特色。遍地仙人掌科植物扎根生长，肥厚掌片如叠翠般涌向天际，此地便因这满目苍绿而得名。人们世代与这些带刺的绿意相伴，街角巷尾随处可见擎着黄花的掌丛，空气里浮动着干燥而清冽的草木气息。",
     pointX: 1280.15,
     pointY: 748.15
   },
@@ -580,7 +580,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "刺梨省",
     postalCode: "417040",
     areaKm2: null,
-    description: null,
+    description: "得名“菠萝之乡”的缘由，就藏在坡地上那一片翻涌的剑形绿浪里——熟果的甜香漫过四野，风一过便知此地与菠萝的缘分。街巷间，分拣装筐的节律日复一日，早已成了最寻常的日常。",
     pointX: 1398.0,
     pointY: 707.33
   },
@@ -593,7 +593,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "刺梨省",
     postalCode: "417050",
     areaKm2: null,
-    description: null,
+    description: "𣿅国海滨超级大都会，𣿅国历史名城，其名由𣿅国国务卿亲自授予。",
     pointX: 1378.81,
     pointY: 730.93
   },
@@ -606,7 +606,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "刺梨省",
     postalCode: "417060",
     areaKm2: null,
-    description: null,
+    description: "𣿅国首都圈内的超级大都会，𣿅国历史名城。本地综合性民族企业“多恩集团”已成为国家品牌、民族骄傲。𣿅国排名第一的大学“𣿅国国立大学”坐落于此。“多恩大学”亦是𣿅国名校。",
     pointX: 1225.67,
     pointY: 752.0
   },
@@ -710,7 +710,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "土星省",
     postalCode: "418070",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第十七座“里程碑”式城市。",
     pointX: 1191.6,
     pointY: 773.81
   },
@@ -736,7 +736,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "邦普省",
     postalCode: "437020",
     areaKm2: null,
-    description: null,
+    description: "这座城依高山悬崖而建，峭壁如刀削般直插入海，山脚与浪涛相接处只余一线窄滩。云雾常缠在半山腰，崖顶草木俯视着脚下碎成白沫的海浪，城中的街巷便顺着这山海之势层层铺开。如此奇观成就了𣿅国著名的旅游城市。",
     pointX: 1235.76,
     pointY: 501.0
   },
@@ -827,7 +827,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "邦普省",
     postalCode: "437090",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第十六座“里程碑”式城市。",
     pointX: 1277.0,
     pointY: 636.24
   },
@@ -1048,7 +1048,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "扎克省",
     postalCode: "213090",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第二座“里程碑”式城市。",
     pointX: 721.0,
     pointY: 258.33
   },
@@ -1061,7 +1061,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "扎克省",
     postalCode: "213100",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第三座“里程碑”式城市。",
     pointX: 876.33,
     pointY: 484.0
   },
@@ -1698,7 +1698,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210240",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第十五座“里程碑”式城市。",
     pointX: 1112.65,
     pointY: 537.75
   },
@@ -2101,7 +2101,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "梅马省",
     postalCode: "314060",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第五座“里程碑”式城市。",
     pointX: 737.5,
     pointY: 734.8
   },
@@ -2114,7 +2114,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "梅马省",
     postalCode: "314070",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第六座“里程碑”式城市。",
     pointX: 843.59,
     pointY: 818.98
   },
@@ -2725,7 +2725,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "南𣿅省",
     postalCode: "735070",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第二十座“里程碑”式城市。",
     pointX: 1004.0,
     pointY: 1337.24
   },
@@ -2803,7 +2803,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "南𣿅省",
     postalCode: "837060",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第二十一座“里程碑”式城市。",
     pointX: 1285.67,
     pointY: 1312.0
   },
@@ -2829,7 +2829,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "东南𣿅省",
     postalCode: "831020",
     areaKm2: null,
-    description: null,
+    description: "以化学工业立城，厂区沿江铺开，管道纵横如网，储罐与高塔林立，昼夜运转不息。以𣿅元素相关化学为中心的产业链在此集聚，码头与铁路专用线将原料与产品送往各地，城中的化工研究院所与高校实验室比邻而居。明光化工大学是𣿅国114工程重点高校，化工与材料工程的特色强校，化学与生物化工领域全国领先，材料科学成果丰硕。",
     pointX: 1388.07,
     pointY: 1396.81
   },
@@ -3011,7 +3011,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "肯塔基省",
     postalCode: "815030",
     areaKm2: null,
-    description: null,
+    description: "土豆是这座城农业与工业链条的核心作物。郊野平原上，马铃薯田连片分布，块茎在疏松的沙壤中膨大，收获季里机械化采收设备往来作业，分拣后的商品薯送入仓储与加工环节。以土豆为原料的产业在此形成完整体系——淀粉、全粉、薯条、薯片及发酵制品依次产出，副产物则转化为饲料与有机肥。",
     pointX: 1380.0,
     pointY: 1282.76
   },
@@ -3037,7 +3037,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "肯塔基省",
     postalCode: "815050",
     areaKm2: null,
-    description: null,
+    description: "番茄在这座城，不只是作物，更是招牌。郊野平原上藤蔓连片，红果累累，采摘季里筐篮往来，空气里浮着微酸的清香。鲜果直供市场之外，番茄酱、番茄汁、番茄干、番茄粉在现代化工厂的生产线上依次下线，皮籽化作饲料与肥料。老街作坊里，老师傅守着大锅慢熬酱料，浓稠的酸甜气息飘出巷口。田间与车间、老手艺与新产线，都绕着这颗红果运转。",
     pointX: 1313.15,
     pointY: 1215.85
   },
@@ -3063,7 +3063,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "三董省",
     postalCode: "831080",
     areaKm2: null,
-    description: null,
+    description: "滨海大道与街巷两旁，椰树成行，羽状叶片在湿热的海风里摇曳作响。",
     pointX: 1458.5,
     pointY: 1184.95
   },
@@ -3141,7 +3141,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "三董省",
     postalCode: "831200",
     areaKm2: null,
-    description: null,
+    description: "河汊纵横，水道如网，泥沙沉积出的平坦沃土一直铺到海天相接处。摩天楼群沿江两岸拔地而起，跨江大桥与地下隧道将分散的城区连成一体，港口码头上集装箱堆叠如山，巨轮昼夜进出。金融区、科创园、老城厢隔水相望，地铁与轮渡载着通勤的人潮穿梭其间。故曰：“河海交汇、万商云集。”",
     pointX: 1437.62,
     pointY: 1243.88
   },
@@ -3154,7 +3154,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "三董省",
     postalCode: "831210",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第二十二座“里程碑”式城市，母亲河入海前的最后一舞。",
     pointX: 1475.38,
     pointY: 1240.12
   },
@@ -3167,7 +3167,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "三董省",
     postalCode: "831220",
     areaKm2: null,
-    description: null,
+    description: "三角洲地区北岸的城市。",
     pointX: 1471.5,
     pointY: 1195.0
   },
@@ -3180,7 +3180,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "三董省",
     postalCode: "831230",
     areaKm2: null,
-    description: null,
+    description: "三角洲地区南岸的城市。",
     pointX: 1449.88,
     pointY: 1259.88
   },
@@ -3193,7 +3193,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "冰糖-雪梨省",
     postalCode: "834010",
     areaKm2: null,
-    description: null,
+    description: "雪梨之于这座城，几乎是一种身份。沙地上梨园连片，果实硕大，皮薄如纸，果肉雪白细嫩，一口咬下汁水四溢。采摘季里，冷链车从地头直发各地；加工线上，雪梨汁、雪梨膏、雪梨糖、雪梨酒依次下线，连梨渣也化作饲料与有机肥。老街上梨膏铺子现熬现卖，琥珀色的膏体在锅中翻涌，甜香飘出巷口。种植、加工、销售环环相扣。",
     pointX: 1454.7,
     pointY: 1148.9
   },
@@ -3206,7 +3206,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "冰糖-雪梨省",
     postalCode: "834020",
     areaKm2: null,
-    description: null,
+    description: "这座城并无雪期，冻梨却自成一绝。城郊沙壤地上鸭梨成林，秋来摘果，送入冷库经数道控温工序反复冻藏，果皮渐转乌黑，果肉化作绵密清甜的冰沙。冷链园区里，生产线昼夜运转，冻梨分装发往各地，衍生出冻梨汁、冻梨膏、冻梨酒等产品。",
     pointX: 1363.0,
     pointY: 1176.33
   },
@@ -3219,7 +3219,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "冰糖-雪梨省",
     postalCode: "834030",
     areaKm2: null,
-    description: null,
+    description: "城中以梨为业者甚众，鲜果外销之外，深加工链条亦长——梨汁、梨膏、梨酒、梨干，连梨渣也制成饲料与有机肥。",
     pointX: 1381.0,
     pointY: 1140.76
   },
@@ -3245,7 +3245,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "冰糖-雪梨省",
     postalCode: "834050",
     areaKm2: null,
-    description: null,
+    description: "甘蔗林连片成海，茎秆粗壮，节长汁多。秋末开镰，收割机在蔗田里往来作业，甘蔗经传送带装车，运往城郊的现代化糖厂与乙醇燃料基地。以蔗为原料的产业链在此延伸——制糖、酿造、生物质发电、可降解材料，连蔗渣与糖蜜都被吃干榨净。城中的研发园区里，工程师们研究着高产蔗种与绿色工艺；老糖厂的工业遗址改造成展馆，讲述这座城与甘蔗的百年渊源。",
     pointX: 1237.33,
     pointY: 1157.0
   },
@@ -3258,7 +3258,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "冰糖-雪梨省",
     postalCode: "834060",
     areaKm2: null,
-    description: null,
+    description: "藤蔓攀爬，白花谢后结出青皮小葫芦，秋来由青转黄，摘下晾干，掏空作瓢，或整只雕刻、烙画、上漆，制成工艺品。匠人以刀代笔，在葫芦上刻出花鸟山水，薄胎透光，玲珑可爱。葫芦谐音“福禄”，逢年过节互赠葫芦已成风俗，入选𣿅国非物质文化遗产。",
     pointX: 1287.5,
     pointY: 1189.5
   },
@@ -3271,7 +3271,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "冰糖-雪梨省",
     postalCode: "834070",
     areaKm2: null,
-    description: null,
+    description: "以生产几丁质为特色的城市。城郊滩涂与浅海里，虾蟹成群，壳厚而坚，当地人取壳去肉，经酸碱处理、脱钙脱蛋白，提纯出洁白如雪的几丁质粉末。几丁质被制成医用敷料、保鲜膜与纺织纤维，远销各地。",
     pointX: 1288.33,
     pointY: 1156.0
   },
@@ -3297,7 +3297,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "圣维皮省",
     postalCode: "636050",
     areaKm2: null,
-    description: null,
+    description: "这里生产𣿅国最优质的民族传统乐器——𣿅号。𣿅号规格各异，小者盈尺，声高亢；大者及臂，音雄浑，吹奏需以特殊技巧方能连绵不绝。城中制号匠人世代相传，街巷间常闻试号之声，高高低低此起彼伏，节庆时长短𣿅号列队齐鸣，声震四野。而这座城更以音乐闻名全国，素称“全国音乐之城”，乐团、琴馆、乐坊林立，丝竹管弦终年不歇，𣿅号之音与满城乐声相和，一上一下，各擅其妙。",
     pointX: 849.15,
     pointY: 1119.15
   },
@@ -3310,7 +3310,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "圣维皮省",
     postalCode: "636060",
     areaKm2: null,
-    description: null,
+    description: "小提琴是𣿅国的国家乐器，提琴城则出产𣿅国最优质的小提琴。除了提琴，这里也生产各种无品弓弦乐器，包括提琴组。城中人人都会拉提琴，从提琴组到低音提琴，无品弓弦乐器皆有所长，而小提琴最为出名，琴声清亮灵动，常在黄昏的阳台上飘出。广场上偶有即兴合奏，弓起弓落间音色交融，留下满城弦音。",
     pointX: 959.0,
     pointY: 1198.24
   },
@@ -3388,7 +3388,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "圣维皮省",
     postalCode: "636120",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第十座“里程碑”式城市。",
     pointX: 919.77,
     pointY: 1277.17
   },
@@ -3414,7 +3414,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "西贝特省",
     postalCode: "532020",
     areaKm2: null,
-    description: null,
+    description: "这里出产𣿅国最优质的小号，为𣿅国皇家乐团所用。城中乐器作坊林立，铜管在匠人手中经无数次锻打、退火与调音，方能吹出清亮而不刺耳的音色。每逢节庆，全城居民齐聚广场合奏，铜光闪烁，声浪直上云霄。制号、习号、听号早已融入日常，街头孩童以号声互打招呼，城里人人都会吹小号。",
     pointX: 701.76,
     pointY: 1083.0
   },
@@ -3427,7 +3427,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "西贝特省",
     postalCode: "532030",
     areaKm2: null,
-    description: null,
+    description: "本地特产是什么显而易见。这座城的咸蛋，是时间与盐共同酝酿的手艺。鸭群放养在城郊的河滩湿地，食螺蛳小鱼，产下的蛋壳厚黄足。腌蛋时以黄泥裹盐，掺入草木灰与少许本地米酒，封坛静置月余，让咸味缓慢渗入。切开一枚，蛋白细嫩如凝脂，蛋黄红亮流油，沙糯的油珠顺着刀沿滑下，咸香中透着一丝回甘。",
     pointX: 572.24,
     pointY: 1000.0
   },
@@ -3947,7 +3947,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "古维克省",
     postalCode: "538080",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第九座“里程碑”式城市。",
     pointX: 712.0,
     pointY: 1272.33
   },
@@ -4038,7 +4038,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "凤凰省",
     postalCode: "527070",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第七座“里程碑”式城市。",
     pointX: 892.0,
     pointY: 980.24
   },
@@ -4051,7 +4051,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "凤凰省",
     postalCode: "527080",
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第八座“里程碑”式城市。",
     pointX: 829.65,
     pointY: 1115.75
   },
@@ -4090,7 +4090,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "福利省",
     postalCode: null,
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第十九座“里程碑”式城市。",
     pointX: 1182.83,
     pointY: 1139.22
   },
@@ -4103,7 +4103,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "福利省",
     postalCode: null,
     areaKm2: null,
-    description: null,
+    description: "𣿅国母亲河上第十一座“里程碑”式城市。",
     pointX: 995.0,
     pointY: 1162.76
   }
