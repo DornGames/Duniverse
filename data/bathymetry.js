@@ -348,10 +348,6 @@
     const bankContext=bankCanvas.getContext('2d',{willReadFrequently:true});
     bankContext.filter='blur(8px)';bankContext.drawImage(islandCanvas,0,0);
     const bankPixels=bankContext.getImageData(0,0,width,height).data;
-    const islandMask=islandContext.getImageData(0,0,width,height).data;
-    const islandWaterMask=new Uint8Array(width*height);
-    for(let i=0;i<islandWaterMask.length;i++)islandWaterMask[i]=islandMask[i*4+3]>8?0:1;
-    const islandDistanceSquared=distanceToLandSquared(islandWaterMask,width,height);
     const reliefNoise=buildReliefNoise(width,height);
     const mainlandCoast=mainlandCoastByRow(distanceWater,width,height,sourceWidth);
     const size=width*height;
@@ -411,22 +407,18 @@
         const shelfWedge=shelfWedgeWeight(x,y);
         depth+=(Math.min(depth,260)-depth)*shelfWedge;
 
-        // A shared shallow island platform surrounds the group; its sheltered inner water is flatter and shallower.
+        // A shared island-chain bank follows the arc instead of making circular banks around each island.
         const platformDistance=Math.sqrt(distanceSquaredToPolyline(x,y,ARCHIPELAGO_PLATFORM_SEGMENTS));
-        const platform=smoothStep((56-platformDistance)/30);
-        depth+=(Math.min(depth,260)-depth)*platform;
+        const platformShape=valueNoise(x,y,48,3719),platformDetail=valueNoise(x,y,18,6109);
+        const platformWidth=50+platformShape*8+platformDetail*3;
+        const platform=smoothStep((platformWidth-platformDistance)/24);
+        const platformDepth=Math.min(45,22+18*Math.max(0,valueNoise(x,y,42,1267))
+          +15*Math.max(0,valueNoise(x,y,17,7721)));
+        depth+=(Math.min(depth,platformDepth)-depth)*platform;
         const lagoonX=(x-1775)/34,lagoonY=(y-685)/22;
-        const lagoon=smoothStep((1-Math.hypot(lagoonX,lagoonY))/.45);
+        const lagoonEdgeNoise=.17*valueNoise(x,y,28,5471)+.07*valueNoise(x,y,10,6193);
+        const lagoon=smoothStep((1+lagoonEdgeNoise-Math.hypot(lagoonX,lagoonY))/.45);
         depth+=(Math.min(depth,45)-depth)*lagoon;
-
-        const islandDistance=Math.sqrt(islandDistanceSquared[index]);
-        if(islandDistance<24&&depth<700){
-          const bankShape=valueNoise(x,y,48,4517),bankDetail=valueNoise(x,y,19,9863);
-          const innerRadius=13+bankShape,outerRadius=18+bankShape*2+bankDetail;
-          const sharedShoal=smoothStep((outerRadius-islandDistance)/(outerRadius-innerRadius));
-          const shoalDepth=Math.min(50,22+18*Math.max(0,bankShape)+15*Math.max(0,bankDetail));
-          depth+=(shoalDepth-depth)*sharedShoal;
-        }
 
         const trenchDistanceSquared=distanceSquaredToPolyline(x,y,TRENCH_SEGMENTS);
         const trenchEnds=smoothStep((y-135)/125)*smoothStep((1060-y)/160);
