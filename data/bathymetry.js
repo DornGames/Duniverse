@@ -348,6 +348,10 @@
     const bankContext=bankCanvas.getContext('2d',{willReadFrequently:true});
     bankContext.filter='blur(8px)';bankContext.drawImage(islandCanvas,0,0);
     const bankPixels=bankContext.getImageData(0,0,width,height).data;
+    const islandMask=islandContext.getImageData(0,0,width,height).data;
+    const islandWaterMask=new Uint8Array(width*height);
+    for(let i=0;i<islandWaterMask.length;i++)islandWaterMask[i]=islandMask[i*4+3]>8?0:1;
+    const islandDistanceSquared=distanceToLandSquared(islandWaterMask,width,height);
     const reliefNoise=buildReliefNoise(width,height);
     const mainlandCoast=mainlandCoastByRow(distanceWater,width,height,sourceWidth);
     const size=width*height;
@@ -398,9 +402,17 @@
         depth-=300*southFade*Math.exp(-.5*ridgeSouth/(38*38));
         depth-=riverFanRelief(x,y);
 
-        // Nearby islands merge into shared banks; scattered tiny islets make only subtle rises.
+        // Nearby islands share an irregular, shallow platform with fixed spatial variation.
         const bank=smoothStep((bankPixels[index*4+3]/255-.30)/.55);
         depth+=(Math.min(depth,500)-depth)*bank;
+        const islandDistance=Math.sqrt(islandDistanceSquared[index]);
+        if(islandDistance<52){
+          const bankShape=valueNoise(x,y,48,4517),bankDetail=valueNoise(x,y,19,9863);
+          const innerRadius=28+bankShape*3,outerRadius=43+bankShape*5+bankDetail*2;
+          const sharedShoal=smoothStep((outerRadius-islandDistance)/(outerRadius-innerRadius));
+          const shoalDepth=Math.min(50,22+18*Math.max(0,bankShape)+15*Math.max(0,bankDetail));
+          depth+=(shoalDepth-depth)*sharedShoal;
+        }
         const spurDistance=Math.sqrt(distanceSquaredToPolyline(x,y,SHELF_SPUR_SEGMENTS));
         const spur=smoothStep((62-spurDistance)/42);
         depth+=(Math.min(depth,450)-depth)*spur;
