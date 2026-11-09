@@ -516,7 +516,7 @@
   "cityNeighborhoodRadiusPx": 12,
   "cityNeighborhoodRadiusKmApprox": 93,
   "heightUnit": "metres, illustrative absolute scale",
-  "elevationRaster": "data/relief_elevation.js; full-resolution 16-bit elevation with official river-water mask and flow-conditioned river surfaces; clicks on a river report its water-surface elevation, coastal delta channels read as sea level, and clicks near a labelled summit return its exact source height",
+  "elevationRaster": "data/relief_elevation.js; full-resolution 16-bit elevation with official river-water mask and flow-conditioned river surfaces; retained as terrain-model and hydrology-audit data, while interactive elevation readout is temporarily disabled",
   "sources": [
     "data/mountain_peaks.js",
     "data/relief_mountain_peaks.js (relief-copy peak positions and northern-plateau extension classification)",
