@@ -402,17 +402,9 @@
         depth-=300*southFade*Math.exp(-.5*ridgeSouth/(38*38));
         depth-=riverFanRelief(x,y);
 
-        // Nearby islands share an irregular, shallow platform with fixed spatial variation.
+        // Keep island shallows tight so the surrounding ridges and basin relief stay visible.
         const bank=smoothStep((bankPixels[index*4+3]/255-.30)/.55);
         depth+=(Math.min(depth,500)-depth)*bank;
-        const islandDistance=Math.sqrt(islandDistanceSquared[index]);
-        if(islandDistance<52){
-          const bankShape=valueNoise(x,y,48,4517),bankDetail=valueNoise(x,y,19,9863);
-          const innerRadius=28+bankShape*3,outerRadius=43+bankShape*5+bankDetail*2;
-          const sharedShoal=smoothStep((outerRadius-islandDistance)/(outerRadius-innerRadius));
-          const shoalDepth=Math.min(50,22+18*Math.max(0,bankShape)+15*Math.max(0,bankDetail));
-          depth+=(shoalDepth-depth)*sharedShoal;
-        }
         const spurDistance=Math.sqrt(distanceSquaredToPolyline(x,y,SHELF_SPUR_SEGMENTS));
         const spur=smoothStep((62-spurDistance)/42);
         depth+=(Math.min(depth,450)-depth)*spur;
@@ -426,6 +418,15 @@
         const lagoonX=(x-1775)/34,lagoonY=(y-685)/22;
         const lagoon=smoothStep((1-Math.hypot(lagoonX,lagoonY))/.45);
         depth+=(Math.min(depth,45)-depth)*lagoon;
+
+        const islandDistance=Math.sqrt(islandDistanceSquared[index]);
+        if(islandDistance<24&&depth<700){
+          const bankShape=valueNoise(x,y,48,4517),bankDetail=valueNoise(x,y,19,9863);
+          const innerRadius=13+bankShape,outerRadius=18+bankShape*2+bankDetail;
+          const sharedShoal=smoothStep((outerRadius-islandDistance)/(outerRadius-innerRadius));
+          const shoalDepth=Math.min(50,22+18*Math.max(0,bankShape)+15*Math.max(0,bankDetail));
+          depth+=(shoalDepth-depth)*sharedShoal;
+        }
 
         const trenchDistanceSquared=distanceSquaredToPolyline(x,y,TRENCH_SEGMENTS);
         const trenchEnds=smoothStep((y-135)/125)*smoothStep((1060-y)/160);
