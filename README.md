@@ -23,6 +23,7 @@ python -m http.server 8000
 - 点击地图上的地理事物查看介绍；右键任意地图位置可查看地形模型海拔，点击海洋仍查看海底深度。支持鼠标滚轮缩放、触屏双指捏合和拖拽平移。
 - 点击大区或省份，右栏会显示预先计算的平均海拔、最高点和最低点及其地图位置；统计读取固定数据，不会在页面打开时扫描整张高程栅格。
 - “陆地地形”图层可开关地势晕渲和北湩高原官方分界线；地图没有绘制等高线。
+- 城市边界先覆盖东北象限，可在“城市、首都与省会”图层组中单独开关；线条使用淡色虚线，边界在省界内结合城市锚点、河道和局部山脊划分。
 - 地图叠加土星自定义坐标网格：纬度每 1°、经度每 10°一条浅色半透明细虚线；边缘刻度使用本项目的数字度数，不显示方向字母。自定义纬度等于真实行星纬度的六分之一。
 - 在顶部搜索框输入中文名、𣿅语名、行政区编号或城市邮政区号，可搜索国家、大区、省份、城市、山峰和已命名河流；选择后地图会定位到对应对象。
 - 搜索行政区或地名可定位并查看可用介绍；地图点击恢复为打开地理要素信息，城市介绍已恢复。
@@ -54,6 +55,7 @@ python -m http.server 8000
 | `data/bathymetry.js` | 海底深度场与连续深度配色 |
 | `data/relief_elevation.js`、`data/relief_elevation.png`、`data/relief_tint.png` | 陆地高程、右键采样图和地图晕渲；高程采样图在地图出现后异步载入 |
 | `data/relief_model.js`、`data/relief_model_metadata.json` | 山峰、城市、地貌控制点及模型说明 |
+| `data/city_boundaries_q1.js`、`data/city_boundaries_q1.geojson` | 东北象限城市边界；以固定种子结合地势和河网划分 |
 | `data/region_elevation_stats.js`、`data/region_elevation_stats.csv` | 大区、省份的预计算海拔统计及复核表 |
 | `data/mountain_elevation_model.md` | 山脉分区、地形假设与水文核查 |
 | `vector_preview.svg` | 独立矢量地图预览 |
@@ -65,6 +67,7 @@ python -m http.server 8000
 | `build_administrative_boundaries.py` | 生成共享省界、大区界及大区名称标注 |
 | `extract_hydrology_styles.py` | 处理河流、季节性河流和运河图层 |
 | `tools/build_region_elevation_stats.py` | 预计算大区、省份的平均海拔与地形极值 |
+| `tools/build_city_boundaries.py` | 在省界内依据河流、山脊和城市点生成固定的城市边界 |
 | `tools/` | 高清分块海岸线处理工具 |
 | `diagnostics/` | 数据提取和海岸线复核时生成的诊断材料 |
 
@@ -103,6 +106,10 @@ python tools/build_coordinate_catalog.py
 边界和标注位置来自原图提取、矢量化或人工复核，适用于地图展示和项目编辑，不应视为官方 GIS 边界数据。
 
 中文行政区名称根据项目附带的《𣿅国政区清单》逐项核对。原图标题、版本、制作方和版权信息见 [`data/map_metadata.json`](data/map_metadata.json)。
+
+## 技术方法参考
+
+空间数据检查与可复现工作流参考：Timothy Kassis, Vinayak Agarwal, Yuhuan He, Darshil Patel, and Aubrey M. Brueckner. *Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents*. arXiv:2609.00065 (2026). [论文页面](https://arxiv.org/abs/2609.00065)。
 
 ## 许可
 

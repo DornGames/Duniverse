@@ -1134,6 +1134,7 @@ aside[hidden]{display:none}
  <div class="layerParent"><button class="groupDisclosure" type="button" aria-expanded="false" aria-controls="cityLayers" aria-label="&#x5c55;&#x5f00;&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x4e0e;&#x7701;&#x4f1a;"><span class="treeChevron"></span><span class="layerSwatch" style="--swatch:#303a40"></span><span class="layerName">&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x4e0e;&#x7701;&#x4f1a;</span></button><input id="citiesToggle" type="checkbox" data-group="cities" checked aria-label="&#x663e;&#x793a;&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x548c;&#x7701;&#x4f1a;&#x56fe;&#x5c42;"></div>
  <div class="layerChildren" id="cityLayers" role="group" aria-label="&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x53ca;&#x7701;&#x4f1a;&#x5b50;&#x56fe;&#x5c42;" hidden>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#303a40"></span><span class="layerName">&#x57ce;&#x5e02;</span><input type="checkbox" data-layer="blackMarkers" checked aria-label="&#x663e;&#x793a;&#x57ce;&#x5e02;&#x6807;&#x8bb0;"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#718a84"></span><span class="layerName">城市边界（东北象限）</span><input type="checkbox" data-layer="cityBoundaries" checked aria-label="显示东北象限城市边界"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#111"></span><span class="layerName">&#x57ce;&#x5e02;&#x540d;&#x79f0;</span><input type="checkbox" data-layer="cityLabels" checked aria-label="&#x663e;&#x793a;&#x57ce;&#x5e02;&#x540d;&#x79f0;"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#111"></span><span class="layerName">&#x57ce;&#x5e02;&#x6e69;&#x8bed;&#x540d;&#x79f0;</span><input type="checkbox" data-layer="cityTongueLabels" checked aria-label="&#x663e;&#x793a;&#x57ce;&#x5e02;&#x6e69;&#x8bed;&#x540d;&#x79f0;"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#c32631"></span><span class="layerName">&#x9996;&#x90fd;&#x6807;&#x8bc6;</span><input type="checkbox" data-layer="nationalCapitalMarker" checked aria-label="&#x663e;&#x793a;&#x9996;&#x90fd;&#x6807;&#x8bc6;"></label>
@@ -1175,6 +1176,7 @@ import './data/relief_mountain_peaks.js';
 import './data/lake_names.js';
 import './data/named_rivers.js';
 import './data/relief_model.js';
+import './data/city_boundaries_q1.js';
 const sourceSvg=document.getElementById('mapSvg');
 const canvas=document.getElementById('mapCanvas');
 canvas.setAttribute('aria-label','𣿅国地图，可拖动、缩放；点击查看地理介绍，右键查看地形模型海拔，触控设备可双指缩放。');
@@ -1207,7 +1209,7 @@ const DETAIL_LAYERS=new Set(['regionCodes','regionNames','regionTongueNames','bl
 const PLACE_NAME_DRAW_GROUPS=new Set(['majorRegionNames','regionNames','regionTongueNames','provinceCapitalLabels','provinceCapitalTongueLabels','nationalCapitalLabels','nationalCapitalTongueLabels','cityLabels','cityTongueLabels','mountainPeakLabels','mountainElevationLabels','lakeNameLabels','mountainRangeLabels','terrainRegionLabels']);
 const DRAW_ORDER=new Map([
   ['oceanFill',0],['coastlineFills',1],['regions',1],['lakes',2],['rivers',3],['canals',4],['canalTicks',5],
-  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['majorRegionBoundaries',10],['graticule',10.5],['majorRegionNames',11],['nationalBorder',12],['plateauBoundaryHalo',12.4],['plateauBoundary',12.5],['blackMarkers',13],['mountainPeakMarkers',13.5],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22],['mountainRangeLabels',22.5],['terrainRegionLabels',22.6],['mountainPeakLabels',23],['mountainElevationLabels',23.5],['lakeNameLabels',24]
+  ['seasonalRivers',6],['crossBorderRivers',7],['neighborBorders',8],['provinceBoundaries',9],['cityBoundaries',9.5],['majorRegionBoundaries',10],['graticule',10.5],['majorRegionNames',11],['nationalBorder',12],['plateauBoundaryHalo',12.4],['plateauBoundary',12.5],['blackMarkers',13],['mountainPeakMarkers',13.5],['redMarkers',14],['specialCapitalMarker',14],['nationalCapitalMarker',14],['regionCodes',15],['regionNames',16],['regionTongueNames',17],['provinceCapitalLabels',18],['provinceCapitalTongueLabels',19],['nationalCapitalLabels',20],['cityLabels',21],['cityTongueLabels',22],['mountainRangeLabels',22.5],['terrainRegionLabels',22.6],['mountainPeakLabels',23],['mountainElevationLabels',23.5],['lakeNameLabels',24]
 ]);
 let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
@@ -1241,6 +1243,7 @@ const textMetricsCache=new Map();
 const REGION_DIRECTORY=window.DUNIVERSE_REGION_DIRECTORY||[];
 const REGION_BY_ID=new Map(REGION_DIRECTORY.map(entry=>[entry.id,entry]));
 const CITY_DIRECTORY=window.DUNIVERSE_CITY_DIRECTORY||[];
+const CITY_BOUNDARIES_Q1=window.DUNIVERSE_CITY_BOUNDARIES_Q1||{features:[]};
 const CITY_BY_ID=new Map(CITY_DIRECTORY.map(entry=>[entry.id,entry]));
 const CITY_BY_NAME=new Map(CITY_DIRECTORY.map(entry=>[entry.name,entry]));
 const CITY_BY_TONGUE_NAME=new Map();
@@ -1499,6 +1502,7 @@ function createRecord(element,drawGroup,layerId){
     const raw=element.getAttribute('d')||'',subpaths=HYDROLOGY_TOPOLOGY.get(element)||parseSubpaths(raw);
     const isRegion=element.classList.contains('region');
     const radius=isRegion||drawGroup==='nationalBorder'?1.8:
+      drawGroup==='cityBoundaries'?0.9:
       drawGroup==='provinceBoundaries'||drawGroup==='majorRegionBoundaries'?1.1:
       layerId==='lakes'?2.6:
       HYDROLOGY_LAYER_IDS.has(layerId)?0.35:0;
@@ -2450,6 +2454,26 @@ function appendLakeNameLayer(){
   }
   sourceSvg.append(labelLayer);
 }
+function appendCityBoundaryLayer(){
+  const features=CITY_BOUNDARIES_Q1.features||[];
+  if(!features.length)return;
+  const ns='http://www.w3.org/2000/svg',boundaryLayer=document.createElementNS(ns,'g');
+  boundaryLayer.id='cityBoundaries';boundaryLayer.dataset.layer='cityBoundaries';
+  boundaryLayer.setAttribute('pointer-events','none');
+  const pointText=point=>`${Number(point[0]).toFixed(2)},${Number(point[1]).toFixed(2)}`;
+  for(const feature of features){
+    const geometry=feature.geometry;
+    const lines=geometry?.type==='LineString'?[geometry.coordinates]:geometry?.type==='MultiLineString'?geometry.coordinates:[];
+    if(!lines.length)continue;
+    const path=document.createElementNS(ns,'path');
+    path.setAttribute('d',lines.map(points=>points.length>1?`M ${pointText(points[0])} ${points.slice(1).map(point=>`L ${pointText(point)}`).join(' ')}`:'').filter(Boolean).join(' '));
+    path.setAttribute('fill','none');path.setAttribute('stroke','#718a84');path.setAttribute('stroke-opacity','.36');
+    path.setAttribute('stroke-width','1');path.setAttribute('stroke-dasharray','3.2 4.6');
+    path.setAttribute('stroke-linecap','round');path.setAttribute('stroke-linejoin','round');
+    boundaryLayer.append(path);
+  }
+  sourceSvg.append(boundaryLayer);
+}
 appendSaturnGraticule();
 appendMountainPeakLayer();
 function appendReliefLayer(){
@@ -2469,6 +2493,7 @@ appendReliefLayer();
 appendMountainRangeLayer();
 appendTerrainRegionLayer();
 appendLakeNameLayer();
+appendCityBoundaryLayer();
 
 function pointToSegmentDistance(point,start,end){
   const dx=end[0]-start[0],dy=end[1]-start[1],lengthSquared=dx*dx+dy*dy;
@@ -2718,10 +2743,10 @@ function drawRecord(record,toleranceIndex,scale,fillOverride=null,opacityOverrid
   const hovered=record.code&&record.code===hoveredCode;
   const specialCapitalMarker=record.drawGroup==='specialCapitalMarker';
   const fixedScreenSize=(record.tag==='circle'&&!specialCapitalMarker)||record.tag==='text'||
-    ['provinceBoundaries','majorRegionBoundaries','nationalBorder','graticule','plateauBoundaryHalo','plateauBoundary'].includes(record.drawGroup);
+    ['provinceBoundaries','cityBoundaries','majorRegionBoundaries','nationalBorder','graticule','plateauBoundaryHalo','plateauBoundary'].includes(record.drawGroup);
   ctx.save();ctx.globalAlpha=1;ctx.lineWidth=record.lineWidth/(fixedScreenSize?scale:1);
   ctx.lineCap=record.lineCap;ctx.lineJoin=record.lineJoin;
-  ctx.setLineDash(record.drawGroup==='graticule'?record.dash.map(value=>value/scale):record.dash);
+  ctx.setLineDash(['graticule','cityBoundaries'].includes(record.drawGroup)?record.dash.map(value=>value/scale):record.dash);
   if(record.tag==='path'){
     const path=record.variants[Math.min(toleranceIndex,record.variants.length-1)];
     if(record.fill!=='none'&&record.fill!=='transparent'){
