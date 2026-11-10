@@ -25,7 +25,7 @@ from PIL import Image, ImageDraw
 from scipy import ndimage
 from scipy.ndimage import map_coordinates
 from scipy.interpolate import CubicSpline
-from shapely.geometry import LineString, MultiLineString, Point, box, mapping, shape
+from shapely.geometry import LineString, MultiLineString, Point, Polygon, box, mapping, shape
 from shapely.ops import linemerge, unary_union
 
 
@@ -40,11 +40,11 @@ MAX_SEED_SNAP_PX = 24.0
 RIVER_CROSSING_COST = 6.0
 MIN_BOUNDARY_LENGTH_PX = 2.5
 SIMPLIFY_TOLERANCE_PX = 0.12
-RIDGE_BARRIER_WEIGHT = 2.8
+RIDGE_BARRIER_WEIGHT = 3.6
 RIDGE_DETECTION_PERCENTILE = 55.0
 RIDGE_MIN_LOCAL_RELIEF_M = 22.0
 RIDGE_MIN_SEGMENT_LENGTH_PX = 18.0
-BOUNDARY_DETAIL_STEP_PX = 0.8
+BOUNDARY_DETAIL_STEP_PX = 0.65
 CITY_MARKER_CLEARANCE_PX = 4.8
 BOUNDARY_SUMMIT_MIN_ELEVATION_M = 8000.0
 BOUNDARY_SUMMIT_CAPTURE_DISTANCE_PX = 12.0
@@ -143,6 +143,91 @@ def smooth_owner(owner: np.ndarray, domain: np.ndarray, label_count: int) -> np.
     return smoothed
 
 
+def remove_unseeded_territory_islands(owner: np.ndarray, domain: np.ndarray,
+                                     seeds: list[tuple[int, int, int]]) -> tuple[np.ndarray, int]:
+    """Merge smoothed owner islands that contain no city or island seed.
+
+    A majority pass can leave a tiny pocket of one city entirely surrounded by
+    another. Its only visible boundary is a closed loop, which reads as a ring
+    around nowhere. Keep every seed-connected piece, and give orphan pixels to
+    the nearest seed-connected territory in the same land/water component.
+    """
+    cleaned = owner.copy()
+    domain_connectivity = np.ones((3, 3), dtype=np.uint8)
+    # City borders are drawn along shared pixel edges, so corner-only contact
+    # does not make two parts of the same territory visibly connected.
+    territory_connectivity = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]], dtype=np.uint8)
+    domain_components, domain_count = ndimage.label(domain, structure=domain_connectivity)
+    seeds_by_component: dict[int, list[tuple[int, int, int]]] = defaultdict(list)
+    for label, row, col in seeds:
+        component = int(domain_components[row, col])
+        if component:
+            seeds_by_component[component].append((label, row, col))
+
+    reassigned = 0
+    for component in range(1, domain_count + 1):
+        rows, cols = np.where(domain_components == component)
+        if not len(rows):
+            continue
+        y0, y1 = int(rows.min()), int(rows.max()) + 1
+        x0, x1 = int(cols.min()), int(cols.max()) + 1
+        component_mask = domain_components[y0:y1, x0:x1] == component
+        local_owner = cleaned[y0:y1, x0:x1]
+        retained = np.zeros_like(component_mask, dtype=bool)
+
+        for label in np.unique(local_owner[component_mask]):
+            if label < 0:
+                continue
+            label_components, _ = ndimage.label(
+                component_mask & (local_owner == label), structure=territory_connectivity)
+            seeded_components = {
+                int(label_components[row - y0, col - x0])
+                for seed_label, row, col in seeds_by_component.get(component, [])
+                if seed_label == int(label) and label_components[row - y0, col - x0] > 0
+            }
+            if seeded_components:
+                retained |= np.isin(label_components, tuple(seeded_components))
+
+        orphan = component_mask & ~retained
+        if not np.any(orphan):
+            continue
+        if not np.any(retained):
+            # The component should always have a seed, but keep generation
+            # robust if an input marker fell outside its rasterized domain.
+            component_seeds = seeds_by_component.get(component, [])
+            if not component_seeds:
+                continue
+            for label, row, col in component_seeds:
+                local_owner[row - y0, col - x0] = label
+                retained[row - y0, col - x0] = True
+        _, nearest = ndimage.distance_transform_edt(~retained, return_indices=True)
+        nearest_owner = local_owner[nearest[0], nearest[1]]
+        local_owner[orphan] = nearest_owner[orphan]
+        reassigned += int(np.count_nonzero(orphan))
+    cleaned[~domain] = -1
+    return cleaned, reassigned
+
+
+def is_unanchored_closed_boundary(line: LineString, cities: list[dict]) -> bool:
+    """Reject closed city-boundary rings that enclose no city marker.
+
+    Small raster ownership pockets can generate complete loops that do not
+    correspond to a settlement or a meaningful city core. Such rings read as
+    arbitrary circles on the map, so keep a closed boundary only when it
+    actually surrounds a city anchor.
+    """
+    coordinates = list(line.coords)
+    if len(coordinates) < 4 or Point(coordinates[0]).distance(Point(coordinates[-1])) > 0.8:
+        return False
+    ring = coordinates if coordinates[0] == coordinates[-1] else [*coordinates, coordinates[0]]
+    polygon = Polygon(ring)
+    if not polygon.is_valid:
+        polygon = polygon.buffer(0)
+    if polygon.is_empty:
+        return False
+    return not any(polygon.covers(Point(city["sourcePixelXY"])) for city in cities)
+
+
 def terrain_cost_partition(domain: np.ndarray, elevation: np.ndarray, river: np.ndarray,
                            ridge: np.ndarray, noise: np.ndarray,
                            seeds: list[tuple[int, int, int]]) -> np.ndarray:
@@ -170,8 +255,8 @@ def terrain_cost_partition(domain: np.ndarray, elevation: np.ndarray, river: np.
             relief = min(abs(float(elevation[next_row, next_col] - elevation[row, col])) / 850.0, 2.4)
             ridge_cost = min(max(float(ridge[row, col] + ridge[next_row, next_col]) / 9000.0, 0.0), 0.38)
             river_cost = RIVER_CROSSING_COST if river[row, col] or river[next_row, next_col] else 1.0
-            roughness = 1.0 + 0.04 * float(noise[row, col] + noise[next_row, next_col]) * 0.5
-            edge_cost = step * (1.0 + 0.72 * relief + ridge_cost) * river_cost * roughness
+            roughness = 1.0 + 0.12 * float(noise[row, col] + noise[next_row, next_col]) * 0.5
+            edge_cost = step * (1.0 + 1.0 * relief + ridge_cost) * river_cost * roughness
             next_cost = cost + edge_cost
             old_cost = float(distance[next_row, next_col])
             if next_cost < old_cost - 1e-5 or (abs(next_cost - old_cost) <= 1e-5 and label < owner[next_row, next_col]):
@@ -438,7 +523,7 @@ def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
     points = np.asarray([line.interpolate(distance).coords[0] for distance in distances], dtype=np.float64)
     base = points.copy()
     for axis in (0, 1):
-        base[:, axis] = ndimage.gaussian_filter1d(base[:, axis], sigma=0.9, mode="nearest")
+        base[:, axis] = ndimage.gaussian_filter1d(base[:, axis], sigma=0.65, mode="nearest")
     base[0], base[-1] = points[0], points[-1]
 
     tangent = np.gradient(base, axis=0)
@@ -451,9 +536,9 @@ def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
     # Give plains visible but restrained bends; increase amplitude where the
     # local terrain is rough. River corridors keep tighter banks, while ridges
     # retain enough detail to avoid the old, overly smooth Voronoi look.
-    amplitude = np.clip(0.48 + np.maximum(relief, 0.0) / 300.0, 0.48, 3.8)
+    amplitude = np.clip(1.8 + np.maximum(relief, 0.0) / 180.0, 1.8, 7.0)
     amplitude *= np.where(river_gap < 3.0, 0.38, np.where(river_gap < 7.0, 0.74, 1.0))
-    amplitude *= np.where(ridge_gap < 1.5, 0.78, 1.0)
+    amplitude *= np.where(ridge_gap < 1.5, 0.82, 1.0)
     city_safety = np.ones(count, dtype=np.float64)
     if city_points:
         city_gap = np.min(np.hypot(base[:, 0, None] - np.asarray(city_points)[:, 0],
@@ -466,12 +551,12 @@ def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
     def smooth_noise(sigma: float) -> np.ndarray:
         values = ndimage.gaussian_filter1d(raw, sigma=sigma, mode="reflect")
         return values / max(float(values.std()), 1e-6)
-    displacement = (0.42 * smooth_noise(8.0) +
-                    0.35 * smooth_noise(3.0) +
-                    0.23 * smooth_noise(0.95))
+    displacement = 1.25 * (0.36 * smooth_noise(11.0) +
+                           0.34 * smooth_noise(4.2) +
+                           0.30 * smooth_noise(1.2))
     fade = np.minimum(1.0, np.minimum(distances / 5.0, (line.length - distances) / 5.0))
     fade = np.clip(fade, 0.0, 1.0)
-    offset = np.clip(displacement * amplitude * fade, -4.5, 4.5)
+    offset = np.clip(displacement * amplitude * fade, -10.5, 10.5)
     if city_points:
         city_array = np.asarray(city_points, dtype=np.float64)
         normal = np.column_stack((normal_x, normal_y))
@@ -581,7 +666,13 @@ def main() -> None:
     ridge_barrier += RIDGE_BARRIER_WEIGHT * np.exp(-ridge_distance / 2.2)
     river_distance = ndimage.distance_transform_edt(~river_mask)
     rng = np.random.default_rng(SEED)
-    noise = ndimage.gaussian_filter(rng.normal(size=(HEIGHT, WIDTH)).astype(np.float32), sigma=4.5, mode="nearest")
+    raw_noise = rng.normal(size=(HEIGHT, WIDTH)).astype(np.float32)
+    noise = np.zeros((HEIGHT, WIDTH), dtype=np.float32)
+    for weight, sigma in ((0.30, 2.5), (0.45, 8.0), (0.25, 22.0)):
+        component = ndimage.gaussian_filter(raw_noise, sigma=sigma, mode="nearest")
+        component /= max(float(component.std()), 1e-6)
+        noise += weight * component
+    del raw_noise
     noise /= max(float(noise.std()), 1e-6)
     noise = np.clip(noise, -2.0, 2.0)
 
@@ -604,6 +695,8 @@ def main() -> None:
     snap_log = []
     total_city_count = 0
     used_summit_controls = []
+    total_orphan_cells_reassigned = 0
+    total_unanchored_closed_boundaries_removed = 0
     for province in sorted(active_codes):
         all_cities = sorted(cities_by_province[province], key=lambda city: (city["name"], city["id"]))
         city_points = [tuple(city["sourcePixelXY"]) for city in all_cities]
@@ -668,6 +761,8 @@ def main() -> None:
             yy, xx = np.ogrid[:owner.shape[0], :owner.shape[1]]
             lock = domain & ((yy - row) ** 2 + (xx - col) ** 2 <= 5.5 ** 2)
             owner[lock] = label
+        owner, orphan_cells_reassigned = remove_unseeded_territory_islands(owner, domain, seeds)
+        total_orphan_cells_reassigned += orphan_cells_reassigned
 
         edge_groups = collect_shared_edges(owner, all_cities, x0, y0)
         boundary_sources = []
@@ -680,6 +775,9 @@ def main() -> None:
             city_a, city_b = all_cities[a], all_cities[b]
             boundary_id = f"city-boundary:{province}:{city_a['id']}:{city_b['id']}"
             for part_index, line in enumerate(line_parts(clipped)):
+                if is_unanchored_closed_boundary(line, all_cities):
+                    total_unanchored_closed_boundaries_removed += 1
+                    continue
                 if line.length >= MIN_BOUNDARY_LENGTH_PX:
                     boundary_sources.append({
                         "id": boundary_id, "part_index": part_index, "line": line,
@@ -780,6 +878,27 @@ def main() -> None:
                     "source": source_properties.get("source", "data/province_boundaries.geojson"),
                 },
             })
+    # Curving and clipping can split an open shared-edge network into small
+    # closed fragments. Audit the finished geometry as well as its source so
+    # those artifacts cannot survive in the exported boundary layer.
+    filtered_city_features = []
+    for feature in city_features:
+        properties = feature["properties"]
+        province_cities = cities_by_province.get(properties.get("province_code"), [])
+        parts = line_parts(shape(feature["geometry"]))
+        kept_parts = []
+        for part in parts:
+            if is_unanchored_closed_boundary(part, province_cities):
+                total_unanchored_closed_boundaries_removed += 1
+                continue
+            kept_parts.append(part)
+        if not kept_parts:
+            continue
+        feature["geometry"] = mapping(kept_parts[0] if len(kept_parts) == 1
+                                       else MultiLineString(kept_parts))
+        filtered_city_features.append(feature)
+    city_features = filtered_city_features
+
     features = city_features + province_features
     features.sort(key=lambda feature: (
         feature["properties"]["boundary_type"] != "city",
@@ -805,10 +924,12 @@ def main() -> None:
             "boundary_summit_minimum_elevation_m": BOUNDARY_SUMMIT_MIN_ELEVATION_M,
             "boundary_summit_capture_distance_px": BOUNDARY_SUMMIT_CAPTURE_DISTANCE_PX,
             "boundary_curve_detail": {"seed": SEED, "sample_step_px": BOUNDARY_DETAIL_STEP_PX,
-                                      "plain_amplitude_px": 0.48, "maximum_amplitude_px": 3.8,
-                                      "maximum_offset_px": 4.5,
-                                      "ridge_barrier_width_px": 2.2,
-                                      "city_marker_clearance_px": CITY_MARKER_CLEARANCE_PX},
+                                      "plain_amplitude_px": 1.8, "maximum_amplitude_px": 7.0,
+                                      "maximum_offset_px": 10.5,
+                                      "ridge_barrier_weight": RIDGE_BARRIER_WEIGHT,
+                                      "city_marker_clearance_px": CITY_MARKER_CLEARANCE_PX,
+                                      "partition_cost_noise_weight": 0.12,
+                                      "partition_noise_scales_px": [2.5, 8.0, 22.0]},
             "city_stroke": {"color": "#718a84", "opacity": 0.44, "width_px": 1.05, "dash_px": [6.0, 1.8]},
             "province_stroke": {"color": "#596b67", "opacity": 0.64, "width_px": 1.2, "dash_px": [4.2, 3.2]},
         },
@@ -820,6 +941,8 @@ def main() -> None:
             "city_sites_processed": total_city_count,
             "city_boundary_pairs": len(city_features),
             "boundary_summit_controls": used_summit_controls,
+            "orphan_territory_cells_reassigned": total_orphan_cells_reassigned,
+            "unanchored_closed_city_boundaries_removed": total_unanchored_closed_boundaries_removed,
             "snapped_city_sites": snap_log,
             "minimum_boundary_length_px": MIN_BOUNDARY_LENGTH_PX,
         },
@@ -849,6 +972,8 @@ def main() -> None:
     print(f"Wrote {len(city_features)} city boundaries and {len(province_features)} province boundary parts across {len(active_codes)} provinces: {geojson_path}")
     print(f"Designed {len(ridge_features)} full-map ridge features ({len(named_guides)} named backbones + {len(dem_ridges)} DEM crest segments + {len(used_summit_controls)} summit controls): {ridge_geojson_path}")
     print(f"Processed {total_city_count} city anchors; snapped {len(snap_log)} to nearby province land pixels.")
+    print(f"Merged {total_orphan_cells_reassigned} unseeded territory pixels to prevent enclosed ring boundaries.")
+    print(f"Removed {total_unanchored_closed_boundaries_removed} closed city-boundary parts without a city anchor inside.")
     print("Boundary summits: " + (", ".join(
         f"{item['name']} ({item['capture_distance_px']:.1f}px)" for item in used_summit_controls) or "none"))
     for item in snap_log:
