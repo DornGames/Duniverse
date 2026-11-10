@@ -10,14 +10,14 @@
   "coordinate_reference": "input_map.png image pixels; origin at upper left",
   "source_pixel_scale_km": 7.77195,
   "width_semantics": "Display-only channel widths in source image pixels. Widths taper along connected reaches and grow with downstream accumulation; each bank varies independently to reflect bend curvature and local shoreline shape. These are relative cartographic widths, not surveyed measurements.",
-  "quadrant_edge_transition_width_px": 1.25,
+  "quadrant_edge_transition_width_px": 3.2,
   "reach_profiles_px": {
     "11": {"network_id": "zc_mainstem", "start_width_px": 0.55, "end_width_px": 1.2},
     "14": {"network_id": "zc_mainstem", "start_width_px": 0.45, "end_width_px": 1.05},
-    "24": {"network_id": "zc_mainstem", "start_width_px": 2.7, "end_width_px": 1.4},
-    "61": {"network_id": "zc_mainstem", "start_width_px": 2.7, "end_width_px": 2.85},
+    "24": {"network_id": "zc_mainstem", "start_width_px": 8.2, "end_width_px": 1.4, "width_knots_px": [[0.0, 8.2], [0.1, 8.8], [0.28, 8.1], [0.42, 6.7], [0.4631, 5.8], [0.68, 2.9], [1.0, 1.4]]},
+    "61": {"network_id": "zc_mainstem", "start_width_px": 6.4, "end_width_px": 5.2, "width_knots_px": [[0.0, 6.4], [0.45, 6.0], [1.0, 5.2]]},
     "63": {"network_id": "zc_mainstem", "start_width_px": 1.05, "end_width_px": 1.8},
-    "64": {"network_id": "zc_mainstem", "start_width_px": 3.2, "end_width_px": 2.85},
+    "64": {"network_id": "zc_mainstem", "start_width_px": 5.6, "end_width_px": 5.0},
     "67": {"network_id": "zc_mainstem", "start_width_px": 1.05, "end_width_px": 0.55},
     "68": {"network_id": "zc_mainstem", "start_width_px": 0.8, "end_width_px": 0.35},
     "29": {"network_id": "tm_mainstem", "start_width_px": 0.55, "end_width_px": 1.25},
@@ -29,9 +29,9 @@
     "57": {"network_id": "tm_mainstem", "start_width_px": 2.15, "end_width_px": 2.6}
   },
   "reach_notes": {
-    "24": "ZC mainstem below the confluence of reaches 11 and 14.",
-    "61": "Downstream continuation of reach 24 through its lower meanders.",
-    "64": "Lower continuation after reach 61 meets the western tributary network; its cartographic width tapers at the Q2 edge.",
+    "24": "ZC mainstem descends from the plateau into the lowland plain; the channel expands into a wide, braided reach downstream of the terrain boundary.",
+    "61": "Broad lowland continuation of reach 24 through its lower meanders.",
+    "64": "Lower continuation after reach 61 meets the western tributary network; its broad lowland channel tapers at the Q2 edge.",
     "51": "TM mainstem below the confluence of reaches 29, 36, 38, and 50.",
     "57": "Downstream continuation below the additional tributary at reach 54; its cartographic width tapers at the Q2 edge."
   },
@@ -39,22 +39,45 @@
     {
       "id": "q2-zc-bar-01",
       "segment_id": 24,
-      "fraction_along_reach": 0.7,
-      "length_px": 6.5,
-      "width_px": 1.25,
-      "expected_region_code": "ZC",
+      "fraction_along_reach": 0.12,
+      "length_px": 34.0,
+      "width_px": 3.4,
+      "expected_region_code": "LK",
       "shape_phase": 0.8,
-      "lateral_offset_fraction": 0.1
+      "lateral_offset_fraction": 0.05,
+      "region_snap_tolerance_px": 8.0
     },
     {
       "id": "q2-zc-bar-02",
       "segment_id": 24,
-      "fraction_along_reach": 0.84,
-      "length_px": 5.5,
-      "width_px": 0.95,
-      "expected_region_code": "ZC",
+      "fraction_along_reach": 0.24,
+      "length_px": 27.0,
+      "width_px": 3.0,
+      "expected_region_code": "GA",
       "shape_phase": 2.3,
-      "lateral_offset_fraction": -0.08
+      "lateral_offset_fraction": -0.1,
+      "region_snap_tolerance_px": 8.0
+    },
+    {
+      "id": "q2-zc-bar-03",
+      "segment_id": 24,
+      "fraction_along_reach": 0.38,
+      "length_px": 19.0,
+      "width_px": 2.5,
+      "expected_region_code": "LK",
+      "shape_phase": 4.8,
+      "lateral_offset_fraction": 0.0,
+      "region_snap_tolerance_px": 8.0
+    },
+    {
+      "id": "q2-lk-bar-01",
+      "segment_id": 61,
+      "fraction_along_reach": 0.4,
+      "length_px": 18.0,
+      "width_px": 1.8,
+      "expected_region_code": "LK",
+      "shape_phase": 1.5,
+      "lateral_offset_fraction": -0.12
     },
     {
       "id": "q2-tm-bar-01",
@@ -65,6 +88,22 @@
       "expected_region_code": "TM",
       "shape_phase": 4.4,
       "lateral_offset_fraction": 0.08
+    }
+  ],
+  "lake_islands": [
+    {
+      "id": "q2-lake-08-island-01",
+      "lake_id": 8,
+      "center_xy": [596.5, 714.5],
+      "major_radius_px": 6.2,
+      "minor_radius_px": 3.4,
+      "rotation_deg": 20.0,
+      "shape_phase": 0.85,
+      "fill_region_code": "VA",
+      "shore_margin_px": 1.5,
+      "creek_coordinates": [[591.7, 712.9], [593.1, 714.1], [594.3, 714.7], [595.4, 714.0], [596.6, 713.5], [597.9, 714.2], [599.0, 715.5], [600.4, 716.1], [601.3, 715.8]],
+      "creek_start_width_px": 0.42,
+      "creek_end_width_px": 0.34
     }
   ]
 }

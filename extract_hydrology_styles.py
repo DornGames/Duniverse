@@ -286,16 +286,44 @@ def q2_river_width_config() -> dict:
 
 
 def width_profiles(config: dict) -> dict[int, dict]:
-    return {
-        int(segment_id): {
-            **profile,
-            "start_width_px": float(profile["start_width_px"]),
-            "end_width_px": float(profile["end_width_px"]),
-            "network_id": str(profile["network_id"]),
-            "clip_to_quadrant": bool(profile.get("clip_to_quadrant", True)),
+    profiles = {}
+    for segment_id, raw_profile in config["reach_profiles_px"].items():
+        profile = {
+            **raw_profile,
+            "start_width_px": float(raw_profile["start_width_px"]),
+            "end_width_px": float(raw_profile["end_width_px"]),
+            "network_id": str(raw_profile["network_id"]),
+            "clip_to_quadrant": bool(raw_profile.get("clip_to_quadrant", True)),
         }
-        for segment_id, profile in config["reach_profiles_px"].items()
-    }
+        knots = raw_profile.get("width_knots_px") or [
+            [0.0, profile["start_width_px"]],
+            [1.0, profile["end_width_px"]],
+        ]
+        profile["width_knots_px"] = [
+            (float(fraction), float(width)) for fraction, width in knots
+        ]
+        if (
+            len(profile["width_knots_px"]) < 2
+            or abs(profile["width_knots_px"][0][0]) > 1e-6
+            or abs(profile["width_knots_px"][-1][0] - 1.0) > 1e-6
+            or any(
+                right[0] <= left[0]
+                for left, right in zip(profile["width_knots_px"], profile["width_knots_px"][1:])
+            )
+        ):
+            raise ValueError(f"River width knots for segment {segment_id} must increase from 0 to 1")
+        profiles[int(segment_id)] = profile
+    return profiles
+
+
+def profile_width_at(profile: dict, fraction: float) -> float:
+    fraction = max(0.0, min(1.0, fraction))
+    knots = profile["width_knots_px"]
+    for (left_fraction, left_width), (right_fraction, right_width) in zip(knots, knots[1:]):
+        if fraction <= right_fraction:
+            local = (fraction - left_fraction) / (right_fraction - left_fraction)
+            return left_width + (right_width - left_width) * local
+    return knots[-1][1]
 
 
 def variable_width_channel(
@@ -304,6 +332,7 @@ def variable_width_channel(
     end_width: float,
     sample_step: float = 0.55,
     phase: float = 0.0,
+    width_knots: list[tuple[float, float]] | None = None,
 ):
     """Build a tapered channel with independently varying, bend-aware banks."""
     if reach.length <= 0:
@@ -313,6 +342,15 @@ def variable_width_channel(
     right_bank = []
     start_bank_widths = None
     end_bank_widths = None
+    width_knots = sorted(width_knots or [(0.0, start_width), (1.0, end_width)])
+
+    def width_at(fraction: float) -> float:
+        for (left_fraction, left_width), (right_fraction, right_width) in zip(width_knots, width_knots[1:]):
+            if fraction <= right_fraction:
+                local = (fraction - left_fraction) / (right_fraction - left_fraction)
+                return left_width + (right_width - left_width) * local
+        return width_knots[-1][1]
+
     for index in range(sample_count + 1):
         fraction = index / sample_count
         distance = reach.length * fraction
@@ -325,7 +363,7 @@ def variable_width_channel(
         tangent_length = math.hypot(tangent_x, tangent_y) or 1.0
         normal_x = -tangent_y / tangent_length
         normal_y = tangent_x / tangent_length
-        width = start_width + (end_width - start_width) * fraction
+        width = width_at(fraction)
         half_width = width / 2
         incoming_x, incoming_y = center.x - before.x, center.y - before.y
         outgoing_x, outgoing_y = after.x - center.x, after.y - center.y
@@ -334,14 +372,16 @@ def variable_width_channel(
             incoming_x * outgoing_x + incoming_y * outgoing_y,
         )
         curvature = turn / max(2 * tangent_span, 0.75)
-        bend_bias = max(-0.2, min(0.2, curvature * 5.5))
+        # Outer bends open into wider pools while inner bends pinch into
+        # point bars; let the two banks diverge enough to read at map scale.
+        bend_bias = max(-0.3, min(0.3, curvature * 6.5))
         left_waves = (
-            0.10 * math.sin(2 * math.pi * 1.25 * fraction + phase)
-            + 0.045 * math.sin(2 * math.pi * 3.4 * fraction + phase * 0.61 + 1.1)
+            0.17 * math.sin(2 * math.pi * 1.15 * fraction + phase)
+            + 0.07 * math.sin(2 * math.pi * 3.1 * fraction + phase * 0.61 + 1.1)
         )
         right_waves = (
-            0.105 * math.sin(2 * math.pi * 1.45 * fraction + phase + 1.65)
-            + 0.04 * math.sin(2 * math.pi * 3.8 * fraction + phase * 0.83 + 0.4)
+            0.21 * math.sin(2 * math.pi * 1.3 * fraction + phase + 1.65)
+            + 0.065 * math.sin(2 * math.pi * 3.5 * fraction + phase * 0.83 + 0.4)
         )
         left_width = half_width * max(0.58, 1 - bend_bias + left_waves)
         right_width = half_width * max(0.58, 1 + bend_bias + right_waves)
@@ -417,12 +457,16 @@ def river_channel_features(rivers: list[dict], config: dict) -> list[dict]:
                 clipped_end = Point(clipped_reach.coords[-1])
                 start_fraction = reach.project(clipped_start) / reach.length
                 end_fraction = reach.project(clipped_end) / reach.length
-                start_width = profile["start_width_px"] + (
-                    profile["end_width_px"] - profile["start_width_px"]
-                ) * start_fraction
-                end_width = profile["start_width_px"] + (
-                    profile["end_width_px"] - profile["start_width_px"]
-                ) * end_fraction
+                start_width = profile_width_at(profile, start_fraction)
+                end_width = profile_width_at(profile, end_fraction)
+                interval = end_fraction - start_fraction
+                local_width_knots = [(0.0, start_width), (1.0, end_width)]
+                if abs(interval) > 1e-9:
+                    for knot_fraction, knot_width in profile["width_knots_px"][1:-1]:
+                        local_fraction = (knot_fraction - start_fraction) / interval
+                        if 1e-6 < local_fraction < 1.0 - 1e-6:
+                            local_width_knots.append((local_fraction, knot_width))
+                local_width_knots.sort()
                 for point, at_start in ((clipped_start, True), (clipped_end, False)):
                     if (
                         abs(point.x - min_x) < 0.01
@@ -434,11 +478,14 @@ def river_channel_features(rivers: list[dict], config: dict) -> list[dict]:
                             start_width = edge_width
                         else:
                             end_width = edge_width
+                local_width_knots[0] = (0.0, start_width)
+                local_width_knots[-1] = (1.0, end_width)
                 channel_parts.append(variable_width_channel(
                     clipped_reach,
                     start_width,
                     end_width,
                     phase=(segment_id * 2.399963229728653 + start_fraction * math.tau) % math.tau,
+                    width_knots=local_width_knots,
                 ))
             channel = unary_union(channel_parts) if channel_parts else Polygon()
         else:
@@ -447,6 +494,7 @@ def river_channel_features(rivers: list[dict], config: dict) -> list[dict]:
                 profile["start_width_px"],
                 profile["end_width_px"],
                 phase=(segment_id * 2.399963229728653) % math.tau,
+                width_knots=profile["width_knots_px"],
             )
         if profile["clip_to_quadrant"]:
             channel = channel.intersection(q2)
@@ -540,7 +588,10 @@ def island_polygon(
 
 
 def river_island_features(
-    rivers: list[dict], region_features: list[dict], config: dict,
+    rivers: list[dict],
+    river_channels: list[dict],
+    region_features: list[dict],
+    config: dict,
 ) -> list[dict]:
     rivers_by_id = {
         int(feature["properties"]["segment_id"]): feature
@@ -550,6 +601,10 @@ def river_island_features(
         (feature["properties"].get("region_code"), feature["properties"].get("fill_rgb"), shape(feature["geometry"]))
         for feature in region_features
     ]
+    channels_by_network = {
+        str(feature["properties"]["network_id"]): shape(feature["geometry"])
+        for feature in river_channels
+    }
     q2 = box(*config["extent_px"])
     profiles = width_profiles(config)
     islands = []
@@ -569,9 +624,10 @@ def river_island_features(
             None,
         )
         if region is None:
-            raise ValueError(
-                f"Q2 river island {definition['id']} no longer sits inside expected region {expected_code}"
-            )
+            expected_regions = [item for item in region_shapes if item[0] == expected_code]
+            region = min(expected_regions, key=lambda item: item[2].distance(point), default=None)
+            if region is None or region[2].distance(point) > float(definition.get("region_snap_tolerance_px", 8.0)):
+                raise ValueError(f"Q2 river island {definition['id']} has no nearby fill region {expected_code}")
         rgb = region[1]
         fill = "#" + "".join(f"{int(channel):02x}" for channel in rgb)
         geometry = island_polygon(
@@ -586,19 +642,19 @@ def river_island_features(
         if profile is None:
             raise ValueError(f"Q2 river island {definition['id']} has no matching channel profile")
         fraction = float(definition["fraction_along_reach"])
-        channel_width = (
-            profile["start_width_px"]
-            + (profile["end_width_px"] - profile["start_width_px"]) * fraction
-        )
+        channel_width = profile_width_at(profile, fraction)
         if float(definition["width_px"]) * 1.25 >= channel_width:
             raise ValueError(f"Q2 river island {definition['id']} is wider than its river channel")
+        network_channel = channels_by_network.get(profile["network_id"])
+        if network_channel is None:
+            raise ValueError(f"Q2 river island {definition['id']} references missing channel network {profile['network_id']}")
         if (
             not q2.covers(geometry)
-            or not region[2].covers(geometry)
+            or not network_channel.buffer(1e-4).covers(geometry)
             or not reach.buffer(channel_width / 2, cap_style=1, join_style=1).covers(geometry)
         ):
             raise ValueError(
-                f"Q2 river island {definition['id']} crosses a quadrant, province, or river-bank boundary"
+                f"Q2 river island {definition['id']} crosses a quadrant or river-bank boundary"
             )
         islands.append({
             "type": "Feature",
@@ -615,6 +671,107 @@ def river_island_features(
             "geometry": mapping(geometry),
         })
     return islands
+
+
+def lake_island_geometry(definition: dict) -> Polygon:
+    center_x, center_y = (float(value) for value in definition["center_xy"])
+    major = float(definition["major_radius_px"])
+    minor = float(definition["minor_radius_px"])
+    rotation = math.radians(float(definition.get("rotation_deg", 0.0)))
+    phase = float(definition.get("shape_phase", 0.0))
+    points = []
+    for index in range(64):
+        angle = 2 * math.pi * index / 64
+        radial = (
+            1.0
+            + 0.09 * math.sin(3 * angle + phase)
+            + 0.045 * math.sin(5 * angle + phase * 0.73 + 1.1)
+            + 0.055 * math.cos(angle - phase)
+        )
+        along = major * math.cos(angle) * radial
+        across = minor * math.sin(angle) * radial
+        x = center_x + along * math.cos(rotation) - across * math.sin(rotation)
+        y = center_y + along * math.sin(rotation) + across * math.cos(rotation)
+        points.append((round(x, 3), round(y, 3)))
+    polygon = Polygon(points)
+    if not polygon.is_valid:
+        polygon = polygon.buffer(0)
+    return polygon
+
+
+def lake_island_features(
+    lakes: list[dict], region_features: list[dict], config: dict,
+) -> list[dict]:
+    lakes_by_id = {
+        int(feature["properties"]["lake_id"]): shape(feature["geometry"])
+        for feature in lakes
+    }
+    regions = [
+        (feature["properties"].get("region_code"), feature["properties"].get("fill_rgb"))
+        for feature in region_features
+    ]
+    islands = []
+    for definition in config.get("lake_islands", []):
+        lake_id = int(definition["lake_id"])
+        lake = lakes_by_id.get(lake_id)
+        if lake is None:
+            raise ValueError(f"Lake island {definition['id']} references missing lake {lake_id}")
+        geometry = lake_island_geometry(definition)
+        shore_margin = float(definition.get("shore_margin_px", 1.5))
+        if not lake.buffer(-shore_margin).covers(geometry):
+            raise ValueError(f"Lake island {definition['id']} is too close to the lake shore")
+        region_code = definition["fill_region_code"]
+        region = next((item for item in regions if item[0] == region_code), None)
+        if region is None or not region[1]:
+            raise ValueError(f"Lake island {definition['id']} references missing fill region {region_code}")
+        fill = "#" + "".join(f"{int(channel):02x}" for channel in region[1])
+        islands.append({
+            "type": "Feature",
+            "properties": {
+                "island_id": definition["id"],
+                "lake_id": lake_id,
+                "region_code": region_code,
+                "fill": fill,
+                "creek_id": f"{definition['id']}-creek",
+                "review_status": "irregular_lake_center_island_with_meandering_creek",
+            },
+            "geometry": mapping(geometry),
+        })
+    return islands
+
+
+def lake_island_creek_features(
+    lake_islands: list[dict], config: dict,
+) -> list[dict]:
+    definitions = {item["id"]: item for item in config.get("lake_islands", [])}
+    creeks = []
+    for island in lake_islands:
+        properties = island["properties"]
+        definition = definitions[properties["island_id"]]
+        line = LineString(definition["creek_coordinates"])
+        channel = variable_width_channel(
+            line,
+            float(definition["creek_start_width_px"]),
+            float(definition["creek_end_width_px"]),
+            sample_step=0.3,
+            phase=float(definition.get("shape_phase", 0.0)) + 1.7,
+        )
+        island_shape = shape(island["geometry"])
+        if not island_shape.buffer(0.02).covers(channel):
+            raise ValueError(f"Creek {properties['creek_id']} leaves its lake-center island")
+        creeks.append({
+            "type": "Feature",
+            "properties": {
+                "creek_id": properties["creek_id"],
+                "island_id": properties["island_id"],
+                "lake_id": properties["lake_id"],
+                "network_id": f"lake_island_creek_{properties['lake_id']}",
+                "source": "hand_placed_meander_on_q2_lake_island",
+                "review_status": "meandering_creek_inside_lake_island",
+            },
+            "geometry": mapping(channel),
+        })
+    return creeks
 
 
 def render_river_islands_group(features: list[dict]) -> str:
@@ -641,6 +798,33 @@ def render_river_channels_group(features: list[dict]) -> str:
                 f'data-river-channel="true" data-river-network-id="{properties["network_id"]}"/>'
             )
     return '<g id="riverChannelsQ2" data-layer="rivers" pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
+
+
+def render_lake_islands_group(features: list[dict]) -> str:
+    paths = []
+    for feature in features:
+        properties = feature["properties"]
+        path = polygon_path_data(feature["geometry"])
+        if path:
+            paths.append(
+                f'<path d="{path}" fill="{properties["fill"]}" fill-rule="evenodd" '
+                f'data-lake-island-id="{properties["island_id"]}"/>'
+            )
+    return '<g id="lakeIslandsQ2" data-layer="rivers" pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
+
+
+def render_lake_island_creeks_group(features: list[dict]) -> str:
+    paths = []
+    for feature in features:
+        properties = feature["properties"]
+        path = polygon_path_data(feature["geometry"])
+        if path:
+            paths.append(
+                f'<path d="{path}" fill="#b1d0ed" fill-rule="evenodd" '
+                f'data-river-channel="true" data-river-network-id="{properties["network_id"]}" '
+                f'data-river-creek-id="{properties["creek_id"]}"/>'
+            )
+    return '<g id="lakeIslandCreeksQ2" data-layer="rivers" pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
 
 
 def update_river_channel_hit_testing(index: str) -> str:
@@ -1106,6 +1290,8 @@ def update_render_files(
     seasonal: list[dict],
     cross_border: list[dict],
     river_islands: list[dict],
+    lake_islands: list[dict],
+    lake_island_creeks: list[dict],
     width_config: dict,
 ) -> None:
     lakes = read_fc(DATA / "lakes.geojson")["features"]
@@ -1133,6 +1319,8 @@ def update_render_files(
     index = upsert_group(index, index_groups[5], "crossBorderRivers", "seasonalRivers")
     index = upsert_group(index, render_river_islands_group(river_islands), "riverIslandsQ2", "crossBorderRivers")
     index = upsert_group(index, render_lakes_group(lakes), "lakes", None)
+    index = upsert_group(index, render_lake_islands_group(lake_islands), "lakeIslandsQ2", "lakes")
+    index = upsert_group(index, render_lake_island_creeks_group(lake_island_creeks), "lakeIslandCreeksQ2", "lakeIslandsQ2")
     index = update_hydrology_lod_precision(index)
     index = update_river_channel_hit_testing(index)
     index_path.write_text(index, encoding="utf-8", newline="\n")
@@ -1160,6 +1348,8 @@ def update_render_files(
     preview = upsert_group(preview, preview_groups[5], "cross-border-rivers", "seasonal-rivers")
     preview = upsert_group(preview, render_river_islands_group(river_islands), "riverIslandsQ2", "cross-border-rivers")
     preview = upsert_group(preview, render_lakes_group(lakes, preview=True), "lakes", None)
+    preview = upsert_group(preview, render_lake_islands_group(lake_islands), "lakeIslandsQ2", "lakes")
+    preview = upsert_group(preview, render_lake_island_creeks_group(lake_island_creeks), "lakeIslandCreeksQ2", "lakeIslandsQ2")
     preview_path.write_text(preview, encoding="utf-8", newline="\n")
 
 
@@ -1220,9 +1410,13 @@ def main() -> None:
     width_config = q2_river_width_config()
     region_features = read_fc(DATA / "administrative_regions.geojson")["features"]
     river_channels = river_channel_features(river_features, width_config)
-    river_islands = river_island_features(river_features, region_features, width_config)
+    river_islands = river_island_features(river_features, river_channels, region_features, width_config)
+    lake_islands = lake_island_features(lakes, region_features, width_config)
+    lake_island_creeks = lake_island_creek_features(lake_islands, width_config)
     write_fc(DATA / "river_channels_q2.geojson", "quadrant_ii_variable_width_river_channels", river_channels)
     write_fc(DATA / "river_islands_q2.geojson", "quadrant_ii_river_islands", river_islands)
+    write_fc(DATA / "lake_islands_q2.geojson", "quadrant_ii_lake_center_islands", lake_islands)
+    write_fc(DATA / "lake_island_creeks_q2.geojson", "quadrant_ii_lake_island_creeks", lake_island_creeks)
 
     write_fc(DATA / "canals.geojson", "canal_centerline_and_ruler_ticks", canals)
     write_fc(DATA / "rivers.geojson", "rivers_excluding_independent_canals", river_features)
@@ -1232,7 +1426,10 @@ def main() -> None:
         encoding="utf-8",
         newline="\n",
     )
-    update_render_files(river_features, river_channels, canals, seasonal, cross_border, river_islands, width_config)
+    update_render_files(
+        river_features, river_channels, canals, seasonal, cross_border,
+        river_islands, lake_islands, lake_island_creeks, width_config,
+    )
     write_overlay(seasonal, canals)
 
     manifest_path = ROOT / "extraction_manifest.json"
@@ -1245,6 +1442,7 @@ def main() -> None:
                 "network_id": profile["network_id"],
                 "start_width_px": profile["start_width_px"],
                 "end_width_px": profile["end_width_px"],
+                "width_knots_px": profile["width_knots_px"],
                 "clip_to_quadrant": profile["clip_to_quadrant"],
                 "note": width_config["reach_notes"].get(str(segment_id), ""),
             }
@@ -1255,6 +1453,12 @@ def main() -> None:
         ],
         "quadrant_ii_river_islands": [
             feature["properties"]["island_id"] for feature in river_islands
+        ],
+        "quadrant_ii_lake_islands": [
+            feature["properties"]["island_id"] for feature in lake_islands
+        ],
+        "quadrant_ii_lake_island_creeks": [
+            feature["properties"]["creek_id"] for feature in lake_island_creeks
         ],
         "lake_candidates": len(lakes),
         "canal_centerlines": len({f["properties"]["canal_id"] for f in canals}),
