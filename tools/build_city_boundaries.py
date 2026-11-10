@@ -4,9 +4,9 @@
 All geometry is in the official map's source-pixel coordinate system. City
 territories are seeded by the SVG marker centers and kept inside their
 province. Named range backbones are curved toward DEM crest signals, while
-local crest lines come from anisotropic terrain curvature. Those ridges and
-the mapped rivers guide the least-cost partition before fixed-seed,
-relief-scaled curve detail is added to each city boundary.
+local crest lines come from anisotropic terrain curvature. Ridges, river
+corridors, and lake surfaces guide a low-noise least-cost partition; final
+boundary smoothing preserves water routes and avoids sharp random wiggles.
 """
 
 from __future__ import annotations
@@ -38,13 +38,16 @@ SEED = 20261110
 ELEVATION_MIN_M = -260.0
 MAX_SEED_SNAP_PX = 24.0
 RIVER_CROSSING_COST = 6.0
+PARTITION_COST_NOISE_WEIGHT = 0.035
 MIN_BOUNDARY_LENGTH_PX = 2.5
 SIMPLIFY_TOLERANCE_PX = 0.12
 RIDGE_BARRIER_WEIGHT = 3.6
 RIDGE_DETECTION_PERCENTILE = 55.0
 RIDGE_MIN_LOCAL_RELIEF_M = 22.0
 RIDGE_MIN_SEGMENT_LENGTH_PX = 18.0
-BOUNDARY_DETAIL_STEP_PX = 0.65
+BOUNDARY_DETAIL_STEP_PX = 0.9
+BOUNDARY_SMOOTH_SIGMA_PX = 1.25
+BOUNDARY_RANDOM_OFFSET_MAX_PX = 0.55
 CITY_MARKER_CLEARANCE_PX = 4.8
 BOUNDARY_SUMMIT_MIN_ELEVATION_M = 8000.0
 BOUNDARY_SUMMIT_CAPTURE_DISTANCE_PX = 12.0
@@ -229,7 +232,7 @@ def is_unanchored_closed_boundary(line: LineString, cities: list[dict]) -> bool:
 
 
 def terrain_cost_partition(domain: np.ndarray, elevation: np.ndarray, river: np.ndarray,
-                           ridge: np.ndarray, noise: np.ndarray,
+                           water: np.ndarray, ridge: np.ndarray, noise: np.ndarray,
                            seeds: list[tuple[int, int, int]]) -> np.ndarray:
     height, width = domain.shape
     owner = np.full((height, width), -1, dtype=np.int16)
@@ -255,7 +258,10 @@ def terrain_cost_partition(domain: np.ndarray, elevation: np.ndarray, river: np.
             relief = min(abs(float(elevation[next_row, next_col] - elevation[row, col])) / 850.0, 2.4)
             ridge_cost = min(max(float(ridge[row, col] + ridge[next_row, next_col]) / 9000.0, 0.0), 0.38)
             river_cost = RIVER_CROSSING_COST if river[row, col] or river[next_row, next_col] else 1.0
-            roughness = 1.0 + 0.12 * float(noise[row, col] + noise[next_row, next_col]) * 0.5
+            roughness = 1.0
+            if not (water[row, col] or water[next_row, next_col]):
+                roughness += PARTITION_COST_NOISE_WEIGHT * float(
+                    noise[row, col] + noise[next_row, next_col]) * 0.5
             edge_cost = step * (1.0 + 1.0 * relief + ridge_cost) * river_cost * roughness
             next_cost = cost + edge_cost
             old_cost = float(distance[next_row, next_col])
@@ -513,7 +519,7 @@ def smooth_ridge_line(line: LineString, identifier: str, local_relief: np.ndarra
 
 
 def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
-                   river_distance: np.ndarray, ridge_distance: np.ndarray,
+                   water_distance: np.ndarray, ridge_distance: np.ndarray,
                    city_points: list[tuple[float, float]],
                    summit_controls: list[dict] | None = None) -> LineString:
     if line.length < 3.0:
@@ -523,7 +529,8 @@ def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
     points = np.asarray([line.interpolate(distance).coords[0] for distance in distances], dtype=np.float64)
     base = points.copy()
     for axis in (0, 1):
-        base[:, axis] = ndimage.gaussian_filter1d(base[:, axis], sigma=0.65, mode="nearest")
+        base[:, axis] = ndimage.gaussian_filter1d(
+            base[:, axis], sigma=BOUNDARY_SMOOTH_SIGMA_PX, mode="nearest")
     base[0], base[-1] = points[0], points[-1]
 
     tangent = np.gradient(base, axis=0)
@@ -531,45 +538,50 @@ def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
     normal_x, normal_y = -tangent[:, 1] / tangent_norm, tangent[:, 0] / tangent_norm
     sample_coords = np.vstack((base[:, 1], base[:, 0]))
     relief = map_coordinates(local_relief, sample_coords, order=1, mode="nearest")
-    river_gap = map_coordinates(river_distance, sample_coords, order=1, mode="nearest")
+    water_gap = map_coordinates(water_distance, sample_coords, order=1, mode="nearest")
     ridge_gap = map_coordinates(ridge_distance, sample_coords, order=1, mode="nearest")
-    # Give plains visible but restrained bends; increase amplitude where the
-    # local terrain is rough. River corridors keep tighter banks, while ridges
-    # retain enough detail to avoid the old, overly smooth Voronoi look.
-    amplitude = np.clip(1.8 + np.maximum(relief, 0.0) / 180.0, 1.8, 7.0)
-    amplitude *= np.where(river_gap < 3.0, 0.38, np.where(river_gap < 7.0, 0.74, 1.0))
-    amplitude *= np.where(ridge_gap < 1.5, 0.82, 1.0)
-    city_safety = np.ones(count, dtype=np.float64)
-    if city_points:
-        city_gap = np.min(np.hypot(base[:, 0, None] - np.asarray(city_points)[:, 0],
-                                   base[:, 1, None] - np.asarray(city_points)[:, 1]), axis=1)
-        city_safety = np.clip((city_gap - 5.0) / 7.0, 0.0, 1.0)
-        amplitude *= city_safety
-
+    # Keep the terrain/ridge partition as the main shape. Add only broad,
+    # low-amplitude land detail; river corridors and lakes receive no random
+    # displacement, and nearby water also damps the transition to zero.
     rng = np.random.default_rng(stable_seed(identifier))
     raw = rng.normal(size=count)
+
     def smooth_noise(sigma: float) -> np.ndarray:
         values = ndimage.gaussian_filter1d(raw, sigma=sigma, mode="reflect")
         return values / max(float(values.std()), 1e-6)
-    displacement = 1.25 * (0.36 * smooth_noise(11.0) +
-                           0.34 * smooth_noise(4.2) +
-                           0.30 * smooth_noise(1.2))
+
+    relief_factor = np.sqrt(np.clip(np.maximum(relief, 0.0) / 2200.0, 0.0, 1.0))
+    ridge_damping = np.clip(ridge_gap / 3.0, 0.28, 1.0)
+    water_damping = np.clip((water_gap - 1.5) / 2.5, 0.0, 1.0)
+    amplitude = BOUNDARY_RANDOM_OFFSET_MAX_PX * (0.25 + 0.75 * relief_factor)
+    displacement = (0.72 * smooth_noise(12.0) + 0.28 * smooth_noise(4.5)) * amplitude
+    displacement *= ridge_damping * water_damping
+    displacement = ndimage.gaussian_filter1d(displacement, sigma=1.6, mode="nearest")
     fade = np.minimum(1.0, np.minimum(distances / 5.0, (line.length - distances) / 5.0))
     fade = np.clip(fade, 0.0, 1.0)
-    offset = np.clip(displacement * amplitude * fade, -10.5, 10.5)
+    offset = np.clip(displacement * fade, -BOUNDARY_RANDOM_OFFSET_MAX_PX,
+                     BOUNDARY_RANDOM_OFFSET_MAX_PX)
     if city_points:
         city_array = np.asarray(city_points, dtype=np.float64)
         normal = np.column_stack((normal_x, normal_y))
-        scale = np.ones(count, dtype=np.float64)
+        settlement_scale = np.ones(count, dtype=np.float64)
         for _ in range(8):
-            candidates = base + normal * (offset * scale)[:, None]
+            candidates = base + normal * (offset * settlement_scale)[:, None]
             candidate_gap = np.min(np.hypot(candidates[:, None, 0] - city_array[None, :, 0],
                                              candidates[:, None, 1] - city_array[None, :, 1]), axis=1)
-            scale[candidate_gap < 4.8] *= 0.5
-        offset *= scale
-    curved = np.column_stack((base[:, 0] + normal_x * offset,
-                              base[:, 1] + normal_y * offset))
-    curved[0], curved[-1] = points[0], points[-1]
+            settlement_scale[candidate_gap < 4.8] *= 0.5
+        offset *= settlement_scale
+
+    curved = base.copy()
+    for curve_scale in (1.0, 0.5, 0.25, 0.0):
+        candidate = np.column_stack((base[:, 0] + normal_x * offset * curve_scale,
+                                     base[:, 1] + normal_y * offset * curve_scale))
+        candidate[0], candidate[-1] = points[0], points[-1]
+        candidate_line = LineString(candidate)
+        curved = candidate
+        if candidate_line.is_simple:
+            break
+    pre_control = curved.copy()
     if summit_controls:
         path_distances = np.concatenate(([0.0], np.cumsum(
             np.hypot(np.diff(curved[:, 0]), np.diff(curved[:, 1])))))
@@ -593,7 +605,11 @@ def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
             curved[summit_vertex] = (summit_point.x, summit_point.y)
             path_distances = np.concatenate(([0.0], np.cumsum(
                 np.hypot(np.diff(curved[:, 0]), np.diff(curved[:, 1])))))
-    result = LineString(curved).simplify(0.08, preserve_topology=False)
+    result = LineString(curved).simplify(0.08, preserve_topology=True)
+    if not result.is_simple:
+        result = LineString(pre_control if LineString(pre_control).is_simple else base)
+    if not result.is_simple:
+        return line
     return result if result.length >= 2.0 else line
 
 
@@ -651,9 +667,21 @@ def main() -> None:
     packed_river = np.frombuffer(base64.b64decode(relief_data["riverWaterMaskB64"]), dtype=np.uint8)
     river_mask = np.unpackbits(packed_river, bitorder="big")[:WIDTH * HEIGHT].reshape(HEIGHT, WIDTH).astype(bool)
     river_mask &= ~land_or_lake
+    lake_mask = np.zeros((HEIGHT, WIDTH), dtype=bool)
+    lake_collection = json.loads((DATA / "lakes.geojson").read_text(encoding="utf-8"))
+    for feature in lake_collection.get("features", []):
+        lake = shape(feature["geometry"]).intersection(map_extent)
+        if lake.is_empty:
+            continue
+        lake_pixels, lake_x0, lake_y0 = geometry_mask(lake, WIDTH, HEIGHT)
+        lake_mask[lake_y0:lake_y0 + lake_pixels.shape[0],
+                  lake_x0:lake_x0 + lake_pixels.shape[1]] |= lake_pixels
+    water_mask = river_mask | lake_mask
+    water_distance = ndimage.distance_transform_edt(~water_mask)
 
     broad_relief = ndimage.gaussian_filter(elevation, sigma=13.0, mode="nearest")
     local_relief = np.maximum(elevation - broad_relief, 0.0)
+    routing_elevation = ndimage.gaussian_filter(elevation, sigma=1.5, mode="nearest")
     index_html = (ROOT / "index.html").read_text(encoding="utf-8")
     named_guides = named_ridge_guides(index_html, map_extent)
     dem_ridges, dem_ridge_mask, crest_score = extract_dem_ridges(elevation, land_or_lake, local_relief)
@@ -664,11 +692,10 @@ def main() -> None:
     ridge_distance = ndimage.distance_transform_edt(~ridge_mask)
     ridge_barrier = np.minimum(local_relief / 9000.0, 0.38)
     ridge_barrier += RIDGE_BARRIER_WEIGHT * np.exp(-ridge_distance / 2.2)
-    river_distance = ndimage.distance_transform_edt(~river_mask)
     rng = np.random.default_rng(SEED)
     raw_noise = rng.normal(size=(HEIGHT, WIDTH)).astype(np.float32)
     noise = np.zeros((HEIGHT, WIDTH), dtype=np.float32)
-    for weight, sigma in ((0.30, 2.5), (0.45, 8.0), (0.25, 22.0)):
+    for weight, sigma in ((0.55, 6.0), (0.45, 18.0)):
         component = ndimage.gaussian_filter(raw_noise, sigma=sigma, mode="nearest")
         component /= max(float(component.std()), 1e-6)
         noise += weight * component
@@ -707,11 +734,12 @@ def main() -> None:
         x1, y1 = x0 + raw_mask.shape[1], y0 + raw_mask.shape[0]
         local_land = land_or_lake[y0:y1, x0:x1]
         local_river = river_mask[y0:y1, x0:x1]
+        local_water = water_mask[y0:y1, x0:x1]
         domain = raw_mask & (local_land | local_river)
         if not np.any(domain):
             continue
 
-        local_elevation = elevation[y0:y1, x0:x1]
+        local_elevation = routing_elevation[y0:y1, x0:x1]
         local_ridge_barrier = ridge_barrier[y0:y1, x0:x1]
         local_noise = noise[y0:y1, x0:x1]
         seeds = []
@@ -752,7 +780,7 @@ def main() -> None:
             seeds.append((nearest_city, row, col))
             seeded_components.add(component_id)
 
-        owner = terrain_cost_partition(domain, local_elevation, local_river,
+        owner = terrain_cost_partition(domain, local_elevation, local_river, local_water,
                                        local_ridge_barrier, local_noise, seeds)
         owner = smooth_owner(owner, domain, len(all_cities))
 
@@ -810,7 +838,7 @@ def main() -> None:
             city_a, city_b = source["city_a"], source["city_b"]
             controls = summit_assignment.get(source_index, [])
             curve_id = f"{boundary_id}:{part_index}"
-            curved = curve_boundary(line, curve_id, local_relief, river_distance,
+            curved = curve_boundary(line, curve_id, local_relief, water_distance,
                                     ridge_distance, city_points, controls)
             clipped_curves = curved.intersection(geom).intersection(map_extent).difference(city_clearance)
             simplify_tolerance = 0.0 if controls else SIMPLIFY_TOLERANCE_PX
@@ -918,18 +946,20 @@ def main() -> None:
             "province_constraint_source": "data/administrative_regions.geojson",
             "terrain_source": "data/relief_elevation.png",
             "river_source": "data/relief_elevation.js river-water mask",
+            "water_source": "data/relief_elevation.js river-water mask + data/lakes.geojson lake polygons",
             "ridge_source": "data/ridge_network.geojson (named mountain-range backbones, anisotropic DEM crest skeletons, and selected high-summit boundary controls)",
-            "method": "Across the full map, extract named mountain-range backbones and local DEM ridge crests, then guide province-constrained multi-source least-cost city partitions with ridges and mapped river corridors. High summits close to an existing city divide can become fixed-seed boundary anchors. City lines receive terrain-scaled curve detail; river-adjacent sections remain steadier. Shared province boundaries are included in this layer for close-up views.",
+            "method": "Across the full map, extract named mountain-range backbones and local DEM ridge crests, then guide province-constrained multi-source least-cost city partitions with ridges and mapped river corridors. High summits close to an existing city divide can become fixed-seed boundary anchors. City lines use gentle deterministic smoothing and low-amplitude land-only detail; river and lake sections receive no random displacement. Shared province boundaries are included in this layer for close-up views.",
             "ridge_network_feature_count": len(ridge_features),
             "boundary_summit_minimum_elevation_m": BOUNDARY_SUMMIT_MIN_ELEVATION_M,
             "boundary_summit_capture_distance_px": BOUNDARY_SUMMIT_CAPTURE_DISTANCE_PX,
             "boundary_curve_detail": {"seed": SEED, "sample_step_px": BOUNDARY_DETAIL_STEP_PX,
-                                      "plain_amplitude_px": 1.8, "maximum_amplitude_px": 7.0,
-                                      "maximum_offset_px": 10.5,
+                                      "smoothing_sigma_px": BOUNDARY_SMOOTH_SIGMA_PX,
+                                      "maximum_random_offset_px": BOUNDARY_RANDOM_OFFSET_MAX_PX,
+                                      "water_random_offset_px": 0.0,
                                       "ridge_barrier_weight": RIDGE_BARRIER_WEIGHT,
                                       "city_marker_clearance_px": CITY_MARKER_CLEARANCE_PX,
-                                      "partition_cost_noise_weight": 0.12,
-                                      "partition_noise_scales_px": [2.5, 8.0, 22.0]},
+                                      "partition_cost_noise_weight": PARTITION_COST_NOISE_WEIGHT,
+                                      "partition_noise_scales_px": [6.0, 18.0]},
             "city_stroke": {"color": "#718a84", "opacity": 0.44, "width_px": 1.05, "dash_px": [6.0, 1.8]},
             "province_stroke": {"color": "#596b67", "opacity": 0.64, "width_px": 1.2, "dash_px": [4.2, 3.2]},
         },
