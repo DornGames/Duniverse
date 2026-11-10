@@ -20,7 +20,7 @@ python -m http.server 8000
 
 - “水系”图层中可单独开关海底深度，色标范围为 0 至 −15,000 米；放大时海底颜色逐渐淡出，近景海洋与河流颜色一致。
 - 滚动鼠标滚轮缩放地图，拖动地图平移视图。
-- 点击大陆上的城市、山峰、山脉、河流、湖泊或行政区可查看对应地理信息；点击海洋查看海底深度。海拔点击查询暂时关闭，深度标记按 Esc 清除。
+- 点击地图上的地理事物查看介绍；右键任意地图位置可查看地形模型海拔，点击海洋仍查看海底深度。支持鼠标滚轮缩放、触屏双指捏合和拖拽平移。
 - 点击大区或省份，右栏会显示预先计算的平均海拔、最高点和最低点及其地图位置；统计读取固定数据，不会在页面打开时扫描整张高程栅格。
 - “陆地地形”图层可开关地势晕渲和北湩高原官方分界线；地图没有绘制等高线。
 - 地图叠加土星自定义坐标网格：纬度每 1°、经度每 10°一条浅色半透明细虚线；边缘刻度使用本项目的数字度数，不显示方向字母。自定义纬度等于真实行星纬度的六分之一。
@@ -52,7 +52,7 @@ python -m http.server 8000
 | --- | --- |
 | `index.html` | 浏览器交互地图与 Canvas 渲染逻辑 |
 | `data/bathymetry.js` | 海底深度场与连续深度配色 |
-| `data/relief_elevation.js`、`data/relief_tint.png` | 陆地地形栅格数据与地图晕渲；点击海拔读数暂时关闭 |
+| `data/relief_elevation.js`、`data/relief_elevation.png`、`data/relief_tint.png` | 陆地高程、右键采样图和地图晕渲；高程采样图在地图出现后异步载入 |
 | `data/relief_model.js`、`data/relief_model_metadata.json` | 山峰、城市、地貌控制点及模型说明 |
 | `data/region_elevation_stats.js`、`data/region_elevation_stats.csv` | 大区、省份的预计算海拔统计及复核表 |
 | `data/mountain_elevation_model.md` | 山脉分区、地形假设与水文核查 |
