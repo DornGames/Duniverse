@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a stable, terrain-aware first-quadrant city boundary layer.
+"""Build stable, terrain-aware city and province boundaries for the full map.
 
 All geometry is in the official map's source-pixel coordinate system. City
 territories are seeded by the SVG marker centers and kept inside their
@@ -33,9 +33,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 WIDTH = 2048
 HEIGHT = 1448
-QUADRANT = (WIDTH / 2, 0.0, WIDTH, HEIGHT / 2)
-QUADRANT_ID = "Q1"
-QUADRANT_NAME = "东北象限"
+MAP_EXTENT = (0.0, 0.0, float(WIDTH), float(HEIGHT))
 SEED = 20261110
 ELEVATION_MIN_M = -260.0
 MAX_SEED_SNAP_PX = 24.0
@@ -48,6 +46,9 @@ RIDGE_MIN_LOCAL_RELIEF_M = 22.0
 RIDGE_MIN_SEGMENT_LENGTH_PX = 18.0
 BOUNDARY_DETAIL_STEP_PX = 0.8
 CITY_MARKER_CLEARANCE_PX = 4.8
+BOUNDARY_SUMMIT_MIN_ELEVATION_M = 8000.0
+BOUNDARY_SUMMIT_CAPTURE_DISTANCE_PX = 12.0
+BOUNDARY_SUMMIT_CITY_CLEARANCE_PX = 10.0
 
 
 def read_js_json(path: Path) -> dict:
@@ -66,6 +67,27 @@ def city_province_lookup() -> dict[str, str]:
         if city_id and province:
             lookup[city_id.group(1)] = province.group(1)
     return lookup
+
+
+def read_boundary_summits() -> list[dict]:
+    collection = read_js_json(DATA / "mountain_peaks.js")
+    summits = []
+    for feature in collection.get("features", []):
+        properties = feature.get("properties", {})
+        elevation = float(properties.get("elevation_m") or 0.0)
+        point = properties.get("source_map_pixel_xy")
+        if elevation < BOUNDARY_SUMMIT_MIN_ELEVATION_M or not point or len(point) != 2:
+            continue
+        x, y = map(float, point)
+        if not (0.0 <= x <= WIDTH and 0.0 <= y <= HEIGHT):
+            continue
+        summits.append({
+            "id": feature.get("id", f"summit:{len(summits) + 1}"),
+            "name": properties.get("name", "未命名高峰"),
+            "elevation_m": elevation,
+            "point": Point(x, y),
+        })
+    return sorted(summits, key=lambda item: (item["name"], item["id"]))
 
 
 def geometry_mask(geometry, width: int, height: int) -> tuple[np.ndarray, int, int]:
@@ -322,7 +344,7 @@ def extract_dem_ridges(elevation: np.ndarray, land_mask: np.ndarray,
     threshold = float(np.percentile(scores, RIDGE_DETECTION_PERCENTILE))
     candidate = candidate_domain & (anisotropic_crest >= threshold)
 
-    x0, y0, x1, y1 = map(int, QUADRANT)
+    x0, y0, x1, y1 = map(int, MAP_EXTENT)
     skeleton = thin_binary_mask(candidate[y0:y1, x0:x1])
     lines = skeleton_segments(skeleton, x0, y0)
     retained = []
@@ -407,7 +429,8 @@ def smooth_ridge_line(line: LineString, identifier: str, local_relief: np.ndarra
 
 def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
                    river_distance: np.ndarray, ridge_distance: np.ndarray,
-                   city_points: list[tuple[float, float]]) -> LineString:
+                   city_points: list[tuple[float, float]],
+                   summit_controls: list[dict] | None = None) -> LineString:
     if line.length < 3.0:
         return line
     count = max(3, int(math.ceil(line.length / BOUNDARY_DETAIL_STEP_PX)) + 1)
@@ -459,6 +482,29 @@ def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
     curved = np.column_stack((base[:, 0] + normal_x * offset,
                               base[:, 1] + normal_y * offset))
     curved[0], curved[-1] = points[0], points[-1]
+    if summit_controls:
+        path_distances = np.concatenate(([0.0], np.cumsum(
+            np.hypot(np.diff(curved[:, 0]), np.diff(curved[:, 1])))))
+        for summit in summit_controls:
+            summit_point: Point = summit["point"]
+            if city_points and min(math.hypot(summit_point.x - x, summit_point.y - y)
+                                   for x, y in city_points) < BOUNDARY_SUMMIT_CITY_CLEARANCE_PX:
+                continue
+            current = LineString(curved)
+            if current.distance(summit_point) > BOUNDARY_SUMMIT_CAPTURE_DISTANCE_PX + 2.5:
+                continue
+            station = current.project(summit_point)
+            if min(station, current.length - station) < 2.0:
+                continue
+            nearest = current.interpolate(station)
+            displacement = np.array([summit_point.x - nearest.x, summit_point.y - nearest.y])
+            sigma = float(np.clip(5.0 + np.linalg.norm(displacement) * 0.72, 5.0, 10.0))
+            influence = np.exp(-0.5 * ((path_distances - station) / sigma) ** 2)
+            curved += influence[:, None] * displacement[None, :]
+            summit_vertex = int(np.argmin(np.abs(path_distances - station)))
+            curved[summit_vertex] = (summit_point.x, summit_point.y)
+            path_distances = np.concatenate(([0.0], np.cumsum(
+                np.hypot(np.diff(curved[:, 0]), np.diff(curved[:, 1])))))
     result = LineString(curved).simplify(0.08, preserve_topology=False)
     return result if result.length >= 2.0 else line
 
@@ -479,6 +525,7 @@ def write_feature_collection(path: Path, collection: dict) -> None:
 
 def main() -> None:
     cities_data = read_js_json(DATA / "relief_city_coordinates.js")["cities"]
+    boundary_summits = read_boundary_summits()
     province_by_city = city_province_lookup()
     cities_by_province: dict[str, list[dict]] = defaultdict(list)
     for city in cities_data:
@@ -493,9 +540,15 @@ def main() -> None:
     for feature in region_features:
         region_parts[feature["properties"]["region_code"]].append(shape(feature["geometry"]))
     regions = {code: unary_union(parts) for code, parts in region_parts.items()}
-    quadrant = box(*QUADRANT)
+    summit_provinces = {}
+    for summit in boundary_summits:
+        matches = [(geom.distance(summit["point"]), code)
+                   for code, geom in regions.items() if geom.distance(summit["point"]) <= 1.5]
+        if matches:
+            summit_provinces[summit["id"]] = min(matches)[1]
+    map_extent = box(*MAP_EXTENT)
     active_codes = [code for code, geom in regions.items()
-                    if len(cities_by_province.get(code, [])) >= 2 and geom.intersects(quadrant)]
+                    if len(cities_by_province.get(code, [])) >= 2 and geom.intersects(map_extent)]
 
     rgba = np.asarray(Image.open(DATA / "relief_elevation.png").convert("RGBA"), dtype=np.uint8)
     if rgba.shape[:2] != (HEIGHT, WIDTH):
@@ -514,7 +567,7 @@ def main() -> None:
     broad_relief = ndimage.gaussian_filter(elevation, sigma=13.0, mode="nearest")
     local_relief = np.maximum(elevation - broad_relief, 0.0)
     index_html = (ROOT / "index.html").read_text(encoding="utf-8")
-    named_guides = named_ridge_guides(index_html, box(*QUADRANT))
+    named_guides = named_ridge_guides(index_html, map_extent)
     dem_ridges, dem_ridge_mask, crest_score = extract_dem_ridges(elevation, land_or_lake, local_relief)
     named_guides = [{**guide, "geometry": smooth_ridge_line(
         guide["geometry"], guide["id"], local_relief, crest_score)} for guide in named_guides]
@@ -529,7 +582,7 @@ def main() -> None:
     noise /= max(float(noise.std()), 1e-6)
     noise = np.clip(noise, -2.0, 2.0)
 
-    features = []
+    city_features = []
     ridge_features = []
     for guide in named_guides:
         ridge_features.append({
@@ -540,13 +593,14 @@ def main() -> None:
         })
     for index, line in enumerate(dem_ridges, start=1):
         ridge_features.append({
-            "type": "Feature", "id": f"dem-ridge:q1:{index:04d}",
+            "type": "Feature", "id": f"dem-ridge:all:{index:04d}",
             "geometry": mapping(line),
             "properties": {"name": "", "ridge_type": "dem_local_crest",
                            "source": "anisotropic_cross_curvature_skeleton"},
         })
     snap_log = []
     total_city_count = 0
+    used_summit_controls = []
     for province in sorted(active_codes):
         all_cities = sorted(cities_by_province[province], key=lambda city: (city["name"], city["id"]))
         city_points = [tuple(city["sourcePixelXY"]) for city in all_cities]
@@ -613,98 +667,186 @@ def main() -> None:
             owner[lock] = label
 
         edge_groups = collect_shared_edges(owner, all_cities, x0, y0)
+        boundary_sources = []
         for (a, b), segments in edge_groups.items():
             if a >= len(all_cities) or b >= len(all_cities):
                 continue
             network = unary_union(MultiLineString(segments))
             merged = linemerge(network) if network.geom_type in ("MultiLineString", "GeometryCollection") else network
-            clipped = merged.intersection(quadrant)
+            clipped = merged.intersection(map_extent)
             city_a, city_b = all_cities[a], all_cities[b]
             boundary_id = f"city-boundary:{province}:{city_a['id']}:{city_b['id']}"
-            kept = []
             for part_index, line in enumerate(line_parts(clipped)):
-                if line.length < MIN_BOUNDARY_LENGTH_PX:
-                    continue
-                curved = curve_boundary(line, f"{boundary_id}:{part_index}",
-                                        local_relief, river_distance, ridge_distance, city_points)
-                clipped_curves = curved.intersection(geom).intersection(quadrant).difference(city_clearance)
-                kept.extend(part.simplify(SIMPLIFY_TOLERANCE_PX, preserve_topology=False)
-                            for part in line_parts(clipped_curves)
-                            if part.length >= MIN_BOUNDARY_LENGTH_PX and len(part.coords) >= 2)
+                if line.length >= MIN_BOUNDARY_LENGTH_PX:
+                    boundary_sources.append({
+                        "id": boundary_id, "part_index": part_index, "line": line,
+                        "city_a": city_a, "city_b": city_b,
+                    })
+
+        summit_assignment: dict[int, list[dict]] = defaultdict(list)
+        province_summits = [summit for summit in boundary_summits
+                            if summit_provinces.get(summit["id"]) == province]
+        for summit in province_summits:
+            if min(math.hypot(summit["point"].x - x, summit["point"].y - y)
+                   for x, y in city_points) < BOUNDARY_SUMMIT_CITY_CLEARANCE_PX:
+                continue
+            candidates = []
+            for source_index, source in enumerate(boundary_sources):
+                line = source["line"]
+                distance = line.distance(summit["point"])
+                station = line.project(summit["point"])
+                if (distance <= BOUNDARY_SUMMIT_CAPTURE_DISTANCE_PX
+                        and min(station, line.length - station) >= 6.0):
+                    candidates.append((distance, source_index))
+            if candidates:
+                _, nearest_index = min(candidates)
+                summit_assignment[nearest_index].append(summit)
+
+        for source_index, source in enumerate(boundary_sources):
+            boundary_id = source["id"]
+            part_index = source["part_index"]
+            line = source["line"]
+            city_a, city_b = source["city_a"], source["city_b"]
+            controls = summit_assignment.get(source_index, [])
+            curve_id = f"{boundary_id}:{part_index}"
+            curved = curve_boundary(line, curve_id, local_relief, river_distance,
+                                    ridge_distance, city_points, controls)
+            clipped_curves = curved.intersection(geom).intersection(map_extent).difference(city_clearance)
+            simplify_tolerance = 0.0 if controls else SIMPLIFY_TOLERANCE_PX
+            kept = [part.simplify(simplify_tolerance, preserve_topology=False)
+                    for part in line_parts(clipped_curves)
+                    if part.length >= MIN_BOUNDARY_LENGTH_PX and len(part.coords) >= 2]
             kept = [line for line in kept if line.length >= MIN_BOUNDARY_LENGTH_PX and len(line.coords) >= 2]
             if not kept:
                 continue
             geometry = kept[0] if len(kept) == 1 else MultiLineString(kept)
-            features.append({
+            attached_controls = [summit for summit in controls
+                                 if geometry.distance(summit["point"]) <= 0.25]
+            city_features.append({
                 "type": "Feature",
-                "id": boundary_id,
+                "id": curve_id,
                 "geometry": mapping(geometry),
                 "properties": {
+                    "boundary_type": "city",
                     "province_code": province,
                     "city_a_id": city_a["id"], "city_a": city_a["name"],
                     "city_b_id": city_b["id"], "city_b": city_b["name"],
                     "basis": "ridge_network_and_hydrology_least_cost_divide",
-                    "quadrant": QUADRANT_ID,
+                    "summit_controls": [item["name"] for item in attached_controls],
                 },
             })
+            for summit in attached_controls:
+                used_summit_controls.append({
+                    "name": summit["name"], "elevation_m": summit["elevation_m"],
+                    "province_code": province, "city_boundary_id": curve_id,
+                    "capture_distance_px": round(line.distance(summit["point"]), 2),
+                })
+                ridge_features.append({
+                    "type": "Feature",
+                    "id": f"boundary-summit-control:{summit['id']}",
+                    "geometry": mapping(summit["point"]),
+                    "properties": {"name": summit["name"],
+                                   "ridge_type": "boundary_summit_control",
+                                   "elevation_m": summit["elevation_m"],
+                                   "province_code": province,
+                                   "city_boundary_id": curve_id},
+                })
         total_city_count += len(all_cities)
+        print(f"Partitioned province {province}: {len(all_cities)} city anchors, "
+              f"{len(boundary_sources)} source divides.", flush=True)
 
-    features.sort(key=lambda feature: (feature["properties"]["province_code"],
-                                       feature["properties"]["city_a_id"],
-                                       feature["properties"]["city_b_id"]))
+    province_boundary_collection = json.loads(
+        (DATA / "province_boundaries.geojson").read_text(encoding="utf-8"))
+    province_features = []
+    for boundary_index, feature in enumerate(province_boundary_collection.get("features", []), start=1):
+        clipped = shape(feature["geometry"]).intersection(map_extent)
+        source_properties = feature.get("properties", {})
+        for part_index, line in enumerate(line_parts(clipped), start=1):
+            if line.length < 3.0:
+                continue
+            province_features.append({
+                "type": "Feature",
+                "id": (f"province-boundary:{source_properties.get('region_a', 'NA')}-"
+                       f"{source_properties.get('region_b', 'NA')}:{boundary_index}:{part_index}"),
+                "geometry": mapping(line),
+                "properties": {
+                    "boundary_type": "province",
+                    "province_a": source_properties.get("region_a"),
+                    "province_b": source_properties.get("region_b"),
+                    "basis": "shared_province_boundary",
+                    "source": source_properties.get("source", "data/province_boundaries.geojson"),
+                },
+            })
+    features = city_features + province_features
+    features.sort(key=lambda feature: (
+        feature["properties"]["boundary_type"] != "city",
+        feature["properties"].get("province_code", ""),
+        feature["properties"].get("city_a_id", feature["properties"].get("province_a", "")),
+        feature["properties"].get("city_b_id", feature["properties"].get("province_b", "")),
+        feature["id"],
+    ))
     collection = {
         "type": "FeatureCollection",
-        "name": "Duniverse first-quadrant city boundaries",
+        "name": "Duniverse full-map city and province boundaries",
         "coordinate_reference_note": "Official source-map pixel coordinates; origin at top-left; x east, y south.",
-        "quadrant": {"id": QUADRANT_ID, "name": QUADRANT_NAME, "extent_px": list(QUADRANT)},
+        "extent_px": list(MAP_EXTENT),
         "generation": {
             "seed": SEED,
             "city_anchor_source": "data/relief_city_coordinates.js SVG marker centers",
             "province_constraint_source": "data/administrative_regions.geojson",
             "terrain_source": "data/relief_elevation.png",
             "river_source": "data/relief_elevation.js river-water mask",
-            "ridge_source": "data/ridge_network_q1.geojson (named mountain-range backbones plus anisotropic DEM crest skeletons)",
-            "method": "First extract named mountain-range backbones and local DEM ridge crests; then use their proximity as a barrier field in a province-constrained multi-source least-cost partition, with mapped rivers as low corridors. City boundaries receive deterministic, terrain-scaled multi-frequency curve detail; river-adjacent sections remain steadier. The map draws only the Q1 portion; full-province partitions keep later quadrant boundaries consistent.",
+            "ridge_source": "data/ridge_network.geojson (named mountain-range backbones, anisotropic DEM crest skeletons, and selected high-summit boundary controls)",
+            "method": "Across the full map, extract named mountain-range backbones and local DEM ridge crests, then guide province-constrained multi-source least-cost city partitions with ridges and mapped river corridors. High summits close to an existing city divide can become fixed-seed boundary anchors. City lines receive terrain-scaled curve detail; river-adjacent sections remain steadier. Shared province boundaries are included in this layer for close-up views.",
             "ridge_network_feature_count": len(ridge_features),
+            "boundary_summit_minimum_elevation_m": BOUNDARY_SUMMIT_MIN_ELEVATION_M,
+            "boundary_summit_capture_distance_px": BOUNDARY_SUMMIT_CAPTURE_DISTANCE_PX,
             "boundary_curve_detail": {"seed": SEED, "sample_step_px": BOUNDARY_DETAIL_STEP_PX,
                                       "plain_amplitude_px": 0.24, "maximum_amplitude_px": 2.5,
                                       "ridge_barrier_width_px": 2.2,
                                       "city_marker_clearance_px": CITY_MARKER_CLEARANCE_PX},
-            "stroke": {"color": "#718a84", "opacity": 0.36, "width_px": 1.0, "dash_px": [3.2, 4.6]},
+            "city_stroke": {"color": "#718a84", "opacity": 0.36, "width_px": 1.0, "dash_px": [3.2, 4.6]},
+            "province_stroke": {"color": "#596b67", "opacity": 0.64, "width_px": 1.2, "dash_px": [4.2, 3.2]},
         },
         "features": features,
         "audit": {
             "provinces_processed": active_codes,
+            "province_boundary_parts": len(province_features),
+            "city_sites_total": len(cities_data),
             "city_sites_processed": total_city_count,
-            "boundary_pairs": len(features),
+            "city_boundary_pairs": len(city_features),
+            "boundary_summit_controls": used_summit_controls,
             "snapped_city_sites": snap_log,
             "minimum_boundary_length_px": MIN_BOUNDARY_LENGTH_PX,
         },
     }
     ridge_collection = {
         "type": "FeatureCollection",
-        "name": "Duniverse first-quadrant ridge network",
+        "name": "Duniverse full-map ridge network",
         "coordinate_reference_note": "Official source-map pixel coordinates; origin at top-left; x east, y south.",
-        "quadrant": {"id": QUADRANT_ID, "name": QUADRANT_NAME, "extent_px": list(QUADRANT)},
+        "extent_px": list(MAP_EXTENT),
         "generation": {
-            "method": "Named mountain-range backbones from index.html are combined with land-constrained, anisotropic cross-curvature crest skeletons from the existing elevation raster. Closed summit rings and short noisy fragments are discarded; remaining ridge paths influence city-border placement.",
+            "method": "Full-map named mountain-range backbones are combined with land-constrained, anisotropic cross-curvature crest skeletons from the elevation raster. Closed summit rings and short noisy fragments are discarded; selected high summits near city divides are included as boundary anchors.",
             "detection_percentile": RIDGE_DETECTION_PERCENTILE,
             "minimum_local_relief_m": RIDGE_MIN_LOCAL_RELIEF_M,
             "minimum_segment_length_px": RIDGE_MIN_SEGMENT_LENGTH_PX,
         },
         "features": ridge_features,
-        "audit": {"named_backbones": len(named_guides), "dem_crest_segments": len(dem_ridges)},
+        "audit": {"named_backbones": len(named_guides), "dem_crest_segments": len(dem_ridges),
+                  "boundary_summit_controls": used_summit_controls},
     }
-    geojson_path = DATA / "city_boundaries_q1.geojson"
-    js_path = DATA / "city_boundaries_q1.js"
-    ridge_geojson_path = DATA / "ridge_network_q1.geojson"
+    geojson_path = DATA / "city_boundaries.geojson"
+    js_path = DATA / "city_boundaries.js"
+    ridge_geojson_path = DATA / "ridge_network.geojson"
     write_feature_collection(geojson_path, collection)
-    js_path.write_bytes(("window.DUNIVERSE_CITY_BOUNDARIES_Q1=" +
+    js_path.write_bytes(("window.DUNIVERSE_CITY_BOUNDARIES=" +
                          json.dumps(collection, ensure_ascii=False, separators=(",", ":")) + ";\n").encode("utf-8"))
     write_feature_collection(ridge_geojson_path, ridge_collection)
-    print(f"Wrote {len(features)} city boundary pairs across {len(active_codes)} intersecting provinces: {geojson_path}")
-    print(f"Designed {len(ridge_features)} Q1 ridge lines ({len(named_guides)} named backbones + {len(dem_ridges)} DEM crest segments): {ridge_geojson_path}")
+    print(f"Wrote {len(city_features)} city boundaries and {len(province_features)} province boundary parts across {len(active_codes)} provinces: {geojson_path}")
+    print(f"Designed {len(ridge_features)} full-map ridge features ({len(named_guides)} named backbones + {len(dem_ridges)} DEM crest segments + {len(used_summit_controls)} summit controls): {ridge_geojson_path}")
     print(f"Processed {total_city_count} city anchors; snapped {len(snap_log)} to nearby province land pixels.")
+    print("Boundary summits: " + (", ".join(
+        f"{item['name']} ({item['capture_distance_px']:.1f}px)" for item in used_summit_controls) or "none"))
     for item in snap_log:
         print(f"  snapped {item['city']} in {item['province']} by {item['snapPx']:.1f}px")
 
