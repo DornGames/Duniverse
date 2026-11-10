@@ -260,6 +260,23 @@ def line_parts(geometry) -> list[LineString]:
     return []
 
 
+def smooth_river_centerline(line: LineString) -> LineString:
+    """Remove raster-trace jitter while preserving the reach's broad bends."""
+    line = line.simplify(0.45, preserve_topology=True)
+    coords = [(float(x), float(y)) for x, y, *rest in line.coords]
+    if len(coords) < 3:
+        return line
+    smoothed = coords
+    for _ in range(2):
+        refined = [smoothed[0]]
+        for start, end in zip(smoothed, smoothed[1:]):
+            refined.append((0.75 * start[0] + 0.25 * end[0], 0.75 * start[1] + 0.25 * end[1]))
+            refined.append((0.25 * start[0] + 0.75 * end[0], 0.25 * start[1] + 0.75 * end[1]))
+        refined.append(smoothed[-1])
+        smoothed = refined
+    return LineString(smoothed)
+
+
 def round_line(line: LineString, digits: int = 2) -> dict:
     return {
         "type": "LineString",
@@ -372,19 +389,19 @@ def variable_width_channel(
             incoming_x * outgoing_x + incoming_y * outgoing_y,
         )
         curvature = turn / max(2 * tangent_span, 0.75)
-        # Outer bends open into wider pools while inner bends pinch into
-        # point bars; let the two banks diverge enough to read at map scale.
-        bend_bias = max(-0.3, min(0.3, curvature * 6.5))
+        # Keep bank asymmetry gradual: outer bends ease outward, while inner
+        # bends tighten without adding sharp vertical-looking wiggles.
+        bend_bias = max(-0.18, min(0.18, curvature * 4.5))
         left_waves = (
-            0.17 * math.sin(2 * math.pi * 1.15 * fraction + phase)
-            + 0.07 * math.sin(2 * math.pi * 3.1 * fraction + phase * 0.61 + 1.1)
+            0.075 * math.sin(2 * math.pi * 1.15 * fraction + phase)
+            + 0.035 * math.sin(2 * math.pi * 3.1 * fraction + phase * 0.61 + 1.1)
         )
         right_waves = (
-            0.21 * math.sin(2 * math.pi * 1.3 * fraction + phase + 1.65)
-            + 0.065 * math.sin(2 * math.pi * 3.5 * fraction + phase * 0.83 + 0.4)
+            0.095 * math.sin(2 * math.pi * 1.3 * fraction + phase + 1.65)
+            + 0.035 * math.sin(2 * math.pi * 3.5 * fraction + phase * 0.83 + 0.4)
         )
-        left_width = half_width * max(0.58, 1 - bend_bias + left_waves)
-        right_width = half_width * max(0.58, 1 + bend_bias + right_waves)
+        left_width = half_width * max(0.72, 1 - bend_bias + left_waves)
+        right_width = half_width * max(0.72, 1 + bend_bias + right_waves)
         if index == 0:
             start_bank_widths = (left_width, right_width)
         if index == sample_count:
@@ -446,7 +463,7 @@ def river_channel_features(rivers: list[dict], config: dict) -> list[dict]:
         lines = line_parts(shape(rivers_by_id[segment_id]["geometry"]))
         if not lines:
             raise ValueError(f"River channel profile has no line reach: segment {segment_id}")
-        reach = max(lines, key=lambda line: line.length)
+        reach = smooth_river_centerline(max(lines, key=lambda line: line.length))
         if profile["clip_to_quadrant"]:
             channel_parts = []
             clipped_reaches = line_parts(reach.intersection(q2))
@@ -616,7 +633,7 @@ def river_island_features(
         lines = line_parts(shape(feature["geometry"]))
         if not lines:
             raise ValueError(f"Q2 river island {definition['id']} has no line reach to follow")
-        reach = max(lines, key=lambda line: line.length)
+        reach = smooth_river_centerline(max(lines, key=lambda line: line.length))
         point = reach.interpolate(reach.length * float(definition["fraction_along_reach"]))
         expected_code = definition["expected_region_code"]
         region = next(
@@ -748,7 +765,7 @@ def lake_island_creek_features(
     for island in lake_islands:
         properties = island["properties"]
         definition = definitions[properties["island_id"]]
-        line = LineString(definition["creek_coordinates"])
+        line = smooth_river_centerline(LineString(definition["creek_coordinates"]))
         channel = variable_width_channel(
             line,
             float(definition["creek_start_width_px"]),
