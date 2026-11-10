@@ -2,16 +2,17 @@
 """Build a stable, terrain-aware first-quadrant city boundary layer.
 
 All geometry is in the official map's source-pixel coordinate system. City
-territories are seeded by the SVG marker centers, kept inside their province,
-and partitioned with a least-cost flood over the existing elevation and river
-masks. Steep local relief and river pixels resist crossing, so the divides
-tend to use ridges, river corridors, and a smaller number of irregular
-intervening lines instead of straight radial cells.
+territories are seeded by the SVG marker centers and kept inside their
+province. Named range backbones are curved toward DEM crest signals, while
+local crest lines come from anisotropic terrain curvature. Those ridges and
+the mapped rivers guide the least-cost partition before fixed-seed,
+relief-scaled curve detail is added to each city boundary.
 """
 
 from __future__ import annotations
 
 import base64
+import hashlib
 import json
 import math
 import re
@@ -22,6 +23,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw
 from scipy import ndimage
+from scipy.ndimage import map_coordinates
+from scipy.interpolate import CubicSpline
 from shapely.geometry import LineString, MultiLineString, Point, box, mapping, shape
 from shapely.ops import linemerge, unary_union
 
@@ -38,7 +41,13 @@ ELEVATION_MIN_M = -260.0
 MAX_SEED_SNAP_PX = 24.0
 RIVER_CROSSING_COST = 6.0
 MIN_BOUNDARY_LENGTH_PX = 8.0
-SIMPLIFY_TOLERANCE_PX = 1.4
+SIMPLIFY_TOLERANCE_PX = 0.12
+RIDGE_BARRIER_WEIGHT = 2.8
+RIDGE_DETECTION_PERCENTILE = 55.0
+RIDGE_MIN_LOCAL_RELIEF_M = 22.0
+RIDGE_MIN_SEGMENT_LENGTH_PX = 18.0
+BOUNDARY_DETAIL_STEP_PX = 0.8
+CITY_MARKER_CLEARANCE_PX = 4.8
 
 
 def read_js_json(path: Path) -> dict:
@@ -180,6 +189,294 @@ def line_parts(geometry):
     return []
 
 
+def named_ridge_guides(index_html: str, quadrant) -> list[dict]:
+    marker = "const MOUNTAIN_RANGE_SEARCH_DIRECTORY=["
+    if marker not in index_html:
+        raise ValueError("Could not find the named mountain-range guides in index.html")
+    block = index_html.split(marker, 1)[1].split("\n];", 1)[0]
+    guides = []
+    for line in block.splitlines():
+        identity = re.search(r"id:'mountain-range:([^']+)'", line)
+        name = re.search(r"name:'([^']+)'", line)
+        point_block = re.search(r"points:\[(.*?)\],description:", line)
+        if not identity or not name or not point_block:
+            continue
+        points = [(float(x), float(y)) for x, y in re.findall(
+            r"\[\s*([-+]?\d+(?:\.\d+)?)\s*,\s*([-+]?\d+(?:\.\d+)?)\s*\]",
+            point_block.group(1))]
+        if len(points) < 2:
+            continue
+        clipped = LineString(points).intersection(quadrant)
+        for index, part in enumerate(line_parts(clipped)):
+            if part.length >= RIDGE_MIN_SEGMENT_LENGTH_PX:
+                guides.append({
+                    "id": f"named-ridge:{identity.group(1)}:{index + 1}",
+                    "name": name.group(1),
+                    "kind": "named_range_backbone",
+                    "geometry": part,
+                })
+    return guides
+
+
+def skeleton_segments(skeleton: np.ndarray, x0: int, y0: int) -> list[LineString]:
+    rows, cols = np.nonzero(skeleton)
+    pixels = set(zip(cols.tolist(), rows.tolist()))
+    adjacency = {}
+    for x, y in sorted(pixels):
+        neighbors = []
+        for dy in (-1, 0, 1):
+            for dx in (-1, 0, 1):
+                if dx == 0 and dy == 0:
+                    continue
+                other = (x + dx, y + dy)
+                if other not in pixels:
+                    continue
+                if dx and dy and ((x + dx, y) in pixels or (x, y + dy) in pixels):
+                    continue
+                neighbors.append(other)
+        adjacency[(x, y)] = neighbors
+
+    nodes = sorted(point for point, neighbors in adjacency.items() if len(neighbors) != 2)
+    visited = set()
+    lines = []
+    for start in nodes:
+        for neighbor in sorted(adjacency[start]):
+            edge = frozenset((start, neighbor))
+            if edge in visited:
+                continue
+            visited.add(edge)
+            path = [start, neighbor]
+            previous, current = start, neighbor
+            while current not in nodes:
+                following = sorted(point for point in adjacency[current] if point != previous)
+                if not following:
+                    break
+                nxt = following[0]
+                edge = frozenset((current, nxt))
+                if edge in visited:
+                    break
+                visited.add(edge)
+                path.append(nxt)
+                previous, current = current, nxt
+            if len(path) < 3:
+                continue
+            coords = [(x0 + x + 0.5, y0 + y + 0.5) for x, y in path]
+            line = LineString(coords)
+            min_x, min_y, max_x, max_y = line.bounds
+            ratio = max(max_x - min_x, max_y - min_y) / max(1.0, min(max_x - min_x, max_y - min_y))
+            if line.length >= RIDGE_MIN_SEGMENT_LENGTH_PX and ratio >= 1.22:
+                lines.append(line)
+    return lines
+
+
+def thin_binary_mask(mask: np.ndarray) -> np.ndarray:
+    """Reduce a binary crest corridor to one-pixel centerlines (Zhang-Suen)."""
+    image = np.pad(mask.astype(np.uint8), 1)
+    while True:
+        removed = False
+        for phase in (0, 1):
+            p2 = image[:-2, 1:-1]
+            p3 = image[:-2, 2:]
+            p4 = image[1:-1, 2:]
+            p5 = image[2:, 2:]
+            p6 = image[2:, 1:-1]
+            p7 = image[2:, :-2]
+            p8 = image[1:-1, :-2]
+            p9 = image[:-2, :-2]
+            center = image[1:-1, 1:-1]
+            neighbors = (p2, p3, p4, p5, p6, p7, p8, p9)
+            count = sum(neighbors)
+            transitions = sum(((neighbors[index] == 0) &
+                               (neighbors[(index + 1) % 8] == 1)).astype(np.uint8)
+                              for index in range(8))
+            common = (center == 1) & (count >= 2) & (count <= 6) & (transitions == 1)
+            if phase == 0:
+                remove = common & ((p2 * p4 * p6) == 0) & ((p4 * p6 * p8) == 0)
+            else:
+                remove = common & ((p2 * p4 * p8) == 0) & ((p2 * p6 * p8) == 0)
+            if np.any(remove):
+                center[remove] = 0
+                removed = True
+        if not removed:
+            break
+    return image[1:-1, 1:-1] > 0
+
+
+def extract_dem_ridges(elevation: np.ndarray, land_mask: np.ndarray,
+                       local_relief: np.ndarray) -> tuple[list[LineString], np.ndarray, np.ndarray]:
+    smoothed = ndimage.gaussian_filter(elevation, sigma=1.25, mode="nearest")
+    ridge_curvatures = []
+    offset = 5
+    for dy, dx in ((0, offset), (offset, offset), (offset, 0), (offset, -offset)):
+        before = ndimage.shift(smoothed, (dy, dx), order=1, mode="nearest", prefilter=False)
+        after = ndimage.shift(smoothed, (-dy, -dx), order=1, mode="nearest", prefilter=False)
+        ridge_curvatures.append(smoothed - 0.5 * (before + after))
+    curvature = np.stack(ridge_curvatures, axis=0)
+    strongest = np.max(curvature, axis=0)
+    second = np.partition(curvature, -2, axis=0)[-2]
+    anisotropic_crest = np.maximum(strongest - second, 0.0)
+    candidate_domain = land_mask & (local_relief >= RIDGE_MIN_LOCAL_RELIEF_M)
+    scores = anisotropic_crest[candidate_domain]
+    if not scores.size:
+        return [], np.zeros_like(land_mask, dtype=bool), anisotropic_crest
+    threshold = float(np.percentile(scores, RIDGE_DETECTION_PERCENTILE))
+    candidate = candidate_domain & (anisotropic_crest >= threshold)
+
+    x0, y0, x1, y1 = map(int, QUADRANT)
+    skeleton = thin_binary_mask(candidate[y0:y1, x0:x1])
+    lines = skeleton_segments(skeleton, x0, y0)
+    retained = []
+    for line in lines:
+        clipped = line.intersection(box(x0, y0, x1, y1))
+        retained.extend(part for part in line_parts(clipped)
+                        if part.length >= RIDGE_MIN_SEGMENT_LENGTH_PX)
+
+    ridge_mask = np.zeros_like(land_mask, dtype=bool)
+    brush = Image.new("L", (WIDTH, HEIGHT), 0)
+    draw = ImageDraw.Draw(brush)
+    retained = [smooth_ridge_line(line, f"dem-ridge:{index}", local_relief, anisotropic_crest)
+                for index, line in enumerate(retained)]
+    for line in retained:
+        draw.line([(round(x), round(y)) for x, y in line.coords], fill=255, width=2)
+    ridge_mask = (np.asarray(brush, dtype=np.uint8) > 0) & land_mask
+    return retained, ridge_mask, anisotropic_crest
+
+
+def rasterize_ridge_guides(guides: list[dict], base_mask: np.ndarray) -> np.ndarray:
+    image = Image.new("L", (WIDTH, HEIGHT), 0)
+    draw = ImageDraw.Draw(image)
+    for guide in guides:
+        line = guide["geometry"]
+        draw.line([(round(x), round(y)) for x, y in line.coords], fill=255, width=3)
+    return (np.asarray(image, dtype=np.uint8) > 0) & base_mask
+
+
+def stable_seed(identifier: str) -> int:
+    digest = hashlib.blake2b(identifier.encode("utf-8"), digest_size=8).digest()
+    return int.from_bytes(digest, "little")
+
+
+def smooth_ridge_line(line: LineString, identifier: str, local_relief: np.ndarray,
+                      crest_score: np.ndarray) -> LineString:
+    if line.length < 4.0 or len(line.coords) < 3:
+        return line
+    source = np.asarray(line.coords, dtype=np.float64)
+    segment_lengths = np.hypot(np.diff(source[:, 0]), np.diff(source[:, 1]))
+    source_distances = np.concatenate(([0.0], np.cumsum(segment_lengths)))
+    samples = np.arange(0.0, line.length, 0.75)
+    if not len(samples) or samples[-1] < line.length:
+        samples = np.append(samples, line.length)
+    spline = CubicSpline(source_distances, source, axis=0, bc_type="natural")
+    base = spline(samples)
+    sample_coords = np.vstack((base[:, 1], base[:, 0]))
+    relief = map_coordinates(local_relief, sample_coords, order=1, mode="nearest")
+    tangent = np.gradient(base, axis=0)
+    norm = np.maximum(np.hypot(tangent[:, 0], tangent[:, 1]), 1e-6)
+    normal_x, normal_y = -tangent[:, 1] / norm, tangent[:, 0] / norm
+
+    # Shift each guide slightly toward the locally stronger crest, then add
+    # restrained fixed-seed bends between its source control points.
+    offsets = np.arange(-4.0, 4.01, 0.8)
+    offset_scores = np.zeros((len(offsets), len(samples)), dtype=np.float32)
+    for index, offset in enumerate(offsets):
+        coords = np.vstack((base[:, 1] + normal_y * offset,
+                            base[:, 0] + normal_x * offset))
+        local_score = map_coordinates(crest_score, coords, order=1, mode="nearest")
+        local_rel = map_coordinates(local_relief, coords, order=1, mode="nearest")
+        offset_scores[index] = local_score + 0.06 * np.maximum(local_rel, 0.0)
+    best_offsets = offsets[np.argmax(offset_scores, axis=0)]
+    best_offsets = ndimage.gaussian_filter1d(best_offsets, sigma=2.2, mode="nearest")
+    best_offsets = np.clip(best_offsets, -2.5, 2.5)
+
+    rng = np.random.default_rng(stable_seed(identifier))
+    raw = rng.normal(size=len(samples))
+    broad = ndimage.gaussian_filter1d(raw, sigma=9.0, mode="reflect")
+    detail = ndimage.gaussian_filter1d(raw, sigma=2.2, mode="reflect")
+    broad /= max(float(broad.std()), 1e-6)
+    detail /= max(float(detail.std()), 1e-6)
+    amplitude = np.clip(0.6 + np.maximum(relief, 0.0) / 600.0, 0.6, 1.8)
+    anchor_gap = np.min(np.abs(samples[:, None] - source_distances[None, :]), axis=1)
+    taper = np.clip(anchor_gap / 5.0, 0.0, 1.0)
+    taper *= np.clip(np.minimum(samples, line.length - samples) / 5.0, 0.0, 1.0)
+    displacement = (0.52 * best_offsets + amplitude * (0.72 * broad + 0.42 * detail)) * taper
+    curved = np.column_stack((base[:, 0] + normal_x * displacement,
+                              base[:, 1] + normal_y * displacement))
+    curved[0], curved[-1] = source[0], source[-1]
+    return LineString(curved).simplify(0.08, preserve_topology=False)
+
+
+def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
+                   river_distance: np.ndarray, ridge_distance: np.ndarray,
+                   city_points: list[tuple[float, float]]) -> LineString:
+    if line.length < 3.0:
+        return line
+    count = max(3, int(math.ceil(line.length / BOUNDARY_DETAIL_STEP_PX)) + 1)
+    distances = np.linspace(0.0, line.length, count)
+    points = np.asarray([line.interpolate(distance).coords[0] for distance in distances], dtype=np.float64)
+    base = points.copy()
+    for axis in (0, 1):
+        base[:, axis] = ndimage.gaussian_filter1d(base[:, axis], sigma=1.25, mode="nearest")
+    base[0], base[-1] = points[0], points[-1]
+
+    tangent = np.gradient(base, axis=0)
+    tangent_norm = np.maximum(np.hypot(tangent[:, 0], tangent[:, 1]), 1e-6)
+    normal_x, normal_y = -tangent[:, 1] / tangent_norm, tangent[:, 0] / tangent_norm
+    sample_coords = np.vstack((base[:, 1], base[:, 0]))
+    relief = map_coordinates(local_relief, sample_coords, order=1, mode="nearest")
+    river_gap = map_coordinates(river_distance, sample_coords, order=1, mode="nearest")
+    ridge_gap = map_coordinates(ridge_distance, sample_coords, order=1, mode="nearest")
+    amplitude = np.clip(0.24 + np.maximum(relief, 0.0) / 360.0, 0.24, 2.5)
+    amplitude *= np.where(river_gap < 3.0, 0.32, np.where(river_gap < 7.0, 0.7, 1.0))
+    amplitude *= np.where(ridge_gap < 1.5, 0.68, 1.0)
+    city_safety = np.ones(count, dtype=np.float64)
+    if city_points:
+        city_gap = np.min(np.hypot(base[:, 0, None] - np.asarray(city_points)[:, 0],
+                                   base[:, 1, None] - np.asarray(city_points)[:, 1]), axis=1)
+        city_safety = np.clip((city_gap - 5.0) / 7.0, 0.0, 1.0)
+        amplitude *= city_safety
+
+    rng = np.random.default_rng(stable_seed(identifier))
+    raw = rng.normal(size=count)
+    def smooth_noise(sigma: float) -> np.ndarray:
+        values = ndimage.gaussian_filter1d(raw, sigma=sigma, mode="reflect")
+        return values / max(float(values.std()), 1e-6)
+    displacement = (0.48 * smooth_noise(10.0) +
+                    0.34 * smooth_noise(3.8) +
+                    0.18 * smooth_noise(1.15))
+    fade = np.minimum(1.0, np.minimum(distances / 9.0, (line.length - distances) / 9.0))
+    fade = np.clip(fade, 0.0, 1.0)
+    offset = displacement * amplitude * fade
+    if city_points:
+        city_array = np.asarray(city_points, dtype=np.float64)
+        normal = np.column_stack((normal_x, normal_y))
+        scale = np.ones(count, dtype=np.float64)
+        for _ in range(8):
+            candidates = base + normal * (offset * scale)[:, None]
+            candidate_gap = np.min(np.hypot(candidates[:, None, 0] - city_array[None, :, 0],
+                                             candidates[:, None, 1] - city_array[None, :, 1]), axis=1)
+            scale[candidate_gap < 4.8] *= 0.5
+        offset *= scale
+    curved = np.column_stack((base[:, 0] + normal_x * offset,
+                              base[:, 1] + normal_y * offset))
+    curved[0], curved[-1] = points[0], points[-1]
+    result = LineString(curved).simplify(0.08, preserve_topology=False)
+    return result if result.length >= 2.0 else line
+
+
+def write_feature_collection(path: Path, collection: dict) -> None:
+    entries = []
+    for key, value in collection.items():
+        if key == "features":
+            encoded = "[\n" + ",\n".join(
+                "    " + json.dumps(feature, ensure_ascii=False, separators=(",", ":"))
+                for feature in value) + "\n  ]"
+        else:
+            encoded = json.dumps(value, ensure_ascii=False, indent=2).replace("\n", "\n  ")
+        entries.append(f"  {json.dumps(key, ensure_ascii=False)}: {encoded}")
+    payload = "{\n" + ",\n".join(entries) + "\n}\n"
+    path.write_bytes(payload.encode("utf-8"))
+
+
 def main() -> None:
     cities_data = read_js_json(DATA / "relief_city_coordinates.js")["cities"]
     province_by_city = city_province_lookup()
@@ -215,18 +512,47 @@ def main() -> None:
     river_mask &= ~land_or_lake
 
     broad_relief = ndimage.gaussian_filter(elevation, sigma=13.0, mode="nearest")
-    ridge = np.maximum(elevation - broad_relief, 0.0)
+    local_relief = np.maximum(elevation - broad_relief, 0.0)
+    index_html = (ROOT / "index.html").read_text(encoding="utf-8")
+    named_guides = named_ridge_guides(index_html, box(*QUADRANT))
+    dem_ridges, dem_ridge_mask, crest_score = extract_dem_ridges(elevation, land_or_lake, local_relief)
+    named_guides = [{**guide, "geometry": smooth_ridge_line(
+        guide["geometry"], guide["id"], local_relief, crest_score)} for guide in named_guides]
+    named_ridge_mask = rasterize_ridge_guides(named_guides, land_or_lake)
+    ridge_mask = dem_ridge_mask | named_ridge_mask
+    ridge_distance = ndimage.distance_transform_edt(~ridge_mask)
+    ridge_barrier = np.minimum(local_relief / 9000.0, 0.38)
+    ridge_barrier += RIDGE_BARRIER_WEIGHT * np.exp(-ridge_distance / 2.2)
+    river_distance = ndimage.distance_transform_edt(~river_mask)
     rng = np.random.default_rng(SEED)
     noise = ndimage.gaussian_filter(rng.normal(size=(HEIGHT, WIDTH)).astype(np.float32), sigma=5.5, mode="nearest")
     noise /= max(float(noise.std()), 1e-6)
     noise = np.clip(noise, -2.0, 2.0)
 
     features = []
+    ridge_features = []
+    for guide in named_guides:
+        ridge_features.append({
+            "type": "Feature", "id": guide["id"],
+            "geometry": mapping(guide["geometry"]),
+            "properties": {"name": guide["name"], "ridge_type": guide["kind"],
+                           "source": "MOUNTAIN_RANGE_SEARCH_DIRECTORY.points"},
+        })
+    for index, line in enumerate(dem_ridges, start=1):
+        ridge_features.append({
+            "type": "Feature", "id": f"dem-ridge:q1:{index:04d}",
+            "geometry": mapping(line),
+            "properties": {"name": "", "ridge_type": "dem_local_crest",
+                           "source": "anisotropic_cross_curvature_skeleton"},
+        })
     snap_log = []
     total_city_count = 0
     for province in sorted(active_codes):
         all_cities = sorted(cities_by_province[province], key=lambda city: (city["name"], city["id"]))
+        city_points = [tuple(city["sourcePixelXY"]) for city in all_cities]
         geom = regions[province]
+        city_clearance = unary_union([Point(point).buffer(CITY_MARKER_CLEARANCE_PX)
+                                      for point in city_points])
         raw_mask, x0, y0 = geometry_mask(geom, WIDTH, HEIGHT)
         x1, y1 = x0 + raw_mask.shape[1], y0 + raw_mask.shape[0]
         local_land = land_or_lake[y0:y1, x0:x1]
@@ -236,7 +562,7 @@ def main() -> None:
             continue
 
         local_elevation = elevation[y0:y1, x0:x1]
-        local_ridge = ridge[y0:y1, x0:x1]
+        local_ridge_barrier = ridge_barrier[y0:y1, x0:x1]
         local_noise = noise[y0:y1, x0:x1]
         seeds = []
         occupied: set[tuple[int, int]] = set()
@@ -276,13 +602,14 @@ def main() -> None:
             seeds.append((nearest_city, row, col))
             seeded_components.add(component_id)
 
-        owner = terrain_cost_partition(domain, local_elevation, local_river, local_ridge, local_noise, seeds)
+        owner = terrain_cost_partition(domain, local_elevation, local_river,
+                                       local_ridge_barrier, local_noise, seeds)
         owner = smooth_owner(owner, domain, len(all_cities))
 
         # Keep a small land neighborhood around each settlement in its own cell.
         for label, row, col in seeds:
             yy, xx = np.ogrid[:owner.shape[0], :owner.shape[1]]
-            lock = domain & ((yy - row) ** 2 + (xx - col) ** 2 <= 3.2 ** 2)
+            lock = domain & ((yy - row) ** 2 + (xx - col) ** 2 <= 5.5 ** 2)
             owner[lock] = label
 
         edge_groups = collect_shared_edges(owner, all_cities, x0, y0)
@@ -292,22 +619,31 @@ def main() -> None:
             network = unary_union(MultiLineString(segments))
             merged = linemerge(network) if network.geom_type in ("MultiLineString", "GeometryCollection") else network
             clipped = merged.intersection(quadrant)
-            kept = [line.simplify(SIMPLIFY_TOLERANCE_PX, preserve_topology=False)
-                    for line in line_parts(clipped) if line.length >= MIN_BOUNDARY_LENGTH_PX]
+            city_a, city_b = all_cities[a], all_cities[b]
+            boundary_id = f"city-boundary:{province}:{city_a['id']}:{city_b['id']}"
+            kept = []
+            for part_index, line in enumerate(line_parts(clipped)):
+                if line.length < MIN_BOUNDARY_LENGTH_PX:
+                    continue
+                curved = curve_boundary(line, f"{boundary_id}:{part_index}",
+                                        local_relief, river_distance, ridge_distance, city_points)
+                clipped_curves = curved.intersection(geom).intersection(quadrant).difference(city_clearance)
+                kept.extend(part.simplify(SIMPLIFY_TOLERANCE_PX, preserve_topology=False)
+                            for part in line_parts(clipped_curves)
+                            if part.length >= MIN_BOUNDARY_LENGTH_PX and len(part.coords) >= 2)
             kept = [line for line in kept if line.length >= MIN_BOUNDARY_LENGTH_PX and len(line.coords) >= 2]
             if not kept:
                 continue
             geometry = kept[0] if len(kept) == 1 else MultiLineString(kept)
-            city_a, city_b = all_cities[a], all_cities[b]
             features.append({
                 "type": "Feature",
-                "id": f"city-boundary:{province}:{city_a['id']}:{city_b['id']}",
+                "id": boundary_id,
                 "geometry": mapping(geometry),
                 "properties": {
                     "province_code": province,
                     "city_a_id": city_a["id"], "city_a": city_a["name"],
                     "city_b_id": city_b["id"], "city_b": city_b["name"],
-                    "basis": "terrain_and_hydrology_least_cost_divide",
+                    "basis": "ridge_network_and_hydrology_least_cost_divide",
                     "quadrant": QUADRANT_ID,
                 },
             })
@@ -327,7 +663,13 @@ def main() -> None:
             "province_constraint_source": "data/administrative_regions.geojson",
             "terrain_source": "data/relief_elevation.png",
             "river_source": "data/relief_elevation.js river-water mask",
-            "method": "Province-constrained multi-source least-cost partition. Steep local relief and mapped river cells increase crossing cost; a fixed smooth noise field supplies restrained irregularity. The map draws only the Q1 portion; full-province partitions keep later quadrant boundaries consistent.",
+            "ridge_source": "data/ridge_network_q1.geojson (named mountain-range backbones plus anisotropic DEM crest skeletons)",
+            "method": "First extract named mountain-range backbones and local DEM ridge crests; then use their proximity as a barrier field in a province-constrained multi-source least-cost partition, with mapped rivers as low corridors. City boundaries receive deterministic, terrain-scaled multi-frequency curve detail; river-adjacent sections remain steadier. The map draws only the Q1 portion; full-province partitions keep later quadrant boundaries consistent.",
+            "ridge_network_feature_count": len(ridge_features),
+            "boundary_curve_detail": {"seed": SEED, "sample_step_px": BOUNDARY_DETAIL_STEP_PX,
+                                      "plain_amplitude_px": 0.24, "maximum_amplitude_px": 2.5,
+                                      "ridge_barrier_width_px": 2.2,
+                                      "city_marker_clearance_px": CITY_MARKER_CLEARANCE_PX},
             "stroke": {"color": "#718a84", "opacity": 0.36, "width_px": 1.0, "dash_px": [3.2, 4.6]},
         },
         "features": features,
@@ -339,12 +681,29 @@ def main() -> None:
             "minimum_boundary_length_px": MIN_BOUNDARY_LENGTH_PX,
         },
     }
+    ridge_collection = {
+        "type": "FeatureCollection",
+        "name": "Duniverse first-quadrant ridge network",
+        "coordinate_reference_note": "Official source-map pixel coordinates; origin at top-left; x east, y south.",
+        "quadrant": {"id": QUADRANT_ID, "name": QUADRANT_NAME, "extent_px": list(QUADRANT)},
+        "generation": {
+            "method": "Named mountain-range backbones from index.html are combined with land-constrained, anisotropic cross-curvature crest skeletons from the existing elevation raster. Closed summit rings and short noisy fragments are discarded; remaining ridge paths influence city-border placement.",
+            "detection_percentile": RIDGE_DETECTION_PERCENTILE,
+            "minimum_local_relief_m": RIDGE_MIN_LOCAL_RELIEF_M,
+            "minimum_segment_length_px": RIDGE_MIN_SEGMENT_LENGTH_PX,
+        },
+        "features": ridge_features,
+        "audit": {"named_backbones": len(named_guides), "dem_crest_segments": len(dem_ridges)},
+    }
     geojson_path = DATA / "city_boundaries_q1.geojson"
     js_path = DATA / "city_boundaries_q1.js"
-    geojson_path.write_bytes((json.dumps(collection, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
+    ridge_geojson_path = DATA / "ridge_network_q1.geojson"
+    write_feature_collection(geojson_path, collection)
     js_path.write_bytes(("window.DUNIVERSE_CITY_BOUNDARIES_Q1=" +
                          json.dumps(collection, ensure_ascii=False, separators=(",", ":")) + ";\n").encode("utf-8"))
+    write_feature_collection(ridge_geojson_path, ridge_collection)
     print(f"Wrote {len(features)} city boundary pairs across {len(active_codes)} intersecting provinces: {geojson_path}")
+    print(f"Designed {len(ridge_features)} Q1 ridge lines ({len(named_guides)} named backbones + {len(dem_ridges)} DEM crest segments): {ridge_geojson_path}")
     print(f"Processed {total_city_count} city anchors; snapped {len(snap_log)} to nearby province land pixels.")
     for item in snap_log:
         print(f"  snapped {item['city']} in {item['province']} by {item['snapPx']:.1f}px")
