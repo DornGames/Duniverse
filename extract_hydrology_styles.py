@@ -299,42 +299,72 @@ def width_profiles(config: dict) -> dict[int, dict]:
 
 
 def variable_width_channel(
-    reach: LineString, start_width: float, end_width: float, sample_step: float = 0.55,
+    reach: LineString,
+    start_width: float,
+    end_width: float,
+    sample_step: float = 0.55,
+    phase: float = 0.0,
 ):
-    """Build a smooth channel ribbon whose banks widen along the reach."""
+    """Build a tapered channel with independently varying, bend-aware banks."""
     if reach.length <= 0:
         return Polygon()
     sample_count = max(2, math.ceil(reach.length / sample_step))
     left_bank = []
     right_bank = []
+    start_bank_widths = None
+    end_bank_widths = None
     for index in range(sample_count + 1):
         fraction = index / sample_count
         distance = reach.length * fraction
-        sample_delta = min(0.5, max(0.12, reach.length / (sample_count * 2)))
-        before = reach.interpolate(max(0.0, distance - sample_delta))
-        after = reach.interpolate(min(reach.length, distance + sample_delta))
+        tangent_span = min(2.5, max(0.75, reach.length / (sample_count * 2)))
+        before = reach.interpolate(max(0.0, distance - tangent_span))
+        center = reach.interpolate(distance)
+        after = reach.interpolate(min(reach.length, distance + tangent_span))
         tangent_x = after.x - before.x
         tangent_y = after.y - before.y
         tangent_length = math.hypot(tangent_x, tangent_y) or 1.0
         normal_x = -tangent_y / tangent_length
         normal_y = tangent_x / tangent_length
-        center = reach.interpolate(distance)
         width = start_width + (end_width - start_width) * fraction
         half_width = width / 2
+        incoming_x, incoming_y = center.x - before.x, center.y - before.y
+        outgoing_x, outgoing_y = after.x - center.x, after.y - center.y
+        turn = math.atan2(
+            incoming_x * outgoing_y - incoming_y * outgoing_x,
+            incoming_x * outgoing_x + incoming_y * outgoing_y,
+        )
+        curvature = turn / max(2 * tangent_span, 0.75)
+        bend_bias = max(-0.2, min(0.2, curvature * 5.5))
+        left_waves = (
+            0.10 * math.sin(2 * math.pi * 1.25 * fraction + phase)
+            + 0.045 * math.sin(2 * math.pi * 3.4 * fraction + phase * 0.61 + 1.1)
+        )
+        right_waves = (
+            0.105 * math.sin(2 * math.pi * 1.45 * fraction + phase + 1.65)
+            + 0.04 * math.sin(2 * math.pi * 3.8 * fraction + phase * 0.83 + 0.4)
+        )
+        left_width = half_width * max(0.58, 1 - bend_bias + left_waves)
+        right_width = half_width * max(0.58, 1 + bend_bias + right_waves)
+        if index == 0:
+            start_bank_widths = (left_width, right_width)
+        if index == sample_count:
+            end_bank_widths = (left_width, right_width)
         left_bank.append((
-            round(center.x + normal_x * half_width, 3),
-            round(center.y + normal_y * half_width, 3),
+            round(center.x + normal_x * left_width, 3),
+            round(center.y + normal_y * left_width, 3),
         ))
         right_bank.append((
-            round(center.x - normal_x * half_width, 3),
-            round(center.y - normal_y * half_width, 3),
+            round(center.x - normal_x * right_width, 3),
+            round(center.y - normal_y * right_width, 3),
         ))
 
     ribbon = Polygon(left_bank + list(reversed(right_bank)))
     if not ribbon.is_valid:
         ribbon = ribbon.buffer(0)
-    start_cap = Point(reach.coords[0]).buffer(start_width / 2, resolution=8)
-    end_cap = Point(reach.coords[-1]).buffer(end_width / 2, resolution=8)
+    start_radius = sum(start_bank_widths or (start_width / 2, start_width / 2)) / 2
+    end_radius = sum(end_bank_widths or (end_width / 2, end_width / 2)) / 2
+    start_cap = Point(reach.coords[0]).buffer(start_radius, resolution=8)
+    end_cap = Point(reach.coords[-1]).buffer(end_radius, resolution=8)
     return unary_union([ribbon, start_cap, end_cap]).simplify(0.06, preserve_topology=True)
 
 
@@ -405,7 +435,10 @@ def river_channel_features(rivers: list[dict], config: dict) -> list[dict]:
                         else:
                             end_width = edge_width
                 channel_parts.append(variable_width_channel(
-                    clipped_reach, start_width, end_width,
+                    clipped_reach,
+                    start_width,
+                    end_width,
+                    phase=(segment_id * 2.399963229728653 + start_fraction * math.tau) % math.tau,
                 ))
             channel = unary_union(channel_parts) if channel_parts else Polygon()
         else:
@@ -413,6 +446,7 @@ def river_channel_features(rivers: list[dict], config: dict) -> list[dict]:
                 reach,
                 profile["start_width_px"],
                 profile["end_width_px"],
+                phase=(segment_id * 2.399963229728653) % math.tau,
             )
         if profile["clip_to_quadrant"]:
             channel = channel.intersection(q2)
@@ -434,39 +468,72 @@ def river_channel_features(rivers: list[dict], config: dict) -> list[dict]:
                 "network_id": network,
                 "segment_ids": segment_ids,
                 "source": "hydrology_reach_connectivity_and_downstream_width_profile",
-                "review_status": "variable_width_channel_polygon",
+                "review_status": "variable_width_channel_polygon_with_asymmetric_banks",
             },
             "geometry": mapping(channel),
         })
     return features
 
 
-def island_polygon(reach: LineString, fraction: float, length: float, width: float) -> Polygon:
-    distance = reach.length * fraction
-    half_sample = max(1.0, length * 0.42)
-    before = reach.interpolate(max(0.0, distance - half_sample))
-    after = reach.interpolate(min(reach.length, distance + half_sample))
-    tangent_x = after.x - before.x
-    tangent_y = after.y - before.y
-    tangent_length = math.hypot(tangent_x, tangent_y) or 1.0
-    tangent_x /= tangent_length
-    tangent_y /= tangent_length
-    normal_x = -tangent_y
-    normal_y = tangent_x
-    center = reach.interpolate(distance)
-    fractions = (0.0, 0.14, 0.32, 0.5, 0.68, 0.86, 1.0)
-    side_points = []
-    for side in (1.0, -1.0):
-        along_values = fractions if side > 0 else reversed(fractions)
-        for along in along_values:
-            profile = math.sin(math.pi * along) ** 0.78 if along not in (0.0, 1.0) else 0.0
-            asymmetry = 1.0 + 0.1 * math.sin(2 * math.pi * along + 0.35)
-            offset = (along - 0.5) * length
-            side_points.append((
-                round(center.x + tangent_x * offset + normal_x * side * width * 0.5 * profile * asymmetry, 3),
-                round(center.y + tangent_y * offset + normal_y * side * width * 0.5 * profile * asymmetry, 3),
-            ))
-    polygon = Polygon(side_points)
+def island_polygon(
+    reach: LineString,
+    fraction: float,
+    length: float,
+    width: float,
+    phase: float = 0.0,
+    lateral_offset_fraction: float = 0.0,
+) -> Polygon:
+    """Make a gently curved, asymmetrical mid-channel bar following the reach."""
+    center_distance = reach.length * fraction
+    start_distance = max(0.0, center_distance - length / 2)
+    end_distance = min(reach.length, center_distance + length / 2)
+    span = max(0.01, end_distance - start_distance)
+    sample_count = max(12, math.ceil(span / 0.35))
+    left_bank = []
+    right_bank = []
+    for index in range(sample_count + 1):
+        along = index / sample_count
+        distance = start_distance + span * along
+        tangent_span = min(2.0, max(0.5, span / sample_count))
+        before = reach.interpolate(max(0.0, distance - tangent_span))
+        center = reach.interpolate(distance)
+        after = reach.interpolate(min(reach.length, distance + tangent_span))
+        tangent_x = after.x - before.x
+        tangent_y = after.y - before.y
+        tangent_length = math.hypot(tangent_x, tangent_y) or 1.0
+        normal_x = -tangent_y / tangent_length
+        normal_y = tangent_x / tangent_length
+        envelope_exponent = 0.9 - 0.4 * along
+        envelope = math.sin(math.pi * along) ** envelope_exponent
+        envelope *= 0.84 + 0.16 * along
+        broad_shoulder = math.exp(-((along - (0.66 + 0.06 * math.sin(phase))) / 0.16) ** 2)
+        shallow_notch = math.exp(-((along - (0.38 + 0.05 * math.cos(phase))) / 0.13) ** 2)
+        left_variation = (
+            0.18 * math.sin(2 * math.pi * along + phase)
+            + 0.07 * math.sin(4 * math.pi * along + phase * 0.7 + 1.25)
+            + 0.13 * broad_shoulder
+        )
+        right_variation = (
+            0.15 * math.sin(2 * math.pi * along + phase + 1.8)
+            + 0.06 * math.sin(5 * math.pi * along + phase * 0.9 + 0.45)
+            - 0.08 * shallow_notch
+        )
+        left_width = width * 0.5 * envelope * max(0.48, 1 + left_variation)
+        right_width = width * 0.5 * envelope * max(0.48, 1 + right_variation)
+        lateral_shift = width * (
+            lateral_offset_fraction + 0.1 * math.sin(2 * math.pi * along + phase)
+        )
+        center_x = center.x + normal_x * lateral_shift
+        center_y = center.y + normal_y * lateral_shift
+        left_bank.append((
+            round(center_x + normal_x * left_width, 3),
+            round(center_y + normal_y * left_width, 3),
+        ))
+        right_bank.append((
+            round(center_x - normal_x * right_width, 3),
+            round(center_y - normal_y * right_width, 3),
+        ))
+    polygon = Polygon(left_bank + list(reversed(right_bank)))
     if not polygon.is_valid:
         polygon = polygon.buffer(0)
     return polygon
@@ -512,6 +579,8 @@ def river_island_features(
             float(definition["fraction_along_reach"]),
             float(definition["length_px"]),
             float(definition["width_px"]),
+            float(definition.get("shape_phase", 0.0)),
+            float(definition.get("lateral_offset_fraction", 0.0)),
         )
         profile = profiles.get(segment_id)
         if profile is None:
@@ -521,7 +590,7 @@ def river_island_features(
             profile["start_width_px"]
             + (profile["end_width_px"] - profile["start_width_px"]) * fraction
         )
-        if float(definition["width_px"]) >= channel_width:
+        if float(definition["width_px"]) * 1.25 >= channel_width:
             raise ValueError(f"Q2 river island {definition['id']} is wider than its river channel")
         if (
             not q2.covers(geometry)
@@ -541,9 +610,7 @@ def river_island_features(
                 "length_px": definition["length_px"],
                 "region_code": expected_code,
                 "fill": fill,
-                "bank_stroke": "#83b8e8",
-                "bank_stroke_width_px": definition["bank_stroke_width_px"],
-                "review_status": "hand_placed_on_widened_downstream_reach",
+                "review_status": "hand_placed_asymmetric_midchannel_bar",
             },
             "geometry": mapping(geometry),
         })
@@ -558,25 +625,19 @@ def render_river_islands_group(features: list[dict]) -> str:
         if path:
             paths.append(
                 f'<path d="{path}" fill="{properties["fill"]}" fill-rule="evenodd" '
-                f'stroke="{properties["bank_stroke"]}" '
-                f'stroke-width="{float(properties["bank_stroke_width_px"]):.2f}" '
-                f'stroke-linejoin="round" stroke-linecap="round" '
                 f'data-river-island-id="{properties["island_id"]}"/>'
             )
     return '<g id="riverIslandsQ2" data-layer="rivers" pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
 
 
-def render_river_channels_group(features: list[dict], config: dict) -> str:
+def render_river_channels_group(features: list[dict]) -> str:
     paths = []
-    bank_width = float(config.get("channel_bank_stroke_px", 0.16))
     for feature in features:
         properties = feature["properties"]
         path = polygon_path_data(feature["geometry"])
         if path:
             paths.append(
                 f'<path d="{path}" fill="#b1d0ed" fill-rule="evenodd" '
-                f'stroke="#78a9d8" stroke-width="{bank_width:.2f}" '
-                f'stroke-linejoin="round" stroke-linecap="round" '
                 f'data-river-channel="true" data-river-network-id="{properties["network_id"]}"/>'
             )
     return '<g id="riverChannelsQ2" data-layer="rivers" pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
@@ -1052,7 +1113,7 @@ def update_render_files(
     index_groups = [
         render_group("rivers", "rivers", base_rivers,
                      'fill="none" stroke="#b1d0ed" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
-        render_river_channels_group(river_channels, width_config),
+        render_river_channels_group(river_channels),
         render_group("canals", "canals", [f for f in canals if f["properties"].get("symbol_part") == "centerline"],
                      'fill="none" stroke="#b1d0ed" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"'),
         render_group("canalTicks", "canalTicks", [f for f in canals if f["properties"].get("symbol_part") == "ruler_tick"],
@@ -1081,7 +1142,7 @@ def update_render_files(
     preview_groups = [
         render_preview_group("rivers", base_rivers,
                             'fill="none" stroke="#b1d0ed" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
-        render_river_channels_group(river_channels, width_config),
+        render_river_channels_group(river_channels),
         render_preview_group("canals", [f for f in canals if f["properties"].get("symbol_part") == "centerline"],
                             'fill="none" stroke="#b1d0ed" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"'),
         render_preview_group("canal-ticks", [f for f in canals if f["properties"].get("symbol_part") == "ruler_tick"],
