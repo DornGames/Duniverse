@@ -840,7 +840,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "北𣿅省",
     postalCode: "211010",
     areaKm2: null,
-    description: null,
+    description: "北𣿅地区超级大城。依托边境优势，深入发展跨境贸易、交通与物流运输。同时，北𣿅绮丽壮观的风景也为这里带来了源源不断的旅游客流。故𣿅国诗曰：“北𣿅好！高原亘域中。风光奇胜似仙境，日出雪地明似红。",
     pointX: 912.3,
     pointY: 52.4
   },
@@ -853,7 +853,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "北𣿅省",
     postalCode: "211020",
     areaKm2: null,
-    description: null,
+    description: "北𣿅地区超级大都会，父亲河孕育出的北𣿅文明。北𣿅地区文明由此诞生，是𣿅国历史文化名城。每年朝圣节的渡江冬泳活动是本地年年历来的传统，已成为𣿅国非物质文化遗产。",
     pointX: 915.15,
     pointY: 107.85
   },
@@ -1243,7 +1243,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "220010",
     areaKm2: null,
-    description: null,
+    description: "全国教育大省中的教育大市，人均𣿅国114工程重点高校。尝曰：“人均重点大学只是起点，终身学习才是正经事。”社区学堂、夜校、线上课程、读书会遍布全城，从孩童到老人，人人都在学。这座城市的目标很直白——把其他地方的人卷爆。",
     pointX: 1032.9,
     pointY: 271.6
   },
@@ -1256,7 +1256,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "220020",
     areaKm2: null,
-    description: null,
+    description: "对于省会后雄市的学习竞争行为，金榜市不甘落后，毕竟人人都想金榜题名。于是规定：终身学习只是底线，卷赢后雄才是目标。通宵读书会、技能挑战赛、公开课连轴转，全城灯火通明，学风卷出天际。来金榜，别带行李，带上你的学习计划。因为在这里，停下来就是落后！",
     pointX: 1228.41,
     pointY: 247.02
   },
@@ -1269,7 +1269,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "220030",
     areaKm2: null,
-    description: null,
+    description: "走进百灵鸟市，最先迎接你的不是风景，而是鸟鸣。这里的百灵鸟不是传说，是居民——清晨的公园、屋顶的檐角，处处可见它们的身影，处处可闻它们清亮的歌声。百灵城人爱鸟、护鸟、也懂鸟，从校园里的观鸟课到社区里的鸟类保护站，人与百灵鸟共享着同一片天空。",
     pointX: 1222.38,
     pointY: 284.1
   },
@@ -1282,7 +1282,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "220040",
     areaKm2: null,
-    description: null,
+    description: "由𣿅国内阁赐名的城市，背诵传统文化盛行。清晨的公园里，老人闭目诵经典；校园的走廊上，学生列队背课文；地铁车厢里，有人默念单词，有人低声吟诗。背诵不是苦差事，是这座城市的日常仪式。朗诵文化已成为𣿅国非物质文化遗产。",
     pointX: 1050.38,
     pointY: 188.1
   },
@@ -1308,7 +1308,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "220060",
     areaKm2: null,
-    description: null,
+    description: "这是一座以生命科学为城市底色的现代化都市。城市绿化与生态网络交织，社区植物园、自然观察站与公共实验室遍布各区，为市民提供了亲近自然、探究生命的日常空间。生物教育贯穿城市公共服务体系：中小学普遍开设昆虫观察与生态实践课程，社区定期组织物种普查与自然笔记活动，全城更建有覆盖山野湿地的生物多样性监测网络，让每一位市民都能参与到对身边生命的认识与记录之中。倡导“读懂生命，才能读懂世界”的城市理念，将生物素养视为市民的基本素养，致力于把整座城市变成一座露天的生命科学博物馆。",
     pointX: 1077.24,
     pointY: 227.0
   },
@@ -1321,7 +1321,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "220070",
     areaKm2: null,
-    description: null,
+    description: "法语不只是课堂上的语法，而是流淌在生活里的优雅。帕斯卡市的人们热衷于学习法语，校园里法语朗诵声琅琅。每年本地的“绷住节”是全城盛事：向路上遇到的每个人讲一段法语笑话。相关活动已成为𣿅国非物质文化遗产。",
     pointX: 1047.05,
     pointY: 238.5
   },
@@ -1334,7 +1334,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "220080",
     areaKm2: null,
-    description: null,
+    description: "在这里，英语不只是课本上的单词，而是街头巷尾的日常。新高年市的孩子们从小在双语环境中成长，课堂上自信表达，咖啡馆里随性交谈，公园长椅上也能听到流利的英文讨论。每年秋季的“英语答辩”更是全城盛事：英语辩论赛、配音大赛、露天英文音乐会轮番上演，吸引着各地游客前来感受这座活力之城。相关活动已成为𣿅国非物质文化遗产。",
     pointX: 1196.5,
     pointY: 228.8
   },
@@ -1347,7 +1347,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "233010",
     areaKm2: null,
-    description: null,
+    description: "坐落于峡湾深处，海水自外海蜿蜒切入内陆，两侧崖壁陡峭，山势夹峙，水面狭长而平静。峡湾两岸层林叠翠，瀑布自高处跌落汇入深水，云雾常绕半山，天光水色随晨昏变幻。城中房屋沿湾岸铺展，码头、栈桥与渡船连接两岸往来，游船穿行于峡湾之间，可尽览峭壁、碧水与飞瀑之胜。",
     pointX: 1302.02,
     pointY: 465.41
   },
@@ -1360,7 +1360,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "233020",
     areaKm2: null,
-    description: null,
+    description: "位于𣿅国北方海滨，沙滩平缓，海水澄澈，景色优美。这里是𣿅国著名人物徐𣿅𣿅的故乡，她发明了本土CAD软件，填补了国内该领域的空白，其事迹与精神为这座城市增添了独特的人文光彩。碧海银滩与创新精神在此交相辉映，这座城因此成为兼具自然风光与人文魅力的北方海滨之城。",
     pointX: 1334.76,
     pointY: 415.0
   },
@@ -1373,7 +1373,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "233030",
     areaKm2: null,
-    description: null,
+    description: "这里最令人称奇的，是那片世所罕见的紫色沙滩。高原自海岸拔地而起，悬崖峭壁如刀削般直插入海，崖下紫沙铺展，沙粒在浪沫间泛出幽深紫光，随潮汐明暗流转，堪称自然奇观。山海奇景与独特紫滩相映，因此成为令人向往的旅游胜地。",
     pointX: 1351.41,
     pointY: 337.98
   },
@@ -1386,7 +1386,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "220090",
     areaKm2: null,
-    description: null,
+    description: "这是一座以基础教育质量闻名的城市，因常年出产高质量全国考试模拟卷而广为人知，名曰“𣿅国之黄冈，土星之衡水”。城市教育体系完备，教研机构密集，命题研究深入，从小学到高中形成了系统的试题研发与教学训练机制。全市多所中学设有专门的命题研究中心，教师团队长期参与模拟卷编写与审核，试卷以难度扎实、题型规范、贴近实战著称，深受各地学校与考生信赖。各地教研人员与一线教师汇聚于此，交流命题经验、研讨考试趋势，模拟卷发布与教学成果展示同步举行，使考都成为全国基础教育测评领域的重要风向标。",
     pointX: 1102.65,
     pointY: 292.25
   },
@@ -1399,7 +1399,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "220100",
     areaKm2: null,
-    description: null,
+    description: "以城中一棵巨型古树而闻名。树干粗壮需数人合抱，枝干虬曲苍劲，树冠如巨伞般铺展，浓荫覆盖了大半个广场。树龄已逾千年，却年年抽发新枝，枝叶繁茂不减。城中人视其为精神象征，每逢祈求学业有成之时即在树下系彩绸、挂灯笼，学子赴考前也来树下驻足。相关活动已成为𣿅国非物质文化遗产。",
     pointX: 1278.15,
     pointY: 343.15
   },
@@ -1412,7 +1412,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "233040",
     areaKm2: null,
-    description: null,
+    description: "以数理认识世界，以天文仰望星空。城市科研与教育体系围绕数学、物理和天文学三大学科深度布局，从幼儿园开始即普遍开设数理拓展课程，社区科普站定期举办数学与物理竞赛，形成从基础教育到前沿研究的完整链条，将基础科学素养视为市民的基本素养。",
     pointX: 1325.02,
     pointY: 286.41
   },
@@ -1425,7 +1425,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "220110",
     areaKm2: null,
-    description: null,
+    description: "以数学为城市底色、尤以积分与概率论研究与应用闻名的现代化都市。要融入城市，先学会概率论再说。与洛必达市互为姊妹城。",
     pointX: 1160.5,
     pointY: 298.67
   },
@@ -1438,7 +1438,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "233070",
     areaKm2: null,
-    description: null,
+    description: "城市将数学素养视为基本素养，热衷微分更是这座城市的独特气质。与伯努利市互为姊妹城。",
     pointX: 1231.32,
     pointY: 317.17
   },
@@ -1451,7 +1451,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "233080",
     areaKm2: null,
-    description: null,
+    description: "罗尔市是“符号语言”理念的先行者，由此诞生了基于符号的“新𣿅语”。城市围绕新𣿅语符号系统的创造、研究与教学进行深度布局。",
     pointX: 1231.24,
     pointY: 349.0
   },
@@ -1464,7 +1464,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "233050",
     areaKm2: null,
-    description: null,
+    description: "又称“量子城”，围绕量子力学进行城市布局。在这里，你很难同时确定一件事的位置和它的意义——这几乎是市民的思维习惯。",
     pointX: 1278.78,
     pointY: 406.82
   },
@@ -1477,7 +1477,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "后雄省",
     postalCode: "233060",
     areaKm2: null,
-    description: null,
+    description: "摄影、测量与制图不是三门并列的技艺，而是同一种观看方式的三个侧面。本市以此三者为主要产业，并创造性地相互融合发展。中小学开设透视与制图课程，摄影学院与制图工坊沿街分布。",
     pointX: 1320.76,
     pointY: 441.0
   },
