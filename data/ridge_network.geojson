@@ -162,7 +162,7 @@
         "elevation_m": 8281.6,
         "province_code": "HX",
         "city_boundary_id": "city-boundary:HX:city:233050:113:city:220100:108:0",
-        "capture_distance_px": 9.84
+        "capture_distance_px": 9.59
       },
       {
         "name": "成岗",
@@ -190,14 +190,14 @@
         "elevation_m": 8277.2,
         "province_code": "TM",
         "city_boundary_id": "city-boundary:TM:city:210010:115:city:210210:128:0",
-        "capture_distance_px": 1.12
+        "capture_distance_px": 0.12
       },
       {
         "name": "派格罗斯山",
         "elevation_m": 9266.2,
         "province_code": "TM",
         "city_boundary_id": "city-boundary:TM:city:210150:122:city:210040:118:0",
-        "capture_distance_px": 5.18
+        "capture_distance_px": 5.6
       },
       {
         "name": "铁山",

@@ -2467,9 +2467,9 @@ function appendCityBoundaryLayer(){
     path.setAttribute('d',lines.map(points=>points.length>1?`M ${pointText(points[0])} ${points.slice(1).map(point=>`L ${pointText(point)}`).join(' ')}`:'').filter(Boolean).join(' '));
     path.dataset.boundaryType=isProvinceBoundary?'province':'city';
     path.setAttribute('fill','none');path.setAttribute('stroke',isProvinceBoundary?'#596b67':'#718a84');
-    path.setAttribute('stroke-opacity',isProvinceBoundary?'.64':'.36');
-    path.setAttribute('stroke-width',isProvinceBoundary?'1.2':'1');
-    path.setAttribute('stroke-dasharray',isProvinceBoundary?'4.2 3.2':'3.2 4.6');
+    path.setAttribute('stroke-opacity',isProvinceBoundary?'.64':'.44');
+    path.setAttribute('stroke-width',isProvinceBoundary?'1.2':'1.05');
+    path.setAttribute('stroke-dasharray',isProvinceBoundary?'4.2 3.2':'6 1.8');
     path.setAttribute('stroke-linecap','round');path.setAttribute('stroke-linejoin','round');
     boundaryLayer.append(path);
   }

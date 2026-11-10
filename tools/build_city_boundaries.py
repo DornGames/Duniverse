@@ -38,7 +38,7 @@ SEED = 20261110
 ELEVATION_MIN_M = -260.0
 MAX_SEED_SNAP_PX = 24.0
 RIVER_CROSSING_COST = 6.0
-MIN_BOUNDARY_LENGTH_PX = 8.0
+MIN_BOUNDARY_LENGTH_PX = 2.5
 SIMPLIFY_TOLERANCE_PX = 0.12
 RIDGE_BARRIER_WEIGHT = 2.8
 RIDGE_DETECTION_PERCENTILE = 55.0
@@ -170,7 +170,7 @@ def terrain_cost_partition(domain: np.ndarray, elevation: np.ndarray, river: np.
             relief = min(abs(float(elevation[next_row, next_col] - elevation[row, col])) / 850.0, 2.4)
             ridge_cost = min(max(float(ridge[row, col] + ridge[next_row, next_col]) / 9000.0, 0.0), 0.38)
             river_cost = RIVER_CROSSING_COST if river[row, col] or river[next_row, next_col] else 1.0
-            roughness = 1.0 + 0.022 * float(noise[row, col] + noise[next_row, next_col]) * 0.5
+            roughness = 1.0 + 0.04 * float(noise[row, col] + noise[next_row, next_col]) * 0.5
             edge_cost = step * (1.0 + 0.72 * relief + ridge_cost) * river_cost * roughness
             next_cost = cost + edge_cost
             old_cost = float(distance[next_row, next_col])
@@ -438,7 +438,7 @@ def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
     points = np.asarray([line.interpolate(distance).coords[0] for distance in distances], dtype=np.float64)
     base = points.copy()
     for axis in (0, 1):
-        base[:, axis] = ndimage.gaussian_filter1d(base[:, axis], sigma=1.25, mode="nearest")
+        base[:, axis] = ndimage.gaussian_filter1d(base[:, axis], sigma=0.9, mode="nearest")
     base[0], base[-1] = points[0], points[-1]
 
     tangent = np.gradient(base, axis=0)
@@ -448,9 +448,12 @@ def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
     relief = map_coordinates(local_relief, sample_coords, order=1, mode="nearest")
     river_gap = map_coordinates(river_distance, sample_coords, order=1, mode="nearest")
     ridge_gap = map_coordinates(ridge_distance, sample_coords, order=1, mode="nearest")
-    amplitude = np.clip(0.24 + np.maximum(relief, 0.0) / 360.0, 0.24, 2.5)
-    amplitude *= np.where(river_gap < 3.0, 0.32, np.where(river_gap < 7.0, 0.7, 1.0))
-    amplitude *= np.where(ridge_gap < 1.5, 0.68, 1.0)
+    # Give plains visible but restrained bends; increase amplitude where the
+    # local terrain is rough. River corridors keep tighter banks, while ridges
+    # retain enough detail to avoid the old, overly smooth Voronoi look.
+    amplitude = np.clip(0.48 + np.maximum(relief, 0.0) / 300.0, 0.48, 3.8)
+    amplitude *= np.where(river_gap < 3.0, 0.38, np.where(river_gap < 7.0, 0.74, 1.0))
+    amplitude *= np.where(ridge_gap < 1.5, 0.78, 1.0)
     city_safety = np.ones(count, dtype=np.float64)
     if city_points:
         city_gap = np.min(np.hypot(base[:, 0, None] - np.asarray(city_points)[:, 0],
@@ -463,12 +466,12 @@ def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
     def smooth_noise(sigma: float) -> np.ndarray:
         values = ndimage.gaussian_filter1d(raw, sigma=sigma, mode="reflect")
         return values / max(float(values.std()), 1e-6)
-    displacement = (0.48 * smooth_noise(10.0) +
-                    0.34 * smooth_noise(3.8) +
-                    0.18 * smooth_noise(1.15))
-    fade = np.minimum(1.0, np.minimum(distances / 9.0, (line.length - distances) / 9.0))
+    displacement = (0.42 * smooth_noise(8.0) +
+                    0.35 * smooth_noise(3.0) +
+                    0.23 * smooth_noise(0.95))
+    fade = np.minimum(1.0, np.minimum(distances / 5.0, (line.length - distances) / 5.0))
     fade = np.clip(fade, 0.0, 1.0)
-    offset = displacement * amplitude * fade
+    offset = np.clip(displacement * amplitude * fade, -4.5, 4.5)
     if city_points:
         city_array = np.asarray(city_points, dtype=np.float64)
         normal = np.column_stack((normal_x, normal_y))
@@ -578,7 +581,7 @@ def main() -> None:
     ridge_barrier += RIDGE_BARRIER_WEIGHT * np.exp(-ridge_distance / 2.2)
     river_distance = ndimage.distance_transform_edt(~river_mask)
     rng = np.random.default_rng(SEED)
-    noise = ndimage.gaussian_filter(rng.normal(size=(HEIGHT, WIDTH)).astype(np.float32), sigma=5.5, mode="nearest")
+    noise = ndimage.gaussian_filter(rng.normal(size=(HEIGHT, WIDTH)).astype(np.float32), sigma=4.5, mode="nearest")
     noise /= max(float(noise.std()), 1e-6)
     noise = np.clip(noise, -2.0, 2.0)
 
@@ -802,10 +805,11 @@ def main() -> None:
             "boundary_summit_minimum_elevation_m": BOUNDARY_SUMMIT_MIN_ELEVATION_M,
             "boundary_summit_capture_distance_px": BOUNDARY_SUMMIT_CAPTURE_DISTANCE_PX,
             "boundary_curve_detail": {"seed": SEED, "sample_step_px": BOUNDARY_DETAIL_STEP_PX,
-                                      "plain_amplitude_px": 0.24, "maximum_amplitude_px": 2.5,
+                                      "plain_amplitude_px": 0.48, "maximum_amplitude_px": 3.8,
+                                      "maximum_offset_px": 4.5,
                                       "ridge_barrier_width_px": 2.2,
                                       "city_marker_clearance_px": CITY_MARKER_CLEARANCE_PX},
-            "city_stroke": {"color": "#718a84", "opacity": 0.36, "width_px": 1.0, "dash_px": [3.2, 4.6]},
+            "city_stroke": {"color": "#718a84", "opacity": 0.44, "width_px": 1.05, "dash_px": [6.0, 1.8]},
             "province_stroke": {"color": "#596b67", "opacity": 0.64, "width_px": 1.2, "dash_px": [4.2, 3.2]},
         },
         "features": features,
