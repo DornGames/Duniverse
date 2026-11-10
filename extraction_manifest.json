@@ -156,16 +156,16 @@
     {
       "segment_id": 11,
       "network_id": "zc_mainstem",
-      "start_width_px": 0.4,
-      "end_width_px": 0.7,
+      "start_width_px": 0.22,
+      "end_width_px": 0.38,
       "width_knots_px": [
         [
           0.0,
-          0.4
+          0.22
         ],
         [
           1.0,
-          0.7
+          0.38
         ]
       ],
       "clip_to_quadrant": true,
@@ -174,16 +174,16 @@
     {
       "segment_id": 14,
       "network_id": "zc_mainstem",
-      "start_width_px": 0.35,
-      "end_width_px": 0.65,
+      "start_width_px": 0.19,
+      "end_width_px": 0.35,
       "width_knots_px": [
         [
           0.0,
-          0.35
+          0.19
         ],
         [
           1.0,
-          0.65
+          0.35
         ]
       ],
       "clip_to_quadrant": true,
@@ -192,54 +192,54 @@
     {
       "segment_id": 24,
       "network_id": "zc_mainstem",
-      "start_width_px": 0.85,
-      "end_width_px": 0.32,
+      "start_width_px": 0.55,
+      "end_width_px": 0.53,
       "width_knots_px": [
         [
           0.0,
-          0.85
+          0.55
         ],
         [
           0.1,
-          1.05
+          0.58
         ],
         [
           0.28,
-          0.98
+          0.57
         ],
         [
           0.42,
-          0.83
+          0.55
         ],
         [
           0.4639,
-          0.72
+          0.54
         ],
         [
           0.68,
-          0.5
+          0.53
         ],
         [
           1.0,
-          0.32
+          0.53
         ]
       ],
       "clip_to_quadrant": true,
-      "note": "ZC mainstem descends from the plateau into the lower plain; its upper-basin channel widens moderately as the gradient eases."
+      "note": "ZC mainstem below the confluence of reaches 11 and 14; its compact upper-basin channel remains continuous while entering the plain."
     },
     {
       "segment_id": 29,
       "network_id": "tm_mainstem",
-      "start_width_px": 0.35,
-      "end_width_px": 0.7,
+      "start_width_px": 0.22,
+      "end_width_px": 0.38,
       "width_knots_px": [
         [
           0.0,
-          0.35
+          0.22
         ],
         [
           1.0,
-          0.7
+          0.38
         ]
       ],
       "clip_to_quadrant": true,
@@ -248,16 +248,16 @@
     {
       "segment_id": 36,
       "network_id": "tm_mainstem",
-      "start_width_px": 0.5,
-      "end_width_px": 0.3,
+      "start_width_px": 0.27,
+      "end_width_px": 0.2,
       "width_knots_px": [
         [
           0.0,
-          0.5
+          0.27
         ],
         [
           1.0,
-          0.3
+          0.2
         ]
       ],
       "clip_to_quadrant": true,
@@ -266,16 +266,16 @@
     {
       "segment_id": 38,
       "network_id": "tm_mainstem",
-      "start_width_px": 0.45,
-      "end_width_px": 0.25,
+      "start_width_px": 0.24,
+      "end_width_px": 0.16,
       "width_knots_px": [
         [
           0.0,
-          0.45
+          0.24
         ],
         [
           1.0,
-          0.25
+          0.16
         ]
       ],
       "clip_to_quadrant": true,
@@ -284,16 +284,16 @@
     {
       "segment_id": 50,
       "network_id": "tm_mainstem",
-      "start_width_px": 0.55,
-      "end_width_px": 0.75,
+      "start_width_px": 0.38,
+      "end_width_px": 0.42,
       "width_knots_px": [
         [
           0.0,
-          0.55
+          0.38
         ],
         [
           1.0,
-          0.75
+          0.42
         ]
       ],
       "clip_to_quadrant": true,
@@ -302,124 +302,30 @@
     {
       "segment_id": 51,
       "network_id": "tm_mainstem",
-      "start_width_px": 0.95,
-      "end_width_px": 0.72,
+      "start_width_px": 0.62,
+      "end_width_px": 0.57,
       "width_knots_px": [
         [
           0.0,
-          0.95
+          0.62
         ],
         [
           1.0,
-          0.72
+          0.57
         ]
       ],
       "clip_to_quadrant": true,
-      "note": "TM mainstem below the confluence of reaches 29, 36, 38, and 50."
+      "note": "TM mainstem below the confluence of reaches 29 and 50."
     },
     {
       "segment_id": 54,
       "network_id": "tm_mainstem",
-      "start_width_px": 0.35,
-      "end_width_px": 0.55,
-      "width_knots_px": [
-        [
-          0.0,
-          0.35
-        ],
-        [
-          1.0,
-          0.55
-        ]
-      ],
-      "clip_to_quadrant": true,
-      "note": ""
-    },
-    {
-      "segment_id": 57,
-      "network_id": "tm_mainstem",
-      "start_width_px": 0.9,
-      "end_width_px": 1.05,
-      "width_knots_px": [
-        [
-          0.0,
-          0.9
-        ],
-        [
-          1.0,
-          1.05
-        ]
-      ],
-      "clip_to_quadrant": true,
-      "note": "Downstream continuation below the additional tributary at reach 54; its cartographic width tapers at the Q2 edge."
-    },
-    {
-      "segment_id": 61,
-      "network_id": "zc_mainstem",
-      "start_width_px": 1.0,
-      "end_width_px": 0.85,
-      "width_knots_px": [
-        [
-          0.0,
-          1.0
-        ],
-        [
-          0.45,
-          0.92
-        ],
-        [
-          1.0,
-          0.85
-        ]
-      ],
-      "clip_to_quadrant": true,
-      "note": "Lower continuation of reach 24 with a moderately wider channel through its meanders."
-    },
-    {
-      "segment_id": 63,
-      "network_id": "zc_mainstem",
-      "start_width_px": 0.55,
-      "end_width_px": 0.85,
-      "width_knots_px": [
-        [
-          0.0,
-          0.55
-        ],
-        [
-          1.0,
-          0.85
-        ]
-      ],
-      "clip_to_quadrant": true,
-      "note": ""
-    },
-    {
-      "segment_id": 64,
-      "network_id": "zc_mainstem",
-      "start_width_px": 0.95,
-      "end_width_px": 0.75,
-      "width_knots_px": [
-        [
-          0.0,
-          0.95
-        ],
-        [
-          1.0,
-          0.75
-        ]
-      ],
-      "clip_to_quadrant": true,
-      "note": "Lower continuation after reach 61 meets the western tributary network; its channel tapers at the Q2 edge."
-    },
-    {
-      "segment_id": 67,
-      "network_id": "zc_mainstem",
-      "start_width_px": 0.55,
+      "start_width_px": 0.22,
       "end_width_px": 0.3,
       "width_knots_px": [
         [
           0.0,
-          0.55
+          0.22
         ],
         [
           1.0,
@@ -430,18 +336,112 @@
       "note": ""
     },
     {
-      "segment_id": 68,
+      "segment_id": 57,
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.7,
+      "end_width_px": 0.55,
+      "width_knots_px": [
+        [
+          0.0,
+          0.7
+        ],
+        [
+          1.0,
+          0.55
+        ]
+      ],
+      "clip_to_quadrant": true,
+      "note": "Downstream continuation below the additional tributary at reach 54; its width eases toward the Q2 edge."
+    },
+    {
+      "segment_id": 61,
       "network_id": "zc_mainstem",
-      "start_width_px": 0.4,
+      "start_width_px": 0.55,
+      "end_width_px": 0.52,
+      "width_knots_px": [
+        [
+          0.0,
+          0.55
+        ],
+        [
+          0.45,
+          0.54
+        ],
+        [
+          1.0,
+          0.52
+        ]
+      ],
+      "clip_to_quadrant": true,
+      "note": "Lower continuation of reach 24; a broad plain meander is added without moving either confluence endpoint."
+    },
+    {
+      "segment_id": 63,
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.36,
+      "end_width_px": 0.46,
+      "width_knots_px": [
+        [
+          0.0,
+          0.36
+        ],
+        [
+          1.0,
+          0.46
+        ]
+      ],
+      "clip_to_quadrant": true,
+      "note": "Main channel from the western tributary junction toward the lower confluence at reach 64."
+    },
+    {
+      "segment_id": 64,
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.58,
+      "end_width_px": 0.7,
+      "width_knots_px": [
+        [
+          0.0,
+          0.58
+        ],
+        [
+          1.0,
+          0.7
+        ]
+      ],
+      "clip_to_quadrant": true,
+      "note": "Lower continuation after reaches 61 and 63 meet; its display width eases toward the Q2 edge."
+    },
+    {
+      "segment_id": 67,
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.28,
       "end_width_px": 0.2,
       "width_knots_px": [
         [
           0.0,
-          0.4
+          0.28
         ],
         [
           1.0,
           0.2
+        ]
+      ],
+      "clip_to_quadrant": true,
+      "note": ""
+    },
+    {
+      "segment_id": 68,
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.18,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.18
+        ],
+        [
+          1.0,
+          0.12
         ]
       ],
       "clip_to_quadrant": true,
@@ -464,5 +464,93 @@
   ],
   "quadrant_ii_lake_island_creeks": [
     "q2-lake-08-island-01-creek"
+  ],
+  "quadrant_ii_river_centerline_adjustments": [
+    {
+      "id": "zc_lower_plain_s_bend",
+      "segment_id": 24,
+      "start_fraction": 0.04,
+      "end_fraction": 0.42,
+      "amplitude_px": 0.82,
+      "note": "One broad, restrained S bend across the open plain; taper to zero at both ends."
+    },
+    {
+      "id": "zc_downstream_plain_meander",
+      "segment_id": 61,
+      "start_fraction": 0.14,
+      "end_fraction": 0.86,
+      "amplitude_px": 0.46,
+      "note": "A smaller, offset meander on the flatter downstream reach, with fixed confluence endpoints."
+    }
+  ],
+  "quadrant_ii_river_topology_checks": [
+    {
+      "id": "zc_upper_tributaries_to_reach_24",
+      "upstream_widths_px": [
+        0.38,
+        0.35
+      ],
+      "combined_upstream_width_px": 0.517,
+      "downstream_width_px": 0.53,
+      "node_gap_px": 0.0
+    },
+    {
+      "id": "zc_western_tributaries_to_reach_63",
+      "upstream_widths_px": [
+        0.28,
+        0.18
+      ],
+      "combined_upstream_width_px": 0.333,
+      "downstream_width_px": 0.36,
+      "node_gap_px": 0.0
+    },
+    {
+      "id": "zc_reaches_61_and_63_to_64",
+      "upstream_widths_px": [
+        0.52,
+        0.46
+      ],
+      "combined_upstream_width_px": 0.694,
+      "downstream_width_px": 0.7,
+      "node_gap_px": 0.0
+    },
+    {
+      "id": "tm_upper_tributaries_to_reach_50",
+      "upstream_widths_px": [
+        0.27,
+        0.24
+      ],
+      "combined_upstream_width_px": 0.361,
+      "downstream_width_px": 0.38,
+      "node_gap_px": 0.0
+    },
+    {
+      "id": "tm_reaches_29_and_50_to_51",
+      "upstream_widths_px": [
+        0.38,
+        0.42
+      ],
+      "combined_upstream_width_px": 0.566,
+      "downstream_width_px": 0.57,
+      "node_gap_px": 0.0
+    },
+    {
+      "id": "tm_reaches_51_and_54_to_57",
+      "upstream_widths_px": [
+        0.62,
+        0.3
+      ],
+      "combined_upstream_width_px": 0.689,
+      "downstream_width_px": 0.7,
+      "node_gap_px": 0.0
+    },
+    {
+      "id": "zc_reaches_24_and_61",
+      "continuous_widths_px": [
+        0.55,
+        0.55
+      ],
+      "node_gap_px": 0.0
+    }
   ]
 }

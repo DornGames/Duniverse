@@ -343,6 +343,172 @@ def profile_width_at(profile: dict, fraction: float) -> float:
     return knots[-1][1]
 
 
+def offset_centerline(line: LineString, definition: dict) -> LineString:
+    """Apply a smooth, bounded lateral meander while keeping both endpoints fixed."""
+    start_fraction = float(definition["start_fraction"])
+    end_fraction = float(definition["end_fraction"])
+    amplitude = float(definition["amplitude_px"])
+    if not (0.0 <= start_fraction < end_fraction <= 1.0) or amplitude < 0:
+        raise ValueError(f"Invalid centerline adjustment {definition.get('id')}")
+    if line.length <= 0 or amplitude == 0:
+        return line
+
+    sample_count = max(2, math.ceil(line.length / 1.25), len(line.coords) - 1)
+    tangent_span = min(2.5, max(0.75, line.length / sample_count))
+    adjusted = []
+    for index in range(sample_count + 1):
+        fraction = index / sample_count
+        distance = line.length * fraction
+        before = line.interpolate(max(0.0, distance - tangent_span))
+        center = line.interpolate(distance)
+        after = line.interpolate(min(line.length, distance + tangent_span))
+        tangent_x, tangent_y = after.x - before.x, after.y - before.y
+        tangent_length = math.hypot(tangent_x, tangent_y) or 1.0
+        normal_x, normal_y = -tangent_y / tangent_length, tangent_x / tangent_length
+
+        offset = 0.0
+        if start_fraction < fraction < end_fraction:
+            local = (fraction - start_fraction) / (end_fraction - start_fraction)
+            envelope = math.sin(math.pi * local) ** 2
+            # A dominant sine pair gives an S bend; the smaller third wave
+            # makes its lobes unequal, as in natural meanders.
+            wave = math.sin(2 * math.pi * local) + 0.12 * math.sin(3 * math.pi * local)
+            offset = amplitude * 1.5 * envelope * wave
+        adjusted.append((center.x + normal_x * offset, center.y + normal_y * offset))
+    adjusted[0] = (float(line.coords[0][0]), float(line.coords[0][1]))
+    adjusted[-1] = (float(line.coords[-1][0]), float(line.coords[-1][1]))
+    return LineString(adjusted)
+
+
+def apply_centerline_adjustments(features: list[dict], config: dict) -> list[dict]:
+    """Apply documented local bends to selected reaches before deriving channels."""
+    definitions_by_segment: dict[int, list[dict]] = {}
+    for definition in config.get("centerline_adjustments", []):
+        definitions_by_segment.setdefault(int(definition["segment_id"]), []).append(definition)
+    if not definitions_by_segment:
+        return features
+
+    grouped_indices: dict[int, list[int]] = {}
+    for index, feature in enumerate(features):
+        segment_id = int(feature["properties"].get("segment_id", 0))
+        if segment_id in definitions_by_segment:
+            grouped_indices.setdefault(segment_id, []).append(index)
+    missing = sorted(set(definitions_by_segment) - set(grouped_indices))
+    duplicated = sorted(segment_id for segment_id, indices in grouped_indices.items() if len(indices) != 1)
+    if missing or duplicated:
+        raise ValueError(f"Centerline adjustments have missing or split segments: missing={missing}, split={duplicated}")
+
+    adjusted_features = list(features)
+    for segment_id, definitions in definitions_by_segment.items():
+        index = grouped_indices[segment_id][0]
+        feature = adjusted_features[index]
+        lines = line_parts(shape(feature["geometry"]))
+        if len(lines) != 1:
+            raise ValueError(f"Centerline adjustment requires one line for segment {segment_id}")
+        line = lines[0]
+        for definition in definitions:
+            line = offset_centerline(line, definition)
+        properties = {
+            **feature["properties"],
+            "cartographic_adjustment_ids": [item["id"] for item in definitions],
+        }
+        adjusted_features[index] = {
+            **feature,
+            "properties": properties,
+            "geometry": mapping(line),
+        }
+    return adjusted_features
+
+
+def reach_endpoint(features_by_id: dict[int, dict], endpoint: dict) -> tuple[Point, float]:
+    segment_id = int(endpoint["segment_id"])
+    side = str(endpoint["endpoint"])
+    if side not in {"start", "end"}:
+        raise ValueError(f"Unknown endpoint {side!r} on segment {segment_id}")
+    feature = features_by_id.get(segment_id)
+    if feature is None:
+        raise ValueError(f"Width topology references missing segment {segment_id}")
+    lines = line_parts(shape(feature["geometry"]))
+    if len(lines) != 1:
+        raise ValueError(f"Width topology requires one line for segment {segment_id}")
+    line = lines[0]
+    fraction = 0.0 if side == "start" else 1.0
+    coordinate = line.coords[0 if side == "start" else -1]
+    return Point(coordinate), fraction
+
+
+def validate_channel_topology(features: list[dict], config: dict) -> list[dict]:
+    """Reject Q2 profiles where confluences pinch or continuous reaches jump."""
+    profiles = width_profiles(config)
+    features_by_id = {
+        int(feature["properties"]["segment_id"]): feature
+        for feature in features
+        if "segment_id" in feature["properties"]
+    }
+    checks = []
+    for definition in config.get("confluence_width_checks", []):
+        tributaries = definition["upstream_reaches"]
+        downstream = definition["downstream_reach"]
+        points_and_widths = []
+        for endpoint in [*tributaries, downstream]:
+            point, fraction = reach_endpoint(features_by_id, endpoint)
+            profile = profiles.get(int(endpoint["segment_id"]))
+            if profile is None:
+                raise ValueError(f"Confluence check {definition['id']} has no width profile for {endpoint['segment_id']}")
+            points_and_widths.append((point, profile_width_at(profile, fraction)))
+
+        max_gap = max(
+            left[0].distance(right[0])
+            for index, left in enumerate(points_and_widths)
+            for right in points_and_widths[index + 1:]
+        )
+        allowed_gap = float(definition.get("max_node_gap_px", 0.1))
+        if max_gap > allowed_gap:
+            raise ValueError(f"Confluence {definition['id']} endpoints do not meet: gap={max_gap:.3f}px")
+
+        combined_upstream_width = math.sqrt(sum(width ** 2 for _, width in points_and_widths[:-1]))
+        downstream_width = points_and_widths[-1][1]
+        required_width = combined_upstream_width * float(definition.get("minimum_ratio", 1.0))
+        if downstream_width + 1e-6 < required_width:
+            raise ValueError(
+                f"Confluence {definition['id']} pinches downstream: "
+                f"{downstream_width:.3f}px < {required_width:.3f}px"
+            )
+        checks.append({
+            "id": definition["id"],
+            "upstream_widths_px": [round(width, 3) for _, width in points_and_widths[:-1]],
+            "combined_upstream_width_px": round(combined_upstream_width, 3),
+            "downstream_width_px": round(downstream_width, 3),
+            "node_gap_px": round(max_gap, 4),
+        })
+
+    for definition in config.get("channel_continuity_checks", []):
+        endpoints = [definition["first_reach"], definition["second_reach"]]
+        values = [
+            reach_endpoint(features_by_id, endpoint)
+            for endpoint in endpoints
+        ]
+        widths = [
+            profile_width_at(profiles[int(endpoint["segment_id"])], fraction)
+            for endpoint, (_, fraction) in zip(endpoints, values)
+        ]
+        gap = values[0][0].distance(values[1][0])
+        if gap > float(definition.get("max_node_gap_px", 0.1)):
+            raise ValueError(f"Continuity {definition['id']} endpoints do not meet: gap={gap:.3f}px")
+        width_difference = abs(widths[0] - widths[1])
+        if width_difference > float(definition.get("max_width_difference_px", 0.05)):
+            raise ValueError(
+                f"Continuity {definition['id']} has a width jump: "
+                f"{width_difference:.3f}px"
+            )
+        checks.append({
+            "id": definition["id"],
+            "continuous_widths_px": [round(width, 3) for width in widths],
+            "node_gap_px": round(gap, 4),
+        })
+    return checks
+
+
 def variable_width_channel(
     reach: LineString,
     start_width: float,
@@ -1396,6 +1562,9 @@ def main() -> None:
     canal_additions_fc = read_fc(DATA / "canal_additions.geojson")
     canals.extend(canal_additions_fc["features"])
     river_features = remove_separated_canal_reaches(river_source_fc["features"], canals)
+    width_config = q2_river_width_config()
+    river_features = apply_centerline_adjustments(river_features, width_config)
+    topology_checks = validate_channel_topology(river_features, width_config)
     seasonal = seasonal_features()
     cross_border_fc = read_fc(DATA / "cross_border_rivers.geojson")
     # Exclude raster fragments that exactly repeat the seasonal dash strokes.
@@ -1424,7 +1593,6 @@ def main() -> None:
     lake_edge_residual_count = len(lake_edge_residual_ids_removed)
     cross_border_fc["features"] = cross_border
 
-    width_config = q2_river_width_config()
     region_features = read_fc(DATA / "administrative_regions.geojson")["features"]
     river_channels = river_channel_features(river_features, width_config)
     river_islands = river_island_features(river_features, river_channels, region_features, width_config)
@@ -1465,6 +1633,8 @@ def main() -> None:
             }
             for segment_id, profile in sorted(width_profiles(width_config).items())
         ],
+        "quadrant_ii_river_centerline_adjustments": width_config.get("centerline_adjustments", []),
+        "quadrant_ii_river_topology_checks": topology_checks,
         "quadrant_ii_river_channel_networks": [
             feature["properties"]["network_id"] for feature in river_channels
         ],
