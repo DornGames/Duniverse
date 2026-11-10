@@ -1,0 +1,558 @@
+{
+  "title": "𣿅国陆地推演地形",
+  "elevationStatus": "synthetic_relief_anchored_to_all_mapped_peak_heights",
+  "fixedSeed": 20261108,
+  "ridgeBackboneCount": 4,
+  "mountainConnectionPolicy": "瑞丰山脉沿河60西侧从剑山经雪瑞峰延伸，并顺河道弯折方向渐隐；中央山脉不绘制贯穿式骨架，由彼此留有山口的局部山群组成，西南盆地的春分山、梅花山、旃檀山仅轻微搭接，中央山脉最北端为刺梨山。长岭山脉从鹞岳沿河道U形弯折绕过河谷，在北侧鞍部与对岸山体自然接合；河道通过曲线峡谷塑形，不再用直线河岸切断山体。长岭市位于山间河谷，塔马市按山城保留。",
+  "namedPeakPolicy": "All 87 labelled summit heights in data/mountain_peaks.js are exact interpolation constraints; relief-only position and zone corrections are stored in a separate copy, leaving the original source file untouched.",
+  "peakAnchorKernel": "Named ridge peaks use range-aligned anisotropic kernels; Central Range peaks use independent local orientations, with only the three southwest-basin massifs allowed mild overlap. Nearby mapped rivers carve smooth curved valleys from the actual watercourse; no planar bank mask truncates mountain massifs.",
+  "peakAnchorMaxFitErrorM": 0.0,
+  "riverWaterSurfacePolicy": {
+    "sourceMapWaterInk": "#b1d0ed pixels from the official 4x map raster, intersected with the land mask and excluding lakes and ocean",
+    "mappedRiverWaterPixelCount": 40314,
+    "coastalTidalPixelCountSetToSeaLevel": 1158,
+    "coastalTidalSeaLevelM": 0.0,
+    "inlandWaterSurfaceRule": "Channel surfaces are constrained on the connected river-pixel graph from headwaters toward sea/lake/sinks, never rising downstream; local bank minima keep the water below adjacent land.",
+    "flowConditioning": {
+      "method": "Eight-neighbour graph over the union of all official blue river-stroke pixels and 300 traced vector reaches; route connected water pixels to sea/lake/inland sinks and propagate downstream height limits across the full network.",
+      "connectedChannelComponents": 207,
+      "centerlinePixelCount": 13213,
+      "routedNetworkPixelCount": 40472,
+      "minimumDownstreamDropMPerPixel": 0.35,
+      "directedDownstreamSteps": 112561,
+      "uphillViolationCount": 0,
+      "targetedRiverHeightCaps": [
+        {
+          "name": "长岭市邻近河道",
+          "x": 949.0,
+          "y": 405.0,
+          "maximumRiverElevationM": 3200.0,
+          "snapDistancePx": 9.9,
+          "componentId": 1
+        }
+      ],
+      "lineAuditCsv": "data/river_flow_audit.csv"
+    },
+    "curvedRiverValleyPolicy": "Terrain caps follow the curved union of traced channels and official water strokes and vary with mountain/plateau relief; no straight bank-plane cuts are applied.",
+    "mountainGorgeCutM": [
+      1500.0,
+      380.0
+    ],
+    "planarRiverBankTaperCount": 0,
+    "description": "All official blue water-stroke pixels use the downhill-conditioned surface; the river graph is reconditioned against final banks after valley carving."
+  },
+  "riverMountainAudit": {
+    "checkedSummitCount": 87,
+    "summitsWithinCurvedValleyReviewDistance": 80,
+    "auditCsv": "data/river_mountain_audit.csv",
+    "method": "For each labelled summit, compare its nearest official blue water pixel with terrain 8px on both sides after the curved channel valley has been carved; the check records no straight bank clipping."
+  },
+  "hydrologyTileAudit": {
+    "tileCount": 48,
+    "tilePassCount": 48,
+    "uphillAdjacentPairCount": 0,
+    "nearBankSampleCount": 329535,
+    "landBelowRiverSurfaceSampleCount": 0,
+    "grid": "8 columns x 6 rows, 280x258 source-pixel windows with 20-26px overlap",
+    "tileAuditCsv": "data/hydrology_tile_audit.csv",
+    "flowAuditCsv": "data/river_flow_audit.csv",
+    "reviewSheetPattern": "diagnostics/hydrology_tile_review_01.png through hydrology_tile_review_08.png"
+  },
+  "riverFlowAudit": {
+    "checkedRiverReachCount": 300,
+    "reachProfilesWithoutUphillSteps": 300,
+    "reachProfilesWithLocalUphillStep": 0,
+    "directionRule": "Each traced reach is checked along adjacent 8-connected centerline pixels within the complete water graph; sparse geometry vertices are not compared across branches.",
+    "auditCsv": "data/river_flow_audit.csv"
+  },
+  "specialRifengRiverAlignment": {
+    "range": "瑞丰山脉",
+    "riverSegmentId": 60,
+    "riverSide": "map-left/west",
+    "backboneSourcePixelXY": [
+      [
+        991.75,
+        602.625
+      ],
+      [
+        980.0,
+        612.0
+      ],
+      [
+        974.0,
+        625.0
+      ],
+      [
+        976.0,
+        640.0
+      ],
+      [
+        982.0,
+        655.0
+      ],
+      [
+        991.0,
+        670.0
+      ],
+      [
+        1003.0,
+        686.0
+      ],
+      [
+        1016.5,
+        705.125
+      ]
+    ],
+    "fadeCrossingSourcePixelXY": [
+      1002.0,
+      724.5
+    ],
+    "fadeLengthAlongBendPx": 24.0,
+    "bankMask": "traced unlooped river-60 trunk profile, then continued to the bend crossing on the map-west side",
+    "description": "The ridge bends along river 60's western bank from 剑山 to 雪瑞峰 and tapers in the downstream bend direction, avoiding a horizontal cut across the terrain."
+  },
+  "specialCentralRangeLayout": {
+    "ridgeSegmentsSourcePixelXY": [],
+    "terminalPeak": "刺梨山",
+    "basinSideSlightlyBlendedPeaks": [
+      "旃檀山",
+      "春分山",
+      "梅花山"
+    ],
+    "excludedPeaks": [
+      "光山",
+      "射手山",
+      "秋分山"
+    ],
+    "description": "No point-to-point Central Range backbone is drawn. Local massifs are kept separate by natural passes, with only slight overlap in the southwest-basin cluster; the range terminates at 刺梨山."
+  },
+  "specialSouthwestBasinMountainBlend": {
+    "peakNames": [
+      "旃檀山",
+      "春分山",
+      "梅花山"
+    ],
+    "summitKernelSigmaAlongAcrossPx": [
+      20.0,
+      9.0
+    ],
+    "broadShoulderReliefM": 230.0,
+    "description": "Three nearby southwest-basin peaks receive modestly broader, differently oriented forms and a low shared shoulder so their lower slopes touch lightly without joining the whole Central Range."
+  },
+  "specialNorthPlateauEasternSpur": {
+    "peakNames": [
+      "光山",
+      "射手山",
+      "秋分山"
+    ],
+    "influencePolygonSourcePixelXY": [
+      [
+        1178,
+        544
+      ],
+      [
+        1207,
+        541
+      ],
+      [
+        1237,
+        552
+      ],
+      [
+        1265,
+        576
+      ],
+      [
+        1285,
+        604
+      ],
+      [
+        1293,
+        634
+      ],
+      [
+        1286,
+        666
+      ],
+      [
+        1269,
+        683
+      ],
+      [
+        1248,
+        662
+      ],
+      [
+        1225,
+        636
+      ],
+      [
+        1203,
+        607
+      ],
+      [
+        1184,
+        585
+      ],
+      [
+        1172,
+        565
+      ]
+    ],
+    "description": "A restrained plateau shoulder supports the three mapped eastern peaks without drawing a continuous Central Range backbone through them."
+  },
+  "specialBaisuiIslandPeak": {
+    "peak": "百岁山",
+    "originalSourcePixelXY": [
+      1350,
+      960.625
+    ],
+    "reliefCopySourcePixelXY": [
+      1350.6,
+      974.8
+    ],
+    "description": "The relief-copy summit marker is moved from offshore onto the mapped island interior; original mountain peak data remain unchanged."
+  },
+  "smallIslandElevationPolicy": {
+    "smallIslandComponentCount": 9,
+    "unlabelledIslandCapM": "80 + 6 * shoreline_distance_px, capped at 200 m",
+    "labelledIslandSummitPolicy": "Summit heights stay exact in the click readout and are concentrated in a 1.1–2.6 px local cone; surrounding island terrain falls rapidly toward the shore.",
+    "summitRestoreCoreSigmaPx": 1.25
+  },
+  "northernPlateauCoastalPolicy": {
+    "shorelineCapM": 1050.0,
+    "risePerSourcePixelM": 24.0,
+    "maximumDistanceAppliedPx": 20.0,
+    "cappedCellCount": 1410,
+    "description": "Nearshore terrain of the northern plateau is lowered modestly while preserving the sharp coastal escarpment and exact summit cores."
+  },
+  "specialUValley": {
+    "city": "乍曲市",
+    "centerSourcePixelXY": [
+      838.0,
+      437.0
+    ],
+    "riverSegmentId": 24,
+    "floorTargetM": 2400.0,
+    "flatFloorHalfWidthPx": 4.0,
+    "outerWallRadiusPx": 26.0,
+    "localScopeSigmaPx": 78.0,
+    "appliedCutDepthAtCityM": 318.1,
+    "raisedAfterPeakFitAtCityM": 0.0
+  },
+  "specialLonglingRiverValley": {
+    "city": "长岭市",
+    "centerSourcePixelXY": [
+      944.8,
+      396.0
+    ],
+    "riverControlSourcePixelXY": [
+      949,
+      405
+    ],
+    "riverSurfaceTargetCapM": 3200.0,
+    "riverSurfaceAtControlM": 2487.2,
+    "cityFloorTargetM": 2667.2,
+    "cityFloorAfterBuildM": 2730.1,
+    "description": "The river segment south of 长岭市 is lowered into a continuous valley; the city sits on a valley floor just above the channel. Its local trough follows the shortest land path to the mapped river bend."
+  },
+  "specialTamadMountainCity": {
+    "city": "塔马市",
+    "centerSourcePixelXY": [
+      928.1,
+      356.1
+    ],
+    "description": "Tamad remains a high-elevation mountain city as explicitly requested."
+  },
+  "specialSwordCityValley": {
+    "city": "剑山市",
+    "centerSourcePixelXY": [
+      997.1,
+      593.9
+    ],
+    "nearestRiverPointSourcePixelXY": [
+      1001.7821129553738,
+      605.6123125880679
+    ],
+    "floorTargetM": 1750.0,
+    "appliedCutDepthAtCityM": 2498.9,
+    "description": "A narrow, steep-sided mountain-foot settlement valley joins the nearby river and preserves mapped summit points."
+  },
+  "specialNearbyRiverGorge": {
+    "city": "碱锌托克市",
+    "riverSegmentId": 231,
+    "pathBoundsSourcePixelXY": [
+      1018.0,
+      1278.0,
+      1066.0,
+      1305.0
+    ],
+    "floorTargetM": 420.0,
+    "innerRadiusPx": 1.5,
+    "outerWallRadiusPx": 16.0,
+    "cutDepthMaxM": 1528.3782958984375,
+    "carvedPathSourcePixelXY": [
+      [
+        1018.375,
+        1299.375
+      ],
+      [
+        1019.375,
+        1298.875
+      ],
+      [
+        1021.458,
+        1297.375
+      ],
+      [
+        1023.458,
+        1296.208
+      ],
+      [
+        1024.375,
+        1295.792
+      ],
+      [
+        1026.542,
+        1295.125
+      ],
+      [
+        1027.375,
+        1294.375
+      ],
+      [
+        1028.792,
+        1292.042
+      ],
+      [
+        1030.125,
+        1290.292
+      ],
+      [
+        1031.042,
+        1289.458
+      ],
+      [
+        1032.042,
+        1288.792
+      ],
+      [
+        1033.958,
+        1287.958
+      ],
+      [
+        1035.042,
+        1287.625
+      ],
+      [
+        1036.042,
+        1287.375
+      ],
+      [
+        1037.708,
+        1287.208
+      ],
+      [
+        1039.625,
+        1287.375
+      ],
+      [
+        1040.542,
+        1287.625
+      ],
+      [
+        1042.875,
+        1287.792
+      ],
+      [
+        1044.125,
+        1288.042
+      ],
+      [
+        1044.458,
+        1288.375
+      ],
+      [
+        1044.625,
+        1288.792
+      ],
+      [
+        1044.625,
+        1290.042
+      ],
+      [
+        1044.208,
+        1291.792
+      ],
+      [
+        1043.792,
+        1292.375
+      ],
+      [
+        1043.458,
+        1293.708
+      ],
+      [
+        1042.542,
+        1296.042
+      ],
+      [
+        1042.458,
+        1297.792
+      ],
+      [
+        1042.625,
+        1298.375
+      ],
+      [
+        1043.375,
+        1299.208
+      ],
+      [
+        1044.125,
+        1299.792
+      ],
+      [
+        1044.625,
+        1300.042
+      ],
+      [
+        1045.625,
+        1300.208
+      ],
+      [
+        1046.875,
+        1300.125
+      ],
+      [
+        1047.292,
+        1299.958
+      ],
+      [
+        1048.125,
+        1299.875
+      ],
+      [
+        1050.708,
+        1299.125
+      ],
+      [
+        1052.542,
+        1298.458
+      ],
+      [
+        1054.208,
+        1297.625
+      ],
+      [
+        1056.208,
+        1296.292
+      ],
+      [
+        1059.125,
+        1293.958
+      ],
+      [
+        1059.792,
+        1292.792
+      ],
+      [
+        1060.208,
+        1291.625
+      ],
+      [
+        1060.542,
+        1288.875
+      ],
+      [
+        1060.875,
+        1287.625
+      ],
+      [
+        1061.625,
+        1286.292
+      ],
+      [
+        1063.042,
+        1284.708
+      ],
+      [
+        1065.792,
+        1282.458
+      ]
+    ],
+    "description": "A narrow gorge follows mapped river 231 through the saddle between nearby peaks, interrupting the unsupported mountain connection while preserving summit anchors."
+  },
+  "specialSeaBottomLakeBasin": {
+    "lake": "海底湖",
+    "lakeId": 3,
+    "centerSourcePixelXY": [
+      494.0,
+      1259.0
+    ],
+    "floorRangeM": [
+      -214.3,
+      -173.3
+    ],
+    "meanFloorM": -196.4,
+    "shoreMarginTargetM": [
+      8.0,
+      55.3
+    ],
+    "description": "The mapped lake floor stays near -200 m with fixed-seed non-integer relief; dry land around the shore rises gently above the river surface."
+  },
+  "elevationMinimumM": -214.349,
+  "elevationMaximumM": 13623.858,
+  "highestMappedPeakM": 13471.543,
+  "rasterScaleMaximumM": 18860.1602,
+  "elevationScalePolicy": "The raster scale expands to 1.4 times the highest mapped peak; no Earth-based maximum elevation is imposed.",
+  "plateauEdgeStyle": "Irregular steep escarpment with river-cut passes and rapid relief change at the official northern-plateau boundary.",
+  "coastalElevationPolicy": "Non-mountain coast terrain includes a varied 0–4 m strip at the shore, rising gently inland and staying below 50 m by about 20 source pixels; northern plateau nearshore relief is capped separately while retaining a steep escarpment.",
+  "easternLowlandPolicy": "Non-mountain terrain in the east and southeast remains below 50 m; the first 20 source pixels from shore taper gently from near sea level to below 50 m.",
+  "plainElevationPolicy": "Non-mountain terrain in the mapped central plain remains at or below 20 m, usually below 20 m, with broad low-amplitude fixed-seed undulation and no quantized elevation tiers.",
+  "fineReliefDetail": "Fixed-seed, low-amplitude multiscale terrain detail; only documented ranges receive continuous backbones, while other labelled peaks receive separate asymmetric local massifs.",
+  "contoursDisplayed": false,
+  "landformLabelsDisplayed": false,
+  "cityNeighborhoodRadiusPx": 12,
+  "cityNeighborhoodRadiusKmApprox": 93,
+  "heightUnit": "metres, illustrative absolute scale",
+  "elevationRaster": "data/relief_elevation.js; full-resolution 16-bit elevation with official river-water mask and flow-conditioned river surfaces; retained as terrain-model and hydrology-audit data, while interactive elevation readout is temporarily disabled",
+  "sources": [
+    "data/mountain_peaks.js",
+    "data/relief_mountain_peaks.js (relief-copy peak positions and northern-plateau extension classification)",
+    "data/mountain_elevation_model.md",
+    "data/hydrology_lines.geojson",
+    "data/ocean_water.geojson",
+    "data/lakes.geojson",
+    "data/coastlines.geojson",
+    "data/national_outline.geojson",
+    "Administrative-Division-Map-of-Donh-2026.png (official labelled map; green dashed northern plateau boundary digitized in source pixels)"
+  ],
+  "limits": "The source map has no surveyed elevation raster. All displayed peak heights are honored exactly; terrain between mapped control points and city heights remain a fixed geographic model based on relief, drainage, coastlines, and map context.",
+  "cityCount": 316,
+  "cityLocationAudit": {
+    "cityCount": 316,
+    "markerMatchedCityCount": 315,
+    "ordinaryCityMarkerCount": 270,
+    "capitalMarkerCount": 45,
+    "capitalCityCount": 45,
+    "capitalLabelOffsetsOver1Px": 45,
+    "maximumCapitalLabelToMarkerOffsetPx": 20.12,
+    "singleUnmarkedOrdinaryCityCount": 1,
+    "basis": "visible SVG city-dot centers in index.html; city label anchors retained separately"
+  },
+  "cityRelationshipAudit": {
+    "checkedCityCount": 316,
+    "officialMapMarkerMatchedCount": 315,
+    "cityPointsOnWaterMaskCount": 9,
+    "cityPointsOver5PxFromLandCount": 2,
+    "cityPointsOnRiverCenterlineCount": 0,
+    "cityPointsWithin5PxOfMappedPeakCount": 0,
+    "nonPlateauCitiesWithLocalReliefOver1800mCount": 11,
+    "reviewFlagCount": 20,
+    "method": "Each city was sampled at its visible map marker; checked against land mask, the complete official river-pixel network, nearest named summit, and a 12px neighborhood elevation range."
+  },
+  "cityMarkerElevationSnapRadiusPx": 3.5,
+  "cityMarkerElevationSnapScope": "offland_city_markers_only",
+  "peakCount": 87
+}
