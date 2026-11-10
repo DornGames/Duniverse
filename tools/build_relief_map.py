@@ -1866,7 +1866,8 @@ def main():
     elevation_rgba = np.zeros((*z_full.shape, 4), dtype=np.uint8)
     elevation_rgba[:, :, 0] = (elevation_code >> 8).astype(np.uint8)
     elevation_rgba[:, :, 1] = (elevation_code & 255).astype(np.uint8)
-    elevation_rgba[:, :, 3] = np.where(land_full, 255, 0).astype(np.uint8)
+    elevation_query_mask = relief_sample_mask & ~river_water_mask_full
+    elevation_rgba[:, :, 3] = np.where(elevation_query_mask, 255, 0).astype(np.uint8)
     Image.fromarray(elevation_rgba, "RGBA").save(DATA / "relief_elevation.png", optimize=True)
     elevation_source = {
         "width": int(elevation_code.shape[1]),
@@ -2389,7 +2390,8 @@ def main():
             "cityNeighborhoodRadiusPx": 12,
             "cityNeighborhoodRadiusKmApprox": 93,
             "heightUnit": "metres, illustrative absolute scale",
-            "elevationRaster": "data/relief_elevation.js; full-resolution 16-bit elevation with official river-water mask and flow-conditioned river surfaces; retained as terrain-model and hydrology-audit data, while interactive elevation readout is temporarily disabled",
+            "elevationRaster": "data/relief_elevation.js; full-resolution 16-bit elevation with official river-water mask and flow-conditioned river surfaces; retained as terrain-model and hydrology-audit data",
+            "elevationSampleImage": "data/relief_elevation.png; 16-bit click-sampling image with alpha mask excluding rivers and open water, retained lakes include basin-floor elevations",
             "sources": [
                 "data/mountain_peaks.js",
                 "data/relief_mountain_peaks.js (relief-copy peak positions and northern-plateau extension classification)",

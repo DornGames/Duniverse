@@ -1,0 +1,70 @@
+{
+  "quadrant": "II",
+  "definition": "Upper-left quarter of the national outline pixel bounding box.",
+  "extent_px": [
+    234.0,
+    28.0,
+    1040.0,
+    735.5
+  ],
+  "coordinate_reference": "input_map.png image pixels; origin at upper left",
+  "source_pixel_scale_km": 7.77195,
+  "width_semantics": "Display-only channel widths in source image pixels. Widths taper along connected reaches and grow with downstream accumulation; each bank varies independently to reflect bend curvature and local shoreline shape. These are relative cartographic widths, not surveyed measurements.",
+  "quadrant_edge_transition_width_px": 1.25,
+  "reach_profiles_px": {
+    "11": {"network_id": "zc_mainstem", "start_width_px": 0.55, "end_width_px": 1.2},
+    "14": {"network_id": "zc_mainstem", "start_width_px": 0.45, "end_width_px": 1.05},
+    "24": {"network_id": "zc_mainstem", "start_width_px": 2.7, "end_width_px": 1.4},
+    "61": {"network_id": "zc_mainstem", "start_width_px": 2.7, "end_width_px": 2.85},
+    "63": {"network_id": "zc_mainstem", "start_width_px": 1.05, "end_width_px": 1.8},
+    "64": {"network_id": "zc_mainstem", "start_width_px": 3.2, "end_width_px": 2.85},
+    "67": {"network_id": "zc_mainstem", "start_width_px": 1.05, "end_width_px": 0.55},
+    "68": {"network_id": "zc_mainstem", "start_width_px": 0.8, "end_width_px": 0.35},
+    "29": {"network_id": "tm_mainstem", "start_width_px": 0.55, "end_width_px": 1.25},
+    "36": {"network_id": "tm_mainstem", "start_width_px": 0.85, "end_width_px": 0.45},
+    "38": {"network_id": "tm_mainstem", "start_width_px": 0.8, "end_width_px": 0.4},
+    "50": {"network_id": "tm_mainstem", "start_width_px": 0.9, "end_width_px": 1.3},
+    "51": {"network_id": "tm_mainstem", "start_width_px": 2.15, "end_width_px": 1.4},
+    "54": {"network_id": "tm_mainstem", "start_width_px": 0.55, "end_width_px": 0.9},
+    "57": {"network_id": "tm_mainstem", "start_width_px": 2.15, "end_width_px": 2.6}
+  },
+  "reach_notes": {
+    "24": "ZC mainstem below the confluence of reaches 11 and 14.",
+    "61": "Downstream continuation of reach 24 through its lower meanders.",
+    "64": "Lower continuation after reach 61 meets the western tributary network; its cartographic width tapers at the Q2 edge.",
+    "51": "TM mainstem below the confluence of reaches 29, 36, 38, and 50.",
+    "57": "Downstream continuation below the additional tributary at reach 54; its cartographic width tapers at the Q2 edge."
+  },
+  "islands": [
+    {
+      "id": "q2-zc-bar-01",
+      "segment_id": 24,
+      "fraction_along_reach": 0.7,
+      "length_px": 6.5,
+      "width_px": 1.25,
+      "expected_region_code": "ZC",
+      "shape_phase": 0.8,
+      "lateral_offset_fraction": 0.1
+    },
+    {
+      "id": "q2-zc-bar-02",
+      "segment_id": 24,
+      "fraction_along_reach": 0.84,
+      "length_px": 5.5,
+      "width_px": 0.95,
+      "expected_region_code": "ZC",
+      "shape_phase": 2.3,
+      "lateral_offset_fraction": -0.08
+    },
+    {
+      "id": "q2-tm-bar-01",
+      "segment_id": 51,
+      "fraction_along_reach": 0.55,
+      "length_px": 4.8,
+      "width_px": 0.9,
+      "expected_region_code": "TM",
+      "shape_phase": 4.4,
+      "lateral_offset_fraction": 0.08
+    }
+  ]
+}

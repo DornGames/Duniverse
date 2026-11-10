@@ -239,10 +239,13 @@
     return Math.max(2,depth);
   }
 
-  function buildDistanceWaterMask(maskPixels,width,height){
+  async function buildDistanceWaterMask(maskPixels,width,height){
     const size=width*height,rgba=maskPixels.data;
     const water=new Uint8Array(size),exterior=new Uint8Array(size),queue=new Int32Array(size);
-    for(let i=0;i<size;i++)water[i]=rgba[i*4+3]>0?1:0;
+    for(let i=0;i<size;i++){
+      water[i]=rgba[i*4+3]>0?1:0;
+      if(i%262144===262143)await new Promise(resolve=>setTimeout(resolve,0));
+    }
 
     let head=0,tail=0;
     const enqueueExterior=index=>{
@@ -262,10 +265,14 @@
       if(x+1<width)enqueueExterior(index+1);
       if(index>=width)enqueueExterior(index-width);
       if(index+width<size)enqueueExterior(index+width);
+      if(head%65536===0)await new Promise(resolve=>setTimeout(resolve,0));
     }
 
     // Enclosed land holes are islands: keep them on the rendered mask, but let the continental shelf flow beneath them.
-    for(let i=0;i<size;i++)if(!water[i]&&!exterior[i])water[i]=1;
+    for(let i=0;i<size;i++){
+      if(!water[i]&&!exterior[i])water[i]=1;
+      if(i%262144===262143)await new Promise(resolve=>setTimeout(resolve,0));
+    }
     return water;
   }
 
@@ -303,7 +310,7 @@
     }
   }
 
-  function distanceToLandSquared(waterMask,width,height){
+  async function distanceToLandSquared(waterMask,width,height){
     const size=width*height;
     const horizontal=new Float32Array(size);
     const distances=new Float32Array(size);
@@ -317,17 +324,19 @@
       for(let x=0;x<width;x++)input[x]=waterMask[row+x]?Infinity:0;
       distanceTransform1D(input,width,output,vertices,boundaries);
       for(let x=0;x<width;x++)horizontal[row+x]=output[x];
+      if(y%32===31)await new Promise(resolve=>setTimeout(resolve,0));
     }
 
     for(let x=0;x<width;x++){
       for(let y=0;y<height;y++)input[y]=horizontal[y*width+x];
       distanceTransform1D(input,height,output,vertices,boundaries);
       for(let y=0;y<height;y++)distances[y*width+x]=output[y];
+      if(x%24===23)await new Promise(resolve=>setTimeout(resolve,0));
     }
     return distances;
   }
 
-  function createRaster({width,height,sourceWidth,oceanPath,islandPaths=[]}){
+  async function createRaster({width,height,sourceWidth,oceanPath,islandPaths=[],onProgress=()=>{}}){
     if(!oceanPath||!width||!height)return null;
     const maskCanvas=document.createElement('canvas');
     maskCanvas.width=width;maskCanvas.height=height;
@@ -336,8 +345,8 @@
     maskContext.fill(oceanPath,'evenodd');
     maskContext.fillRect(Math.max(0,sourceWidth-2),0,width-sourceWidth+2,height);
     const maskPixels=maskContext.getImageData(0,0,width,height);
-    const distanceWater=buildDistanceWaterMask(maskPixels,width,height);
-    const distanceSquared=distanceToLandSquared(distanceWater,width,height);
+    const distanceWater=await buildDistanceWaterMask(maskPixels,width,height);
+    const distanceSquared=await distanceToLandSquared(distanceWater,width,height);
     const islandCanvas=document.createElement('canvas');
     islandCanvas.width=width;islandCanvas.height=height;
     const islandContext=islandCanvas.getContext('2d',{willReadFrequently:true});
@@ -445,6 +454,10 @@
         pixels[pixelOffset+1]=COLOR_LOOKUP[colorOffset+1];
         pixels[pixelOffset+2]=COLOR_LOOKUP[colorOffset+2];
         pixels[pixelOffset+3]=alpha;
+      }
+      if(y%6===5){
+        onProgress((y+1)/height);
+        await new Promise(resolve=>setTimeout(resolve,0));
       }
     }
 
