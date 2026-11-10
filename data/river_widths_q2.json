@@ -11,30 +11,30 @@
   "source_pixel_scale_km": 7.77195,
   "width_semantics": "Display-only channel widths in source image pixels. Widths taper between the first and last coordinates of each centerline and grow with downstream accumulation; these are relative cartographic widths, not surveyed measurements.",
   "channel_bank_stroke_px": 0.16,
+  "quadrant_edge_transition_width_px": 1.25,
   "reach_profiles_px": {
     "11": {"network_id": "zc_mainstem", "start_width_px": 0.55, "end_width_px": 1.2},
     "14": {"network_id": "zc_mainstem", "start_width_px": 0.45, "end_width_px": 1.05},
     "24": {"network_id": "zc_mainstem", "start_width_px": 2.7, "end_width_px": 1.4},
     "61": {"network_id": "zc_mainstem", "start_width_px": 2.7, "end_width_px": 2.85},
     "63": {"network_id": "zc_mainstem", "start_width_px": 1.05, "end_width_px": 1.8},
-    "64": {"network_id": "zc_mainstem", "start_width_px": 3.2, "end_width_px": 2.85, "clip_to_quadrant": false},
+    "64": {"network_id": "zc_mainstem", "start_width_px": 3.2, "end_width_px": 2.85},
     "67": {"network_id": "zc_mainstem", "start_width_px": 1.05, "end_width_px": 0.55},
     "68": {"network_id": "zc_mainstem", "start_width_px": 0.8, "end_width_px": 0.35},
-    "100": {"network_id": "zc_mainstem", "start_width_px": 2.95, "end_width_px": 2.35, "clip_to_quadrant": false},
     "29": {"network_id": "tm_mainstem", "start_width_px": 0.55, "end_width_px": 1.25},
     "36": {"network_id": "tm_mainstem", "start_width_px": 0.85, "end_width_px": 0.45},
     "38": {"network_id": "tm_mainstem", "start_width_px": 0.8, "end_width_px": 0.4},
     "50": {"network_id": "tm_mainstem", "start_width_px": 0.9, "end_width_px": 1.3},
     "51": {"network_id": "tm_mainstem", "start_width_px": 2.15, "end_width_px": 1.4},
     "54": {"network_id": "tm_mainstem", "start_width_px": 0.55, "end_width_px": 0.9},
-    "57": {"network_id": "tm_mainstem", "start_width_px": 2.15, "end_width_px": 2.6, "clip_to_quadrant": false}
+    "57": {"network_id": "tm_mainstem", "start_width_px": 2.15, "end_width_px": 2.6}
   },
   "reach_notes": {
     "24": "ZC mainstem below the confluence of reaches 11 and 14.",
     "61": "Downstream continuation of reach 24 through its lower meanders.",
-    "64": "Lower continuation after reach 61 meets the western tributary network; kept continuous through the nearby quadrant edge.",
+    "64": "Lower continuation after reach 61 meets the western tributary network; its cartographic width tapers at the Q2 edge.",
     "51": "TM mainstem below the confluence of reaches 29, 36, 38, and 50.",
-    "57": "Downstream continuation below the additional tributary at reach 54; kept continuous through the nearby quadrant edge."
+    "57": "Downstream continuation below the additional tributary at reach 54; its cartographic width tapers at the Q2 edge."
   },
   "islands": [
     {

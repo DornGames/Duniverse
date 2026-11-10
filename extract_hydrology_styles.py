@@ -359,6 +359,8 @@ def river_base_features(features: list[dict], config: dict) -> list[dict]:
 
 def river_channel_features(rivers: list[dict], config: dict) -> list[dict]:
     q2 = box(*config["extent_px"])
+    min_x, min_y, max_x, max_y = q2.bounds
+    edge_width = float(config.get("quadrant_edge_transition_width_px", 1.25))
     profiles = width_profiles(config)
     rivers_by_id = {
         int(feature["properties"]["segment_id"]): feature
@@ -375,11 +377,43 @@ def river_channel_features(rivers: list[dict], config: dict) -> list[dict]:
         if not lines:
             raise ValueError(f"River channel profile has no line reach: segment {segment_id}")
         reach = max(lines, key=lambda line: line.length)
-        channel = variable_width_channel(
-            reach,
-            profile["start_width_px"],
-            profile["end_width_px"],
-        )
+        if profile["clip_to_quadrant"]:
+            channel_parts = []
+            clipped_reaches = line_parts(reach.intersection(q2))
+            for clipped_reach in clipped_reaches:
+                if clipped_reach.length <= 0:
+                    continue
+                clipped_start = Point(clipped_reach.coords[0])
+                clipped_end = Point(clipped_reach.coords[-1])
+                start_fraction = reach.project(clipped_start) / reach.length
+                end_fraction = reach.project(clipped_end) / reach.length
+                start_width = profile["start_width_px"] + (
+                    profile["end_width_px"] - profile["start_width_px"]
+                ) * start_fraction
+                end_width = profile["start_width_px"] + (
+                    profile["end_width_px"] - profile["start_width_px"]
+                ) * end_fraction
+                for point, at_start in ((clipped_start, True), (clipped_end, False)):
+                    if (
+                        abs(point.x - min_x) < 0.01
+                        or abs(point.x - max_x) < 0.01
+                        or abs(point.y - min_y) < 0.01
+                        or abs(point.y - max_y) < 0.01
+                    ):
+                        if at_start:
+                            start_width = edge_width
+                        else:
+                            end_width = edge_width
+                channel_parts.append(variable_width_channel(
+                    clipped_reach, start_width, end_width,
+                ))
+            channel = unary_union(channel_parts) if channel_parts else Polygon()
+        else:
+            channel = variable_width_channel(
+                reach,
+                profile["start_width_px"],
+                profile["end_width_px"],
+            )
         if profile["clip_to_quadrant"]:
             channel = channel.intersection(q2)
         if channel.is_empty:

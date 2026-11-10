@@ -230,8 +230,8 @@
       "network_id": "tm_mainstem",
       "start_width_px": 2.15,
       "end_width_px": 2.6,
-      "clip_to_quadrant": false,
-      "note": "Downstream continuation below the additional tributary at reach 54; kept continuous through the nearby quadrant edge."
+      "clip_to_quadrant": true,
+      "note": "Downstream continuation below the additional tributary at reach 54; its cartographic width tapers at the Q2 edge."
     },
     {
       "segment_id": 61,
@@ -254,8 +254,8 @@
       "network_id": "zc_mainstem",
       "start_width_px": 3.2,
       "end_width_px": 2.85,
-      "clip_to_quadrant": false,
-      "note": "Lower continuation after reach 61 meets the western tributary network; kept continuous through the nearby quadrant edge."
+      "clip_to_quadrant": true,
+      "note": "Lower continuation after reach 61 meets the western tributary network; its cartographic width tapers at the Q2 edge."
     },
     {
       "segment_id": 67,
@@ -271,14 +271,6 @@
       "start_width_px": 0.8,
       "end_width_px": 0.35,
       "clip_to_quadrant": true,
-      "note": ""
-    },
-    {
-      "segment_id": 100,
-      "network_id": "zc_mainstem",
-      "start_width_px": 2.95,
-      "end_width_px": 2.35,
-      "clip_to_quadrant": false,
       "note": ""
     }
   ],
