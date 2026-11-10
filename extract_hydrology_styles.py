@@ -285,32 +285,126 @@ def q2_river_width_config() -> dict:
     return config
 
 
-def render_q2_river_width_paths(features: list[dict], config: dict) -> list[str]:
-    q2 = box(*config["extent_px"])
-    widths = {
-        int(segment_id): float(width)
-        for segment_id, width in config["reach_widths_px"].items()
+def width_profiles(config: dict) -> dict[int, dict]:
+    return {
+        int(segment_id): {
+            **profile,
+            "start_width_px": float(profile["start_width_px"]),
+            "end_width_px": float(profile["end_width_px"]),
+            "network_id": str(profile["network_id"]),
+            "clip_to_quadrant": bool(profile.get("clip_to_quadrant", True)),
+        }
+        for segment_id, profile in config["reach_profiles_px"].items()
     }
-    features_by_id = {
-        int(feature["properties"]["segment_id"]): feature
-        for feature in features
-    }
-    missing = sorted(set(widths) - set(features_by_id))
-    if missing:
-        raise ValueError(f"Q2 width overrides reference missing river segments: {missing}")
 
-    paths = []
-    for segment_id, width in sorted(widths.items()):
-        clipped = shape(features_by_id[segment_id]["geometry"]).intersection(q2)
-        for line in line_parts(clipped):
-            if line.length < 0.5:
-                continue
-            paths.append(
-                f'<path d="{path_data(mapping(line))}" '
-                f'stroke-width="{width:.2f}" '
-                f'data-river-segment-id="{segment_id}"/>'
-            )
-    return paths
+
+def variable_width_channel(
+    reach: LineString, start_width: float, end_width: float, sample_step: float = 0.55,
+):
+    """Build a smooth channel ribbon whose banks widen along the reach."""
+    if reach.length <= 0:
+        return Polygon()
+    sample_count = max(2, math.ceil(reach.length / sample_step))
+    left_bank = []
+    right_bank = []
+    for index in range(sample_count + 1):
+        fraction = index / sample_count
+        distance = reach.length * fraction
+        sample_delta = min(0.5, max(0.12, reach.length / (sample_count * 2)))
+        before = reach.interpolate(max(0.0, distance - sample_delta))
+        after = reach.interpolate(min(reach.length, distance + sample_delta))
+        tangent_x = after.x - before.x
+        tangent_y = after.y - before.y
+        tangent_length = math.hypot(tangent_x, tangent_y) or 1.0
+        normal_x = -tangent_y / tangent_length
+        normal_y = tangent_x / tangent_length
+        center = reach.interpolate(distance)
+        width = start_width + (end_width - start_width) * fraction
+        half_width = width / 2
+        left_bank.append((
+            round(center.x + normal_x * half_width, 3),
+            round(center.y + normal_y * half_width, 3),
+        ))
+        right_bank.append((
+            round(center.x - normal_x * half_width, 3),
+            round(center.y - normal_y * half_width, 3),
+        ))
+
+    ribbon = Polygon(left_bank + list(reversed(right_bank)))
+    if not ribbon.is_valid:
+        ribbon = ribbon.buffer(0)
+    start_cap = Point(reach.coords[0]).buffer(start_width / 2, resolution=8)
+    end_cap = Point(reach.coords[-1]).buffer(end_width / 2, resolution=8)
+    return unary_union([ribbon, start_cap, end_cap]).simplify(0.06, preserve_topology=True)
+
+
+def river_base_features(features: list[dict], config: dict) -> list[dict]:
+    """Keep ordinary centerlines outside Q2; Q2 profiles use filled channels."""
+    q2 = box(*config["extent_px"])
+    profiles = width_profiles(config)
+    result = []
+    for feature in features:
+        segment_id = int(feature["properties"].get("segment_id", 0))
+        profile = profiles.get(segment_id)
+        if profile is None:
+            result.append(feature)
+            continue
+        if not profile["clip_to_quadrant"]:
+            continue
+        outside = shape(feature["geometry"]).difference(q2)
+        if line_parts(outside):
+            result.append({**feature, "geometry": mapping(outside)})
+    return result
+
+
+def river_channel_features(rivers: list[dict], config: dict) -> list[dict]:
+    q2 = box(*config["extent_px"])
+    profiles = width_profiles(config)
+    rivers_by_id = {
+        int(feature["properties"]["segment_id"]): feature
+        for feature in rivers
+    }
+    missing = sorted(set(profiles) - set(rivers_by_id))
+    if missing:
+        raise ValueError(f"River channel profiles reference missing segments: {missing}")
+
+    network_geometries: dict[str, list] = {}
+    network_segments: dict[str, list[int]] = {}
+    for segment_id, profile in sorted(profiles.items()):
+        lines = line_parts(shape(rivers_by_id[segment_id]["geometry"]))
+        if not lines:
+            raise ValueError(f"River channel profile has no line reach: segment {segment_id}")
+        reach = max(lines, key=lambda line: line.length)
+        channel = variable_width_channel(
+            reach,
+            profile["start_width_px"],
+            profile["end_width_px"],
+        )
+        if profile["clip_to_quadrant"]:
+            channel = channel.intersection(q2)
+        if channel.is_empty:
+            continue
+        network = profile["network_id"]
+        network_geometries.setdefault(network, []).append(channel)
+        network_segments.setdefault(network, []).append(segment_id)
+
+    features = []
+    for network in sorted(network_geometries):
+        channel = unary_union(network_geometries[network])
+        if not channel.is_valid:
+            channel = channel.buffer(0)
+        segment_ids = sorted(network_segments[network])
+        features.append({
+            "type": "Feature",
+            "properties": {
+                "network_id": network,
+                "segment_ids": segment_ids,
+                "source": "hydrology_reach_connectivity_and_downstream_width_profile",
+                "review_status": "variable_width_channel_polygon",
+            },
+            "geometry": mapping(channel),
+        })
+    return features
 
 
 def island_polygon(reach: LineString, fraction: float, length: float, width: float) -> Polygon:
@@ -356,10 +450,7 @@ def river_island_features(
         for feature in region_features
     ]
     q2 = box(*config["extent_px"])
-    reach_widths = {
-        int(segment_id): float(width)
-        for segment_id, width in config["reach_widths_px"].items()
-    }
+    profiles = width_profiles(config)
     islands = []
     for definition in config["islands"]:
         segment_id = int(definition["segment_id"])
@@ -388,7 +479,14 @@ def river_island_features(
             float(definition["length_px"]),
             float(definition["width_px"]),
         )
-        channel_width = reach_widths.get(segment_id, 1.25)
+        profile = profiles.get(segment_id)
+        if profile is None:
+            raise ValueError(f"Q2 river island {definition['id']} has no matching channel profile")
+        fraction = float(definition["fraction_along_reach"])
+        channel_width = (
+            profile["start_width_px"]
+            + (profile["end_width_px"] - profile["start_width_px"]) * fraction
+        )
         if float(definition["width_px"]) >= channel_width:
             raise ValueError(f"Q2 river island {definition['id']} is wider than its river channel")
         if (
@@ -432,6 +530,50 @@ def render_river_islands_group(features: list[dict]) -> str:
                 f'data-river-island-id="{properties["island_id"]}"/>'
             )
     return '<g id="riverIslandsQ2" data-layer="rivers" pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
+
+
+def render_river_channels_group(features: list[dict], config: dict) -> str:
+    paths = []
+    bank_width = float(config.get("channel_bank_stroke_px", 0.16))
+    for feature in features:
+        properties = feature["properties"]
+        path = polygon_path_data(feature["geometry"])
+        if path:
+            paths.append(
+                f'<path d="{path}" fill="#b1d0ed" fill-rule="evenodd" '
+                f'stroke="#78a9d8" stroke-width="{bank_width:.2f}" '
+                f'stroke-linejoin="round" stroke-linecap="round" '
+                f'data-river-channel="true" data-river-network-id="{properties["network_id"]}"/>'
+            )
+    return '<g id="riverChannelsQ2" data-layer="rivers" pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
+
+
+def update_river_channel_hit_testing(index: str) -> str:
+    record_marker = "isRiverChannel:element.dataset.riverChannel==='true'"
+    record_old = "fixedFontSize:Number.parseFloat(element.dataset.fixedFontSize)||0"
+    record_new = record_old + ",\n    " + record_marker
+    if record_marker not in index:
+        if index.count(record_old) != 1:
+            raise RuntimeError("Could not locate the SVG record parser for river channel hit testing")
+        index = index.replace(record_old, record_new, 1)
+
+    hit_old = (
+        "    hitCtx.lineWidth=Math.max(record.lineWidth,8/scale);\n"
+        "    if(!hitCtx.isPointInStroke(record.variants[0],point.x,point.y))continue;"
+    )
+    hit_new = (
+        "    const isRiverHit=record.isRiverChannel\n"
+        "      ?hitCtx.isPointInPath(record.variants[0],point.x,point.y,'evenodd')\n"
+        "      :(hitCtx.lineWidth=Math.max(record.lineWidth,8/scale),\n"
+        "        hitCtx.isPointInStroke(record.variants[0],point.x,point.y));\n"
+        "    if(!isRiverHit)continue;"
+    )
+    if hit_new not in index:
+        count = index.count(hit_old)
+        if count != 1:
+            raise RuntimeError(f"Expected one river hit-test marker, found {count}")
+        index = index.replace(hit_old, hit_new, 1)
+    return index
 
 
 def seasonal_features() -> list[dict]:
@@ -864,6 +1006,7 @@ def upsert_group(source: str, group: str, group_id: str, after_id: str | None) -
 
 def update_render_files(
     rivers: list[dict],
+    river_channels: list[dict],
     canals: list[dict],
     seasonal: list[dict],
     cross_border: list[dict],
@@ -871,11 +1014,11 @@ def update_render_files(
     width_config: dict,
 ) -> None:
     lakes = read_fc(DATA / "lakes.geojson")["features"]
-    q2_width_paths = render_q2_river_width_paths(rivers, width_config)
+    base_rivers = river_base_features(rivers, width_config)
     index_groups = [
-        render_group("rivers", "rivers", rivers,
-                     'fill="none" stroke="#b1d0ed" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"',
-                     extra_paths=q2_width_paths),
+        render_group("rivers", "rivers", base_rivers,
+                     'fill="none" stroke="#b1d0ed" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
+        render_river_channels_group(river_channels, width_config),
         render_group("canals", "canals", [f for f in canals if f["properties"].get("symbol_part") == "centerline"],
                      'fill="none" stroke="#b1d0ed" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"'),
         render_group("canalTicks", "canalTicks", [f for f in canals if f["properties"].get("symbol_part") == "ruler_tick"],
@@ -888,21 +1031,23 @@ def update_render_files(
     index_path = ROOT / "index.html"
     index = index_path.read_text(encoding="utf-8")
     index = upsert_group(index, index_groups[0], "rivers", None)
-    index = upsert_group(index, index_groups[1], "canals", "rivers")
-    index = upsert_group(index, index_groups[2], "canalTicks", "canals")
-    index = upsert_group(index, index_groups[3], "seasonalRivers", "canalTicks")
-    index = upsert_group(index, index_groups[4], "crossBorderRivers", "seasonalRivers")
+    index = upsert_group(index, index_groups[1], "riverChannelsQ2", "rivers")
+    index = upsert_group(index, index_groups[2], "canals", "riverChannelsQ2")
+    index = upsert_group(index, index_groups[3], "canalTicks", "canals")
+    index = upsert_group(index, index_groups[4], "seasonalRivers", "canalTicks")
+    index = upsert_group(index, index_groups[5], "crossBorderRivers", "seasonalRivers")
     index = upsert_group(index, render_river_islands_group(river_islands), "riverIslandsQ2", "crossBorderRivers")
     index = upsert_group(index, render_lakes_group(lakes), "lakes", None)
     index = update_hydrology_lod_precision(index)
+    index = update_river_channel_hit_testing(index)
     index_path.write_text(index, encoding="utf-8", newline="\n")
 
     preview_path = ROOT / "vector_preview.svg"
     preview = preview_path.read_text(encoding="utf-8")
     preview_groups = [
-        render_preview_group("rivers", rivers,
-                            'fill="none" stroke="#b1d0ed" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"',
-                            extra_paths=q2_width_paths),
+        render_preview_group("rivers", base_rivers,
+                            'fill="none" stroke="#b1d0ed" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
+        render_river_channels_group(river_channels, width_config),
         render_preview_group("canals", [f for f in canals if f["properties"].get("symbol_part") == "centerline"],
                             'fill="none" stroke="#b1d0ed" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"'),
         render_preview_group("canal-ticks", [f for f in canals if f["properties"].get("symbol_part") == "ruler_tick"],
@@ -913,10 +1058,11 @@ def update_render_files(
                             'fill="none" stroke="#b1d0ed" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"'),
     ]
     preview = upsert_group(preview, preview_groups[0], "rivers", None)
-    preview = upsert_group(preview, preview_groups[1], "canals", "rivers")
-    preview = upsert_group(preview, preview_groups[2], "canal-ticks", "canals")
-    preview = upsert_group(preview, preview_groups[3], "seasonal-rivers", "canal-ticks")
-    preview = upsert_group(preview, preview_groups[4], "cross-border-rivers", "seasonal-rivers")
+    preview = upsert_group(preview, preview_groups[1], "riverChannelsQ2", "rivers")
+    preview = upsert_group(preview, preview_groups[2], "canals", "riverChannelsQ2")
+    preview = upsert_group(preview, preview_groups[3], "canal-ticks", "canals")
+    preview = upsert_group(preview, preview_groups[4], "seasonal-rivers", "canal-ticks")
+    preview = upsert_group(preview, preview_groups[5], "cross-border-rivers", "seasonal-rivers")
     preview = upsert_group(preview, render_river_islands_group(river_islands), "riverIslandsQ2", "cross-border-rivers")
     preview = upsert_group(preview, render_lakes_group(lakes, preview=True), "lakes", None)
     preview_path.write_text(preview, encoding="utf-8", newline="\n")
@@ -978,7 +1124,9 @@ def main() -> None:
 
     width_config = q2_river_width_config()
     region_features = read_fc(DATA / "administrative_regions.geojson")["features"]
+    river_channels = river_channel_features(river_features, width_config)
     river_islands = river_island_features(river_features, region_features, width_config)
+    write_fc(DATA / "river_channels_q2.geojson", "quadrant_ii_variable_width_river_channels", river_channels)
     write_fc(DATA / "river_islands_q2.geojson", "quadrant_ii_river_islands", river_islands)
 
     write_fc(DATA / "canals.geojson", "canal_centerline_and_ruler_ticks", canals)
@@ -989,7 +1137,7 @@ def main() -> None:
         encoding="utf-8",
         newline="\n",
     )
-    update_render_files(river_features, canals, seasonal, cross_border, river_islands, width_config)
+    update_render_files(river_features, river_channels, canals, seasonal, cross_border, river_islands, width_config)
     write_overlay(seasonal, canals)
 
     manifest_path = ROOT / "extraction_manifest.json"
@@ -999,10 +1147,16 @@ def main() -> None:
         "quadrant_ii_river_width_reaches": [
             {
                 "segment_id": int(segment_id),
-                "display_width_px": float(width),
+                "network_id": profile["network_id"],
+                "start_width_px": profile["start_width_px"],
+                "end_width_px": profile["end_width_px"],
+                "clip_to_quadrant": profile["clip_to_quadrant"],
                 "note": width_config["reach_notes"].get(str(segment_id), ""),
             }
-            for segment_id, width in sorted(width_config["reach_widths_px"].items(), key=lambda item: int(item[0]))
+            for segment_id, profile in sorted(width_profiles(width_config).items())
+        ],
+        "quadrant_ii_river_channel_networks": [
+            feature["properties"]["network_id"] for feature in river_channels
         ],
         "quadrant_ii_river_islands": [
             feature["properties"]["island_id"] for feature in river_islands
