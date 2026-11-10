@@ -151,5 +151,37 @@
     18,
     122
   ],
-  "cross_border_lake_fill_line_length_removed_px": 127.845
+  "cross_border_lake_fill_line_length_removed_px": 127.845,
+  "quadrant_ii_river_width_reaches": [
+    {
+      "segment_id": 24,
+      "display_width_px": 1.75,
+      "note": "ZC mainstem below the confluence of reaches 11 and 14."
+    },
+    {
+      "segment_id": 51,
+      "display_width_px": 1.7,
+      "note": "TM mainstem below the confluence of reaches 29, 36, 38, and 50."
+    },
+    {
+      "segment_id": 57,
+      "display_width_px": 1.85,
+      "note": "Downstream continuation below the additional tributary at reach 54; clipped at the quadrant edge."
+    },
+    {
+      "segment_id": 61,
+      "display_width_px": 1.9,
+      "note": "Downstream continuation of reach 24 through its lower meanders."
+    },
+    {
+      "segment_id": 64,
+      "display_width_px": 2.0,
+      "note": "Lower continuation after reach 61 meets the western tributary network; clipped at the quadrant edge."
+    }
+  ],
+  "quadrant_ii_river_islands": [
+    "q2-zc-bar-01",
+    "q2-zc-bar-02",
+    "q2-tm-bar-01"
+  ]
 }

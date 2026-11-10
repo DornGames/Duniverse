@@ -1,0 +1,56 @@
+{
+  "quadrant": "II",
+  "definition": "Upper-left quarter of the national outline pixel bounding box.",
+  "extent_px": [
+    234.0,
+    28.0,
+    1040.0,
+    735.5
+  ],
+  "coordinate_reference": "input_map.png image pixels; origin at upper left",
+  "source_pixel_scale_km": 7.77195,
+  "width_semantics": "Display-only channel widths in source image pixels. They are relative cartographic widths, not surveyed real-world widths.",
+  "reach_widths_px": {
+    "24": 1.75,
+    "61": 1.9,
+    "64": 2.0,
+    "51": 1.7,
+    "57": 1.85
+  },
+  "reach_notes": {
+    "24": "ZC mainstem below the confluence of reaches 11 and 14.",
+    "61": "Downstream continuation of reach 24 through its lower meanders.",
+    "64": "Lower continuation after reach 61 meets the western tributary network; clipped at the quadrant edge.",
+    "51": "TM mainstem below the confluence of reaches 29, 36, 38, and 50.",
+    "57": "Downstream continuation below the additional tributary at reach 54; clipped at the quadrant edge."
+  },
+  "islands": [
+    {
+      "id": "q2-zc-bar-01",
+      "segment_id": 24,
+      "fraction_along_reach": 0.7,
+      "length_px": 5.2,
+      "width_px": 0.78,
+      "expected_region_code": "ZC",
+      "bank_stroke_width_px": 0.14
+    },
+    {
+      "id": "q2-zc-bar-02",
+      "segment_id": 24,
+      "fraction_along_reach": 0.84,
+      "length_px": 4.4,
+      "width_px": 0.68,
+      "expected_region_code": "ZC",
+      "bank_stroke_width_px": 0.14
+    },
+    {
+      "id": "q2-tm-bar-01",
+      "segment_id": 51,
+      "fraction_along_reach": 0.55,
+      "length_px": 3.8,
+      "width_px": 0.6,
+      "expected_region_code": "TM",
+      "bank_stroke_width_px": 0.12
+    }
+  ]
+}

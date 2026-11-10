@@ -1,0 +1,241 @@
+{
+  "type": "FeatureCollection",
+  "name": "quadrant_ii_river_islands",
+  "coordinate_reference_note": "Image pixel coordinates; origin top-left; x right; y down. Not georeferenced.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "island_id": "q2-zc-bar-01",
+        "segment_id": 24,
+        "fraction_along_reach": 0.7,
+        "width_px": 0.78,
+        "length_px": 5.2,
+        "region_code": "ZC",
+        "fill": "#c2c9d6",
+        "bank_stroke": "#83b8e8",
+        "bank_stroke_width_px": 0.14,
+        "review_status": "hand_placed_on_widened_downstream_reach"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              830.657,
+              424.138
+            ],
+            [
+              829.905,
+              424.252
+            ],
+            [
+              828.997,
+              424.52
+            ],
+            [
+              828.146,
+              424.91
+            ],
+            [
+              827.329,
+              425.373
+            ],
+            [
+              826.534,
+              425.88
+            ],
+            [
+              825.957,
+              426.363
+            ],
+            [
+              825.957,
+              426.363
+            ],
+            [
+              826.697,
+              426.224
+            ],
+            [
+              827.593,
+              425.929
+            ],
+            [
+              828.468,
+              425.591
+            ],
+            [
+              829.31,
+              425.181
+            ],
+            [
+              830.093,
+              424.648
+            ],
+            [
+              830.657,
+              424.138
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "island_id": "q2-zc-bar-02",
+        "segment_id": 24,
+        "fraction_along_reach": 0.84,
+        "width_px": 0.68,
+        "length_px": 4.4,
+        "region_code": "ZC",
+        "fill": "#c2c9d6",
+        "bank_stroke": "#83b8e8",
+        "bank_stroke_width_px": 0.14,
+        "review_status": "hand_placed_on_widened_downstream_reach"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              814.574,
+              388.77
+            ],
+            [
+              815.087,
+              388.379
+            ],
+            [
+              815.65,
+              387.807
+            ],
+            [
+              816.117,
+              387.168
+            ],
+            [
+              816.527,
+              386.487
+            ],
+            [
+              816.903,
+              385.783
+            ],
+            [
+              817.125,
+              385.185
+            ],
+            [
+              817.125,
+              385.185
+            ],
+            [
+              816.633,
+              385.59
+            ],
+            [
+              816.09,
+              386.176
+            ],
+            [
+              815.582,
+              386.787
+            ],
+            [
+              815.131,
+              387.437
+            ],
+            [
+              814.775,
+              388.157
+            ],
+            [
+              814.574,
+              388.77
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "island_id": "q2-tm-bar-01",
+        "segment_id": 51,
+        "fraction_along_reach": 0.55,
+        "width_px": 0.6,
+        "length_px": 3.8,
+        "region_code": "TM",
+        "fill": "#f3f5fe",
+        "bank_stroke": "#83b8e8",
+        "bank_stroke_width_px": 0.12,
+        "review_status": "hand_placed_on_widened_downstream_reach"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              987.308,
+              479.788
+            ],
+            [
+              987.139,
+              479.256
+            ],
+            [
+              986.837,
+              478.633
+            ],
+            [
+              986.449,
+              478.069
+            ],
+            [
+              986.011,
+              477.541
+            ],
+            [
+              985.542,
+              477.035
+            ],
+            [
+              985.116,
+              476.685
+            ],
+            [
+              985.116,
+              476.685
+            ],
+            [
+              985.303,
+              477.204
+            ],
+            [
+              985.624,
+              477.814
+            ],
+            [
+              985.975,
+              478.404
+            ],
+            [
+              986.377,
+              478.957
+            ],
+            [
+              986.864,
+              479.451
+            ],
+            [
+              987.308,
+              479.788
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
