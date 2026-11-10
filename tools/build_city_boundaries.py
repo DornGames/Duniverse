@@ -38,7 +38,7 @@ SEED = 20261110
 ELEVATION_MIN_M = -260.0
 MAX_SEED_SNAP_PX = 24.0
 RIVER_CROSSING_COST = 6.0
-PARTITION_COST_NOISE_WEIGHT = 0.035
+PARTITION_COST_NOISE_WEIGHT = 0.055
 MIN_BOUNDARY_LENGTH_PX = 2.5
 SIMPLIFY_TOLERANCE_PX = 0.12
 RIDGE_BARRIER_WEIGHT = 3.6
@@ -46,8 +46,10 @@ RIDGE_DETECTION_PERCENTILE = 55.0
 RIDGE_MIN_LOCAL_RELIEF_M = 22.0
 RIDGE_MIN_SEGMENT_LENGTH_PX = 18.0
 BOUNDARY_DETAIL_STEP_PX = 0.9
-BOUNDARY_SMOOTH_SIGMA_PX = 1.25
-BOUNDARY_RANDOM_OFFSET_MAX_PX = 0.55
+BOUNDARY_SMOOTH_SIGMA_PX = 1.0
+BOUNDARY_PLAIN_RANDOM_OFFSET_PX = 0.9
+BOUNDARY_RANDOM_OFFSET_MAX_PX = 2.8
+BOUNDARY_SHORT_SEGMENT_DAMPING_LENGTH_PX = 18.0
 CITY_MARKER_CLEARANCE_PX = 4.8
 BOUNDARY_SUMMIT_MIN_ELEVATION_M = 8000.0
 BOUNDARY_SUMMIT_CAPTURE_DISTANCE_PX = 12.0
@@ -553,14 +555,16 @@ def curve_boundary(line: LineString, identifier: str, local_relief: np.ndarray,
     relief_factor = np.sqrt(np.clip(np.maximum(relief, 0.0) / 2200.0, 0.0, 1.0))
     ridge_damping = np.clip(ridge_gap / 3.0, 0.28, 1.0)
     water_damping = np.clip((water_gap - 1.5) / 2.5, 0.0, 1.0)
-    amplitude = BOUNDARY_RANDOM_OFFSET_MAX_PX * (0.25 + 0.75 * relief_factor)
-    displacement = (0.72 * smooth_noise(12.0) + 0.28 * smooth_noise(4.5)) * amplitude
+    amplitude = (BOUNDARY_PLAIN_RANDOM_OFFSET_PX +
+                 (BOUNDARY_RANDOM_OFFSET_MAX_PX - BOUNDARY_PLAIN_RANDOM_OFFSET_PX) * relief_factor)
+    displacement = (0.78 * smooth_noise(14.0) + 0.22 * smooth_noise(5.5)) * amplitude
     displacement *= ridge_damping * water_damping
     displacement = ndimage.gaussian_filter1d(displacement, sigma=1.6, mode="nearest")
     fade = np.minimum(1.0, np.minimum(distances / 5.0, (line.length - distances) / 5.0))
     fade = np.clip(fade, 0.0, 1.0)
+    segment_scale = min(1.0, line.length / BOUNDARY_SHORT_SEGMENT_DAMPING_LENGTH_PX)
     offset = np.clip(displacement * fade, -BOUNDARY_RANDOM_OFFSET_MAX_PX,
-                     BOUNDARY_RANDOM_OFFSET_MAX_PX)
+                     BOUNDARY_RANDOM_OFFSET_MAX_PX) * segment_scale
     if city_points:
         city_array = np.asarray(city_points, dtype=np.float64)
         normal = np.column_stack((normal_x, normal_y))
@@ -948,14 +952,17 @@ def main() -> None:
             "river_source": "data/relief_elevation.js river-water mask",
             "water_source": "data/relief_elevation.js river-water mask + data/lakes.geojson lake polygons",
             "ridge_source": "data/ridge_network.geojson (named mountain-range backbones, anisotropic DEM crest skeletons, and selected high-summit boundary controls)",
-            "method": "Across the full map, extract named mountain-range backbones and local DEM ridge crests, then guide province-constrained multi-source least-cost city partitions with ridges and mapped river corridors. High summits close to an existing city divide can become fixed-seed boundary anchors. City lines use gentle deterministic smoothing and low-amplitude land-only detail; river and lake sections receive no random displacement. Shared province boundaries are included in this layer for close-up views.",
+            "method": "Across the full map, extract named mountain-range backbones and local DEM ridge crests, then guide province-constrained multi-source least-cost city partitions with ridges and mapped river corridors. High summits close to an existing city divide can become fixed-seed boundary anchors. City lines use a terrain-led source divider, gentle deterministic smoothing, and bounded relief-scaled detail; irregularity grows in rugged terrain and is damped on short segments. River and lake sections receive no random displacement. Shared province boundaries are included in this layer for close-up views.",
             "ridge_network_feature_count": len(ridge_features),
             "boundary_summit_minimum_elevation_m": BOUNDARY_SUMMIT_MIN_ELEVATION_M,
             "boundary_summit_capture_distance_px": BOUNDARY_SUMMIT_CAPTURE_DISTANCE_PX,
             "boundary_curve_detail": {"seed": SEED, "sample_step_px": BOUNDARY_DETAIL_STEP_PX,
                                       "smoothing_sigma_px": BOUNDARY_SMOOTH_SIGMA_PX,
+                                      "plain_random_offset_px": BOUNDARY_PLAIN_RANDOM_OFFSET_PX,
                                       "maximum_random_offset_px": BOUNDARY_RANDOM_OFFSET_MAX_PX,
+                                      "short_segment_damping_length_px": BOUNDARY_SHORT_SEGMENT_DAMPING_LENGTH_PX,
                                       "water_random_offset_px": 0.0,
+                                      "random_detail_scales_px": [14.0, 5.5],
                                       "ridge_barrier_weight": RIDGE_BARRIER_WEIGHT,
                                       "city_marker_clearance_px": CITY_MARKER_CLEARANCE_PX,
                                       "partition_cost_noise_weight": PARTITION_COST_NOISE_WEIGHT,
