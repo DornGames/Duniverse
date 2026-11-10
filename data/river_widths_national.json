@@ -1,0 +1,8583 @@
+{
+  "quadrant": "National",
+  "definition": "All mapped national river reaches, with upper-left Q2 profiles retained and remaining reaches scaled by routed headwater contribution.",
+  "extent_px": [
+    234.0,
+    28.0,
+    1846.0,
+    1443.0
+  ],
+  "coordinate_reference": "input_map.png image pixels; origin at upper left",
+  "source_pixel_scale_km": 7.77195,
+  "width_semantics": "Display-only widths in source image pixels. Q2 keeps its reviewed profiles; other basins use a compact width per headwater, combined quadratically at each confluence. No width is a literal surveyed kilometre value.",
+  "quadrant_edge_transition_width_px": 0.55,
+  "reach_profiles_px": {
+    "1": {
+      "network_id": "national_basin_001",
+      "start_width_px": 0.212,
+      "end_width_px": 0.263,
+      "width_knots_px": [
+        [
+          0.0,
+          0.212
+        ],
+        [
+          0.25,
+          0.221
+        ],
+        [
+          0.5,
+          0.222
+        ],
+        [
+          0.75,
+          0.233
+        ],
+        [
+          1.0,
+          0.263
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "2": {
+      "network_id": "national_basin_001",
+      "start_width_px": 0.263,
+      "end_width_px": 0.2,
+      "width_knots_px": [
+        [
+          0.0,
+          0.263
+        ],
+        [
+          0.25,
+          0.218
+        ],
+        [
+          0.5,
+          0.206
+        ],
+        [
+          0.75,
+          0.2
+        ],
+        [
+          1.0,
+          0.2
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "3": {
+      "network_id": "national_basin_001",
+      "start_width_px": 0.239,
+      "end_width_px": 0.213,
+      "width_knots_px": [
+        [
+          0.0,
+          0.239
+        ],
+        [
+          0.25,
+          0.229
+        ],
+        [
+          0.5,
+          0.229
+        ],
+        [
+          0.75,
+          0.224
+        ],
+        [
+          1.0,
+          0.213
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "4": {
+      "network_id": "national_basin_004",
+      "start_width_px": 0.2,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.2
+        ],
+        [
+          0.25,
+          0.202
+        ],
+        [
+          0.5,
+          0.202
+        ],
+        [
+          0.75,
+          0.24
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "5": {
+      "network_id": "national_basin_001",
+      "start_width_px": 0.375,
+      "end_width_px": 0.382,
+      "width_knots_px": [
+        [
+          0.0,
+          0.375
+        ],
+        [
+          0.25,
+          0.378
+        ],
+        [
+          0.5,
+          0.381
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.382
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "6": {
+      "network_id": "national_basin_006",
+      "start_width_px": 0.27,
+      "end_width_px": 0.23,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.256
+        ],
+        [
+          1.0,
+          0.23
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "7": {
+      "network_id": "national_basin_001",
+      "start_width_px": 0.239,
+      "end_width_px": 0.219,
+      "width_knots_px": [
+        [
+          0.0,
+          0.239
+        ],
+        [
+          0.25,
+          0.229
+        ],
+        [
+          0.5,
+          0.227
+        ],
+        [
+          0.75,
+          0.224
+        ],
+        [
+          1.0,
+          0.219
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "8": {
+      "network_id": "national_basin_008",
+      "start_width_px": 0.229,
+      "end_width_px": 0.202,
+      "width_knots_px": [
+        [
+          0.0,
+          0.229
+        ],
+        [
+          0.25,
+          0.226
+        ],
+        [
+          0.5,
+          0.213
+        ],
+        [
+          0.75,
+          0.212
+        ],
+        [
+          1.0,
+          0.202
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "9": {
+      "network_id": "national_basin_009",
+      "start_width_px": 0.212,
+      "end_width_px": 0.257,
+      "width_knots_px": [
+        [
+          0.0,
+          0.212
+        ],
+        [
+          0.25,
+          0.221
+        ],
+        [
+          0.5,
+          0.228
+        ],
+        [
+          0.75,
+          0.256
+        ],
+        [
+          1.0,
+          0.257
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "10": {
+      "network_id": "national_basin_001",
+      "start_width_px": 0.341,
+      "end_width_px": 0.382,
+      "width_knots_px": [
+        [
+          0.0,
+          0.341
+        ],
+        [
+          0.25,
+          0.37
+        ],
+        [
+          0.5,
+          0.38
+        ],
+        [
+          0.75,
+          0.381
+        ],
+        [
+          1.0,
+          0.382
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "11": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.22,
+      "end_width_px": 0.38,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "12": {
+      "network_id": "national_basin_008",
+      "start_width_px": 0.323,
+      "end_width_px": 0.327,
+      "width_knots_px": [
+        [
+          0.0,
+          0.323
+        ],
+        [
+          0.25,
+          0.323
+        ],
+        [
+          0.5,
+          0.324
+        ],
+        [
+          0.75,
+          0.324
+        ],
+        [
+          1.0,
+          0.327
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "13": {
+      "network_id": "national_basin_001",
+      "start_width_px": 0.543,
+      "end_width_px": 0.54,
+      "width_knots_px": [
+        [
+          0.0,
+          0.543
+        ],
+        [
+          0.25,
+          0.54
+        ],
+        [
+          0.5,
+          0.54
+        ],
+        [
+          0.75,
+          0.54
+        ],
+        [
+          1.0,
+          0.54
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 4,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "14": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.19,
+      "end_width_px": 0.35,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "16": {
+      "network_id": "national_basin_004",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "17": {
+      "network_id": "national_basin_004",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "18": {
+      "network_id": "national_basin_004",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "19": {
+      "network_id": "national_basin_001",
+      "start_width_px": 0.261,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.261
+        ],
+        [
+          0.25,
+          0.262
+        ],
+        [
+          0.5,
+          0.262
+        ],
+        [
+          0.75,
+          0.263
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "20": {
+      "network_id": "national_basin_001",
+      "start_width_px": 0.604,
+      "end_width_px": 0.607,
+      "width_knots_px": [
+        [
+          0.0,
+          0.604
+        ],
+        [
+          0.25,
+          0.604
+        ],
+        [
+          0.5,
+          0.604
+        ],
+        [
+          0.75,
+          0.604
+        ],
+        [
+          1.0,
+          0.607
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 5,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "21": {
+      "network_id": "national_basin_008",
+      "start_width_px": 0.229,
+      "end_width_px": 0.225,
+      "width_knots_px": [
+        [
+          0.0,
+          0.229
+        ],
+        [
+          0.25,
+          0.23
+        ],
+        [
+          0.5,
+          0.229
+        ],
+        [
+          0.75,
+          0.229
+        ],
+        [
+          1.0,
+          0.225
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "22": {
+      "network_id": "national_basin_001",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "23": {
+      "network_id": "national_basin_001",
+      "start_width_px": 0.665,
+      "end_width_px": 0.661,
+      "width_knots_px": [
+        [
+          0.0,
+          0.665
+        ],
+        [
+          0.25,
+          0.661
+        ],
+        [
+          0.5,
+          0.661
+        ],
+        [
+          0.75,
+          0.661
+        ],
+        [
+          1.0,
+          0.661
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 6,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "24": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.55,
+      "end_width_px": 0.53,
+      "width_knots_px": [
+        [
+          0.0,
+          0.55
+        ],
+        [
+          0.1,
+          0.58
+        ],
+        [
+          0.28,
+          0.57
+        ],
+        [
+          0.42,
+          0.55
+        ],
+        [
+          0.4639,
+          0.54
+        ],
+        [
+          0.68,
+          0.53
+        ],
+        [
+          1.0,
+          0.53
+        ]
+      ],
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "28": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.345,
+      "end_width_px": 0.345,
+      "width_knots_px": [
+        [
+          0.0,
+          0.345
+        ],
+        [
+          0.25,
+          0.345
+        ],
+        [
+          0.5,
+          0.345
+        ],
+        [
+          0.75,
+          0.345
+        ],
+        [
+          1.0,
+          0.345
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "29": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.22,
+      "end_width_px": 0.38,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "30": {
+      "network_id": "national_basin_030",
+      "start_width_px": 0.211,
+      "end_width_px": 0.2,
+      "width_knots_px": [
+        [
+          0.0,
+          0.211
+        ],
+        [
+          0.25,
+          0.206
+        ],
+        [
+          0.5,
+          0.205
+        ],
+        [
+          0.75,
+          0.205
+        ],
+        [
+          1.0,
+          0.2
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "31": {
+      "network_id": "national_basin_030",
+      "start_width_px": 0.2,
+      "end_width_px": 0.211,
+      "width_knots_px": [
+        [
+          0.0,
+          0.2
+        ],
+        [
+          0.25,
+          0.205
+        ],
+        [
+          0.5,
+          0.205
+        ],
+        [
+          0.75,
+          0.206
+        ],
+        [
+          1.0,
+          0.211
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "32": {
+      "network_id": "national_basin_030",
+      "start_width_px": 0.301,
+      "end_width_px": 0.308,
+      "width_knots_px": [
+        [
+          0.0,
+          0.301
+        ],
+        [
+          0.25,
+          0.298
+        ],
+        [
+          0.5,
+          0.299
+        ],
+        [
+          0.75,
+          0.301
+        ],
+        [
+          1.0,
+          0.308
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "33": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.338,
+      "end_width_px": 0.268,
+      "width_knots_px": [
+        [
+          0.0,
+          0.338
+        ],
+        [
+          0.25,
+          0.337
+        ],
+        [
+          0.5,
+          0.336
+        ],
+        [
+          0.75,
+          0.268
+        ],
+        [
+          1.0,
+          0.268
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "34": {
+      "network_id": "national_basin_030",
+      "start_width_px": 0.38,
+      "end_width_px": 0.379,
+      "width_knots_px": [
+        [
+          0.0,
+          0.38
+        ],
+        [
+          0.25,
+          0.378
+        ],
+        [
+          0.5,
+          0.378
+        ],
+        [
+          0.75,
+          0.379
+        ],
+        [
+          1.0,
+          0.379
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "35": {
+      "network_id": "national_basin_030",
+      "start_width_px": 0.218,
+      "end_width_px": 0.203,
+      "width_knots_px": [
+        [
+          0.0,
+          0.218
+        ],
+        [
+          0.25,
+          0.218
+        ],
+        [
+          0.5,
+          0.216
+        ],
+        [
+          0.75,
+          0.207
+        ],
+        [
+          1.0,
+          0.203
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "36": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.27,
+      "end_width_px": 0.2,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "37": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.327,
+      "end_width_px": 0.261,
+      "width_knots_px": [
+        [
+          0.0,
+          0.327
+        ],
+        [
+          0.25,
+          0.29
+        ],
+        [
+          0.5,
+          0.261
+        ],
+        [
+          0.75,
+          0.255
+        ],
+        [
+          1.0,
+          0.261
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "38": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.24,
+      "end_width_px": 0.16,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "39": {
+      "network_id": "national_basin_030",
+      "start_width_px": 0.218,
+      "end_width_px": 0.219,
+      "width_knots_px": [
+        [
+          0.0,
+          0.218
+        ],
+        [
+          0.25,
+          0.218
+        ],
+        [
+          0.5,
+          0.218
+        ],
+        [
+          0.75,
+          0.218
+        ],
+        [
+          1.0,
+          0.219
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "40": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.336,
+      "end_width_px": 0.338,
+      "width_knots_px": [
+        [
+          0.0,
+          0.336
+        ],
+        [
+          0.25,
+          0.337
+        ],
+        [
+          0.5,
+          0.337
+        ],
+        [
+          0.75,
+          0.338
+        ],
+        [
+          1.0,
+          0.338
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "41": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.487,
+      "end_width_px": 0.481,
+      "width_knots_px": [
+        [
+          0.0,
+          0.487
+        ],
+        [
+          0.25,
+          0.48
+        ],
+        [
+          0.5,
+          0.479
+        ],
+        [
+          0.75,
+          0.478
+        ],
+        [
+          1.0,
+          0.481
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "42": {
+      "network_id": "national_basin_030",
+      "start_width_px": 0.463,
+      "end_width_px": 0.441,
+      "width_knots_px": [
+        [
+          0.0,
+          0.463
+        ],
+        [
+          0.25,
+          0.443
+        ],
+        [
+          0.5,
+          0.439
+        ],
+        [
+          0.75,
+          0.438
+        ],
+        [
+          1.0,
+          0.441
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 4,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "43": {
+      "network_id": "national_basin_043",
+      "start_width_px": 0.25,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.25
+        ],
+        [
+          0.25,
+          0.25
+        ],
+        [
+          0.5,
+          0.255
+        ],
+        [
+          0.75,
+          0.268
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "44": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.26,
+      "end_width_px": 0.327,
+      "width_knots_px": [
+        [
+          0.0,
+          0.26
+        ],
+        [
+          0.25,
+          0.261
+        ],
+        [
+          0.5,
+          0.261
+        ],
+        [
+          0.75,
+          0.261
+        ],
+        [
+          1.0,
+          0.327
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "45": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.487,
+      "end_width_px": 0.465,
+      "width_knots_px": [
+        [
+          0.0,
+          0.487
+        ],
+        [
+          0.25,
+          0.464
+        ],
+        [
+          0.5,
+          0.463
+        ],
+        [
+          0.75,
+          0.463
+        ],
+        [
+          1.0,
+          0.465
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "46": {
+      "network_id": "national_basin_030",
+      "start_width_px": 0.595,
+      "end_width_px": 0.521,
+      "width_knots_px": [
+        [
+          0.0,
+          0.595
+        ],
+        [
+          0.25,
+          0.525
+        ],
+        [
+          0.5,
+          0.522
+        ],
+        [
+          0.75,
+          0.519
+        ],
+        [
+          1.0,
+          0.521
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 5,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "47": {
+      "network_id": "national_basin_030",
+      "start_width_px": 0.232,
+      "end_width_px": 0.23,
+      "width_knots_px": [
+        [
+          0.0,
+          0.232
+        ],
+        [
+          0.25,
+          0.231
+        ],
+        [
+          0.5,
+          0.231
+        ],
+        [
+          0.75,
+          0.231
+        ],
+        [
+          1.0,
+          0.23
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "48": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.6,
+      "end_width_px": 0.597,
+      "width_knots_px": [
+        [
+          0.0,
+          0.6
+        ],
+        [
+          0.25,
+          0.597
+        ],
+        [
+          0.5,
+          0.597
+        ],
+        [
+          0.75,
+          0.597
+        ],
+        [
+          1.0,
+          0.597
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "49": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.773,
+      "end_width_px": 0.77,
+      "width_knots_px": [
+        [
+          0.0,
+          0.773
+        ],
+        [
+          0.25,
+          0.77
+        ],
+        [
+          0.5,
+          0.77
+        ],
+        [
+          0.75,
+          0.77
+        ],
+        [
+          1.0,
+          0.77
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 5,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "50": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.38,
+      "end_width_px": 0.42,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "51": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.62,
+      "end_width_px": 0.57,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "52": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.345,
+      "end_width_px": 0.265,
+      "width_knots_px": [
+        [
+          0.0,
+          0.345
+        ],
+        [
+          0.25,
+          0.345
+        ],
+        [
+          0.5,
+          0.345
+        ],
+        [
+          0.75,
+          0.345
+        ],
+        [
+          1.0,
+          0.265
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "53": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.847,
+      "end_width_px": 0.55,
+      "width_knots_px": [
+        [
+          0.0,
+          0.847
+        ],
+        [
+          0.25,
+          0.8
+        ],
+        [
+          0.5,
+          0.8
+        ],
+        [
+          0.75,
+          0.8
+        ],
+        [
+          1.0,
+          0.55
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 6,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "54": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.22,
+      "end_width_px": 0.3,
+      "flow_accumulation_count": 9,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "55": {
+      "network_id": "national_basin_055",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "56": {
+      "network_id": "national_basin_055",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "57": {
+      "network_id": "tm_mainstem",
+      "start_width_px": 0.7,
+      "end_width_px": 0.55,
+      "flow_accumulation_count": 6,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "59": {
+      "network_id": "national_basin_059",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "60": {
+      "network_id": "national_basin_059",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "61": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.55,
+      "end_width_px": 0.52,
+      "width_knots_px": [
+        [
+          0.0,
+          0.55
+        ],
+        [
+          0.45,
+          0.54
+        ],
+        [
+          1.0,
+          0.52
+        ]
+      ],
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "62": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "63": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.36,
+      "end_width_px": 0.46,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "64": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.58,
+      "end_width_px": 0.7,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "65": {
+      "network_id": "national_basin_059",
+      "start_width_px": 0.468,
+      "end_width_px": 0.471,
+      "width_knots_px": [
+        [
+          0.0,
+          0.468
+        ],
+        [
+          0.25,
+          0.468
+        ],
+        [
+          0.5,
+          0.468
+        ],
+        [
+          0.75,
+          0.468
+        ],
+        [
+          1.0,
+          0.471
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "66": {
+      "network_id": "national_basin_059",
+      "start_width_px": 0.543,
+      "end_width_px": 0.54,
+      "width_knots_px": [
+        [
+          0.0,
+          0.543
+        ],
+        [
+          0.25,
+          0.54
+        ],
+        [
+          0.5,
+          0.54
+        ],
+        [
+          0.75,
+          0.54
+        ],
+        [
+          1.0,
+          0.54
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 4,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "67": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.28,
+      "end_width_px": 0.2,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "68": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.18,
+      "end_width_px": 0.12,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "reviewed_q2_profile",
+      "clip_to_quadrant": false
+    },
+    "69": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "70": {
+      "network_id": "national_basin_070",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "71": {
+      "network_id": "national_basin_071",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "72": {
+      "network_id": "national_basin_071",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "73": {
+      "network_id": "national_basin_073",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "74": {
+      "network_id": "national_basin_074",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "75": {
+      "network_id": "national_basin_075",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "76": {
+      "network_id": "national_basin_076",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "77": {
+      "network_id": "national_basin_077",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "78": {
+      "network_id": "national_basin_078",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "79": {
+      "network_id": "national_basin_079",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "80": {
+      "network_id": "national_basin_080",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "81": {
+      "network_id": "national_basin_081",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "83": {
+      "network_id": "national_basin_083",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "86": {
+      "network_id": "national_basin_086",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "88": {
+      "network_id": "national_basin_088",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "89": {
+      "network_id": "national_basin_059",
+      "start_width_px": 0.382,
+      "end_width_px": 0.383,
+      "width_knots_px": [
+        [
+          0.0,
+          0.382
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.381
+        ],
+        [
+          0.75,
+          0.381
+        ],
+        [
+          1.0,
+          0.383
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "90": {
+      "network_id": "national_basin_059",
+      "start_width_px": 0.266,
+      "end_width_px": 0.269,
+      "width_knots_px": [
+        [
+          0.0,
+          0.266
+        ],
+        [
+          0.25,
+          0.268
+        ],
+        [
+          0.5,
+          0.269
+        ],
+        [
+          0.75,
+          0.269
+        ],
+        [
+          1.0,
+          0.269
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "91": {
+      "network_id": "national_basin_059",
+      "start_width_px": 0.266,
+      "end_width_px": 0.269,
+      "width_knots_px": [
+        [
+          0.0,
+          0.266
+        ],
+        [
+          0.25,
+          0.266
+        ],
+        [
+          0.5,
+          0.266
+        ],
+        [
+          0.75,
+          0.266
+        ],
+        [
+          1.0,
+          0.269
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "92": {
+      "network_id": "national_basin_092",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "93": {
+      "network_id": "national_basin_059",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "94": {
+      "network_id": "national_basin_092",
+      "start_width_px": 0.27,
+      "end_width_px": 0.264,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.269
+        ],
+        [
+          0.5,
+          0.268
+        ],
+        [
+          0.75,
+          0.268
+        ],
+        [
+          1.0,
+          0.264
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "95": {
+      "network_id": "national_basin_092",
+      "start_width_px": 0.268,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.268
+        ],
+        [
+          0.25,
+          0.269
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "96": {
+      "network_id": "national_basin_096",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "97": {
+      "network_id": "national_basin_097",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "98": {
+      "network_id": "national_basin_098",
+      "start_width_px": 0.268,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.268
+        ],
+        [
+          0.25,
+          0.269
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "99": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.58,
+      "end_width_px": 0.795,
+      "width_knots_px": [
+        [
+          0.0,
+          0.58
+        ],
+        [
+          0.25,
+          0.795
+        ],
+        [
+          0.5,
+          0.795
+        ],
+        [
+          0.75,
+          0.795
+        ],
+        [
+          1.0,
+          0.795
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "100": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "101": {
+      "network_id": "national_basin_092",
+      "start_width_px": 0.385,
+      "end_width_px": 0.382,
+      "width_knots_px": [
+        [
+          0.0,
+          0.385
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.382
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "102": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.459,
+      "end_width_px": 0.459,
+      "width_knots_px": [
+        [
+          0.0,
+          0.459
+        ],
+        [
+          0.25,
+          0.459
+        ],
+        [
+          0.5,
+          0.459
+        ],
+        [
+          0.75,
+          0.459
+        ],
+        [
+          1.0,
+          0.459
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "106": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.921,
+      "end_width_px": 0.8,
+      "width_knots_px": [
+        [
+          0.0,
+          0.921
+        ],
+        [
+          0.25,
+          0.8
+        ],
+        [
+          0.5,
+          0.8
+        ],
+        [
+          0.75,
+          0.8
+        ],
+        [
+          1.0,
+          0.8
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 4,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "117": {
+      "network_id": "national_basin_117",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "133": {
+      "network_id": "national_basin_133",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "137": {
+      "network_id": "national_basin_098",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "138": {
+      "network_id": "national_basin_092",
+      "start_width_px": 0.468,
+      "end_width_px": 0.471,
+      "width_knots_px": [
+        [
+          0.0,
+          0.468
+        ],
+        [
+          0.25,
+          0.468
+        ],
+        [
+          0.5,
+          0.468
+        ],
+        [
+          0.75,
+          0.468
+        ],
+        [
+          1.0,
+          0.471
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "139": {
+      "network_id": "national_basin_092",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "141": {
+      "network_id": "national_basin_141",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "142": {
+      "network_id": "national_basin_092",
+      "start_width_px": 0.382,
+      "end_width_px": 0.385,
+      "width_knots_px": [
+        [
+          0.0,
+          0.382
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.385
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "143": {
+      "network_id": "national_basin_092",
+      "start_width_px": 0.607,
+      "end_width_px": 0.604,
+      "width_knots_px": [
+        [
+          0.0,
+          0.607
+        ],
+        [
+          0.25,
+          0.604
+        ],
+        [
+          0.5,
+          0.604
+        ],
+        [
+          0.75,
+          0.604
+        ],
+        [
+          1.0,
+          0.604
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 5,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "144": {
+      "network_id": "national_basin_092",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "146": {
+      "network_id": "national_basin_092",
+      "start_width_px": 0.604,
+      "end_width_px": 0.604,
+      "width_knots_px": [
+        [
+          0.0,
+          0.604
+        ],
+        [
+          0.25,
+          0.604
+        ],
+        [
+          0.5,
+          0.604
+        ],
+        [
+          0.75,
+          0.604
+        ],
+        [
+          1.0,
+          0.604
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 5,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "149": {
+      "network_id": "national_basin_149",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "150": {
+      "network_id": "national_basin_150",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "151": {
+      "network_id": "national_basin_149",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "154": {
+      "network_id": "national_basin_154",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "160": {
+      "network_id": "national_basin_160",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "165": {
+      "network_id": "national_basin_098",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "166": {
+      "network_id": "national_basin_166",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "169": {
+      "network_id": "national_basin_098",
+      "start_width_px": 0.385,
+      "end_width_px": 0.382,
+      "width_knots_px": [
+        [
+          0.0,
+          0.385
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.382
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "171": {
+      "network_id": "national_basin_098",
+      "start_width_px": 0.467,
+      "end_width_px": 0.471,
+      "width_knots_px": [
+        [
+          0.0,
+          0.467
+        ],
+        [
+          0.25,
+          0.467
+        ],
+        [
+          0.5,
+          0.468
+        ],
+        [
+          0.75,
+          0.468
+        ],
+        [
+          1.0,
+          0.471
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "172": {
+      "network_id": "national_basin_098",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "173": {
+      "network_id": "national_basin_166",
+      "start_width_px": 0.471,
+      "end_width_px": 0.468,
+      "width_knots_px": [
+        [
+          0.0,
+          0.471
+        ],
+        [
+          0.25,
+          0.468
+        ],
+        [
+          0.5,
+          0.468
+        ],
+        [
+          0.75,
+          0.468
+        ],
+        [
+          1.0,
+          0.468
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "174": {
+      "network_id": "national_basin_166",
+      "start_width_px": 0.54,
+      "end_width_px": 0.543,
+      "width_knots_px": [
+        [
+          0.0,
+          0.54
+        ],
+        [
+          0.25,
+          0.54
+        ],
+        [
+          0.5,
+          0.54
+        ],
+        [
+          0.75,
+          0.54
+        ],
+        [
+          1.0,
+          0.543
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 4,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "175": {
+      "network_id": "national_basin_175",
+      "start_width_px": 0.238,
+      "end_width_px": 0.266,
+      "width_knots_px": [
+        [
+          0.0,
+          0.238
+        ],
+        [
+          0.25,
+          0.256
+        ],
+        [
+          0.5,
+          0.261
+        ],
+        [
+          0.75,
+          0.263
+        ],
+        [
+          1.0,
+          0.266
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "176": {
+      "network_id": "national_basin_166",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "177": {
+      "network_id": "national_basin_166",
+      "start_width_px": 0.382,
+      "end_width_px": 0.385,
+      "width_knots_px": [
+        [
+          0.0,
+          0.382
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.385
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "178": {
+      "network_id": "national_basin_175",
+      "start_width_px": 0.241,
+      "end_width_px": 0.266,
+      "width_knots_px": [
+        [
+          0.0,
+          0.241
+        ],
+        [
+          0.25,
+          0.259
+        ],
+        [
+          0.5,
+          0.261
+        ],
+        [
+          0.75,
+          0.264
+        ],
+        [
+          1.0,
+          0.266
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "179": {
+      "network_id": "national_basin_133",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "180": {
+      "network_id": "national_basin_175",
+      "start_width_px": 0.27,
+      "end_width_px": 0.266,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.269
+        ],
+        [
+          0.75,
+          0.268
+        ],
+        [
+          1.0,
+          0.266
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "181": {
+      "network_id": "national_basin_166",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "182": {
+      "network_id": "national_basin_166",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "183": {
+      "network_id": "national_basin_175",
+      "start_width_px": 0.267,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.267
+        ],
+        [
+          0.25,
+          0.269
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "184": {
+      "network_id": "national_basin_175",
+      "start_width_px": 0.382,
+      "end_width_px": 0.379,
+      "width_knots_px": [
+        [
+          0.0,
+          0.382
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.378
+        ],
+        [
+          0.75,
+          0.377
+        ],
+        [
+          1.0,
+          0.379
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "185": {
+      "network_id": "national_basin_185",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "186": {
+      "network_id": "national_basin_186",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "187": {
+      "network_id": "national_basin_187",
+      "start_width_px": 0.471,
+      "end_width_px": 0.466,
+      "width_knots_px": [
+        [
+          0.0,
+          0.471
+        ],
+        [
+          0.25,
+          0.468
+        ],
+        [
+          0.5,
+          0.467
+        ],
+        [
+          0.75,
+          0.467
+        ],
+        [
+          1.0,
+          0.466
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "188": {
+      "network_id": "national_basin_185",
+      "start_width_px": 0.54,
+      "end_width_px": 0.543,
+      "width_knots_px": [
+        [
+          0.0,
+          0.54
+        ],
+        [
+          0.25,
+          0.54
+        ],
+        [
+          0.5,
+          0.54
+        ],
+        [
+          0.75,
+          0.54
+        ],
+        [
+          1.0,
+          0.543
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 4,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "189": {
+      "network_id": "national_basin_186",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "190": {
+      "network_id": "national_basin_185",
+      "start_width_px": 0.471,
+      "end_width_px": 0.468,
+      "width_knots_px": [
+        [
+          0.0,
+          0.471
+        ],
+        [
+          0.25,
+          0.468
+        ],
+        [
+          0.5,
+          0.468
+        ],
+        [
+          0.75,
+          0.468
+        ],
+        [
+          1.0,
+          0.468
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "191": {
+      "network_id": "national_basin_185",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "192": {
+      "network_id": "national_basin_192",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "193": {
+      "network_id": "national_basin_185",
+      "start_width_px": 0.385,
+      "end_width_px": 0.382,
+      "width_knots_px": [
+        [
+          0.0,
+          0.385
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.382
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "194": {
+      "network_id": "national_basin_175",
+      "start_width_px": 0.471,
+      "end_width_px": 0.468,
+      "width_knots_px": [
+        [
+          0.0,
+          0.471
+        ],
+        [
+          0.25,
+          0.468
+        ],
+        [
+          0.5,
+          0.468
+        ],
+        [
+          0.75,
+          0.468
+        ],
+        [
+          1.0,
+          0.468
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "195": {
+      "network_id": "national_basin_185",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "196": {
+      "network_id": "national_basin_175",
+      "start_width_px": 0.54,
+      "end_width_px": 0.543,
+      "width_knots_px": [
+        [
+          0.0,
+          0.54
+        ],
+        [
+          0.25,
+          0.54
+        ],
+        [
+          0.5,
+          0.54
+        ],
+        [
+          0.75,
+          0.54
+        ],
+        [
+          1.0,
+          0.543
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 4,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "197": {
+      "network_id": "national_basin_197",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "198": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.54,
+      "end_width_px": 0.543,
+      "width_knots_px": [
+        [
+          0.0,
+          0.54
+        ],
+        [
+          0.25,
+          0.54
+        ],
+        [
+          0.5,
+          0.54
+        ],
+        [
+          0.75,
+          0.54
+        ],
+        [
+          1.0,
+          0.543
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 4,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "199": {
+      "network_id": "national_basin_175",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "200": {
+      "network_id": "national_basin_187",
+      "start_width_px": 0.27,
+      "end_width_px": 0.263,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.266
+        ],
+        [
+          0.75,
+          0.264
+        ],
+        [
+          1.0,
+          0.263
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "201": {
+      "network_id": "national_basin_201",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "202": {
+      "network_id": "national_basin_202",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "203": {
+      "network_id": "national_basin_203",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "204": {
+      "network_id": "national_basin_204",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "205": {
+      "network_id": "national_basin_205",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "207": {
+      "network_id": "national_basin_166",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "208": {
+      "network_id": "national_basin_166",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "210": {
+      "network_id": "national_basin_210",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "211": {
+      "network_id": "national_basin_187",
+      "start_width_px": 0.382,
+      "end_width_px": 0.385,
+      "width_knots_px": [
+        [
+          0.0,
+          0.382
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.385
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "212": {
+      "network_id": "national_basin_212",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "214": {
+      "network_id": "national_basin_205",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "217": {
+      "network_id": "national_basin_212",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "218": {
+      "network_id": "national_basin_175",
+      "start_width_px": 0.27,
+      "end_width_px": 0.266,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.266
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "219": {
+      "network_id": "national_basin_166",
+      "start_width_px": 0.54,
+      "end_width_px": 0.54,
+      "width_knots_px": [
+        [
+          0.0,
+          0.54
+        ],
+        [
+          0.25,
+          0.54
+        ],
+        [
+          0.5,
+          0.54
+        ],
+        [
+          0.75,
+          0.54
+        ],
+        [
+          1.0,
+          0.54
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 4,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "220": {
+      "network_id": "national_basin_175",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "221": {
+      "network_id": "national_basin_175",
+      "start_width_px": 0.607,
+      "end_width_px": 0.602,
+      "width_knots_px": [
+        [
+          0.0,
+          0.607
+        ],
+        [
+          0.25,
+          0.604
+        ],
+        [
+          0.5,
+          0.604
+        ],
+        [
+          0.75,
+          0.603
+        ],
+        [
+          1.0,
+          0.602
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 5,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "222": {
+      "network_id": "national_basin_187",
+      "start_width_px": 0.27,
+      "end_width_px": 0.269,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.269
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "223": {
+      "network_id": "national_basin_187",
+      "start_width_px": 0.269,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.269
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "224": {
+      "network_id": "national_basin_224",
+      "start_width_px": 0.267,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.267
+        ],
+        [
+          0.25,
+          0.269
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "225": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "226": {
+      "network_id": "zc_mainstem",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "227": {
+      "network_id": "national_basin_175",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "228": {
+      "network_id": "national_basin_224",
+      "start_width_px": 0.268,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.268
+        ],
+        [
+          0.25,
+          0.268
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "229": {
+      "network_id": "national_basin_224",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "230": {
+      "network_id": "national_basin_224",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "231": {
+      "network_id": "national_basin_166",
+      "start_width_px": 0.54,
+      "end_width_px": 0.54,
+      "width_knots_px": [
+        [
+          0.0,
+          0.54
+        ],
+        [
+          0.25,
+          0.54
+        ],
+        [
+          0.5,
+          0.54
+        ],
+        [
+          0.75,
+          0.54
+        ],
+        [
+          1.0,
+          0.54
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 4,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "232": {
+      "network_id": "national_basin_232",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "233": {
+      "network_id": "national_basin_232",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "234": {
+      "network_id": "national_basin_234",
+      "start_width_px": 0.267,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.267
+        ],
+        [
+          0.25,
+          0.268
+        ],
+        [
+          0.5,
+          0.268
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "235": {
+      "network_id": "national_basin_235",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "236": {
+      "network_id": "national_basin_235",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "237": {
+      "network_id": "national_basin_235",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "238": {
+      "network_id": "national_basin_238",
+      "start_width_px": 0.268,
+      "end_width_px": 0.268,
+      "width_knots_px": [
+        [
+          0.0,
+          0.268
+        ],
+        [
+          0.25,
+          0.268
+        ],
+        [
+          0.5,
+          0.268
+        ],
+        [
+          0.75,
+          0.268
+        ],
+        [
+          1.0,
+          0.268
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "239": {
+      "network_id": "national_basin_232",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "240": {
+      "network_id": "national_basin_232",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "241": {
+      "network_id": "national_basin_234",
+      "start_width_px": 0.385,
+      "end_width_px": 0.382,
+      "width_knots_px": [
+        [
+          0.0,
+          0.385
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.382
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "242": {
+      "network_id": "national_basin_234",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "243": {
+      "network_id": "national_basin_232",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "244": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "247": {
+      "network_id": "national_basin_247",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "248": {
+      "network_id": "national_basin_247",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "249": {
+      "network_id": "national_basin_247",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "250": {
+      "network_id": "national_basin_250",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "251": {
+      "network_id": "national_basin_250",
+      "start_width_px": 0.27,
+      "end_width_px": 0.269,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.269
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "252": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.468,
+      "end_width_px": 0.468,
+      "width_knots_px": [
+        [
+          0.0,
+          0.468
+        ],
+        [
+          0.25,
+          0.468
+        ],
+        [
+          0.5,
+          0.468
+        ],
+        [
+          0.75,
+          0.468
+        ],
+        [
+          1.0,
+          0.468
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "253": {
+      "network_id": "national_basin_235",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "254": {
+      "network_id": "national_basin_235",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "255": {
+      "network_id": "national_basin_166",
+      "start_width_px": 0.54,
+      "end_width_px": 0.54,
+      "width_knots_px": [
+        [
+          0.0,
+          0.54
+        ],
+        [
+          0.25,
+          0.54
+        ],
+        [
+          0.5,
+          0.54
+        ],
+        [
+          0.75,
+          0.54
+        ],
+        [
+          1.0,
+          0.54
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 4,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "256": {
+      "network_id": "national_basin_250",
+      "start_width_px": 0.385,
+      "end_width_px": 0.382,
+      "width_knots_px": [
+        [
+          0.0,
+          0.385
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.382
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "258": {
+      "network_id": "national_basin_258",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "265": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "267": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "270": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.471,
+      "end_width_px": 0.468,
+      "width_knots_px": [
+        [
+          0.0,
+          0.471
+        ],
+        [
+          0.25,
+          0.468
+        ],
+        [
+          0.5,
+          0.468
+        ],
+        [
+          0.75,
+          0.468
+        ],
+        [
+          1.0,
+          0.468
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "271": {
+      "network_id": "national_basin_247",
+      "start_width_px": 0.468,
+      "end_width_px": 0.468,
+      "width_knots_px": [
+        [
+          0.0,
+          0.468
+        ],
+        [
+          0.25,
+          0.468
+        ],
+        [
+          0.5,
+          0.468
+        ],
+        [
+          0.75,
+          0.468
+        ],
+        [
+          1.0,
+          0.468
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "272": {
+      "network_id": "national_basin_247",
+      "start_width_px": 0.471,
+      "end_width_px": 0.468,
+      "width_knots_px": [
+        [
+          0.0,
+          0.471
+        ],
+        [
+          0.25,
+          0.468
+        ],
+        [
+          0.5,
+          0.468
+        ],
+        [
+          0.75,
+          0.468
+        ],
+        [
+          1.0,
+          0.468
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 3,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "274": {
+      "network_id": "national_basin_274",
+      "start_width_px": 0.385,
+      "end_width_px": 0.382,
+      "width_knots_px": [
+        [
+          0.0,
+          0.385
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.382
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "275": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.385,
+      "end_width_px": 0.382,
+      "width_knots_px": [
+        [
+          0.0,
+          0.385
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.382
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "276": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.27,
+      "end_width_px": 0.258,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.269
+        ],
+        [
+          0.5,
+          0.267
+        ],
+        [
+          0.75,
+          0.265
+        ],
+        [
+          1.0,
+          0.258
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "277": {
+      "network_id": "national_basin_258",
+      "start_width_px": 0.382,
+      "end_width_px": 0.382,
+      "width_knots_px": [
+        [
+          0.0,
+          0.382
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.381
+        ],
+        [
+          1.0,
+          0.382
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "278": {
+      "network_id": "national_basin_278",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "279": {
+      "network_id": "national_basin_279",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "280": {
+      "network_id": "national_basin_280",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "281": {
+      "network_id": "national_basin_281",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "282": {
+      "network_id": "national_basin_282",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "284": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "285": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "286": {
+      "network_id": "national_basin_258",
+      "start_width_px": 0.12,
+      "end_width_px": 0.12,
+      "width_knots_px": [
+        [
+          0.0,
+          0.12
+        ],
+        [
+          1.0,
+          0.12
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 0,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "288": {
+      "network_id": "national_basin_258",
+      "start_width_px": 0.382,
+      "end_width_px": 0.385,
+      "width_knots_px": [
+        [
+          0.0,
+          0.382
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.385
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "289": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "290": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.27,
+      "end_width_px": 0.256,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.267
+        ],
+        [
+          0.5,
+          0.264
+        ],
+        [
+          0.75,
+          0.263
+        ],
+        [
+          1.0,
+          0.256
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "291": {
+      "network_id": "national_basin_247",
+      "start_width_px": 0.27,
+      "end_width_px": 0.253,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.268
+        ],
+        [
+          0.5,
+          0.267
+        ],
+        [
+          0.75,
+          0.258
+        ],
+        [
+          1.0,
+          0.253
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "292": {
+      "network_id": "national_basin_247",
+      "start_width_px": 0.382,
+      "end_width_px": 0.385,
+      "width_knots_px": [
+        [
+          0.0,
+          0.382
+        ],
+        [
+          0.25,
+          0.382
+        ],
+        [
+          0.5,
+          0.382
+        ],
+        [
+          0.75,
+          0.382
+        ],
+        [
+          1.0,
+          0.385
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 2,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "293": {
+      "network_id": "national_basin_198",
+      "start_width_px": 0.266,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.266
+        ],
+        [
+          0.25,
+          0.267
+        ],
+        [
+          0.5,
+          0.269
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "294": {
+      "network_id": "national_basin_247",
+      "start_width_px": 0.27,
+      "end_width_px": 0.215,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.269
+        ],
+        [
+          1.0,
+          0.215
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "295": {
+      "network_id": "national_basin_258",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "296": {
+      "network_id": "national_basin_274",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "297": {
+      "network_id": "national_basin_274",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "298": {
+      "network_id": "national_basin_247",
+      "start_width_px": 0.268,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.268
+        ],
+        [
+          0.25,
+          0.268
+        ],
+        [
+          0.5,
+          0.268
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "299": {
+      "network_id": "national_basin_299",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "300": {
+      "network_id": "national_basin_300",
+      "start_width_px": 0.26,
+      "end_width_px": 0.266,
+      "width_knots_px": [
+        [
+          0.0,
+          0.26
+        ],
+        [
+          0.25,
+          0.264
+        ],
+        [
+          0.5,
+          0.267
+        ],
+        [
+          0.75,
+          0.269
+        ],
+        [
+          1.0,
+          0.266
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    },
+    "301": {
+      "network_id": "national_basin_185",
+      "start_width_px": 0.27,
+      "end_width_px": 0.27,
+      "width_knots_px": [
+        [
+          0.0,
+          0.27
+        ],
+        [
+          0.25,
+          0.27
+        ],
+        [
+          0.5,
+          0.27
+        ],
+        [
+          0.75,
+          0.27
+        ],
+        [
+          1.0,
+          0.27
+        ]
+      ],
+      "clip_to_quadrant": false,
+      "flow_accumulation_count": 1,
+      "cartographic_profile_source": "basin_tree_and_lowland_transition"
+    }
+  },
+  "confluence_width_checks": [
+    {
+      "id": "zc_upper_tributaries_to_reach_24",
+      "upstream_reaches": [
+        {
+          "segment_id": 11,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 14,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 24,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.05
+    },
+    {
+      "id": "zc_western_tributaries_to_reach_63",
+      "upstream_reaches": [
+        {
+          "segment_id": 67,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 68,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 63,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.05
+    },
+    {
+      "id": "zc_reaches_61_and_63_to_64",
+      "upstream_reaches": [
+        {
+          "segment_id": 61,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 63,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 64,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.05
+    },
+    {
+      "id": "tm_upper_tributaries_to_reach_50",
+      "upstream_reaches": [
+        {
+          "segment_id": 36,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 38,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 50,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.05
+    },
+    {
+      "id": "tm_reaches_29_and_50_to_51",
+      "upstream_reaches": [
+        {
+          "segment_id": 29,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 50,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 51,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.05
+    },
+    {
+      "id": "tm_reaches_51_and_54_to_57",
+      "upstream_reaches": [
+        {
+          "segment_id": 51,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 54,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 57,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.05
+    },
+    {
+      "id": "national_basin_001_to_23_at_923.0_322.1",
+      "upstream_reaches": [
+        {
+          "segment_id": 20,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 22,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 23,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_001_to_10_at_842.0_217.8",
+      "upstream_reaches": [
+        {
+          "segment_id": 3,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 7,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 10,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_001_to_13_at_907.8_246.2",
+      "upstream_reaches": [
+        {
+          "segment_id": 5,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 10,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 13,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_001_to_20_at_922.1_272.1",
+      "upstream_reaches": [
+        {
+          "segment_id": 13,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 19,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 20,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_001_to_5_at_942.8_203.5",
+      "upstream_reaches": [
+        {
+          "segment_id": 1,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 2,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 5,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_008_to_12_at_1224.5_315.8",
+      "upstream_reaches": [
+        {
+          "segment_id": 8,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 21,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 12,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "zc_mainstem_to_106_at_924.8_913.0",
+      "upstream_reaches": [
+        {
+          "segment_id": 99,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 102,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 106,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "tm_mainstem_to_41_at_1057.4_393.9",
+      "upstream_reaches": [
+        {
+          "segment_id": 33,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 40,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 41,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "tm_mainstem_to_45_at_1102.1_404.7",
+      "upstream_reaches": [
+        {
+          "segment_id": 37,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 44,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 45,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "tm_mainstem_to_48_at_1085.5_412.6",
+      "upstream_reaches": [
+        {
+          "segment_id": 28,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 41,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 48,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "tm_mainstem_to_53_at_1121.0_475.5",
+      "upstream_reaches": [
+        {
+          "segment_id": 49,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 52,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 53,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "tm_mainstem_to_49_at_1095.6_428.0",
+      "upstream_reaches": [
+        {
+          "segment_id": 45,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 48,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 49,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_030_to_32_at_1142.5_365.2",
+      "upstream_reaches": [
+        {
+          "segment_id": 30,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 31,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 32,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_030_to_42_at_1183.3_396.4",
+      "upstream_reaches": [
+        {
+          "segment_id": 34,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 39,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 42,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_030_to_34_at_1155.5_377.1",
+      "upstream_reaches": [
+        {
+          "segment_id": 32,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 35,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 34,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_030_to_46_at_1193.5_412.6",
+      "upstream_reaches": [
+        {
+          "segment_id": 42,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 47,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 46,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_059_to_65_at_1127.6_884.8",
+      "upstream_reaches": [
+        {
+          "segment_id": 89,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 93,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 65,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_059_to_89_at_1148.3_874.5",
+      "upstream_reaches": [
+        {
+          "segment_id": 90,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 91,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 89,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_059_to_66_at_1216.9_696.7",
+      "upstream_reaches": [
+        {
+          "segment_id": 59,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 65,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 66,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_092_to_138_at_1162.0_947.4",
+      "upstream_reaches": [
+        {
+          "segment_id": 95,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 101,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 138,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_092_to_143_at_1174.5_966.0",
+      "upstream_reaches": [
+        {
+          "segment_id": 138,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 142,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 143,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_092_to_101_at_1171.0_907.3",
+      "upstream_reaches": [
+        {
+          "segment_id": 92,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 94,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 101,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_092_to_142_at_1138.7_968.5",
+      "upstream_reaches": [
+        {
+          "segment_id": 139,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 144,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 142,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_098_to_171_at_1087.2_1025.3",
+      "upstream_reaches": [
+        {
+          "segment_id": 169,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 172,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 171,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_098_to_169_at_1105.9_1008.7",
+      "upstream_reaches": [
+        {
+          "segment_id": 137,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 165,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 169,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_166_to_174_at_1126.6_1047.5",
+      "upstream_reaches": [
+        {
+          "segment_id": 166,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 173,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 174,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_166_to_177_at_1117.0_1075.7",
+      "upstream_reaches": [
+        {
+          "segment_id": 181,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 182,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 177,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_166_to_173_at_1105.0_1054.5",
+      "upstream_reaches": [
+        {
+          "segment_id": 176,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 177,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 173,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_175_to_196_at_414.7_1122.6",
+      "upstream_reaches": [
+        {
+          "segment_id": 183,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 194,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 196,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_175_to_194_at_451.3_1130.8",
+      "upstream_reaches": [
+        {
+          "segment_id": 184,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 199,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 194,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_175_to_221_at_407.0_1157.9",
+      "upstream_reaches": [
+        {
+          "segment_id": 196,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 218,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 221,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_175_to_184_at_438.4_1092.5",
+      "upstream_reaches": [
+        {
+          "segment_id": 175,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 178,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 184,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_185_to_188_at_1419.6_1113.1",
+      "upstream_reaches": [
+        {
+          "segment_id": 185,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 190,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 188,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_185_to_193_at_1407.0_1123.9",
+      "upstream_reaches": [
+        {
+          "segment_id": 195,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 301,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 193,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_185_to_190_at_1414.0_1117.5",
+      "upstream_reaches": [
+        {
+          "segment_id": 191,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 193,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 190,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_187_to_187_at_291.5_1144.9",
+      "upstream_reaches": [
+        {
+          "segment_id": 200,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 211,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 187,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_187_to_211_at_289.1_1182.3",
+      "upstream_reaches": [
+        {
+          "segment_id": 222,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 223,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 211,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_198_to_198_at_941.4_1321.0",
+      "upstream_reaches": [
+        {
+          "segment_id": 244,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 252,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 198,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_198_to_275_at_900.1_1376.5",
+      "upstream_reaches": [
+        {
+          "segment_id": 289,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 290,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 275,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_198_to_270_at_932.8_1367.2",
+      "upstream_reaches": [
+        {
+          "segment_id": 275,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 276,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 270,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_234_to_241_at_336.6_1272.0",
+      "upstream_reaches": [
+        {
+          "segment_id": 234,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 242,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 241,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_247_to_272_at_1403.1_1378.6",
+      "upstream_reaches": [
+        {
+          "segment_id": 291,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 292,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 272,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_247_to_292_at_1407.3_1385.5",
+      "upstream_reaches": [
+        {
+          "segment_id": 294,
+          "endpoint": "start"
+        },
+        {
+          "segment_id": 298,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 292,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_250_to_256_at_329.9_1325.4",
+      "upstream_reaches": [
+        {
+          "segment_id": 250,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 251,
+          "endpoint": "start"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 256,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_258_to_288_at_1318.0_1382.0",
+      "upstream_reaches": [
+        {
+          "segment_id": 258,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 295,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 288,
+        "endpoint": "end"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    },
+    {
+      "id": "national_basin_274_to_274_at_1387.1_1382.0",
+      "upstream_reaches": [
+        {
+          "segment_id": 296,
+          "endpoint": "end"
+        },
+        {
+          "segment_id": 297,
+          "endpoint": "end"
+        }
+      ],
+      "downstream_reach": {
+        "segment_id": 274,
+        "endpoint": "start"
+      },
+      "minimum_ratio": 1.0,
+      "max_node_gap_px": 0.15
+    }
+  ],
+  "channel_continuity_checks": [
+    {
+      "id": "zc_reaches_24_and_61",
+      "first_reach": {
+        "segment_id": 24,
+        "endpoint": "start"
+      },
+      "second_reach": {
+        "segment_id": 61,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.05,
+      "max_width_difference_px": 0.03
+    },
+    {
+      "id": "national_basin_004_through_1036.1_270.1",
+      "first_reach": {
+        "segment_id": 4,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 18,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_004_through_972.6_269.1",
+      "first_reach": {
+        "segment_id": 16,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 17,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "zc_mainstem_through_918.0_906.8",
+      "first_reach": {
+        "segment_id": 64,
+        "endpoint": "start"
+      },
+      "second_reach": {
+        "segment_id": 99,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "zc_mainstem_through_578.6_713.0",
+      "first_reach": {
+        "segment_id": 68,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 69,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "tm_mainstem_through_1053.8_513.9",
+      "first_reach": {
+        "segment_id": 53,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 57,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "tm_mainstem_through_1053.8_513.9",
+      "first_reach": {
+        "segment_id": 53,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 57,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_055_through_1249.0_487.4",
+      "first_reach": {
+        "segment_id": 55,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 56,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_059_through_1074.8_531.9",
+      "first_reach": {
+        "segment_id": 60,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 59,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_059_through_1074.8_531.9",
+      "first_reach": {
+        "segment_id": 59,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 60,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_071_through_1381.2_742.2",
+      "first_reach": {
+        "segment_id": 71,
+        "endpoint": "start"
+      },
+      "second_reach": {
+        "segment_id": 72,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_092_through_1182.5_969.4",
+      "first_reach": {
+        "segment_id": 143,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 146,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_092_through_1182.5_969.4",
+      "first_reach": {
+        "segment_id": 143,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 146,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_098_through_1108.4_946.7",
+      "first_reach": {
+        "segment_id": 98,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 137,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_098_through_1108.4_946.7",
+      "first_reach": {
+        "segment_id": 98,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 137,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_133_through_988.7_1065.8",
+      "first_reach": {
+        "segment_id": 133,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 179,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_149_through_1288.9_976.1",
+      "first_reach": {
+        "segment_id": 149,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 151,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_166_through_1007.5_1328.9",
+      "first_reach": {
+        "segment_id": 231,
+        "endpoint": "start"
+      },
+      "second_reach": {
+        "segment_id": 255,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_166_through_1189.5_1234.8",
+      "first_reach": {
+        "segment_id": 219,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 231,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_166_through_1210.2_1151.2",
+      "first_reach": {
+        "segment_id": 174,
+        "endpoint": "start"
+      },
+      "second_reach": {
+        "segment_id": 219,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_166_through_1007.5_1328.9",
+      "first_reach": {
+        "segment_id": 231,
+        "endpoint": "start"
+      },
+      "second_reach": {
+        "segment_id": 255,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_166_through_1243.0_1144.1",
+      "first_reach": {
+        "segment_id": 207,
+        "endpoint": "start"
+      },
+      "second_reach": {
+        "segment_id": 208,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_166_through_1189.5_1234.8",
+      "first_reach": {
+        "segment_id": 219,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 231,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_175_through_545.9_1158.7",
+      "first_reach": {
+        "segment_id": 180,
+        "endpoint": "start"
+      },
+      "second_reach": {
+        "segment_id": 199,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_175_through_695.6_1205.1",
+      "first_reach": {
+        "segment_id": 220,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 227,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_186_through_1421.9_1112.7",
+      "first_reach": {
+        "segment_id": 186,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 189,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_198_through_932.8_1362.1",
+      "first_reach": {
+        "segment_id": 270,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 252,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_198_through_874.8_1379.5",
+      "first_reach": {
+        "segment_id": 293,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 289,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_198_through_964.2_1353.7",
+      "first_reach": {
+        "segment_id": 265,
+        "endpoint": "start"
+      },
+      "second_reach": {
+        "segment_id": 267,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_198_through_874.8_1379.5",
+      "first_reach": {
+        "segment_id": 289,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 293,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_205_through_1316.3_1147.1",
+      "first_reach": {
+        "segment_id": 205,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 214,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_205_through_1316.3_1147.1",
+      "first_reach": {
+        "segment_id": 205,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 214,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_212_through_1319.8_1147.1",
+      "first_reach": {
+        "segment_id": 212,
+        "endpoint": "start"
+      },
+      "second_reach": {
+        "segment_id": 217,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_224_through_379.4_1212.9",
+      "first_reach": {
+        "segment_id": 224,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 228,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_224_through_444.1_1233.6",
+      "first_reach": {
+        "segment_id": 229,
+        "endpoint": "start"
+      },
+      "second_reach": {
+        "segment_id": 230,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_232_through_695.6_1240.5",
+      "first_reach": {
+        "segment_id": 232,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 233,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_232_through_538.9_1278.5",
+      "first_reach": {
+        "segment_id": 239,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 243,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_247_through_1404.7_1363.5",
+      "first_reach": {
+        "segment_id": 272,
+        "endpoint": "end"
+      },
+      "second_reach": {
+        "segment_id": 271,
+        "endpoint": "start"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    },
+    {
+      "id": "national_basin_258_through_1309.7_1376.4",
+      "first_reach": {
+        "segment_id": 288,
+        "endpoint": "start"
+      },
+      "second_reach": {
+        "segment_id": 277,
+        "endpoint": "end"
+      },
+      "max_node_gap_px": 0.15,
+      "max_width_difference_px": 0.035
+    }
+  ],
+  "centerline_adjustments": [
+    {
+      "id": "zc_lower_plain_s_bend",
+      "segment_id": 24,
+      "start_fraction": 0.04,
+      "end_fraction": 0.42,
+      "amplitude_px": 0.82,
+      "note": "One broad, restrained S bend across the open plain; taper to zero at both ends."
+    },
+    {
+      "id": "zc_downstream_plain_meander",
+      "segment_id": 61,
+      "start_fraction": 0.14,
+      "end_fraction": 0.86,
+      "amplitude_px": 0.46,
+      "note": "A smaller, offset meander on the flatter downstream reach, with fixed confluence endpoints."
+    },
+    {
+      "id": "national_plain_s_bend_146",
+      "segment_id": 146,
+      "start_fraction": 0.06,
+      "end_fraction": 0.94,
+      "amplitude_px": 0.85,
+      "note": "Broad, asymmetric S bend on a low-relief plain reach; bank terrain p75=8m, sinuosity=1.049."
+    },
+    {
+      "id": "national_plain_s_bend_255",
+      "segment_id": 255,
+      "start_fraction": 0.06,
+      "end_fraction": 0.94,
+      "amplitude_px": 0.783,
+      "note": "Broad, asymmetric S bend on a low-relief plain reach; bank terrain p75=36m, sinuosity=1.149."
+    },
+    {
+      "id": "national_plain_s_bend_241",
+      "segment_id": 241,
+      "start_fraction": 0.06,
+      "end_fraction": 0.94,
+      "amplitude_px": 0.554,
+      "note": "Broad, asymmetric S bend on a low-relief plain reach; bank terrain p75=120m, sinuosity=1.155."
+    },
+    {
+      "id": "national_plain_s_bend_277",
+      "segment_id": 277,
+      "start_fraction": 0.06,
+      "end_fraction": 0.94,
+      "amplitude_px": 0.554,
+      "note": "Broad, asymmetric S bend on a low-relief plain reach; bank terrain p75=33m, sinuosity=1.014."
+    }
+  ],
+  "reach_notes": {
+    "24": "ZC mainstem below the confluence of reaches 11 and 14; its compact upper-basin channel remains continuous while entering the plain.",
+    "61": "Lower continuation of reach 24; a broad plain meander is added without moving either confluence endpoint.",
+    "63": "Main channel from the western tributary junction toward the lower confluence at reach 64.",
+    "64": "Lower continuation after reaches 61 and 63 meet; its display width eases toward the Q2 edge.",
+    "51": "TM mainstem below the confluence of reaches 29 and 50.",
+    "57": "Downstream continuation below the additional tributary at reach 54; its width eases toward the Q2 edge.",
+    "1": "National basin reach; mapped upstream source count 1.",
+    "2": "National basin reach; mapped upstream source count 1.",
+    "3": "National basin reach; mapped upstream source count 1.",
+    "5": "National basin reach; mapped upstream source count 2.",
+    "7": "National basin reach; mapped upstream source count 1.",
+    "10": "National basin reach; mapped upstream source count 2.",
+    "13": "National basin reach; mapped upstream source count 4.",
+    "19": "National basin reach; mapped upstream source count 1.",
+    "20": "National basin reach; mapped upstream source count 5.",
+    "22": "National basin reach; mapped upstream source count 1.",
+    "23": "National basin reach; mapped upstream source count 6.",
+    "4": "National basin reach; mapped upstream source count 1.",
+    "16": "National basin reach; mapped upstream source count 0.",
+    "17": "National basin reach; mapped upstream source count 0.",
+    "18": "National basin reach; mapped upstream source count 1.",
+    "6": "National basin reach; mapped upstream source count 1.",
+    "8": "National basin reach; mapped upstream source count 1.",
+    "12": "National basin reach; mapped upstream source count 2.",
+    "21": "National basin reach; mapped upstream source count 1.",
+    "9": "National basin reach; mapped upstream source count 1.",
+    "62": "National basin reach; mapped upstream source count 0.",
+    "69": "National basin reach; mapped upstream source count 0.",
+    "99": "National basin reach; mapped upstream source count 3.",
+    "100": "National basin reach; mapped upstream source count 0.",
+    "102": "National basin reach; mapped upstream source count 1.",
+    "106": "National basin reach; mapped upstream source count 4.",
+    "225": "National basin reach; mapped upstream source count 0.",
+    "226": "National basin reach; mapped upstream source count 0.",
+    "28": "National basin reach; mapped upstream source count 1.",
+    "33": "National basin reach; mapped upstream source count 1.",
+    "37": "National basin reach; mapped upstream source count 1.",
+    "40": "National basin reach; mapped upstream source count 1.",
+    "41": "National basin reach; mapped upstream source count 2.",
+    "44": "National basin reach; mapped upstream source count 1.",
+    "45": "National basin reach; mapped upstream source count 2.",
+    "48": "National basin reach; mapped upstream source count 3.",
+    "49": "National basin reach; mapped upstream source count 5.",
+    "52": "National basin reach; mapped upstream source count 1.",
+    "53": "National basin reach; mapped upstream source count 6.",
+    "30": "National basin reach; mapped upstream source count 1.",
+    "31": "National basin reach; mapped upstream source count 1.",
+    "32": "National basin reach; mapped upstream source count 2.",
+    "34": "National basin reach; mapped upstream source count 3.",
+    "35": "National basin reach; mapped upstream source count 1.",
+    "39": "National basin reach; mapped upstream source count 1.",
+    "42": "National basin reach; mapped upstream source count 4.",
+    "46": "National basin reach; mapped upstream source count 5.",
+    "47": "National basin reach; mapped upstream source count 1.",
+    "43": "National basin reach; mapped upstream source count 1.",
+    "55": "National basin reach; mapped upstream source count 0.",
+    "56": "National basin reach; mapped upstream source count 0.",
+    "59": "National basin reach; mapped upstream source count 1.",
+    "60": "National basin reach; mapped upstream source count 1.",
+    "65": "National basin reach; mapped upstream source count 3.",
+    "66": "National basin reach; mapped upstream source count 4.",
+    "89": "National basin reach; mapped upstream source count 2.",
+    "90": "National basin reach; mapped upstream source count 1.",
+    "91": "National basin reach; mapped upstream source count 1.",
+    "93": "National basin reach; mapped upstream source count 1.",
+    "70": "National basin reach; mapped upstream source count 1.",
+    "71": "National basin reach; mapped upstream source count 0.",
+    "72": "National basin reach; mapped upstream source count 0.",
+    "73": "National basin reach; mapped upstream source count 0.",
+    "74": "National basin reach; mapped upstream source count 0.",
+    "75": "National basin reach; mapped upstream source count 0.",
+    "76": "National basin reach; mapped upstream source count 0.",
+    "77": "National basin reach; mapped upstream source count 0.",
+    "78": "National basin reach; mapped upstream source count 1.",
+    "79": "National basin reach; mapped upstream source count 0.",
+    "80": "National basin reach; mapped upstream source count 0.",
+    "81": "National basin reach; mapped upstream source count 0.",
+    "83": "National basin reach; mapped upstream source count 0.",
+    "86": "National basin reach; mapped upstream source count 0.",
+    "88": "National basin reach; mapped upstream source count 0.",
+    "92": "National basin reach; mapped upstream source count 1.",
+    "94": "National basin reach; mapped upstream source count 1.",
+    "95": "National basin reach; mapped upstream source count 1.",
+    "101": "National basin reach; mapped upstream source count 2.",
+    "138": "National basin reach; mapped upstream source count 3.",
+    "139": "National basin reach; mapped upstream source count 1.",
+    "142": "National basin reach; mapped upstream source count 2.",
+    "143": "National basin reach; mapped upstream source count 5.",
+    "144": "National basin reach; mapped upstream source count 1.",
+    "146": "National basin reach; mapped upstream source count 5.",
+    "96": "National basin reach; mapped upstream source count 0.",
+    "97": "National basin reach; mapped upstream source count 0.",
+    "98": "National basin reach; mapped upstream source count 1.",
+    "137": "National basin reach; mapped upstream source count 1.",
+    "165": "National basin reach; mapped upstream source count 1.",
+    "169": "National basin reach; mapped upstream source count 2.",
+    "171": "National basin reach; mapped upstream source count 3.",
+    "172": "National basin reach; mapped upstream source count 1.",
+    "117": "National basin reach; mapped upstream source count 0.",
+    "133": "National basin reach; mapped upstream source count 0.",
+    "179": "National basin reach; mapped upstream source count 0.",
+    "141": "National basin reach; mapped upstream source count 0.",
+    "149": "National basin reach; mapped upstream source count 0.",
+    "151": "National basin reach; mapped upstream source count 0.",
+    "150": "National basin reach; mapped upstream source count 1.",
+    "154": "National basin reach; mapped upstream source count 0.",
+    "160": "National basin reach; mapped upstream source count 1.",
+    "166": "National basin reach; mapped upstream source count 1.",
+    "173": "National basin reach; mapped upstream source count 3.",
+    "174": "National basin reach; mapped upstream source count 4.",
+    "176": "National basin reach; mapped upstream source count 1.",
+    "177": "National basin reach; mapped upstream source count 2.",
+    "181": "National basin reach; mapped upstream source count 1.",
+    "182": "National basin reach; mapped upstream source count 1.",
+    "207": "National basin reach; mapped upstream source count 0.",
+    "208": "National basin reach; mapped upstream source count 0.",
+    "219": "National basin reach; mapped upstream source count 4.",
+    "231": "National basin reach; mapped upstream source count 4.",
+    "255": "National basin reach; mapped upstream source count 4.",
+    "175": "National basin reach; mapped upstream source count 1.",
+    "178": "National basin reach; mapped upstream source count 1.",
+    "180": "National basin reach; mapped upstream source count 1.",
+    "183": "National basin reach; mapped upstream source count 1.",
+    "184": "National basin reach; mapped upstream source count 2.",
+    "194": "National basin reach; mapped upstream source count 3.",
+    "196": "National basin reach; mapped upstream source count 4.",
+    "199": "National basin reach; mapped upstream source count 1.",
+    "218": "National basin reach; mapped upstream source count 1.",
+    "220": "National basin reach; mapped upstream source count 0.",
+    "221": "National basin reach; mapped upstream source count 5.",
+    "227": "National basin reach; mapped upstream source count 0.",
+    "185": "National basin reach; mapped upstream source count 1.",
+    "188": "National basin reach; mapped upstream source count 4.",
+    "190": "National basin reach; mapped upstream source count 3.",
+    "191": "National basin reach; mapped upstream source count 1.",
+    "193": "National basin reach; mapped upstream source count 2.",
+    "195": "National basin reach; mapped upstream source count 1.",
+    "301": "National basin reach; mapped upstream source count 1.",
+    "186": "National basin reach; mapped upstream source count 0.",
+    "189": "National basin reach; mapped upstream source count 0.",
+    "187": "National basin reach; mapped upstream source count 3.",
+    "200": "National basin reach; mapped upstream source count 1.",
+    "211": "National basin reach; mapped upstream source count 2.",
+    "222": "National basin reach; mapped upstream source count 1.",
+    "223": "National basin reach; mapped upstream source count 1.",
+    "192": "National basin reach; mapped upstream source count 0.",
+    "197": "National basin reach; mapped upstream source count 0.",
+    "198": "National basin reach; mapped upstream source count 4.",
+    "244": "National basin reach; mapped upstream source count 1.",
+    "252": "National basin reach; mapped upstream source count 3.",
+    "265": "National basin reach; mapped upstream source count 0.",
+    "267": "National basin reach; mapped upstream source count 0.",
+    "270": "National basin reach; mapped upstream source count 3.",
+    "275": "National basin reach; mapped upstream source count 2.",
+    "276": "National basin reach; mapped upstream source count 1.",
+    "284": "National basin reach; mapped upstream source count 0.",
+    "285": "National basin reach; mapped upstream source count 0.",
+    "289": "National basin reach; mapped upstream source count 1.",
+    "290": "National basin reach; mapped upstream source count 1.",
+    "293": "National basin reach; mapped upstream source count 1.",
+    "201": "National basin reach; mapped upstream source count 1.",
+    "202": "National basin reach; mapped upstream source count 1.",
+    "203": "National basin reach; mapped upstream source count 1.",
+    "204": "National basin reach; mapped upstream source count 1.",
+    "205": "National basin reach; mapped upstream source count 1.",
+    "214": "National basin reach; mapped upstream source count 1.",
+    "210": "National basin reach; mapped upstream source count 0.",
+    "212": "National basin reach; mapped upstream source count 0.",
+    "217": "National basin reach; mapped upstream source count 0.",
+    "224": "National basin reach; mapped upstream source count 1.",
+    "228": "National basin reach; mapped upstream source count 1.",
+    "229": "National basin reach; mapped upstream source count 0.",
+    "230": "National basin reach; mapped upstream source count 0.",
+    "232": "National basin reach; mapped upstream source count 0.",
+    "233": "National basin reach; mapped upstream source count 0.",
+    "239": "National basin reach; mapped upstream source count 0.",
+    "240": "National basin reach; mapped upstream source count 0.",
+    "243": "National basin reach; mapped upstream source count 0.",
+    "234": "National basin reach; mapped upstream source count 1.",
+    "241": "National basin reach; mapped upstream source count 2.",
+    "242": "National basin reach; mapped upstream source count 1.",
+    "235": "National basin reach; mapped upstream source count 0.",
+    "236": "National basin reach; mapped upstream source count 0.",
+    "237": "National basin reach; mapped upstream source count 0.",
+    "253": "National basin reach; mapped upstream source count 0.",
+    "254": "National basin reach; mapped upstream source count 0.",
+    "238": "National basin reach; mapped upstream source count 1.",
+    "247": "National basin reach; mapped upstream source count 0.",
+    "248": "National basin reach; mapped upstream source count 0.",
+    "249": "National basin reach; mapped upstream source count 0.",
+    "271": "National basin reach; mapped upstream source count 3.",
+    "272": "National basin reach; mapped upstream source count 3.",
+    "291": "National basin reach; mapped upstream source count 1.",
+    "292": "National basin reach; mapped upstream source count 2.",
+    "294": "National basin reach; mapped upstream source count 1.",
+    "298": "National basin reach; mapped upstream source count 1.",
+    "250": "National basin reach; mapped upstream source count 1.",
+    "251": "National basin reach; mapped upstream source count 1.",
+    "256": "National basin reach; mapped upstream source count 2.",
+    "258": "National basin reach; mapped upstream source count 1.",
+    "277": "National basin reach; mapped upstream source count 2.",
+    "286": "National basin reach; mapped upstream source count 0.",
+    "288": "National basin reach; mapped upstream source count 2.",
+    "295": "National basin reach; mapped upstream source count 1.",
+    "274": "National basin reach; mapped upstream source count 2.",
+    "296": "National basin reach; mapped upstream source count 1.",
+    "297": "National basin reach; mapped upstream source count 1.",
+    "278": "National basin reach; mapped upstream source count 0.",
+    "279": "National basin reach; mapped upstream source count 1.",
+    "280": "National basin reach; mapped upstream source count 0.",
+    "281": "National basin reach; mapped upstream source count 0.",
+    "282": "National basin reach; mapped upstream source count 0.",
+    "299": "National basin reach; mapped upstream source count 1.",
+    "300": "National basin reach; mapped upstream source count 1."
+  },
+  "islands": [
+    {
+      "id": "q2-zc-bar-01",
+      "segment_id": 24,
+      "fraction_along_reach": 0.12,
+      "length_px": 2.4,
+      "width_px": 0.25,
+      "expected_region_code": "LK",
+      "shape_phase": 0.8,
+      "lateral_offset_fraction": 0.05,
+      "region_snap_tolerance_px": 8.0
+    },
+    {
+      "id": "q2-zc-bar-02",
+      "segment_id": 24,
+      "fraction_along_reach": 0.24,
+      "length_px": 1.8,
+      "width_px": 0.27,
+      "expected_region_code": "GA",
+      "shape_phase": 2.3,
+      "lateral_offset_fraction": -0.1,
+      "region_snap_tolerance_px": 8.0
+    },
+    {
+      "id": "q2-zc-bar-03",
+      "segment_id": 24,
+      "fraction_along_reach": 0.38,
+      "length_px": 1.25,
+      "width_px": 0.22,
+      "expected_region_code": "LK",
+      "shape_phase": 4.8,
+      "lateral_offset_fraction": 0.0,
+      "region_snap_tolerance_px": 8.0
+    },
+    {
+      "id": "q2-lk-bar-01",
+      "segment_id": 61,
+      "fraction_along_reach": 0.4,
+      "length_px": 1.6,
+      "width_px": 0.32,
+      "expected_region_code": "LK",
+      "shape_phase": 1.5,
+      "lateral_offset_fraction": -0.12
+    },
+    {
+      "id": "q2-tm-bar-01",
+      "segment_id": 51,
+      "fraction_along_reach": 0.55,
+      "length_px": 1.2,
+      "width_px": 0.25,
+      "expected_region_code": "TM",
+      "shape_phase": 4.4,
+      "lateral_offset_fraction": 0.08
+    },
+    {
+      "id": "national-bar-146",
+      "segment_id": 146,
+      "fraction_along_reach": 0.68,
+      "length_px": 2.2,
+      "width_px": 0.175,
+      "expected_region_code": "SB",
+      "shape_phase": 4.819,
+      "lateral_offset_fraction": 0.06,
+      "region_snap_tolerance_px": 8.0
+    },
+    {
+      "id": "national-bar-255",
+      "segment_id": 255,
+      "fraction_along_reach": 0.68,
+      "length_px": 2.052,
+      "width_px": 0.157,
+      "expected_region_code": "TG",
+      "shape_phase": 2.522,
+      "lateral_offset_fraction": 0.06,
+      "region_snap_tolerance_px": 8.0
+    }
+  ],
+  "lake_islands": [
+    {
+      "id": "q2-lake-08-island-01",
+      "lake_id": 8,
+      "center_xy": [
+        596.5,
+        714.5
+      ],
+      "major_radius_px": 6.2,
+      "minor_radius_px": 3.4,
+      "rotation_deg": 20.0,
+      "shape_phase": 0.85,
+      "fill_region_code": "VA",
+      "shore_margin_px": 1.5,
+      "creek_coordinates": [
+        [
+          591.7,
+          712.9
+        ],
+        [
+          593.1,
+          714.1
+        ],
+        [
+          594.3,
+          714.7
+        ],
+        [
+          595.4,
+          714.0
+        ],
+        [
+          596.6,
+          713.5
+        ],
+        [
+          597.9,
+          714.2
+        ],
+        [
+          599.0,
+          715.5
+        ],
+        [
+          600.4,
+          716.1
+        ],
+        [
+          601.3,
+          715.8
+        ]
+      ],
+      "creek_start_width_px": 0.22,
+      "creek_end_width_px": 0.18
+    }
+  ],
+  "national_network_summaries": [
+    {
+      "network_id": "national_basin_001",
+      "segment_ids": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        10,
+        13,
+        19,
+        20,
+        22,
+        23
+      ],
+      "headwater_count": 6,
+      "outlet_xy": [
+        924.25,
+        325.08
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_004",
+      "segment_ids": [
+        4,
+        16,
+        17,
+        18
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1052.08,
+        327.71
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_006",
+      "segment_ids": [
+        6
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        964.62,
+        262.71
+      ],
+      "outlet_height_m": -187.06,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_008",
+      "segment_ids": [
+        8,
+        12,
+        21
+      ],
+      "headwater_count": 2,
+      "outlet_xy": [
+        1244.32,
+        245.0
+      ],
+      "outlet_height_m": 1225.91,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_009",
+      "segment_ids": [
+        9
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        786.34,
+        250.13
+      ],
+      "outlet_height_m": 334.6,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "zc_mainstem",
+      "segment_ids": [
+        11,
+        14,
+        24,
+        61,
+        62,
+        63,
+        64,
+        67,
+        68,
+        69,
+        99,
+        100,
+        102,
+        106,
+        225,
+        226
+      ],
+      "headwater_count": 4,
+      "outlet_xy": [
+        934.41,
+        917.71
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.34
+    },
+    {
+      "network_id": "tm_mainstem",
+      "segment_ids": [
+        28,
+        29,
+        33,
+        36,
+        37,
+        38,
+        40,
+        41,
+        44,
+        45,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        57
+      ],
+      "headwater_count": 9,
+      "outlet_xy": [
+        1013.04,
+        481.38
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2552
+    },
+    {
+      "network_id": "national_basin_030",
+      "segment_ids": [
+        30,
+        31,
+        32,
+        34,
+        35,
+        39,
+        42,
+        46,
+        47
+      ],
+      "headwater_count": 5,
+      "outlet_xy": [
+        1329.48,
+        435.22
+      ],
+      "outlet_height_m": 98.28,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_043",
+      "segment_ids": [
+        43
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1025.88,
+        435.29
+      ],
+      "outlet_height_m": -214.49,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_055",
+      "segment_ids": [
+        55,
+        56
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1250.47,
+        488.89
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_059",
+      "segment_ids": [
+        59,
+        60,
+        65,
+        66,
+        89,
+        90,
+        91,
+        93
+      ],
+      "headwater_count": 4,
+      "outlet_xy": [
+        1248.38,
+        718.54
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_070",
+      "segment_ids": [
+        70
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1268.21,
+        768.04
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_071",
+      "segment_ids": [
+        71,
+        72
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1382.22,
+        741.56
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_073",
+      "segment_ids": [
+        73
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1262.96,
+        778.04
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_074",
+      "segment_ids": [
+        74
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1261.46,
+        778.79
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_075",
+      "segment_ids": [
+        75
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1254.88,
+        786.12
+      ],
+      "outlet_height_m": 1.41,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_076",
+      "segment_ids": [
+        76
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1256.12,
+        786.96
+      ],
+      "outlet_height_m": 2.0,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_077",
+      "segment_ids": [
+        77
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1256.38,
+        787.62
+      ],
+      "outlet_height_m": 3.16,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_078",
+      "segment_ids": [
+        78
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1246.38,
+        794.21
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_079",
+      "segment_ids": [
+        79
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1238.46,
+        804.96
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_080",
+      "segment_ids": [
+        80
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1239.54,
+        805.54
+      ],
+      "outlet_height_m": 1.7,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_081",
+      "segment_ids": [
+        81
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1241.88,
+        807.79
+      ],
+      "outlet_height_m": 5.79,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_083",
+      "segment_ids": [
+        83
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1236.21,
+        817.71
+      ],
+      "outlet_height_m": 0.25,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_086",
+      "segment_ids": [
+        86
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1234.79,
+        831.88
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_088",
+      "segment_ids": [
+        88
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1243.29,
+        860.46
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_092",
+      "segment_ids": [
+        92,
+        94,
+        95,
+        101,
+        138,
+        139,
+        142,
+        143,
+        144,
+        146
+      ],
+      "headwater_count": 5,
+      "outlet_xy": [
+        1243.3,
+        996.5
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_096",
+      "segment_ids": [
+        96
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1242.46,
+        896.88
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_097",
+      "segment_ids": [
+        97
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1242.12,
+        897.38
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_098",
+      "segment_ids": [
+        98,
+        137,
+        165,
+        169,
+        171,
+        172
+      ],
+      "headwater_count": 3,
+      "outlet_xy": [
+        1062.46,
+        1040.29
+      ],
+      "outlet_height_m": 11.62,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_117",
+      "segment_ids": [
+        117
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1225.12,
+        919.71
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_133",
+      "segment_ids": [
+        133,
+        179
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        995.21,
+        935.74
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_141",
+      "segment_ids": [
+        141
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1244.21,
+        959.12
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_149",
+      "segment_ids": [
+        149,
+        151
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1290.76,
+        976.7
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_150",
+      "segment_ids": [
+        150
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1292.59,
+        975.25
+      ],
+      "outlet_height_m": 1.41,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_154",
+      "segment_ids": [
+        154
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1248.04,
+        985.79
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_160",
+      "segment_ids": [
+        160
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1167.33,
+        1002.02
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_166",
+      "segment_ids": [
+        166,
+        173,
+        174,
+        176,
+        177,
+        181,
+        182,
+        207,
+        208,
+        219,
+        231,
+        255
+      ],
+      "headwater_count": 4,
+      "outlet_xy": [
+        1185.54,
+        1330.04
+      ],
+      "outlet_height_m": -179.77,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_175",
+      "segment_ids": [
+        175,
+        178,
+        180,
+        183,
+        184,
+        194,
+        196,
+        199,
+        218,
+        220,
+        221,
+        227
+      ],
+      "headwater_count": 5,
+      "outlet_xy": [
+        397.21,
+        1203.29
+      ],
+      "outlet_height_m": 17.17,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_185",
+      "segment_ids": [
+        185,
+        188,
+        190,
+        191,
+        193,
+        195,
+        301
+      ],
+      "headwater_count": 4,
+      "outlet_xy": [
+        1423.54,
+        1112.29
+      ],
+      "outlet_height_m": 1.41,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_186",
+      "segment_ids": [
+        186,
+        189
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1423.54,
+        1113.46
+      ],
+      "outlet_height_m": 1.7,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_187",
+      "segment_ids": [
+        187,
+        200,
+        211,
+        222,
+        223
+      ],
+      "headwater_count": 3,
+      "outlet_xy": [
+        283.49,
+        1112.51
+      ],
+      "outlet_height_m": 22.13,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_192",
+      "segment_ids": [
+        192
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1273.54,
+        1115.96
+      ],
+      "outlet_height_m": 8.41,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_197",
+      "segment_ids": [
+        197
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1353.08,
+        1142.83
+      ],
+      "outlet_height_m": -77.36,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_198",
+      "segment_ids": [
+        198,
+        244,
+        252,
+        265,
+        267,
+        270,
+        275,
+        276,
+        284,
+        285,
+        289,
+        290,
+        293
+      ],
+      "headwater_count": 4,
+      "outlet_xy": [
+        993.12,
+        1127.96
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_201",
+      "segment_ids": [
+        201
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1294.38,
+        1145.04
+      ],
+      "outlet_height_m": -136.88,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_202",
+      "segment_ids": [
+        202
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1340.54,
+        1145.77
+      ],
+      "outlet_height_m": -88.45,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_203",
+      "segment_ids": [
+        203
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1330.71,
+        1147.62
+      ],
+      "outlet_height_m": -96.91,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_204",
+      "segment_ids": [
+        204
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1307.37,
+        1147.29
+      ],
+      "outlet_height_m": -117.62,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_205",
+      "segment_ids": [
+        205,
+        214
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1311.27,
+        1147.57
+      ],
+      "outlet_height_m": -113.83,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_210",
+      "segment_ids": [
+        210
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1283.71,
+        1144.71
+      ],
+      "outlet_height_m": -214.49,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_212",
+      "segment_ids": [
+        212,
+        217
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1327.31,
+        1147.75
+      ],
+      "outlet_height_m": -100.41,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_224",
+      "segment_ids": [
+        224,
+        228,
+        229,
+        230
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        318.04,
+        1234.96
+      ],
+      "outlet_height_m": 53.34,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_232",
+      "segment_ids": [
+        232,
+        233,
+        239,
+        240,
+        243
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        729.29,
+        1289.38
+      ],
+      "outlet_height_m": -0.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_234",
+      "segment_ids": [
+        234,
+        241,
+        242
+      ],
+      "headwater_count": 2,
+      "outlet_xy": [
+        458.71,
+        1278.79
+      ],
+      "outlet_height_m": -214.49,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_235",
+      "segment_ids": [
+        235,
+        236,
+        237,
+        253,
+        254
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1209.54,
+        1322.38
+      ],
+      "outlet_height_m": -214.49,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_238",
+      "segment_ids": [
+        238
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        251.05,
+        1269.57
+      ],
+      "outlet_height_m": 50.14,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_247",
+      "segment_ids": [
+        247,
+        248,
+        249,
+        271,
+        272,
+        291,
+        292,
+        294,
+        298
+      ],
+      "headwater_count": 3,
+      "outlet_xy": [
+        1392.62,
+        1366.88
+      ],
+      "outlet_height_m": -116.75,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_250",
+      "segment_ids": [
+        250,
+        251,
+        256
+      ],
+      "headwater_count": 2,
+      "outlet_xy": [
+        308.75,
+        1340.06
+      ],
+      "outlet_height_m": -7.92,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_258",
+      "segment_ids": [
+        258,
+        277,
+        286,
+        288,
+        295
+      ],
+      "headwater_count": 2,
+      "outlet_xy": [
+        1028.21,
+        1371.38
+      ],
+      "outlet_height_m": -197.56,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_274",
+      "segment_ids": [
+        274,
+        296,
+        297
+      ],
+      "headwater_count": 2,
+      "outlet_xy": [
+        1392.4,
+        1367.81
+      ],
+      "outlet_height_m": -117.92,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_278",
+      "segment_ids": [
+        278
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1299.21,
+        1372.79
+      ],
+      "outlet_height_m": -3.84,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_279",
+      "segment_ids": [
+        279
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1310.79,
+        1374.96
+      ],
+      "outlet_height_m": -138.05,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_280",
+      "segment_ids": [
+        280
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1168.21,
+        1374.04
+      ],
+      "outlet_height_m": -51.1,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_281",
+      "segment_ids": [
+        281
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1269.21,
+        1373.21
+      ],
+      "outlet_height_m": 10.17,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_282",
+      "segment_ids": [
+        282
+      ],
+      "headwater_count": 0,
+      "outlet_xy": [
+        1062.88,
+        1372.79
+      ],
+      "outlet_height_m": -68.32,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_299",
+      "segment_ids": [
+        299
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        1319.54,
+        1391.31
+      ],
+      "outlet_height_m": -186.77,
+      "base_width_px": 0.2
+    },
+    {
+      "network_id": "national_basin_300",
+      "segment_ids": [
+        300
+      ],
+      "headwater_count": 1,
+      "outlet_xy": [
+        850.38,
+        1408.29
+      ],
+      "outlet_height_m": 93.32,
+      "base_width_px": 0.2
+    }
+  ],
+  "national_width_method": {
+    "outlet_rule": "Each endpoint tree is rooted at its lowest mapped water surface, with coast or lake proximity resolving near-equal elevations.",
+    "confluence_rule": "Downstream width is at least the square root of the summed squared upstream reach widths.",
+    "default_headwater_width_px": 0.2,
+    "lowland_width_factors": [
+      {
+        "elevation_m": 3000,
+        "factor": 1.0
+      },
+      {
+        "elevation_m": 2000,
+        "factor": 1.08
+      },
+      {
+        "elevation_m": 1000,
+        "factor": 1.16
+      },
+      {
+        "elevation_m": 500,
+        "factor": 1.25
+      },
+      {
+        "elevation_m": 0,
+        "factor": 1.35
+      }
+    ],
+    "plain_meander_selection": "One long, comparatively straight reach per basin when both banks remain below 500m with less than 500m relief spread."
+  }
+}
