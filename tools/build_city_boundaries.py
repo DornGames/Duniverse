@@ -25,7 +25,7 @@ from PIL import Image, ImageDraw
 from scipy import ndimage
 from scipy.ndimage import map_coordinates
 from scipy.interpolate import CubicSpline
-from shapely.geometry import LineString, MultiLineString, Point, box, mapping, shape
+from shapely.geometry import LineString, MultiLineString, Point, Polygon, box, mapping, shape
 from shapely.ops import linemerge, unary_union
 
 
@@ -141,6 +141,91 @@ def smooth_owner(owner: np.ndarray, domain: np.ndarray, label_count: int) -> np.
         best_count[replace] = count[replace]
     smoothed[~domain] = -1
     return smoothed
+
+
+def remove_unseeded_territory_islands(owner: np.ndarray, domain: np.ndarray,
+                                     seeds: list[tuple[int, int, int]]) -> tuple[np.ndarray, int]:
+    """Merge smoothed owner islands that contain no city or island seed.
+
+    A majority pass can leave a tiny pocket of one city entirely surrounded by
+    another. Its only visible boundary is a closed loop, which reads as a ring
+    around nowhere. Keep every seed-connected piece, and give orphan pixels to
+    the nearest seed-connected territory in the same land/water component.
+    """
+    cleaned = owner.copy()
+    domain_connectivity = np.ones((3, 3), dtype=np.uint8)
+    # City borders are drawn along shared pixel edges, so corner-only contact
+    # does not make two parts of the same territory visibly connected.
+    territory_connectivity = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]], dtype=np.uint8)
+    domain_components, domain_count = ndimage.label(domain, structure=domain_connectivity)
+    seeds_by_component: dict[int, list[tuple[int, int, int]]] = defaultdict(list)
+    for label, row, col in seeds:
+        component = int(domain_components[row, col])
+        if component:
+            seeds_by_component[component].append((label, row, col))
+
+    reassigned = 0
+    for component in range(1, domain_count + 1):
+        rows, cols = np.where(domain_components == component)
+        if not len(rows):
+            continue
+        y0, y1 = int(rows.min()), int(rows.max()) + 1
+        x0, x1 = int(cols.min()), int(cols.max()) + 1
+        component_mask = domain_components[y0:y1, x0:x1] == component
+        local_owner = cleaned[y0:y1, x0:x1]
+        retained = np.zeros_like(component_mask, dtype=bool)
+
+        for label in np.unique(local_owner[component_mask]):
+            if label < 0:
+                continue
+            label_components, _ = ndimage.label(
+                component_mask & (local_owner == label), structure=territory_connectivity)
+            seeded_components = {
+                int(label_components[row - y0, col - x0])
+                for seed_label, row, col in seeds_by_component.get(component, [])
+                if seed_label == int(label) and label_components[row - y0, col - x0] > 0
+            }
+            if seeded_components:
+                retained |= np.isin(label_components, tuple(seeded_components))
+
+        orphan = component_mask & ~retained
+        if not np.any(orphan):
+            continue
+        if not np.any(retained):
+            # The component should always have a seed, but keep generation
+            # robust if an input marker fell outside its rasterized domain.
+            component_seeds = seeds_by_component.get(component, [])
+            if not component_seeds:
+                continue
+            for label, row, col in component_seeds:
+                local_owner[row - y0, col - x0] = label
+                retained[row - y0, col - x0] = True
+        _, nearest = ndimage.distance_transform_edt(~retained, return_indices=True)
+        nearest_owner = local_owner[nearest[0], nearest[1]]
+        local_owner[orphan] = nearest_owner[orphan]
+        reassigned += int(np.count_nonzero(orphan))
+    cleaned[~domain] = -1
+    return cleaned, reassigned
+
+
+def is_unanchored_closed_boundary(line: LineString, cities: list[dict]) -> bool:
+    """Reject closed city-boundary rings that enclose no city marker.
+
+    Small raster ownership pockets can generate complete loops that do not
+    correspond to a settlement or a meaningful city core. Such rings read as
+    arbitrary circles on the map, so keep a closed boundary only when it
+    actually surrounds a city anchor.
+    """
+    coordinates = list(line.coords)
+    if len(coordinates) < 4 or Point(coordinates[0]).distance(Point(coordinates[-1])) > 0.8:
+        return False
+    ring = coordinates if coordinates[0] == coordinates[-1] else [*coordinates, coordinates[0]]
+    polygon = Polygon(ring)
+    if not polygon.is_valid:
+        polygon = polygon.buffer(0)
+    if polygon.is_empty:
+        return False
+    return not any(polygon.covers(Point(city["sourcePixelXY"])) for city in cities)
 
 
 def terrain_cost_partition(domain: np.ndarray, elevation: np.ndarray, river: np.ndarray,
@@ -610,6 +695,8 @@ def main() -> None:
     snap_log = []
     total_city_count = 0
     used_summit_controls = []
+    total_orphan_cells_reassigned = 0
+    total_unanchored_closed_boundaries_removed = 0
     for province in sorted(active_codes):
         all_cities = sorted(cities_by_province[province], key=lambda city: (city["name"], city["id"]))
         city_points = [tuple(city["sourcePixelXY"]) for city in all_cities]
@@ -674,6 +761,8 @@ def main() -> None:
             yy, xx = np.ogrid[:owner.shape[0], :owner.shape[1]]
             lock = domain & ((yy - row) ** 2 + (xx - col) ** 2 <= 5.5 ** 2)
             owner[lock] = label
+        owner, orphan_cells_reassigned = remove_unseeded_territory_islands(owner, domain, seeds)
+        total_orphan_cells_reassigned += orphan_cells_reassigned
 
         edge_groups = collect_shared_edges(owner, all_cities, x0, y0)
         boundary_sources = []
@@ -686,6 +775,9 @@ def main() -> None:
             city_a, city_b = all_cities[a], all_cities[b]
             boundary_id = f"city-boundary:{province}:{city_a['id']}:{city_b['id']}"
             for part_index, line in enumerate(line_parts(clipped)):
+                if is_unanchored_closed_boundary(line, all_cities):
+                    total_unanchored_closed_boundaries_removed += 1
+                    continue
                 if line.length >= MIN_BOUNDARY_LENGTH_PX:
                     boundary_sources.append({
                         "id": boundary_id, "part_index": part_index, "line": line,
@@ -786,6 +878,27 @@ def main() -> None:
                     "source": source_properties.get("source", "data/province_boundaries.geojson"),
                 },
             })
+    # Curving and clipping can split an open shared-edge network into small
+    # closed fragments. Audit the finished geometry as well as its source so
+    # those artifacts cannot survive in the exported boundary layer.
+    filtered_city_features = []
+    for feature in city_features:
+        properties = feature["properties"]
+        province_cities = cities_by_province.get(properties.get("province_code"), [])
+        parts = line_parts(shape(feature["geometry"]))
+        kept_parts = []
+        for part in parts:
+            if is_unanchored_closed_boundary(part, province_cities):
+                total_unanchored_closed_boundaries_removed += 1
+                continue
+            kept_parts.append(part)
+        if not kept_parts:
+            continue
+        feature["geometry"] = mapping(kept_parts[0] if len(kept_parts) == 1
+                                       else MultiLineString(kept_parts))
+        filtered_city_features.append(feature)
+    city_features = filtered_city_features
+
     features = city_features + province_features
     features.sort(key=lambda feature: (
         feature["properties"]["boundary_type"] != "city",
@@ -828,6 +941,8 @@ def main() -> None:
             "city_sites_processed": total_city_count,
             "city_boundary_pairs": len(city_features),
             "boundary_summit_controls": used_summit_controls,
+            "orphan_territory_cells_reassigned": total_orphan_cells_reassigned,
+            "unanchored_closed_city_boundaries_removed": total_unanchored_closed_boundaries_removed,
             "snapped_city_sites": snap_log,
             "minimum_boundary_length_px": MIN_BOUNDARY_LENGTH_PX,
         },
@@ -857,6 +972,8 @@ def main() -> None:
     print(f"Wrote {len(city_features)} city boundaries and {len(province_features)} province boundary parts across {len(active_codes)} provinces: {geojson_path}")
     print(f"Designed {len(ridge_features)} full-map ridge features ({len(named_guides)} named backbones + {len(dem_ridges)} DEM crest segments + {len(used_summit_controls)} summit controls): {ridge_geojson_path}")
     print(f"Processed {total_city_count} city anchors; snapped {len(snap_log)} to nearby province land pixels.")
+    print(f"Merged {total_orphan_cells_reassigned} unseeded territory pixels to prevent enclosed ring boundaries.")
+    print(f"Removed {total_unanchored_closed_boundaries_removed} closed city-boundary parts without a city anchor inside.")
     print("Boundary summits: " + (", ".join(
         f"{item['name']} ({item['capture_distance_px']:.1f}px)" for item in used_summit_controls) or "none"))
     for item in snap_log:

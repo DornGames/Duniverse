@@ -2971,7 +2971,7 @@ function draw(){
     if(record.drawGroup==='provinceBoundaries'&&
        (zoomWidth>=MAJOR_REGION_BOUNDARY_HIDE_WIDTH||zoomWidth<PROVINCE_BOUNDARY_HIDE_WIDTH))continue;
     if(record.drawGroup==='cityBoundaries'&&record.boundaryType==='province'&&
-       zoomWidth>=PROVINCE_BOUNDARY_HIDE_WIDTH)continue;
+       layerVisibility.get('regions')!==false&&zoomWidth>=PROVINCE_BOUNDARY_HIDE_WIDTH)continue;
     if(record.layerId==='redMarkers'&&zoomWidth>RED_MARKER_DETAIL_LIMIT)continue;
     if(record.layerId==='nationalCapitalMarker'&&zoomWidth>RED_MARKER_DETAIL_LIMIT)continue;
     if((record.layerId==='provinceCapitalLabels'||record.layerId==='provinceCapitalTongueLabels'||record.layerId==='nationalCapitalLabels')&&zoomWidth>CAPITAL_LABEL_DETAIL_LIMIT)continue;
