@@ -233,6 +233,16 @@ SEASONAL_DASH_RESIDUAL_SEGMENT_IDS = frozenset({
 })
 CROSS_BORDER_LAKE_EDGE_RESIDUAL_SEGMENT_IDS = frozenset({118})
 MIN_RIVER_CONTRIBUTING_REACH_PX = 2.5
+NATIONAL_RIVER_MOUTH_ENDPOINTS = (
+    {"cluster_id": "RIV-CLUSTER-06", "segment_id": 21, "endpoint": "end"},
+    {"cluster_id": "RIV-CLUSTER-05", "segment_id": 46, "endpoint": "start"},
+    {"cluster_id": "RIV-CLUSTER-02", "segment_id": 52, "endpoint": "end"},
+    {"cluster_id": "RIV-CLUSTER-07", "segment_id": 70, "endpoint": "end"},
+    {"cluster_id": "RIV-CLUSTER-03", "segment_id": 150, "endpoint": "end"},
+    {"cluster_id": "RIV-CLUSTER-08", "segment_id": 188, "endpoint": "start"},
+    {"cluster_id": "RIV-CLUSTER-09", "segment_id": 236, "endpoint": "start"},
+    {"cluster_id": "RIV-CLUSTER-10", "segment_id": 248, "endpoint": "start"},
+)
 
 
 def read_fc(path: Path) -> dict:
@@ -546,8 +556,9 @@ def river_network_forest(
     country_outline,
     lakes: list[dict],
     grid: dict,
+    marine_mouths: tuple[dict, ...] = NATIONAL_RIVER_MOUTH_ENDPOINTS,
 ) -> list[dict]:
-    """Build directed tree reaches by rooting each mapped network at its low outlet."""
+    """Orient each mapped tree toward a reviewed sea mouth or its low outlet."""
     adjacency: dict[tuple[float, float], list[tuple[int, tuple[float, float]]]] = {}
     node_coordinates: dict[tuple[float, float], tuple[float, float]] = {}
     line_by_id: dict[int, LineString] = {}
@@ -597,24 +608,42 @@ def river_network_forest(
                 segment_ids.add(segment_id)
                 stack.append(neighbour)
 
-        leaves = [node for node in nodes if len(adjacency[node]) == 1]
-        if not leaves:
-            raise ValueError(f"National river network has no outlet candidate: segments={sorted(segment_ids)}")
-        substantial_leaves = [
-            node for node in leaves
-            if line_by_id[adjacency[node][0][0]].length >= MIN_RIVER_CONTRIBUTING_REACH_PX
-        ]
-        if substantial_leaves:
-            leaves = substantial_leaves
-        leaf_heights = {node: terrain_height_at(grid, *node_coordinates[node]) for node in leaves}
-        lowest_height = min(leaf_heights.values())
-        outlet_candidates = [
-            node for node in leaves if leaf_heights[node] <= lowest_height + 20.0
-        ]
-        root = min(
-            outlet_candidates,
-            key=lambda node: (sink_proximity(node), leaf_heights[node], node[1], node[0]),
-        )
+        marine_candidates = []
+        for definition in marine_mouths:
+            segment_id = int(definition["segment_id"])
+            if segment_id not in segment_ids:
+                continue
+            side = str(definition["endpoint"])
+            node = edge_nodes[segment_id][0 if side == "start" else 1]
+            marine_candidates.append((line_by_id[segment_id].length, node))
+
+        if marine_candidates:
+            # The audited coast line is the downstream end even when raster
+            # elevation artifacts or a short spur suggest a lower inland tip.
+            _, root = max(
+                marine_candidates,
+                key=lambda item: (item[0], -sink_proximity(item[1]), -item[1][1], -item[1][0]),
+            )
+        else:
+            leaves = [node for node in nodes if len(adjacency[node]) == 1]
+            if not leaves:
+                raise ValueError(f"National river network has no outlet candidate: segments={sorted(segment_ids)}")
+            substantial_leaves = [
+                node for node in leaves
+                if line_by_id[adjacency[node][0][0]].length >= MIN_RIVER_CONTRIBUTING_REACH_PX
+            ]
+            if substantial_leaves:
+                leaves = substantial_leaves
+            leaf_heights = {node: terrain_height_at(grid, *node_coordinates[node]) for node in leaves}
+            lowest_height = min(leaf_heights.values())
+            outlet_candidates = [
+                node for node in leaves if leaf_heights[node] <= lowest_height + 20.0
+            ]
+            root = min(
+                outlet_candidates,
+                key=lambda node: (sink_proximity(node), leaf_heights[node], node[1], node[0]),
+            )
+        root_height_m = terrain_height_at(grid, *node_coordinates[root])
 
         parent: dict[tuple[float, float], tuple[float, float] | None] = {root: None}
         parent_segment: dict[tuple[float, float], int] = {}
@@ -668,7 +697,7 @@ def river_network_forest(
             "nodes": nodes,
             "flow_order": order,
             "root": root,
-            "root_height_m": round(leaf_heights[root], 2),
+            "root_height_m": round(root_height_m, 2),
             "parent": parent,
             "parent_segment": parent_segment,
             "source_counts": source_counts,
@@ -698,6 +727,61 @@ def set_profile_endpoint_width(profile: dict, side: str, width: float) -> None:
         [1.0, float(profile["end_width_px"])],
     ])
     knots[0 if side == "start" else -1][1] = width
+
+
+def widen_profile_at_mouth(profile: dict, endpoint: str) -> float:
+    """Flare a reviewed marine outlet into a broad, gradual river mouth."""
+    knots = profile.get("width_knots_px") or [
+        [0.0, profile["start_width_px"]],
+        [1.0, profile["end_width_px"]],
+    ]
+    current_profile = {
+        "width_knots_px": [(float(fraction), float(width)) for fraction, width in knots]
+    }
+    endpoint_fraction = 0.0 if endpoint == "start" else 1.0
+    current_width = profile_width_at(current_profile, endpoint_fraction)
+    target_width = round(min(4.0, max(2.8, current_width * 2.0)), 3)
+    if endpoint == "start":
+        mouth_ramp = [
+            (0.0, target_width),
+            (0.08, target_width * 0.86),
+            (0.18, target_width * 0.68),
+            (0.32, target_width * 0.48),
+        ]
+    elif endpoint == "end":
+        mouth_ramp = [
+            (0.68, target_width * 0.48),
+            (0.82, target_width * 0.68),
+            (0.92, target_width * 0.86),
+            (1.0, target_width),
+        ]
+    else:
+        raise ValueError(f"Unknown river mouth endpoint: {endpoint}")
+
+    def ramp_width_at(fraction: float) -> float | None:
+        if fraction < mouth_ramp[0][0] or fraction > mouth_ramp[-1][0]:
+            return None
+        for (left_fraction, left_width), (right_fraction, right_width) in zip(mouth_ramp, mouth_ramp[1:]):
+            if fraction <= right_fraction:
+                local = (fraction - left_fraction) / (right_fraction - left_fraction)
+                return left_width + (right_width - left_width) * local
+        return mouth_ramp[-1][1]
+
+    fractions = sorted({
+        *[fraction for fraction, _ in current_profile["width_knots_px"]],
+        *[fraction for fraction, _ in mouth_ramp],
+    })
+    widened_knots = []
+    for fraction in fractions:
+        width = profile_width_at(current_profile, fraction)
+        ramp_width = ramp_width_at(fraction)
+        if ramp_width is not None:
+            width = max(width, ramp_width)
+        widened_knots.append([round(fraction, 4), round(width, 3)])
+    profile["width_knots_px"] = widened_knots
+    profile["start_width_px"] = widened_knots[0][1]
+    profile["end_width_px"] = widened_knots[-1][1]
+    return target_width
 
 
 def integrated_profile_width(profile: dict) -> float:
@@ -785,6 +869,7 @@ def build_national_river_width_config(
     adjustment_candidates = []
     auto_islands = []
     summaries = []
+    marine_mouth_profiles = []
     confluence_checks = json.loads(json.dumps(q2_config.get("confluence_width_checks", [])))
     continuity_checks = json.loads(json.dumps(q2_config.get("channel_continuity_checks", [])))
     rivers_by_id = {
@@ -990,6 +1075,20 @@ def build_national_river_width_config(
                     "max_width_difference_px": 0.035,
                 })
 
+        for mouth in NATIONAL_RIVER_MOUTH_ENDPOINTS:
+            segment_id = int(mouth["segment_id"])
+            if segment_id not in segment_ids or component["reach_source_counts"][segment_id] <= 0:
+                continue
+            profile = reach_profiles[str(segment_id)]
+            target_width = widen_profile_at_mouth(profile, str(mouth["endpoint"]))
+            marine_mouth_profiles.append({
+                "cluster_id": mouth["cluster_id"],
+                "segment_id": segment_id,
+                "endpoint": mouth["endpoint"],
+                "upstream_source_count": component["reach_source_counts"][segment_id],
+                "mouth_width_px": target_width,
+            })
+
         summaries.append({
             "network_id": network_id,
             "segment_ids": segment_ids,
@@ -1062,12 +1161,13 @@ def build_national_river_width_config(
         "width_semantics": (
             "Display-only widths in source image pixels. Q2 keeps its reviewed profiles; "
             "other reaches scale with upstream sources, lowland elevation, and downstream reach length; "
-            "confluences combine tributary widths quadratically. "
+            "confluences combine tributary widths quadratically, and reviewed marine outlets flare wider. "
             "No width is a literal surveyed kilometre value."
         ),
         "reach_profiles_px": {key: reach_profiles[key] for key in sorted(reach_profiles, key=int)},
         "confluence_width_checks": confluence_checks,
         "channel_continuity_checks": continuity_checks,
+        "marine_mouths": marine_mouth_profiles,
         "centerline_adjustments": [
             *q2_config.get("centerline_adjustments", []),
             *adjustment_candidates,
@@ -1075,7 +1175,7 @@ def build_national_river_width_config(
         "islands": [*q2_config.get("islands", []), *auto_islands],
         "national_network_summaries": summaries,
         "national_width_method": {
-            "outlet_rule": "Each endpoint tree is rooted at its lowest mapped water surface, with coast or lake proximity resolving near-equal elevations.",
+            "outlet_rule": "Reviewed open-coast mouth endpoints root their networks; remaining trees use the lowest mapped water endpoint, with lake or coast proximity resolving near-equal elevations.",
             "confluence_rule": "Downstream width is at least the square root of the summed squared upstream reach widths.",
             "default_headwater_width_px": 0.55,
             "minimum_contributing_reach_length_px": MIN_RIVER_CONTRIBUTING_REACH_PX,
@@ -1083,6 +1183,13 @@ def build_national_river_width_config(
                 "starts_after_px": 60,
                 "reaches_max_at_px": 240,
                 "max_factor": 1.45,
+            },
+            "marine_mouth_flare": {
+                "minimum_width_px": 2.8,
+                "maximum_width_px": 4.0,
+                "endpoint_width_multiplier": 2.0,
+                "inland_ramp_fractions": [0.08, 0.18, 0.32],
+                "outlet_roots_from_reviewed_coastline_endpoints": True,
             },
             "lowland_width_factors": [
                 {"elevation_m": 3000, "factor": 1.0},

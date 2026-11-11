@@ -681,6 +681,14 @@
       "note": "Broad, asymmetric S bend on a low-relief plain reach; bank terrain p75=120m, sinuosity=1.155."
     },
     {
+      "id": "national_plain_s_bend_248",
+      "segment_id": 248,
+      "start_fraction": 0.06,
+      "end_fraction": 0.94,
+      "amplitude_px": 0.85,
+      "note": "Broad, asymmetric S bend on a low-relief plain reach; bank terrain p75=5m, sinuosity=1.041."
+    },
+    {
       "id": "national_plain_s_bend_277",
       "segment_id": 277,
       "start_fraction": 0.06,
@@ -811,13 +819,13 @@
       "node_gap_px": 0.0
     },
     {
-      "id": "national_basin_008_to_12_at_1224.5_315.8",
+      "id": "national_basin_008_to_21_at_1224.5_315.8",
       "upstream_widths_px": [
         0.915,
-        0.889
+        0.662
       ],
-      "combined_upstream_width_px": 1.276,
-      "downstream_width_px": 1.279,
+      "combined_upstream_width_px": 1.129,
+      "downstream_width_px": 1.132,
       "node_gap_px": 0.0
     },
     {
@@ -881,13 +889,13 @@
       "node_gap_px": 0.0
     },
     {
-      "id": "tm_mainstem_to_53_at_1121.0_475.5",
+      "id": "tm_mainstem_to_52_at_1121.0_475.5",
       "upstream_widths_px": [
         1.246,
-        0.709
+        1.174
       ],
-      "combined_upstream_width_px": 1.434,
-      "downstream_width_px": 1.437,
+      "combined_upstream_width_px": 1.712,
+      "downstream_width_px": 1.715,
       "node_gap_px": 0.0
     },
     {
@@ -1251,13 +1259,13 @@
       "node_gap_px": 0.0
     },
     {
-      "id": "national_basin_247_to_271_at_1404.7_1363.5",
+      "id": "national_basin_247_to_248_at_1404.7_1363.5",
       "upstream_widths_px": [
-        0.843,
+        0.743,
         1.293
       ],
-      "combined_upstream_width_px": 1.544,
-      "downstream_width_px": 1.547,
+      "combined_upstream_width_px": 1.491,
+      "downstream_width_px": 1.494,
       "node_gap_px": 0.0
     },
     {
@@ -1301,16 +1309,16 @@
     {
       "id": "tm_mainstem_through_1053.8_513.9",
       "continuous_widths_px": [
-        1.437,
-        1.437
+        1.08,
+        1.08
       ],
       "node_gap_px": 0.0
     },
     {
       "id": "tm_mainstem_through_1053.8_513.9",
       "continuous_widths_px": [
-        1.437,
-        1.437
+        1.08,
+        1.08
       ],
       "node_gap_px": 0.0
     },
@@ -1439,14 +1447,6 @@
       "continuous_widths_px": [
         0.743,
         0.743
-      ],
-      "node_gap_px": 0.0
-    },
-    {
-      "id": "national_basin_235_through_1209.8_1321.0",
-      "continuous_widths_px": [
-        1.076,
-        1.076
       ],
       "node_gap_px": 0.0
     },
@@ -1466,7 +1466,8 @@
     "q2-lk-bar-01",
     "q2-tm-bar-01",
     "national-bar-146",
-    "national-bar-255"
+    "national-bar-255",
+    "national-bar-248"
   ],
   "national_river_network_summaries": [
     {
@@ -1530,10 +1531,10 @@
       ],
       "headwater_count": 2,
       "outlet_xy": [
-        1244.32,
-        245.0
+        1356.21,
+        353.04
       ],
-      "outlet_height_m": 1226.2,
+      "outlet_height_m": 1421.68,
       "base_width_px": 0.55
     },
     {
@@ -1601,10 +1602,10 @@
       ],
       "headwater_count": 9,
       "outlet_xy": [
-        1013.04,
-        481.38
+        1252.96,
+        488.21
       ],
-      "outlet_height_m": -0.05,
+      "outlet_height_m": 2490.96,
       "base_width_px": 0.4
     },
     {
@@ -1682,10 +1683,10 @@
       ],
       "headwater_count": 1,
       "outlet_xy": [
-        1268.21,
-        768.04
+        1384.13,
+        743.55
       ],
-      "outlet_height_m": -0.05,
+      "outlet_height_m": 0.54,
       "base_width_px": 0.55
     },
     {
@@ -2318,10 +2319,10 @@
       ],
       "headwater_count": 1,
       "outlet_xy": [
-        1209.54,
-        1322.38
+        1421.12,
+        1260.46
       ],
-      "outlet_height_m": -214.49,
+      "outlet_height_m": -29.22,
       "base_width_px": 0.55
     },
     {
@@ -2352,10 +2353,10 @@
       ],
       "headwater_count": 4,
       "outlet_xy": [
-        1392.62,
-        1366.88
+        1487.29,
+        1291.71
       ],
-      "outlet_height_m": -116.75,
+      "outlet_height_m": -0.05,
       "base_width_px": 0.55
     },
     {
