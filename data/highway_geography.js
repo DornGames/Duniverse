@@ -3,7 +3,24 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
   "routes": {
     "D1": {
       "name": "D1",
-      "lengthKm": 1953.9,
+      "lengthKm": 1096.9,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "中𣿅大区"
+      ],
+      "provinces": [
+        "臭都特别市"
+      ],
+      "cities": [
+        "臭都特别市"
+      ],
+      "stops": [
+        "臭都特别市"
+      ]
+    },
+    "D2": {
+      "name": "D2",
+      "lengthKm": 2101.3,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区"
@@ -19,35 +36,9 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "臭都特别市"
       ]
     },
-    "D2": {
-      "name": "D2",
-      "lengthKm": 3730.1,
-      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
-      "majorRegions": [
-        "中𣿅大区",
-        "西南𣿅大区",
-        "西𣿅大区"
-      ],
-      "provinces": [
-        "瑞丰特别市",
-        "马尔通市",
-        "臭都特别市",
-        "尼根市",
-        "武宗特别市",
-        "凤凰省",
-        "梅马省",
-        "光安省"
-      ],
-      "cities": [
-        "臭都特别市"
-      ],
-      "stops": [
-        "臭都特别市"
-      ]
-    },
     "T1": {
       "name": "T1（南北向）",
-      "lengthKm": 10326.9,
+      "lengthKm": 9319.1,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "北𣿅大区",
@@ -80,8 +71,8 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "金鱼市",
         "重草市",
         "瑞丰特别市",
-        "十三阶行列市",
         "圣光安市",
+        "十三阶行列市",
         "臭都特别市",
         "马尔通市",
         "武宗特别市",
@@ -110,7 +101,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T2": {
       "name": "T2（东西向）",
-      "lengthKm": 8649.8,
+      "lengthKm": 7990.2,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "东𣿅大区",
@@ -558,14 +549,13 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T8": {
       "name": "T8",
-      "lengthKm": 2394.6,
+      "lengthKm": 2041.9,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区",
         "东𣿅大区"
       ],
       "provinces": [
-        "臭都特别市",
         "马尔通市",
         "土星省",
         "刺梨省"
@@ -588,7 +578,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T9": {
       "name": "T9",
-      "lengthKm": 8202.8,
+      "lengthKm": 7850.0,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区",
@@ -597,7 +587,6 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "群岛大区"
       ],
       "provinces": [
-        "臭都特别市",
         "马尔通市",
         "土星省",
         "瑞丰特别市",
@@ -632,7 +621,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T10": {
       "name": "T10",
-      "lengthKm": 5873.0,
+      "lengthKm": 5601.2,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区",
@@ -677,7 +666,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T11": {
       "name": "T11",
-      "lengthKm": 5863.4,
+      "lengthKm": 5517.5,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区",
@@ -724,7 +713,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T12": {
       "name": "T12",
-      "lengthKm": 5556.2,
+      "lengthKm": 5546.3,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "东𣿅大区",
@@ -744,14 +733,13 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
       ],
       "cities": [
         "王德发市",
-        "百岁山市",
         "劳璨市",
         "乔治市",
         "佩奇市",
         "萨比市",
         "马迪帕德市",
-        "德那索市",
         "怡然市",
+        "德那索市",
         "鱼小市",
         "佳景市",
         "昌阁市",
@@ -833,7 +821,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T14": {
       "name": "T14",
-      "lengthKm": 7224.8,
+      "lengthKm": 7223.9,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "南𣿅大区",
@@ -891,7 +879,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T15": {
       "name": "T15",
-      "lengthKm": 11549.0,
+      "lengthKm": 11156.7,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区",
@@ -899,7 +887,6 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "群岛大区"
       ],
       "provinces": [
-        "臭都特别市",
         "尼根市",
         "立里市",
         "萨比省",
@@ -926,7 +913,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T16": {
       "name": "T16",
-      "lengthKm": 7585.4,
+      "lengthKm": 7340.4,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "北𣿅大区",
@@ -983,7 +970,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T17": {
       "name": "T17",
-      "lengthKm": 6152.4,
+      "lengthKm": 5779.2,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区",
