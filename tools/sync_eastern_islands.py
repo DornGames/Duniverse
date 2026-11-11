@@ -65,7 +65,7 @@ def load_island_dots() -> tuple[list[str], set[tuple[str, str]]]:
         radius = feature["properties"]["render_radius_px"]
         elements.append(
             f'<circle data-island-dot="{dot_id}" cx="{x_text}" '
-            f'cy="{y_text}" r="{radius:.4f}" fill="#111"/>'
+            f'cy="{y_text}" r="{radius:.4f}" fill="#fff"/>'
         )
         coordinates.add((x_text, y_text))
     if not elements:
@@ -122,7 +122,7 @@ def sync_html(path: Path, dots: list[str], coordinates: set[tuple[str, str]]) ->
 def sync_vector_preview(path: Path, dots: list[str]) -> None:
     source = path.read_text(encoding="utf-8")
     group = (
-        '<g id="eastern-island-dots" fill="#111" pointer-events="none">'
+        '<g id="eastern-island-dots" fill="#fff" pointer-events="none">'
         + "".join(dots)
         + "</g>"
     )
