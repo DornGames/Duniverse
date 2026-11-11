@@ -989,6 +989,27 @@ aside[hidden]{display:none}
 </div>
 </section>
 <section class="layerGroup" data-layer-group>
+<div class="layerParent"><button class="groupDisclosure" type="button" aria-expanded="false" aria-controls="highwayLayers" aria-label="展开高速路线"><span class="treeChevron"></span><span class="layerSwatch" style="--swatch:#c65349"></span><span class="layerName">高速路线</span></button><input id="highwaysToggle" type="checkbox" data-group="highways" checked aria-label="显示所有高速路线"></div>
+<div class="layerChildren" id="highwayLayers" role="group" aria-label="高速路线子图层" hidden>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#c65349"></span><span class="layerName">T1（南北向）</span><input type="checkbox" data-layer="T1" checked aria-label="显示T1高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#287ca8"></span><span class="layerName">T2（东西向）</span><input type="checkbox" data-layer="T2" checked aria-label="显示T2高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#78549b"></span><span class="layerName">T3</span><input type="checkbox" data-layer="T3" checked aria-label="显示T3高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#b17a2e"></span><span class="layerName">T4</span><input type="checkbox" data-layer="T4" checked aria-label="显示T4高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#2f8a68"></span><span class="layerName">T5</span><input type="checkbox" data-layer="T5" checked aria-label="显示T5高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#ca5b84"></span><span class="layerName">T6</span><input type="checkbox" data-layer="T6" checked aria-label="显示T6高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#4b5263"></span><span class="layerName">T7</span><input type="checkbox" data-layer="T7" checked aria-label="显示T7高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#168a8a"></span><span class="layerName">T8</span><input type="checkbox" data-layer="T8" checked aria-label="显示T8高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#d04d28"></span><span class="layerName">T9</span><input type="checkbox" data-layer="T9" checked aria-label="显示T9高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#8a5d48"></span><span class="layerName">T10</span><input type="checkbox" data-layer="T10" checked aria-label="显示T10高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#6b7c2d"></span><span class="layerName">T11</span><input type="checkbox" data-layer="T11" checked aria-label="显示T11高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#586da6"></span><span class="layerName">T12</span><input type="checkbox" data-layer="T12" checked aria-label="显示T12高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#ad3f71"></span><span class="layerName">T13</span><input type="checkbox" data-layer="T13" checked aria-label="显示T13高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#568d4f"></span><span class="layerName">T14</span><input type="checkbox" data-layer="T14" checked aria-label="显示T14高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#6c637f"></span><span class="layerName">T15</span><input type="checkbox" data-layer="T15" checked aria-label="显示T15高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#596b82"></span><span class="layerName">T16</span><input type="checkbox" data-layer="T16" checked aria-label="显示T16高速"></label>
+<label class="layerRow"><span class="layerSwatch" style="--swatch:#b26748"></span><span class="layerName">T17</span><input type="checkbox" data-layer="T17" checked aria-label="显示T17高速"></label></div>
+</section>
+<section class="layerGroup" data-layer-group>
  <div class="layerParent"><button class="groupDisclosure" type="button" aria-expanded="false" aria-controls="cityLayers" aria-label="&#x5c55;&#x5f00;&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x4e0e;&#x7701;&#x4f1a;"><span class="treeChevron"></span><span class="layerSwatch" style="--swatch:#303a40"></span><span class="layerName">&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x4e0e;&#x7701;&#x4f1a;</span></button><input id="citiesToggle" type="checkbox" data-group="cities" checked aria-label="&#x663e;&#x793a;&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x548c;&#x7701;&#x4f1a;&#x56fe;&#x5c42;"></div>
  <div class="layerChildren" id="cityLayers" role="group" aria-label="&#x57ce;&#x5e02;&#x3001;&#x9996;&#x90fd;&#x53ca;&#x7701;&#x4f1a;&#x5b50;&#x56fe;&#x5c42;" hidden>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#303a40"></span><span class="layerName">&#x57ce;&#x5e02;</span><input type="checkbox" data-layer="blackMarkers" checked aria-label="&#x663e;&#x793a;&#x57ce;&#x5e02;&#x6807;&#x8bb0;"></label>
@@ -1028,6 +1049,7 @@ import './data/region_directory.js';
 import './data/region_elevation_stats.js';
 import './data/city_directory.js';
 import './data/relief_city_coordinates.js';
+import './data/highways.js';
 import './data/region_extrema.js';
 import './data/bathymetry.js';
 import './data/relief_mountain_peaks.js';
@@ -1108,6 +1130,11 @@ const CITY_BY_TONGUE_NAME=new Map();
 for(const entry of CITY_DIRECTORY){if(entry.tongueName){const group=CITY_BY_TONGUE_NAME.get(entry.tongueName)||[];group.push(entry);CITY_BY_TONGUE_NAME.set(entry.tongueName,group);}}
 const CITY_COORDINATE_DATA=window.DUNIVERSE_CITY_COORDINATES||{cities:[]};
 const CITY_COORDINATE_BY_ID=new Map(CITY_COORDINATE_DATA.cities.map(entry=>[entry.id,entry]));
+const HIGHWAY_ROUTES=window.DUNIVERSE_HIGHWAY_ROUTES||[];
+let HIGHWAY_LABEL_GROUPS=[];
+const HIGHWAY_POINT_BY_NAME=new Map(CITY_COORDINATE_DATA.cities
+  .filter(entry=>entry.name&&Array.isArray(entry.sourcePixelXY)&&entry.sourcePixelXY.length===2)
+  .map(entry=>[entry.name,{x:entry.sourcePixelXY[0],y:entry.sourcePixelXY[1]}]));
 const REGION_EXTREMA_BY_ID=new Map((window.DUNIVERSE_REGION_EXTREMA||{regions:[]}).regions.map(entry=>[entry.id,entry]));
 const MOUNTAIN_SEARCH_DIRECTORY=(window.DUNIVERSE_MOUNTAIN_PEAKS?.features||[]).map(feature=>({
   id:feature.id,kind:'mountain',name:feature.properties?.name||'未命名山峰',
@@ -2790,6 +2817,132 @@ function queryTerrainElevation(point){
     setElevationTooltip(mapPoint,'地形模型海拔','暂时无法读取','请稍后再试');draw();
   });
 }
+function traceHighwayPath(points,closed){
+  if(points.length<2)return;
+  const count=points.length,segments=closed?count:count-1;
+  ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);
+  for(let index=0;index<segments;index++){
+    const p1=points[index],p2=points[(index+1)%count];
+    const p0=closed?points[(index-1+count)%count]:(index>0?points[index-1]:{x:2*p1.x-p2.x,y:2*p1.y-p2.y});
+    const p3=closed?points[(index+2)%count]:(index+2<count?points[index+2]:{x:2*p2.x-p1.x,y:2*p2.y-p1.y});
+    const delta=(a,b)=>Math.sqrt(Math.max(Math.hypot(b.x-a.x,b.y-a.y),1e-4));
+    const d01=delta(p0,p1),d12=delta(p1,p2),d23=delta(p2,p3);
+    const tangent1={
+      x:d12*((p1.x-p0.x)/d01-(p2.x-p0.x)/(d01+d12)+(p2.x-p1.x)/d12),
+      y:d12*((p1.y-p0.y)/d01-(p2.y-p0.y)/(d01+d12)+(p2.y-p1.y)/d12)
+    };
+    const tangent2={
+      x:d12*((p2.x-p1.x)/d12-(p3.x-p1.x)/(d12+d23)+(p3.x-p2.x)/d23),
+      y:d12*((p2.y-p1.y)/d12-(p3.y-p1.y)/(d12+d23)+(p3.y-p2.y)/d23)
+    };
+    const control1={x:p1.x+tangent1.x/3,y:p1.y+tangent1.y/3};
+    const control2={x:p2.x-tangent2.x/3,y:p2.y-tangent2.y/3};
+    ctx.bezierCurveTo(control1.x,control1.y,control2.x,control2.y,p2.x,p2.y);
+  }
+  if(closed)ctx.closePath();
+}
+function highwayPartPoints(part){
+  return Array.isArray(part.points)
+    ?part.points.map(point=>({x:Number(point[0]),y:Number(point[1])}))
+    :(part.stops||[]).map(stop=>{
+      const name=typeof stop==='string'?stop:stop?.city;
+      const point=HIGHWAY_POINT_BY_NAME.get(name);
+      if(!point)return null;
+      const offset=typeof stop==='object'&&Array.isArray(stop.offset)?stop.offset:[0,0];
+      return{x:point.x+(Number(offset[0])||0),y:point.y+(Number(offset[1])||0)};
+    });
+}
+function highwayGeometryKey(points,closed){
+  const encode=sequence=>sequence.map(point=>`${point.x.toFixed(1)},${point.y.toFixed(1)}`).join(';');
+  const sequences=[points,points.slice().reverse()];
+  if(closed){
+    for(const source of [points,points.slice().reverse()]){
+      for(let offset=1;offset<source.length;offset++)sequences.push(source.slice(offset).concat(source.slice(0,offset)));
+    }
+  }
+  return `${closed?'closed':'open'}:${sequences.map(encode).sort()[0]}`;
+}
+function highwayPolylineLength(points,closed){
+  let length=0;
+  const segmentCount=closed?points.length:points.length-1;
+  for(let index=0;index<segmentCount;index++){
+    const a=points[index],b=points[(index+1)%points.length];
+    length+=Math.hypot(b.x-a.x,b.y-a.y);
+  }
+  return length;
+}
+function highwayPointAtDistance(points,distance,closed){
+  const segmentCount=closed?points.length:points.length-1;
+  for(let index=0;index<segmentCount;index++){
+    const a=points[index],b=points[(index+1)%points.length];
+    const length=Math.hypot(b.x-a.x,b.y-a.y);
+    if(distance<=length||index===segmentCount-1){
+      const t=length?Math.max(0,Math.min(1,distance/length)):0;
+      return{x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t};
+    }
+    distance-=length;
+  }
+  return points[0];
+}
+function drawHighways(scale){
+  const inverseScale=1/Math.max(scale,.001),groups=new Map();
+  for(const route of HIGHWAY_ROUTES){
+    if(layerVisibility.get(route.id)===false)continue;
+    for(const part of route.parts||[]){
+      const points=highwayPartPoints(part);
+      if(points.length<2||points.some(point=>!point||!Number.isFinite(point.x)||!Number.isFinite(point.y)))continue;
+      const closed=Boolean(part.closed),key=highwayGeometryKey(points,closed);
+      let group=groups.get(key);
+      if(!group){group={points,closed,routes:[]};groups.set(key,group);}
+      if(!group.routes.includes(route))group.routes.push(route);
+    }
+  }
+  HIGHWAY_LABEL_GROUPS=[...groups.values()];
+  ctx.save();ctx.lineCap='round';ctx.lineJoin='round';ctx.setLineDash([]);
+  for(const group of HIGHWAY_LABEL_GROUPS){
+    traceHighwayPath(group.points,group.closed);
+    ctx.lineWidth=8*inverseScale;ctx.strokeStyle='rgba(255,255,255,.96)';ctx.stroke();
+    ctx.lineWidth=4.2*inverseScale;ctx.strokeStyle=group.routes[0].color||'#c65349';ctx.stroke();
+  }
+  ctx.setLineDash([]);ctx.restore();
+}
+function drawHighwayIdLabels(scale){
+  if(scale<.9||!HIGHWAY_LABEL_GROUPS.length)return;
+  const inverseScale=1/Math.max(scale,.001),candidates=[];
+  for(const group of HIGHWAY_LABEL_GROUPS){
+    const length=highwayPolylineLength(group.points,group.closed);
+    if(length<1)continue;
+    const spacing=300/scale,count=Math.max(1,Math.floor(length/spacing));
+    const label=group.routes.map(route=>route.id).join('/');
+    for(let index=0;index<count;index++){
+      const position=highwayPointAtDistance(group.points,(index+.5)*length/count,group.closed);
+      candidates.push({
+        x:position.x,y:position.y,label,
+        color:group.routes.length===1?(group.routes[0].color||'#34424a'):'#34424a',
+        shared:group.routes.length>1,order:group.routes[0].id
+      });
+    }
+  }
+  candidates.sort((a,b)=>Number(b.shared)-Number(a.shared)||a.order.localeCompare(b.order,undefined,{numeric:true}));
+  ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font=`700 ${10*inverseScale}px Arial,sans-serif`;
+  const placed=[];
+  for(const item of candidates){
+    const width=ctx.measureText(item.label).width+10*inverseScale,height=17*inverseScale;
+    const screenX=item.x*scale,screenY=item.y*scale,screenWidth=width*scale,screenHeight=height*scale;
+    if(placed.some(box=>Math.abs(box.x-screenX)<(box.width+screenWidth)/2+7&&Math.abs(box.y-screenY)<(box.height+screenHeight)/2+5))continue;
+    placed.push({x:screenX,y:screenY,width:screenWidth,height:screenHeight});
+    const x=item.x-width/2,y=item.y-height/2,r=4*inverseScale;
+    ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+width-r,y);ctx.quadraticCurveTo(x+width,y,x+width,y+r);
+    ctx.lineTo(x+width,y+height-r);ctx.quadraticCurveTo(x+width,y+height,x+width-r,y+height);
+    ctx.lineTo(x+r,y+height);ctx.quadraticCurveTo(x,y+height,x,y+height-r);
+    ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+    ctx.fillStyle='rgba(255,255,255,.97)';ctx.fill();ctx.lineWidth=1.2*inverseScale;ctx.strokeStyle=item.color;ctx.stroke();
+    ctx.fillStyle=item.shared?'#27343b':item.color;ctx.fillText(item.label,item.x,item.y);
+  }
+  ctx.restore();
+}
+
 function draw(){
   if(!mapReady)return;
   const m=canvasMetrics();if(!m.width||!m.height)return;
@@ -2812,8 +2965,9 @@ function draw(){
   const detailed=zoomWidth<=DETAIL_LIMIT;
   const regionLabelOpacity=regionLabelOpacityForView();
   const majorRegionLabelOpacity=majorRegionLabelOpacityForView();
-  let reliefRasterDrawn=false;
+  let reliefRasterDrawn=false,highwaysDrawn=false;
   for(const record of records){
+    if(!highwaysDrawn&&record.layerId==='blackMarkers'){drawHighways(scale);highwaysDrawn=true;}
     if(!reliefRasterDrawn&&record.layerId==='lakes'){
       reliefRasterDrawn=true;
       if(layerVisibility.get('terrainShading')!==false&&reliefRasterImage?.complete&&reliefRasterImage.naturalWidth){ctx.save();ctx.drawImage(reliefRasterImage,0,0,SOURCE_W,MAP_H);ctx.restore();}
@@ -2867,6 +3021,7 @@ function draw(){
       }
     }
   }
+  if(!highwaysDrawn)drawHighways(scale);
   if(oceanDepthPoint){
     ctx.save();ctx.beginPath();ctx.arc(oceanDepthPoint.x,oceanDepthPoint.y,5/scale,0,Math.PI*2);
     ctx.fillStyle='#245d73';ctx.fill();ctx.lineWidth=2/scale;ctx.strokeStyle='#fff';ctx.stroke();ctx.restore();
@@ -2879,6 +3034,7 @@ function draw(){
     ctx.lineWidth=1.5/scale;ctx.strokeStyle='#754219';ctx.stroke();ctx.restore();
     positionElevationTooltip();
   }
+  drawHighwayIdLabels(scale);
 }
 function updateCanvasBackingStore(){
   const width=canvas.clientWidth,height=canvas.clientHeight;
