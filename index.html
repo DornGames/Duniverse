@@ -1038,6 +1038,10 @@ aside[hidden]{display:none}
 <div class="panelIntro"><div><p id="regionInfoKicker" class="panelKicker">PLACE INFORMATION</p><h2 id="regionInfoTitle" aria-live="polite"></h2><p id="regionInfoSubtitle" class="muted"></p></div><button id="closeRegionInfo" class="closePanel" type="button" aria-label="关闭地名介绍">×</button></div>
 <div id="regionInfoLevels" class="regionInfoLevels"></div>
 <div class="regionAreaCard"><span id="regionInfoMetricLabel">面积</span><strong id="regionInfoArea"></strong></div>
+<section id="highwayInfoPanel" class="regionCoordinatePanel" aria-labelledby="highwayInfoTitle" hidden>
+<h3 id="highwayInfoTitle">高速路线详情</h3><div id="highwayInfoContent"></div>
+<p id="highwayInfoNote" class="muted" style="margin:0;font-size:11px;line-height:1.45"></p>
+</section>
 <section id="regionElevationStatsPanel" class="regionCoordinatePanel" aria-labelledby="regionElevationStatsTitle" hidden><h3 id="regionElevationStatsTitle">区域海拔</h3><div id="regionElevationStatsContent"></div></section>
 <section id="regionHighestPeak" class="regionHighestPeak" hidden><h3 id="regionHighestPeakHeading">区域最高峰</h3><p id="regionHighestPeakSummary"></p><button id="regionHighestPeakLink" type="button">在地图中查看 →</button></section>
 <section id="regionInfoCoordinatePanel" class="regionCoordinatePanel" aria-labelledby="regionInfoCoordinateTitle" hidden><h3 id="regionInfoCoordinateTitle">土星坐标</h3><div id="regionInfoCoordinateContent"></div></section>
@@ -1051,6 +1055,7 @@ import './data/region_elevation_stats.js';
 import './data/city_directory.js';
 import './data/relief_city_coordinates.js';
 import './data/highways.js';
+import './data/highway_geography.js';
 import './data/region_extrema.js';
 import './data/bathymetry.js';
 import './data/relief_mountain_peaks.js';
@@ -1060,6 +1065,8 @@ import './data/relief_model.js';
 import './data/city_boundaries.js';
 const sourceSvg=document.getElementById('mapSvg');
 const canvas=document.getElementById('mapCanvas');
+const panPreviewCanvas=document.createElement('canvas');
+const panPreviewCtx=panPreviewCanvas.getContext('2d',{alpha:false});
 canvas.setAttribute('aria-label','𣿅国地图，可拖动、缩放；点击查看地理介绍，右键查看地形模型海拔，触控设备可双指缩放。');
 document.querySelector('.mapHint').textContent='滚轮缩放 · 双指捏合缩放 · 拖拽平移 · 右键查看海拔 · 点击地理事物查看介绍；点击海洋查看深度';
 const ctx=canvas.getContext('2d',{alpha:false,desynchronized:true});
@@ -1144,6 +1151,7 @@ for(const entry of CITY_DIRECTORY){if(entry.tongueName){const group=CITY_BY_TONG
 const CITY_COORDINATE_DATA=window.DUNIVERSE_CITY_COORDINATES||{cities:[]};
 const CITY_COORDINATE_BY_ID=new Map(CITY_COORDINATE_DATA.cities.map(entry=>[entry.id,entry]));
 const HIGHWAY_ROUTES=window.DUNIVERSE_HIGHWAY_ROUTES||[];
+const HIGHWAY_ROUTE_GEOGRAPHY=window.DUNIVERSE_HIGHWAY_GEOGRAPHY?.routes||{};
 let HIGHWAY_LABEL_GROUPS=[];
 const HIGHWAY_POINT_BY_NAME=new Map(CITY_COORDINATE_DATA.cities
   .filter(entry=>entry.name&&Array.isArray(entry.sourcePixelXY)&&entry.sourcePixelXY.length===2)
@@ -2831,29 +2839,62 @@ function queryTerrainElevation(point){
     setElevationTooltip(mapPoint,'地形模型海拔','暂时无法读取','请稍后再试');draw();
   });
 }
+function highwayBezierControls(points,closed,index){
+  const count=points.length,p1=points[index],p2=points[(index+1)%count];
+  const p0=closed?points[(index-1+count)%count]:(index>0?points[index-1]:{x:2*p1.x-p2.x,y:2*p1.y-p2.y});
+  const p3=closed?points[(index+2)%count]:(index+2<count?points[index+2]:{x:2*p2.x-p1.x,y:2*p2.y-p1.y});
+  const delta=(a,b)=>Math.sqrt(Math.max(Math.hypot(b.x-a.x,b.y-a.y),1e-4));
+  const d01=delta(p0,p1),d12=delta(p1,p2),d23=delta(p2,p3);
+  const tangent1={
+    x:d12*((p1.x-p0.x)/d01-(p2.x-p0.x)/(d01+d12)+(p2.x-p1.x)/d12),
+    y:d12*((p1.y-p0.y)/d01-(p2.y-p0.y)/(d01+d12)+(p2.y-p1.y)/d12)
+  };
+  const tangent2={
+    x:d12*((p2.x-p1.x)/d12-(p3.x-p1.x)/(d12+d23)+(p3.x-p2.x)/d23),
+    y:d12*((p2.y-p1.y)/d12-(p3.y-p1.y)/(d12+d23)+(p3.y-p2.y)/d23)
+  };
+  return{
+    start:p1,control1:{x:p1.x+tangent1.x/3,y:p1.y+tangent1.y/3},
+    control2:{x:p2.x-tangent2.x/3,y:p2.y-tangent2.y/3},end:p2
+  };
+}
 function traceHighwayPath(points,closed){
   if(points.length<2)return;
   const count=points.length,segments=closed?count:count-1;
   ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);
   for(let index=0;index<segments;index++){
-    const p1=points[index],p2=points[(index+1)%count];
-    const p0=closed?points[(index-1+count)%count]:(index>0?points[index-1]:{x:2*p1.x-p2.x,y:2*p1.y-p2.y});
-    const p3=closed?points[(index+2)%count]:(index+2<count?points[index+2]:{x:2*p2.x-p1.x,y:2*p2.y-p1.y});
-    const delta=(a,b)=>Math.sqrt(Math.max(Math.hypot(b.x-a.x,b.y-a.y),1e-4));
-    const d01=delta(p0,p1),d12=delta(p1,p2),d23=delta(p2,p3);
-    const tangent1={
-      x:d12*((p1.x-p0.x)/d01-(p2.x-p0.x)/(d01+d12)+(p2.x-p1.x)/d12),
-      y:d12*((p1.y-p0.y)/d01-(p2.y-p0.y)/(d01+d12)+(p2.y-p1.y)/d12)
-    };
-    const tangent2={
-      x:d12*((p2.x-p1.x)/d12-(p3.x-p1.x)/(d12+d23)+(p3.x-p2.x)/d23),
-      y:d12*((p2.y-p1.y)/d12-(p3.y-p1.y)/(d12+d23)+(p3.y-p2.y)/d23)
-    };
-    const control1={x:p1.x+tangent1.x/3,y:p1.y+tangent1.y/3};
-    const control2={x:p2.x-tangent2.x/3,y:p2.y-tangent2.y/3};
-    ctx.bezierCurveTo(control1.x,control1.y,control2.x,control2.y,p2.x,p2.y);
+    const curve=highwayBezierControls(points,closed,index);
+    ctx.bezierCurveTo(curve.control1.x,curve.control1.y,curve.control2.x,curve.control2.y,curve.end.x,curve.end.y);
   }
   if(closed)ctx.closePath();
+}
+function createHighwayPath(points,closed){
+  if(typeof Path2D!=='function'||points.length<2)return null;
+  const path=new Path2D(),segments=closed?points.length:points.length-1;
+  path.moveTo(points[0].x,points[0].y);
+  for(let index=0;index<segments;index++){
+    const curve=highwayBezierControls(points,closed,index);
+    path.bezierCurveTo(curve.control1.x,curve.control1.y,curve.control2.x,curve.control2.y,curve.end.x,curve.end.y);
+  }
+  if(closed)path.closePath();
+  return path;
+}
+function sampleHighwayPath(points,closed){
+  if(points.length<2)return points.slice();
+  const samples=[points[0]],segments=closed?points.length:points.length-1;
+  for(let index=0;index<segments;index++){
+    const curve=highwayBezierControls(points,closed,index),a=curve.start,b=curve.control1,c=curve.control2,d=curve.end;
+    const estimate=Math.hypot(b.x-a.x,b.y-a.y)+Math.hypot(c.x-b.x,c.y-b.y)+Math.hypot(d.x-c.x,d.y-c.y);
+    const steps=Math.max(8,Math.min(80,Math.ceil(estimate/3)));
+    for(let step=1;step<=steps;step++){
+      const t=step/steps,u=1-t;
+      samples.push({
+        x:u*u*u*a.x+3*u*u*t*b.x+3*u*t*t*c.x+t*t*t*d.x,
+        y:u*u*u*a.y+3*u*u*t*b.y+3*u*t*t*c.y+t*t*t*d.y
+      });
+    }
+  }
+  return samples;
 }
 function highwayPartPoints(part){
   return Array.isArray(part.points)
@@ -2867,30 +2908,24 @@ function highwayPartPoints(part){
     });
 }
 function highwayGeometryKey(points,closed){
-  const encode=sequence=>sequence.map(point=>`${point.x.toFixed(1)},${point.y.toFixed(1)}`).join(';');
+  const encode=sequence=>sequence.map(point=>point.x.toFixed(1)+','+point.y.toFixed(1)).join(';');
   const sequences=[points,points.slice().reverse()];
   if(closed){
     for(const source of [points,points.slice().reverse()]){
       for(let offset=1;offset<source.length;offset++)sequences.push(source.slice(offset).concat(source.slice(0,offset)));
     }
   }
-  return `${closed?'closed':'open'}:${sequences.map(encode).sort()[0]}`;
+  return (closed?'closed:':'open:')+sequences.map(encode).sort()[0];
 }
-function highwayPolylineLength(points,closed){
+function highwayPolylineLength(points){
   let length=0;
-  const segmentCount=closed?points.length:points.length-1;
-  for(let index=0;index<segmentCount;index++){
-    const a=points[index],b=points[(index+1)%points.length];
-    length+=Math.hypot(b.x-a.x,b.y-a.y);
-  }
+  for(let index=1;index<points.length;index++)length+=Math.hypot(points[index].x-points[index-1].x,points[index].y-points[index-1].y);
   return length;
 }
-function highwayPointAtDistance(points,distance,closed){
-  const segmentCount=closed?points.length:points.length-1;
-  for(let index=0;index<segmentCount;index++){
-    const a=points[index],b=points[(index+1)%points.length];
-    const length=Math.hypot(b.x-a.x,b.y-a.y);
-    if(distance<=length||index===segmentCount-1){
+function highwayPointAtDistance(points,distance){
+  for(let index=1;index<points.length;index++){
+    const a=points[index-1],b=points[index],length=Math.hypot(b.x-a.x,b.y-a.y);
+    if(distance<=length||index===points.length-1){
       const t=length?Math.max(0,Math.min(1,distance/length)):0;
       return{x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t};
     }
@@ -2898,25 +2933,43 @@ function highwayPointAtDistance(points,distance,closed){
   }
   return points[0];
 }
-function drawHighways(scale){
-  const inverseScale=1/Math.max(scale,.001),groups=new Map();
+function buildHighwayGeometryGroups(){
+  const groups=new Map();
   for(const route of HIGHWAY_ROUTES){
-    if(layerVisibility.get(route.id)===false)continue;
     for(const part of route.parts||[]){
       const points=highwayPartPoints(part);
       if(points.length<2||points.some(point=>!point||!Number.isFinite(point.x)||!Number.isFinite(point.y)))continue;
       const closed=Boolean(part.closed),key=highwayGeometryKey(points,closed);
       let group=groups.get(key);
-      if(!group){group={points,closed,routes:[]};groups.set(key,group);}
+      if(!group){
+        const samples=sampleHighwayPath(points,closed);
+        group={key,points,closed,path:createHighwayPath(points,closed),samples,lengthPx:highwayPolylineLength(samples),
+          routes:[],visibleRoutes:[],labelPositions:new Map(),
+          bounds:{minX:Math.min(...samples.map(point=>point.x)),maxX:Math.max(...samples.map(point=>point.x)),
+            minY:Math.min(...samples.map(point=>point.y)),maxY:Math.max(...samples.map(point=>point.y))}};
+        groups.set(key,group);
+      }
       if(!group.routes.includes(route))group.routes.push(route);
     }
   }
-  HIGHWAY_LABEL_GROUPS=[...groups.values()];
+  return [...groups.values()];
+}
+const HIGHWAY_GEOMETRY_GROUPS=buildHighwayGeometryGroups();
+
+function drawHighwayGeometry(group){
+  if(group.path){ctx.stroke(group.path);return;}
+  traceHighwayPath(group.points,group.closed);ctx.stroke();
+}
+function drawHighways(scale){
+  const inverseScale=1/Math.max(scale,.001);
+  HIGHWAY_LABEL_GROUPS=[];
   ctx.save();ctx.lineCap='round';ctx.lineJoin='round';ctx.setLineDash([]);
-  for(const group of HIGHWAY_LABEL_GROUPS){
-    traceHighwayPath(group.points,group.closed);
-    ctx.lineWidth=8*inverseScale;ctx.strokeStyle='rgba(255,255,255,.96)';ctx.stroke();
-    ctx.lineWidth=4.2*inverseScale;ctx.strokeStyle=group.routes[0].color||'#c65349';ctx.stroke();
+  for(const group of HIGHWAY_GEOMETRY_GROUPS){
+    group.visibleRoutes=group.routes.filter(route=>layerVisibility.get(route.id)!==false);
+    if(!group.visibleRoutes.length)continue;
+    HIGHWAY_LABEL_GROUPS.push(group);
+    ctx.lineWidth=8*inverseScale;ctx.strokeStyle='rgba(255,255,255,.96)';drawHighwayGeometry(group);
+    ctx.lineWidth=4.2*inverseScale;ctx.strokeStyle=group.visibleRoutes[0].color||'#c65349';drawHighwayGeometry(group);
   }
   ctx.setLineDash([]);ctx.restore();
 }
@@ -2924,22 +2977,25 @@ function drawHighwayIdLabels(scale){
   if(scale<.9||!HIGHWAY_LABEL_GROUPS.length)return;
   const inverseScale=1/Math.max(scale,.001),candidates=[];
   for(const group of HIGHWAY_LABEL_GROUPS){
-    const length=highwayPolylineLength(group.points,group.closed);
+    const length=group.lengthPx;
     if(length<1)continue;
-    const spacing=300/scale,count=Math.max(1,Math.floor(length/spacing));
-    const label=group.routes.map(route=>route.id).join('/');
-    for(let index=0;index<count;index++){
-      const position=highwayPointAtDistance(group.points,(index+.5)*length/count,group.closed);
-      candidates.push({
-        x:position.x,y:position.y,label,
-        color:group.routes.length===1?(group.routes[0].color||'#34424a'):'#34424a',
-        shared:group.routes.length>1,order:group.routes[0].id
-      });
+    const count=Math.max(1,Math.floor(length*scale/300));
+    let positions=group.labelPositions.get(count);
+    if(!positions){
+      positions=[];
+      for(let index=0;index<count;index++)positions.push(highwayPointAtDistance(group.samples,(index+.5)*length/count));
+      group.labelPositions.set(count,positions);
     }
+    const label=group.visibleRoutes.map(route=>route.id).join('/');
+    for(const position of positions)candidates.push({
+      x:position.x,y:position.y,label,
+      color:group.visibleRoutes.length===1?(group.visibleRoutes[0].color||'#34424a'):'#34424a',
+      shared:group.visibleRoutes.length>1,order:group.visibleRoutes[0].id
+    });
   }
   candidates.sort((a,b)=>Number(b.shared)-Number(a.shared)||a.order.localeCompare(b.order,undefined,{numeric:true}));
   ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
-  ctx.font=`700 ${10*inverseScale}px Arial,sans-serif`;
+  ctx.font='700 '+(10*inverseScale)+'px Arial,sans-serif';
   const placed=[];
   for(const item of candidates){
     const width=ctx.measureText(item.label).width+10*inverseScale,height=17*inverseScale;
@@ -2956,7 +3012,30 @@ function drawHighwayIdLabels(scale){
   }
   ctx.restore();
 }
-
+function pointSegmentDistanceSquared(point,a,b){
+  const dx=b.x-a.x,dy=b.y-a.y,lengthSquared=dx*dx+dy*dy;
+  if(lengthSquared===0)return(point.x-a.x)**2+(point.y-a.y)**2;
+  const t=Math.max(0,Math.min(1,((point.x-a.x)*dx+(point.y-a.y)*dy)/lengthSquared));
+  const x=a.x+t*dx,y=a.y+t*dy;
+  return(point.x-x)**2+(point.y-y)**2;
+}
+function highwayHitTest(point,scale){
+  const tolerance=9/Math.max(scale,.001),limit=tolerance*tolerance;
+  let nearest=null,best=limit;
+  for(const group of HIGHWAY_GEOMETRY_GROUPS){
+    const routes=group.routes.filter(route=>layerVisibility.get(route.id)!==false);
+    if(!routes.length||point.x<group.bounds.minX-tolerance||point.x>group.bounds.maxX+tolerance||
+       point.y<group.bounds.minY-tolerance||point.y>group.bounds.maxY+tolerance)continue;
+    for(let index=1;index<group.samples.length;index++){
+      const a=group.samples[index-1],b=group.samples[index];
+      if(point.x<Math.min(a.x,b.x)-tolerance||point.x>Math.max(a.x,b.x)+tolerance||
+         point.y<Math.min(a.y,b.y)-tolerance||point.y>Math.max(a.y,b.y)+tolerance)continue;
+      const distanceSquared=pointSegmentDistanceSquared(point,a,b);
+      if(distanceSquared<best){best=distanceSquared;nearest={kind:'highway',routes,group};}
+    }
+  }
+  return nearest;
+}
 function draw(){
   if(!mapReady)return;
   const m=canvasMetrics();if(!m.width||!m.height)return;
@@ -3076,7 +3155,15 @@ function finishInteractiveRender(){
     interactiveRender=false;updateCanvasBackingStore();draw();
   },INTERACTION_SETTLE_DELAY);
 }
-function apply(){clampView();draw()}
+function drawPanPreview(){
+  if(!drag||!drag.panFrame)return draw();
+  const m=canvasMetrics(),pixelScale=canvas.width/Math.max(1,canvas.clientWidth);
+  const dx=(drag.vx-vb.x)*m.scale*pixelScale,dy=(drag.vy-vb.y)*m.scale*pixelScale;
+  ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='#f5f8f9';ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.drawImage(drag.panFrame,dx,dy);
+}
+function apply(){clampView();if(drag&&drag.moved&&drag.panFrame)drawPanPreview();else draw()}
 function queueApply(){
   if(framePending)return;
   framePending=true;requestAnimationFrame(()=>{framePending=false;apply()});
@@ -3675,6 +3762,7 @@ function renderMountainRanking(){
   }
 }
 function openRegionInfo(entry){
+  document.getElementById('highwayInfoPanel').hidden=true;
   const title=document.getElementById('regionInfoTitle'),subtitle=document.getElementById('regionInfoSubtitle');
   document.getElementById('regionInfoKicker').textContent='地名介绍';
   title.textContent=entry.name;
@@ -3694,6 +3782,54 @@ function openRegionInfo(entry){
   const description=typeof entry.description==='string'&&entry.description.trim()?entry.description.trim():'暂无介绍';
   document.getElementById('regionInfoDescription').textContent=description;
   document.getElementById('regionInfoPanel').hidden=false;
+}
+function formatHighwayLength(value){
+  return Number.isFinite(Number(value))?'约 '+new Intl.NumberFormat('zh-CN',{maximumFractionDigits:0}).format(Number(value))+' km':'暂无';
+}
+function formatHighwayList(values){
+  return Array.isArray(values)&&values.length?values.join('、'):'暂无';
+}
+function selectHighway(hit){
+  const routes=hit?.routes||[];
+  if(!routes.length)return;
+  clearOceanDepthSelection();hoveredCode=null;closeRegionSearchPopup();
+  const routeIds=routes.map(route=>route.id),titleText=routes.length===1?(routes[0].name||routes[0].id):'共线高速 '+routeIds.join(' / ');
+  regionSearchInput.value=titleText;
+  const selected=document.getElementById('selected');selected.hidden=false;selected.dataset.kind='highway';
+  const selectedLabel=document.createElement('b');selectedLabel.textContent='已选择高速：'+routeIds.join(' / ');
+  const selectedStatus=document.createElement('span');selectedStatus.className='muted';selectedStatus.textContent=routes.length===1?'已打开路线介绍':'已打开共线高速详情';
+  selected.replaceChildren(selectedLabel,document.createElement('br'),selectedStatus);
+  const title=document.getElementById('regionInfoTitle'),subtitle=document.getElementById('regionInfoSubtitle');
+  document.getElementById('regionInfoKicker').textContent='高速公路介绍';
+  title.textContent=titleText;
+  subtitle.textContent=routes.length===1?'规划高速 · 依据当前行政区划和市界统计':'点击位置属于共线路段 · 分别列出各编号高速全线信息';
+  document.getElementById('regionInfoLevels').replaceChildren();
+  document.getElementById('regionInfoMetricLabel').textContent=routes.length===1?'全长':'共线编号';
+  const firstInfo=HIGHWAY_ROUTE_GEOGRAPHY[routes[0].id]||{};
+  document.getElementById('regionInfoArea').textContent=routes.length===1?formatHighwayLength(firstInfo.lengthKm):routeIds.join(' · ');
+  document.getElementById('regionElevationStatsPanel').hidden=true;
+  document.getElementById('regionHighestPeak').hidden=true;
+  document.getElementById('regionInfoCoordinatePanel').hidden=true;
+  const content=document.getElementById('highwayInfoContent');content.replaceChildren();
+  for(const route of routes){
+    const info=HIGHWAY_ROUTE_GEOGRAPHY[route.id]||{};
+    const lines=[
+      '高速全长：'+formatHighwayLength(info.lengthKm)+'（按当前地图投影估算）',
+      '穿越大区：'+formatHighwayList(info.majorRegions),
+      '穿越省级行政区：'+formatHighwayList(info.provinces),
+      '途经城市（按现有市界）：'+formatHighwayList(info.cities)
+    ];
+    appendCoordinateRow(content,route.name||route.id,lines);
+  }
+  const scale=Number(window.DUNIVERSE_HIGHWAY_GEOGRAPHY?.projectionScaleKmPerPixel);
+  document.getElementById('highwayInfoNote').textContent='里程换算采用当前地图投影比例'+(Number.isFinite(scale)?'（'+scale.toFixed(2)+' km/像素）':'')+'；途经城市依据现有市界线相交判定。';
+  const firstStops=firstInfo.stops||[];
+  document.getElementById('regionInfoDescription').textContent=routes.length===1&&firstStops.length
+    ?'规划节点：'+firstStops.join(' → ')+'。'
+    :'共线路段同时属于多个高速编号；上方分别列出各条高速的全线信息。';
+  document.getElementById('highwayInfoPanel').hidden=false;
+  document.getElementById('regionInfoPanel').hidden=false;
+  setMapPanelOpen(false);
 }
 function selectNamedPlaceSearchResult(entry){
   if(!entry)return;
@@ -3768,7 +3904,10 @@ canvas.addEventListener('pointerdown',event=>{
   if(event.pointerType==='touch'||event.button!==0)return;
   stopViewAnimation();stopZoomAnimation();
   beginInteractiveRender();
-  drag={x:event.clientX,y:event.clientY,vx:vb.x,vy:vb.y,moved:false,place:mapFeatureHitTest(event.clientX,event.clientY,true)};
+  panPreviewCanvas.width=canvas.width;panPreviewCanvas.height=canvas.height;panPreviewCtx.drawImage(canvas,0,0);
+  const mapPoint=canvasToMap(event.clientX,event.clientY),highway=highwayHitTest(mapPoint,canvasMetrics().scale);
+  const place=highway||mapFeatureHitTest(event.clientX,event.clientY,true);
+  drag={x:event.clientX,y:event.clientY,vx:vb.x,vy:vb.y,moved:false,place,panFrame:panPreviewCanvas};
   canvas.classList.add('dragging');canvas.setPointerCapture(event.pointerId);
 });
 canvas.addEventListener('pointermove',event=>{
@@ -3793,7 +3932,7 @@ function endDrag(event){
   finishInteractiveRender();
   if(event.type==='pointerup'&&!moved){
     clearElevationSample();
-    if(place){if(['country','major','province'].includes(place.kind))selectArea(place,true,true);else selectNamedPlaceSearchResult(place);}
+    if(place?.kind==='highway')selectHighway(place);else if(place){if(['country','major','province'].includes(place.kind))selectArea(place,true,true);else selectNamedPlaceSearchResult(place);}
     else selectOceanDepth(canvasToMap(event.clientX,event.clientY));
   }
 }
@@ -3850,7 +3989,7 @@ function endTouchGesture(event,cancelled=false){
   const {moved,place}=drag;drag=null;canvas.classList.remove('dragging');finishInteractiveRender();
   if(!cancelled&&!moved){
     const touch=event.changedTouches[0];clearElevationSample();
-    if(place){if(['country','major','province'].includes(place.kind))selectArea(place,true,true);else selectNamedPlaceSearchResult(place);}
+    if(place?.kind==='highway')selectHighway(place);else if(place){if(['country','major','province'].includes(place.kind))selectArea(place,true,true);else selectNamedPlaceSearchResult(place);}
     else selectOceanDepth(canvasToMap(touch.clientX,touch.clientY));
   }
 }
