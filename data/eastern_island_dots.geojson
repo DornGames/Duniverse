@@ -1,0 +1,180 @@
+{
+  "type": "FeatureCollection",
+  "name": "eastern_offshore_island_dots",
+  "coordinate_reference_note": "Image pixel coordinates; origin top-left; x right; y down. Dot positions were mapped from the registered 12x official-map raster to base-map pixel-centre coordinates. These are point-like island marks without a measurable shoreline polygon.",
+  "source_image": "official_map/Administrative-Division-Map-of-Donh-2026-super-big.png",
+  "source_dimensions_px": [
+    24576,
+    17376
+  ],
+  "features": [
+    {
+      "type": "Feature",
+      "id": "east-island-dot-01",
+      "properties": {
+        "role": "island_dot",
+        "source_component_area_px": 55,
+        "source_pixel_bbox": [18608, 5358, 8, 10],
+        "render_radius_px": 0.4167
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1550.5189, 446.4659]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-island-dot-02",
+      "properties": {
+        "role": "island_dot",
+        "source_component_area_px": 58,
+        "source_pixel_bbox": [18260, 5505, 8, 9],
+        "render_radius_px": 0.375
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1521.5057, 458.6307]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-island-dot-03",
+      "properties": {
+        "role": "island_dot",
+        "source_component_area_px": 66,
+        "source_pixel_bbox": [18969, 5541, 9, 10],
+        "render_radius_px": 0.4167
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1580.6313, 461.7374]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-island-dot-04",
+      "properties": {
+        "role": "island_dot",
+        "source_component_area_px": 64,
+        "source_pixel_bbox": [18695, 5646, 9, 10],
+        "render_radius_px": 0.4167
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1557.8542, 470.4349]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-island-dot-05",
+      "properties": {
+        "role": "island_dot",
+        "source_component_area_px": 79,
+        "source_pixel_bbox": [18707, 5664, 10, 11],
+        "render_radius_px": 0.4583
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1558.9098, 472.0016]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-island-dot-06",
+      "properties": {
+        "role": "island_dot",
+        "source_component_area_px": 118,
+        "source_pixel_bbox": [18865, 5681, 13, 13],
+        "render_radius_px": 0.5417
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1572.1836, 473.5403]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-island-dot-07",
+      "properties": {
+        "role": "island_dot",
+        "source_component_area_px": 56,
+        "source_pixel_bbox": [20728, 7049, 7, 10],
+        "render_radius_px": 0.4167
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1727.2083, 587.3467]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-island-dot-08",
+      "properties": {
+        "role": "island_dot",
+        "source_component_area_px": 52,
+        "source_pixel_bbox": [20674, 7438, 7, 9],
+        "render_radius_px": 0.375
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1722.7035, 619.7244]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-island-dot-09",
+      "properties": {
+        "role": "island_dot",
+        "source_component_area_px": 56,
+        "source_pixel_bbox": [21427, 7542, 8, 10],
+        "render_radius_px": 0.4167
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1785.436, 628.4613]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-island-dot-10",
+      "properties": {
+        "role": "island_dot",
+        "source_component_area_px": 55,
+        "source_pixel_bbox": [20629, 7707, 8, 9],
+        "render_radius_px": 0.375
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1718.9462, 642.1402]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-island-dot-11",
+      "properties": {
+        "role": "island_dot",
+        "source_component_area_px": 62,
+        "source_pixel_bbox": [20663, 9145, 9, 10],
+        "render_radius_px": 0.4167
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1721.8441, 762.0255]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-island-dot-12",
+      "properties": {
+        "role": "island_dot",
+        "source_component_area_px": 58,
+        "source_pixel_bbox": [18671, 10812, 8, 9],
+        "render_radius_px": 0.375
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1555.8233, 900.9583]
+      }
+    }
+  ]
+}
