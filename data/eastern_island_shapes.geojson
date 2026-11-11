@@ -1,7 +1,7 @@
 {
   "type": "FeatureCollection",
   "name": "eastern_offshore_island_shapes",
-  "coordinate_reference_note": "Base-map pixel coordinates, origin top-left, x right and y down. Polygon outlines trace dark island components in the highest-resolution no-text official map; coordinates divide source pixel coordinates by 12. These are filled land silhouettes, not point symbols.",
+  "coordinate_reference_note": "Base-map pixel coordinates, origin top-left, x right and y down. Polygon outlines trace dark island components in the highest-resolution no-text official map; coordinates divide source pixel coordinates by 12. display_scale_factor controls cartographic display size only; it enlarges tiny source symbols around their measured centers while retaining their silhouettes and positions.",
   "source_image": "official_map/Administrative Division Map of Donh 2026-no-text-super-big.png",
   "source_dimensions_px": [
     24579,
@@ -25,7 +25,8 @@
         "source_pixel_centroid": [
           18613.43,
           5362.69
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -74,7 +75,8 @@
         "source_pixel_centroid": [
           18265.37,
           5508.97
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -127,7 +129,8 @@
         "source_pixel_centroid": [
           18974.23,
           5546.14
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -298,7 +301,8 @@
         "source_pixel_centroid": [
           18873.27,
           5687.91
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -363,7 +367,8 @@
         "source_pixel_centroid": [
           20733.22,
           7053.56
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -424,7 +429,8 @@
         "source_pixel_centroid": [
           20679.46,
           7442.11
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -485,7 +491,8 @@
         "source_pixel_centroid": [
           21432.14,
           7546.95
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -542,7 +549,8 @@
         "source_pixel_centroid": [
           20634.14,
           7711.33
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -603,7 +611,8 @@
         "source_pixel_centroid": [
           20669.03,
           9149.52
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -660,7 +669,8 @@
         "source_pixel_centroid": [
           18676.85,
           10816.92
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -721,7 +731,8 @@
         "source_pixel_centroid": [
           20385.71,
           9551.58
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -802,7 +813,8 @@
         "source_pixel_centroid": [
           20873.22,
           9558.46
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -871,7 +883,8 @@
         "source_pixel_centroid": [
           20779.52,
           9598.62
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -956,7 +969,8 @@
         "source_pixel_centroid": [
           21378.29,
           9633.05
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -1045,7 +1059,8 @@
         "source_pixel_centroid": [
           20279.58,
           9698.53
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -1142,7 +1157,8 @@
         "source_pixel_centroid": [
           20534.88,
           9809.45
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -1219,7 +1235,8 @@
         "source_pixel_centroid": [
           20118.36,
           9894.68
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -1284,7 +1301,8 @@
         "source_pixel_centroid": [
           19948.3,
           10041.49
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -1381,7 +1399,8 @@
         "source_pixel_centroid": [
           19601.85,
           10362.73
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -1454,7 +1473,8 @@
         "source_pixel_centroid": [
           17374.95,
           10440.71
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -1543,7 +1563,8 @@
         "source_pixel_centroid": [
           18163.74,
           10534.31
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -1632,7 +1653,8 @@
         "source_pixel_centroid": [
           19161.22,
           10632.81
-        ]
+        ],
+        "display_scale_factor": 2.0
       },
       "geometry": {
         "type": "Polygon",
@@ -1717,7 +1739,8 @@
         "source_pixel_centroid": [
           17805.81,
           11133.49
-        ]
+        ],
+        "display_scale_factor": 6.0
       },
       "geometry": {
         "type": "Polygon",
@@ -1778,7 +1801,8 @@
         "source_pixel_centroid": [
           17238.58,
           11345.29
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",
@@ -1855,7 +1879,8 @@
         "source_pixel_centroid": [
           17533.58,
           11622.65
-        ]
+        ],
+        "display_scale_factor": 4.0
       },
       "geometry": {
         "type": "Polygon",

@@ -51,7 +51,9 @@ def write_text_preserving_newlines(path: Path, text: str) -> None:
     path.write_bytes(normalized.replace("\n", newline.decode("ascii")).encode("utf-8"))
 
 
-def geometry_path(geometry: dict) -> str:
+def geometry_path(
+    geometry: dict, display_scale: float, center: tuple[float, float]
+) -> str:
     if geometry["type"] == "Polygon":
         polygons = [geometry["coordinates"]]
     elif geometry["type"] == "MultiPolygon":
@@ -64,8 +66,17 @@ def geometry_path(geometry: dict) -> str:
         for ring in polygon:
             if len(ring) < 4:
                 raise ValueError("An island ring has fewer than four coordinates")
-            commands.append(f"M {ring[0][0]:.4f},{ring[0][1]:.4f}")
-            commands.extend(f"L {x:.4f},{y:.4f}" for x, y in ring[1:])
+            scaled_ring = [
+                (
+                    center[0] + (x - center[0]) * display_scale,
+                    center[1] + (y - center[1]) * display_scale,
+                )
+                for x, y in ring
+            ]
+            commands.append(f"M {scaled_ring[0][0]:.4f},{scaled_ring[0][1]:.4f}")
+            commands.extend(
+                f"L {x:.4f},{y:.4f}" for x, y in scaled_ring[1:]
+            )
             commands.append("Z")
     return " ".join(commands)
 
@@ -74,10 +85,17 @@ def load_island_shapes() -> list[str]:
     collection = json.loads(ISLAND_SHAPES_FILE.read_text(encoding="utf-8"))
     elements = []
     for feature in collection["features"]:
-        if feature.get("properties", {}).get("role") != "island_surface":
+        properties = feature.get("properties", {})
+        if properties.get("role") != "island_surface":
             continue
         shape_id = html.escape(str(feature["id"]), quote=True)
-        path_data = geometry_path(feature["geometry"])
+        display_scale = float(properties.get("display_scale_factor", 1.0))
+        source_center = properties.get("source_pixel_centroid")
+        if not source_center:
+            raise ValueError(f"Missing source centroid for {shape_id}")
+        source_scale = float(collection.get("source_scale", 12))
+        center = (source_center[0] / source_scale, source_center[1] / source_scale)
+        path_data = geometry_path(feature["geometry"], display_scale, center)
         elements.append(
             f'<path data-eastern-island-shape="{shape_id}" '
             f'd="{path_data}" fill="#fff"/>'
