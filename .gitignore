@@ -1,2 +1,12 @@
 /diagnostics/coastline_pixel_audit/*
 !/diagnostics/coastline_pixel_audit/audit.json
+
+# Generated local review imagery and terrain previews
+/diagnostics/*.png
+/diagnostics/**/*.png
+/relief_*.png
+/relief_map.html
+
+# Python bytecode and cache directories
+__pycache__/
+*.py[cod]
