@@ -640,7 +640,19 @@ def river_network_forest(
                 if parent.get(neighbour) == node
             ]
             if upstream_nodes:
-                source_counts[node] = sum(source_counts[upstream] for upstream in upstream_nodes)
+                upstream_count = sum(source_counts[upstream] for upstream in upstream_nodes)
+                # Traced shore and junction fragments can turn a genuine
+                # river head into a degree-three node. If all of those short
+                # arms contribute nothing, retain one source for the long
+                # reach that continues toward the outlet.
+                incoming_id = parent_segment.get(node)
+                if (
+                    upstream_count == 0
+                    and incoming_id is not None
+                    and line_by_id[incoming_id].length >= MIN_RIVER_CONTRIBUTING_REACH_PX
+                ):
+                    upstream_count = 1
+                source_counts[node] = upstream_count
             else:
                 incoming_id = parent_segment.get(node)
                 source_counts[node] = int(
@@ -654,6 +666,7 @@ def river_network_forest(
         components.append({
             "segment_ids": sorted(segment_ids),
             "nodes": nodes,
+            "flow_order": order,
             "root": root,
             "root_height_m": round(leaf_heights[root], 2),
             "parent": parent,
@@ -680,7 +693,10 @@ def segment_endpoint_side(edge_nodes: dict, segment_id: int, node: tuple[float, 
 def set_profile_endpoint_width(profile: dict, side: str, width: float) -> None:
     width = round(float(width), 3)
     profile[f"{side}_width_px"] = width
-    knots = profile["width_knots_px"]
+    knots = profile.setdefault("width_knots_px", [
+        [0.0, float(profile["start_width_px"])],
+        [1.0, float(profile["end_width_px"])],
+    ])
     knots[0 if side == "start" else -1][1] = width
 
 
@@ -804,12 +820,15 @@ def build_national_river_width_config(
             for segment_id in manual_ids
             if component["reach_source_counts"][segment_id] > 0
         ]
-        base_width = statistics.median(scale_candidates) if scale_candidates else 0.20
-        base_width = min(0.34, max(0.14, base_width))
+        base_width = statistics.median(scale_candidates) if scale_candidates else 0.55
+        base_width = min(0.55, max(0.4, base_width))
 
         base_width = round(base_width, 4)
         parent = component["parent"]
         parent_segment = component["parent_segment"]
+        segment_upstream_node = {
+            segment_id: node for node, segment_id in parent_segment.items()
+        }
         source_counts = component["source_counts"]
         adjacency = component["adjacency"]
         edge_nodes = component["edge_nodes"]
@@ -826,6 +845,9 @@ def build_national_river_width_config(
                 start_node, end_node = edge_nodes[segment_id]
                 if source_count > 0:
                     width_knots = []
+                    upstream_node = segment_upstream_node[segment_id]
+                    downstream_side = segment_endpoint_side(edge_nodes, segment_id, upstream_node)
+                    reach_growth = 0.45 * max(0.0, min(1.0, (line.length - 60.0) / 180.0))
                     for fraction in (0.0, 0.25, 0.5, 0.75, 1.0):
                         point = line.interpolate(line.length * fraction)
                         if fraction == 0.0:
@@ -834,9 +856,13 @@ def build_national_river_width_config(
                             height = terrain_height_at(grid, *component["node_coordinates"][end_node])
                         else:
                             height = terrain_height_at(grid, point.x, point.y)
+                        flow_fraction = fraction if downstream_side == "start" else 1.0 - fraction
                         local_width = min(
-                            0.8,
-                            base_width * math.sqrt(source_count) * plain_width_factor(height),
+                            2.0,
+                            base_width
+                            * math.sqrt(source_count)
+                            * plain_width_factor(height)
+                            * (1.0 + reach_growth * flow_fraction),
                         )
                         width_knots.append([fraction, round(local_width, 3)])
                 else:
@@ -849,7 +875,7 @@ def build_national_river_width_config(
                     "width_knots_px": width_knots,
                     "clip_to_quadrant": False,
                     "flow_accumulation_count": source_count,
-                    "cartographic_profile_source": "basin_tree_and_lowland_transition",
+                    "cartographic_profile_source": "basin_tree_lowland_and_reach_length_transition",
                 }
             profile["network_id"] = network_id
             profile["clip_to_quadrant"] = False
@@ -862,26 +888,25 @@ def build_national_river_width_config(
                 0.0 if side == "start" else 1.0,
             )
 
-        # Make adjacent reaches meet at simple bends/junctions.
-        for node in component["nodes"]:
-            incident = [segment_id for segment_id, _ in adjacency[node]]
-            if len(incident) != 2:
-                continue
-            manual_incident = [segment_id for segment_id in incident if segment_id in manual_set]
-            if manual_incident:
-                target_width = statistics.median(endpoint_width(segment_id, node) for segment_id in manual_incident)
-                if len(manual_incident) > 1:
-                    for segment_id in manual_incident:
-                        side = segment_endpoint_side(edge_nodes, segment_id, node)
-                        set_profile_endpoint_width(reach_profiles[str(segment_id)], side, target_width)
-                for segment_id in incident:
-                    if segment_id not in manual_set:
-                        side = segment_endpoint_side(edge_nodes, segment_id, node)
-                        set_profile_endpoint_width(reach_profiles[str(segment_id)], side, target_width)
+        def extend_width_downstream(segment_id: int) -> None:
+            if segment_id in manual_set:
+                return
+            upstream_node = segment_upstream_node[segment_id]
+            upstream_side = segment_endpoint_side(edge_nodes, segment_id, upstream_node)
+            knots = reach_profiles[str(segment_id)]["width_knots_px"]
+            ordered_knots = knots if upstream_side == "start" else list(reversed(knots))
+            widest_so_far = float(ordered_knots[0][1])
+            for knot in ordered_knots[1:]:
+                widest_so_far = max(widest_so_far, float(knot[1]))
+                knot[1] = round(widest_so_far, 3)
+            reach_profiles[str(segment_id)]["start_width_px"] = knots[0][1]
+            reach_profiles[str(segment_id)]["end_width_px"] = knots[-1][1]
 
         # At every bifurcation, grow the downstream bank width from the sum
-        # of the incoming channel capacities while holding tributary mouths.
-        for node in component["nodes"]:
+        # of the incoming channel capacities. Walk from headwaters toward the
+        # outlet so each tributary has its final mouth width before its parent
+        # reach is sized.
+        for node in reversed(component["flow_order"]):
             if node in manually_oriented_nodes:
                 continue
             upstream_nodes = [
@@ -897,16 +922,16 @@ def build_national_river_width_config(
                 # three-way junction. Preserve continuity along the real flow.
                 incoming_id = parent_segment[upstream_nodes[0]]
                 pair = {incoming_id, downstream_id}
-                manual_pair = pair & manual_set
-                if manual_pair:
-                    target_width = statistics.median(
-                        endpoint_width(segment_id, node) for segment_id in manual_pair
-                    )
-                    for segment_id in pair - manual_pair:
-                        side = segment_endpoint_side(edge_nodes, segment_id, node)
-                        set_profile_endpoint_width(
-                            reach_profiles[str(segment_id)], side, target_width,
-                        )
+                target_width = max(endpoint_width(segment_id, node) for segment_id in pair)
+                for segment_id in pair:
+                    side = segment_endpoint_side(edge_nodes, segment_id, node)
+                    set_profile_endpoint_width(reach_profiles[str(segment_id)], side, target_width)
+                extend_width_downstream(incoming_id)
+                target_width = max(endpoint_width(segment_id, node) for segment_id in pair)
+                for segment_id in pair:
+                    side = segment_endpoint_side(edge_nodes, segment_id, node)
+                    set_profile_endpoint_width(reach_profiles[str(segment_id)], side, target_width)
+                extend_width_downstream(downstream_id)
                 if not any(
                     {item["first_reach"]["segment_id"], item["second_reach"]["segment_id"]} == pair
                     for item in continuity_checks
@@ -930,13 +955,13 @@ def build_national_river_width_config(
             incoming = [parent_segment[upstream] for upstream in upstream_nodes]
             incoming_widths = [endpoint_width(segment_id, node) for segment_id in incoming]
             required_width = math.sqrt(sum(width ** 2 for width in incoming_widths))
-            if downstream_id not in manual_set:
-                downstream_side = segment_endpoint_side(edge_nodes, downstream_id, node)
-                current_width = endpoint_width(downstream_id, node)
-                set_profile_endpoint_width(
-                    reach_profiles[str(downstream_id)], downstream_side,
-                    max(current_width, required_width + 0.003),
-                )
+            downstream_side = segment_endpoint_side(edge_nodes, downstream_id, node)
+            current_width = endpoint_width(downstream_id, node)
+            set_profile_endpoint_width(
+                reach_profiles[str(downstream_id)], downstream_side,
+                max(current_width, required_width + 0.003),
+            )
+            extend_width_downstream(downstream_id)
             confluence_checks.append({
                 "id": f"{network_id}_to_{parent_segment[node]}_at_{round(node[0],1)}_{round(node[1],1)}",
                 "upstream_reaches": [
@@ -953,7 +978,10 @@ def build_national_river_width_config(
 
         for node in component["nodes"]:
             incident = [segment_id for segment_id, _ in adjacency[node]]
-            if len(incident) == 2:
+            if len(incident) == 2 and all(
+                component["reach_source_counts"][segment_id] > 0
+                for segment_id in incident
+            ):
                 continuity_checks.append({
                     "id": f"{network_id}_through_{round(node[0],1)}_{round(node[1],1)}",
                     "first_reach": {"segment_id": incident[0], "endpoint": segment_endpoint_side(edge_nodes, incident[0], node)},
@@ -1033,7 +1061,8 @@ def build_national_river_width_config(
         "extent_px": list(country_outline.bounds),
         "width_semantics": (
             "Display-only widths in source image pixels. Q2 keeps its reviewed profiles; "
-            "other basins use a compact width per headwater, combined quadratically at each confluence. "
+            "other reaches scale with upstream sources, lowland elevation, and downstream reach length; "
+            "confluences combine tributary widths quadratically. "
             "No width is a literal surveyed kilometre value."
         ),
         "reach_profiles_px": {key: reach_profiles[key] for key in sorted(reach_profiles, key=int)},
@@ -1048,7 +1077,13 @@ def build_national_river_width_config(
         "national_width_method": {
             "outlet_rule": "Each endpoint tree is rooted at its lowest mapped water surface, with coast or lake proximity resolving near-equal elevations.",
             "confluence_rule": "Downstream width is at least the square root of the summed squared upstream reach widths.",
-            "default_headwater_width_px": 0.2,
+            "default_headwater_width_px": 0.55,
+            "minimum_contributing_reach_length_px": MIN_RIVER_CONTRIBUTING_REACH_PX,
+            "long_reach_growth": {
+                "starts_after_px": 60,
+                "reaches_max_at_px": 240,
+                "max_factor": 1.45,
+            },
             "lowland_width_factors": [
                 {"elevation_m": 3000, "factor": 1.0},
                 {"elevation_m": 2000, "factor": 1.08},
@@ -2006,6 +2041,14 @@ def update_hydrology_lod_precision(index: str) -> str:
     ]
     for old, new in replacements:
         if new in index:
+            continue
+        if (
+            old.startswith("const pathToleranceIndex=isCoastalFill?")
+            and "isHydrology?Math.min(toleranceIndex,HYDROLOGY_LOD_TOLERANCES.length-1)" in index
+            and "isHydrology?HYDROLOGY_LOD_TOLERANCES[pathToleranceIndex]" in index
+        ):
+            # Preserve additional, newer coastal precision rules while
+            # recognizing that hydrology LOD handling is already installed.
             continue
         count = index.count(old)
         if count != 1:
