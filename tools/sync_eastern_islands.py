@@ -23,6 +23,12 @@ OLD_TOLERANCE_PATTERN = re.compile(
     r"(?:(isHydrology\?Math\.min\(toleranceIndex,"
     r"HYDROLOGY_LOD_TOLERANCES\.length-1\):))?toleranceIndex;"
 )
+EAST_ISLAND_TOLERANCE_PATTERN = re.compile(
+    r"const eastIsland=record\.layerId==='islandFills'&&"
+    r"record\.bounds\.x\+record\.bounds\.width/2>=\d+;"
+    r"const pathToleranceIndex=isCoastalFill\?"
+    r"\(eastIsland\?0:coastalFillToleranceIndex\):"
+)
 OLD_VISIBILITY = (
     "const hideIsland=record.layerId==='islandFills'&&"
     "(!layerVisible||islandExtent<MIN_ISLAND_SCREEN_EXTENT);"
@@ -33,7 +39,7 @@ NEW_VISIBILITY = (
 )
 EAST_ISLAND_TOLERANCE = (
     "const eastIsland=record.layerId==='islandFills'&&"
-    "record.bounds.x+record.bounds.width/2>=1500;"
+    "record.bounds.x+record.bounds.width/2>=1400;"
     "const pathToleranceIndex=isCoastalFill?"
     "(eastIsland?0:coastalFillToleranceIndex):"
 )
@@ -90,14 +96,19 @@ def sync_html(path: Path, dots: list[str], coordinates: set[tuple[str, str]]) ->
     source = source[: match.start()] + updated_group + source[match.end() :]
 
     if EAST_ISLAND_TOLERANCE not in source:
-        matches = list(OLD_TOLERANCE_PATTERN.finditer(source))
-        if len(matches) != 1:
-            raise ValueError(f"Unexpected island precision logic in {path.name}")
-        hydrology_branch = matches[0].group(1) or ""
-        replacement = (
-            EAST_ISLAND_TOLERANCE + hydrology_branch + "toleranceIndex;"
-        )
-        source = OLD_TOLERANCE_PATTERN.sub(replacement, source, count=1)
+        if EAST_ISLAND_TOLERANCE_PATTERN.search(source):
+            source = EAST_ISLAND_TOLERANCE_PATTERN.sub(
+                EAST_ISLAND_TOLERANCE, source, count=1
+            )
+        else:
+            matches = list(OLD_TOLERANCE_PATTERN.finditer(source))
+            if len(matches) != 1:
+                raise ValueError(f"Unexpected island precision logic in {path.name}")
+            hydrology_branch = matches[0].group(1) or ""
+            replacement = (
+                EAST_ISLAND_TOLERANCE + hydrology_branch + "toleranceIndex;"
+            )
+            source = OLD_TOLERANCE_PATTERN.sub(replacement, source, count=1)
 
     if OLD_VISIBILITY in source:
         source = source.replace(OLD_VISIBILITY, NEW_VISIBILITY, 1)
