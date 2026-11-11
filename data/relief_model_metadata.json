@@ -502,9 +502,148 @@
     ],
     "plateauOccasionalKnollMaximumAddedM": 174.0,
     "plainKnollMaximumAddedM": 73.2,
+    "boundaryDivideSegmentCount": 2,
+    "boundaryDivideSegments": [
+      {
+        "boundaryFeatureId": "city-boundary:XD:city:322020:144:city:322050:147:0",
+        "cityA": "尤西市",
+        "cityB": "芷英市",
+        "stationRangePx": [
+          52.0,
+          76.0
+        ],
+        "amplitudeM": 118.0,
+        "maximumAppliedM": 116.43,
+        "widthPx": 4.8,
+        "fixedSeed": 20261379,
+        "crestSourcePixelXY": [
+          [
+            504.71,
+            648.32
+          ],
+          [
+            506.43,
+            647.27
+          ],
+          [
+            508.26,
+            646.4
+          ],
+          [
+            510.21,
+            645.85
+          ],
+          [
+            512.15,
+            645.55
+          ],
+          [
+            514.02,
+            644.88
+          ],
+          [
+            515.9,
+            644.08
+          ],
+          [
+            517.83,
+            643.4
+          ],
+          [
+            519.71,
+            642.38
+          ],
+          [
+            521.12,
+            640.71
+          ],
+          [
+            522.12,
+            638.9
+          ],
+          [
+            523.03,
+            637.13
+          ],
+          [
+            524.34,
+            635.7
+          ]
+        ],
+        "reason": "A subtle interior divide between two cities, well away from mapped rivers and settlements."
+      },
+      {
+        "boundaryFeatureId": "city-boundary:HB:city:525040:268:city:525140:269:0",
+        "cityA": "米巴市",
+        "cityB": "阿尔法市",
+        "stationRangePx": [
+          52.0,
+          76.0
+        ],
+        "amplitudeM": 35.0,
+        "maximumAppliedM": 37.07,
+        "widthPx": 5.8,
+        "fixedSeed": 20261721,
+        "crestSourcePixelXY": [
+          [
+            623.28,
+            1224.19
+          ],
+          [
+            621.99,
+            1225.68
+          ],
+          [
+            620.41,
+            1227.0
+          ],
+          [
+            619.17,
+            1228.7
+          ],
+          [
+            618.27,
+            1230.57
+          ],
+          [
+            617.39,
+            1232.4
+          ],
+          [
+            616.52,
+            1234.44
+          ],
+          [
+            616.3,
+            1236.46
+          ],
+          [
+            615.86,
+            1238.21
+          ],
+          [
+            615.6,
+            1240.13
+          ],
+          [
+            615.34,
+            1242.06
+          ],
+          [
+            614.94,
+            1244.01
+          ],
+          [
+            614.28,
+            1245.89
+          ]
+        ],
+        "reason": "A low, rounded boundary hill on an existing local crest, separated from rivers, coasts, and settlements."
+      }
+    ],
     "cityPeakRiverAndCoastKeepoutsApplied": true,
     "namedPeakMarkersAdded": 0,
-    "description": "Seeded broad swells and sparse irregular low knolls add unnamed relief to the plateau and selected central plain patches. Existing city sites, mapped summit cores, river channels, coast strips, and mapped mountain backbones are kept clear; the main plain remains below 20 m except for a small number of low hummocks."
+    "description": "Seeded broad swells and sparse irregular low knolls add unnamed relief to the plateau and selected central plain patches. Two short, fixed-seed ridges reinforce only boundary sections that already sit on local divides; the full city borders are not raised. City sites, mapped summit cores, river channels, coast strips, and mapped mountain backbones remain clear; the main plain stays below 20 m except for a small number of low hummocks."
   },
   "specialSeaBottomLakeBasin": {
     "lake": "海底湖",
@@ -533,7 +672,7 @@
   "coastalElevationPolicy": "Non-mountain coast terrain includes a varied 0–4 m strip at the shore, rising gently inland and staying below 50 m by about 20 source pixels; northern plateau nearshore relief is capped separately while retaining a steep escarpment.",
   "easternLowlandPolicy": "Non-mountain terrain in the east and southeast remains below 50 m; the first 20 source pixels from shore taper gently from near sea level to below 50 m.",
   "plainElevationPolicy": "Most non-mountain terrain in the mapped central plain remains below 20 m with broad low-amplitude undulation; sparse seeded, unnamed low hummocks are the limited exceptions, with no quantized elevation tiers.",
-  "fineReliefDetail": "Fixed-seed, low-amplitude multiscale terrain detail; only documented ranges receive continuous backbones, while other labelled peaks receive separate asymmetric local massifs.",
+  "fineReliefDetail": "Fixed-seed, low-amplitude multiscale terrain detail; two short pre-existing city-divide sections receive tapered low ridges, while all other borders follow the terrain without artificial elevation. Slope-based lighting keeps low hills legible at map zoom without drawing contours.",
   "contoursDisplayed": false,
   "landformLabelsDisplayed": false,
   "cityNeighborhoodRadiusPx": 12,

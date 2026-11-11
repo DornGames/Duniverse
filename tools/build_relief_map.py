@@ -94,6 +94,30 @@ MOUNTAIN_GORGE_OUTER_SCALE_PX = 6.5
 ZAQ_GORGE_FLOOR_HALF_WIDTH_PX = 3.5
 ZAQ_GORGE_OUTER_WALL_RADIUS_PX = 20.0
 
+# A few existing administrative divides already sit on modest local crests.
+# Reinforce only these short, well-separated sections; all other city borders
+# remain governed by the underlying terrain and drainage network.
+BOUNDARY_DIVIDE_SPECS = [
+    {
+        "feature_id": "city-boundary:XD:city:322020:144:city:322050:147:0",
+        "start_px": 52.0,
+        "end_px": 76.0,
+        "amplitude_m": 118.0,
+        "width_px": 4.8,
+        "seed_offset": 271,
+        "reason": "A subtle interior divide between two cities, well away from mapped rivers and settlements.",
+    },
+    {
+        "feature_id": "city-boundary:HB:city:525040:268:city:525140:269:0",
+        "start_px": 52.0,
+        "end_px": 76.0,
+        "amplitude_m": 35.0,
+        "width_px": 5.8,
+        "seed_offset": 613,
+        "reason": "A low, rounded boundary hill on an existing local crest, separated from rivers, coasts, and settlements.",
+    },
+]
+
 NORTH_DUNG_EAST_SPUR_POLYGON = [
     (1178, 544), (1207, 541), (1237, 552), (1265, 576), (1285, 604),
     (1293, 634), (1286, 666), (1269, 683), (1248, 662), (1225, 636),
@@ -793,6 +817,111 @@ def draw_line_on_grid(draw: ImageDraw.ImageDraw, coords: list[list[float]], widt
         draw.line(scaled, fill=255, width=width, joint="curve")
 
 
+def sample_polyline_interval(
+    coords: list[list[float]], start_px: float, end_px: float, spacing_px: float
+) -> tuple[np.ndarray, np.ndarray]:
+    """Sample a source-pixel station interval along a LineString."""
+    vertices = np.asarray(coords, dtype=float)
+    segment_vectors = np.diff(vertices, axis=0)
+    segment_lengths = np.sqrt(np.sum(segment_vectors * segment_vectors, axis=1))
+    cumulative = np.concatenate(([0.0], np.cumsum(segment_lengths)))
+    total_length = float(cumulative[-1])
+    start = float(np.clip(start_px, 0.0, total_length))
+    end = float(np.clip(end_px, start, total_length))
+    if end - start < 4.0:
+        return np.empty((0, 2), dtype=float), np.empty((0,), dtype=float)
+    stations = np.arange(start, end, max(float(spacing_px), 1.0), dtype=float)
+    stations = np.append(stations, end)
+    segment_index = np.minimum(
+        np.searchsorted(cumulative, stations, side="right") - 1,
+        len(segment_lengths) - 1,
+    )
+    segment_index = np.maximum(segment_index, 0)
+    t = (stations - cumulative[segment_index]) / np.maximum(segment_lengths[segment_index], 1e-8)
+    points = vertices[segment_index] + segment_vectors[segment_index] * t[:, None]
+    return points, stations
+
+
+def draw_boundary_divide(
+    elevation: np.ndarray,
+    xs: np.ndarray,
+    ys: np.ndarray,
+    boundary_coords: list[list[float]],
+    spec: dict,
+    clearance: np.ndarray,
+    land: np.ndarray,
+) -> tuple[list[list[float]], float]:
+    """Add one short, irregular, tapered ridge without tracing the whole border."""
+    points, stations = sample_polyline_interval(
+        boundary_coords, spec["start_px"], spec["end_px"], spacing_px=2.0
+    )
+    if len(points) < 3:
+        return [], 0.0
+
+    # Slight, fixed-seed lateral drift keeps the crest from looking like a
+    # painted copy of the administrative line. Smooth controls avoid kinks.
+    rng = np.random.default_rng(SEED + int(spec["seed_offset"]))
+    control_count = max(4, int(math.ceil((stations[-1] - stations[0]) / 8.0)) + 1)
+    control_stations = np.linspace(stations[0], stations[-1], control_count)
+    lateral_controls = rng.uniform(-2.0, 2.0, size=control_count)
+    lateral_controls[[0, -1]] = 0.0
+    lateral_drift = np.interp(stations, control_stations, lateral_controls)
+    lateral_drift = ndimage.gaussian_filter1d(lateral_drift, sigma=1.1, mode="nearest")
+    tangents = np.gradient(points, axis=0)
+    tangent_norm = np.maximum(np.sqrt(np.sum(tangents * tangents, axis=1)), 1e-8)
+    normals = np.column_stack((-tangents[:, 1], tangents[:, 0])) / tangent_norm[:, None]
+    points = points + normals * lateral_drift[:, None]
+    curved_stations = np.concatenate(
+        ([0.0], np.cumsum(np.sqrt(np.sum(np.diff(points, axis=0) ** 2, axis=1))))
+    )
+
+    # Work only in a small local window; the variable envelope makes the ridge
+    # rise and fade naturally instead of forming a straight wall or round dome.
+    half_window = int(math.ceil(float(spec["width_px"]) * 5.5 / STEP)) + 2
+    gx0 = max(0, int(math.floor((float(points[:, 0].min()) - half_window * STEP) / STEP)))
+    gx1 = min(elevation.shape[1], int(math.ceil((float(points[:, 0].max()) + half_window * STEP) / STEP)) + 1)
+    gy0 = max(0, int(math.floor((float(points[:, 1].min()) - half_window * STEP) / STEP)))
+    gy1 = min(elevation.shape[0], int(math.ceil((float(points[:, 1].max()) + half_window * STEP) / STEP)) + 1)
+    local_x, local_y = np.meshgrid(xs[gx0:gx1], ys[gy0:gy1])
+    ridge = np.zeros_like(local_x, dtype=np.float32)
+
+    control_count = max(4, int(math.ceil(curved_stations[-1] / 8.0)) + 1)
+    modulation_stations = np.linspace(0.0, float(curved_stations[-1]), control_count)
+    modulation = ndimage.gaussian_filter1d(
+        rng.uniform(0.78, 1.22, size=control_count), sigma=0.8, mode="nearest"
+    )
+    modulation[[0, -1]] = 0.82
+    width = float(spec["width_px"])
+    for index, (first, last) in enumerate(zip(points, points[1:])):
+        vx, vy = last - first
+        segment_length = max(float(curved_stations[index + 1] - curved_stations[index]), 1e-8)
+        t = np.clip(((local_x - first[0]) * vx + (local_y - first[1]) * vy) / max(vx * vx + vy * vy, 1e-8), 0.0, 1.0)
+        closest_x = first[0] + t * vx
+        closest_y = first[1] + t * vy
+        distance = np.sqrt((local_x - closest_x) ** 2 + (local_y - closest_y) ** 2)
+        station = curved_stations[index] + t * segment_length
+        taper_in = smoothstep01(station / 7.0)
+        taper_out = smoothstep01((curved_stations[-1] - station) / 7.0)
+        envelope = taper_in * taper_out
+        along_modulation = np.interp(station, modulation_stations, modulation)
+        cross_section = (
+            0.72 * np.exp(-0.5 * np.square(distance / width))
+            + 0.28 * np.exp(-0.5 * np.square(distance / (width * 2.2)))
+        )
+        section = (
+            float(spec["amplitude_m"])
+            * along_modulation
+            * envelope
+            * cross_section
+        )
+        ridge = np.maximum(ridge, section.astype(np.float32))
+
+    local_clearance = clearance[gy0:gy1, gx0:gx1] * land[gy0:gy1, gx0:gx1]
+    local_ridge = ridge * local_clearance.astype(np.float32)
+    elevation[gy0:gy1, gx0:gx1] += local_ridge
+    return points.tolist(), float(local_ridge.max(initial=0.0))
+
+
 def bilinear(field: np.ndarray, x: float, y: float, step: float = STEP) -> float:
     gx, gy = x / step, y / step
     x0, y0 = int(np.floor(gx)), int(np.floor(gy))
@@ -1163,6 +1292,11 @@ def main():
     peak_height_ceiling_m = max((peak[3] for peak in peaks), default=ELEVATION_MIN_M)
     ELEVATION_MAX_M = max(ELEVATION_MAX_M, peak_height_ceiling_m * 1.4)
     hydrology = json.loads((DATA / "hydrology_lines.geojson").read_text(encoding="utf-8"))
+    city_boundary_features = {
+        feature.get("id"): feature
+        for feature in json.loads((DATA / "city_boundaries.geojson").read_text(encoding="utf-8")).get("features", [])
+        if feature.get("id")
+    }
     rifeng_river = next(
         feature for feature in hydrology.get("features", [])
         if feature.get("properties", {}).get("segment_id") == 60
@@ -1332,6 +1466,36 @@ def main():
     plateau_hill_weight = plateau_interior * hill_clearance * land
     plateau_relief_detail = (plateau_noise + plateau_knolls) * plateau_hill_weight
     Z += plateau_relief_detail
+
+    boundary_divide_audit = []
+    for spec in BOUNDARY_DIVIDE_SPECS:
+        feature = city_boundary_features.get(spec["feature_id"])
+        if feature is None:
+            raise RuntimeError(f"Boundary divide source is missing: {spec['feature_id']}")
+        if feature.get("geometry", {}).get("type") != "LineString":
+            raise RuntimeError(f"Boundary divide source is not a LineString: {spec['feature_id']}")
+        points, max_added = draw_boundary_divide(
+            Z,
+            xs,
+            ys,
+            feature["geometry"]["coordinates"],
+            spec,
+            hill_clearance,
+            land,
+        )
+        props = feature.get("properties", {})
+        boundary_divide_audit.append({
+            "boundaryFeatureId": spec["feature_id"],
+            "cityA": props.get("city_a", ""),
+            "cityB": props.get("city_b", ""),
+            "stationRangePx": [spec["start_px"], spec["end_px"]],
+            "amplitudeM": spec["amplitude_m"],
+            "maximumAppliedM": round(max_added, 2),
+            "widthPx": spec["width_px"],
+            "fixedSeed": SEED + int(spec["seed_offset"]),
+            "crestSourcePixelXY": [[round(float(x), 2), round(float(y), 2)] for x, y in points],
+            "reason": spec["reason"],
+        })
 
     # Hold a separate sparse knoll field for the low plains. It is added after
     # the strict plain-height cap below, so most plain stays below 20 m while
@@ -1996,7 +2160,9 @@ def main():
     gx = cv2.Sobel(z_full, cv2.CV_32F, 1, 0, ksize=3) / 8.0
     gy = cv2.Sobel(z_full, cv2.CV_32F, 0, 1, ksize=3) / 8.0
     norm = np.sqrt(gx * gx + gy * gy) + 1e-6
-    shade = np.clip(0.92 - 0.00012 * gx + 0.00012 * gy, 0.75, 1.10)
+    light_alignment = (-gx - gy) / (norm * math.sqrt(2.0))
+    low_relief_shade = 0.16 * np.tanh(norm / 34.0) * light_alignment
+    shade = np.clip(0.92 - 0.00012 * gx + 0.00012 * gy + low_relief_shade, 0.72, 1.12)
     stops = [-260, -220, -180, -120, -60, 0, 20, 50, 100, 250, 800, 1500, 2300, 3300, 4300, 6000, 8500, 11000, 14000, ELEVATION_MAX_M]
     colors = np.asarray(
         [
@@ -2479,9 +2645,11 @@ def main():
                 "plateauReliefNoiseScalesPx": [58.0, 22.0, 8.0],
                 "plateauOccasionalKnollMaximumAddedM": 174.0,
                 "plainKnollMaximumAddedM": 73.2,
+                "boundaryDivideSegmentCount": len(boundary_divide_audit),
+                "boundaryDivideSegments": boundary_divide_audit,
                 "cityPeakRiverAndCoastKeepoutsApplied": True,
                 "namedPeakMarkersAdded": 0,
-                "description": "Seeded broad swells and sparse irregular low knolls add unnamed relief to the plateau and selected central plain patches. Existing city sites, mapped summit cores, river channels, coast strips, and mapped mountain backbones are kept clear; the main plain remains below 20 m except for a small number of low hummocks.",
+                "description": "Seeded broad swells and sparse irregular low knolls add unnamed relief to the plateau and selected central plain patches. Two short, fixed-seed ridges reinforce only boundary sections that already sit on local divides; the full city borders are not raised. City sites, mapped summit cores, river channels, coast strips, and mapped mountain backbones remain clear; the main plain stays below 20 m except for a small number of low hummocks.",
             },
             "specialSeaBottomLakeBasin": {
                 "lake": sea_bottom_lake.get("properties", {}).get("name", "海底湖"),
@@ -2501,7 +2669,7 @@ def main():
             "coastalElevationPolicy": "Non-mountain coast terrain includes a varied 0–4 m strip at the shore, rising gently inland and staying below 50 m by about 20 source pixels; northern plateau nearshore relief is capped separately while retaining a steep escarpment.",
             "easternLowlandPolicy": "Non-mountain terrain in the east and southeast remains below 50 m; the first 20 source pixels from shore taper gently from near sea level to below 50 m.",
             "plainElevationPolicy": "Most non-mountain terrain in the mapped central plain remains below 20 m with broad low-amplitude undulation; sparse seeded, unnamed low hummocks are the limited exceptions, with no quantized elevation tiers.",
-            "fineReliefDetail": "Fixed-seed, low-amplitude multiscale terrain detail; only documented ranges receive continuous backbones, while other labelled peaks receive separate asymmetric local massifs.",
+            "fineReliefDetail": "Fixed-seed, low-amplitude multiscale terrain detail; two short pre-existing city-divide sections receive tapered low ridges, while all other borders follow the terrain without artificial elevation. Slope-based lighting keeps low hills legible at map zoom without drawing contours.",
             "contoursDisplayed": False,
             "landformLabelsDisplayed": False,
             "cityNeighborhoodRadiusPx": 12,
@@ -2569,9 +2737,11 @@ def main():
             }
         ],
     }
-    (DATA / "north_dung_plateau_boundary.geojson").write_text(
-        json.dumps(plateau_geojson, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    with (DATA / "north_dung_plateau_boundary.geojson").open(
+        "w", encoding="utf-8", newline="\n"
+    ) as boundary_file:
+        json.dump(plateau_geojson, boundary_file, ensure_ascii=False, indent=2)
+        boundary_file.write("\n")
     with (DATA / "city_terrain_profiles.csv").open("w", newline="", encoding="utf-8-sig") as handle:
         writer = csv.writer(handle)
         writer.writerow([
