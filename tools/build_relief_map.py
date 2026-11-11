@@ -90,6 +90,9 @@ RIDGES = [
 
 RIFENG_FADE_CROSSING = (1002.0, 724.5)
 RIFENG_FADE_LENGTH_PX = 24.0
+MOUNTAIN_GORGE_OUTER_SCALE_PX = 6.5
+ZAQ_GORGE_FLOOR_HALF_WIDTH_PX = 3.5
+ZAQ_GORGE_OUTER_WALL_RADIUS_PX = 20.0
 
 NORTH_DUNG_EAST_SPUR_POLYGON = [
     (1178, 544), (1207, 541), (1237, 552), (1265, 576), (1285, 604),
@@ -259,6 +262,11 @@ def normalized_noise(
     field = rng.standard_normal(shape)
     field = ndimage.gaussian_filter(field, sigma=sigma_px / pixel_size_px, mode="reflect")
     return field / max(float(field.std()), 1e-8)
+
+
+def smoothstep01(values: np.ndarray) -> np.ndarray:
+    values = np.clip(values, 0.0, 1.0)
+    return values * values * (3.0 - 2.0 * values)
 
 
 def land_mask_full() -> np.ndarray:
@@ -1279,11 +1287,66 @@ def main():
     ).any(axis=(1, 3))
     river_grid |= river_water_grid
     river_distance = ndimage.distance_transform_edt(~river_grid) * STEP
+
+    # Low, unmapped rolling ground adds relief beyond the named summit markers.
+    # The fixed seed gives the plateau broad, irregular swells and scattered
+    # low knolls; city sites, mapped peaks, coastlines, and river corridors are
+    # kept clear so these forms do not overwrite meaningful map relationships.
+    hill_rng = np.random.default_rng(SEED + 314159)
+    city_marker_grid = np.zeros((len(ys), len(xs)), dtype=bool)
+    for city in cities:
+        point = city.get("sourcePixelXY")
+        if not point:
+            continue
+        px = int(np.clip(round(float(point[0]) / STEP), 0, len(xs) - 1))
+        py = int(np.clip(round(float(point[1]) / STEP), 0, len(ys) - 1))
+        city_marker_grid[py, px] = True
+    peak_marker_grid = np.zeros_like(city_marker_grid)
+    for peak in peaks:
+        px = int(np.clip(round(peak[0] / STEP), 0, len(xs) - 1))
+        py = int(np.clip(round(peak[1] / STEP), 0, len(ys) - 1))
+        peak_marker_grid[py, px] = True
+    city_distance_grid = ndimage.distance_transform_edt(~city_marker_grid) * STEP
+    peak_distance_grid = ndimage.distance_transform_edt(~peak_marker_grid) * STEP
+    city_clearance = smoothstep01((city_distance_grid - 10.0) / 20.0)
+    peak_clearance = smoothstep01((peak_distance_grid - 14.0) / 24.0)
+    river_clearance = smoothstep01((river_distance - 5.0) / 13.0)
+    coast_clearance = smoothstep01((coast_distance - 10.0) / 28.0)
+    mapped_range_support = np.maximum(ridge_presence, central_peak_support)
+    range_clearance = 1.0 - smoothstep01((mapped_range_support - 0.08) / 0.52)
+    hill_clearance = city_clearance * peak_clearance * river_clearance * coast_clearance * range_clearance
+
+    plateau_interior = smoothstep01((plateau_weight - 0.62) / 0.30)
+    plateau_interior *= 1.0 - np.clip(scarp_strength, 0.0, 1.0)
+    plateau_noise = (
+        29.0 * normalized_noise(Z.shape, 58.0, hill_rng)
+        + 13.0 * normalized_noise(Z.shape, 22.0, hill_rng)
+        + 5.0 * normalized_noise(Z.shape, 8.0, hill_rng)
+    )
+    plateau_knoll_noise = (
+        normalized_noise(Z.shape, 34.0, hill_rng)
+        + 0.36 * normalized_noise(Z.shape, 12.0, hill_rng)
+        + 0.16 * normalized_noise(Z.shape, 5.0, hill_rng)
+    )
+    plateau_knolls = 145.0 * np.clip((plateau_knoll_noise - 0.80) / 1.50, 0.0, 1.20)
+    plateau_hill_weight = plateau_interior * hill_clearance * land
+    plateau_relief_detail = (plateau_noise + plateau_knolls) * plateau_hill_weight
+    Z += plateau_relief_detail
+
+    # Hold a separate sparse knoll field for the low plains. It is added after
+    # the strict plain-height cap below, so most plain stays below 20 m while
+    # a small number of low, unnamed hummocks rise gently above it.
+    plain_knoll_noise = normalized_noise(Z.shape, 22.0, hill_rng)
+    plain_shape_noise = normalized_noise(Z.shape, 9.0, hill_rng)
+    plain_rolling_noise = plain_knoll_noise + 0.40 * plain_shape_noise
+    plain_knolls = 60.0 * np.clip((plain_rolling_noise - 0.55) / 1.45, 0.0, 1.10)
+    plain_knolls += 6.0 * np.clip((plain_shape_noise - 0.95) / 1.25, 0.0, 1.2)
+
     # Use a broad floodplain-shaped channel in lowlands, but a narrow V-shaped
     # gorge in mountainous areas. This keeps the ridge line continuous on both
     # sides of the river instead of flattening a wide strip through the range.
     lowland_valley = 310.0 * np.exp(-river_distance / 15.0) + 115.0 * np.exp(-river_distance / 42.0)
-    mountain_gorge = 1500.0 * np.exp(-river_distance / 2.4) + 380.0 * np.exp(-river_distance / 8.0)
+    mountain_gorge = 1500.0 * np.exp(-river_distance / 2.4) + 380.0 * np.exp(-river_distance / MOUNTAIN_GORGE_OUTER_SCALE_PX)
     Z -= (1.0 - mountain_strength) * lowland_valley + mountain_strength * mountain_gorge
     canyon_ids = {3, 47}
     canyon_img = Image.new("L", (len(xs), len(ys)), 0)
@@ -1449,6 +1512,38 @@ def main():
     )
     z_full += plain_undulation_full * plain_cap_full
     z_full += (np.minimum(z_full, 19.5) - z_full) * plain_cap_full
+
+    city_marker_mask_full = np.zeros((HEIGHT, WIDTH), dtype=bool)
+    for city in cities:
+        point = city.get("sourcePixelXY")
+        if not point:
+            continue
+        px = int(np.clip(round(float(point[0])), 0, WIDTH - 1))
+        py = int(np.clip(round(float(point[1])), 0, HEIGHT - 1))
+        city_marker_mask_full[py, px] = True
+    city_distance_full = ndimage.distance_transform_edt(~city_marker_mask_full).astype(np.float32)
+    river_distance_full = cv2.resize(
+        river_distance.astype(np.float32), (WIDTH, HEIGHT), interpolation=cv2.INTER_LINEAR
+    )
+    city_hill_clearance_full = smoothstep01((city_distance_full - 9.0) / 14.0)
+    peak_hill_clearance_full = smoothstep01((peak_distance_full - 14.0) / 24.0)
+    river_hill_clearance_full = smoothstep01((river_distance_full - 4.0) / 8.0)
+    coast_hill_clearance_full = smoothstep01((coast_distance_full - 10.0) / 28.0)
+    plain_knoll_weight_full = (
+        plain_cap_full
+        * city_hill_clearance_full
+        * peak_hill_clearance_full
+        * river_hill_clearance_full
+        * coast_hill_clearance_full
+        * land_full
+        * ~river_water_mask_full
+        * ~lake_mask_full
+    )
+    plain_knolls_full = cv2.resize(
+        plain_knolls.astype(np.float32), (WIDTH, HEIGHT), interpolation=cv2.INTER_CUBIC
+    )
+    z_full += plain_knolls_full * plain_knoll_weight_full
+
     zaq_city = next(city for city in cities if city.get("name") == "乍曲市")
     zaq_city_x, zaq_city_y = map(float, zaq_city["sourcePixelXY"])
     zaq_river_feature = next(
@@ -1464,7 +1559,8 @@ def main():
         joint="curve",
     )
     zaq_river_distance_full = ndimage.distance_transform_edt(np.asarray(zaq_river_image) == 0).astype(np.float32)
-    zaq_floor_halfwidth_px, zaq_wall_outer_radius_px = 4.0, 26.0
+    zaq_floor_halfwidth_px = ZAQ_GORGE_FLOOR_HALF_WIDTH_PX
+    zaq_wall_outer_radius_px = ZAQ_GORGE_OUTER_WALL_RADIUS_PX
     zaq_wall_t = np.clip(
         (zaq_river_distance_full - zaq_floor_halfwidth_px)
         / (zaq_wall_outer_radius_px - zaq_floor_halfwidth_px),
@@ -1755,14 +1851,22 @@ def main():
         np.maximum(ridge_core_full, central_peak_support_full * 0.78),
         scarp_strength_full * 0.72,
     )
+    valley_relief_strength = np.maximum(
+        valley_mountain_strength,
+        plateau_weight_full * 0.70,
+    )
     valley_bank_slope_m_per_px = 55.0 + 510.0 * valley_mountain_strength + 260.0 * plateau_weight_full
     river_valley_cap = (
         nearest_centerline_surface
         + 35.0
         + river_distance_to_centerline * valley_bank_slope_m_per_px
     )
-    river_valley_t = np.clip((28.0 - river_distance_to_centerline) / 10.0, 0.0, 1.0)
-    river_valley_weight = river_valley_t * river_valley_t * (3.0 - 2.0 * river_valley_t)
+    river_valley_outer_radius_px = 28.0 - 11.0 * valley_relief_strength
+    river_valley_inner_radius_px = 18.0 - 7.0 * valley_relief_strength
+    river_valley_weight = smoothstep01(
+        (river_valley_outer_radius_px - river_distance_to_centerline)
+        / (river_valley_outer_radius_px - river_valley_inner_radius_px)
+    )
     summit_keepout_t = np.clip((9.0 - peak_distance_full) / 6.0, 0.0, 1.0)
     summit_keepout = summit_keepout_t * summit_keepout_t * (3.0 - 2.0 * summit_keepout_t)
     river_valley_weight *= land_full * (~river_water_mask_full) * (1.0 - summit_keepout)
@@ -2256,8 +2360,12 @@ def main():
                     "targetedRiverHeightCaps": river_flow["heightCaps"],
                     "lineAuditCsv": "data/river_flow_audit.csv",
                 },
-                "curvedRiverValleyPolicy": "Terrain caps follow the curved union of traced channels and official water strokes and vary with mountain/plateau relief; no straight bank-plane cuts are applied.",
+                "curvedRiverValleyPolicy": "Terrain caps follow the curved union of traced channels and official water strokes. The high-relief side-slope cap contracts to about 17px at the outer edge while lowland floodplains retain their broader 28px influence; no straight bank-plane cuts are applied.",
                 "mountainGorgeCutM": [1500.0, 380.0],
+                "mountainGorgeOuterDecayScalePx": MOUNTAIN_GORGE_OUTER_SCALE_PX,
+                "highReliefRiverCapOuterRadiusPx": [17.0, 28.0],
+                "dedicatedNarrowCanyonSegments": sorted(canyon_ids),
+                "dedicatedCanyonDecayScalePx": 3.0,
                 "planarRiverBankTaperCount": 0,
                 "description": "All official blue water-stroke pixels use the downhill-conditioned surface; the river graph is reconditioned against final banks after valley carving.",
             },
@@ -2366,6 +2474,15 @@ def main():
                 **nearby_river_gorge,
                 "description": "A narrow gorge follows mapped river 231 through the saddle between nearby peaks, interrupting the unsupported mountain connection while preserving summit anchors.",
             },
+            "unnamedLowReliefHills": {
+                "fixedSeed": SEED + 314159,
+                "plateauReliefNoiseScalesPx": [58.0, 22.0, 8.0],
+                "plateauOccasionalKnollMaximumAddedM": 174.0,
+                "plainKnollMaximumAddedM": 73.2,
+                "cityPeakRiverAndCoastKeepoutsApplied": True,
+                "namedPeakMarkersAdded": 0,
+                "description": "Seeded broad swells and sparse irregular low knolls add unnamed relief to the plateau and selected central plain patches. Existing city sites, mapped summit cores, river channels, coast strips, and mapped mountain backbones are kept clear; the main plain remains below 20 m except for a small number of low hummocks.",
+            },
             "specialSeaBottomLakeBasin": {
                 "lake": sea_bottom_lake.get("properties", {}).get("name", "海底湖"),
                 "lakeId": 3,
@@ -2383,7 +2500,7 @@ def main():
             "plateauEdgeStyle": "Irregular steep escarpment with river-cut passes and rapid relief change at the official northern-plateau boundary.",
             "coastalElevationPolicy": "Non-mountain coast terrain includes a varied 0–4 m strip at the shore, rising gently inland and staying below 50 m by about 20 source pixels; northern plateau nearshore relief is capped separately while retaining a steep escarpment.",
             "easternLowlandPolicy": "Non-mountain terrain in the east and southeast remains below 50 m; the first 20 source pixels from shore taper gently from near sea level to below 50 m.",
-            "plainElevationPolicy": "Non-mountain terrain in the mapped central plain remains at or below 20 m, usually below 20 m, with broad low-amplitude fixed-seed undulation and no quantized elevation tiers.",
+            "plainElevationPolicy": "Most non-mountain terrain in the mapped central plain remains below 20 m with broad low-amplitude undulation; sparse seeded, unnamed low hummocks are the limited exceptions, with no quantized elevation tiers.",
             "fineReliefDetail": "Fixed-seed, low-amplitude multiscale terrain detail; only documented ranges receive continuous backbones, while other labelled peaks receive separate asymmetric local massifs.",
             "contoursDisplayed": False,
             "landformLabelsDisplayed": False,
