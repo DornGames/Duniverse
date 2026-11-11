@@ -879,7 +879,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T15": {
       "name": "T15",
-      "lengthKm": 11156.7,
+      "lengthKm": 11184.2,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区",
