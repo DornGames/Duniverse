@@ -1,9 +1,193 @@
 window.DUNIVERSE_HIGHWAY_ROUTES =
 [
   {
+    "id": "D1",
+    "name": "D1",
+    "color": "#c77b00",
+    "parts": [
+      {
+        "id": "choudu-inner-ring",
+        "role": "ring",
+        "stops": [
+          "臭都特别市"
+        ],
+        "points": [
+          [
+            998.0,
+            844.0
+          ],
+          [
+            1017.0,
+            850.0
+          ],
+          [
+            1032.0,
+            855.0
+          ],
+          [
+            1041.0,
+            869.0
+          ],
+          [
+            1045.0,
+            883.0
+          ],
+          [
+            1041.0,
+            894.0
+          ],
+          [
+            1032.0,
+            905.0
+          ],
+          [
+            1020.0,
+            916.0
+          ],
+          [
+            1006.0,
+            924.0
+          ],
+          [
+            990.0,
+            919.0
+          ],
+          [
+            975.0,
+            914.0
+          ],
+          [
+            961.0,
+            902.0
+          ],
+          [
+            960.0,
+            887.0
+          ],
+          [
+            967.0,
+            874.0
+          ],
+          [
+            975.0,
+            864.0
+          ],
+          [
+            985.0,
+            854.0
+          ]
+        ],
+        "closed": true,
+        "dashed": false
+      }
+    ]
+  },
+  {
+    "id": "D2",
+    "name": "D2",
+    "color": "#c77b00",
+    "parts": [
+      {
+        "id": "choudu-outer-ring",
+        "role": "ring",
+        "stops": [
+          "臭都特别市"
+        ],
+        "points": [
+          [
+            1005.0,
+            810.0
+          ],
+          [
+            1030.0,
+            813.0
+          ],
+          [
+            1050.0,
+            824.0
+          ],
+          [
+            1066.0,
+            840.0
+          ],
+          [
+            1075.0,
+            860.0
+          ],
+          [
+            1080.0,
+            879.0
+          ],
+          [
+            1076.0,
+            899.0
+          ],
+          [
+            1067.0,
+            920.0
+          ],
+          [
+            1051.0,
+            939.0
+          ],
+          [
+            1030.0,
+            953.0
+          ],
+          [
+            1007.0,
+            962.0
+          ],
+          [
+            983.0,
+            957.0
+          ],
+          [
+            961.0,
+            947.0
+          ],
+          [
+            941.0,
+            934.0
+          ],
+          [
+            926.0,
+            916.0
+          ],
+          [
+            921.0,
+            896.0
+          ],
+          [
+            923.0,
+            876.0
+          ],
+          [
+            931.0,
+            857.0
+          ],
+          [
+            944.0,
+            840.0
+          ],
+          [
+            962.0,
+            826.0
+          ],
+          [
+            982.0,
+            815.0
+          ]
+        ],
+        "closed": true,
+        "dashed": false
+      }
+    ]
+  },
+  {
     "id": "T1",
     "name": "T1（南北向）",
-    "color": "#c65349",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "mainline-north",
@@ -231,7 +415,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T2",
     "name": "T2（东西向）",
-    "color": "#287ca8",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "sili-loop",
@@ -442,7 +626,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T3",
     "name": "T3",
-    "color": "#78549b",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "mainline",
@@ -552,7 +736,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T4",
     "name": "T4",
-    "color": "#b17a2e",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "north-approach",
@@ -795,7 +979,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T5",
     "name": "T5",
-    "color": "#2f8a68",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "mainline",
@@ -907,7 +1091,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T6",
     "name": "T6",
-    "color": "#ca5b84",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "mainline",
@@ -1039,7 +1223,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T7",
     "name": "T7",
-    "color": "#4b5263",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "west-approach-to-saturn",
@@ -1194,7 +1378,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T8",
     "name": "T8",
-    "color": "#168a8a",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "shared-choudu-martong",
@@ -1278,7 +1462,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T9",
     "name": "T9",
-    "color": "#d04d28",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "shared-choudu-martong",
@@ -1374,7 +1558,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T10",
     "name": "T10",
-    "color": "#8a5d48",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "shared-choudu-phoenix",
@@ -1473,7 +1657,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T11",
     "name": "T11",
-    "color": "#6b7c2d",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "shared-choudu-nigen",
@@ -1596,7 +1780,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T12",
     "name": "T12",
-    "color": "#586da6",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "mainline",
@@ -1683,7 +1867,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T13",
     "name": "T13",
-    "color": "#ad3f71",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "mainline",
@@ -1846,7 +2030,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T14",
     "name": "T14",
-    "color": "#568d4f",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "mainline",
@@ -2057,11 +2241,11 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T15",
     "name": "T15",
-    "color": "#6c637f",
+    "color": "#c77b00",
     "parts": [
       {
-        "id": "shared-choudu-nigen",
-        "role": "shared",
+        "id": "choudu-nigen-direct",
+        "role": "main",
         "stops": [
           "臭都特别市",
           "尼根市"
@@ -2070,38 +2254,6 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
           [
             997.5,
             883.0
-          ],
-          [
-            1018.0,
-            875.0
-          ],
-          [
-            1047.0,
-            876.0
-          ],
-          [
-            1073.0,
-            888.0
-          ],
-          [
-            1097.0,
-            907.0
-          ],
-          [
-            1117.0,
-            933.0
-          ],
-          [
-            1133.0,
-            961.0
-          ],
-          [
-            1143.0,
-            991.0
-          ],
-          [
-            1148.7,
-            1022.2
           ],
           [
             1160.0,
@@ -2266,7 +2418,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T16",
     "name": "T16",
-    "color": "#596b82",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "mainline",
@@ -2476,7 +2628,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
   {
     "id": "T17",
     "name": "T17",
-    "color": "#b26748",
+    "color": "#c77b00",
     "parts": [
       {
         "id": "shared-choudu-wuzong",

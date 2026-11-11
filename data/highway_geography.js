@@ -1,6 +1,50 @@
 window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
   "projectionScaleKmPerPixel": 7.7719530772698535,
   "routes": {
+    "D1": {
+      "name": "D1",
+      "lengthKm": 1953.9,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "中𣿅大区"
+      ],
+      "provinces": [
+        "马尔通市",
+        "臭都特别市"
+      ],
+      "cities": [
+        "臭都特别市"
+      ],
+      "stops": [
+        "臭都特别市"
+      ]
+    },
+    "D2": {
+      "name": "D2",
+      "lengthKm": 3730.1,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "中𣿅大区",
+        "西南𣿅大区",
+        "西𣿅大区"
+      ],
+      "provinces": [
+        "瑞丰特别市",
+        "马尔通市",
+        "臭都特别市",
+        "尼根市",
+        "武宗特别市",
+        "凤凰省",
+        "梅马省",
+        "光安省"
+      ],
+      "cities": [
+        "臭都特别市"
+      ],
+      "stops": [
+        "臭都特别市"
+      ]
+    },
     "T1": {
       "name": "T1（南北向）",
       "lengthKm": 10326.9,
@@ -847,7 +891,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T15": {
       "name": "T15",
-      "lengthKm": 11813.3,
+      "lengthKm": 11549.0,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区",
@@ -856,9 +900,8 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
       ],
       "provinces": [
         "臭都特别市",
-        "白告市",
-        "立里市",
         "尼根市",
+        "立里市",
         "萨比省",
         "东𣿅特别行政区",
         "总统（𣿅赫）特别行政区"
