@@ -1,4 +1,4 @@
-"""Keep reviewed point-like eastern islets visible in the map layers."""
+"""Sync traced white eastern island silhouettes to the map layers."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DOT_DATA_FILE = ROOT / "data" / "eastern_island_dots.geojson"
+ISLAND_SHAPES_FILE = ROOT / "data" / "eastern_island_shapes.geojson"
 HTML_FILES = (ROOT / "index.html", ROOT / "relief_map.html")
 VECTOR_PREVIEW = ROOT / "vector_preview.svg"
 
@@ -17,7 +17,6 @@ GROUP_PATTERN = re.compile(
     r'(<g id="coastlineFills"[^>]*>)(.*?)(</g>)', re.DOTALL
 )
 ELEMENT_PATTERN = re.compile(r"<(?:path|circle)\b[^>]*/?>")
-ATTRIBUTE_PATTERN = re.compile(r'\b(data-island-dot|cx|cy)="([^"]+)"')
 OLD_TOLERANCE_PATTERN = re.compile(
     r"const pathToleranceIndex=isCoastalFill\?coastalFillToleranceIndex:\s*"
     r"(?:(isHydrology\?Math\.min\(toleranceIndex,"
@@ -52,28 +51,43 @@ def write_text_preserving_newlines(path: Path, text: str) -> None:
     path.write_bytes(normalized.replace("\n", newline.decode("ascii")).encode("utf-8"))
 
 
-def load_island_dots() -> tuple[list[str], set[tuple[str, str]]]:
-    collection = json.loads(DOT_DATA_FILE.read_text(encoding="utf-8"))
+def geometry_path(geometry: dict) -> str:
+    if geometry["type"] == "Polygon":
+        polygons = [geometry["coordinates"]]
+    elif geometry["type"] == "MultiPolygon":
+        polygons = geometry["coordinates"]
+    else:
+        raise ValueError(f"Unexpected island geometry: {geometry['type']}")
+
+    commands = []
+    for polygon in polygons:
+        for ring in polygon:
+            if len(ring) < 4:
+                raise ValueError("An island ring has fewer than four coordinates")
+            commands.append(f"M {ring[0][0]:.4f},{ring[0][1]:.4f}")
+            commands.extend(f"L {x:.4f},{y:.4f}" for x, y in ring[1:])
+            commands.append("Z")
+    return " ".join(commands)
+
+
+def load_island_shapes() -> list[str]:
+    collection = json.loads(ISLAND_SHAPES_FILE.read_text(encoding="utf-8"))
     elements = []
-    coordinates = set()
     for feature in collection["features"]:
-        if feature.get("properties", {}).get("role") != "island_dot":
+        if feature.get("properties", {}).get("role") != "island_surface":
             continue
-        dot_id = html.escape(str(feature["id"]), quote=True)
-        x, y = feature["geometry"]["coordinates"]
-        x_text, y_text = f"{x:.4f}", f"{y:.4f}"
-        radius = feature["properties"]["render_radius_px"]
+        shape_id = html.escape(str(feature["id"]), quote=True)
+        path_data = geometry_path(feature["geometry"])
         elements.append(
-            f'<circle data-island-dot="{dot_id}" cx="{x_text}" '
-            f'cy="{y_text}" r="{radius:.4f}" fill="#fff"/>'
+            f'<path data-eastern-island-shape="{shape_id}" '
+            f'd="{path_data}" fill="#fff"/>'
         )
-        coordinates.add((x_text, y_text))
     if not elements:
-        raise ValueError("No reviewed point-like eastern islets were found")
-    return elements, coordinates
+        raise ValueError("No reviewed eastern island silhouettes were found")
+    return elements
 
 
-def sync_html(path: Path, dots: list[str], coordinates: set[tuple[str, str]]) -> int:
+def sync_html(path: Path, shapes: list[str]) -> int:
     source = path.read_text(encoding="utf-8")
     match = GROUP_PATTERN.search(source)
     if not match:
@@ -82,17 +96,14 @@ def sync_html(path: Path, dots: list[str], coordinates: set[tuple[str, str]]) ->
     kept = []
     removed = 0
     for tag in ELEMENT_PATTERN.findall(match.group(2)):
-        if not tag.startswith("<circle"):
-            kept.append(tag)
-            continue
-        attributes = dict(ATTRIBUTE_PATTERN.findall(tag))
-        key = (attributes.get("cx", ""), attributes.get("cy", ""))
-        if "data-island-dot" in attributes or key in coordinates:
+        is_old_dot = tag.startswith("<circle") and "data-island-dot=" in tag
+        is_old_shape = tag.startswith("<path") and "data-eastern-island-shape=" in tag
+        if is_old_dot or is_old_shape:
             removed += 1
         else:
             kept.append(tag)
 
-    updated_group = match.group(1) + "".join(kept + dots) + match.group(3)
+    updated_group = match.group(1) + "".join(kept + shapes) + match.group(3)
     source = source[: match.start()] + updated_group + source[match.end() :]
 
     if EAST_ISLAND_TOLERANCE not in source:
@@ -119,14 +130,16 @@ def sync_html(path: Path, dots: list[str], coordinates: set[tuple[str, str]]) ->
     return removed
 
 
-def sync_vector_preview(path: Path, dots: list[str]) -> None:
+def sync_vector_preview(path: Path, shapes: list[str]) -> None:
     source = path.read_text(encoding="utf-8")
     group = (
-        '<g id="eastern-island-dots" fill="#fff" pointer-events="none">'
-        + "".join(dots)
+        '<g id="eastern-island-shapes" fill="#fff" pointer-events="none">'
+        + "".join(shapes)
         + "</g>"
     )
-    pattern = re.compile(r'<g id="eastern-island-dots"[^>]*>.*?</g>', re.DOTALL)
+    pattern = re.compile(
+        r'<g id="eastern-island-(?:dots|shapes)"[^>]*>.*?</g>', re.DOTALL
+    )
     if pattern.search(source):
         source = pattern.sub(group, source, count=1)
     elif "</svg>" in source:
@@ -137,18 +150,18 @@ def sync_vector_preview(path: Path, dots: list[str]) -> None:
 
 
 def main() -> None:
-    dots, coordinates = load_island_dots()
+    shapes = load_island_shapes()
     html_files = [path for path in HTML_FILES if path.exists()]
     if not html_files:
         raise FileNotFoundError("No interactive map HTML file was found")
     for html_file in html_files:
-        removed = sync_html(html_file, dots, coordinates)
+        removed = sync_html(html_file, shapes)
         print(
             f"{html_file.relative_to(ROOT)}: retained all shoreline paths, "
-            f"replaced {removed} prior dot markers with {len(dots)} reviewed islets"
+            f"replaced {removed} prior markers with {len(shapes)} traced white silhouettes"
         )
-    sync_vector_preview(VECTOR_PREVIEW, dots)
-    print(f"{VECTOR_PREVIEW.relative_to(ROOT)}: synced {len(dots)} point islets")
+    sync_vector_preview(VECTOR_PREVIEW, shapes)
+    print(f"{VECTOR_PREVIEW.relative_to(ROOT)}: synced {len(shapes)} island silhouettes")
 
 
 if __name__ == "__main__":
