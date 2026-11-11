@@ -631,6 +631,105 @@ def write_feature_collection(path: Path, collection: dict) -> None:
     path.write_bytes(payload.encode("utf-8"))
 
 
+def connect_nearby_city_boundary_ends(features: list[dict], water_distance: np.ndarray,
+                                      coastline_collection: dict) -> tuple[int, float]:
+    """Join small land-only gaps where a city line meets another boundary.
+
+    Curving city edges independently can leave a short gap at a triple junction
+    or where a city edge meets a province line. Keep natural river, lake, and
+    coast terminations untouched; only move city-line endpoints toward another
+    mapped boundary when that junction is the closest natural continuation.
+    """
+    min_gap_px = 1.5
+    max_gap_px = 6.5
+    boundary_lines: list[tuple[int, LineString, tuple[float, float, float, float]]] = []
+    for feature_index, feature in enumerate(features):
+        for line in line_parts(shape(feature["geometry"])):
+            if line.length >= MIN_BOUNDARY_LENGTH_PX:
+                boundary_lines.append((feature_index, line, line.bounds))
+
+    coast_lines = []
+    for feature in coastline_collection.get("features", []):
+        coast_lines.extend(line_parts(shape(feature["geometry"])))
+    coast_bounds = [(line, line.bounds) for line in coast_lines if line.length > 0]
+
+    def box_gap(x: float, y: float, bounds: tuple[float, float, float, float]) -> float:
+        min_x, min_y, max_x, max_y = bounds
+        dx = max(min_x - x, 0.0, x - max_x)
+        dy = max(min_y - y, 0.0, y - max_y)
+        return math.hypot(dx, dy)
+
+    def closest_line(point: Point, feature_index: int):
+        best_distance = math.inf
+        best_line = None
+        for reference_index, line, bounds in boundary_lines:
+            if reference_index == feature_index or box_gap(point.x, point.y, bounds) > max_gap_px:
+                continue
+            distance = point.distance(line)
+            if distance < best_distance:
+                best_distance, best_line = distance, line
+                if distance <= min_gap_px:
+                    break
+        return best_distance, best_line
+
+    def nearest_coast(point: Point, search_radius: float) -> float:
+        best_distance = math.inf
+        for line, bounds in coast_bounds:
+            if box_gap(point.x, point.y, bounds) > min(search_radius, max_gap_px):
+                continue
+            best_distance = min(best_distance, point.distance(line))
+            if best_distance <= 0.75:
+                break
+        return best_distance
+
+    snapped_count = 0
+    maximum_snap_px = 0.0
+    for feature_index, feature in enumerate(features):
+        if feature["properties"].get("boundary_type") != "city":
+            continue
+        snapped_parts = []
+        for line in line_parts(shape(feature["geometry"])):
+            if line.is_closed:
+                snapped_parts.append(line)
+                continue
+            coordinates = list(line.coords)
+            part_snap_count = 0
+            part_maximum_snap_px = 0.0
+            for endpoint_index in (0, -1):
+                x, y = coordinates[endpoint_index][:2]
+                point = Point(x, y)
+                distance, target_line = closest_line(point, feature_index)
+                if target_line is None or not (min_gap_px < distance <= max_gap_px):
+                    continue
+                row = int(np.clip(round(y), 0, water_distance.shape[0] - 1))
+                col = int(np.clip(round(x), 0, water_distance.shape[1] - 1))
+                river_or_lake_gap = float(water_distance[row, col])
+                coast_gap = nearest_coast(point, distance)
+                if min(river_or_lake_gap, coast_gap) <= distance:
+                    continue
+                target = target_line.interpolate(target_line.project(point))
+                coordinates[endpoint_index] = (target.x, target.y)
+            candidate = LineString(coordinates)
+            if (candidate.is_simple and not candidate.is_closed
+                    and candidate.length >= MIN_BOUNDARY_LENGTH_PX):
+                for endpoint_index in (0, -1):
+                    if coordinates[endpoint_index] != line.coords[endpoint_index]:
+                        part_snap_count += 1
+                        part_maximum_snap_px = max(
+                            part_maximum_snap_px,
+                            Point(line.coords[endpoint_index]).distance(Point(coordinates[endpoint_index])))
+                snapped_parts.append(candidate)
+                snapped_count += part_snap_count
+                maximum_snap_px = max(maximum_snap_px, part_maximum_snap_px)
+            else:
+                snapped_parts.append(line)
+        if not snapped_parts:
+            continue
+        geometry = snapped_parts[0] if len(snapped_parts) == 1 else MultiLineString(snapped_parts)
+        feature["geometry"] = mapping(geometry)
+    return snapped_count, maximum_snap_px
+
+
 def main() -> None:
     cities_data = read_js_json(DATA / "relief_city_coordinates.js")["cities"]
     boundary_summits = read_boundary_summits()
@@ -932,6 +1031,9 @@ def main() -> None:
     city_features = filtered_city_features
 
     features = city_features + province_features
+    coastline_collection = json.loads((DATA / "coastlines.geojson").read_text(encoding="utf-8"))
+    snapped_boundary_ends, maximum_boundary_snap_px = connect_nearby_city_boundary_ends(
+        features, water_distance, coastline_collection)
     features.sort(key=lambda feature: (
         feature["properties"]["boundary_type"] != "city",
         feature["properties"].get("province_code", ""),
@@ -952,7 +1054,7 @@ def main() -> None:
             "river_source": "data/relief_elevation.js river-water mask",
             "water_source": "data/relief_elevation.js river-water mask + data/lakes.geojson lake polygons",
             "ridge_source": "data/ridge_network.geojson (named mountain-range backbones, anisotropic DEM crest skeletons, and selected high-summit boundary controls)",
-            "method": "Across the full map, extract named mountain-range backbones and local DEM ridge crests, then guide province-constrained multi-source least-cost city partitions with ridges and mapped river corridors. High summits close to an existing city divide can become fixed-seed boundary anchors. City lines use a terrain-led source divider, gentle deterministic smoothing, and bounded relief-scaled detail; irregularity grows in rugged terrain and is damped on short segments. River and lake sections receive no random displacement. Shared province boundaries are included in this layer for close-up views.",
+            "method": "Across the full map, extract named mountain-range backbones and local DEM ridge crests, then guide province-constrained multi-source least-cost city partitions with ridges and mapped river corridors. High summits close to an existing city divide can become fixed-seed boundary anchors. City lines use a terrain-led source divider, gentle deterministic smoothing, and bounded relief-scaled detail; irregularity grows in rugged terrain and is damped on short segments. River and lake sections receive no random displacement. Short land-only city-line endpoints are snapped to the nearest shared city or province boundary when no river, lake, or coast is closer. Shared province boundaries are included in this layer for close-up views.",
             "ridge_network_feature_count": len(ridge_features),
             "boundary_summit_minimum_elevation_m": BOUNDARY_SUMMIT_MIN_ELEVATION_M,
             "boundary_summit_capture_distance_px": BOUNDARY_SUMMIT_CAPTURE_DISTANCE_PX,
@@ -981,6 +1083,8 @@ def main() -> None:
             "orphan_territory_cells_reassigned": total_orphan_cells_reassigned,
             "unanchored_closed_city_boundaries_removed": total_unanchored_closed_boundaries_removed,
             "snapped_city_sites": snap_log,
+            "snapped_city_boundary_ends": snapped_boundary_ends,
+            "maximum_city_boundary_end_snap_px": round(maximum_boundary_snap_px, 2),
             "minimum_boundary_length_px": MIN_BOUNDARY_LENGTH_PX,
         },
     }
