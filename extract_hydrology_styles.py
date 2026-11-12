@@ -11,6 +11,10 @@ from __future__ import annotations
 import json
 import math
 import re
+import base64
+import statistics
+import sys
+from array import array
 from pathlib import Path
 
 from PIL import Image, ImageDraw
@@ -228,6 +232,17 @@ SEASONAL_DASH_RESIDUAL_SEGMENT_IDS = frozenset({
     *range(43, 90), *range(94, 117),
 })
 CROSS_BORDER_LAKE_EDGE_RESIDUAL_SEGMENT_IDS = frozenset({118})
+MIN_RIVER_CONTRIBUTING_REACH_PX = 2.5
+NATIONAL_RIVER_MOUTH_ENDPOINTS = (
+    {"cluster_id": "RIV-CLUSTER-06", "segment_id": 21, "endpoint": "end"},
+    {"cluster_id": "RIV-CLUSTER-05", "segment_id": 46, "endpoint": "start"},
+    {"cluster_id": "RIV-CLUSTER-02", "segment_id": 52, "endpoint": "end"},
+    {"cluster_id": "RIV-CLUSTER-07", "segment_id": 70, "endpoint": "end"},
+    {"cluster_id": "RIV-CLUSTER-03", "segment_id": 150, "endpoint": "end"},
+    {"cluster_id": "RIV-CLUSTER-08", "segment_id": 188, "endpoint": "start"},
+    {"cluster_id": "RIV-CLUSTER-09", "segment_id": 236, "endpoint": "start"},
+    {"cluster_id": "RIV-CLUSTER-10", "segment_id": 248, "endpoint": "start"},
+)
 
 
 def read_fc(path: Path) -> dict:
@@ -341,6 +356,860 @@ def profile_width_at(profile: dict, fraction: float) -> float:
             local = (fraction - left_fraction) / (right_fraction - left_fraction)
             return left_width + (right_width - left_width) * local
     return knots[-1][1]
+
+
+def offset_centerline(line: LineString, definition: dict) -> LineString:
+    """Apply a smooth, bounded lateral meander while keeping both endpoints fixed."""
+    start_fraction = float(definition["start_fraction"])
+    end_fraction = float(definition["end_fraction"])
+    amplitude = float(definition["amplitude_px"])
+    if not (0.0 <= start_fraction < end_fraction <= 1.0) or amplitude < 0:
+        raise ValueError(f"Invalid centerline adjustment {definition.get('id')}")
+    if line.length <= 0 or amplitude == 0:
+        return line
+
+    sample_count = max(2, math.ceil(line.length / 1.25), len(line.coords) - 1)
+    tangent_span = min(2.5, max(0.75, line.length / sample_count))
+    adjusted = []
+    for index in range(sample_count + 1):
+        fraction = index / sample_count
+        distance = line.length * fraction
+        before = line.interpolate(max(0.0, distance - tangent_span))
+        center = line.interpolate(distance)
+        after = line.interpolate(min(line.length, distance + tangent_span))
+        tangent_x, tangent_y = after.x - before.x, after.y - before.y
+        tangent_length = math.hypot(tangent_x, tangent_y) or 1.0
+        normal_x, normal_y = -tangent_y / tangent_length, tangent_x / tangent_length
+
+        offset = 0.0
+        if start_fraction < fraction < end_fraction:
+            local = (fraction - start_fraction) / (end_fraction - start_fraction)
+            envelope = math.sin(math.pi * local) ** 2
+            # A dominant sine pair gives an S bend; the smaller third wave
+            # makes its lobes unequal, as in natural meanders.
+            wave = math.sin(2 * math.pi * local) + 0.12 * math.sin(3 * math.pi * local)
+            offset = amplitude * 1.5 * envelope * wave
+        adjusted.append((center.x + normal_x * offset, center.y + normal_y * offset))
+    adjusted[0] = (float(line.coords[0][0]), float(line.coords[0][1]))
+    adjusted[-1] = (float(line.coords[-1][0]), float(line.coords[-1][1]))
+    return LineString(adjusted)
+
+
+def apply_centerline_adjustments(features: list[dict], config: dict) -> list[dict]:
+    """Apply documented local bends to selected reaches before deriving channels."""
+    definitions_by_segment: dict[int, list[dict]] = {}
+    for definition in config.get("centerline_adjustments", []):
+        definitions_by_segment.setdefault(int(definition["segment_id"]), []).append(definition)
+    if not definitions_by_segment:
+        return features
+
+    grouped_indices: dict[int, list[int]] = {}
+    for index, feature in enumerate(features):
+        segment_id = int(feature["properties"].get("segment_id", 0))
+        if segment_id in definitions_by_segment:
+            grouped_indices.setdefault(segment_id, []).append(index)
+    missing = sorted(set(definitions_by_segment) - set(grouped_indices))
+    duplicated = sorted(segment_id for segment_id, indices in grouped_indices.items() if len(indices) != 1)
+    if missing or duplicated:
+        raise ValueError(f"Centerline adjustments have missing or split segments: missing={missing}, split={duplicated}")
+
+    adjusted_features = list(features)
+    for segment_id, definitions in definitions_by_segment.items():
+        index = grouped_indices[segment_id][0]
+        feature = adjusted_features[index]
+        lines = line_parts(shape(feature["geometry"]))
+        if len(lines) != 1:
+            raise ValueError(f"Centerline adjustment requires one line for segment {segment_id}")
+        line = lines[0]
+        for definition in definitions:
+            line = offset_centerline(line, definition)
+        properties = {
+            **feature["properties"],
+            "cartographic_adjustment_ids": [item["id"] for item in definitions],
+        }
+        adjusted_features[index] = {
+            **feature,
+            "properties": properties,
+            "geometry": mapping(line),
+        }
+    return adjusted_features
+
+
+def reach_endpoint(features_by_id: dict[int, dict], endpoint: dict) -> tuple[Point, float]:
+    segment_id = int(endpoint["segment_id"])
+    side = str(endpoint["endpoint"])
+    if side not in {"start", "end"}:
+        raise ValueError(f"Unknown endpoint {side!r} on segment {segment_id}")
+    feature = features_by_id.get(segment_id)
+    if feature is None:
+        raise ValueError(f"Width topology references missing segment {segment_id}")
+    lines = line_parts(shape(feature["geometry"]))
+    if len(lines) != 1:
+        raise ValueError(f"Width topology requires one line for segment {segment_id}")
+    line = lines[0]
+    fraction = 0.0 if side == "start" else 1.0
+    coordinate = line.coords[0 if side == "start" else -1]
+    return Point(coordinate), fraction
+
+
+def validate_channel_topology(features: list[dict], config: dict) -> list[dict]:
+    """Reject Q2 profiles where confluences pinch or continuous reaches jump."""
+    profiles = width_profiles(config)
+    features_by_id = {
+        int(feature["properties"]["segment_id"]): feature
+        for feature in features
+        if "segment_id" in feature["properties"]
+    }
+    checks = []
+    for definition in config.get("confluence_width_checks", []):
+        tributaries = definition["upstream_reaches"]
+        downstream = definition["downstream_reach"]
+        points_and_widths = []
+        for endpoint in [*tributaries, downstream]:
+            point, fraction = reach_endpoint(features_by_id, endpoint)
+            profile = profiles.get(int(endpoint["segment_id"]))
+            if profile is None:
+                raise ValueError(f"Confluence check {definition['id']} has no width profile for {endpoint['segment_id']}")
+            points_and_widths.append((point, profile_width_at(profile, fraction)))
+
+        max_gap = max(
+            left[0].distance(right[0])
+            for index, left in enumerate(points_and_widths)
+            for right in points_and_widths[index + 1:]
+        )
+        allowed_gap = float(definition.get("max_node_gap_px", 0.1))
+        if max_gap > allowed_gap:
+            raise ValueError(f"Confluence {definition['id']} endpoints do not meet: gap={max_gap:.3f}px")
+
+        combined_upstream_width = math.sqrt(sum(width ** 2 for _, width in points_and_widths[:-1]))
+        downstream_width = points_and_widths[-1][1]
+        required_width = combined_upstream_width * float(definition.get("minimum_ratio", 1.0))
+        if downstream_width + 1e-6 < required_width:
+            raise ValueError(
+                f"Confluence {definition['id']} pinches downstream: "
+                f"{downstream_width:.3f}px < {required_width:.3f}px"
+            )
+        checks.append({
+            "id": definition["id"],
+            "upstream_widths_px": [round(width, 3) for _, width in points_and_widths[:-1]],
+            "combined_upstream_width_px": round(combined_upstream_width, 3),
+            "downstream_width_px": round(downstream_width, 3),
+            "node_gap_px": round(max_gap, 4),
+        })
+
+    for definition in config.get("channel_continuity_checks", []):
+        endpoints = [definition["first_reach"], definition["second_reach"]]
+        values = [
+            reach_endpoint(features_by_id, endpoint)
+            for endpoint in endpoints
+        ]
+        widths = [
+            profile_width_at(profiles[int(endpoint["segment_id"])], fraction)
+            for endpoint, (_, fraction) in zip(endpoints, values)
+        ]
+        gap = values[0][0].distance(values[1][0])
+        if gap > float(definition.get("max_node_gap_px", 0.1)):
+            raise ValueError(f"Continuity {definition['id']} endpoints do not meet: gap={gap:.3f}px")
+        width_difference = abs(widths[0] - widths[1])
+        if width_difference > float(definition.get("max_width_difference_px", 0.05)):
+            raise ValueError(
+                f"Continuity {definition['id']} has a width jump: "
+                f"{width_difference:.3f}px"
+            )
+        checks.append({
+            "id": definition["id"],
+            "continuous_widths_px": [round(width, 3) for width in widths],
+            "node_gap_px": round(gap, 4),
+        })
+    return checks
+
+
+def relief_elevation_grid() -> dict:
+    """Read the map's stored 16-bit terrain model for outlet and plain checks."""
+    source = (DATA / "relief_elevation.js").read_text(encoding="utf-8")
+    payload = json.loads(source[source.index("{"):source.rindex("}") + 1])
+    values = array("H")
+    values.frombytes(base64.b64decode(payload["valuesB64"]))
+    if sys.byteorder != "little":
+        values.byteswap()
+    if len(values) != int(payload["width"]) * int(payload["height"]):
+        raise ValueError("The terrain height grid does not match its stored dimensions")
+    return {
+        "width": int(payload["width"]),
+        "height": int(payload["height"]),
+        "minimum_m": float(payload["min"]),
+        "maximum_m": float(payload["max"]),
+        "values": values,
+    }
+
+
+def terrain_height_at(grid: dict, x: float, y: float) -> float:
+    width, height = grid["width"], grid["height"]
+    ix = max(0, min(width - 1, round(x)))
+    iy = max(0, min(height - 1, round(y)))
+    encoded = grid["values"][iy * width + ix]
+    return grid["minimum_m"] + encoded / 65535 * (grid["maximum_m"] - grid["minimum_m"])
+
+
+def river_network_forest(
+    rivers: list[dict],
+    country_outline,
+    lakes: list[dict],
+    grid: dict,
+    marine_mouths: tuple[dict, ...] = NATIONAL_RIVER_MOUTH_ENDPOINTS,
+) -> list[dict]:
+    """Orient each mapped tree toward a reviewed sea mouth or its low outlet."""
+    adjacency: dict[tuple[float, float], list[tuple[int, tuple[float, float]]]] = {}
+    node_coordinates: dict[tuple[float, float], tuple[float, float]] = {}
+    line_by_id: dict[int, LineString] = {}
+    edge_nodes: dict[int, tuple[tuple[float, float], tuple[float, float]]] = {}
+    for feature in rivers:
+        segment_id = int(feature["properties"]["segment_id"])
+        lines = line_parts(shape(feature["geometry"]))
+        if len(lines) != 1:
+            raise ValueError(f"National width modelling requires one line per reach: {segment_id}")
+        if segment_id in line_by_id:
+            raise ValueError(f"National width modelling found duplicate segment id {segment_id}")
+        line = lines[0]
+        start = (float(line.coords[0][0]), float(line.coords[0][1]))
+        end = (float(line.coords[-1][0]), float(line.coords[-1][1]))
+        start_node = (round(start[0], 1), round(start[1], 1))
+        end_node = (round(end[0], 1), round(end[1], 1))
+        line_by_id[segment_id] = line
+        edge_nodes[segment_id] = (start_node, end_node)
+        node_coordinates.setdefault(start_node, start)
+        node_coordinates.setdefault(end_node, end)
+        adjacency.setdefault(start_node, []).append((segment_id, end_node))
+        adjacency.setdefault(end_node, []).append((segment_id, start_node))
+
+    lake_shapes = [shape(feature["geometry"]) for feature in lakes]
+
+    def sink_proximity(node: tuple[float, float]) -> float:
+        point = Point(node_coordinates[node])
+        distances = [point.distance(country_outline.boundary)]
+        distances.extend(item.boundary.distance(point) for item in lake_shapes)
+        return min(distances)
+
+    components = []
+    visited_nodes = set()
+    for initial_node in adjacency:
+        if initial_node in visited_nodes:
+            continue
+        stack = [initial_node]
+        nodes = set()
+        segment_ids = set()
+        while stack:
+            node = stack.pop()
+            if node in nodes:
+                continue
+            nodes.add(node)
+            visited_nodes.add(node)
+            for segment_id, neighbour in adjacency[node]:
+                segment_ids.add(segment_id)
+                stack.append(neighbour)
+
+        marine_candidates = []
+        for definition in marine_mouths:
+            segment_id = int(definition["segment_id"])
+            if segment_id not in segment_ids:
+                continue
+            side = str(definition["endpoint"])
+            node = edge_nodes[segment_id][0 if side == "start" else 1]
+            marine_candidates.append((line_by_id[segment_id].length, node))
+
+        if marine_candidates:
+            # The audited coast line is the downstream end even when raster
+            # elevation artifacts or a short spur suggest a lower inland tip.
+            _, root = max(
+                marine_candidates,
+                key=lambda item: (item[0], -sink_proximity(item[1]), -item[1][1], -item[1][0]),
+            )
+        else:
+            leaves = [node for node in nodes if len(adjacency[node]) == 1]
+            if not leaves:
+                raise ValueError(f"National river network has no outlet candidate: segments={sorted(segment_ids)}")
+            substantial_leaves = [
+                node for node in leaves
+                if line_by_id[adjacency[node][0][0]].length >= MIN_RIVER_CONTRIBUTING_REACH_PX
+            ]
+            if substantial_leaves:
+                leaves = substantial_leaves
+            leaf_heights = {node: terrain_height_at(grid, *node_coordinates[node]) for node in leaves}
+            lowest_height = min(leaf_heights.values())
+            outlet_candidates = [
+                node for node in leaves if leaf_heights[node] <= lowest_height + 20.0
+            ]
+            root = min(
+                outlet_candidates,
+                key=lambda node: (sink_proximity(node), leaf_heights[node], node[1], node[0]),
+            )
+        root_height_m = terrain_height_at(grid, *node_coordinates[root])
+
+        parent: dict[tuple[float, float], tuple[float, float] | None] = {root: None}
+        parent_segment: dict[tuple[float, float], int] = {}
+        order = [root]
+        for node in order:
+            for segment_id, neighbour in adjacency[node]:
+                if neighbour == parent[node]:
+                    continue
+                if neighbour in parent:
+                    raise ValueError(
+                        f"National river network has a loop near {node}: segments={sorted(segment_ids)}"
+                    )
+                parent[neighbour] = node
+                parent_segment[neighbour] = segment_id
+                order.append(neighbour)
+        if len(parent) != len(nodes) or len(parent_segment) != len(segment_ids):
+            raise ValueError(f"Could not orient all reaches in basin {min(segment_ids)}")
+
+        source_counts = {}
+        for node in reversed(order):
+            upstream_nodes = [
+                neighbour for _, neighbour in adjacency[node]
+                if parent.get(neighbour) == node
+            ]
+            if upstream_nodes:
+                upstream_count = sum(source_counts[upstream] for upstream in upstream_nodes)
+                # Traced shore and junction fragments can turn a genuine
+                # river head into a degree-three node. If all of those short
+                # arms contribute nothing, retain one source for the long
+                # reach that continues toward the outlet.
+                incoming_id = parent_segment.get(node)
+                if (
+                    upstream_count == 0
+                    and incoming_id is not None
+                    and line_by_id[incoming_id].length >= MIN_RIVER_CONTRIBUTING_REACH_PX
+                ):
+                    upstream_count = 1
+                source_counts[node] = upstream_count
+            else:
+                incoming_id = parent_segment.get(node)
+                source_counts[node] = int(
+                    incoming_id is not None
+                    and line_by_id[incoming_id].length >= MIN_RIVER_CONTRIBUTING_REACH_PX
+                )
+        reach_source_counts = {
+            parent_segment[child]: source_counts[child]
+            for child in parent_segment
+        }
+        components.append({
+            "segment_ids": sorted(segment_ids),
+            "nodes": nodes,
+            "flow_order": order,
+            "root": root,
+            "root_height_m": round(root_height_m, 2),
+            "parent": parent,
+            "parent_segment": parent_segment,
+            "source_counts": source_counts,
+            "reach_source_counts": reach_source_counts,
+            "adjacency": adjacency,
+            "node_coordinates": node_coordinates,
+            "edge_nodes": edge_nodes,
+            "line_by_id": line_by_id,
+        })
+    return sorted(components, key=lambda item: item["segment_ids"][0])
+
+
+def segment_endpoint_side(edge_nodes: dict, segment_id: int, node: tuple[float, float]) -> str:
+    start_node, end_node = edge_nodes[segment_id]
+    if start_node == node:
+        return "start"
+    if end_node == node:
+        return "end"
+    raise ValueError(f"Segment {segment_id} is not connected to node {node}")
+
+
+def set_profile_endpoint_width(profile: dict, side: str, width: float) -> None:
+    width = round(float(width), 3)
+    profile[f"{side}_width_px"] = width
+    knots = profile.setdefault("width_knots_px", [
+        [0.0, float(profile["start_width_px"])],
+        [1.0, float(profile["end_width_px"])],
+    ])
+    knots[0 if side == "start" else -1][1] = width
+
+
+def widen_profile_at_mouth(profile: dict, endpoint: str) -> float:
+    """Flare a reviewed marine outlet into a broad, gradual river mouth."""
+    knots = profile.get("width_knots_px") or [
+        [0.0, profile["start_width_px"]],
+        [1.0, profile["end_width_px"]],
+    ]
+    current_profile = {
+        "width_knots_px": [(float(fraction), float(width)) for fraction, width in knots]
+    }
+    endpoint_fraction = 0.0 if endpoint == "start" else 1.0
+    current_width = profile_width_at(current_profile, endpoint_fraction)
+    target_width = round(min(4.0, max(2.8, current_width * 2.0)), 3)
+    if endpoint == "start":
+        mouth_ramp = [
+            (0.0, target_width),
+            (0.08, target_width * 0.86),
+            (0.18, target_width * 0.68),
+            (0.32, target_width * 0.48),
+        ]
+    elif endpoint == "end":
+        mouth_ramp = [
+            (0.68, target_width * 0.48),
+            (0.82, target_width * 0.68),
+            (0.92, target_width * 0.86),
+            (1.0, target_width),
+        ]
+    else:
+        raise ValueError(f"Unknown river mouth endpoint: {endpoint}")
+
+    def ramp_width_at(fraction: float) -> float | None:
+        if fraction < mouth_ramp[0][0] or fraction > mouth_ramp[-1][0]:
+            return None
+        for (left_fraction, left_width), (right_fraction, right_width) in zip(mouth_ramp, mouth_ramp[1:]):
+            if fraction <= right_fraction:
+                local = (fraction - left_fraction) / (right_fraction - left_fraction)
+                return left_width + (right_width - left_width) * local
+        return mouth_ramp[-1][1]
+
+    fractions = sorted({
+        *[fraction for fraction, _ in current_profile["width_knots_px"]],
+        *[fraction for fraction, _ in mouth_ramp],
+    })
+    widened_knots = []
+    for fraction in fractions:
+        width = profile_width_at(current_profile, fraction)
+        ramp_width = ramp_width_at(fraction)
+        if ramp_width is not None:
+            width = max(width, ramp_width)
+        widened_knots.append([round(fraction, 4), round(width, 3)])
+    profile["width_knots_px"] = widened_knots
+    profile["start_width_px"] = widened_knots[0][1]
+    profile["end_width_px"] = widened_knots[-1][1]
+    return target_width
+
+
+def integrated_profile_width(profile: dict) -> float:
+    knots = profile["width_knots_px"]
+    return sum(
+        (right[0] - left[0]) * (left[1] + right[1]) / 2
+        for left, right in zip(knots, knots[1:])
+    )
+
+
+def bank_terrain_samples(line: LineString, grid: dict) -> list[float]:
+    samples = []
+    for index in range(1, 10):
+        distance = line.length * index / 10
+        point = line.interpolate(distance)
+        before = line.interpolate(max(0.0, distance - 1.5))
+        after = line.interpolate(min(line.length, distance + 1.5))
+        tangent_x, tangent_y = after.x - before.x, after.y - before.y
+        tangent_length = math.hypot(tangent_x, tangent_y) or 1.0
+        normal_x, normal_y = -tangent_y / tangent_length, tangent_x / tangent_length
+        for direction in (-1.0, 1.0):
+            samples.append(terrain_height_at(
+                grid,
+                point.x + direction * normal_x * 4.0,
+                point.y + direction * normal_y * 4.0,
+            ))
+    return samples
+
+
+def percentile(values: list[float], fraction: float) -> float:
+    ordered = sorted(values)
+    return ordered[round((len(ordered) - 1) * fraction)]
+
+
+def plain_width_factor(elevation_m: float) -> float:
+    """Widen channels gradually as highland rivers descend into lowlands."""
+    anchors = [
+        (0.0, 1.35),
+        (500.0, 1.25),
+        (1000.0, 1.16),
+        (2000.0, 1.08),
+        (3000.0, 1.0),
+    ]
+    elevation_m = max(0.0, float(elevation_m))
+    if elevation_m >= anchors[-1][0]:
+        return 1.0
+    for (low_elevation, low_factor), (high_elevation, high_factor) in zip(anchors, anchors[1:]):
+        if elevation_m <= high_elevation:
+            fraction = (elevation_m - low_elevation) / (high_elevation - low_elevation)
+            return low_factor + (high_factor - low_factor) * fraction
+    return 1.0
+
+
+def region_for_point(point: Point, region_features: list[dict]) -> dict | None:
+    matches = [
+        feature for feature in region_features
+        if shape(feature["geometry"]).buffer(0.05).covers(point)
+    ]
+    if matches:
+        return matches[0]
+    nearest = min(
+        region_features,
+        key=lambda feature: shape(feature["geometry"]).distance(point),
+        default=None,
+    )
+    if nearest is None or shape(nearest["geometry"]).distance(point) > 8.0:
+        return None
+    return nearest
+
+
+def build_national_river_width_config(
+    rivers: list[dict],
+    q2_config: dict,
+    country_outline,
+    lakes: list[dict],
+    regions: list[dict],
+    grid: dict,
+) -> dict:
+    """Extend the reviewed Q2 profiles to every national river reach."""
+    config = json.loads(json.dumps(q2_config))
+    q2_profiles = q2_config["reach_profiles_px"]
+    forest = river_network_forest(rivers, country_outline, lakes, grid)
+    reach_profiles = {}
+    reach_component = {}
+    adjustment_candidates = []
+    auto_islands = []
+    summaries = []
+    marine_mouth_profiles = []
+    confluence_checks = json.loads(json.dumps(q2_config.get("confluence_width_checks", [])))
+    continuity_checks = json.loads(json.dumps(q2_config.get("channel_continuity_checks", [])))
+    rivers_by_id = {
+        int(feature["properties"]["segment_id"]): feature
+        for feature in rivers
+    }
+    manually_oriented_nodes = set()
+    for check in q2_config.get("confluence_width_checks", []):
+        endpoints = [*check["upstream_reaches"], check["downstream_reach"]]
+        points = [
+            reach_endpoint(rivers_by_id, endpoint)[0]
+            for endpoint in endpoints
+        ]
+        if max(point.distance(points[0]) for point in points[1:]) <= 0.15:
+            manually_oriented_nodes.add((round(points[0].x, 1), round(points[0].y, 1)))
+
+    for component_index, component in enumerate(forest, start=1):
+        segment_ids = component["segment_ids"]
+        manual_ids = [segment_id for segment_id in segment_ids if str(segment_id) in q2_profiles]
+        manual_networks = sorted({
+            q2_profiles[str(segment_id)]["network_id"] for segment_id in manual_ids
+        })
+        if len(manual_networks) == 1:
+            network_id = manual_networks[0]
+        else:
+            network_id = f"national_basin_{segment_ids[0]:03d}"
+        for segment_id in segment_ids:
+            reach_component[segment_id] = network_id
+
+        scale_candidates = [
+            integrated_profile_width(width_profiles(q2_config)[segment_id])
+            / math.sqrt(component["reach_source_counts"][segment_id])
+            for segment_id in manual_ids
+            if component["reach_source_counts"][segment_id] > 0
+        ]
+        base_width = statistics.median(scale_candidates) if scale_candidates else 0.55
+        base_width = min(0.55, max(0.4, base_width))
+
+        base_width = round(base_width, 4)
+        parent = component["parent"]
+        parent_segment = component["parent_segment"]
+        segment_upstream_node = {
+            segment_id: node for node, segment_id in parent_segment.items()
+        }
+        source_counts = component["source_counts"]
+        adjacency = component["adjacency"]
+        edge_nodes = component["edge_nodes"]
+        manual_set = set(manual_ids)
+
+        for segment_id in segment_ids:
+            if segment_id in manual_set:
+                profile = json.loads(json.dumps(q2_profiles[str(segment_id)]))
+                profile["flow_accumulation_count"] = component["reach_source_counts"][segment_id]
+                profile["cartographic_profile_source"] = "reviewed_q2_profile"
+            else:
+                source_count = component["reach_source_counts"][segment_id]
+                line = component["line_by_id"][segment_id]
+                start_node, end_node = edge_nodes[segment_id]
+                if source_count > 0:
+                    width_knots = []
+                    upstream_node = segment_upstream_node[segment_id]
+                    downstream_side = segment_endpoint_side(edge_nodes, segment_id, upstream_node)
+                    reach_growth = 0.45 * max(0.0, min(1.0, (line.length - 60.0) / 180.0))
+                    for fraction in (0.0, 0.25, 0.5, 0.75, 1.0):
+                        point = line.interpolate(line.length * fraction)
+                        if fraction == 0.0:
+                            height = terrain_height_at(grid, *component["node_coordinates"][start_node])
+                        elif fraction == 1.0:
+                            height = terrain_height_at(grid, *component["node_coordinates"][end_node])
+                        else:
+                            height = terrain_height_at(grid, point.x, point.y)
+                        flow_fraction = fraction if downstream_side == "start" else 1.0 - fraction
+                        local_width = min(
+                            2.0,
+                            base_width
+                            * math.sqrt(source_count)
+                            * plain_width_factor(height)
+                            * (1.0 + reach_growth * flow_fraction),
+                        )
+                        width_knots.append([fraction, round(local_width, 3)])
+                else:
+                    width_knots = [[0.0, 0.12], [1.0, 0.12]]
+                width = width_knots[0][1]
+                profile = {
+                    "network_id": network_id,
+                    "start_width_px": width,
+                    "end_width_px": width_knots[-1][1],
+                    "width_knots_px": width_knots,
+                    "clip_to_quadrant": False,
+                    "flow_accumulation_count": source_count,
+                    "cartographic_profile_source": "basin_tree_lowland_and_reach_length_transition",
+                }
+            profile["network_id"] = network_id
+            profile["clip_to_quadrant"] = False
+            reach_profiles[str(segment_id)] = profile
+
+        def endpoint_width(segment_id: int, node: tuple[float, float]) -> float:
+            side = segment_endpoint_side(edge_nodes, segment_id, node)
+            return profile_width_at(
+                width_profiles({"reach_profiles_px": {str(segment_id): reach_profiles[str(segment_id)]}})[segment_id],
+                0.0 if side == "start" else 1.0,
+            )
+
+        def extend_width_downstream(segment_id: int) -> None:
+            if segment_id in manual_set:
+                return
+            upstream_node = segment_upstream_node[segment_id]
+            upstream_side = segment_endpoint_side(edge_nodes, segment_id, upstream_node)
+            knots = reach_profiles[str(segment_id)]["width_knots_px"]
+            ordered_knots = knots if upstream_side == "start" else list(reversed(knots))
+            widest_so_far = float(ordered_knots[0][1])
+            for knot in ordered_knots[1:]:
+                widest_so_far = max(widest_so_far, float(knot[1]))
+                knot[1] = round(widest_so_far, 3)
+            reach_profiles[str(segment_id)]["start_width_px"] = knots[0][1]
+            reach_profiles[str(segment_id)]["end_width_px"] = knots[-1][1]
+
+        # At every bifurcation, grow the downstream bank width from the sum
+        # of the incoming channel capacities. Walk from headwaters toward the
+        # outlet so each tributary has its final mouth width before its parent
+        # reach is sized.
+        for node in reversed(component["flow_order"]):
+            if node in manually_oriented_nodes:
+                continue
+            upstream_nodes = [
+                neighbour for _, neighbour in adjacency[node]
+                if parent.get(neighbour) == node
+                and source_counts[neighbour] > 0
+            ]
+            if parent[node] is None:
+                continue
+            downstream_id = parent_segment[node]
+            if len(upstream_nodes) == 1:
+                # A short traced spur can make a normal bend look like a
+                # three-way junction. Preserve continuity along the real flow.
+                incoming_id = parent_segment[upstream_nodes[0]]
+                pair = {incoming_id, downstream_id}
+                target_width = max(endpoint_width(segment_id, node) for segment_id in pair)
+                for segment_id in pair:
+                    side = segment_endpoint_side(edge_nodes, segment_id, node)
+                    set_profile_endpoint_width(reach_profiles[str(segment_id)], side, target_width)
+                extend_width_downstream(incoming_id)
+                target_width = max(endpoint_width(segment_id, node) for segment_id in pair)
+                for segment_id in pair:
+                    side = segment_endpoint_side(edge_nodes, segment_id, node)
+                    set_profile_endpoint_width(reach_profiles[str(segment_id)], side, target_width)
+                extend_width_downstream(downstream_id)
+                if not any(
+                    {item["first_reach"]["segment_id"], item["second_reach"]["segment_id"]} == pair
+                    for item in continuity_checks
+                ):
+                    continuity_checks.append({
+                        "id": f"{network_id}_through_{round(node[0],1)}_{round(node[1],1)}",
+                        "first_reach": {
+                            "segment_id": incoming_id,
+                            "endpoint": segment_endpoint_side(edge_nodes, incoming_id, node),
+                        },
+                        "second_reach": {
+                            "segment_id": downstream_id,
+                            "endpoint": segment_endpoint_side(edge_nodes, downstream_id, node),
+                        },
+                        "max_node_gap_px": 0.15,
+                        "max_width_difference_px": 0.035,
+                    })
+                continue
+            if len(upstream_nodes) < 2:
+                continue
+            incoming = [parent_segment[upstream] for upstream in upstream_nodes]
+            incoming_widths = [endpoint_width(segment_id, node) for segment_id in incoming]
+            required_width = math.sqrt(sum(width ** 2 for width in incoming_widths))
+            downstream_side = segment_endpoint_side(edge_nodes, downstream_id, node)
+            current_width = endpoint_width(downstream_id, node)
+            set_profile_endpoint_width(
+                reach_profiles[str(downstream_id)], downstream_side,
+                max(current_width, required_width + 0.003),
+            )
+            extend_width_downstream(downstream_id)
+            confluence_checks.append({
+                "id": f"{network_id}_to_{parent_segment[node]}_at_{round(node[0],1)}_{round(node[1],1)}",
+                "upstream_reaches": [
+                    {"segment_id": segment_id, "endpoint": segment_endpoint_side(edge_nodes, segment_id, node)}
+                    for segment_id in incoming
+                ],
+                "downstream_reach": {
+                    "segment_id": downstream_id,
+                    "endpoint": segment_endpoint_side(edge_nodes, downstream_id, node),
+                },
+                "minimum_ratio": 1.0,
+                "max_node_gap_px": 0.15,
+            })
+
+        for node in component["nodes"]:
+            incident = [segment_id for segment_id, _ in adjacency[node]]
+            if len(incident) == 2 and all(
+                component["reach_source_counts"][segment_id] > 0
+                for segment_id in incident
+            ):
+                continuity_checks.append({
+                    "id": f"{network_id}_through_{round(node[0],1)}_{round(node[1],1)}",
+                    "first_reach": {"segment_id": incident[0], "endpoint": segment_endpoint_side(edge_nodes, incident[0], node)},
+                    "second_reach": {"segment_id": incident[1], "endpoint": segment_endpoint_side(edge_nodes, incident[1], node)},
+                    "max_node_gap_px": 0.15,
+                    "max_width_difference_px": 0.035,
+                })
+
+        for mouth in NATIONAL_RIVER_MOUTH_ENDPOINTS:
+            segment_id = int(mouth["segment_id"])
+            if segment_id not in segment_ids or component["reach_source_counts"][segment_id] <= 0:
+                continue
+            profile = reach_profiles[str(segment_id)]
+            target_width = widen_profile_at_mouth(profile, str(mouth["endpoint"]))
+            marine_mouth_profiles.append({
+                "cluster_id": mouth["cluster_id"],
+                "segment_id": segment_id,
+                "endpoint": mouth["endpoint"],
+                "upstream_source_count": component["reach_source_counts"][segment_id],
+                "mouth_width_px": target_width,
+            })
+
+        summaries.append({
+            "network_id": network_id,
+            "segment_ids": segment_ids,
+            "headwater_count": source_counts[component["root"]],
+            "outlet_xy": [round(value, 2) for value in component["node_coordinates"][component["root"]]],
+            "outlet_height_m": component["root_height_m"],
+            "base_width_px": base_width,
+        })
+
+        # Add one broad meander and a small point bar only where neighboring
+        # land heights identify a low, low-relief plain reach.
+        eligible = []
+        for segment_id in segment_ids:
+            line = component["line_by_id"][segment_id]
+            source_count = component["reach_source_counts"][segment_id]
+            if segment_id in manual_set or source_count < 2 or line.length < 60:
+                continue
+            samples = bank_terrain_samples(line, grid)
+            p75 = percentile(samples, 0.75)
+            relief = percentile(samples, 0.9) - percentile(samples, 0.1)
+            chord = math.dist(line.coords[0], line.coords[-1])
+            sinuosity = line.length / max(chord, 1.0)
+            if p75 > 500 or relief > 500 or sinuosity > 1.22:
+                continue
+            score = line.length * (1.25 - sinuosity)
+            eligible.append((score, segment_id, p75, relief, sinuosity))
+        if not eligible:
+            continue
+        _, segment_id, p75, relief, sinuosity = max(eligible)
+        width = profile_width_at(
+            width_profiles({"reach_profiles_px": {str(segment_id): reach_profiles[str(segment_id)]}})[segment_id],
+            0.5,
+        )
+        adjustment = {
+            "id": f"national_plain_s_bend_{segment_id}",
+            "segment_id": segment_id,
+            "start_fraction": 0.06,
+            "end_fraction": 0.94,
+            "amplitude_px": round(min(0.85, max(0.35, width * 1.45)), 3),
+            "note": (
+                "Broad, asymmetric S bend on a low-relief plain reach; "
+                "bank terrain p75=" + str(round(p75)) + "m, sinuosity=" + str(round(sinuosity, 3)) + "."
+            ),
+        }
+        adjustment_candidates.append(adjustment)
+        if component["reach_source_counts"][segment_id] >= 3 and width >= 0.32:
+            center_fraction = 0.68
+            center = component["line_by_id"][segment_id].interpolate(
+                component["line_by_id"][segment_id].length * center_fraction,
+            )
+            region = region_for_point(center, regions)
+            if region and region["properties"].get("region_code") and region["properties"].get("fill_rgb"):
+                island_width = round(width * 0.29, 3)
+                auto_islands.append({
+                    "id": f"national-bar-{segment_id}",
+                    "segment_id": segment_id,
+                    "fraction_along_reach": center_fraction,
+                    "length_px": round(max(1.2, min(2.2, width * 3.8)), 3),
+                    "width_px": island_width,
+                    "expected_region_code": region["properties"]["region_code"],
+                    "shape_phase": round((segment_id * 2.399963229728653) % math.tau, 3),
+                    "lateral_offset_fraction": 0.06,
+                    "region_snap_tolerance_px": 8.0,
+                })
+
+    config.update({
+        "quadrant": "National",
+        "definition": "All mapped national river reaches, with upper-left Q2 profiles retained and remaining reaches scaled by routed headwater contribution.",
+        "extent_px": list(country_outline.bounds),
+        "width_semantics": (
+            "Display-only widths in source image pixels. Q2 keeps its reviewed profiles; "
+            "other reaches scale with upstream sources, lowland elevation, and downstream reach length; "
+            "confluences combine tributary widths quadratically, and reviewed marine outlets flare wider. "
+            "No width is a literal surveyed kilometre value."
+        ),
+        "reach_profiles_px": {key: reach_profiles[key] for key in sorted(reach_profiles, key=int)},
+        "confluence_width_checks": confluence_checks,
+        "channel_continuity_checks": continuity_checks,
+        "marine_mouths": marine_mouth_profiles,
+        "centerline_adjustments": [
+            *q2_config.get("centerline_adjustments", []),
+            *adjustment_candidates,
+        ],
+        "islands": [*q2_config.get("islands", []), *auto_islands],
+        "national_network_summaries": summaries,
+        "national_width_method": {
+            "outlet_rule": "Reviewed open-coast mouth endpoints root their networks; remaining trees use the lowest mapped water endpoint, with lake or coast proximity resolving near-equal elevations.",
+            "confluence_rule": "Downstream width is at least the square root of the summed squared upstream reach widths.",
+            "default_headwater_width_px": 0.55,
+            "minimum_contributing_reach_length_px": MIN_RIVER_CONTRIBUTING_REACH_PX,
+            "long_reach_growth": {
+                "starts_after_px": 60,
+                "reaches_max_at_px": 240,
+                "max_factor": 1.45,
+            },
+            "marine_mouth_flare": {
+                "minimum_width_px": 2.8,
+                "maximum_width_px": 4.0,
+                "endpoint_width_multiplier": 2.0,
+                "inland_ramp_fractions": [0.08, 0.18, 0.32],
+                "outlet_roots_from_reviewed_coastline_endpoints": True,
+            },
+            "lowland_width_factors": [
+                {"elevation_m": 3000, "factor": 1.0},
+                {"elevation_m": 2000, "factor": 1.08},
+                {"elevation_m": 1000, "factor": 1.16},
+                {"elevation_m": 500, "factor": 1.25},
+                {"elevation_m": 0, "factor": 1.35},
+            ],
+            "plain_meander_selection": "One long, comparatively straight reach per basin when both banks remain below 500m with less than 500m relief spread.",
+        },
+    })
+    config["reach_notes"] = {
+        **q2_config.get("reach_notes", {}),
+        **{
+            str(segment_id): f"National basin reach; mapped upstream source count {reach_profiles[str(segment_id)]['flow_accumulation_count']}."
+            for segment_id in reach_profiles
+            if reach_profiles[str(segment_id)].get("cartographic_profile_source") != "reviewed_q2_profile"
+        },
+    }
+    return config
 
 
 def variable_width_channel(
@@ -791,7 +1660,7 @@ def lake_island_creek_features(
     return creeks
 
 
-def render_river_islands_group(features: list[dict]) -> str:
+def render_river_islands_group(features: list[dict], group_id: str = "riverIslands") -> str:
     paths = []
     for feature in features:
         properties = feature["properties"]
@@ -801,10 +1670,10 @@ def render_river_islands_group(features: list[dict]) -> str:
                 f'<path d="{path}" fill="{properties["fill"]}" fill-rule="evenodd" '
                 f'data-river-island-id="{properties["island_id"]}"/>'
             )
-    return '<g id="riverIslandsQ2" data-layer="rivers" pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
+    return f'<g id="{group_id}" data-layer="rivers" pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
 
 
-def render_river_channels_group(features: list[dict]) -> str:
+def render_river_channels_group(features: list[dict], group_id: str = "riverChannels") -> str:
     paths = []
     for feature in features:
         properties = feature["properties"]
@@ -814,7 +1683,7 @@ def render_river_channels_group(features: list[dict]) -> str:
                 f'<path d="{path}" fill="#b1d0ed" fill-rule="evenodd" '
                 f'data-river-channel="true" data-river-network-id="{properties["network_id"]}"/>'
             )
-    return '<g id="riverChannelsQ2" data-layer="rivers" pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
+    return f'<g id="{group_id}" data-layer="rivers" pointer-events="none">\n' + "\n".join(paths) + "\n</g>"
 
 
 def render_lake_islands_group(features: list[dict]) -> str:
@@ -1280,6 +2149,14 @@ def update_hydrology_lod_precision(index: str) -> str:
     for old, new in replacements:
         if new in index:
             continue
+        if (
+            old.startswith("const pathToleranceIndex=isCoastalFill?")
+            and "isHydrology?Math.min(toleranceIndex,HYDROLOGY_LOD_TOLERANCES.length-1)" in index
+            and "isHydrology?HYDROLOGY_LOD_TOLERANCES[pathToleranceIndex]" in index
+        ):
+            # Preserve additional, newer coastal precision rules while
+            # recognizing that hydrology LOD handling is already installed.
+            continue
         count = index.count(old)
         if count != 1:
             raise RuntimeError(f"Expected one map-render precision marker, found {count}: {old[:72]}")
@@ -1298,6 +2175,11 @@ def upsert_group(source: str, group: str, group_id: str, after_id: str | None) -
     if not target:
         raise RuntimeError(f"Could not find insertion group {after_id}")
     return source[:target.end()] + group + source[target.end():]
+
+
+def remove_group(source: str, group_id: str) -> str:
+    pattern = rf'<g id="{re.escape(group_id)}"[^>]*>.*?</g>'
+    return re.sub(pattern, "", source, count=1, flags=re.DOTALL)
 
 
 def update_render_files(
@@ -1328,13 +2210,15 @@ def update_render_files(
     ]
     index_path = ROOT / "index.html"
     index = index_path.read_text(encoding="utf-8")
+    index = remove_group(index, "riverChannelsQ2")
+    index = remove_group(index, "riverIslandsQ2")
     index = upsert_group(index, index_groups[0], "rivers", None)
-    index = upsert_group(index, index_groups[1], "riverChannelsQ2", "rivers")
-    index = upsert_group(index, index_groups[2], "canals", "riverChannelsQ2")
+    index = upsert_group(index, index_groups[1], "riverChannels", "rivers")
+    index = upsert_group(index, index_groups[2], "canals", "riverChannels")
     index = upsert_group(index, index_groups[3], "canalTicks", "canals")
     index = upsert_group(index, index_groups[4], "seasonalRivers", "canalTicks")
     index = upsert_group(index, index_groups[5], "crossBorderRivers", "seasonalRivers")
-    index = upsert_group(index, render_river_islands_group(river_islands), "riverIslandsQ2", "crossBorderRivers")
+    index = upsert_group(index, render_river_islands_group(river_islands), "riverIslands", "crossBorderRivers")
     index = upsert_group(index, render_lakes_group(lakes), "lakes", None)
     index = upsert_group(index, render_lake_islands_group(lake_islands), "lakeIslandsQ2", "lakes")
     index = upsert_group(index, render_lake_island_creeks_group(lake_island_creeks), "lakeIslandCreeksQ2", "lakeIslandsQ2")
@@ -1344,6 +2228,8 @@ def update_render_files(
 
     preview_path = ROOT / "vector_preview.svg"
     preview = preview_path.read_text(encoding="utf-8")
+    preview = remove_group(preview, "riverChannelsQ2")
+    preview = remove_group(preview, "riverIslandsQ2")
     preview_groups = [
         render_preview_group("rivers", base_rivers,
                             'fill="none" stroke="#b1d0ed" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"'),
@@ -1358,12 +2244,12 @@ def update_render_files(
                             'fill="none" stroke="#b1d0ed" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"'),
     ]
     preview = upsert_group(preview, preview_groups[0], "rivers", None)
-    preview = upsert_group(preview, preview_groups[1], "riverChannelsQ2", "rivers")
-    preview = upsert_group(preview, preview_groups[2], "canals", "riverChannelsQ2")
+    preview = upsert_group(preview, preview_groups[1], "riverChannels", "rivers")
+    preview = upsert_group(preview, preview_groups[2], "canals", "riverChannels")
     preview = upsert_group(preview, preview_groups[3], "canal-ticks", "canals")
     preview = upsert_group(preview, preview_groups[4], "seasonal-rivers", "canal-ticks")
     preview = upsert_group(preview, preview_groups[5], "cross-border-rivers", "seasonal-rivers")
-    preview = upsert_group(preview, render_river_islands_group(river_islands), "riverIslandsQ2", "cross-border-rivers")
+    preview = upsert_group(preview, render_river_islands_group(river_islands), "riverIslands", "cross-border-rivers")
     preview = upsert_group(preview, render_lakes_group(lakes, preview=True), "lakes", None)
     preview = upsert_group(preview, render_lake_islands_group(lake_islands), "lakeIslandsQ2", "lakes")
     preview = upsert_group(preview, render_lake_island_creeks_group(lake_island_creeks), "lakeIslandCreeksQ2", "lakeIslandsQ2")
@@ -1396,6 +2282,24 @@ def main() -> None:
     canal_additions_fc = read_fc(DATA / "canal_additions.geojson")
     canals.extend(canal_additions_fc["features"])
     river_features = remove_separated_canal_reaches(river_source_fc["features"], canals)
+    q2_width_config = q2_river_width_config()
+    lakes = read_fc(DATA / "lakes.geojson")["features"]
+    region_features = read_fc(DATA / "administrative_regions.geojson")["features"]
+    outline_features = read_fc(DATA / "national_outline.geojson")["features"]
+    country_outline = unary_union([shape(feature["geometry"]) for feature in outline_features])
+    terrain_grid = relief_elevation_grid()
+    national_width_config = build_national_river_width_config(
+        river_features, q2_width_config, country_outline, lakes,
+        region_features, terrain_grid,
+    )
+    river_features = apply_centerline_adjustments(river_features, national_width_config)
+    national_topology_checks = validate_channel_topology(river_features, national_width_config)
+    q2_topology_checks = validate_channel_topology(river_features, q2_width_config)
+    (DATA / "river_widths_national.json").write_text(
+        json.dumps(national_width_config, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     seasonal = seasonal_features()
     cross_border_fc = read_fc(DATA / "cross_border_rivers.geojson")
     # Exclude raster fragments that exactly repeat the seasonal dash strokes.
@@ -1404,7 +2308,6 @@ def main() -> None:
     original_cross_border_count = len(cross_border_fc["features"])
     cross_border = remove_verified_seasonal_dash_residuals(cross_border_fc["features"])
     seasonal_dash_residual_count = original_cross_border_count - len(cross_border)
-    lakes = read_fc(DATA / "lakes.geojson")["features"]
     (
         cross_border,
         lake_fill_segment_ids_removed,
@@ -1424,14 +2327,20 @@ def main() -> None:
     lake_edge_residual_count = len(lake_edge_residual_ids_removed)
     cross_border_fc["features"] = cross_border
 
-    width_config = q2_river_width_config()
-    region_features = read_fc(DATA / "administrative_regions.geojson")["features"]
-    river_channels = river_channel_features(river_features, width_config)
-    river_islands = river_island_features(river_features, river_channels, region_features, width_config)
-    lake_islands = lake_island_features(lakes, region_features, width_config)
-    lake_island_creeks = lake_island_creek_features(lake_islands, width_config)
-    write_fc(DATA / "river_channels_q2.geojson", "quadrant_ii_variable_width_river_channels", river_channels)
-    write_fc(DATA / "river_islands_q2.geojson", "quadrant_ii_river_islands", river_islands)
+    q2_river_channels = river_channel_features(river_features, q2_width_config)
+    q2_river_islands = river_island_features(
+        river_features, q2_river_channels, region_features, q2_width_config,
+    )
+    river_channels = river_channel_features(river_features, national_width_config)
+    river_islands = river_island_features(
+        river_features, river_channels, region_features, national_width_config,
+    )
+    lake_islands = lake_island_features(lakes, region_features, q2_width_config)
+    lake_island_creeks = lake_island_creek_features(lake_islands, q2_width_config)
+    write_fc(DATA / "river_channels_q2.geojson", "quadrant_ii_variable_width_river_channels", q2_river_channels)
+    write_fc(DATA / "river_islands_q2.geojson", "quadrant_ii_river_islands", q2_river_islands)
+    write_fc(DATA / "river_channels_national.geojson", "national_variable_width_river_channels", river_channels)
+    write_fc(DATA / "river_islands_national.geojson", "national_river_midchannel_bars", river_islands)
     write_fc(DATA / "lake_islands_q2.geojson", "quadrant_ii_lake_center_islands", lake_islands)
     write_fc(DATA / "lake_island_creeks_q2.geojson", "quadrant_ii_lake_island_creeks", lake_island_creeks)
 
@@ -1445,7 +2354,7 @@ def main() -> None:
     )
     update_render_files(
         river_features, river_channels, canals, seasonal, cross_border,
-        river_islands, lake_islands, lake_island_creeks, width_config,
+        river_islands, lake_islands, lake_island_creeks, national_width_config,
     )
     write_overlay(seasonal, canals)
 
@@ -1461,16 +2370,28 @@ def main() -> None:
                 "end_width_px": profile["end_width_px"],
                 "width_knots_px": profile["width_knots_px"],
                 "clip_to_quadrant": profile["clip_to_quadrant"],
-                "note": width_config["reach_notes"].get(str(segment_id), ""),
+                "note": q2_width_config["reach_notes"].get(str(segment_id), ""),
             }
-            for segment_id, profile in sorted(width_profiles(width_config).items())
+            for segment_id, profile in sorted(width_profiles(q2_width_config).items())
         ],
+        "quadrant_ii_river_centerline_adjustments": q2_width_config.get("centerline_adjustments", []),
+        "quadrant_ii_river_topology_checks": q2_topology_checks,
         "quadrant_ii_river_channel_networks": [
-            feature["properties"]["network_id"] for feature in river_channels
+            feature["properties"]["network_id"] for feature in q2_river_channels
         ],
         "quadrant_ii_river_islands": [
+            feature["properties"]["island_id"] for feature in q2_river_islands
+        ],
+        "national_river_width_reach_count": len(national_width_config["reach_profiles_px"]),
+        "national_river_channel_networks": [
+            feature["properties"]["network_id"] for feature in river_channels
+        ],
+        "national_river_centerline_adjustments": national_width_config.get("centerline_adjustments", []),
+        "national_river_topology_checks": national_topology_checks,
+        "national_river_islands": [
             feature["properties"]["island_id"] for feature in river_islands
         ],
+        "national_river_network_summaries": national_width_config.get("national_network_summaries", []),
         "quadrant_ii_lake_islands": [
             feature["properties"]["island_id"] for feature in lake_islands
         ],

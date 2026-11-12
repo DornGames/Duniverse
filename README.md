@@ -31,7 +31,7 @@ python -m http.server 8000
 - 右侧图层可分别显示或隐藏行政区边界、大区边界、水系、城市标记和行政区名；行政区名分为“编号”和“中文”两个子图层。
 - 宏观视图会显示大区双语名称，中文在上、𣿅语小字在下；名称保持固定屏幕尺寸，进入省级视图前逐渐淡出。
 - 行政区编号和中文名称随放大同步淡入，继续放大后同步淡出；两个子图层仍可独立开关。
-- 放大后地图会显示更多细节。海岸线填充在约 65% 的缩放进度达到最高几何精度，宏观视图会暂时隐藏过小的岛屿。
+- 放大后地图会显示更多细节。海岸线填充在约 65% 的缩放进度达到最高几何精度；东部海岛在概览中保持可见，点状岛标按显示倍率绘为白色岛面；轮廓数据见 [`data/eastern_island_shapes.geojson`](data/eastern_island_shapes.geojson)。
 
 ## 项目内容
 
@@ -70,7 +70,7 @@ python -m http.server 8000
 | `tools/build_region_elevation_stats.py` | 预计算大区、省份的平均海拔与地形极值 |
 | `tools/build_city_boundaries.py` | 全图提取山脊网络，再在省界内结合河流和城市点生成带曲线细节的市界，并将省界并入放大视图 |
 | `tools/` | 高清分块海岸线处理工具 |
-| `diagnostics/` | 数据提取和海岸线复核时生成的诊断材料 |
+| `diagnostics/` | 审计脚本、表格和文档引用的复核材料；未引用的本地 PNG 预览由 `.gitignore` 排除 |
 
 行政区中文名称和𣿅语名称分别维护在 [`data/province_names.json`](data/province_names.json) 与 [`data/province_tongue_names.json`](data/province_tongue_names.json)，标注位置维护在 `data/region_code_labels.geojson`。地图标签按“中文（编号）”和下一行𣿅语显示，中文与𣿅语图层可分别开关。目前地图包含 45 个两字母行政区编号；其中 `TT` 在地图上有两个标注位置。
 
