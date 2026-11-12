@@ -209,7 +209,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "D8": {
       "name": "D8",
-      "lengthKm": 5789.6,
+      "lengthKm": 5826.8,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "西𣿅大区"
@@ -265,7 +265,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "D10": {
       "name": "D10",
-      "lengthKm": 10862.9,
+      "lengthKm": 10895.2,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "西南𣿅大区",
@@ -302,6 +302,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "芙里莲市",
         "咸蛋市",
         "玛斯特贝市",
+        "鱼子市",
         "袋鼠鱼子市"
       ],
       "stops": [
