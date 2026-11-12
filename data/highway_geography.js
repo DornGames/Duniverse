@@ -75,41 +75,41 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "D4": {
       "name": "D4",
-      "lengthKm": 4252.8,
+      "lengthKm": 4249.2,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "南𣿅大区",
         "东南𣿅大区"
       ],
       "provinces": [
-        "南𣿅省",
         "福利省",
         "天狗省",
-        "肯塔基省"
+        "肯塔基省",
+        "南𣿅省"
       ],
       "cities": [
-        "肯塔基市",
+        "金瓶古镇",
+        "汤平市",
+        "汉乔布市",
         "二十一阶行列市",
         "鸽子市",
+        "肯塔基市",
         "伊府市",
         "蜂蜜市",
         "泡面市",
         "冰狗市",
         "多格市",
-        "金瓶古镇",
-        "花火市",
-        "汤平市",
-        "汉乔布市"
+        "花火市"
       ],
       "stops": [
+        "金瓶古镇",
+        "汤平市",
+        "汉乔布市",
         "肯塔基市",
         "鸽子市",
         "伊府市",
         "泡面市",
-        "冰狗市",
-        "金瓶古镇",
-        "汤平市",
-        "汉乔布市"
+        "冰狗市"
       ]
     },
     "D5": {
@@ -141,6 +141,209 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "瓦史鲁姆市",
         "千里市",
         "西贝特市"
+      ]
+    },
+    "D6": {
+      "name": "D6",
+      "lengthKm": 1229.5,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "东𣿅大区"
+      ],
+      "provinces": [
+        "刺梨省"
+      ],
+      "cities": [
+        "博恩市",
+        "仙人掌市",
+        "凤梨市",
+        "多恩市",
+        "十七阶行列市"
+      ],
+      "stops": [
+        "博恩市",
+        "仙人掌市",
+        "凤梨市",
+        "十七阶行列市"
+      ]
+    },
+    "D7": {
+      "name": "D7",
+      "lengthKm": 3961.4,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "东𣿅大区",
+        "中𣿅大区"
+      ],
+      "provinces": [
+        "四六省",
+        "立里市",
+        "刺梨省",
+        "土星省",
+        "邦普省"
+      ],
+      "cities": [
+        "𣿅安市",
+        "范德蒙德行列市",
+        "后来市",
+        "十七阶行列市",
+        "卫星市",
+        "𣿅环市",
+        "星环市",
+        "威猛市",
+        "安第里亚市",
+        "𣿅山市"
+      ],
+      "stops": [
+        "𣿅安市",
+        "范德蒙德行列市",
+        "后来市",
+        "十七阶行列市",
+        "卫星市",
+        "𣿅环市",
+        "星环市",
+        "威猛市",
+        "安第里亚市",
+        "𣿅山市"
+      ]
+    },
+    "D8": {
+      "name": "D8",
+      "lengthKm": 5789.6,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "西𣿅大区"
+      ],
+      "provinces": [
+        "瓦莱莉省",
+        "西𣿅省",
+        "拉基省"
+      ],
+      "cities": [
+        "钒铝市",
+        "绿水市",
+        "马勒戈壁市",
+        "尼干马市",
+        "巴伽市",
+        "尤西市",
+        "斯莫里亚市",
+        "通安市"
+      ],
+      "stops": [
+        "钒铝市",
+        "马勒戈壁市",
+        "巴伽市",
+        "尤西市",
+        "斯莫里亚市",
+        "通安市"
+      ]
+    },
+    "D9": {
+      "name": "D9",
+      "lengthKm": 1453.8,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "西𣿅大区",
+        "中𣿅大区"
+      ],
+      "provinces": [
+        "梅马省",
+        "光安省"
+      ],
+      "cities": [
+        "拉鲁斯市",
+        "六阶行列市",
+        "碱硼托克市",
+        "哥尔德市",
+        "金鱼市"
+      ],
+      "stops": [
+        "拉鲁斯市",
+        "哥尔德市",
+        "金鱼市"
+      ]
+    },
+    "D10": {
+      "name": "D10",
+      "lengthKm": 10862.9,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "西南𣿅大区",
+        "南𣿅大区"
+      ],
+      "provinces": [
+        "古维克省",
+        "欧芹省",
+        "萨姆省",
+        "托易雷特省",
+        "西南𣿅省",
+        "千里省",
+        "西贝特省"
+      ],
+      "cities": [
+        "彤管市",
+        "米哈市",
+        "古维克市",
+        "马奇市",
+        "九阶行列市",
+        "欧干尼克市",
+        "欧朝市",
+        "克劳迪亚市",
+        "伍德布瑞市",
+        "莫里森市",
+        "谢尔曼市",
+        "山林丽花市",
+        "雷斯特卢市",
+        "杰格市",
+        "拉姆达市",
+        "莱普市",
+        "昌眺市",
+        "深原市",
+        "芙里莲市",
+        "咸蛋市",
+        "玛斯特贝市",
+        "袋鼠鱼子市"
+      ],
+      "stops": [
+        "彤管市",
+        "米哈市",
+        "马奇市",
+        "欧朝市",
+        "欧干尼克市",
+        "克劳迪亚市",
+        "伍德布瑞市",
+        "雷斯特卢市",
+        "莫里森市",
+        "谢尔曼市",
+        "山林丽花市",
+        "拉姆达市",
+        "莱普市",
+        "深原市",
+        "昌眺市",
+        "芙里莲市",
+        "玛斯特贝市",
+        "咸蛋市",
+        "袋鼠鱼子市"
+      ]
+    },
+    "D10-1": {
+      "name": "D10-1",
+      "lengthKm": 1023.9,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "西南𣿅大区"
+      ],
+      "provinces": [
+        "千里省",
+        "托易雷特省"
+      ],
+      "cities": [
+        "昌眺市",
+        "眺高市"
+      ],
+      "stops": [
+        "昌眺市",
+        "眺高市"
       ]
     },
     "T1": {
@@ -935,7 +1138,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T14": {
       "name": "T14",
-      "lengthKm": 7242.3,
+      "lengthKm": 7370.6,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "南𣿅大区",
@@ -948,9 +1151,9 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "萨比省",
         "王德发特别行政区",
         "四六省",
-        "刺梨省",
         "邦普省",
-        "土星省"
+        "土星省",
+        "刺梨省"
       ],
       "cities": [
         "梅花山市",
@@ -967,12 +1170,12 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "劳璨市",
         "王德发市",
         "𣿅安市",
-        "宾塔库兹市",
-        "博恩市",
-        "菠萝市",
         "盛云市",
         "十六阶行列市",
-        "土星市"
+        "土星市",
+        "博恩市",
+        "宾塔库兹市",
+        "菠萝市"
       ],
       "stops": [
         "梅花山市",
@@ -984,16 +1187,17 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "乔治市",
         "王德发市",
         "𣿅安市",
-        "宾塔库兹市",
-        "菠萝市",
         "盛云市",
         "十六阶行列市",
-        "土星市"
+        "土星市",
+        "博恩市",
+        "宾塔库兹市",
+        "菠萝市"
       ]
     },
     "T15": {
       "name": "T15",
-      "lengthKm": 11184.2,
+      "lengthKm": 10903.9,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区",
@@ -1133,7 +1337,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T18": {
       "name": "T18",
-      "lengthKm": 10892.0,
+      "lengthKm": 10969.8,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "东南𣿅大区",
@@ -1170,8 +1374,8 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "斯科布勒思市",
         "小号市",
         "米哈市",
-        "鱼子市",
         "彤管市",
+        "鱼子市",
         "袋鼠鱼子市",
         "钒铝市",
         "铒钇市",
@@ -1294,7 +1498,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T20": {
       "name": "T20",
-      "lengthKm": 15120.3,
+      "lengthKm": 14293.8,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "北𣿅大区",
@@ -1325,21 +1529,21 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "地鼠市",
         "大尔市",
         "牛耶市",
-        "通安市",
         "乍曲市",
         "法特市",
+        "通安市",
         "三十市",
         "四阶行列市",
         "拉贝斯市",
         "十四阶行列市",
         "星环市",
         "威猛市",
-        "威利亚市",
         "南希市",
+        "威利亚市",
         "贝塔市",
         "盛云市",
-        "宾塔库兹市",
         "菠萝市",
+        "宾塔库兹市",
         "博恩市",
         "𣿅安市",
         "王德发市",
