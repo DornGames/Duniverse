@@ -1153,6 +1153,7 @@ let records=[],regionRecords=[],regionBounds=new Map();
 let mountainLabelRecords=[],mountainRangeLabelRecords=[],terrainRegionLabelRecords=[],lakeNameLabelRecords=[],lakePathRecords=[],majorRegionNameRecords=[];
 const HYDROLOGY_JUNCTION_KEYS=new Set();
 const HYDROLOGY_TOPOLOGY=new WeakMap();
+const HYDROLOGY_ENDPOINT_GRID_SIZE=8,HYDROLOGY_ENDPOINT_MATCH_TOLERANCE=.025;
 const textMetricsCanvas=document.createElement('canvas');
 const textMetricsCtx=textMetricsCanvas.getContext('2d');
 const textMetricsCache=new Map();
@@ -1290,38 +1291,59 @@ async function buildHydrologyTopology(root,onProgress=()=>{}){
       }
     }
   }
+  // Index tolerance-expanded segment bounds so endpoints only inspect nearby geometry.
+  const segmentGrid=new Map(),cellSize=HYDROLOGY_ENDPOINT_GRID_SIZE,matchTolerance=HYDROLOGY_ENDPOINT_MATCH_TOLERANCE;
+  for(const path of paths){
+    for(const subpath of path.subpaths){
+      const points=subpath.points;
+      if(points.length<2)continue;
+      const segmentCount=subpath.closed?points.length:points.length-1;
+      for(let index=0;index<segmentCount;index++){
+        const start=points[index],end=points[(index+1)%points.length];
+        const dx=end.x-start.x,dy=end.y-start.y,lengthSquared=dx*dx+dy*dy;
+        if(!lengthSquared)continue;
+        const segment={subpath,index,start,end,dx,dy,lengthSquared};
+        const minCellX=Math.floor((Math.min(start.x,end.x)-matchTolerance)/cellSize);
+        const maxCellX=Math.floor((Math.max(start.x,end.x)+matchTolerance)/cellSize);
+        const minCellY=Math.floor((Math.min(start.y,end.y)-matchTolerance)/cellSize);
+        const maxCellY=Math.floor((Math.max(start.y,end.y)+matchTolerance)/cellSize);
+        for(let cellX=minCellX;cellX<=maxCellX;cellX++){
+          for(let cellY=minCellY;cellY<=maxCellY;cellY++){
+            const key=`${cellX},${cellY}`;
+            let bucket=segmentGrid.get(key);
+            if(!bucket){bucket=[];segmentGrid.set(key,bucket)}
+            bucket.push(segment);
+          }
+        }
+      }
+    }
+  }
   const pending=new Map();
   for(let endpointIndex=0;endpointIndex<endpoints.length;endpointIndex++){
     const endpoint=endpoints[endpointIndex];
     const point=endpoint.point;
-    for(const path of paths){
-      for(const subpath of path.subpaths){
-        const points=subpath.points;
-        if(subpath===endpoint.owner||points.length<2)continue;
-        const segmentCount=subpath.closed?points.length:points.length-1;
-        for(let i=0;i<segmentCount;i++){
-          const start=points[i],end=points[(i+1)%points.length];
-          const dx=end.x-start.x,dy=end.y-start.y,lengthSquared=dx*dx+dy*dy;
-          if(!lengthSquared)continue;
-          const t=Math.max(0,Math.min(1,((point.x-start.x)*dx+(point.y-start.y)*dy)/lengthSquared));
-          const projected={x:start.x+t*dx,y:start.y+t*dy};
-          if(pointDistance(point,projected)>.025)continue;
-          HYDROLOGY_JUNCTION_KEYS.add(hydrologyPointKey(point));
-          if(t<=.0001){
-            HYDROLOGY_JUNCTION_KEYS.add(hydrologyPointKey(start));
-          }else if(t>=.9999){
-            HYDROLOGY_JUNCTION_KEYS.add(hydrologyPointKey(end));
-          }else{
-            let bySegment=pending.get(subpath);
-            if(!bySegment){bySegment=new Map();pending.set(subpath,bySegment)}
-            let insertions=bySegment.get(i);
-            if(!insertions){insertions=[];bySegment.set(i,insertions)}
-            const key=hydrologyPointKey(point);
-            if(!insertions.some(item=>hydrologyPointKey(item.point)===key))insertions.push({t,point:{x:point.x,y:point.y}});
-            HYDROLOGY_JUNCTION_KEYS.add(key);
-          }
-          break;
-        }
+    const gridX=Math.floor(point.x/cellSize),gridY=Math.floor(point.y/cellSize);
+    const candidates=segmentGrid.get(`${gridX},${gridY}`)||[],matchedSubpaths=new Set();
+    for(const segment of candidates){
+      const {subpath,index,start,end,dx,dy,lengthSquared}=segment;
+      if(subpath===endpoint.owner||matchedSubpaths.has(subpath))continue;
+      const t=Math.max(0,Math.min(1,((point.x-start.x)*dx+(point.y-start.y)*dy)/lengthSquared));
+      const differenceX=point.x-(start.x+t*dx),differenceY=point.y-(start.y+t*dy);
+      if(differenceX*differenceX+differenceY*differenceY>matchTolerance*matchTolerance)continue;
+      matchedSubpaths.add(subpath);
+      HYDROLOGY_JUNCTION_KEYS.add(hydrologyPointKey(point));
+      if(t<=.0001){
+        HYDROLOGY_JUNCTION_KEYS.add(hydrologyPointKey(start));
+      }else if(t>=.9999){
+        HYDROLOGY_JUNCTION_KEYS.add(hydrologyPointKey(end));
+      }else{
+        let bySegment=pending.get(subpath);
+        if(!bySegment){bySegment=new Map();pending.set(subpath,bySegment)}
+        let insertions=bySegment.get(index);
+        if(!insertions){insertions=[];bySegment.set(index,insertions)}
+        const key=hydrologyPointKey(point);
+        if(!insertions.some(item=>hydrologyPointKey(item.point)===key))insertions.push({t,point:{x:point.x,y:point.y}});
+        HYDROLOGY_JUNCTION_KEYS.add(key);
       }
     }
     if(endpointIndex%8===7){
@@ -2584,6 +2606,18 @@ function overlaps(bounds,view,margin=0){
   return bounds.x+bounds.width>=view.x-margin&&bounds.x<=view.x+view.width+margin&&
     bounds.y+bounds.height>=view.y-margin&&bounds.y<=view.y+view.height+margin;
 }
+function drawMapRasterInView(image,mapWidth,mapHeight,view){
+  // Keep the map-space placement unchanged while avoiding a full-image draw when zoomed in.
+  if(!image||mapWidth<=0||mapHeight<=0)return;
+  const left=Math.max(0,view.x),top=Math.max(0,view.y);
+  const right=Math.min(mapWidth,view.x+view.width),bottom=Math.min(mapHeight,view.y+view.height);
+  if(right<=left||bottom<=top)return;
+  const sourceWidth=image.naturalWidth||image.width,sourceHeight=image.naturalHeight||image.height;
+  if(!sourceWidth||!sourceHeight)return;
+  const sourceX=left/mapWidth*sourceWidth,sourceY=top/mapHeight*sourceHeight;
+  const sourceCropWidth=(right-left)/mapWidth*sourceWidth,sourceCropHeight=(bottom-top)/mapHeight*sourceHeight;
+  ctx.drawImage(image,sourceX,sourceY,sourceCropWidth,sourceCropHeight,left,top,right-left,bottom-top);
+}
 function smoothStep(value){const t=Math.max(0,Math.min(1,value));return t*t*(3-2*t)}
 function regionLabelOpacityForView(){
   const zoomWidth=viewZoomWidth();
@@ -3099,7 +3133,7 @@ function draw(){
     }
     if(!reliefRasterDrawn&&record.layerId==='lakes'){
       reliefRasterDrawn=true;
-      if(layerVisibility.get('terrainShading')!==false&&reliefRasterImage?.complete&&reliefRasterImage.naturalWidth){ctx.save();ctx.drawImage(reliefRasterImage,0,0,SOURCE_W,MAP_H);ctx.restore();}
+      if(layerVisibility.get('terrainShading')!==false&&reliefRasterImage?.complete&&reliefRasterImage.naturalWidth){ctx.save();drawMapRasterInView(reliefRasterImage,SOURCE_W,MAP_H,view);ctx.restore();}
     }
     const isAdministrativeLabel=record.layerId==='regionCodes'||record.layerId==='regionNames'||record.layerId==='regionTongueNames';
     const isMajorRegionLabel=record.drawGroup==='majorRegionNames';
@@ -3146,7 +3180,7 @@ function draw(){
     if(record.layerId==='oceanFill'){
       if(bathymetryOpacity<1){ctx.save();ctx.globalAlpha=1-bathymetryOpacity;ctx.fillStyle=riverColor;ctx.fill(record.variants[pathToleranceIndex]);ctx.restore();}
       if(layerVisibility.get('bathymetry')!==false&&bathymetryOpacity>0){
-        if(bathymetryRaster){ctx.save();ctx.globalAlpha=bathymetryOpacity;ctx.drawImage(bathymetryRaster,0,0,MAP_W,MAP_H);ctx.restore();}
+        if(bathymetryRaster){ctx.save();ctx.globalAlpha=bathymetryOpacity;drawMapRasterInView(bathymetryRaster,MAP_W,MAP_H,view);ctx.restore();}
       }
     }
   }
