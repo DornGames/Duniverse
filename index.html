@@ -2984,21 +2984,15 @@ function highwayGeometryKey(points,closed){
   }
   return (closed?'closed:':'open:')+sequences.map(encode).sort()[0];
 }
-function highwayPolylineLength(points){
-  let length=0;
-  for(let index=1;index<points.length;index++)length+=Math.hypot(points[index].x-points[index-1].x,points[index].y-points[index-1].y);
-  return length;
-}
-function highwayPointAtDistance(points,distance){
-  for(let index=1;index<points.length;index++){
-    const a=points[index-1],b=points[index],length=Math.hypot(b.x-a.x,b.y-a.y);
-    if(distance<=length||index===points.length-1){
-      const t=length?Math.max(0,Math.min(1,distance/length)):0;
-      return{x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t};
-    }
-    distance-=length;
+function highwayPathMetrics(points){
+  const cumulativeLengths=new Float64Array(points.length),bounds={minX:Infinity,maxX:-Infinity,minY:Infinity,maxY:-Infinity};
+  for(let index=0;index<points.length;index++){
+    const point=points[index];
+    bounds.minX=Math.min(bounds.minX,point.x);bounds.maxX=Math.max(bounds.maxX,point.x);
+    bounds.minY=Math.min(bounds.minY,point.y);bounds.maxY=Math.max(bounds.maxY,point.y);
+    if(index)cumulativeLengths[index]=cumulativeLengths[index-1]+Math.hypot(point.x-points[index-1].x,point.y-points[index-1].y);
   }
-  return points[0];
+  return{cumulativeLengths,lengthPx:cumulativeLengths.at(-1)||0,bounds};
 }
 function buildHighwayGeometryGroups(){
   const groups=new Map();
@@ -3009,11 +3003,10 @@ function buildHighwayGeometryGroups(){
       const closed=Boolean(part.closed),key=highwayGeometryKey(points,closed);
       let group=groups.get(key);
       if(!group){
-        const samples=sampleHighwayPath(points,closed);
-        group={key,points,closed,path:createHighwayPath(points,closed),samples,lengthPx:highwayPolylineLength(samples),
-          routes:[],visibleRoutes:[],labelPositions:new Map(),
-          bounds:{minX:Math.min(...samples.map(point=>point.x)),maxX:Math.max(...samples.map(point=>point.x)),
-            minY:Math.min(...samples.map(point=>point.y)),maxY:Math.max(...samples.map(point=>point.y))}};
+        const samples=sampleHighwayPath(points,closed),metrics=highwayPathMetrics(samples);
+        group={key,points,closed,path:createHighwayPath(points,closed),samples,
+          cumulativeLengths:metrics.cumulativeLengths,lengthPx:metrics.lengthPx,
+          routes:[],visibleRoutes:[],bounds:metrics.bounds};
         groups.set(key,group);
       }
       if(!group.routes.includes(route))group.routes.push(route);
@@ -3042,23 +3035,35 @@ function drawHighways(scale){
 }
 function drawHighwayIdLabels(scale){
   if(scale<.9||!HIGHWAY_LABEL_GROUPS.length)return;
-  const inverseScale=1/Math.max(scale,.001),candidates=[];
+  const inverseScale=1/Math.max(scale,.001),candidates=[],labelMargin=80*inverseScale;
+  const minX=vb.x-labelMargin,maxX=vb.x+vb.w+labelMargin,minY=vb.y-labelMargin,maxY=vb.y+vb.h+labelMargin;
   for(const group of HIGHWAY_LABEL_GROUPS){
     const length=group.lengthPx;
-    if(length<1)continue;
+    if(length<1||group.bounds.maxX<minX||group.bounds.minX>maxX||group.bounds.maxY<minY||group.bounds.minY>maxY)continue;
     const count=Math.max(1,Math.floor(length*scale/300));
-    let positions=group.labelPositions.get(count);
-    if(!positions){
-      positions=[];
-      for(let index=0;index<count;index++)positions.push(highwayPointAtDistance(group.samples,(index+.5)*length/count));
-      group.labelPositions.set(count,positions);
-    }
+    const spacing=length/count,halfSpacing=spacing/2;
     const label=group.visibleRoutes.map(route=>route.id).join('/');
-    for(const position of positions)candidates.push({
-      x:position.x,y:position.y,label,
-      color:group.visibleRoutes.length===1?(group.visibleRoutes[0].color||'#34424a'):'#34424a',
-      shared:group.visibleRoutes.length>1,order:group.visibleRoutes[0].id
-    });
+    const samples=group.samples,cumulativeLengths=group.cumulativeLengths;
+    for(let segmentIndex=1;segmentIndex<samples.length;segmentIndex++){
+      const start=samples[segmentIndex-1],end=samples[segmentIndex];
+      const startDistance=cumulativeLengths[segmentIndex-1],endDistance=cumulativeLengths[segmentIndex];
+      if(endDistance<=startDistance||Math.max(start.x,end.x)<minX||Math.min(start.x,end.x)>maxX||
+         Math.max(start.y,end.y)<minY||Math.min(start.y,end.y)>maxY)continue;
+      const firstLabelIndex=Math.max(0,Math.floor((startDistance-halfSpacing)/spacing)+1);
+      for(let index=firstLabelIndex;index<count;index++){
+        const distance=(index+.5)*spacing;
+        if(distance>endDistance+1e-7)break;
+        if(distance<=startDistance+1e-7)continue;
+        const amount=(distance-startDistance)/(endDistance-startDistance);
+        const x=start.x+(end.x-start.x)*amount,y=start.y+(end.y-start.y)*amount;
+        if(x<minX||x>maxX||y<minY||y>maxY)continue;
+        candidates.push({
+          x,y,label,
+          color:group.visibleRoutes.length===1?(group.visibleRoutes[0].color||'#34424a'):'#34424a',
+          shared:group.visibleRoutes.length>1,order:group.visibleRoutes[0].id
+        });
+      }
+    }
   }
   candidates.sort((a,b)=>Number(b.shared)-Number(a.shared)||a.order.localeCompare(b.order,undefined,{numeric:true}));
   ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
