@@ -379,7 +379,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "D12": {
       "name": "D12",
-      "lengthKm": 1174.0,
+      "lengthKm": 2110.8,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "西南𣿅大区",
@@ -387,24 +387,32 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
       ],
       "provinces": [
         "圣维皮省",
-        "出塞特别行政区"
+        "出塞特别行政区",
+        "欧芹省",
+        "南𣿅省"
       ],
       "cities": [
         "红尾市",
         "十阶行列市",
         "提琴城",
-        "红滨市"
+        "红滨市",
+        "苹果市",
+        "香蕉市",
+        "红林市"
       ],
       "stops": [
         "红尾市",
         "十阶行列市",
         "红滨市",
-        "提琴城"
+        "提琴城",
+        "苹果市",
+        "香蕉市",
+        "红林市"
       ]
     },
     "D13": {
       "name": "D13",
-      "lengthKm": 2177.4,
+      "lengthKm": 1406.7,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "南𣿅大区"
@@ -417,11 +425,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
       ],
       "cities": [
         "花火市",
-        "剟城",
-        "核移位市",
         "以巴市",
-        "多格市",
-        "南󹲅市",
         "天狗市",
         "二十阶行列市",
         "红柚市",
@@ -431,8 +435,6 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
       "stops": [
         "花火市",
         "以巴市",
-        "多格市",
-        "南󹲅市",
         "天狗市",
         "二十阶行列市",
         "红柚市",
@@ -440,26 +442,87 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "木子山市"
       ]
     },
-    "D14": {
-      "name": "D14",
-      "lengthKm": 641.3,
+    "D13-1": {
+      "name": "D13-1",
+      "lengthKm": 1010.7,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "南𣿅大区"
       ],
       "provinces": [
-        "南𣿅省",
-        "出塞特别行政区"
+        "天狗省",
+        "南𣿅省"
       ],
       "cities": [
-        "香蕉市",
-        "红林市",
-        "苹果市"
+        "以巴市",
+        "多格市",
+        "南󹲅市",
+        "天狗市"
       ],
       "stops": [
-        "香蕉市",
-        "红林市",
-        "苹果市"
+        "以巴市",
+        "多格市",
+        "南󹲅市",
+        "天狗市"
+      ]
+    },
+    "D14": {
+      "name": "D14",
+      "lengthKm": 2578.2,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "东南𣿅大区",
+        "东𣿅大区"
+      ],
+      "provinces": [
+        "三董省",
+        "冰糖-雪梨省",
+        "萨比省"
+      ],
+      "cities": [
+        "格拉巴茨市",
+        "下三角行列市",
+        "三角洲市",
+        "冻梨市",
+        "鸭梨市",
+        "尼塔市",
+        "乔治市",
+        "圣雅宾市"
+      ],
+      "stops": [
+        "格拉巴茨市",
+        "下三角行列市",
+        "三角洲市",
+        "尼塔市",
+        "冻梨市",
+        "鸭梨市",
+        "乔治市"
+      ]
+    },
+    "D15": {
+      "name": "D15",
+      "lengthKm": 1737.8,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "西𣿅大区",
+        "西南𣿅大区",
+        "中𣿅大区"
+      ],
+      "provinces": [
+        "瓦莱莉省",
+        "凤凰省",
+        "武宗特别市"
+      ],
+      "cities": [
+        "铒钇市",
+        "天鸡市",
+        "天龙市",
+        "武宗特别市"
+      ],
+      "stops": [
+        "铒钇市",
+        "天鸡市",
+        "武宗特别市"
       ]
     },
     "T1": {
@@ -832,7 +895,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T6": {
       "name": "T6",
-      "lengthKm": 9702.1,
+      "lengthKm": 9701.5,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "西南𣿅大区",
@@ -865,12 +928,12 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "欧朝市",
         "欧特曼市",
         "别林斯𣿅市",
-        "圣维皮市",
         "欧米亚市",
         "欧芹市",
+        "圣维皮市",
         "天狗市",
-        "南𣿅市",
         "多格市",
+        "南𣿅市",
         "泡面市",
         "泉费市",
         "金汤湖市",
@@ -1009,13 +1072,12 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T9": {
       "name": "T9",
-      "lengthKm": 8045.3,
+      "lengthKm": 8019.2,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区",
         "东𣿅大区",
-        "北𣿅大区",
-        "群岛大区"
+        "北𣿅大区"
       ],
       "provinces": [
         "臭都特别市",
@@ -1025,7 +1087,6 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "塔马省",
         "后雄省",
         "四九特别行政区",
-        "总统（𣿅赫）特别行政区",
         "邦普省"
       ],
       "cities": [
@@ -1147,6 +1208,25 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T12": {
       "name": "T12",
+      "lengthKm": 742.7,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "东𣿅大区"
+      ],
+      "provinces": [
+        "萨比省"
+      ],
+      "cities": [
+        "萨比市",
+        "乔治市"
+      ],
+      "stops": [
+        "萨比市",
+        "乔治市"
+      ]
+    },
+    "T12-1": {
+      "name": "T12-1",
       "lengthKm": 6649.3,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
@@ -1315,7 +1395,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T15": {
       "name": "T15",
-      "lengthKm": 10903.9,
+      "lengthKm": 10964.9,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区",
@@ -1667,8 +1747,8 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "王德发市",
         "劳璨市",
         "乔治市",
-        "萨比市",
         "橘子市",
+        "萨比市",
         "尔比市",
         "几丁市",
         "葫芦市",
