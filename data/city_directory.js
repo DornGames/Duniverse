@@ -679,7 +679,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     id: "city:418050:53",
     kind: "city",
     name: "𣿅环市",
-    tongueName: "Sadornia Tork Tork",
+    tongueName: "Sadornia Tork",
     parentId: "province:ST",
     adminName: "土星省",
     postalCode: "418050",
@@ -775,7 +775,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "邦普省",
     postalCode: "437050",
     areaKm2: null,
-    description: null,
+    description: "东边海上的季风吹来，收到高原与山峰的阻拦，在半山腰形成层层叠叠的云海，让这里终年环绕着梦幻般的云彩。",
     pointX: 1360.02,
     pointY: 671.59
   },
@@ -1087,7 +1087,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "大尔省",
     postalCode: "223020",
     areaKm2: null,
-    description: null,
+    description: "𣿅国航天重镇。贾斯帕大学本校区位于此，主攻贾斯帕大学传统专业项目：航空航天与星际航行。校训“长大开飞船”，设立专门15年一贯制班级，从幼儿园结束开始选拔顶尖人才，从小学阶段开始培养至大学毕业，毕业即是星际航行专家。",
     pointX: 647.0,
     pointY: 376.76
   },
@@ -1165,7 +1165,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "羟基省",
     postalCode: "224030",
     areaKm2: null,
-    description: null,
+    description: "城中处处是花圃，院墙边、行道旁、窗台上，三月里开得最盛的是三色瑾。一株之上，紫、白、黄三色花冠错落相叠，像是打翻在绿丛里的颜料碟。花市在运河两岸铺开，花期前后，进出省城的货车总要在花棚里停一停。城中人爱花，也懂花，谁家新添一盆三色瑾，便是报喜的意思。",
     pointX: 962.5,
     pointY: 224.05
   },
@@ -1230,7 +1230,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "羟基省",
     postalCode: "224080",
     areaKm2: null,
-    description: null,
+    description: "父亲河南岸的河滩地上，藤蔓一垄压着一垄，顺着竹架往上爬，宽大的叶子层层叠叠，远看像一面会起伏的绿墙。收藤的季节，藤叶与嫩尖一同摘进背篓，运进城切成绿丝，拌进各家面馆的锅里。北𣿅气候寒凉，鲜叶难存，本地人便琢磨出腌、晒、封坛几样法子，把蔓叶的味道一路留到冬天。城中制蔓的老作坊至今仍在，一坛坛成品沿河往外调运。",
     pointX: 986.93,
     pointY: 189.81
   },
@@ -1581,7 +1581,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210150",
     areaKm2: null,
-    description: null,
+    description: "塔马多山，山石上最耐得住寒气的是兰花。城北崖壁上天然生着大片兰丛，花时一簇簇淡青小花伏在石缝里，香气很轻，须得静下心来才闻得到。城中人以兰为雅，巷口牌坊刻着兰纹，中学开设兰艺课，山民采兰、育兰，年年把最好的几株送进城里的兰圃。近年兰圃又办起药材加工，兰花入药、入茶，成了一条细细长长的产业。",
     pointX: 1201.33,
     pointY: 405.0
   },
@@ -1607,7 +1607,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210170",
     areaKm2: null,
-    description: null,
+    description: "这里的计算不全靠算盘，也靠两部机器：手摇的加法机，和一台唤作“万能表”的组合计数装置，齿轮与齿条咬合转动，把乘除都化作加法。研究院的园子里种着从东部引进的茶树，据说那是某位手稿主人的癖好。城中人相信，两样东西并不是各自分开的，世间万物都由不可再分的最小单元拼成，而能以最省事的方式彼此联结，便是最好的安排。",
     pointX: 1176.85,
     pointY: 373.85
   },
@@ -1620,7 +1620,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210180",
     areaKm2: null,
-    description: null,
+    description: "城中最有名的是一片铺得很开的石板广场，石板一块接着一块，密得几乎看不见缝，城市也就在这份密实之上铺展开来。当年修筑城墙，工匠靠一条极简的准则放线：先量出第一段，再让每一段都按同一尺度层层累加，无论走多远，终能严丝合缝地垒成完整的一圈。柯西人处事也是这般，凡事都要逐一比对、逐个验证，才算数。城中的测量院与论证堂远近闻名，学子入学第一课便是：先把前提站稳。",
     pointX: 1184.46,
     pointY: 484.88
   },
@@ -1633,7 +1633,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210190",
     areaKm2: null,
-    description: null,
+    description: "这座城的名字，据说是随一门“级数展开”的算法流传下来的：再复杂的曲线，都能拆成一串越来越小的项，只要依次加下去，总有一项能把余下的误差压到可以忽略。城中人做菜、修路、造桥都讲这个理，一次做不成就一点点添，添到正好为止。城郊钟楼里有守钟人，昼夜记下钟摆的偏差，一笔一笔修正，几代人下来，钟走得分毫不差。",
     pointX: 1109.15,
     pointY: 438.85
   },
@@ -1646,7 +1646,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210200",
     areaKm2: null,
-    description: null,
+    description: "城里的孩子很早就学会一件事：从一数起，一直数下去，永无尽头。这是本地引以为傲的公共学问，“数之基”是全校必修课，街心广场上刻着一串正整数的刻痕，每到节日居民便一起数上一段。佩亚诺的城市设施也循着这套道理：从第一号街道起编，编号一条推演出一条，整座城像一本摊开的、自首端一路写下去的书。市立图书馆藏着一部《算术原理》手抄本，据说全城每年都要重新誊抄一遍。",
     pointX: 1138.0,
     pointY: 547.24
   },
@@ -1659,7 +1659,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210210",
     areaKm2: null,
-    description: null,
+    description: "城中流传着一个古老的谜：一朵藏在远处的曲线，从外面怎么瞧也瞧不见，只有换到某个位置，它才凭空显身。箕舌人把这谜做成了习俗，每年初春，家家翻动桌上一只薄薄的铜盘，盘子转过几转，那朵青黑色的花形曲线便闪动出来，转得越熟，看得越清。城中的专科学校专教这类曲线，学生要背下它们的样子、生成的法子与何时生奇点。据说这里的工匠最擅长把一块毛坯用料打磨到只够容下的程度，再不肯多留一分。",
     pointX: 881.0,
     pointY: 316.76
   },
@@ -1711,7 +1711,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210250",
     areaKm2: null,
-    description: null,
+    description: "坐落于铁山山脉深处，铁山、三角山、大象山和老虎山在四周聚集，石川、云川和逶迤河三条河流由此流经并汇集，形成爪形。本市由此得名。",
     pointX: 1095.15,
     pointY: 399.15
   },
@@ -1724,7 +1724,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210260",
     areaKm2: null,
-    description: null,
+    description: "名曰“华美的树林”，北铁山山脉广布的森林带来丰富的生物多样性，促进本地生物与自然科学研究的发展。",
     pointX: 985.9,
     pointY: 321.62
   },
@@ -1750,7 +1750,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "拉基省",
     postalCode: "321020",
     areaKm2: null,
-    description: null,
+    description: "以其大面积的现代化农村地区而文明，其城市综合实力均匀分布在其下辖的多个属。因此，这里的居民常被其他地方的人称为“乡下人”。",
     pointX: 763.59,
     pointY: 519.98
   },
@@ -1763,7 +1763,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "拉基省",
     postalCode: "321030",
     areaKm2: null,
-    description: null,
+    description: "位于桔梗山山脚下，在城市中任何地方都可以见到秀美的桔梗山，故名。《𣿅子》记载：或问𣿅子以《花火》之桔梗：“汝知桔梗花语否？”𣿅子曰：“然！且白桔梗也。”此地坐拥桔梗山，故以桔梗出名，而白桔梗最为上乘。",
     pointX: 870.15,
     pointY: 516.85
   },
@@ -1854,7 +1854,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "西𣿅省",
     postalCode: "322010",
     areaKm2: null,
-    description: null,
+    description: "西𣿅城市群的重要组成部分，同瓦莱莉市、新瓦莱莉市和梅马市，共同组成西𣿅地区强劲的经济发展引擎。本市在西𣿅城市群中主要接纳第一产业和第三产业，发展绿洲农业，也是前往西𣿅沙漠地区旅游的门户城市。",
     pointX: 618.0,
     pointY: 674.2
   },
@@ -1906,7 +1906,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "西𣿅省",
     postalCode: "322050",
     areaKm2: null,
-    description: null,
+    description: "“扈江离与辟芷兮，纫秋兰以为佩。”白芷与美人在此皆出名，世人常评价这里的人和景色“太美”。",
     pointX: 530.0,
     pointY: 702.5
   },
@@ -1919,7 +1919,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "瓦莱莉省",
     postalCode: "312010",
     areaKm2: null,
-    description: null,
+    description: "著名的𣿅国重工业之城，工业强市，超级大都会。大量工业在此聚集促进产业综合协调发展，同时兼顾国防与军工，保障国家安全。是西𣿅城市群的重要组成部分，最强发展动力，在其中主导第二产业。瓦莱莉大学是𣿅国著名工业高校，为本地产业持续输送人才。",
     pointX: 610.9,
     pointY: 712.9
   },
@@ -1932,7 +1932,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "瓦莱莉省",
     postalCode: "312050",
     areaKm2: null,
-    description: null,
+    description: "由于瓦莱莉市工业聚集，故其他产业服务与城市功能分离至此，组成副省级行政中心级别城市。瓦莱希雅大学是本地的𣿅国著名大学，排名常年全国靠前，语言学研究全国第一，𣿅语的相关标准由此制定。",
     pointX: 591.0,
     pointY: 697.24
   },
@@ -1945,7 +1945,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "瓦莱莉省",
     postalCode: "312020",
     areaKm2: null,
-    description: null,
+    description: "四望黄沙，水源稀缺，却偏偏取名“绿水”。这名字不是写实，而是志向：让绿与水在这片旱地上生根。城市依有限的水源点布局，节水设施与集水系统遍布全城，绿洲农业、滴灌技术与水循环利用构成城市运转的命脉，每一滴水都被珍视到极致。是国家级水管理示范城市。",
     pointX: 473.85,
     pointY: 738.85
   },
@@ -1958,7 +1958,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "瓦莱莉省",
     postalCode: "312030",
     areaKm2: null,
-    description: null,
+    description: "钒矿与铝土资源构成本地产业的根基，从采选、冶炼到精深加工，钒铝产业链完整布局。",
     pointX: 580.26,
     pointY: 860.74
   },
@@ -1971,7 +1971,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "瓦莱莉省",
     postalCode: "312040",
     areaKm2: null,
-    description: null,
+    description: "铒、钇属稀土家族，是高端磁材、激光晶体、荧光材料与国防军工领域不可替代的关键元素。铒钇市的资源地位，已上升至国家战略层面。城市因稀土而立、因稀土而重，矿区、冶炼分离基地与稀土新材料研究院沿城市产业带布局，从采选、分离到精深加工，铒钇产业链完整可控，是国家稀土资源保障体系中的重要支点。",
     pointX: 792.76,
     pointY: 920.0
   },
@@ -2036,7 +2036,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "梅马省",
     postalCode: "314010",
     areaKm2: null,
-    description: null,
+    description: "西𣿅城市群的重要组成部分，𣿅国著名城市，同时接纳城市群内的第一、第二和第三产业。由于在城市群中最接近首都圈地区，因此产业更加趋近于轻工业和下游产业链。",
     pointX: 634.0,
     pointY: 684.9
   },
@@ -2075,7 +2075,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "梅马省",
     postalCode: "314040",
     areaKm2: null,
-    description: null,
+    description: "𣿅国著名城市，𣿅国历史名城，国家级物理与航天重城。贾斯帕大学主校区位于此，是𣿅国著名大学，基础理学重镇，物理与天文研究享誉全国。室温超导与行星科学的突破性成果，多次从这里走向世界。",
     pointX: 772.0,
     pointY: 746.76
   },
@@ -2088,7 +2088,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "梅马省",
     postalCode: "314050",
     areaKm2: null,
-    description: null,
+    description: "纪念𣿅国两位圣人：今子和瑞丰子。",
     pointX: 903.76,
     pointY: 905.0
   },
@@ -2322,7 +2322,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "福利省",
     postalCode: "716010",
     areaKm2: null,
-    description: null,
+    description: "福利省东部的林区伸进城里，城郊香樟成片成林，树身笔直，叶子搓开来有股辛凉的香。旧时城里人盖房、打柜都爱用樟木，说是能驱虫、养人，几百年下来，老城街巷里还立着许多粗壮的香樟，夏天遮出一片浓荫。城里的木材厂如今改做精加工，樟木屑压成的樟香、樟油从这里发往各地；街角做旧樟箱的铺子开了好几代人，一开盖便满屋清香。",
     pointX: 1201.0,
     pointY: 1166.4
   },
@@ -2348,7 +2348,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "福利省",
     postalCode: "716030",
     areaKm2: null,
-    description: null,
+    description: "𣿅国诗曰：“花火燃尽原神启，星轨漫游宇宙。挥笔墨，书狂态、江山尽是诙谐镂。”焰火燃尽处，是万物初启的奇想；星轨漫游时，是仰望宇宙的辽阔；挥笔墨之际，是书写狂态的豪情；江山诙谐镂，是笑看人间的达观。花火市以焰火艺术立名。焰火工坊与燃放基地沿城而设，中小学开设焰火工艺与安全课程，社区节庆必有焰火相伴，市民以火树银花为城市最盛大的语言。城市又以星空与宇宙想象为魂，天文台、星轨观测点与科幻创作社遍布全城，市民在观星与畅想中延续“星轨漫游宇宙”的浪漫。",
     pointX: 1056.15,
     pointY: 1263.15
   },
@@ -2361,7 +2361,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "福利省",
     postalCode: "716040",
     areaKm2: null,
-    description: null,
+    description: "𣿅国著名城市，𣿅国历史文化名城。城内流传着一种传统文化“唾礼”，是𣿅国非物质文化遗产。每逢节庆，全城市民齐聚广场，以吐口水的方式互致祝福。这一传统看似粗朴，实则大有讲究：古人认为唾液是生命之津，吐向他人便是把最珍贵的生气分赠出去，久而久之，“唾礼”成了这座城市最隆重的礼节。近年来，总统亲临本城，亲自提出针对性方针，针对此地区位优势，将本市传统产业转型成新型化产业，以传统美术结合前沿信息技术，实现了本市的成功转型，是城市转型的成功案例，现已成为了𣿅国重要的信息产业基地，充分贯彻“将信息技术与美术融合”的国家政策。",
     pointX: 1136.15,
     pointY: 1245.15
   },
@@ -2374,7 +2374,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "福利省",
     postalCode: "716050",
     areaKm2: null,
-    description: null,
+    description: "名自“怡然自乐”。城中人从容自适，街巷里怡然自得，日子过得不急不缓，处处是安居乐业的从容气象。城市治理求完备，公共服务求无缺，市民生活求踏实——正如实数填满整条数轴，怡然市也让每一个人在这座城市里找到自己的位置。",
     pointX: 1189.4,
     pointY: 1078.24
   },
@@ -2400,7 +2400,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "福利省",
     postalCode: "716070",
     areaKm2: null,
-    description: null,
+    description: "福利省林业之本，在松杉。沿母亲河往西北，山势渐高，城郊山上尽是松杉，针叶一片连着一片，夜里从高处望下去像墨绿色的海。城里的林场与木材集散地撑起了整座城市，原木顺河漂运，到码头再转上车船。后来山上的树越长越密，城里人便把松杉林辟成游步道，修了栈桥与瞭望台，秋天来捡松果、春天来看新芽的游人一年比一年多。松脂、松香与木艺作坊沿老街排开，一走近便闻见树脂的气息。",
     pointX: 1209.0,
     pointY: 1206.24
   },
@@ -2608,7 +2608,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "南𣿅省",
     postalCode: "729020",
     areaKm2: null,
-    description: null,
+    description: "这座城以一碗面闻名。母亲河大转弯环住省境，出城便捷，让这里早早成了吃食的集散地：南来的小麦，东去的油料，都从这里上岸下船。城里的面厂多是本地老字号，把熟面压成圆饼，配上一小包自家调配的料，烘干装袋，便是可以经年存放的方便面。街边档口常年支着大锅，滚水里丢下一块面饼，一揭锅盖，热汽直往上冲，是这座城市最日常的味道。老坛酸菜面是这里的经典，正如同脚踩葡萄榨取葡萄汁酿造葡萄酒一样，脚踩酸菜也是这里的古老传统，是𣿅国非物质文化遗产，匠心尽显。",
     pointX: 1094.5,
     pointY: 1343.33
   },
@@ -2621,7 +2621,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "南𣿅省",
     postalCode: "729030",
     areaKm2: null,
-    description: null,
+    description: "南𣿅的雨季从年头绵延到年尾，河沟边、田埂上、巷子口，一棵棵棕榈立得笔直，羽状的叶子在湿气里翻卷，风一吹，便能听见叶片相互摩擦的沙沙声。棕榈在这座城里几乎处处可用：叶子编成席子、斗笠和扇子，棕皮搓成绳索，棕板压成床垫，城郊的加工厂索性被统一叫作“棕厂”。雨季一到，棕叶摊在屋檐下晾到半干，整条街都飘着一股青涩的草味。",
     pointX: 1084.24,
     pointY: 1385.0
   },
@@ -2634,7 +2634,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "南𣿅省",
     postalCode: "729040",
     areaKm2: null,
-    description: null,
+    description: "南𣿅南部的山地上，梨树层层叠叠铺上山坡，花开时节一山一山白，远远看去像落了雪。这里产的梨叫“山梨”，果皮青褐，入口粗硬，嚼起来却有一股清冽的酸劲，最宜鲜食。城里的梨园沿坡分片，秋来雇人上山，筐筐梨子顺着竹滑道滑下山脚，装车送往运河码头。城郊的梨厂把不好看的果子做成梨膏与梨酒，山梨的味道就这样走出山去。",
     pointX: 1034.51,
     pointY: 1383.58
   },
@@ -2647,7 +2647,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "南𣿅省",
     postalCode: "735010",
     areaKm2: null,
-    description: null,
+    description: "运河南岸的河滩地，红柚最对脾气——沙壤土透气，水又不断，柚树长得格外精神。秋来果子由青转黄，剖开一数，瓣瓣殷红，汁多而甜中带一丝微苦，暖晴的早晨嚼上一瓣，满嘴都是清爽的水汽。城中柚园按圩口排开，收果时节，木箱在田头堆成小墙，靠运河船队运往各地。巷口的凉茶铺子终年供着红柚茶，老柚皮晒干吊在檐下，算是这座城最实在的一景。",
     pointX: 982.17,
     pointY: 1359.32
   },
@@ -2660,7 +2660,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "南𣿅省",
     postalCode: "735020",
     areaKm2: null,
-    description: null,
+    description: "南𣿅平原东端沙壤连片，苹果树成行成畦，果皮晒得红透，咬下去脆而多汁。本地有一句老话：最好的苹果，要留给经过冷风的那一批。秋末霜降前后，城里人喜欢把果子堆在院子里，任几夜寒气浸透，酸味退去，甜味反倒沉静下来。外销的苹果装进木箱，压着南𣿅运河的船顺流而下；城郊的果汁厂与果酒坊也顺着这条路把整季的收成用完，一车车的果香从这座城散到别处。",
     pointX: 940.85,
     pointY: 1353.85
   },
@@ -2673,7 +2673,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "南𣿅省",
     postalCode: "735030",
     areaKm2: null,
-    description: null,
+    description: "城郊有一片远近闻名的红林，秋天叶子转红，一整片林子在平原上燃起来。更奇的是林中的土，砂层里夹着暗红色纹理，雨过之后色更深，老辈人叫它“红土带”，说这城名字里的“红”，一半来自红叶，一半来自红土。旧时这是南𣿅人秋游的去处，后来护林成了规矩，红林划为保护区，每年只开几条人行步道，游人凭预约入内。城里人靠林子吃饭，靠的却不是砍伐，而是文旅：民宿、落叶节，还有以红土和红叶调出的本地染料。",
     pointX: 962.93,
     pointY: 1379.81
   },
@@ -2686,7 +2686,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "南𣿅省",
     postalCode: "735040",
     areaKm2: null,
-    description: null,
+    description: "母亲河有一段河道深深弯进南𣿅平原，两岸沙土被河水泡得松软，正合香蕉的脾性。芭蕉林一片连一片，叶片宽大浓绿，风过时整片林子哗哗作响，像远处传来一场低低的雨。本地人吃香蕉也做香蕉：果肉晒成干，青蕉切片下锅炸，连叶子都晒软了去包米糕。城中的集散中心终年忙碌，一船船青蕉顺河而下，把甜香带往运河沿岸的大小城镇。",
     pointX: 971.0,
     pointY: 1416.76
   },
@@ -2777,7 +2777,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "南𣿅省",
     postalCode: "837040",
     areaKm2: null,
-    description: null,
+    description: "萝卜在这座城里几乎无处不在：沙地上种，运河边卖，街巷里腌。色白体胖的萝卜在这儿不挑季节，秋冬挖出的最爽脆，城里人切丝、切片摊在阳光下晒，晒到半干收进坛里，拌上盐和辣子，成了运河沿岸的寻常小菜。加工厂里，萝卜被做成腌菜、泡菜和萝卜干，一箱箱码进坛子，随船运往上下游；老城门边的腌坊至今保留着祖传的配比，连坛口的封泥都有讲究。",
     pointX: 1230.0,
     pointY: 1350.33
   },
