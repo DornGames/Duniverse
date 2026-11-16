@@ -679,7 +679,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     id: "city:418050:53",
     kind: "city",
     name: "𣿅环市",
-    tongueName: "Sadornia Tork Tork",
+    tongueName: "Sadornia Tork",
     parentId: "province:ST",
     adminName: "土星省",
     postalCode: "418050",
