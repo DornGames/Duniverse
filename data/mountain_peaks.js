@@ -1,4 +1,4 @@
-window.DUNIVERSE_MOUNTAIN_PEAKS = {
+window.DUNIVERSE_MOUNTAIN_PEAKS_SOURCE = {
   "type": "FeatureCollection",
   "coordinate_reference_system": {
     "id": "DUNIVERSE-SATURN-SCALED-LAT-2026",
@@ -29,6 +29,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "北极星山",
+        "description": "测试",
         "source_index": 1,
         "source_map_pixel_xy": [
           904,
@@ -51,6 +52,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "嘉嵘",
+        "description": null,
         "source_index": 2,
         "source_map_pixel_xy": [
           940.75,
@@ -73,6 +75,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "洛崮",
+        "description": null,
         "source_index": 3,
         "source_map_pixel_xy": [
           1006.25,
@@ -95,6 +98,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "帝王山",
+        "description": null,
         "source_index": 4,
         "source_map_pixel_xy": [
           1037,
@@ -117,6 +121,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "冬至山",
+        "description": null,
         "source_index": 5,
         "source_map_pixel_xy": [
           875,
@@ -139,6 +144,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "菪山",
+        "description": null,
         "source_index": 6,
         "source_map_pixel_xy": [
           804.5,
@@ -161,6 +167,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "成岗",
+        "description": null,
         "source_index": 7,
         "source_map_pixel_xy": [
           970.25,
@@ -183,6 +190,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "晃山",
+        "description": null,
         "source_index": 8,
         "source_map_pixel_xy": [
           776.5,
@@ -205,6 +213,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "诗山",
+        "description": null,
         "source_index": 9,
         "source_map_pixel_xy": [
           1087,
@@ -227,6 +236,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "瑜山",
+        "description": null,
         "source_index": 10,
         "source_map_pixel_xy": [
           1051.5,
@@ -249,6 +259,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "云雀山",
+        "description": null,
         "source_index": 11,
         "source_map_pixel_xy": [
           1144,
@@ -271,6 +282,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "窕木山",
+        "description": null,
         "source_index": 12,
         "source_map_pixel_xy": [
           897,
@@ -293,6 +305,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "蔬花山",
+        "description": null,
         "source_index": 13,
         "source_map_pixel_xy": [
           1001,
@@ -315,6 +328,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "天星山",
+        "description": null,
         "source_index": 14,
         "source_map_pixel_xy": [
           1075.75,
@@ -337,6 +351,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "雪顶",
+        "description": null,
         "source_index": 15,
         "source_map_pixel_xy": [
           1284.25,
@@ -359,6 +374,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "崛曲岭",
+        "description": null,
         "source_index": 16,
         "source_map_pixel_xy": [
           1141.75,
@@ -381,6 +397,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "江峤",
+        "description": null,
         "source_index": 17,
         "source_map_pixel_xy": [
           929.5,
@@ -403,6 +420,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "雪晴岑",
+        "description": null,
         "source_index": 19,
         "source_map_pixel_xy": [
           859.25,
@@ -426,6 +444,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "三角山",
+        "description": null,
         "source_index": 20,
         "source_map_pixel_xy": [
           1091,
@@ -448,6 +467,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "踏马山",
+        "description": null,
         "source_index": 21,
         "source_map_pixel_xy": [
           911.25,
@@ -471,6 +491,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "鸩顶",
+        "description": null,
         "source_index": 22,
         "source_map_pixel_xy": [
           1306.5,
@@ -493,6 +514,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "派格罗斯山",
+        "description": null,
         "source_index": 23,
         "source_map_pixel_xy": [
           1218.75,
@@ -515,6 +537,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "黑头山",
+        "description": null,
         "source_index": 24,
         "source_map_pixel_xy": [
           1008.5,
@@ -539,6 +562,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "铁山",
+        "description": null,
         "source_index": 25,
         "source_map_pixel_xy": [
           1031.25,
@@ -563,6 +587,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "大象山",
+        "description": null,
         "source_index": 26,
         "source_map_pixel_xy": [
           1127.75,
@@ -585,6 +610,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "大尾狼山",
+        "description": null,
         "source_index": 27,
         "source_map_pixel_xy": [
           1149.25,
@@ -608,6 +634,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "长岭",
+        "description": null,
         "source_index": 28,
         "source_map_pixel_xy": [
           960.75,
@@ -631,6 +658,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "正长岭",
+        "description": null,
         "source_index": 29,
         "source_map_pixel_xy": [
           937.25,
@@ -655,6 +683,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "张翼峰",
+        "description": null,
         "source_index": 30,
         "source_map_pixel_xy": [
           894.5,
@@ -679,6 +708,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "老虎山",
+        "description": null,
         "source_index": 31,
         "source_map_pixel_xy": [
           1110.75,
@@ -701,6 +731,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "鹞岳",
+        "description": null,
         "source_index": 32,
         "source_map_pixel_xy": [
           804,
@@ -709,7 +740,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "elevation_m": 9500.0,
         "elevation_zone": "north_plateau",
         "elevation_source": "user_class_estimate",
-        "physiographic_region": "北湩高原",
+        "physiographic_region": "北𣿅高原",
         "mountain_range": "长岭山脉"
       }
     },
@@ -725,6 +756,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "王亭山",
+        "description": null,
         "source_index": 33,
         "source_map_pixel_xy": [
           1202.75,
@@ -747,6 +779,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "晓景丘",
+        "description": null,
         "source_index": 34,
         "source_map_pixel_xy": [
           1231.75,
@@ -769,6 +802,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "铁道山",
+        "description": null,
         "source_index": 35,
         "source_map_pixel_xy": [
           1142.25,
@@ -791,6 +825,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "𣿅山",
+        "description": null,
         "source_index": 36,
         "source_map_pixel_xy": [
           1246.5,
@@ -813,6 +848,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "桔梗山",
+        "description": null,
         "source_index": 37,
         "source_map_pixel_xy": [
           852,
@@ -835,6 +871,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "大濂山",
+        "description": null,
         "source_index": 38,
         "source_map_pixel_xy": [
           1137.5,
@@ -857,6 +894,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "云猫山",
+        "description": null,
         "source_index": 39,
         "source_map_pixel_xy": [
           982.5,
@@ -879,6 +917,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "浪花山",
+        "description": null,
         "source_index": 40,
         "source_map_pixel_xy": [
           1309.5,
@@ -901,6 +940,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "高士山",
+        "description": null,
         "source_index": 41,
         "source_map_pixel_xy": [
           1109,
@@ -923,6 +963,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "草山",
+        "description": null,
         "source_index": 42,
         "source_map_pixel_xy": [
           921.25,
@@ -945,6 +986,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "檀木山",
+        "description": null,
         "source_index": 43,
         "source_map_pixel_xy": [
           1090,
@@ -967,6 +1009,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "秋分山",
+        "description": null,
         "source_index": 45,
         "source_map_pixel_xy": [
           1206.5,
@@ -989,6 +1032,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "剑山",
+        "description": null,
         "source_index": 46,
         "source_map_pixel_xy": [
           991.75,
@@ -1012,6 +1056,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "光山",
+        "description": null,
         "source_index": 47,
         "source_map_pixel_xy": [
           1266,
@@ -1034,6 +1079,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "射手山",
+        "description": null,
         "source_index": 48,
         "source_map_pixel_xy": [
           1268.75,
@@ -1056,6 +1102,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "天堂山",
+        "description": null,
         "source_index": 49,
         "source_map_pixel_xy": [
           1745.25,
@@ -1078,6 +1125,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "东𣿅山",
+        "description": null,
         "source_index": 50,
         "source_map_pixel_xy": [
           1826.25,
@@ -1100,6 +1148,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "雪瑞峰",
+        "description": null,
         "source_index": 51,
         "source_map_pixel_xy": [
           1016.5,
@@ -1123,6 +1172,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "刺梨山",
+        "description": null,
         "source_index": 52,
         "source_map_pixel_xy": [
           1202.25,
@@ -1145,6 +1195,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "中央山",
+        "description": null,
         "source_index": 53,
         "source_map_pixel_xy": [
           1161,
@@ -1167,6 +1218,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "立里山",
+        "description": null,
         "source_index": 54,
         "source_map_pixel_xy": [
           1164,
@@ -1189,6 +1241,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "白告山",
+        "description": null,
         "source_index": 55,
         "source_map_pixel_xy": [
           1111.25,
@@ -1211,6 +1264,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "鸿鸣丘",
+        "description": null,
         "source_index": 56,
         "source_map_pixel_xy": [
           889.25,
@@ -1233,6 +1287,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "江峪",
+        "description": null,
         "source_index": 57,
         "source_map_pixel_xy": [
           1140,
@@ -1255,6 +1310,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "凤凰山",
+        "description": null,
         "source_index": 58,
         "source_map_pixel_xy": [
           919.25,
@@ -1277,6 +1333,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "百岁山",
+        "description": null,
         "source_index": 59,
         "source_map_pixel_xy": [
           1350,
@@ -1299,6 +1356,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "敏克山",
+        "description": null,
         "source_index": 60,
         "source_map_pixel_xy": [
           1134.75,
@@ -1321,6 +1379,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "碧羊山",
+        "description": null,
         "source_index": 61,
         "source_map_pixel_xy": [
           428,
@@ -1343,6 +1402,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "尼根火山",
+        "description": null,
         "source_index": 62,
         "source_map_pixel_xy": [
           1141.5,
@@ -1365,6 +1425,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "瑙岑",
+        "description": null,
         "source_index": 63,
         "source_map_pixel_xy": [
           1062.75,
@@ -1387,6 +1448,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "索索诺山",
+        "description": null,
         "source_index": 64,
         "source_map_pixel_xy": [
           382.5,
@@ -1409,6 +1471,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "芷嶂",
+        "description": null,
         "source_index": 65,
         "source_map_pixel_xy": [
           1102,
@@ -1431,6 +1494,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "春分山",
+        "description": null,
         "source_index": 66,
         "source_map_pixel_xy": [
           1012.5,
@@ -1453,6 +1517,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "梅花山",
+        "description": null,
         "source_index": 67,
         "source_map_pixel_xy": [
           999.5,
@@ -1475,6 +1540,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "李子山",
+        "description": null,
         "source_index": 68,
         "source_map_pixel_xy": [
           360.25,
@@ -1497,6 +1563,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "旃檀山",
+        "description": null,
         "source_index": 69,
         "source_map_pixel_xy": [
           975.5,
@@ -1519,6 +1586,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "深原崎",
+        "description": null,
         "source_index": 70,
         "source_map_pixel_xy": [
           323.25,
@@ -1541,6 +1609,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "莫芳山",
+        "description": null,
         "source_index": 71,
         "source_map_pixel_xy": [
           677,
@@ -1563,6 +1632,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "原毗山",
+        "description": null,
         "source_index": 72,
         "source_map_pixel_xy": [
           285.75,
@@ -1585,6 +1655,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "萤火山",
+        "description": null,
         "source_index": 73,
         "source_map_pixel_xy": [
           1045.25,
@@ -1607,6 +1678,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "竹子山",
+        "description": null,
         "source_index": 74,
         "source_map_pixel_xy": [
           368,
@@ -1629,6 +1701,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "卷毛犬山",
+        "description": null,
         "source_index": 75,
         "source_map_pixel_xy": [
           1050,
@@ -1651,6 +1724,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "叫山",
+        "description": null,
         "source_index": 76,
         "source_map_pixel_xy": [
           994.75,
@@ -1673,6 +1747,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "铀山",
+        "description": null,
         "source_index": 77,
         "source_map_pixel_xy": [
           954.5,
@@ -1695,6 +1770,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "荻岬",
+        "description": null,
         "source_index": 78,
         "source_map_pixel_xy": [
           773.25,
@@ -1717,6 +1793,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "柠檬山",
+        "description": null,
         "source_index": 79,
         "source_map_pixel_xy": [
           997,
@@ -1739,6 +1816,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "果酒山",
+        "description": null,
         "source_index": 80,
         "source_map_pixel_xy": [
           959.75,
@@ -1761,6 +1839,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "兰岳",
+        "description": null,
         "source_index": 81,
         "source_map_pixel_xy": [
           493.75,
@@ -1783,6 +1862,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "龙子山",
+        "description": null,
         "source_index": 82,
         "source_map_pixel_xy": [
           1011.5,
@@ -1805,6 +1885,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "虹光丘",
+        "description": null,
         "source_index": 83,
         "source_map_pixel_xy": [
           1418.75,
@@ -1827,6 +1908,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "南波峰",
+        "description": null,
         "source_index": 84,
         "source_map_pixel_xy": [
           926.25,
@@ -1849,6 +1931,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "木子山",
+        "description": null,
         "source_index": 85,
         "source_map_pixel_xy": [
           956.75,
@@ -1871,6 +1954,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "明光丘",
+        "description": null,
         "source_index": 86,
         "source_map_pixel_xy": [
           1386.25,
@@ -1893,6 +1977,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "帕奇山",
+        "description": null,
         "source_index": 87,
         "source_map_pixel_xy": [
           778.5,
@@ -1915,6 +2000,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "西红山",
+        "description": null,
         "source_index": 88,
         "source_map_pixel_xy": [
           854.75,
@@ -1937,6 +2023,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
       },
       "properties": {
         "name": "夏至山",
+        "description": null,
         "source_index": 89,
         "source_map_pixel_xy": [
           890.75,

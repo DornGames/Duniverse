@@ -430,7 +430,7 @@ def main():
 
     # H. Metadata and diagnostics.
     metadata={
-        "map_title":"湩国行政区划图","edition":"2026年 第六版",
+        "map_title":"𣿅国行政区划图","edition":"2026年 第六版",
         "english_subtitle":"ADMINISTRATIVE DIVISION MAP OF DONH (visual transcription; verify spelling)",
         "producer":"Dornhub","copyright":"© 2022–2026 Dornhub, All Rights Reserved.",
         "image_width_px":w,"image_height_px":h,
