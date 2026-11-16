@@ -1716,7 +1716,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T19-1": {
       "name": "T19-1",
-      "lengthKm": 822.7,
+      "lengthKm": 1002.3,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "西南𣿅大区",
@@ -1724,8 +1724,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
       ],
       "provinces": [
         "凤凰省",
-        "武宗特别市",
-        "圣维皮省"
+        "武宗特别市"
       ],
       "cities": [
         "小米市"
