@@ -740,7 +740,7 @@ window.DUNIVERSE_MOUNTAIN_PEAKS = {
         "elevation_m": 9500.0,
         "elevation_zone": "north_plateau",
         "elevation_source": "user_class_estimate",
-        "physiographic_region": "北湩高原",
+        "physiographic_region": "北𣿅高原",
         "mountain_range": "长岭山脉"
       }
     },

@@ -2363,7 +2363,7 @@ def main():
         elif basin_here and not highland_here:
             terrain, landform = "盆地", "臭都盆地"
         elif plateau_here:
-            terrain, landform = ("高原山地", named_landform) if highland_here else ("高原", "北湩高原")
+            terrain, landform = ("高原山地", named_landform) if highland_here else ("高原", "北𣿅高原")
         elif gobi_here and not (highland_here and elevation > 1250):
             terrain, landform = "戈壁", "瓦莱莉戈壁"
         elif highland_here and elevation > 1000:
@@ -2795,7 +2795,7 @@ def main():
                 "type": "Feature",
                 "id": "landform:north-dung-plateau-boundary",
                 "properties": {
-                    "name": "北湩高原分界线",
+                    "name": "北𣿅高原分界线",
                     "source": "Administrative-Division-Map-of-Donh-2026.png",
                     "digitized_from": "green dashed line on the labelled official map",
                     "status": "hand-traced cartographic boundary",
