@@ -240,15 +240,22 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "D9": {
       "name": "D9",
-      "lengthKm": 2225.2,
+      "lengthKm": 6831.9,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "西𣿅大区",
-        "中𣿅大区"
+        "中𣿅大区",
+        "南𣿅大区"
       ],
       "provinces": [
         "梅马省",
-        "光安省"
+        "光安省",
+        "瑞丰特别市",
+        "臭都特别市",
+        "武宗特别市",
+        "尼根市",
+        "福利省",
+        "出塞特别行政区"
       ],
       "cities": [
         "拉鲁斯市",
@@ -256,12 +263,24 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "碱硼托克市",
         "六阶行列市",
         "哥尔德市",
-        "金鱼市"
+        "金鱼市",
+        "重草市",
+        "十三阶行列市",
+        "圣光安市",
+        "臭都特别市",
+        "武宗特别市",
+        "留春市",
+        "梅花山市",
+        "十一阶行列市"
       ],
       "stops": [
         "拉鲁斯市",
         "哥尔德市",
-        "金鱼市"
+        "金鱼市",
+        "臭都特别市",
+        "武宗特别市",
+        "留春市",
+        "十一阶行列市"
       ]
     },
     "D10": {
@@ -1676,8 +1695,8 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "拉姆达市"
       ]
     },
-    "T19-1": {
-      "name": "T19-1",
+    "T19-2": {
+      "name": "T19-2",
       "lengthKm": 508.0,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
@@ -1693,6 +1712,26 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
       ],
       "stops": [
         "梅花山市"
+      ]
+    },
+    "T19-1": {
+      "name": "T19-1",
+      "lengthKm": 822.7,
+      "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
+      "majorRegions": [
+        "西南𣿅大区",
+        "中𣿅大区"
+      ],
+      "provinces": [
+        "凤凰省",
+        "武宗特别市",
+        "圣维皮省"
+      ],
+      "cities": [
+        "小米市"
+      ],
+      "stops": [
+        "小米市"
       ]
     },
     "T20": {
