@@ -34868,6 +34868,277 @@
           ]
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 302,
+        "length_px": 9.43,
+        "source": "cartographic_open_ocean_mouth_extension",
+        "review_status": "smooth_outlet_extension_to_open_ocean",
+        "territory": "national",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.08,
+        "marine_mouth_extension_for_segment_id": 21,
+        "marine_mouth_cluster_id": "RIV-CLUSTER-06"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1356.2086666666667,
+            353.0416666666667
+          ],
+          [
+            1357.4061716173558,
+            353.3334129747819
+          ],
+          [
+            1358.366706624366,
+            354.32248887358924
+          ],
+          [
+            1359.3441986434752,
+            355.63687670688256
+          ],
+          [
+            1360.2276702232941,
+            357.1782371238316
+          ],
+          [
+            1360.9061439124318,
+            358.84823077360625
+          ],
+          [
+            1361.6335466666667,
+            360.27484000000004
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 303,
+        "length_px": 16.747,
+        "source": "cartographic_open_ocean_mouth_extension",
+        "review_status": "smooth_outlet_extension_to_open_ocean",
+        "territory": "national",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.08,
+        "marine_mouth_extension_for_segment_id": 46,
+        "marine_mouth_cluster_id": "RIV-CLUSTER-05"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1345.97710717392,
+            432.6982596764871
+          ],
+          [
+            1343.2628155126597,
+            432.9399235202423
+          ],
+          [
+            1340.4841637921586,
+            433.2525716223396
+          ],
+          [
+            1337.7360117571216,
+            434.01086979818604
+          ],
+          [
+            1334.986202350938,
+            434.757225760712
+          ],
+          [
+            1332.202578516996,
+            435.03404722284773
+          ],
+          [
+            1329.48,
+            435.216
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 304,
+        "length_px": 4.461,
+        "source": "cartographic_open_ocean_mouth_extension",
+        "review_status": "smooth_outlet_extension_to_open_ocean",
+        "territory": "national",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.08,
+        "marine_mouth_extension_for_segment_id": 188,
+        "marine_mouth_cluster_id": "RIV-CLUSTER-08"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1427.7929461484239,
+            1111.0162828221394
+          ],
+          [
+            1427.0888089544774,
+            1111.1882667115854
+          ],
+          [
+            1426.3724410184693,
+            1111.3904483956537
+          ],
+          [
+            1425.6806462537825,
+            1111.7088657962374
+          ],
+          [
+            1424.9858870788207,
+            1112.015085185302
+          ],
+          [
+            1424.260625911988,
+            1112.1806728348147
+          ],
+          [
+            1423.5416666666667,
+            1112.2916666666667
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 305,
+        "length_px": 58.079,
+        "source": "cartographic_open_ocean_mouth_extension",
+        "review_status": "smooth_outlet_extension_to_open_ocean",
+        "territory": "national",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.08,
+        "marine_mouth_extension_for_segment_id": 236,
+        "marine_mouth_cluster_id": "RIV-CLUSTER-09"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1477.964640146032,
+            1249.6255816556318
+          ],
+          [
+            1475.3111255526128,
+            1250.0100788498132
+          ],
+          [
+            1472.1262081499174,
+            1250.3054974772963
+          ],
+          [
+            1468.5114782314854,
+            1250.629593602416
+          ],
+          [
+            1464.5743945535055,
+            1251.1309161646238
+          ],
+          [
+            1460.4161018880257,
+            1251.9248834971568
+          ],
+          [
+            1456.1215895246423,
+            1253.0421432218777
+          ],
+          [
+            1451.7559620768336,
+            1254.409004501872
+          ],
+          [
+            1447.3682618149817,
+            1255.867494507731
+          ],
+          [
+            1443.0013992333952,
+            1257.2274658822264
+          ],
+          [
+            1438.7044166024557,
+            1258.3309457959497
+          ],
+          [
+            1434.5424185356424,
+            1259.1042434119854
+          ],
+          [
+            1430.6003943225508,
+            1259.5780063521977
+          ],
+          [
+            1426.9794887352284,
+            1259.8676529498227
+          ],
+          [
+            1423.7871605298656,
+            1260.1217321443116
+          ],
+          [
+            1421.125,
+            1260.458
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": 306,
+        "length_px": 6.575,
+        "source": "cartographic_open_ocean_mouth_extension",
+        "review_status": "smooth_outlet_extension_to_open_ocean",
+        "territory": "national",
+        "raster_scale": 12,
+        "geometry_simplification_tolerance_px": 0.08,
+        "marine_mouth_extension_for_segment_id": 248,
+        "marine_mouth_cluster_id": "RIV-CLUSTER-10"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1493.723930582151,
+            1290.42161388357
+          ],
+          [
+            1492.6583955714045,
+            1290.5479026999992
+          ],
+          [
+            1491.563873930459,
+            1290.68210532888
+          ],
+          [
+            1490.4893730516103,
+            1290.9907362994122
+          ],
+          [
+            1489.419003781531,
+            1291.3158274126936
+          ],
+          [
+            1488.3368769668962,
+            1291.4994104698233
+          ],
+          [
+            1487.292,
+            1291.708
+          ]
+        ]
+      }
     }
   ]
 }

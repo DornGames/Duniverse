@@ -19,7 +19,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw
 from shapely.geometry import LineString, Point, Polygon, box, mapping, shape
-from shapely.ops import unary_union
+from shapely.ops import nearest_points, unary_union
 
 
 ROOT = Path(__file__).resolve().parent
@@ -435,6 +435,204 @@ def apply_centerline_adjustments(features: list[dict], config: dict) -> list[dic
     return adjusted_features
 
 
+def apply_marine_mouth_extensions(
+    features: list[dict],
+    ocean,
+    marine_mouths: tuple[dict, ...] = NATIONAL_RIVER_MOUTH_ENDPOINTS,
+) -> tuple[list[dict], list[dict], list[dict]]:
+    """Connect reviewed coastal reaches to open water without breaking junctions."""
+    features_by_id = {
+        int(feature["properties"]["segment_id"]): feature
+        for feature in features
+    }
+    if len(features_by_id) != len(features):
+        raise ValueError("Marine mouth repair requires unique river segment ids")
+
+    next_segment_id = max(features_by_id, default=0) + 1
+    extensions = []
+    extension_records = []
+    effective_mouths = []
+    inset_px = 2.0
+    minimum_gap_px = 0.75
+
+    for mouth in marine_mouths:
+        segment_id = int(mouth["segment_id"])
+        side = str(mouth["endpoint"])
+        feature = features_by_id.get(segment_id)
+        if feature is None:
+            raise ValueError(f"Marine mouth references missing river segment {segment_id}")
+        lines = line_parts(shape(feature["geometry"]))
+        if len(lines) != 1:
+            raise ValueError(f"Marine mouth repair requires one line for segment {segment_id}")
+        line = lines[0]
+        coordinates = [(float(x), float(y)) for x, y, *_ in line.coords]
+        if side not in {"start", "end"}:
+            raise ValueError(f"Unknown marine mouth endpoint {side!r} on segment {segment_id}")
+        endpoint = coordinates[0] if side == "start" else coordinates[-1]
+        point = Point(endpoint)
+        gap_px = point.distance(ocean)
+        if gap_px <= minimum_gap_px:
+            effective_mouths.append(dict(mouth))
+            continue
+
+        shore = nearest_points(point, ocean)[1]
+        toward_sea = (shore.x - point.x, shore.y - point.y)
+        gap_to_shore = math.hypot(*toward_sea)
+        if gap_to_shore <= 1e-9:
+            effective_mouths.append(dict(mouth))
+            continue
+        sea_direction = (toward_sea[0] / gap_to_shore, toward_sea[1] / gap_to_shore)
+        target = (
+            shore.x + sea_direction[0] * inset_px,
+            shore.y + sea_direction[1] * inset_px,
+        )
+        route_distance = math.dist(endpoint, target)
+
+        if side == "start":
+            inward_coordinates = coordinates[1:]
+        else:
+            inward_coordinates = list(reversed(coordinates[:-1]))
+        neighbour = next(
+            (coordinate for coordinate in inward_coordinates
+             if math.dist(endpoint, coordinate) > 1e-4),
+            None,
+        )
+        if neighbour is None:
+            flow_direction = sea_direction
+        elif side == "start":
+            dx, dy = endpoint[0] - neighbour[0], endpoint[1] - neighbour[1]
+            magnitude = math.hypot(dx, dy)
+            flow_direction = (dx / magnitude, dy / magnitude)
+        else:
+            dx, dy = endpoint[0] - neighbour[0], endpoint[1] - neighbour[1]
+            magnitude = math.hypot(dx, dy)
+            flow_direction = (dx / magnitude, dy / magnitude)
+
+        # When a traced spur points away from the coast, use the direct outlet
+        # direction. Otherwise the curve leaves the original bank smoothly.
+        if flow_direction[0] * sea_direction[0] + flow_direction[1] * sea_direction[1] < 0.15:
+            flow_direction = sea_direction
+        control_length = min(route_distance * 0.32, 12.0)
+        first_control = (
+            endpoint[0] + flow_direction[0] * control_length,
+            endpoint[1] + flow_direction[1] * control_length,
+        )
+        second_control = (
+            target[0] - sea_direction[0] * control_length,
+            target[1] - sea_direction[1] * control_length,
+        )
+        normal = (-sea_direction[1], sea_direction[0])
+        lateral_amplitude = min(1.6, route_distance * 0.025)
+        sample_count = max(6, math.ceil(route_distance / 4.0))
+        route = []
+        for index in range(sample_count + 1):
+            fraction = index / sample_count
+            inverse = 1.0 - fraction
+            x = (
+                inverse**3 * endpoint[0]
+                + 3 * inverse**2 * fraction * first_control[0]
+                + 3 * inverse * fraction**2 * second_control[0]
+                + fraction**3 * target[0]
+            )
+            y = (
+                inverse**3 * endpoint[1]
+                + 3 * inverse**2 * fraction * first_control[1]
+                + 3 * inverse * fraction**2 * second_control[1]
+                + fraction**3 * target[1]
+            )
+            # A very small S-shaped drift keeps the open reach from looking
+            # ruler-straight while preserving both mouth and river tangents.
+            lateral = lateral_amplitude * math.sin(math.tau * fraction) * math.sin(math.pi * fraction)
+            route.append((x + normal[0] * lateral, y + normal[1] * lateral))
+        route[0] = endpoint
+        route[-1] = target
+
+        if side == "start":
+            extension_coordinates = list(reversed(route))
+            outlet_side = "start"
+        else:
+            extension_coordinates = route
+            outlet_side = "end"
+        extension_line = LineString(extension_coordinates)
+        extension_id = next_segment_id
+        next_segment_id += 1
+        extension = {
+            "type": "Feature",
+            "properties": {
+                **feature["properties"],
+                "segment_id": extension_id,
+                "length_px": round(extension_line.length, 3),
+                "source": "cartographic_open_ocean_mouth_extension",
+                "review_status": "smooth_outlet_extension_to_open_ocean",
+                "marine_mouth_extension_for_segment_id": segment_id,
+                "marine_mouth_cluster_id": mouth["cluster_id"],
+            },
+            "geometry": mapping(extension_line),
+        }
+        extensions.append(extension)
+        features_by_id[extension_id] = extension
+        effective_mouths.append({
+            **mouth,
+            "segment_id": extension_id,
+            "endpoint": outlet_side,
+        })
+        extension_records.append({
+            "cluster_id": mouth["cluster_id"],
+            "original_segment_id": segment_id,
+            "extension_segment_id": extension_id,
+            "endpoint": side,
+            "source_gap_px": round(gap_px, 2),
+            "extension_length_px": round(extension_line.length, 2),
+            "ocean_inset_px": inset_px,
+            "new_mouth_xy": [round(value, 2) for value in target],
+        })
+
+    return [*features, *extensions], effective_mouths, extension_records
+
+
+def validate_marine_mouth_connections(
+    rivers: list[dict],
+    channels: list[dict],
+    ocean,
+    marine_mouths: tuple[dict, ...] | list[dict],
+) -> list[dict]:
+    """Confirm every reviewed river mouth reaches the open-ocean fill."""
+    rivers_by_id = {
+        int(feature["properties"]["segment_id"]): feature
+        for feature in rivers
+    }
+    channels_by_segment = {
+        int(segment_id): shape(feature["geometry"])
+        for feature in channels
+        for segment_id in feature["properties"].get("segment_ids", [])
+    }
+    checks = []
+    disconnected = []
+    for mouth in marine_mouths:
+        segment_id = int(mouth["segment_id"])
+        feature = rivers_by_id[segment_id]
+        line = line_parts(shape(feature["geometry"]))[0]
+        coordinate = line.coords[0 if mouth["endpoint"] == "start" else -1]
+        endpoint = Point(coordinate)
+        channel = channels_by_segment.get(segment_id)
+        centerline_gap = endpoint.distance(ocean)
+        channel_connected = channel is not None and channel.intersects(ocean)
+        connected = centerline_gap <= 0.05 and channel_connected
+        checks.append({
+            "cluster_id": mouth["cluster_id"],
+            "segment_id": segment_id,
+            "endpoint": mouth["endpoint"],
+            "centerline_to_ocean_gap_px": round(centerline_gap, 3),
+            "channel_intersects_ocean": channel_connected,
+            "connected": connected,
+        })
+        if not connected:
+            disconnected.append(f"{mouth['cluster_id']} segment {segment_id}")
+    if disconnected:
+        raise ValueError("Disconnected reviewed marine mouths: " + ", ".join(disconnected))
+    return checks
+
+
 def reach_endpoint(features_by_id: dict[int, dict], endpoint: dict) -> tuple[Point, float]:
     segment_id = int(endpoint["segment_id"])
     side = str(endpoint["endpoint"])
@@ -624,6 +822,7 @@ def river_network_forest(
                 marine_candidates,
                 key=lambda item: (item[0], -sink_proximity(item[1]), -item[1][1], -item[1][0]),
             )
+            root_height_m = 0.0
         else:
             leaves = [node for node in nodes if len(adjacency[node]) == 1]
             if not leaves:
@@ -643,7 +842,7 @@ def river_network_forest(
                 outlet_candidates,
                 key=lambda node: (sink_proximity(node), leaf_heights[node], node[1], node[0]),
             )
-        root_height_m = terrain_height_at(grid, *node_coordinates[root])
+            root_height_m = terrain_height_at(grid, *node_coordinates[root])
 
         parent: dict[tuple[float, float], tuple[float, float] | None] = {root: None}
         parent_segment: dict[tuple[float, float], int] = {}
@@ -859,11 +1058,12 @@ def build_national_river_width_config(
     lakes: list[dict],
     regions: list[dict],
     grid: dict,
+    marine_mouths: tuple[dict, ...] | list[dict] = NATIONAL_RIVER_MOUTH_ENDPOINTS,
 ) -> dict:
     """Extend the reviewed Q2 profiles to every national river reach."""
     config = json.loads(json.dumps(q2_config))
     q2_profiles = q2_config["reach_profiles_px"]
-    forest = river_network_forest(rivers, country_outline, lakes, grid)
+    forest = river_network_forest(rivers, country_outline, lakes, grid, tuple(marine_mouths))
     reach_profiles = {}
     reach_component = {}
     adjustment_candidates = []
@@ -1075,7 +1275,7 @@ def build_national_river_width_config(
                     "max_width_difference_px": 0.035,
                 })
 
-        for mouth in NATIONAL_RIVER_MOUTH_ENDPOINTS:
+        for mouth in marine_mouths:
             segment_id = int(mouth["segment_id"])
             if segment_id not in segment_ids or component["reach_source_counts"][segment_id] <= 0:
                 continue
@@ -2287,19 +2487,20 @@ def main() -> None:
     region_features = read_fc(DATA / "administrative_regions.geojson")["features"]
     outline_features = read_fc(DATA / "national_outline.geojson")["features"]
     country_outline = unary_union([shape(feature["geometry"]) for feature in outline_features])
+    ocean_features = read_fc(DATA / "ocean_water.geojson")["features"]
+    ocean_surface = unary_union([shape(feature["geometry"]) for feature in ocean_features])
+    river_features, marine_mouths, marine_outlet_extensions = apply_marine_mouth_extensions(
+        river_features, ocean_surface,
+    )
     terrain_grid = relief_elevation_grid()
     national_width_config = build_national_river_width_config(
         river_features, q2_width_config, country_outline, lakes,
-        region_features, terrain_grid,
+        region_features, terrain_grid, marine_mouths,
     )
+    national_width_config["marine_outlet_extensions"] = marine_outlet_extensions
     river_features = apply_centerline_adjustments(river_features, national_width_config)
     national_topology_checks = validate_channel_topology(river_features, national_width_config)
     q2_topology_checks = validate_channel_topology(river_features, q2_width_config)
-    (DATA / "river_widths_national.json").write_text(
-        json.dumps(national_width_config, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-        newline="\n",
-    )
     seasonal = seasonal_features()
     cross_border_fc = read_fc(DATA / "cross_border_rivers.geojson")
     # Exclude raster fragments that exactly repeat the seasonal dash strokes.
@@ -2332,11 +2533,20 @@ def main() -> None:
         river_features, q2_river_channels, region_features, q2_width_config,
     )
     river_channels = river_channel_features(river_features, national_width_config)
+    marine_outlet_connections = validate_marine_mouth_connections(
+        river_features, river_channels, ocean_surface, marine_mouths,
+    )
+    national_width_config["marine_outlet_connections"] = marine_outlet_connections
     river_islands = river_island_features(
         river_features, river_channels, region_features, national_width_config,
     )
     lake_islands = lake_island_features(lakes, region_features, q2_width_config)
     lake_island_creeks = lake_island_creek_features(lake_islands, q2_width_config)
+    (DATA / "river_widths_national.json").write_text(
+        json.dumps(national_width_config, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     write_fc(DATA / "river_channels_q2.geojson", "quadrant_ii_variable_width_river_channels", q2_river_channels)
     write_fc(DATA / "river_islands_q2.geojson", "quadrant_ii_river_islands", q2_river_islands)
     write_fc(DATA / "river_channels_national.geojson", "national_variable_width_river_channels", river_channels)

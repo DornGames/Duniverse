@@ -9,7 +9,7 @@
   "unique_region_codes": 45,
   "region_code_label_instances": 46,
   "national_outline_components": 8,
-  "river_line_segments": 223,
+  "river_line_segments": 228,
   "lake_candidates": 12,
   "black_marker_candidates": 260,
   "red_marker_candidates": 43,
@@ -553,7 +553,7 @@
       "node_gap_px": 0.0
     }
   ],
-  "national_river_width_reach_count": 223,
+  "national_river_width_reach_count": 228,
   "national_river_channel_networks": [
     "national_basin_001",
     "national_basin_004",
@@ -1307,6 +1307,22 @@
       "node_gap_px": 0.0
     },
     {
+      "id": "national_basin_008_through_1356.2_353.0",
+      "continuous_widths_px": [
+        1.234,
+        1.234
+      ],
+      "node_gap_px": 0.0
+    },
+    {
+      "id": "national_basin_008_through_1356.2_353.0",
+      "continuous_widths_px": [
+        1.234,
+        1.234
+      ],
+      "node_gap_px": 0.0
+    },
+    {
       "id": "tm_mainstem_through_1053.8_513.9",
       "continuous_widths_px": [
         1.08,
@@ -1319,6 +1335,22 @@
       "continuous_widths_px": [
         1.08,
         1.08
+      ],
+      "node_gap_px": 0.0
+    },
+    {
+      "id": "national_basin_030_through_1329.5_435.2",
+      "continuous_widths_px": [
+        2.0,
+        2.0
+      ],
+      "node_gap_px": 0.0
+    },
+    {
+      "id": "national_basin_030_through_1329.5_435.2",
+      "continuous_widths_px": [
+        2.0,
+        2.0
       ],
       "node_gap_px": 0.0
     },
@@ -1403,6 +1435,22 @@
       "node_gap_px": 0.0
     },
     {
+      "id": "national_basin_185_through_1423.5_1112.3",
+      "continuous_widths_px": [
+        1.494,
+        1.494
+      ],
+      "node_gap_px": 0.0
+    },
+    {
+      "id": "national_basin_185_through_1423.5_1112.3",
+      "continuous_widths_px": [
+        1.494,
+        1.494
+      ],
+      "node_gap_px": 0.0
+    },
+    {
       "id": "national_basin_198_through_874.8_1379.5",
       "continuous_widths_px": [
         0.743,
@@ -1447,6 +1495,22 @@
       "continuous_widths_px": [
         0.743,
         0.743
+      ],
+      "node_gap_px": 0.0
+    },
+    {
+      "id": "national_basin_235_through_1421.1_1260.5",
+      "continuous_widths_px": [
+        1.076,
+        1.076
+      ],
+      "node_gap_px": 0.0
+    },
+    {
+      "id": "national_basin_247_through_1487.3_1291.7",
+      "continuous_widths_px": [
+        1.685,
+        1.685
       ],
       "node_gap_px": 0.0
     },
@@ -1527,14 +1591,15 @@
       "segment_ids": [
         8,
         12,
-        21
+        21,
+        302
       ],
       "headwater_count": 2,
       "outlet_xy": [
-        1356.21,
-        353.04
+        1361.63,
+        360.27
       ],
-      "outlet_height_m": 1421.68,
+      "outlet_height_m": 0.0,
       "base_width_px": 0.55
     },
     {
@@ -1605,7 +1670,7 @@
         1252.96,
         488.21
       ],
-      "outlet_height_m": 2490.96,
+      "outlet_height_m": 0.0,
       "base_width_px": 0.4
     },
     {
@@ -1619,14 +1684,15 @@
         39,
         42,
         46,
-        47
+        47,
+        303
       ],
       "headwater_count": 5,
       "outlet_xy": [
-        1329.48,
-        435.22
+        1345.98,
+        432.7
       ],
-      "outlet_height_m": 98.28,
+      "outlet_height_m": 0.0,
       "base_width_px": 0.55
     },
     {
@@ -1686,7 +1752,7 @@
         1384.13,
         743.55
       ],
-      "outlet_height_m": 0.54,
+      "outlet_height_m": 0.0,
       "base_width_px": 0.55
     },
     {
@@ -1989,7 +2055,7 @@
         1292.59,
         975.25
       ],
-      "outlet_height_m": 1.41,
+      "outlet_height_m": 0.0,
       "base_width_px": 0.55
     },
     {
@@ -2075,14 +2141,15 @@
         191,
         193,
         195,
-        301
+        301,
+        304
       ],
       "headwater_count": 4,
       "outlet_xy": [
-        1423.54,
-        1112.29
+        1427.79,
+        1111.02
       ],
-      "outlet_height_m": 1.41,
+      "outlet_height_m": 0.0,
       "base_width_px": 0.55
     },
     {
@@ -2315,14 +2382,15 @@
         236,
         237,
         253,
-        254
+        254,
+        305
       ],
       "headwater_count": 1,
       "outlet_xy": [
-        1421.12,
-        1260.46
+        1477.96,
+        1249.63
       ],
-      "outlet_height_m": -29.22,
+      "outlet_height_m": 0.0,
       "base_width_px": 0.55
     },
     {
@@ -2349,14 +2417,15 @@
         291,
         292,
         294,
-        298
+        298,
+        306
       ],
       "headwater_count": 4,
       "outlet_xy": [
-        1487.29,
-        1291.71
+        1493.72,
+        1290.42
       ],
-      "outlet_height_m": -0.05,
+      "outlet_height_m": 0.0,
       "base_width_px": 0.55
     },
     {
