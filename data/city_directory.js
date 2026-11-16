@@ -775,7 +775,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "邦普省",
     postalCode: "437050",
     areaKm2: null,
-    description: null,
+    description: "东边海上的季风吹来，收到高原与山峰的阻拦，在半山腰形成层层叠叠的云海，让这里终年环绕着梦幻般的云彩。",
     pointX: 1360.02,
     pointY: 671.59
   },
@@ -1087,7 +1087,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "大尔省",
     postalCode: "223020",
     areaKm2: null,
-    description: null,
+    description: "𣿅国航天重镇。贾斯帕大学本校区位于此，主攻贾斯帕大学传统专业项目：航空航天与星际航行。校训“长大开飞船”，设立专门15年一贯制班级，从幼儿园结束开始选拔顶尖人才，从小学阶段开始培养至大学毕业，毕业即是星际航行专家。",
     pointX: 647.0,
     pointY: 376.76
   },
@@ -1711,7 +1711,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210250",
     areaKm2: null,
-    description: null,
+    description: "坐落于铁山山脉深处，铁山、三角山、大象山和老虎山在四周聚集，石川、云川和逶迤河三条河流由此流经并汇集，形成爪形。本市由此得名。",
     pointX: 1095.15,
     pointY: 399.15
   },
@@ -1724,7 +1724,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "塔马省",
     postalCode: "210260",
     areaKm2: null,
-    description: null,
+    description: "名曰“华美的树林”，北铁山山脉广布的森林带来丰富的生物多样性，促进本地生物与自然科学研究的发展。",
     pointX: 985.9,
     pointY: 321.62
   },
@@ -1750,7 +1750,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "拉基省",
     postalCode: "321020",
     areaKm2: null,
-    description: null,
+    description: "以其大面积的现代化农村地区而文明，其城市综合实力均匀分布在其下辖的多个属。因此，这里的居民常被其他地方的人称为“乡下人”。",
     pointX: 763.59,
     pointY: 519.98
   },
@@ -1763,7 +1763,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "拉基省",
     postalCode: "321030",
     areaKm2: null,
-    description: null,
+    description: "位于桔梗山山脚下，在城市中任何地方都可以见到秀美的桔梗山，故名。《𣿅子》记载：或问𣿅子以《花火》之桔梗：“汝知桔梗花语否？”𣿅子曰：“然！且白桔梗也。”此地坐拥桔梗山，故以桔梗出名，而白桔梗最为上乘。",
     pointX: 870.15,
     pointY: 516.85
   },
@@ -1854,7 +1854,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "西𣿅省",
     postalCode: "322010",
     areaKm2: null,
-    description: null,
+    description: "西𣿅城市群的重要组成部分，同瓦莱莉市、新瓦莱莉市和梅马市，共同组成西𣿅地区强劲的经济发展引擎。本市在西𣿅城市群中主要接纳第一产业和第三产业，发展绿洲农业，也是前往西𣿅沙漠地区旅游的门户城市。",
     pointX: 618.0,
     pointY: 674.2
   },
@@ -1906,7 +1906,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "西𣿅省",
     postalCode: "322050",
     areaKm2: null,
-    description: null,
+    description: "“扈江离与辟芷兮，纫秋兰以为佩。”白芷与美人在此皆出名，世人常评价这里的人和景色“太美”。",
     pointX: 530.0,
     pointY: 702.5
   },
@@ -1919,7 +1919,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "瓦莱莉省",
     postalCode: "312010",
     areaKm2: null,
-    description: null,
+    description: "著名的𣿅国重工业之城，工业强市，超级大都会。大量工业在此聚集促进产业综合协调发展，同时兼顾国防与军工，保障国家安全。是西𣿅城市群的重要组成部分，最强发展动力，在其中主导第二产业。瓦莱莉大学是𣿅国著名工业高校，为本地产业持续输送人才。",
     pointX: 610.9,
     pointY: 712.9
   },
@@ -1932,7 +1932,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "瓦莱莉省",
     postalCode: "312050",
     areaKm2: null,
-    description: null,
+    description: "由于瓦莱莉市工业聚集，故其他产业服务与城市功能分离至此，组成副省级行政中心级别城市。瓦莱希雅大学是本地的𣿅国著名大学，排名常年全国靠前，语言学研究全国第一，𣿅语的相关标准由此制定。",
     pointX: 591.0,
     pointY: 697.24
   },
@@ -1945,7 +1945,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "瓦莱莉省",
     postalCode: "312020",
     areaKm2: null,
-    description: null,
+    description: "四望黄沙，水源稀缺，却偏偏取名“绿水”。这名字不是写实，而是志向：让绿与水在这片旱地上生根。城市依有限的水源点布局，节水设施与集水系统遍布全城，绿洲农业、滴灌技术与水循环利用构成城市运转的命脉，每一滴水都被珍视到极致。是国家级水管理示范城市。",
     pointX: 473.85,
     pointY: 738.85
   },
@@ -1958,7 +1958,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "瓦莱莉省",
     postalCode: "312030",
     areaKm2: null,
-    description: null,
+    description: "钒矿与铝土资源构成本地产业的根基，从采选、冶炼到精深加工，钒铝产业链完整布局。",
     pointX: 580.26,
     pointY: 860.74
   },
@@ -1971,7 +1971,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "瓦莱莉省",
     postalCode: "312040",
     areaKm2: null,
-    description: null,
+    description: "铒、钇属稀土家族，是高端磁材、激光晶体、荧光材料与国防军工领域不可替代的关键元素。铒钇市的资源地位，已上升至国家战略层面。城市因稀土而立、因稀土而重，矿区、冶炼分离基地与稀土新材料研究院沿城市产业带布局，从采选、分离到精深加工，铒钇产业链完整可控，是国家稀土资源保障体系中的重要支点。",
     pointX: 792.76,
     pointY: 920.0
   },
@@ -2036,7 +2036,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "梅马省",
     postalCode: "314010",
     areaKm2: null,
-    description: null,
+    description: "西𣿅城市群的重要组成部分，𣿅国著名城市，同时接纳城市群内的第一、第二和第三产业。由于在城市群中最接近首都圈地区，因此产业更加趋近于轻工业和下游产业链。",
     pointX: 634.0,
     pointY: 684.9
   },
@@ -2075,7 +2075,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "梅马省",
     postalCode: "314040",
     areaKm2: null,
-    description: null,
+    description: "𣿅国著名城市，𣿅国历史名城，国家级物理与航天重城。贾斯帕大学主校区位于此，是𣿅国著名大学，基础理学重镇，物理与天文研究享誉全国。室温超导与行星科学的突破性成果，多次从这里走向世界。",
     pointX: 772.0,
     pointY: 746.76
   },
@@ -2088,7 +2088,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "梅马省",
     postalCode: "314050",
     areaKm2: null,
-    description: null,
+    description: "纪念𣿅国两位圣人：今子和瑞丰子。",
     pointX: 903.76,
     pointY: 905.0
   },
@@ -2348,7 +2348,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "福利省",
     postalCode: "716030",
     areaKm2: null,
-    description: null,
+    description: "𣿅国诗曰：“花火燃尽原神启，星轨漫游宇宙。挥笔墨，书狂态、江山尽是诙谐镂。”焰火燃尽处，是万物初启的奇想；星轨漫游时，是仰望宇宙的辽阔；挥笔墨之际，是书写狂态的豪情；江山诙谐镂，是笑看人间的达观。花火市以焰火艺术立名。焰火工坊与燃放基地沿城而设，中小学开设焰火工艺与安全课程，社区节庆必有焰火相伴，市民以火树银花为城市最盛大的语言。城市又以星空与宇宙想象为魂，天文台、星轨观测点与科幻创作社遍布全城，市民在观星与畅想中延续“星轨漫游宇宙”的浪漫。",
     pointX: 1056.15,
     pointY: 1263.15
   },
@@ -2361,7 +2361,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "福利省",
     postalCode: "716040",
     areaKm2: null,
-    description: null,
+    description: "𣿅国著名城市，𣿅国历史文化名城。城内流传着一种传统文化“唾礼”，是𣿅国非物质文化遗产。每逢节庆，全城市民齐聚广场，以吐口水的方式互致祝福。这一传统看似粗朴，实则大有讲究：古人认为唾液是生命之津，吐向他人便是把最珍贵的生气分赠出去，久而久之，“唾礼”成了这座城市最隆重的礼节。近年来，总统亲临本城，亲自提出针对性方针，针对此地区位优势，将本市传统产业转型成新型化产业，以传统美术结合前沿信息技术，实现了本市的成功转型，是城市转型的成功案例，现已成为了𣿅国重要的信息产业基地，充分贯彻“将信息技术与美术融合”的国家政策。",
     pointX: 1136.15,
     pointY: 1245.15
   },
@@ -2374,7 +2374,7 @@ window.DUNIVERSE_CITY_DIRECTORY = [
     adminName: "福利省",
     postalCode: "716050",
     areaKm2: null,
-    description: null,
+    description: "名自“怡然自乐”。城中人从容自适，街巷里怡然自得，日子过得不急不缓，处处是安居乐业的从容气象。城市治理求完备，公共服务求无缺，市民生活求踏实——正如实数填满整条数轴，怡然市也让每一个人在这座城市里找到自己的位置。",
     pointX: 1189.4,
     pointY: 1078.24
   },
