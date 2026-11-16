@@ -354,6 +354,48 @@ def lake_water_mask_full() -> np.ndarray:
     return np.asarray(image) > 0
 
 
+def national_river_channel_masks_full() -> tuple[np.ndarray, np.ndarray]:
+    """Rasterize mapped river water and the outlet basins used for estuary shading."""
+    channel_data = json.loads(
+        (DATA / "river_channels_national.geojson").read_text(encoding="utf-8")
+    )
+    width_config = json.loads(
+        (DATA / "river_widths_national.json").read_text(encoding="utf-8")
+    )
+    mouth_segment_ids = {
+        int(mouth["segment_id"])
+        for mouth in width_config.get("marine_mouths", [])
+    }
+    channel_image = Image.new("L", (WIDTH, HEIGHT), 0)
+    mouth_image = Image.new("L", (WIDTH, HEIGHT), 0)
+    channel_draw = ImageDraw.Draw(channel_image)
+    mouth_draw = ImageDraw.Draw(mouth_image)
+
+    def draw_feature(draw: ImageDraw.ImageDraw, geometry: dict) -> None:
+        geometry_type = geometry.get("type")
+        if geometry_type == "MultiPolygon":
+            polygons = geometry.get("coordinates", [])
+        elif geometry_type == "Polygon":
+            polygons = [geometry.get("coordinates", [])]
+        else:
+            return
+        for rings in polygons:
+            if not rings:
+                continue
+            draw.polygon([tuple(point) for point in rings[0]], fill=255)
+            for hole in rings[1:]:
+                draw.polygon([tuple(point) for point in hole], fill=0)
+
+    for feature in channel_data.get("features", []):
+        properties = feature.get("properties") or {}
+        segment_ids = {int(segment_id) for segment_id in properties.get("segment_ids", [])}
+        draw_feature(channel_draw, feature.get("geometry") or {})
+        if segment_ids & mouth_segment_ids:
+            draw_feature(mouth_draw, feature.get("geometry") or {})
+
+    return np.asarray(channel_image) > 0, np.asarray(mouth_image) > 0
+
+
 def official_river_water_mask_full(
     land_mask: np.ndarray,
     ocean_mask: np.ndarray,
@@ -1173,6 +1215,7 @@ def main():
     river_water_mask_full = official_river_water_mask_full(
         land_full, ocean_water_full, lake_mask_full
     )
+    river_channel_mask_full, marine_mouth_channel_mask_full = national_river_channel_masks_full()
     xs = np.arange(0, WIDTH, STEP, dtype=np.float32)
     ys = np.arange(0, HEIGHT, STEP, dtype=np.float32)
     X, Y = np.meshgrid(xs, ys)
@@ -1251,6 +1294,7 @@ def main():
         + json.dumps(mountain_data, separators=(",", ":"), ensure_ascii=False)
         + ";\n",
         encoding="utf-8",
+        newline="\n",
     )
     peaks = []
     for feature in mountain_data.get("features", []):
@@ -1288,6 +1332,7 @@ def main():
         + json.dumps(relief_city_coordinate_data, ensure_ascii=False, separators=(",", ":"))
         + ";\n",
         encoding="utf-8",
+        newline="\n",
     )
     peak_height_ceiling_m = max((peak[3] for peak in peaks), default=ELEVATION_MIN_M)
     ELEVATION_MAX_M = max(ELEVATION_MAX_M, peak_height_ceiling_m * 1.4)
@@ -2134,7 +2179,12 @@ def main():
     elevation_rgba = np.zeros((*z_full.shape, 4), dtype=np.uint8)
     elevation_rgba[:, :, 0] = (elevation_code >> 8).astype(np.uint8)
     elevation_rgba[:, :, 1] = (elevation_code & 255).astype(np.uint8)
-    elevation_query_mask = relief_sample_mask & ~river_water_mask_full
+    elevation_query_mask = (
+        relief_sample_mask
+        & ~river_water_mask_full
+        & ~river_channel_mask_full
+        & ~ocean_water_full
+    )
     elevation_rgba[:, :, 3] = np.where(elevation_query_mask, 255, 0).astype(np.uint8)
     Image.fromarray(elevation_rgba, "RGBA").save(DATA / "relief_elevation.png", optimize=True)
     elevation_source = {
@@ -2156,7 +2206,6 @@ def main():
     )
 
     # Transparent hypsometric tint and soft directional shading.
-    land_full_u8 = land_full.astype(np.uint8)
     gx = cv2.Sobel(z_full, cv2.CV_32F, 1, 0, ksize=3) / 8.0
     gy = cv2.Sobel(z_full, cv2.CV_32F, 0, 1, ksize=3) / 8.0
     norm = np.sqrt(gx * gx + gy * gy) + 1e-6
@@ -2191,9 +2240,26 @@ def main():
     )
     rgb = np.stack([np.interp(z_full, stops, colors[:, i]) for i in range(3)], axis=-1)
     rgb = np.clip(rgb * shade[:, :, None], 0, 255).astype(np.uint8)
+    marine_mouth_channel_distance_full = ndimage.distance_transform_edt(
+        ~marine_mouth_channel_mask_full
+    ).astype(np.float32)
+    coastal_estuary_relief_exclusion = (
+        land_full
+        & (z_full <= 180.0)
+        & (coast_distance_full <= 60.0)
+        & (marine_mouth_channel_distance_full <= 22.0)
+    )
+    terrain_tint_mask = (
+        land_full
+        & ~ocean_water_full
+        & ~lake_mask_full
+        & ~river_water_mask_full
+        & ~river_channel_mask_full
+        & ~coastal_estuary_relief_exclusion
+    )
     rgba = np.zeros((HEIGHT, WIDTH, 4), dtype=np.uint8)
     rgba[:, :, :3] = rgb
-    rgba[:, :, 3] = np.where(land_full_u8 > 0, 56, 0).astype(np.uint8)
+    rgba[:, :, 3] = np.where(terrain_tint_mask, 56, 0).astype(np.uint8)
     Image.fromarray(rgba, "RGBA").save(DATA / "relief_tint.png", optimize=True)
 
     peak_xy = np.asarray([[p[0], p[1]] for p in peaks], dtype=float)
@@ -2667,6 +2733,7 @@ def main():
             "elevationScalePolicy": "The raster scale expands to 1.4 times the highest mapped peak; no Earth-based maximum elevation is imposed.",
             "plateauEdgeStyle": "Irregular steep escarpment with river-cut passes and rapid relief change at the official northern-plateau boundary.",
             "coastalElevationPolicy": "Non-mountain coast terrain includes a varied 0–4 m strip at the shore, rising gently inland and staying below 50 m by about 20 source pixels; northern plateau nearshore relief is capped separately while retaining a steep escarpment.",
+            "coastalEstuaryReliefPolicy": "Mapped marine-mouth basins suppress terrain tint within 22 source pixels of outlet channels and 60 pixels of open coast when land elevation is below 180 m.",
             "easternLowlandPolicy": "Non-mountain terrain in the east and southeast remains below 50 m; the first 20 source pixels from shore taper gently from near sea level to below 50 m.",
             "plainElevationPolicy": "Most non-mountain terrain in the mapped central plain remains below 20 m with broad low-amplitude undulation; sparse seeded, unnamed low hummocks are the limited exceptions, with no quantized elevation tiers.",
             "fineReliefDetail": "Fixed-seed, low-amplitude multiscale terrain detail; two short pre-existing city-divide sections receive tapered low ridges, while all other borders follow the terrain without artificial elevation. Slope-based lighting keeps low hills legible at map zoom without drawing contours.",
@@ -2676,7 +2743,7 @@ def main():
             "cityNeighborhoodRadiusKmApprox": 93,
             "heightUnit": "metres, illustrative absolute scale",
             "elevationRaster": "data/relief_elevation.js; full-resolution 16-bit elevation with official river-water mask and flow-conditioned river surfaces; retained as terrain-model and hydrology-audit data",
-            "elevationSampleImage": "data/relief_elevation.png; 16-bit click-sampling image with alpha mask excluding rivers and open water, retained lakes include basin-floor elevations",
+            "elevationSampleImage": "data/relief_elevation.png; 16-bit click-sampling image with alpha mask excluding official river strokes, variable-width river-channel polygons, and open water; retained lakes include basin-floor elevations",
             "sources": [
                 "data/mountain_peaks.js",
                 "data/relief_mountain_peaks.js (relief-copy peak positions and northern-plateau extension classification)",

@@ -1112,20 +1112,22 @@ const COASTAL_FILL_LOD_TOLERANCES=[.12,.25,.5,1,2,4,8];
 const DETAIL_LAYERS=new Set(['regionCodes','regionNames','regionTongueNames','blackMarkers']);
 const PLACE_NAME_DRAW_GROUPS=new Set(['majorRegionNames','regionNames','regionTongueNames','provinceCapitalLabels','provinceCapitalTongueLabels','nationalCapitalLabels','nationalCapitalTongueLabels','cityLabels','cityTongueLabels','mountainPeakLabels','mountainElevationLabels','lakeNameLabels','mountainRangeLabels','terrainRegionLabels']);
 const DRAW_ORDER=new Map([
-  // Natural surfaces, waterways, and landform labels stay below borders and routes.
+  // Natural surfaces and landforms stay below borders and routes.
   ['oceanFill',0],['coastlineFills',1],['islandFills',1],['regions',1],['graticule',1.5],
   ['lakes',2],['lakeIslandsQ2',2],['lakeIslandCreeksQ2',2.5],['rivers',3],['riverChannels',3],['riverIslands',3],
   ['canals',4],['canalTicks',5],['seasonalRivers',6],['crossBorderRivers',7],['mountainPeaks',8],['mountainPeakMarkers',8],
-  ['majorRegionNames',9],['mountainRanges',10],['mountainRangeLabels',10],['terrainRegions',11],['terrainRegionLabels',11],
-  ['mountainPeakLabels',12],['mountainElevations',13],['mountainElevationLabels',13],['lakeNames',14],['lakeNameLabels',14],
+  ['mountainRanges',10],['terrainRegions',11],['mountainElevations',13],['lakeNames',14],
   ['plateauBoundaryHalo',15],['plateauBoundary',15.1],['coastline',18],
-  // Administrative outlines and names are drawn over the natural map content.
+  // Administrative outlines stay below routes, markers, and every place name.
   ['neighborBorders',20],['nationalBorder',20.5],['provinceBoundaries',21],['cityBoundaries',21.5],
-  ['majorRegionBoundaries',22],['regionCodes',23],['regionNames',24],['regionTongueNames',25],
-  // Highways are inserted immediately before city markers; all city name layers follow them.
+  ['majorRegionBoundaries',22],
+  // Highways are inserted immediately before markers; every place name is drawn last.
   ['blackMarkers',30],['redMarkers',30.5],['specialCapitalMarker',30.6],['nationalCapitalMarker',30.7],
-  ['provinceCapitalLabels',40],['provinceCapitalTongueLabels',41],['nationalCapitalLabels',42],['nationalCapitalTongueLabels',43],
-  ['cityLabels',44],['cityTongueLabels',45]
+  ['majorRegionNames',60],['mountainRangeLabels',61],['terrainRegionLabels',62],
+  ['mountainPeakLabels',63],['mountainElevationLabels',64],['lakeNameLabels',65],
+  ['regionCodes',66],['regionNames',67],['regionTongueNames',68],
+  ['provinceCapitalLabels',69],['provinceCapitalTongueLabels',70],['nationalCapitalLabels',71],['nationalCapitalTongueLabels',72],
+  ['cityLabels',73],['cityTongueLabels',74]
 ]);
 let vb={x:0,y:0,w:MAP_W,h:MAP_H};
 let viewInitialized=false;
@@ -1146,7 +1148,7 @@ function updateMapLoading(title,detail){
   if(mapLoadingDetail)mapLoadingDetail.textContent=detail;
 }
 if(window.DUNIVERSE_RELIEF){
-  reliefRasterImage=new Image();reliefRasterImage.onload=()=>draw();reliefRasterImage.src='data/relief_tint.png';
+  reliefRasterImage=new Image();reliefRasterImage.onload=()=>draw();reliefRasterImage.src='data/relief_tint.png?v=estuary-mask-20261116';
 }
 let oceanDepthPoint=null;
 let records=[],regionRecords=[],regionBounds=new Map();
@@ -2857,7 +2859,7 @@ function loadElevationRaster(){
       }catch(error){reject(error);}
     };
     image.onerror=()=>reject(new Error('elevation image failed to load'));
-    image.src='data/relief_elevation.png';
+    image.src='data/relief_elevation.png?v=estuary-mask-20261116';
   }).catch(error=>{elevationRasterLoadPromise=null;throw error;});
   return elevationRasterLoadPromise;
 }

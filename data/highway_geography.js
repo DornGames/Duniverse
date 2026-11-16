@@ -240,7 +240,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "D9": {
       "name": "D9",
-      "lengthKm": 1453.8,
+      "lengthKm": 2225.2,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "西𣿅大区",
@@ -252,8 +252,9 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
       ],
       "cities": [
         "拉鲁斯市",
-        "六阶行列市",
+        "五阶行列市",
         "碱硼托克市",
+        "六阶行列市",
         "哥尔德市",
         "金鱼市"
       ],
@@ -1072,7 +1073,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T9": {
       "name": "T9",
-      "lengthKm": 8019.2,
+      "lengthKm": 8117.1,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "中𣿅大区",
@@ -1600,7 +1601,7 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
     },
     "T19": {
       "name": "T19",
-      "lengthKm": 14681.3,
+      "lengthKm": 14681.2,
       "lengthSource": "data/georeference.json projection.pixel_scale_km_per_px",
       "majorRegions": [
         "北𣿅大区",
@@ -1641,13 +1642,13 @@ window.DUNIVERSE_HIGHWAY_GEOGRAPHY = {
         "别林斯𣿅市",
         "欧特曼市",
         "欧干尼克市",
-        "马奇市",
         "欧榭市",
+        "马奇市",
         "莱布特瑞市",
         "巴斯鲁姆市",
         "鲁城",
-        "山林丽花市",
         "杰格市",
+        "山林丽花市",
         "顺煦竹子市",
         "拉姆达市"
       ],

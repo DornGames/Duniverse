@@ -513,61 +513,61 @@
           76.0
         ],
         "amplitudeM": 118.0,
-        "maximumAppliedM": 116.43,
+        "maximumAppliedM": 116.51,
         "widthPx": 4.8,
         "fixedSeed": 20261379,
         "crestSourcePixelXY": [
           [
-            504.71,
-            648.32
+            504.7,
+            648.29
           ],
           [
-            506.43,
-            647.27
+            506.41,
+            647.23
           ],
           [
-            508.26,
-            646.4
+            508.25,
+            646.37
           ],
           [
             510.21,
-            645.85
+            645.86
           ],
           [
-            512.15,
-            645.55
+            512.16,
+            645.61
           ],
           [
-            514.02,
-            644.88
+            514.01,
+            644.94
           ],
           [
             515.9,
-            644.08
+            644.2
           ],
           [
-            517.83,
-            643.4
+            517.89,
+            643.63
           ],
           [
-            519.71,
-            642.38
+            519.82,
+            642.51
           ],
           [
-            521.12,
-            640.71
+            521.11,
+            640.78
           ],
           [
-            522.12,
-            638.9
+            522.08,
+            639.05
           ],
           [
-            523.03,
-            637.13
+            523.22,
+            637.44
           ],
           [
-            524.34,
-            635.7
+            524.45,
+            635.86
           ]
         ],
         "reason": "A subtle interior divide between two cities, well away from mapped rivers and settlements."
@@ -599,22 +599,22 @@
           ],
           [
             619.17,
-            1228.7
+            1228.69
           ],
           [
-            618.27,
-            1230.57
+            618.26,
+            1230.56
           ],
           [
-            617.39,
-            1232.4
+            617.38,
+            1232.39
           ],
           [
-            616.52,
+            616.5,
             1234.44
           ],
           [
-            616.3,
+            616.28,
             1236.46
           ],
           [
@@ -626,15 +626,15 @@
             1240.13
           ],
           [
-            615.34,
+            615.35,
             1242.06
           ],
           [
-            614.94,
+            614.95,
             1244.01
           ],
           [
-            614.28,
+            614.29,
             1245.89
           ]
         ],
@@ -670,6 +670,7 @@
   "elevationScalePolicy": "The raster scale expands to 1.4 times the highest mapped peak; no Earth-based maximum elevation is imposed.",
   "plateauEdgeStyle": "Irregular steep escarpment with river-cut passes and rapid relief change at the official northern-plateau boundary.",
   "coastalElevationPolicy": "Non-mountain coast terrain includes a varied 0–4 m strip at the shore, rising gently inland and staying below 50 m by about 20 source pixels; northern plateau nearshore relief is capped separately while retaining a steep escarpment.",
+  "coastalEstuaryReliefPolicy": "Mapped marine-mouth basins suppress terrain tint within 22 source pixels of outlet channels and 60 pixels of open coast when land elevation is below 180 m.",
   "easternLowlandPolicy": "Non-mountain terrain in the east and southeast remains below 50 m; the first 20 source pixels from shore taper gently from near sea level to below 50 m.",
   "plainElevationPolicy": "Most non-mountain terrain in the mapped central plain remains below 20 m with broad low-amplitude undulation; sparse seeded, unnamed low hummocks are the limited exceptions, with no quantized elevation tiers.",
   "fineReliefDetail": "Fixed-seed, low-amplitude multiscale terrain detail; two short pre-existing city-divide sections receive tapered low ridges, while all other borders follow the terrain without artificial elevation. Slope-based lighting keeps low hills legible at map zoom without drawing contours.",
@@ -679,7 +680,7 @@
   "cityNeighborhoodRadiusKmApprox": 93,
   "heightUnit": "metres, illustrative absolute scale",
   "elevationRaster": "data/relief_elevation.js; full-resolution 16-bit elevation with official river-water mask and flow-conditioned river surfaces; retained as terrain-model and hydrology-audit data",
-  "elevationSampleImage": "data/relief_elevation.png; 16-bit click-sampling image with alpha mask excluding rivers and open water, retained lakes include basin-floor elevations",
+  "elevationSampleImage": "data/relief_elevation.png; 16-bit click-sampling image with alpha mask excluding official river strokes, variable-width river-channel polygons, and open water; retained lakes include basin-floor elevations",
   "sources": [
     "data/mountain_peaks.js",
     "data/relief_mountain_peaks.js (relief-copy peak positions and northern-plateau extension classification)",

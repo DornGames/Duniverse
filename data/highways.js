@@ -977,6 +977,26 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
         ],
         "points": [
           [
+            738.5,
+            727.9
+          ],
+          [
+            758.0,
+            722.4
+          ],
+          [
+            780.0,
+            719.0
+          ],
+          [
+            803.0,
+            718.0
+          ],
+          [
+            823.0,
+            719.0
+          ],
+          [
             836.5,
             720.95
           ],
@@ -4056,14 +4076,10 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
         "dashed": false
       },
       {
-        "id": "martong-to-president",
+        "id": "martong-to-xingqiong-merge",
         "role": "main",
         "stops": [
-          "马尔通市",
-          "星穹市",
-          "佩亚诺市",
-          "柯西市",
-          "总统（𣿅赫）特别市"
+          "马尔通市"
         ],
         "points": [
           [
@@ -4071,8 +4087,80 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
             854.0
           ],
           [
-            1141.9,
-            711.4
+            1068.0,
+            844.0
+          ],
+          [
+            1088.0,
+            830.0
+          ],
+          [
+            1108.0,
+            814.0
+          ],
+          [
+            1125.0,
+            795.0
+          ],
+          [
+            1137.0,
+            771.0
+          ]
+        ],
+        "closed": false,
+        "dashed": false
+      },
+      {
+        "id": "t9-t19-shared-through-xingqiong",
+        "role": "shared",
+        "stops": [
+          "星穹市"
+        ],
+        "points": [
+          [
+            1137.0,
+            771.0
+          ],
+          [
+            1138.0,
+            735.0
+          ],
+          [
+            1136.0,
+            703.0
+          ],
+          [
+            1131.0,
+            682.0
+          ]
+        ],
+        "closed": false,
+        "dashed": false
+      },
+      {
+        "id": "xingqiong-to-president",
+        "role": "main",
+        "stops": [
+          "佩亚诺市",
+          "柯西市",
+          "总统（𣿅赫）特别市"
+        ],
+        "points": [
+          [
+            1131.0,
+            682.0
+          ],
+          [
+            1136.0,
+            660.0
+          ],
+          [
+            1140.5,
+            632.0
+          ],
+          [
+            1143.0,
+            594.0
           ],
           [
             1145.8,
@@ -6104,7 +6192,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
     "color": "#c77b00",
     "parts": [
       {
-        "id": "mainline",
+        "id": "mainline-north-of-xingqiong",
         "role": "main",
         "stops": [
           "金榜市",
@@ -6113,21 +6201,7 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
           "罗尔市",
           "兰花市",
           "麦克劳林市",
-          "薛梅托克市",
-          "星穹市",
-          "立里市",
-          "圣𣿅瀚市",
-          "彤管市",
-          "别林斯𣿅市",
-          "欧特曼市",
-          "欧干尼克市",
-          "欧榭市",
-          "莱布特瑞市",
-          "巴斯鲁姆市",
-          "鲁城",
-          "杰格市",
-          "顺煦竹子市",
-          "拉姆达市"
+          "薛梅托克市"
         ],
         "points": [
           [
@@ -6225,6 +6299,21 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
           [
             1131.0,
             682.0
+          ]
+        ],
+        "closed": false,
+        "dashed": false
+      },
+      {
+        "id": "mainline-through-xingqiong-shared",
+        "role": "shared",
+        "stops": [
+          "星穹市"
+        ],
+        "points": [
+          [
+            1131.0,
+            682.0
           ],
           [
             1136.0,
@@ -6234,6 +6323,33 @@ window.DUNIVERSE_HIGHWAY_ROUTES =
             1138.0,
             735.0
           ],
+          [
+            1137.0,
+            771.0
+          ]
+        ],
+        "closed": false,
+        "dashed": false
+      },
+      {
+        "id": "mainline-south-of-xingqiong",
+        "role": "main",
+        "stops": [
+          "立里市",
+          "圣𣿅瀚市",
+          "彤管市",
+          "别林斯𣿅市",
+          "欧特曼市",
+          "欧干尼克市",
+          "欧榭市",
+          "莱布特瑞市",
+          "巴斯鲁姆市",
+          "鲁城",
+          "杰格市",
+          "顺煦竹子市",
+          "拉姆达市"
+        ],
+        "points": [
           [
             1137.0,
             771.0
