@@ -1083,6 +1083,7 @@ import './data/highway_geography.js';
 import './data/region_extrema.js';
 import './data/bathymetry.js';
 import './data/relief_mountain_peaks.js';
+import './data/mountain_peaks.js';
 import './data/lake_names.js';
 import './data/named_rivers.js';
 import './data/relief_model.js';
@@ -1184,9 +1185,10 @@ const HIGHWAY_POINT_BY_NAME=new Map(CITY_COORDINATE_DATA.cities
   .filter(entry=>entry.name&&Array.isArray(entry.sourcePixelXY)&&entry.sourcePixelXY.length===2)
   .map(entry=>[entry.name,{x:entry.sourcePixelXY[0],y:entry.sourcePixelXY[1]}]));
 const REGION_EXTREMA_BY_ID=new Map((window.DUNIVERSE_REGION_EXTREMA||{regions:[]}).regions.map(entry=>[entry.id,entry]));
+const MOUNTAIN_PEAK_DESCRIPTIONS=new Map((window.DUNIVERSE_MOUNTAIN_PEAKS_SOURCE?.features||[]).map(feature=>[feature.id,feature.properties?.description]));
 const MOUNTAIN_SEARCH_DIRECTORY=(window.DUNIVERSE_MOUNTAIN_PEAKS?.features||[]).map(feature=>({
   id:feature.id,kind:'mountain',name:feature.properties?.name||'未命名山峰',
-  tongueName:feature.properties?.tongue_name||'',description:feature.properties?.description||'',
+  tongueName:feature.properties?.tongue_name||'',description:(MOUNTAIN_PEAK_DESCRIPTIONS.get(feature.id)??feature.properties?.description)||'',
   longitudeDeg:feature.geometry?.coordinates?.[0],mapLatitudeDeg:feature.geometry?.coordinates?.[1],
   pointX:feature.properties?.source_map_pixel_xy?.[0],pointY:feature.properties?.source_map_pixel_xy?.[1],
   elevationM:feature.properties?.elevation_m,elevationSource:feature.properties?.elevation_source,

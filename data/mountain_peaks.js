@@ -1,4 +1,4 @@
-window.DUNIVERSE_MOUNTAIN_PEAKS = {
+window.DUNIVERSE_MOUNTAIN_PEAKS_SOURCE = {
   "type": "FeatureCollection",
   "coordinate_reference_system": {
     "id": "DUNIVERSE-SATURN-SCALED-LAT-2026",
