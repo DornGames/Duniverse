@@ -1035,9 +1035,8 @@ aside[hidden]{display:none}
 </div>
 </section>
 <section class="layerGroup" data-layer-group>
-<div class="layerParent"><button class="groupDisclosure" type="button" aria-expanded="false" aria-controls="highSpeedRailLayers" aria-label="展开高铁线路"><span class="treeChevron"></span><span class="layerSwatch" style="--swatch:#247ca3"></span><span class="layerName">高铁线路</span></button><input id="highSpeedRailToggle" type="checkbox" data-group="highSpeedRail" checked aria-label="显示所有高铁图层"></div>
-<div class="layerChildren" id="highSpeedRailLayers" role="group" aria-label="高铁线路子图层" hidden>
-<label class="layerRow"><span class="layerSwatch" style="--swatch:#247ca3"></span><span class="layerName">G1（臭都环线）</span><input type="checkbox" data-layer="G1" checked aria-label="显示G1臭都高铁环线"></label>
+<div class="layerParent"><button class="groupDisclosure" type="button" aria-expanded="false" aria-controls="highSpeedRailLayers" aria-label="展开高铁车站"><span class="treeChevron"></span><span class="layerSwatch" style="--swatch:#247ca3"></span><span class="layerName">高铁车站</span></button><input id="highSpeedRailToggle" type="checkbox" data-group="highSpeedRail" checked aria-label="显示所有高铁车站图层"></div>
+<div class="layerChildren" id="highSpeedRailLayers" role="group" aria-label="高铁车站子图层" hidden>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#247ca3"></span><span class="layerName">车站标记</span><input type="checkbox" data-layer="highSpeedRailStations" checked aria-label="显示高铁车站标记"></label>
 <label class="layerRow"><span class="layerSwatch" style="--swatch:#247ca3"></span><span class="layerName">车站名称</span><input type="checkbox" data-layer="highSpeedRailStationNames" checked aria-label="显示高铁车站名称"></label>
 </div>
@@ -1198,8 +1197,7 @@ for(const entry of CITY_DIRECTORY){if(entry.tongueName){const group=CITY_BY_TONG
 const CITY_COORDINATE_DATA=window.DUNIVERSE_CITY_COORDINATES||{cities:[]};
 const CITY_COORDINATE_BY_ID=new Map(CITY_COORDINATE_DATA.cities.map(entry=>[entry.id,entry]));
 const HIGHWAY_ROUTES=window.DUNIVERSE_HIGHWAY_ROUTES||[];
-const HIGH_SPEED_RAIL=window.DUNIVERSE_HIGH_SPEED_RAIL||{routes:[],stations:[]};
-const HIGH_SPEED_RAIL_ROUTES=HIGH_SPEED_RAIL.routes||[];
+const HIGH_SPEED_RAIL=window.DUNIVERSE_HIGH_SPEED_RAIL||{stations:[]};
 const HIGH_SPEED_RAIL_STATIONS=HIGH_SPEED_RAIL.stations||[];
 const HIGH_SPEED_RAIL_MARKER_DETAIL_WIDTH=800,HIGH_SPEED_RAIL_LABEL_DETAIL_WIDTH=280;
 const HIGHWAY_ROUTE_GEOGRAPHY=window.DUNIVERSE_HIGHWAY_GEOGRAPHY?.routes||{};
@@ -3005,42 +3003,6 @@ function traceHighwayPath(points,closed){
   }
   if(closed)ctx.closePath();
 }
-function drawHighSpeedRail(scale){
-  const inverseScale=1/Math.max(scale,.001);
-  ctx.save();ctx.lineCap='round';ctx.lineJoin='round';
-  for(const route of HIGH_SPEED_RAIL_ROUTES){
-    if(layerVisibility.get(route.id)===false)continue;
-    const points=(route.points||[]).map(point=>({x:Number(point[0]),y:Number(point[1])}));
-    if(points.length<3||points.some(point=>!Number.isFinite(point.x)||!Number.isFinite(point.y)))continue;
-    const closed=Boolean(route.closed),samples=sampleHighwayPath(points,closed);
-    if(samples.length<2)continue;
-    const cumulativeLengths=new Float64Array(samples.length);
-    for(let index=1;index<samples.length;index++)cumulativeLengths[index]=cumulativeLengths[index-1]+Math.hypot(samples[index].x-samples[index-1].x,samples[index].y-samples[index-1].y);
-    const length=cumulativeLengths.at(-1)||0,tieSpacing=8/Math.max(scale,.001),color=route.color||'#247ca3';
-    // Sleeper bars form the railway symbol; two continuous rails keep it legible when zoomed out.
-    for(let distance=tieSpacing/2;distance<length;distance+=tieSpacing){
-      let index=1;while(index<cumulativeLengths.length-1&&cumulativeLengths[index]<distance)index++;
-      const start=samples[index-1],end=samples[index],segmentLength=cumulativeLengths[index]-cumulativeLengths[index-1];
-      const t=segmentLength?(distance-cumulativeLengths[index-1])/segmentLength:0;
-      const x=start.x+(end.x-start.x)*t,y=start.y+(end.y-start.y)*t,dx=end.x-start.x,dy=end.y-start.y,norm=Math.hypot(dx,dy)||1,nx=-dy/norm,ny=dx/norm;
-      ctx.beginPath();ctx.moveTo(x-nx*3.4*inverseScale,y-ny*3.4*inverseScale);ctx.lineTo(x+nx*3.4*inverseScale,y+ny*3.4*inverseScale);
-      ctx.lineWidth=1.5*inverseScale;ctx.strokeStyle=color;ctx.stroke();
-    }
-    for(const offset of [-1.35,1.35]){
-      ctx.beginPath();
-      for(let index=0;index<samples.length;index++){
-        const previous=samples[Math.max(0,index-1)],next=samples[Math.min(samples.length-1,index+1)],point=samples[index];
-        const dx=next.x-previous.x,dy=next.y-previous.y,norm=Math.hypot(dx,dy)||1;
-        const x=point.x-dy/norm*offset*inverseScale,y=point.y+dx/norm*offset*inverseScale;
-        if(index===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
-      }
-      if(closed)ctx.closePath();
-      ctx.lineWidth=4.6*inverseScale;ctx.strokeStyle='rgba(255,255,255,.98)';ctx.stroke();
-      ctx.lineWidth=1.55*inverseScale;ctx.strokeStyle=color;ctx.stroke();
-    }
-  }
-  ctx.restore();
-}
 function drawHighSpeedRailStations(scale,zoomWidth){
   if(layerVisibility.get('highSpeedRailStations')===false||zoomWidth>HIGH_SPEED_RAIL_MARKER_DETAIL_WIDTH)return;
   const inverseScale=1/Math.max(scale,.001);
@@ -3261,14 +3223,11 @@ function draw(){
   const detailed=zoomWidth<=DETAIL_LIMIT;
   const regionLabelOpacity=regionLabelOpacityForView();
   const majorRegionLabelOpacity=majorRegionLabelOpacityForView();
-  let reliefRasterDrawn=false,highwaysDrawn=false,highwayLabelsDrawn=false,highSpeedRailDrawn=false;
+  let reliefRasterDrawn=false,highwaysDrawn=false,highwayLabelsDrawn=false;
   for(const record of records){
     if(!highwaysDrawn&&record.layerId==='blackMarkers'){
       drawHighways(scale);highwaysDrawn=true;
       drawHighwayIdLabels(scale);highwayLabelsDrawn=true;
-    }
-    if(!highSpeedRailDrawn&&record.layerId==='blackMarkers'){
-      drawHighSpeedRail(scale);highSpeedRailDrawn=true;
     }
     if(!reliefRasterDrawn&&record.layerId==='lakes'){
       reliefRasterDrawn=true;
@@ -3325,7 +3284,6 @@ function draw(){
   }
   if(!highwaysDrawn){drawHighways(scale);highwaysDrawn=true;}
   if(!highwayLabelsDrawn)drawHighwayIdLabels(scale);
-  if(!highSpeedRailDrawn)drawHighSpeedRail(scale);
   if(oceanDepthPoint){
     ctx.save();ctx.beginPath();ctx.arc(oceanDepthPoint.x,oceanDepthPoint.y,5/scale,0,Math.PI*2);
     ctx.fillStyle='#245d73';ctx.fill();ctx.lineWidth=2/scale;ctx.strokeStyle='#fff';ctx.stroke();ctx.restore();
