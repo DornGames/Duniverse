@@ -15,7 +15,8 @@ window.DUNIVERSE_LAKE_NAMES = [
       "width": 32,
       "height": 25
     },
-    "areaPx2": 500.42
+    "areaPx2": 500.42,
+    "areaKm2": 30227.066
   },
   {
     "id": "lake:2",
@@ -33,7 +34,8 @@ window.DUNIVERSE_LAKE_NAMES = [
       "width": 26,
       "height": 16
     },
-    "areaPx2": 247.01
+    "areaPx2": 247.01,
+    "areaKm2": 14925.43
   },
   {
     "id": "lake:3",
@@ -51,7 +53,8 @@ window.DUNIVERSE_LAKE_NAMES = [
       "width": 98,
       "height": 60
     },
-    "areaPx2": 3729.9
+    "areaPx2": 3729.9,
+    "areaKm2": 225308.093
   },
   {
     "id": "lake:4",
@@ -69,7 +72,8 @@ window.DUNIVERSE_LAKE_NAMES = [
       "width": 36,
       "height": 39
     },
-    "areaPx2": 907.2
+    "areaPx2": 907.2,
+    "areaKm2": 54808.116
   },
   {
     "id": "lake:5",
@@ -87,7 +91,8 @@ window.DUNIVERSE_LAKE_NAMES = [
       "width": 41,
       "height": 44
     },
-    "areaPx2": 988.48
+    "areaPx2": 988.48,
+    "areaKm2": 59713.274
   },
   {
     "id": "lake:6",
@@ -105,7 +110,8 @@ window.DUNIVERSE_LAKE_NAMES = [
       "width": 36,
       "height": 62
     },
-    "areaPx2": 1196.38
+    "areaPx2": 1196.38,
+    "areaKm2": 72265.074
   },
   {
     "id": "lake:7",
@@ -123,7 +129,8 @@ window.DUNIVERSE_LAKE_NAMES = [
       "width": 39,
       "height": 53
     },
-    "areaPx2": 1334.68
+    "areaPx2": 1334.68,
+    "areaKm2": 80629.342
   },
   {
     "id": "lake:8",
@@ -141,7 +148,8 @@ window.DUNIVERSE_LAKE_NAMES = [
       "width": 34,
       "height": 30
     },
-    "areaPx2": 733.6
+    "areaPx2": 733.6,
+    "areaKm2": 44313.948
   },
   {
     "id": "lake:9",
@@ -159,7 +167,8 @@ window.DUNIVERSE_LAKE_NAMES = [
       "width": 24,
       "height": 45
     },
-    "areaPx2": 641.42
+    "areaPx2": 641.42,
+    "areaKm2": 38740.558
   },
   {
     "id": "lake:10",
@@ -177,7 +186,8 @@ window.DUNIVERSE_LAKE_NAMES = [
       "width": 45,
       "height": 30
     },
-    "areaPx2": 1004.69
+    "areaPx2": 1004.69,
+    "areaKm2": 60687.645
   },
   {
     "id": "lake:11",
@@ -195,7 +205,8 @@ window.DUNIVERSE_LAKE_NAMES = [
       "width": 39,
       "height": 46
     },
-    "areaPx2": 1088.04
+    "areaPx2": 1088.04,
+    "areaKm2": 65721.258
   },
   {
     "id": "lake:12",
@@ -213,6 +224,7 @@ window.DUNIVERSE_LAKE_NAMES = [
       "width": 31,
       "height": 27
     },
-    "areaPx2": 517.63
+    "areaPx2": 517.63,
+    "areaKm2": 31266.235
   }
 ];

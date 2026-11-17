@@ -1,6 +1,7 @@
 {
   "type": "FeatureCollection",
   "name": "lakes_with_high_resolution_shoreline_boundaries",
+  "area_calculation_note": "Polygon area uses the shoelace formula (subtracting interior rings); area_km2 = geometry_area_px2 * data/georeference.json calibration.pixel_area_km2.",
   "coordinate_reference_note": "Image pixel coordinates; origin at top-left; x increases rightward; y increases downward. Not georeferenced.",
   "features": [
     {
@@ -8,6 +9,8 @@
       "properties": {
         "lake_id": 1,
         "area_px2": 500.42,
+        "geometry_area_px2": 500.4211,
+        "area_km2": 30227.066,
         "bbox_px": [
           997,
           1366,
@@ -239,6 +242,8 @@
       "properties": {
         "lake_id": 2,
         "area_px2": 247.01,
+        "geometry_area_px2": 247.0965,
+        "area_km2": 14925.430,
         "bbox_px": [
           1186,
           1319,
@@ -366,6 +371,8 @@
       "properties": {
         "lake_id": 3,
         "area_px2": 3729.9,
+        "geometry_area_px2": 3730.0655,
+        "area_km2": 225308.093,
         "bbox_px": [
           445,
           1229,
@@ -733,6 +740,8 @@
       "properties": {
         "lake_id": 4,
         "area_px2": 907.2,
+        "geometry_area_px2": 907.3702,
+        "area_km2": 54808.116,
         "bbox_px": [
           696,
           1201,
@@ -968,6 +977,8 @@
       "properties": {
         "lake_id": 5,
         "area_px2": 988.48,
+        "geometry_area_px2": 988.5771,
+        "area_km2": 59713.274,
         "bbox_px": [
           1243,
           1115,
@@ -1191,6 +1202,8 @@
       "properties": {
         "lake_id": 6,
         "area_px2": 1196.38,
+        "geometry_area_px2": 1196.3772,
+        "area_km2": 72265.074,
         "bbox_px": [
           968,
           1066,
@@ -1462,6 +1475,8 @@
       "properties": {
         "lake_id": 7,
         "area_px2": 1334.68,
+        "geometry_area_px2": 1334.8510,
+        "area_km2": 80629.342,
         "bbox_px": [
           1240,
           717,
@@ -1769,6 +1784,8 @@
       "properties": {
         "lake_id": 8,
         "area_px2": 733.6,
+        "geometry_area_px2": 733.6351,
+        "area_km2": 44313.948,
         "bbox_px": [
           579,
           700,
@@ -1952,6 +1969,8 @@
       "properties": {
         "lake_id": 9,
         "area_px2": 641.42,
+        "geometry_area_px2": 641.3654,
+        "area_km2": 38740.558,
         "bbox_px": [
           1007,
           436,
@@ -2091,6 +2110,8 @@
       "properties": {
         "lake_id": 10,
         "area_px2": 1004.69,
+        "geometry_area_px2": 1004.7082,
+        "area_km2": 60687.645,
         "bbox_px": [
           932,
           262,
@@ -2322,6 +2343,8 @@
       "properties": {
         "lake_id": 11,
         "area_px2": 1088.04,
+        "geometry_area_px2": 1088.0417,
+        "area_km2": 65721.258,
         "bbox_px": [
           414,
           279,
@@ -2539,6 +2562,8 @@
       "properties": {
         "lake_id": 12,
         "area_px2": 517.63,
+        "geometry_area_px2": 517.6250,
+        "area_km2": 31266.235,
         "bbox_px": [
           182,
           992,

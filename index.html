@@ -3847,7 +3847,7 @@ function renderRegionSearchSuggestions(){
     else if(entry.kind==='major')meta.textContent=entry.tongueName||'大区';
     else if(entry.kind==='province')meta.textContent=`所属大区：${major?.name||'暂无'}${entry.code?` · ${entry.code}`:''}${entry.tongueName?` · ${entry.tongueName}`:''}`;
     else if(entry.kind==='river')meta.textContent=`所属地区：${entry.regionLabel||'暂无'}${entry.tongueName?` · ${entry.tongueName}`:''}`;
-    else if(entry.kind==='lake')meta.textContent=`所属大区：${major?.name||entry.regionLabel||'暂无'} · 所属省份：${province?.name||'暂无'}`;
+    else if(entry.kind==='lake')meta.textContent=`所属大区：${major?.name||entry.regionLabel||'暂无'} · 所属省份：${province?.name||'暂无'} · 面积：${formatPlaceMetric(entry)}`;
     else if(entry.kind==='mountain')meta.textContent=`第 ${entry.elevationRank||'暂无'} 位 · 海拔 ${formatPlaceMetric(entry)} · 地貌区：${entry.physiographicRegionName||'暂无'}${entry.mountainRangeName?` · 所属山脉：${entry.mountainRangeName}`:''} · 行政区：${major?.name||'暂无'} / ${province?.name||'暂无'}`;
     else if(entry.kind==='mountainRange')meta.textContent=`${entry.subtype||'山脉'} · ${entry.memberPeaks?.length||0} 座已录山峰 · 所属大区：${major?.name||'暂无'} · 所属省份：${province?.name||'暂无'}`;
     else if(entry.kind==='terrainRegion')meta.textContent=`自然地貌 · 所属大区：${major?.name||'暂无'} · 所属省份：${province?.name||'暂无'}`;
@@ -3880,7 +3880,7 @@ function formatPlaceMetric(entry){
     return `${value} m`;
   }
   if(entry.kind==='mountainRange')return `${entry.memberPeaks?.length||0} 座`;
-  if(entry.kind==='lake')return '暂无面积';
+  if(entry.kind==='lake')return Number.isFinite(entry.areaKm2)?`${new Intl.NumberFormat('zh-CN',{maximumFractionDigits:1}).format(entry.areaKm2)} km²`:'暂无面积';
   if(entry.kind==='river')return Number.isFinite(entry.lengthKm)?`${new Intl.NumberFormat('zh-CN',{maximumFractionDigits:2}).format(entry.lengthKm)} km`:'暂无';
   return formatRegionArea(entry.areaKm2);
 }
