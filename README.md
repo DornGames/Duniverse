@@ -29,6 +29,7 @@ python -m http.server 8000
 - 搜索行政区或地名可定位并查看可用介绍；地图点击恢复为打开地理要素信息，城市介绍已恢复。
 - 拖动地图时，只要相应文字图层保持开启，中文和𣿅语标签都会继续显示。
 - 右侧图层可分别显示或隐藏行政区边界、大区边界、水系、城市标记和行政区名；行政区名分为“编号”和“中文”两个子图层。
+- “高铁线路”图层以双轨与轨枕符号绘制 G1 臭都环线；臭都东、南、北、西四站位于 D1、D2 高速环线之间。车站标记在近景出现，视图宽度缩至 280 个地图像素以内时才显示站名。
 - 宏观视图会显示大区双语名称，中文在上、𣿅语小字在下；名称保持固定屏幕尺寸，进入省级视图前逐渐淡出。
 - 行政区编号和中文名称随放大同步淡入，继续放大后同步淡出；两个子图层仍可独立开关。
 - 放大后地图会显示更多细节。海岸线填充在约 65% 的缩放进度达到最高几何精度；东部海岛在概览中保持可见，点状岛标按显示倍率绘为白色岛面；轮廓数据见 [`data/eastern_island_shapes.geojson`](data/eastern_island_shapes.geojson)。
@@ -53,6 +54,7 @@ python -m http.server 8000
 | --- | --- |
 | `index.html` | 浏览器交互地图与 Canvas 渲染逻辑 |
 | `data/bathymetry.js` | 海底深度场与连续深度配色 |
+| `data/high_speed_rail.js` | 高铁线路及臭都四个方位站点坐标 |
 | `data/relief_elevation.js`、`data/relief_elevation.png`、`data/relief_tint.png` | 陆地高程、右键采样图和地图晕渲；高程采样图在地图出现后异步载入 |
 | `data/relief_model.js`、`data/relief_model_metadata.json` | 山峰、城市、地貌控制点及模型说明 |
 | `data/ridge_network.geojson` | 全图山脊骨架、局部脊线及用于市界的高峰控制点 |
