@@ -83,16 +83,16 @@ body:not(.mapReady) #mapCanvas{pointer-events:none}
 #mapLoadingOverlay[hidden]{display:none}
 body.mapReady #mapLoadingOverlay{opacity:0;visibility:hidden}
 .mapLoadingCard{display:grid;justify-items:center;gap:12px;min-width:min(260px,calc(100vw - 48px));padding:22px 24px;border:1px solid rgba(211,224,225,.95);border-radius:18px;background:rgba(255,255,255,.88);box-shadow:var(--shadow);text-align:center}
-.mapLoadingSpinner,.backgroundLoadingSpinner{width:28px;height:28px;border:3px solid #dce9e7;border-top-color:#287b75;border-radius:50%;animation:map-spin .8s linear infinite}
 .mapLoadingTitle{margin:0;color:#2c4e51;font-size:14px;font-weight:650}
 .mapLoadingDetail{margin:0;color:#71868a;font-size:11px;line-height:1.4}
-.mapLoadingTrack{width:min(190px,60vw);height:4px;overflow:hidden;border-radius:99px;background:#e7efee}
-.mapLoadingTrack:after{content:"";display:block;width:38%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#80b3a9,#287b75);animation:map-loading-slide 1.15s ease-in-out infinite alternate}
+.mapLoadingProgressRow{display:flex;align-items:center;gap:10px;width:min(240px,65vw)}
+.mapLoadingTrack{flex:1;height:7px;overflow:hidden;border-radius:99px;background:#e7efee}
+.mapLoadingProgressFill{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#80b3a9,#287b75);transition:width .18s ease}
+.mapLoadingPercent{min-width:38px;color:#287b75;font-size:12px;font-weight:750;font-variant-numeric:tabular-nums;text-align:right}
 @keyframes map-spin{to{transform:rotate(360deg)}}
-@keyframes map-loading-slide{from{transform:translateX(-4%)}to{transform:translateX(170%)}}
 #backgroundLoadNotice{position:fixed;z-index:16;right:14px;bottom:14px;display:flex;align-items:center;gap:9px;padding:9px 12px;border:1px solid rgba(211,224,225,.95);border-radius:12px;background:rgba(255,255,255,.92);box-shadow:var(--shadow);color:#526970;font-size:11px;pointer-events:none}
 #backgroundLoadNotice[hidden]{display:none}
-.backgroundLoadingSpinner{width:16px;height:16px;border-width:2px}
+.backgroundLoadingSpinner{width:16px;height:16px;border:2px solid #dce9e7;border-top-color:#287b75;border-radius:50%;animation:map-spin .8s linear infinite}
 #elevationTooltip{position:fixed;z-index:20;display:grid;gap:3px;min-width:132px;max-width:min(220px,calc(100vw - 24px));padding:9px 12px;border:1px solid rgba(210,226,222,.98);border-radius:12px;background:rgba(255,255,255,.97);box-shadow:0 8px 24px rgba(23,49,50,.2);color:#526970;transform:translate(-50%,calc(-100% - 12px));pointer-events:none;animation:panel-in .12s ease-out}
 #elevationTooltip[hidden]{display:none}
 #elevationTooltip.below{transform:translate(-50%,12px)}
@@ -214,7 +214,7 @@ aside[hidden]{display:none}
 <button id="fit" class="mapButton fit" type="button" title="适应窗口" aria-label="显示完整地图"><span class="wideLabel">适应窗口</span><span class="compactLabel">全图</span></button>
 </div>
 </header>
-<div id="mapLoadingOverlay" class="mapLoadingOverlay" role="status" aria-live="polite"><div class="mapLoadingCard"><span class="mapLoadingSpinner" aria-hidden="true"></span><p id="mapLoadingTitle" class="mapLoadingTitle">正在准备完整地形地图</p><p id="mapLoadingDetail" class="mapLoadingDetail">正在读取河流与地形细节…</p><span class="mapLoadingTrack" aria-hidden="true"></span></div></div>
+<div id="mapLoadingOverlay" class="mapLoadingOverlay" role="status" aria-live="polite"><div class="mapLoadingCard"><p id="mapLoadingTitle" class="mapLoadingTitle">正在准备完整地形地图</p><p id="mapLoadingDetail" class="mapLoadingDetail">正在读取河流与地形细节…</p><div class="mapLoadingProgressRow"><div id="mapLoadingProgress" class="mapLoadingTrack" role="progressbar" aria-label="地图加载进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="mapLoadingProgressFill" class="mapLoadingProgressFill"></span></div><span id="mapLoadingPercent" class="mapLoadingPercent">0%</span></div></div></div>
 <div id="backgroundLoadNotice" role="status" aria-live="polite" hidden><span class="backgroundLoadingSpinner" aria-hidden="true"></span><span id="backgroundLoadText">正在准备海底地形…</span></div>
 <div id="elevationTooltip" role="status" aria-live="polite" hidden><span class="elevationTooltipKicker">地形模型海拔</span><strong id="elevationTooltipValue" class="elevationTooltipValue"></strong><span id="elevationTooltipNote" class="elevationTooltipNote"></span></div>
 <div class="layout"><div id="mapWrap"><canvas id="mapCanvas" width="2048" height="1448" role="img" aria-label="𣿅国地图，可拖动和缩放；点击地图上的地理事物查看介绍，点击海洋查看深度。" tabindex="0"></canvas><svg id="mapSvg" class="mapSource" aria-hidden="true" viewBox="0 0 2048 1448" xmlns="http://www.w3.org/2000/svg">
@@ -1148,13 +1148,23 @@ let elevationRasterPixels=null,elevationRasterLoadPromise=null,elevationSamplePo
 let mapInitializationPromise=null,bathymetryPreparationPromise=null;
 const mapLoadingTitle=document.getElementById('mapLoadingTitle');
 const mapLoadingDetail=document.getElementById('mapLoadingDetail');
+const mapLoadingProgress=document.getElementById('mapLoadingProgress');
+const mapLoadingProgressFill=document.getElementById('mapLoadingProgressFill');
+const mapLoadingPercent=document.getElementById('mapLoadingPercent');
 const backgroundLoadNotice=document.getElementById('backgroundLoadNotice');
 const backgroundLoadText=document.getElementById('backgroundLoadText');
 const elevationTooltip=document.getElementById('elevationTooltip');
+let mapLoadingProgressValue=0;
 function yieldToMainThread(){return new Promise(resolve=>setTimeout(resolve,0))}
-function updateMapLoading(title,detail){
+function updateMapLoading(title,detail,progress=null){
   if(mapLoadingTitle)mapLoadingTitle.textContent=title;
   if(mapLoadingDetail)mapLoadingDetail.textContent=detail;
+  if(Number.isFinite(progress)){
+    mapLoadingProgressValue=Math.max(mapLoadingProgressValue,Math.min(100,Math.max(0,Math.round(progress))));
+    if(mapLoadingProgress)mapLoadingProgress.setAttribute('aria-valuenow',String(mapLoadingProgressValue));
+    if(mapLoadingProgressFill)mapLoadingProgressFill.style.width=`${mapLoadingProgressValue}%`;
+    if(mapLoadingPercent)mapLoadingPercent.textContent=`${mapLoadingProgressValue}%`;
+  }
 }
 if(window.DUNIVERSE_RELIEF){
   reliefRasterImage=new Image();reliefRasterImage.onload=()=>draw();reliefRasterImage.src='data/relief_tint.png?v=estuary-mask-20261116';
@@ -1274,7 +1284,8 @@ function parseSubpaths(d){
   return subpaths;
 }
 function hydrologyPointKey(point){return`${point.x.toFixed(2)},${point.y.toFixed(2)}`}
-async function collectHydrologyPathsAsync(container){
+async function collectHydrologyPathsAsync(container,onProgress=()=>{}){
+  const total=container.querySelectorAll('*').length;
   const paths=[],stack=[{container,layerId:'base',index:0}];let processed=0;
   while(stack.length){
     const frame=stack.at(-1);
@@ -1287,49 +1298,58 @@ async function collectHydrologyPathsAsync(container){
       paths.push({element,layerId:frame.layerId,subpaths:parseSubpaths(element.getAttribute('d')||'')});
     }
     if(++processed%24===0){
-      if(processed%240===0)updateMapLoading('正在整理河流水系',`已读取 ${paths.length.toLocaleString('zh-CN')} 条水系线段…`);
+      if(processed%240===0)onProgress(processed,total,paths.length);
       await yieldToMainThread();
     }
   }
+  onProgress(processed,total,paths.length);
   return paths;
 }
 async function buildHydrologyTopology(root,onProgress=()=>{}){
-  const paths=await collectHydrologyPathsAsync(root),endpoints=[];
+  const paths=await collectHydrologyPathsAsync(root,(processed,total,pathCount)=>onProgress('collect',processed,total,pathCount)),endpoints=[];
+  let totalSegments=0;
   for(const path of paths){
     for(const subpath of path.subpaths){
+      if(subpath.points.length>=2)totalSegments+=subpath.closed?subpath.points.length:subpath.points.length-1;
       if(!subpath.closed&&subpath.points.length>1){
         endpoints.push({owner:subpath,point:subpath.points[0]});
         endpoints.push({owner:subpath,point:subpath.points.at(-1)});
       }
     }
   }
+  onProgress('index',0,totalSegments,paths.length);
   // Index tolerance-expanded segment bounds so endpoints only inspect nearby geometry.
   const segmentGrid=new Map(),cellSize=HYDROLOGY_ENDPOINT_GRID_SIZE,matchTolerance=HYDROLOGY_ENDPOINT_MATCH_TOLERANCE;
+  let indexedSegments=0;
   for(const path of paths){
     for(const subpath of path.subpaths){
       const points=subpath.points;
       if(points.length<2)continue;
       const segmentCount=subpath.closed?points.length:points.length-1;
       for(let index=0;index<segmentCount;index++){
+        indexedSegments++;
         const start=points[index],end=points[(index+1)%points.length];
         const dx=end.x-start.x,dy=end.y-start.y,lengthSquared=dx*dx+dy*dy;
-        if(!lengthSquared)continue;
-        const segment={subpath,index,start,end,dx,dy,lengthSquared};
-        const minCellX=Math.floor((Math.min(start.x,end.x)-matchTolerance)/cellSize);
-        const maxCellX=Math.floor((Math.max(start.x,end.x)+matchTolerance)/cellSize);
-        const minCellY=Math.floor((Math.min(start.y,end.y)-matchTolerance)/cellSize);
-        const maxCellY=Math.floor((Math.max(start.y,end.y)+matchTolerance)/cellSize);
-        for(let cellX=minCellX;cellX<=maxCellX;cellX++){
-          for(let cellY=minCellY;cellY<=maxCellY;cellY++){
-            const key=`${cellX},${cellY}`;
-            let bucket=segmentGrid.get(key);
-            if(!bucket){bucket=[];segmentGrid.set(key,bucket)}
-            bucket.push(segment);
+        if(lengthSquared){
+          const segment={subpath,index,start,end,dx,dy,lengthSquared};
+          const minCellX=Math.floor((Math.min(start.x,end.x)-matchTolerance)/cellSize);
+          const maxCellX=Math.floor((Math.max(start.x,end.x)+matchTolerance)/cellSize);
+          const minCellY=Math.floor((Math.min(start.y,end.y)-matchTolerance)/cellSize);
+          const maxCellY=Math.floor((Math.max(start.y,end.y)+matchTolerance)/cellSize);
+          for(let cellX=minCellX;cellX<=maxCellX;cellX++){
+            for(let cellY=minCellY;cellY<=maxCellY;cellY++){
+              const key=`${cellX},${cellY}`;
+              let bucket=segmentGrid.get(key);
+              if(!bucket){bucket=[];segmentGrid.set(key,bucket)}
+              bucket.push(segment);
+            }
           }
         }
+        if(indexedSegments%2048===0){onProgress('index',indexedSegments,totalSegments,paths.length);await yieldToMainThread()}
       }
     }
   }
+  onProgress('index',indexedSegments,totalSegments,paths.length);
   const pending=new Map();
   for(let endpointIndex=0;endpointIndex<endpoints.length;endpointIndex++){
     const endpoint=endpoints[endpointIndex];
@@ -1358,11 +1378,12 @@ async function buildHydrologyTopology(root,onProgress=()=>{}){
         HYDROLOGY_JUNCTION_KEYS.add(key);
       }
     }
-    if(endpointIndex%8===7){
-      onProgress(endpointIndex+1,endpoints.length);
+    if(endpointIndex%128===127){
+      onProgress('match',endpointIndex+1,endpoints.length,paths.length);
       await yieldToMainThread();
     }
   }
+  onProgress('match',endpoints.length,endpoints.length,paths.length);
   for(const [subpath,bySegment] of pending){
     const points=subpath.points,reduced=[];
     for(let i=0;i<points.length;i++){
@@ -1376,6 +1397,7 @@ async function buildHydrologyTopology(root,onProgress=()=>{}){
     subpath.points=reduced;
   }
   for(const path of paths)HYDROLOGY_TOPOLOGY.set(path.element,path.subpaths);
+  onProgress('complete',1,1,paths.length);
   return paths.length;
 }
 function pointDistance(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
@@ -1529,8 +1551,9 @@ function createRecord(element,drawGroup,layerId){
   }
   return record;
 }
-async function collectRecordsAsync(container){
+async function collectRecordsAsync(container,onProgress=()=>{}){
   const stack=[{container,drawGroup:null,layerId:null,index:0}];
+  const total=container.querySelectorAll('g,path,circle,text').length;
   let processed=0;
   while(stack.length){
     const frame=stack.at(-1);
@@ -1545,11 +1568,13 @@ async function collectRecordsAsync(container){
       const layer=element.id==='oceanFill'?'oceanFill':frame.layerId||group;
       records.push(createRecord(element,group,layer));
     }
-    if(++processed%12===0){
-      if(processed%120===0)updateMapLoading('正在绘制地图细节',`已准备 ${records.length.toLocaleString('zh-CN')} 个地图要素…`);
+    if(['g','path','circle','text'].includes(tag))processed++;
+    if(processed&&processed%96===0){
+      if(processed%480===0)onProgress(processed,total,records.length);
       await yieldToMainThread();
     }
   }
+  onProgress(processed,total,records.length);
 }
 function buildRegionIndex(){
   regionRecords=records.filter(record=>record.tag==='path'&&record.layerId==='regions'&&record.code).reverse();
@@ -2482,14 +2507,26 @@ function pointToSegmentDistance(point,start,end){
 async function initializeMapData(){
   if(mapInitializationPromise)return mapInitializationPromise;
   mapInitializationPromise=(async()=>{
-    updateMapLoading('正在连接河流水系','准备地图轮廓与河网关系…');
+    updateMapLoading('正在连接河流水系','准备地图轮廓与河网关系…',2);
     await yieldToMainThread();
-    const pathCount=await buildHydrologyTopology(sourceSvg,(processed,total)=>{
-      updateMapLoading('正在连接河流水系',`已整理 ${processed.toLocaleString('zh-CN')} / ${total.toLocaleString('zh-CN')} 个河道端点…`);
+    const pathCount=await buildHydrologyTopology(sourceSvg,(phase,processed,total,count)=>{
+      const ratio=total?processed/total:1;
+      if(phase==='collect'){
+        updateMapLoading('正在整理河流水系',`已扫描 ${processed.toLocaleString('zh-CN')} / ${total.toLocaleString('zh-CN')} 个地图节点，找到 ${count.toLocaleString('zh-CN')} 条水系线段…`,2+ratio*8);
+      }else if(phase==='index'){
+        updateMapLoading('正在建立河网索引',`已整理 ${processed.toLocaleString('zh-CN')} / ${total.toLocaleString('zh-CN')} 个河道线段…`,11+ratio*12);
+      }else if(phase==='match'){
+        updateMapLoading('正在连接河流水系',`已检查 ${processed.toLocaleString('zh-CN')} / ${total.toLocaleString('zh-CN')} 个河道端点…`,24+ratio*18);
+      }else if(phase==='complete'){
+        updateMapLoading('正在准备地图要素',`河流水系已整理（${count.toLocaleString('zh-CN')} 条），开始读取地形与标注…`,44);
+      }
     });
-    updateMapLoading('正在绘制地图细节',`河流水系已整理（${pathCount} 条），正在准备地形与标注…`);
+    updateMapLoading('正在读取地图要素',`河流水系已整理（${pathCount.toLocaleString('zh-CN')} 条），正在准备地形与标注…`,45);
     await yieldToMainThread();
-    await collectRecordsAsync(sourceSvg);
+    await collectRecordsAsync(sourceSvg,(processed,total,count)=>{
+      const ratio=total?processed/total:1;
+      updateMapLoading('正在读取地图要素',`已准备 ${count.toLocaleString('zh-CN')} 个地图要素（${processed.toLocaleString('zh-CN')} / ${total.toLocaleString('zh-CN')}）…`,45+ratio*39);
+    });
     const drawOrder=record=>DRAW_ORDER.get(record.drawGroup)??DRAW_ORDER.get(record.layerId)??50;
     records.sort((a,b)=>drawOrder(a)-drawOrder(b));
     mountainLabelRecords=records.filter(record=>record.tag==='text'&&['mountainPeakLabels','mountainElevationLabels'].includes(record.drawGroup));
@@ -2498,13 +2535,16 @@ async function initializeMapData(){
     lakeNameLabelRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='lakeNameLabels');
     lakePathRecords=records.filter(record=>record.tag==='path'&&record.layerId==='lakes');
     majorRegionNameRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='majorRegionNames');
+    updateMapLoading('正在整理地图索引',`已读取 ${records.length.toLocaleString('zh-CN')} 个要素，正在建立地区与地形索引…`,85);
     bindCapitalLabelsToMarkers();
     buildRegionIndex();
+    updateMapLoading('正在整理地图索引','地区索引已完成，正在匹配山峰位置…',87);
     for(const entry of MOUNTAIN_SEARCH_DIRECTORY){
       const code=hitTestRegion({x:entry.pointX,y:entry.pointY});
       const province=code?REGION_BY_ID.get(`province:${code}`):null;
       entry.parentId=province?.id||null;entry.adminName=province?.name||'暂无';
     }
+    updateMapLoading('正在整理地图索引','山峰位置已匹配，正在整理山脉与地形标签…',90);
     for(const entry of MOUNTAIN_SEARCH_DIRECTORY){
       entry.physiographicRegionName=entry.physiographicRegionName||(entry.elevationZone==='north_plateau'?'北𣿅高原':'');
       if(entry.mountainRangeName)continue;
@@ -2519,6 +2559,7 @@ async function initializeMapData(){
       }
       if(closest&&distance<=closest.maxMemberDistance)entry.mountainRangeName=closest.name;
     }
+    updateMapLoading('正在整理地图索引','山脉关系已完成，正在匹配湖泊与地区…',93);
     for(const range of MOUNTAIN_RANGE_SEARCH_DIRECTORY){
       const code=hitTestRegion({x:range.pointX,y:range.pointY});
       const province=code?REGION_BY_ID.get(`province:${code}`):null;
@@ -2533,6 +2574,7 @@ async function initializeMapData(){
       const province=code?REGION_BY_ID.get(`province:${code}`):null;
       entry.parentId=province?.id||null;entry.adminName=province?.name||'暂无';
     }
+    updateMapLoading('正在整理地图索引','地区标签已完成，正在完成湖泊索引…',96);
     for(const entry of LAKE_SEARCH_DIRECTORY){
       if(entry.territory==='neighboring_country')continue;
       let code=hitTestRegion({x:entry.pointX,y:entry.pointY});
@@ -2548,10 +2590,13 @@ async function initializeMapData(){
       const province=code?REGION_BY_ID.get(`province:${code}`):null;
       entry.parentId=province?.id||null;entry.adminName=province?.name||'暂无';
     }
+    updateMapLoading('正在完成地图绘制','地图索引已完成，正在显示地图…',99);
+    await yieldToMainThread();
     sourceSvg.remove();
     mapReady=true;
     resizeCanvas();
     document.body.classList.add('mapReady');
+    updateMapLoading('地图已加载','地图准备完成。',100);
     setTimeout(()=>{document.getElementById('mapLoadingOverlay').hidden=true;},260);
     requestAnimationFrame(()=>{
       loadElevationRaster().catch(()=>{});
