@@ -1179,6 +1179,9 @@ if(window.DUNIVERSE_RELIEF){
 }
 let oceanDepthPoint=null;
 let records=[],regionRecords=[],regionBounds=new Map();
+let recordSpatialGrid=new Map(),recordSpatialGlobal=[],recordSpatialMarks=new Uint32Array(0),recordSpatialGeneration=0;
+let recordSpatialSentinels=[],mapRiverColor=OCEAN_COLOR,recordSpatialAnchorMapPadding=0,recordSpatialScreenPadding=96;
+const RECORD_SPATIAL_CELL_SIZE=192,RECORD_SPATIAL_MAX_CELL_LINKS=24,RECORD_SPATIAL_FULL_VIEW_RATIO=.72;
 let mountainLabelRecords=[],mountainRangeLabelRecords=[],terrainRegionLabelRecords=[],lakeNameLabelRecords=[],lakePathRecords=[],majorRegionNameRecords=[];
 const HYDROLOGY_JUNCTION_KEYS=new Set();
 const HYDROLOGY_TOPOLOGY=new WeakMap();
@@ -2540,6 +2543,8 @@ async function initializeMapData(){
     });
     const drawOrder=record=>DRAW_ORDER.get(record.drawGroup)??DRAW_ORDER.get(record.layerId)??50;
     records.sort((a,b)=>drawOrder(a)-drawOrder(b));
+    mapRiverColor=records.find(record=>record.layerId==='rivers'&&record.stroke!=='none')?.stroke||OCEAN_COLOR;
+    buildRecordSpatialIndex();
     mountainLabelRecords=records.filter(record=>record.tag==='text'&&['mountainPeakLabels','mountainElevationLabels'].includes(record.drawGroup));
     mountainRangeLabelRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='mountainRangeLabels');
     terrainRegionLabelRecords=records.filter(record=>record.tag==='text'&&record.drawGroup==='terrainRegionLabels');
@@ -2673,6 +2678,89 @@ function coastalFillToleranceIndexForView(){
 function overlaps(bounds,view,margin=0){
   return bounds.x+bounds.width>=view.x-margin&&bounds.x<=view.x+view.width+margin&&
     bounds.y+bounds.height>=view.y-margin&&bounds.y<=view.y+view.height+margin;
+}
+function buildRecordSpatialIndex(){
+  recordSpatialGrid=new Map();recordSpatialGlobal=[];recordSpatialSentinels=[];
+  recordSpatialAnchorMapPadding=0;recordSpatialScreenPadding=96;
+  const columns=Math.ceil(MAP_W/RECORD_SPATIAL_CELL_SIZE),rows=Math.ceil(MAP_H/RECORD_SPATIAL_CELL_SIZE);
+  let hasBlackMarkerSentinel=false,hasLakeSentinel=false;
+  for(let index=0;index<records.length;index++){
+    const record=records[index];record.spatialIndex=index;
+    if(!hasBlackMarkerSentinel&&record.layerId==='blackMarkers'){recordSpatialSentinels.push(index);hasBlackMarkerSentinel=true;}
+    if(!hasLakeSentinel&&record.layerId==='lakes'){recordSpatialSentinels.push(index);hasLakeSentinel=true;}
+    const bounds=record.bounds;
+    if(!bounds||![bounds.x,bounds.y,bounds.width,bounds.height].every(Number.isFinite)||bounds.width<0||bounds.height<0){
+      recordSpatialGlobal.push(index);continue;
+    }
+    if(record.tag==='text'){
+      const maxDimension=Math.max(bounds.width,bounds.height);
+      if(record.layerId==='regionNames'||record.layerId==='regionTongueNames')recordSpatialScreenPadding=Math.max(recordSpatialScreenPadding,72);
+      else if(record.letterSpacing>0){
+        const glyphCount=Number.isFinite(record.glyphCount)?record.glyphCount:0;
+        recordSpatialScreenPadding=Math.max(recordSpatialScreenPadding,(bounds.width+record.letterSpacing*Math.max(0,glyphCount-1))/2);
+      }else if(record.baseFontSize>0){
+        recordSpatialScreenPadding=Math.max(recordSpatialScreenPadding,FIXED_CODE_FONT_PX/record.baseFontSize*maxDimension/2);
+      }
+      const anchorX=Number.isFinite(record.cityPointX)?record.cityPointX:
+        Number.isFinite(record.mountainPointX)?record.mountainPointX:
+        Number.isFinite(record.lakePointX)?record.lakePointX:null;
+      const anchorY=Number.isFinite(record.cityPointY)?record.cityPointY:
+        Number.isFinite(record.mountainPointY)?record.mountainPointY:
+        Number.isFinite(record.lakePointY)?record.lakePointY:null;
+      if(anchorX!==null&&anchorY!==null){
+        const anchorDistance=Number.isFinite(record.x)&&Number.isFinite(record.y)?Math.hypot(record.x-anchorX,record.y-anchorY):0;
+        recordSpatialAnchorMapPadding=Math.max(recordSpatialAnchorMapPadding,anchorDistance);
+        recordSpatialScreenPadding=Math.max(recordSpatialScreenPadding,anchorDistance);
+        if(record.layerId==='nationalCapitalLabels'||record.layerId==='nationalCapitalTongueLabels'){
+          const markerRadius=record.cityPointMarkerRadius||0;
+          const fontSize=record.layerId==='nationalCapitalTongueLabels'?FIXED_CAPITAL_TONGUE_LABEL_FONT_PX:FIXED_CAPITAL_LABEL_FONT_PX;
+          recordSpatialScreenPadding=Math.max(recordSpatialScreenPadding,markerRadius+fontSize+NATIONAL_CAPITAL_LABEL_GAP_PX+anchorDistance);
+        }
+      }
+    }else if(record.tag==='circle')recordSpatialScreenPadding=Math.max(recordSpatialScreenPadding,record.radius||0);
+    const minColumn=Math.max(0,Math.min(columns-1,Math.floor(bounds.x/RECORD_SPATIAL_CELL_SIZE)));
+    const maxColumn=Math.max(0,Math.min(columns-1,Math.floor((bounds.x+bounds.width)/RECORD_SPATIAL_CELL_SIZE)));
+    const minRow=Math.max(0,Math.min(rows-1,Math.floor(bounds.y/RECORD_SPATIAL_CELL_SIZE)));
+    const maxRow=Math.max(0,Math.min(rows-1,Math.floor((bounds.y+bounds.height)/RECORD_SPATIAL_CELL_SIZE)));
+    const cellLinks=(maxColumn-minColumn+1)*(maxRow-minRow+1);
+    if(cellLinks>RECORD_SPATIAL_MAX_CELL_LINKS){recordSpatialGlobal.push(index);continue;}
+    for(let row=minRow;row<=maxRow;row++)for(let column=minColumn;column<=maxColumn;column++){
+      const cellKey=row*columns+column;
+      let cell=recordSpatialGrid.get(cellKey);
+      if(!cell){cell=[];recordSpatialGrid.set(cellKey,cell);}
+      cell.push(index);
+    }
+  }
+  recordSpatialMarks=new Uint32Array(records.length);recordSpatialGeneration=0;
+}
+function recordsForView(view,scale){
+  if(!recordSpatialGrid.size||!recordSpatialMarks.length)return records;
+  const margin=Math.max(48,recordSpatialAnchorMapPadding+recordSpatialScreenPadding/Math.max(scale,.001));
+  const left=Math.max(0,view.x-margin),top=Math.max(0,view.y-margin);
+  const right=Math.min(MAP_W,view.x+view.width+margin),bottom=Math.min(MAP_H,view.y+view.height+margin);
+  if(right<=left||bottom<=top)return recordSpatialSentinels.map(index=>records[index]);
+  const columns=Math.ceil(MAP_W/RECORD_SPATIAL_CELL_SIZE),rows=Math.ceil(MAP_H/RECORD_SPATIAL_CELL_SIZE);
+  const minColumn=Math.max(0,Math.min(columns-1,Math.floor(left/RECORD_SPATIAL_CELL_SIZE)));
+  const maxColumn=Math.max(0,Math.min(columns-1,Math.floor(right/RECORD_SPATIAL_CELL_SIZE)));
+  const minRow=Math.max(0,Math.min(rows-1,Math.floor(top/RECORD_SPATIAL_CELL_SIZE)));
+  const maxRow=Math.max(0,Math.min(rows-1,Math.floor(bottom/RECORD_SPATIAL_CELL_SIZE)));
+  const coveredCells=(maxColumn-minColumn+1)*(maxRow-minRow+1);
+  if(coveredCells>=columns*rows*RECORD_SPATIAL_FULL_VIEW_RATIO)return records;
+  if(++recordSpatialGeneration>=0xffffffff){recordSpatialMarks.fill(0);recordSpatialGeneration=1;}
+  const generation=recordSpatialGeneration,candidates=[];
+  const addIndex=index=>{
+    if(recordSpatialMarks[index]===generation)return;
+    recordSpatialMarks[index]=generation;candidates.push(index);
+  };
+  for(const index of recordSpatialGlobal)addIndex(index);
+  for(let row=minRow;row<=maxRow;row++)for(let column=minColumn;column<=maxColumn;column++){
+    const cell=recordSpatialGrid.get(row*columns+column);
+    if(cell)for(const index of cell)addIndex(index);
+  }
+  for(const index of recordSpatialSentinels)addIndex(index);
+  candidates.sort((a,b)=>a-b);
+  if(candidates.length>=records.length*RECORD_SPATIAL_FULL_VIEW_RATIO)return records;
+  return candidates.map(index=>records[index]);
 }
 function drawMapRasterInView(image,mapWidth,mapHeight,view){
   // Keep the map-space placement unchanged while avoiding a full-image draw when zoomed in.
@@ -2993,16 +3081,6 @@ function highwayBezierControls(points,closed,index){
     control2:{x:p2.x-tangent2.x/3,y:p2.y-tangent2.y/3},end:p2
   };
 }
-function traceHighwayPath(points,closed){
-  if(points.length<2)return;
-  const count=points.length,segments=closed?count:count-1;
-  ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);
-  for(let index=0;index<segments;index++){
-    const curve=highwayBezierControls(points,closed,index);
-    ctx.bezierCurveTo(curve.control1.x,curve.control1.y,curve.control2.x,curve.control2.y,curve.end.x,curve.end.y);
-  }
-  if(closed)ctx.closePath();
-}
 function drawHighSpeedRailStations(scale,zoomWidth){
   if(layerVisibility.get('highSpeedRailStations')===false||zoomWidth>HIGH_SPEED_RAIL_MARKER_DETAIL_WIDTH)return;
   const inverseScale=1/Math.max(scale,.001);
@@ -3027,17 +3105,6 @@ function drawHighSpeedRailStations(scale,zoomWidth){
     ctx.fillStyle='#163f53';ctx.fillText(label,textX,textY);
   }
   ctx.restore();
-}
-function createHighwayPath(points,closed){
-  if(typeof Path2D!=='function'||points.length<2)return null;
-  const path=new Path2D(),segments=closed?points.length:points.length-1;
-  path.moveTo(points[0].x,points[0].y);
-  for(let index=0;index<segments;index++){
-    const curve=highwayBezierControls(points,closed,index);
-    path.bezierCurveTo(curve.control1.x,curve.control1.y,curve.control2.x,curve.control2.y,curve.end.x,curve.end.y);
-  }
-  if(closed)path.closePath();
-  return path;
 }
 function sampleHighwayPath(points,closed){
   if(points.length<2)return points.slice();
@@ -3097,7 +3164,7 @@ function buildHighwayGeometryGroups(){
       let group=groups.get(key);
       if(!group){
         const samples=sampleHighwayPath(points,closed),metrics=highwayPathMetrics(samples);
-        group={key,points,closed,path:createHighwayPath(points,closed),samples,
+        group={key,points,closed,samples,
           cumulativeLengths:metrics.cumulativeLengths,lengthPx:metrics.lengthPx,
           routes:[],visibleRoutes:[],bounds:metrics.bounds};
         groups.set(key,group);
@@ -3108,22 +3175,180 @@ function buildHighwayGeometryGroups(){
   return [...groups.values()];
 }
 const HIGHWAY_GEOMETRY_GROUPS=buildHighwayGeometryGroups();
-
-function drawHighwayGeometry(group){
-  if(group.path){ctx.stroke(group.path);return;}
-  traceHighwayPath(group.points,group.closed);ctx.stroke();
+const HIGHWAY_SHARED_SEGMENT_TOLERANCE=2.5;
+function highwayStrokePointKey(point){return point.x.toFixed(2)+','+point.y.toFixed(2)}
+function highwayStrokeCurveSamples(curve){
+  const a=curve.start,b=curve.control1,c=curve.control2,d=curve.end;
+  const estimate=Math.hypot(b.x-a.x,b.y-a.y)+Math.hypot(c.x-b.x,c.y-b.y)+Math.hypot(d.x-c.x,d.y-c.y);
+  const steps=Math.max(8,Math.min(80,Math.ceil(estimate/3))),samples=[];
+  for(let step=0;step<=steps;step++){
+    const t=step/steps,u=1-t;
+    samples.push({x:u*u*u*a.x+3*u*u*t*b.x+3*u*t*t*c.x+t*t*t*d.x,
+      y:u*u*u*a.y+3*u*u*t*b.y+3*u*t*t*c.y+t*t*t*d.y});
+  }
+  return samples;
+}
+function highwayStrokeCurvesMatch(left,right){
+  const toleranceSquared=HIGHWAY_SHARED_SEGMENT_TOLERANCE**2;
+  for(const source of [left,right]){
+    const target=source===left?right:left;
+    for(const point of source){
+      let nearestSquared=Infinity;
+      for(const candidate of target){
+        const dx=point.x-candidate.x,dy=point.y-candidate.y;
+        nearestSquared=Math.min(nearestSquared,dx*dx+dy*dy);
+      }
+      if(nearestSquared>toleranceSquared)return false;
+    }
+  }
+  return true;
+}
+function buildHighwayStrokeGroups(){
+  const endpointBuckets=new Map(),groups=[];
+  for(const route of HIGHWAY_ROUTES){
+    for(const part of route.parts||[]){
+      const points=highwayPartPoints(part);
+      if(points.length<2||points.some(point=>!point||!Number.isFinite(point.x)||!Number.isFinite(point.y)))continue;
+      const closed=Boolean(part.closed),partKey=highwayGeometryKey(points,closed),segments=closed?points.length:points.length-1;
+      for(let index=0;index<segments;index++){
+        const sourceCurve=highwayBezierControls(points,closed,index);
+        const sourceStartKey=highwayStrokePointKey(sourceCurve.start),sourceEndKey=highwayStrokePointKey(sourceCurve.end);
+        const reversed=sourceStartKey>sourceEndKey;
+        const curve=reversed
+          ?{start:sourceCurve.end,control1:sourceCurve.control2,control2:sourceCurve.control1,end:sourceCurve.start}
+          :sourceCurve;
+        const samples=highwayStrokeCurveSamples(curve),startKey=highwayStrokePointKey(curve.start),endKey=highwayStrokePointKey(curve.end);
+        const endpointKey=startKey+'|'+endKey;
+        let candidates=endpointBuckets.get(endpointKey);
+        if(!candidates){candidates=[];endpointBuckets.set(endpointKey,candidates);}
+        let group=candidates.find(candidate=>highwayStrokeCurvesMatch(candidate.samples,samples));
+        if(!group){
+          const metrics=highwayPathMetrics(samples);
+          group={key:endpointKey+'#'+candidates.length,startKey,endKey,curve,samples,
+            cumulativeLengths:metrics.cumulativeLengths,lengthPx:metrics.lengthPx,bounds:metrics.bounds,
+            routes:[],partGeometryKeys:new Map()};
+          candidates.push(group);groups.push(group);
+        }
+        if(!group.routes.includes(route))group.routes.push(route);
+        let partKeys=group.partGeometryKeys.get(route.id);
+        if(!partKeys){partKeys=new Set();group.partGeometryKeys.set(route.id,partKeys);}
+        partKeys.add(partKey);
+      }
+    }
+  }
+  return groups;
+}
+const HIGHWAY_STROKE_GROUPS=buildHighwayStrokeGroups();
+function highwayStrokeGroupHasExactSharedPart(group){
+  if(group.routes.length<2)return true;
+  const firstKeys=group.partGeometryKeys.get(group.routes[0].id)||new Set();
+  return [...firstKeys].some(key=>group.routes.slice(1).every(route=>(group.partGeometryKeys.get(route.id)||new Set()).has(key)));
+}
+function buildHighwaySharedLabelGroups(){
+  const bySignature=new Map();
+  for(const group of HIGHWAY_STROKE_GROUPS){
+    if(group.routes.length<2||highwayStrokeGroupHasExactSharedPart(group))continue;
+    const signature=group.routes.map(route=>route.id).sort().join('/');
+    if(!bySignature.has(signature))bySignature.set(signature,[]);
+    bySignature.get(signature).push(group);
+  }
+  const labelGroups=[];
+  for(const groups of bySignature.values()){
+    const adjacency=new Map(),visited=new Set();
+    const addEndpoint=(key,group)=>{if(!adjacency.has(key))adjacency.set(key,[]);adjacency.get(key).push(group);};
+    for(const group of groups){addEndpoint(group.startKey,group);addEndpoint(group.endKey,group);}
+    const walk=(startKey,first)=>{
+      const samples=[];let currentKey=startKey,group=first;
+      while(group&&!visited.has(group)){
+        visited.add(group);
+        const forward=group.startKey===currentKey,segmentSamples=forward?group.samples:group.samples.slice().reverse();
+        samples.push(...(samples.length?segmentSamples.slice(1):segmentSamples));
+        const nextKey=forward?group.endKey:group.startKey,edges=adjacency.get(nextKey)||[];
+        if(edges.length!==2)break;
+        const next=edges.find(edge=>!visited.has(edge));
+        if(!next)break;
+        currentKey=nextKey;group=next;
+      }
+      return samples;
+    };
+    for(const [key,edges] of adjacency){
+      if(edges.length===2)continue;
+      for(const edge of edges){
+        if(visited.has(edge))continue;
+        const samples=walk(key,edge);
+        if(samples.length<2)continue;
+        const metrics=highwayPathMetrics(samples);
+        labelGroups.push({routes:edge.routes,visibleRoutes:[],samples,cumulativeLengths:metrics.cumulativeLengths,
+          lengthPx:metrics.lengthPx,bounds:metrics.bounds,shared:true});
+      }
+    }
+    for(const edge of groups){
+      if(visited.has(edge))continue;
+      const samples=walk(edge.startKey,edge);
+      if(samples.length<2)continue;
+      const metrics=highwayPathMetrics(samples);
+      labelGroups.push({routes:edge.routes,visibleRoutes:[],samples,cumulativeLengths:metrics.cumulativeLengths,
+        lengthPx:metrics.lengthPx,bounds:metrics.bounds,shared:true});
+    }
+  }
+  return labelGroups;
+}
+const HIGHWAY_SHARED_LABEL_GROUPS=buildHighwaySharedLabelGroups();
+const HIGHWAY_STROKE_RENDER_CACHE=new Map();
+function buildHighwayStrokeRenderPaths(){
+  const hasPath2D=typeof Path2D==='function',allPath=hasPath2D?new Path2D():null,colorPaths=new Map();
+  const allCurves=[],colorCurves=new Map();
+  for(const group of HIGHWAY_STROKE_GROUPS){
+    const visibleRoutes=group.routes.filter(route=>layerVisibility.get(route.id)!==false);
+    if(!visibleRoutes.length)continue;
+    const color=visibleRoutes[0].color||'#c65349',curve=group.curve;
+    if(hasPath2D){
+      allPath.moveTo(curve.start.x,curve.start.y);allPath.bezierCurveTo(curve.control1.x,curve.control1.y,curve.control2.x,curve.control2.y,curve.end.x,curve.end.y);
+      let colorPath=colorPaths.get(color);
+      if(!colorPath){colorPath=new Path2D();colorPaths.set(color,colorPath);}
+      colorPath.moveTo(curve.start.x,curve.start.y);colorPath.bezierCurveTo(curve.control1.x,curve.control1.y,curve.control2.x,curve.control2.y,curve.end.x,curve.end.y);
+    }else{
+      allCurves.push(curve);
+      if(!colorCurves.has(color))colorCurves.set(color,[]);
+      colorCurves.get(color).push(curve);
+    }
+  }
+  return{allPath,colorPaths,allCurves,colorCurves};
+}
+function getHighwayStrokeRenderPaths(){
+  const visibleKey=HIGHWAY_ROUTES.filter(route=>layerVisibility.get(route.id)!==false).map(route=>route.id).join('|');
+  let paths=HIGHWAY_STROKE_RENDER_CACHE.get(visibleKey);
+  if(paths)return paths;
+  paths=buildHighwayStrokeRenderPaths();
+  if(HIGHWAY_STROKE_RENDER_CACHE.size>=8)HIGHWAY_STROKE_RENDER_CACHE.delete(HIGHWAY_STROKE_RENDER_CACHE.keys().next().value);
+  HIGHWAY_STROKE_RENDER_CACHE.set(visibleKey,paths);
+  return paths;
+}
+function strokeHighwayCurves(curves){
+  ctx.beginPath();
+  for(const curve of curves){
+    ctx.moveTo(curve.start.x,curve.start.y);
+    ctx.bezierCurveTo(curve.control1.x,curve.control1.y,curve.control2.x,curve.control2.y,curve.end.x,curve.end.y);
+  }
+  ctx.stroke();
 }
 function drawHighways(scale){
   const inverseScale=1/Math.max(scale,.001);
   HIGHWAY_LABEL_GROUPS=[];
-  ctx.save();ctx.lineCap='round';ctx.lineJoin='round';ctx.setLineDash([]);
   for(const group of HIGHWAY_GEOMETRY_GROUPS){
     group.visibleRoutes=group.routes.filter(route=>layerVisibility.get(route.id)!==false);
-    if(!group.visibleRoutes.length)continue;
-    HIGHWAY_LABEL_GROUPS.push(group);
-    ctx.lineWidth=8*inverseScale;ctx.strokeStyle='rgba(255,255,255,.96)';drawHighwayGeometry(group);
-    ctx.lineWidth=4.2*inverseScale;ctx.strokeStyle=group.visibleRoutes[0].color||'#c65349';drawHighwayGeometry(group);
+    if(group.visibleRoutes.length)HIGHWAY_LABEL_GROUPS.push(group);
   }
+  for(const group of HIGHWAY_SHARED_LABEL_GROUPS){
+    group.visibleRoutes=group.routes.filter(route=>layerVisibility.get(route.id)!==false);
+    if(group.visibleRoutes.length>1)HIGHWAY_LABEL_GROUPS.push(group);
+  }
+  const renderPaths=getHighwayStrokeRenderPaths();
+  ctx.save();ctx.lineCap='round';ctx.lineJoin='round';ctx.setLineDash([]);
+  ctx.lineWidth=8*inverseScale;ctx.strokeStyle='rgba(255,255,255,.96)';
+  if(renderPaths.allPath)ctx.stroke(renderPaths.allPath);else if(renderPaths.allCurves.length)strokeHighwayCurves(renderPaths.allCurves);
+  for(const [color,path] of renderPaths.colorPaths){ctx.lineWidth=4.2*inverseScale;ctx.strokeStyle=color;ctx.stroke(path);}
+  if(!renderPaths.colorPaths.size){for(const [color,curves] of renderPaths.colorCurves){ctx.lineWidth=4.2*inverseScale;ctx.strokeStyle=color;strokeHighwayCurves(curves);}}
   ctx.setLineDash([]);ctx.restore();
 }
 function drawHighwayIdLabels(scale){
@@ -3187,7 +3412,7 @@ function pointSegmentDistanceSquared(point,a,b){
 function highwayHitTest(point,scale){
   const tolerance=9/Math.max(scale,.001),limit=tolerance*tolerance;
   let nearest=null,best=limit;
-  for(const group of HIGHWAY_GEOMETRY_GROUPS){
+  for(const group of HIGHWAY_STROKE_GROUPS){
     const routes=group.routes.filter(route=>layerVisibility.get(route.id)!==false);
     if(!routes.length||point.x<group.bounds.minX-tolerance||point.x>group.bounds.maxX+tolerance||
        point.y<group.bounds.minY-tolerance||point.y>group.bounds.maxY+tolerance)continue;
@@ -3210,7 +3435,7 @@ function draw(){
   ctx.fillStyle='#f5f8f9';ctx.fillRect(0,0,m.width,m.height);
   const scale=m.scale,offsetX=m.offsetX,offsetY=m.offsetY;
   const zoomWidth=viewZoomWidth(),bathymetryOpacity=smoothStep((zoomWidth-400)/650);
-  const riverColor=records.find(record=>record.layerId==='rivers'&&record.stroke!=='none')?.stroke||OCEAN_COLOR;
+  const riverColor=mapRiverColor;
   ctx.fillStyle='#fff';ctx.fillRect(offsetX-vb.x*scale,offsetY-vb.y*scale,SOURCE_W*scale,MAP_H*scale);
   ctx.fillStyle=OCEAN_COLOR;ctx.fillRect(offsetX+(SOURCE_W-2-vb.x)*scale,offsetY-vb.y*scale,(MAP_W-SOURCE_W+2)*scale,MAP_H*scale);
   if(bathymetryOpacity<1){ctx.save();ctx.globalAlpha=1-bathymetryOpacity;ctx.fillStyle=riverColor;ctx.fillRect(offsetX+(SOURCE_W-2-vb.x)*scale,offsetY-vb.y*scale,(MAP_W-SOURCE_W+2)*scale,MAP_H*scale);ctx.restore();}
@@ -3224,7 +3449,7 @@ function draw(){
   const regionLabelOpacity=regionLabelOpacityForView();
   const majorRegionLabelOpacity=majorRegionLabelOpacityForView();
   let reliefRasterDrawn=false,highwaysDrawn=false,highwayLabelsDrawn=false;
-  for(const record of records){
+  for(const record of recordsForView(view,scale)){
     if(!highwaysDrawn&&record.layerId==='blackMarkers'){
       drawHighways(scale);highwaysDrawn=true;
       drawHighwayIdLabels(scale);highwayLabelsDrawn=true;
